@@ -11,11 +11,10 @@ Without SMTP, all of the above either fall back to admin-generated links or sile
 
 ## Where the settings live
 
-- **CookTrace**: `Settings → Email`
-- **LiftTrace**: `Settings → Email`
-- **NutriTrace**: `Settings → Authentication` (SMTP form is embedded in the auth screen, not a separate section).
+All three apps expose SMTP at `Settings → Email` as its own section. The form is byte-for-byte the same across the three apps. All three call the same `POST /api/app-config` (per-field save) and `POST /api/app-config/test-email` (test send) endpoints server-side.
 
-The form is byte-for-byte the same across the three apps, only the parent screen differs. All three call the same `POST /api/app-config` (per-field save) and `POST /api/app-config/test-email` (test send) endpoints server-side.
+!!! note "If you are on NutriTrace 1.0.3 or earlier"
+    The SMTP fields lived inside `Settings → Authentication` before the layout was aligned with CookTrace and LiftTrace. Everything below still applies. Only the parent screen differs.
 
 ## Field-by-field
 
