@@ -28,12 +28,13 @@ The reminder toggles under `Settings → Notifications` differ per app because t
 
 ### CookTrace
 
-- **Expiration digest**: pantry items nearing their expiration date. Daily.
+- **Expiration digest**: pantry items nearing their expiration date. Daily. Configurable window (`notifExpiryDaysBefore`) and delivery time (`notifExpiryTime`).
 - **Cook-day reminder**: a cook you've planned for today.
 - **Thaw alert**: reminder to move something from freezer to fridge.
 - **Shopping-list nudge**: standing shopping-list items you haven't cleared.
 - **Recipe comments**: someone commented on a shared recipe.
 - **Weekly summary**: cooks this week, top dish, new recipes, next week's plan, pantry/shopping snapshot. Email, not push.
+- **Backup failed**: scheduled auto-backup did not complete. Admin-only.
 
 ### LiftTrace
 
