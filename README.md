@@ -1,6 +1,6 @@
 # TraceApps Documentation
 
-Source for **https://traceapps.github.io/docs/** — documentation covering the TraceApps self-hosted family: [CookTrace](https://github.com/TraceApps/cooktrace), [LiftTrace](https://github.com/TraceApps/lifttrace), [NutriTrace](https://github.com/TraceApps/nutritrace).
+Source for **https://traceapps.github.io/docs/**. Covers the TraceApps self-hosted family: [CookTrace](https://github.com/TraceApps/cooktrace), [LiftTrace](https://github.com/TraceApps/lifttrace), [NutriTrace](https://github.com/TraceApps/nutritrace).
 
 Built with [MkDocs Material](https://squidfunk.github.io/mkdocs-material/) and deployed to GitHub Pages via the `deploy.yml` workflow.
 

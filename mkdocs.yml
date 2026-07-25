@@ -1,5 +1,5 @@
 site_name: TraceApps Documentation
-site_description: Documentation for the TraceApps self-hosted family — CookTrace, LiftTrace, NutriTrace.
+site_description: Documentation for the TraceApps self-hosted family. Covers CookTrace, LiftTrace, and NutriTrace.
 site_url: https://traceapps.github.io/docs/
 site_author: TraceApps
 
@@ -10,7 +10,7 @@ edit_uri: edit/main/docs/
 docs_dir: docs
 use_directory_urls: true
 
-copyright: Copyright &copy; 2026 TraceApps &mdash; released under AGPL-3.0.
+copyright: Copyright &copy; 2026 TraceApps. Released under AGPL-3.0.
 
 theme:
   name: material
@@ -32,9 +32,8 @@ theme:
     text: Inter
     code: JetBrains Mono
   features:
-    - navigation.tabs
-    - navigation.tabs.sticky
     - navigation.sections
+    - navigation.expand
     - navigation.indexes
     - navigation.top
     - navigation.footer
@@ -120,49 +119,51 @@ extra_css:
 
 nav:
   - Home: index.md
-  - Getting Started:
+  - Get Started:
       - Choose your app: getting-started/choose.md
       - Install with Docker Compose: getting-started/compose.md
       - First-run wizard: getting-started/first-run.md
       - Plain-HTTP LAN (INSECURE_COOKIES): getting-started/lan-http.md
       - Reverse proxy: getting-started/reverse-proxy.md
       - Updating: getting-started/updating.md
-  - Self-Hosting:
-      - How the three apps compare: self-hosting/compare.md
-      - Environment reference: self-hosting/env-vars.md
-      - Docker Secrets (*_FILE): self-hosting/secrets.md
-      - Backups & restore: self-hosting/backups.md
-      - Scheduled auto-backups: self-hosting/scheduled-backups.md
-      - Reverse-proxy recipes: self-hosting/proxy-recipes.md
-      - Cloudflare Tunnel & Tailscale: self-hosting/tunnels.md
-  - Authentication:
-      - Local users, invites, roles: auth/local-users.md
-      - OIDC / SSO overview: auth/oidc.md
-      - Recipe — Authentik: auth/oidc/authentik.md
-      - Recipe — Keycloak: auth/oidc/keycloak.md
-      - Recipe — Pocket-ID: auth/oidc/pocket-id.md
-      - Recipe — Authelia: auth/oidc/authelia.md
-      - Recipe — Google Workspace: auth/oidc/google.md
-      - Recipe — Auth0: auth/oidc/auth0.md
-      - SSO-only mode & recovery: auth/sso-only.md
-      - Session lifetime & password policy: auth/sessions.md
-  - Trace AI:
-      - Setting up Trace: trace/setup.md
-      - Cloud providers: trace/cloud.md
-      - Local LLMs: trace/local-llm.md
-      - Model list & Gemini retirement remap: trace/models.md
-  - Integrations:
-      - Email / SMTP: integrations/smtp.md
-      - Push notifications overview: integrations/notifications.md
-      - Apprise: integrations/apprise.md
-      - Gotify: integrations/gotify.md
-      - ntfy: integrations/ntfy.md
-      - Federation (cross-app links): integrations/federation.md
-  - Mobile app:
-      - Install the Android app: mobile/install.md
-      - Local vs server-connected mode: mobile/modes.md
-      - How sync works: mobile/sync.md
-      - HTTPS on the LAN: mobile/https.md
+  - Configure:
+      - Server:
+          - How the three apps compare: self-hosting/compare.md
+          - Environment reference: self-hosting/env-vars.md
+          - Docker Secrets (*_FILE): self-hosting/secrets.md
+          - Backups and restore: self-hosting/backups.md
+          - Scheduled auto-backups: self-hosting/scheduled-backups.md
+          - Reverse-proxy recipes: self-hosting/proxy-recipes.md
+          - Cloudflare Tunnel and Tailscale: self-hosting/tunnels.md
+      - Authentication:
+          - Local users, invites, roles: auth/local-users.md
+          - OIDC / SSO overview: auth/oidc.md
+          - SSO-only mode and recovery: auth/sso-only.md
+          - Session lifetime and password policy: auth/sessions.md
+          - OIDC recipes:
+              - Authentik: auth/oidc/authentik.md
+              - Keycloak: auth/oidc/keycloak.md
+              - Pocket-ID: auth/oidc/pocket-id.md
+              - Authelia: auth/oidc/authelia.md
+              - Google Workspace: auth/oidc/google.md
+              - Auth0: auth/oidc/auth0.md
+      - Trace AI:
+          - Setting up Trace: trace/setup.md
+          - Cloud providers: trace/cloud.md
+          - Local LLMs: trace/local-llm.md
+          - Model list and Gemini retirement remap: trace/models.md
+      - Integrations:
+          - Email / SMTP: integrations/smtp.md
+          - Push notifications overview: integrations/notifications.md
+          - Apprise: integrations/apprise.md
+          - Gotify: integrations/gotify.md
+          - ntfy: integrations/ntfy.md
+          - Federation (cross-app links): integrations/federation.md
+      - Mobile app:
+          - Install the Android app: mobile/install.md
+          - Local vs server-connected mode: mobile/modes.md
+          - How sync works: mobile/sync.md
+          - HTTPS on the LAN: mobile/https.md
   - CookTrace:
       - Overview: cooktrace/index.md
       - Feature tour: cooktrace/features.md
@@ -215,11 +216,11 @@ nav:
       - Migrate from Lose It / Cronometer / Waistline: nutritrace/migrate-other.md
       - Settings reference: nutritrace/settings.md
       - Env vars (app-specific): nutritrace/env-vars.md
-  - Contribute:
-      - Dev setup (all three): contribute/dev-setup.md
-      - Translations (i18n): contribute/translations.md
   - Reference:
-      - Trace tool catalog: reference/trace-tools.md
       - Troubleshooting: reference/troubleshooting.md
+      - Trace tool catalog: reference/trace-tools.md
       - Docker image tag matrix: reference/image-tags.md
       - Changelogs: reference/changelogs.md
+      - Contribute:
+          - Dev setup (all three): contribute/dev-setup.md
+          - Translations (i18n): contribute/translations.md
