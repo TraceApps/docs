@@ -132,6 +132,7 @@ nav:
           - Backups and restore: self-hosting/backups.md
           - Scheduled auto-backups: self-hosting/scheduled-backups.md
           - Reverse-proxy recipes: self-hosting/proxy-recipes.md
+          - HTTPS on the LAN: self-hosting/lan-https.md
           - Cloudflare Tunnel and Tailscale: self-hosting/tunnels.md
       - Authentication:
           - Local users, invites, roles: auth/local-users.md
@@ -161,7 +162,6 @@ nav:
           - Install the Android app: mobile/install.md
           - Local vs server-connected mode: mobile/modes.md
           - How sync works: mobile/sync.md
-          - HTTPS on the LAN: mobile/https.md
   - CookTrace:
       - Overview: cooktrace/index.md
       - Feature tour: cooktrace/features.md
