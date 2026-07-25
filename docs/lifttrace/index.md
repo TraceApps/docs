@@ -14,6 +14,8 @@ Compared to the popular alternatives:
 
 Not "better than". Different trade-offs. If you already `docker compose up` things on your own hardware, LiftTrace is aimed at you.
 
+![LiftTrace workout diary with per-set weight, reps, and rest timer](../assets/img/lifttrace/01-diary.png)
+
 ## What you get
 
 - Full workout diary with per-set weight, reps, RPE, warm-ups, supersets, and a persistent rest timer.

@@ -1,5 +1,8 @@
 # Foods, meals & recipes
 
+![NutriTrace Foods library with source filter chips and thumbnails](../assets/img/nutritrace/02-foods.png)
+
+
 The **Foods** page is the library. Three tabs across the top: **Foods**, **Meals**, **Recipes**. A search field, source filter chips, and (per your sort setting) either favorites-first or an alphabetical / recently-used / most-used list. Everything the Diary picker touches lives here first.
 
 ## Personal food database

@@ -14,6 +14,8 @@ The pitch is short. If you have ever used MyFitnessPal, Cronometer, MacroFactor,
 
 **vs Lose It.** Lose It treats wearables as a companion; NutriTrace treats wellness (sleep, HRV, readiness, resilience, workouts) as first-class data with its own dashboard and its own influence on the Dynamic calorie goal. Lose It has a slicker onboarding. NutriTrace has a first-run Wizard that runs the Mifflin-St Jeor math and hands you a starting goal without a signup form.
 
+![NutriTrace daily food diary with macro bar and per-meal breakdown](../assets/img/nutritrace/01-diary.png)
+
 ## What you get
 
 - **Diary** with configurable meal slots, per-day notes, water tracking, body stats, an Activity section for manual workouts, and an Intermittent Fasting widget with presets.

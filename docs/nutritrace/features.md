@@ -4,6 +4,8 @@ A walkthrough of the flows most users actually do every day. Each section jumps 
 
 ## Log today's meals
 
+![NutriTrace daily food diary with macro bar and per-meal breakdown](../assets/img/nutritrace/01-diary.png)
+
 Open the **Diary** (the default landing page). The date sits at the top with prev/next arrows and a jump-to-today button. Below it, one card per meal slot: Breakfast, Lunch, Dinner, Snacks by default, or whatever custom names you set in Settings.
 
 Tap **+ Add** on any meal to open the picker. The picker lists your Foods, Meals, and Recipes with a search box, favorites at the top (if you have that sort enabled), and source filter chips: Local / OFF / USDA / Mealie / From Others. Long-press a chip to combine sources (multi-source view). Type a partial name and fuzzy search will match with edit distance 1 for words of four or more characters.
@@ -20,11 +22,17 @@ The macro summary lives at the top of the Diary page. It shows your day's calori
 
 ## Review the week's stats
 
+![NutriTrace Statistics with calorie trend, average, and goal overlays](../assets/img/nutritrace/04-statistics.png)
+
+
 Switch to **Statistics**. Pick a nutrient, body stat, workout metric, wellness metric, or IF stat from the chip row. The chart underneath renders as bar or line (configurable), with optional overlays for the goal, the trailing average, and a trend line. Date range is a picker at the top; the chart supports zero-baseline toggle, include-today toggle, and show-empty-days toggle.
 
 The chip row is drag-reorderable, and any chip you hide via long-press stays hidden until you show it again. Chart.js is loaded as a separate async chunk so the page stays responsive even with a lot of series.
 
 ## Hit Wellness for wearable-informed suggestions
+
+![Wellness dashboard with Sleep, Readiness, Resilience scores](../assets/img/nutritrace/03-wellness.png)
+
 
 Open **Wellness**. If you have any wearable connected (Fitbit via Google Health, Withings, Garmin, or Health Connect on Android), the top of the page is a tile grid: last night's Sleep Score with sub-metrics (Sound Sleep, Restlessness, Time to Sound Sleep, Interruptions), today's Readiness, this week's Resilience bucket (Optimal / Balanced / Low), HRV, resting HR, steps, SpO₂, and workouts. Each tile has a sparkline for context.
 
@@ -45,6 +53,9 @@ If you pick Adaptive, the Goals page shows a readiness card with a progress bar 
 Full detail: [Goals & Adaptive TDEE](goals.md).
 
 ## Log with your voice (Smart Log)
+
+![Smart Log parsing "1 cup rice, chicken breast, 2 tbsp olive oil"](../assets/img/nutritrace/06-smart-log.png)
+
 
 Press-and-hold the **Trace** FAB on the Diary. Say what you ate ("large latte and a bagel with cream cheese for breakfast"). The on-device speech recognizer (Android system STT or the Web Speech API) transcribes; only the transcript reaches the LLM. Trace matches your saved foods, meals, recipes, yesterday's diary rows, and water, splits the entry into meal slots by keyword, and adds the items to the right meals.
 

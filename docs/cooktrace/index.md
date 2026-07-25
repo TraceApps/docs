@@ -4,6 +4,8 @@ CookTrace is a self-hosted recipe box, pantry inventory, cook diary, meal planne
 
 The core idea: every ingredient a recipe uses can link to a real pantry item, so cards on the Recipes page show "8/10 in pantry" at a glance, the shopping list dedups across recipes automatically, and expiration digests know what's about to go bad. Trace, the same AI assistant the other TraceApps use, sits on top with 19 cooking-domain tools so you can ask "what can I make from what's in the pantry?" and get real answers backed by your own data.
 
+![CookTrace recipe library with pantry-match pills, ratings, times, and search](../assets/img/cooktrace/01-recipes.png)
+
 ## Compared to other self-hosted recipe apps
 
 CookTrace is not "better than" the other options, just different in what it prioritises.

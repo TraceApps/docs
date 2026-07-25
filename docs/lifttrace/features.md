@@ -4,6 +4,8 @@ A tour through the four flows you will use most. Nothing here requires config be
 
 ## Log today's workout
 
+![LiftTrace workout diary with per-set weight, reps, and rest timer](../assets/img/lifttrace/01-diary.png)
+
 Open **Diary**. The date bar defaults to today; arrow keys or the calendar icon jump you around. On an empty day you see a row of quick-load cards for recent workouts, one tap to prefill.
 
 Add an exercise from the **+ Exercise** picker at the bottom. Search matches names, aliases (`BB`, `DB`, `BP`, `OHP`, `DL`, `SQ`, `RDL`), and equipment tags. Tap the exercise and it lands in the diary with one blank set row waiting for weight and reps.
@@ -23,6 +25,9 @@ Full details in [Diary and set logging](diary.md).
 
 ## Follow an active program
 
+![Programs and templates with multi-week progression matrix](../assets/img/lifttrace/03-programs.png)
+
+
 Open **Programs**. Every fresh install seeds a handful of starter templates (Push/Pull/Legs, Upper/Lower, Full Body 3x, plus two branded programs). Pick one, tap **Activate**, and it becomes your active program. Only one program is active at a time.
 
 Back in Diary, the empty day now shows a **Load today's workout** button that prefills the whole session (exercises, target reps, target weight, warm-ups, RPE targets) from the current template.
@@ -32,6 +37,9 @@ Multi-week programs (v1.0.1) add a Week tab strip in the Program editor. Each we
 See [Programs and templates](programs.md).
 
 ## Check PRs
+
+![Post-workout summary with PR badges and volume totals](../assets/img/lifttrace/07-workout-summary.png)
+
 
 Open **Statistics**. The metric-pill row across the top switches between:
 
@@ -48,6 +56,9 @@ PR detection also runs inline in Diary: when a completed set beats the prior top
 
 ## Use the radio during a session
 
+![Radio player with Subsonic / Jellyfin / Icecast / HLS source picker](../assets/img/lifttrace/05-radio.png)
+
+
 The **Radio** tab is a full music player, not a background afterthought. Two source types:
 
 - **Self-hosted music server**: Subsonic-compatible (Navidrome, Airsonic, Funkwhale, Gonic), Jellyfin, Plex, or Emby. Configure once in Settings > Radio and browse albums, artists, playlists, and search inside LiftTrace.
@@ -58,6 +69,9 @@ The player runs a mini-bar across every screen so you can log sets without leavi
 See [Radio player](radio.md).
 
 ## Talk to Trace
+
+![Trace AI chat with live workout context and hold-to-record voice](../assets/img/lifttrace/06-trace.png)
+
 
 The floating Trace assistant is docked bottom-right on every page. Two things it does that a generic chat window does not:
 

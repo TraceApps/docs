@@ -1,5 +1,8 @@
 # Trace in NutriTrace + Smart Log
 
+![Trace AI assistant chat with tool-use answers grounded in your diary](../assets/img/nutritrace/05-ai-assistant.png)
+
+
 Trace is the in-app AI assistant. In NutriTrace it can read your diary, wellness, workouts, body composition, goals, and fasting history through tool use, and it can propose diary entries and new foods for you to review before anything is written. This page covers the NutriTrace-specific role of Trace: the tools it can call, the two propose-and-review flows, voice logging via Smart Log, and the label-scan flow. Provider setup (which LLM, which key, per-user vs env-locked) is shared with CookTrace and LiftTrace and lives on the [shared Trace setup page](../trace/setup.md).
 
 ## What Trace can do in NutriTrace

@@ -1,8 +1,11 @@
 # Feature tour
 
-A guided walkthrough of the main flows in CookTrace. No screenshots yet, a later pass adds them. Each section anchors so you can deep-link.
+A guided walkthrough of the main flows in CookTrace. Each section anchors so you can deep-link.
 
 ## Browse recipes {#browse}
+
+![CookTrace recipe library](../assets/img/cooktrace/01-recipes.png)
+
 
 The Recipes page is a grid of cards by default, with a List toggle for denser scans. Each card shows the hero image, name, star rating, favorite heart, cook count, prep/cook times, category badge, and a "pantry match" pill that says how many of the recipe's ingredients are currently in stock. The pill is variant-aware, so a recipe that calls for "milk" matches whichever brand of milk your pantry actually holds.
 
@@ -28,11 +31,17 @@ Each ingredient row has an inline unit converter that draws on a 37-unit catalog
 
 ## Plan the week {#plan}
 
+![Cook Diary and Meal Planner calendar view](../assets/img/cooktrace/03-diary.png)
+
+
 The Diary page has a list view (60 days back, 30 days forward, grouped by date) and a month calendar. Drag a recipe between calendar cells to reschedule it. Planned cooks are grey; a one-tap toggle promotes them to logged cooks and records the date.
 
 A **heatmap** at the top of the page shows cook density over the last year (contribution-graph style). Click a cell to jump to that day's entries.
 
 ## Stock the pantry {#pantry}
+
+![Pantry with variants, expiration pills, and barcode-scan chips](../assets/img/cooktrace/02-pantry.png)
+
 
 The Pantry page mirrors Recipes: grid or list, per-user preference. Tap an item and a **slide-up details sheet** covers the lower half of the screen with hero, brand, category, barcode, stock pill, serving size, on-hand quantity, expiration date, and nutrition. Hit Edit to swap that same layout into inputs, no navigation to a separate editor.
 
@@ -47,6 +56,9 @@ Add items three ways:
 Expiration works two ways: a chip on the item card (Expiring Soon, Expired) and an **Expiration Digest** notification that fires at a chosen time of day, N days before, via whichever push provider you've configured.
 
 ## Shop from the plan {#shop}
+
+![Shopping list grouped by aisle with pantry-match pills](../assets/img/cooktrace/04-shopping.png)
+
 
 Open a recipe and hit **Add to Shopping** to push its ingredients onto the list, skipping anything already stocked. Or open Diary, select a date range, and **Shop This Plan** fans every planned recipe's ingredients out at once, dedupping across recipes (buy one bag of flour, not three).
 
