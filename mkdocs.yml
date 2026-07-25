@@ -1,0 +1,225 @@
+site_name: TraceApps Documentation
+site_description: Documentation for the TraceApps self-hosted family — CookTrace, LiftTrace, NutriTrace.
+site_url: https://traceapps.github.io/docs/
+site_author: TraceApps
+
+repo_name: TraceApps/docs
+repo_url: https://github.com/TraceApps/docs
+edit_uri: edit/main/docs/
+
+docs_dir: docs
+use_directory_urls: true
+
+copyright: Copyright &copy; 2026 TraceApps &mdash; released under AGPL-3.0.
+
+theme:
+  name: material
+  language: en
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle: { icon: material/brightness-auto, name: Switch to light mode }
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: deep purple
+      toggle: { icon: material/brightness-7, name: Switch to dark mode }
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: deep purple
+      toggle: { icon: material/brightness-4, name: Switch to system preference }
+  font:
+    text: Inter
+    code: JetBrains Mono
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - content.tooltips
+    - content.action.edit
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/pencil
+    view: material/eye
+
+plugins:
+  - search
+  - glightbox:
+      touchNavigation: true
+      loop: false
+      effect: fade
+      slide_effect: slide
+      width: 100%
+      auto_caption: false
+  - git-revision-date-localized:
+      enable_creation_date: false
+      fallback_to_build_date: true
+  - redirects:
+      redirect_maps: {}
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: TraceApps
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds: { case: lower }
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/TraceApps
+      name: TraceApps on GitHub
+  generator: false
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - Home: index.md
+  - Getting Started:
+      - Choose your app: getting-started/choose.md
+      - Install with Docker Compose: getting-started/compose.md
+      - First-run wizard: getting-started/first-run.md
+      - Plain-HTTP LAN (INSECURE_COOKIES): getting-started/lan-http.md
+      - Reverse proxy: getting-started/reverse-proxy.md
+      - Updating: getting-started/updating.md
+  - Self-Hosting:
+      - How the three apps compare: self-hosting/compare.md
+      - Environment reference: self-hosting/env-vars.md
+      - Docker Secrets (*_FILE): self-hosting/secrets.md
+      - Backups & restore: self-hosting/backups.md
+      - Scheduled auto-backups: self-hosting/scheduled-backups.md
+      - Reverse-proxy recipes: self-hosting/proxy-recipes.md
+      - Cloudflare Tunnel & Tailscale: self-hosting/tunnels.md
+  - Authentication:
+      - Local users, invites, roles: auth/local-users.md
+      - OIDC / SSO overview: auth/oidc.md
+      - Recipe — Authentik: auth/oidc/authentik.md
+      - Recipe — Keycloak: auth/oidc/keycloak.md
+      - Recipe — Pocket-ID: auth/oidc/pocket-id.md
+      - Recipe — Authelia: auth/oidc/authelia.md
+      - Recipe — Google Workspace: auth/oidc/google.md
+      - Recipe — Auth0: auth/oidc/auth0.md
+      - SSO-only mode & recovery: auth/sso-only.md
+      - Session lifetime & password policy: auth/sessions.md
+  - Trace AI:
+      - Setting up Trace: trace/setup.md
+      - Cloud providers: trace/cloud.md
+      - Local LLMs: trace/local-llm.md
+      - Model list & Gemini retirement remap: trace/models.md
+  - Integrations:
+      - Email / SMTP: integrations/smtp.md
+      - Push notifications overview: integrations/notifications.md
+      - Apprise: integrations/apprise.md
+      - Gotify: integrations/gotify.md
+      - ntfy: integrations/ntfy.md
+      - Federation (cross-app links): integrations/federation.md
+  - Mobile app:
+      - Install the Android app: mobile/install.md
+      - Local vs server-connected mode: mobile/modes.md
+      - How sync works: mobile/sync.md
+      - HTTPS on the LAN: mobile/https.md
+  - CookTrace:
+      - Overview: cooktrace/index.md
+      - Feature tour: cooktrace/features.md
+      - Recipes: cooktrace/recipes.md
+      - Pantry: cooktrace/pantry.md
+      - Cook Diary & Meal Planner: cooktrace/diary.md
+      - Shopping list: cooktrace/shopping.md
+      - Cookbooks: cooktrace/cookbooks.md
+      - Kitchens: cooktrace/kitchens.md
+      - Trace in CookTrace: cooktrace/trace.md
+      - URL / file / photo import: cooktrace/import.md
+      - Migrate from Mealie: cooktrace/migrate-mealie.md
+      - Migrate from Paprika: cooktrace/migrate-paprika.md
+      - Migrate from Tandoor: cooktrace/migrate-tandoor.md
+      - NutriTrace federation: cooktrace/nt-federation.md
+      - Settings reference: cooktrace/settings.md
+      - Env vars (app-specific): cooktrace/env-vars.md
+  - LiftTrace:
+      - Overview: lifttrace/index.md
+      - Feature tour: lifttrace/features.md
+      - Diary & set logging: lifttrace/diary.md
+      - Programs & templates: lifttrace/programs.md
+      - Multi-week progression: lifttrace/progression.md
+      - Exercise library: lifttrace/exercises.md
+      - Trace in LiftTrace + Smart Log: lifttrace/trace.md
+      - Radio player: lifttrace/radio.md
+      - Coaching: lifttrace/coaching.md
+      - Statistics & PRs: lifttrace/statistics.md
+      - Workout history import: lifttrace/import.md
+      - NutriTrace federation: lifttrace/nt-federation.md
+      - Settings reference: lifttrace/settings.md
+      - Env vars (app-specific): lifttrace/env-vars.md
+  - NutriTrace:
+      - Overview: nutritrace/index.md
+      - Feature tour: nutritrace/features.md
+      - Diary & meal logging: nutritrace/diary.md
+      - Foods, meals & recipes: nutritrace/foods.md
+      - Barcode & Scan Label: nutritrace/scan.md
+      - Goals & Adaptive TDEE: nutritrace/goals.md
+      - Wellness & wearables: nutritrace/wellness.md
+      - Fitbit → Google Health migration: nutritrace/google-health.md
+      - Withings: nutritrace/withings.md
+      - Health Connect (Android): nutritrace/health-connect.md
+      - Activity & IF tracking: nutritrace/activity-if.md
+      - Open Food Facts: nutritrace/off.md
+      - USDA & Mealie integration: nutritrace/usda-mealie.md
+      - Trace in NutriTrace + Smart Log: nutritrace/trace.md
+      - Federation API (v1): nutritrace/federation-api.md
+      - Migrate from MyFitnessPal: nutritrace/migrate-mfp.md
+      - Migrate from Lose It / Cronometer / Waistline: nutritrace/migrate-other.md
+      - Settings reference: nutritrace/settings.md
+      - Env vars (app-specific): nutritrace/env-vars.md
+  - Contribute:
+      - Dev setup (all three): contribute/dev-setup.md
+      - Translations (i18n): contribute/translations.md
+  - Reference:
+      - Trace tool catalog: reference/trace-tools.md
+      - Troubleshooting: reference/troubleshooting.md
+      - Docker image tag matrix: reference/image-tags.md
+      - Changelogs: reference/changelogs.md

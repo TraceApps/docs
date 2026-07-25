@@ -1,0 +1,18 @@
+/* Center-align the app-card icons on the landing page grid. */
+.app-card-icon {
+  display: block;
+  margin: 0 auto 1rem auto;
+}
+
+/* Slightly tighter grid gutters on the landing page */
+.md-typeset .grid.cards > * {
+  text-align: center;
+}
+.md-typeset .grid.cards > * > * {
+  text-align: left;
+}
+.md-typeset .grid.cards > * img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
