@@ -24,11 +24,11 @@ Rule of thumb: green dots are safe to log without checking; yellow dots deserve 
 
 USDA FoodData Central bundles five data types with meaningfully different trust levels. The picker renders whichever type applies as an inline badge:
 
-- **Foundation Foods** — most trusted. Physically-analyzed samples from USDA's own labs, current data.
-- **SR Legacy** — Standard Reference Legacy. Historical USDA analyzed foods. Excellent for generic ingredients (raw chicken breast, brown rice, olive oil) but frozen at the last release.
-- **Survey (FNDDS)** — Food and Nutrient Database for Dietary Studies. Prepared and mixed dishes ("chicken enchiladas, homemade"). Modeled from Foundation + SR Legacy, so quality is one step removed.
-- **Branded** — commercial packaged goods fed directly by manufacturers under FDA labeling rules. Reliable for macros; coverage is deep but not exhaustive.
-- **Experimental** — provisional data. Rare, avoid unless you know what you're doing.
+- **Foundation Foods**: most trusted. Physically-analyzed samples from USDA's own labs, current data.
+- **SR Legacy**: Standard Reference Legacy. Historical USDA analyzed foods. Excellent for generic ingredients (raw chicken breast, brown rice, olive oil) but frozen at the last release.
+- **Survey (FNDDS)**: Food and Nutrient Database for Dietary Studies. Prepared and mixed dishes ("chicken enchiladas, homemade"). Modeled from Foundation and SR Legacy, so quality is one step removed.
+- **Branded**: commercial packaged goods fed directly by manufacturers under FDA labeling rules. Reliable for macros; coverage is deep but not exhaustive.
+- **Experimental**: provisional data. Rare, avoid unless you know what you're doing.
 
 For raw ingredients (an apple, a chicken breast, rolled oats), prefer Foundation or SR Legacy. For brand-name packaged foods (a specific brand of yogurt or protein bar), prefer Branded. For homemade or restaurant-style dishes, Survey is often the only match.
 
