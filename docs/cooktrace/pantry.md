@@ -84,11 +84,11 @@ Free, no key. Enable under Settings > Connected Services > Open Food Facts. Opti
 - **Upload Country** for the "Share to OFF" flow.
 - **Account Username / Password**: needed only if you want to upload contributions back to OFF.
 
-v1.0.1 added an All-mode search that pulls from every regional OFF instance, source pinning, tier filters, origin badges, and a data-completeness dot so you can prefer richer records at a glance.
+v1.0.1 added an All-mode search that pulls from every regional OFF instance, source pinning, client-side tier filters, and the shared **quality signals** (origin-country flag + completeness dot on every OFF result). See [Food data quality signals](../reference/food-data-quality.md) for what each signal means and how to filter on it.
 
 ## USDA FoodData Central
 
-Optional. Grab a free API key from `https://fdc.nal.usda.gov/api-key-signup`, paste it into Settings > Connected Services > USDA. Search results now carry a data-type badge (Foundation, SR Legacy, Branded, Survey (FNDDS)) so you can tell what kind of entry you're picking. Per-user, so different household members can use different keys or none at all.
+Optional. Grab a free API key from `https://fdc.nal.usda.gov/api-key-signup`, paste it into Settings > Connected Services > USDA. Results carry a **data-type badge** (Foundation, SR Legacy, Branded, Survey (FNDDS), Experimental) so you can tell what kind of entry you are picking. Per-user, so different household members can use different keys or none at all. See [Food data quality signals](../reference/food-data-quality.md) for how to read the badges.
 
 ## Pantry categories
 

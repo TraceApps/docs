@@ -27,7 +27,7 @@ Across the top of the picker: **Local / OFF / USDA / Mealie / From Others**. Sin
 - **OFF completeness bucket**: full / partial / stub.
 - **USDA data type**: Foundation / SR Legacy / Survey / Branded / Experimental.
 
-Both are client-side filters (no extra API calls) and were added in 1.0.3. OFF result quality indicators (origin-country flag, completeness dot in green / yellow / grey, USDA data-type badge) render inline in the same release.
+Both are client-side filters (no extra API calls) and were added in 1.0.3. Every OFF result carries an **origin-country flag** and a **completeness dot**; every USDA result carries a **data-type badge**. See [Food data quality signals](../reference/food-data-quality.md) for what each signal means and when to trust each tier.
 
 ## Barcode scanner
 

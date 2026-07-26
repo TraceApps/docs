@@ -10,7 +10,7 @@ Storage lives per-day in the `diary` table (`server/db.js:57-68`). Empty slots a
 
 ## Add a food, meal, or recipe
 
-Tap **+ Add** on any meal card. The picker opens with search across your Foods, Meals, and Recipes. The **source filter chips** across the top scope the results: Local (your saved foods), OFF (live Open Food Facts), USDA (live FoodData Central lookup), Mealie (your Mealie recipes if configured), and From Others (foods other users on this instance have shared with you). Long-press a chip to combine sources into a multi-source view; each result row carries a source badge and, for OFF, an origin flag and a completeness dot.
+Tap **+ Add** on any meal card. The picker opens with search across your Foods, Meals, and Recipes. The **source filter chips** across the top scope the results: Local (your saved foods), OFF (live Open Food Facts), USDA (live FoodData Central lookup), Mealie (your Mealie recipes if configured), and From Others (foods other users on this instance have shared with you). Long-press a chip to combine sources into a multi-source view; each result row carries a source badge and, for OFF, an origin-country flag and a completeness dot (see [Food data quality signals](../reference/food-data-quality.md)).
 
 Pick a food. The quantity sheet opens with a **live nutrition preview**: calories, protein, carbs, and fat update as you change the amount, unit, or number of servings. Food notes ("1 serving = 150 g cooked", "half a bag") surface at the top of the sheet. Meals and recipes carry the same preview and expand to their component foods on save.
 

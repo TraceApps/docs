@@ -23,7 +23,7 @@ FoodData Central is the USDA's public nutrition database: Foundation Foods, SR L
 2. Paste the API key (`usdaApiKey`).
 3. Save.
 
-A **USDA** source chip appears at the top of the Foods picker. Tap it to scope search to USDA, or long-press to combine with other sources (Local / OFF / Mealie / From Others). Each result row carries a **data-type badge** (Foundation / SR Legacy / Survey / Branded / Experimental) so you can prefer higher-quality entries. A **USDA data type** tier filter narrows the list further; entirely client-side, no extra API calls.
+A **USDA** source chip appears at the top of the Foods picker. Tap it to scope search to USDA, or long-press to combine with other sources (Local / OFF / Mealie / From Others). Each result row carries a **data-type badge** (Foundation / SR Legacy / Survey / Branded / Experimental) so you can prefer higher-quality entries. A **USDA data type** tier filter narrows the list further; entirely client-side, no extra API calls. See [Food data quality signals](../reference/food-data-quality.md) for what each data type actually means and when to prefer which.
 
 ### When USDA beats OFF
 
