@@ -2,6 +2,8 @@
 
 Trace is the in-app AI assistant baked into CookTrace, LiftTrace, and NutriTrace. It talks to a Large Language Model of your choice (cloud or self-hosted) and, in each app, it can also read and write real data: log a cook, add to your shopping list, parse `bench 3x5 @ 225` into a set, propose Quick Calories from a meal photo, and so on.
 
+Under the hood this uses *tool use* (OpenAI calls it *function calling*): the app registers a set of named functions the model can decide to call mid-conversation, the model calls one, the app runs it, the model reads the result, then answers you. See the [Trace tool catalog](../reference/trace-tools.md) for every tool each app exposes.
+
 Before Trace does anything, someone has to point it at a provider and (for cloud providers) supply an API key. There are two ways to do that.
 
 ## Two setup modes

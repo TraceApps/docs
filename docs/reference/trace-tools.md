@@ -1,5 +1,15 @@
 # Trace tool catalog
 
+## What tools are and why they matter
+
+A **tool** in this context is a function the AI model can decide to call on its own, mid-conversation. When you ask Trace "what can I make from what's in my pantry?", the model doesn't guess. It calls the `get_pantry` tool, gets your actual stock back, then answers using real data. Same for "log a cook of Thursday's pasta", "how many calories yesterday?", or "add tomatoes to shopping": the model picks the right tool, fires it, reads the result, and writes the reply grounded in what it saw.
+
+This is called *function calling* in OpenAI's terminology, *tool use* in Anthropic's. Same idea. The practical effect: Trace answers are grounded in your live app state instead of made up from the model's training corpus. It can also mutate state, log a cook, add a pantry row, plan a meal, so the assistant becomes a hands-on second UI rather than a chatbot.
+
+Not every app has tools. LiftTrace intentionally ships text-only Trace with a large live-context payload instead. Rationale is documented per-app below.
+
+## About this page
+
 Every tool Trace can call, across all three apps, in one table. Use this when you are writing prompts, debugging a "Trace refused to do X" report, or wondering whether an app can do a thing conversationally.
 
 **About the columns:**
