@@ -55,7 +55,7 @@ For Gemini specifically, retired model IDs are auto-remapped server-side so a st
 - **Per-user mode**: the key is stored in `user_settings.aiApiKey` and sent from the browser directly to the provider's endpoint. The server never sees it.
 - **Env-locked mode**: the key stays in `app_config.ai_api_key` (or the file referenced by `AI_API_KEY_FILE`) and never leaves the server. The browser posts to `/api/ai/chat`; the server does the outbound call.
 
-Payload caps on the proxy bound a compromised account from burning your API budget: 60 messages per request, 200 KB per request in CookTrace and LiftTrace, 8 MB in NutriTrace (roomier because meal photos ride the same channel).
+Payload caps on the proxy bound a compromised account from burning your API budget: 60 messages per request, 200 KB per request in CookTrace, 8 MB in LiftTrace and NutriTrace (roomier so tool-result echoes and multimodal image content ride the same channel).
 
 ## Rate limiting
 

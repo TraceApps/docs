@@ -6,7 +6,7 @@ A **tool** in this context is a function the AI model can decide to call on its 
 
 This is called *function calling* in OpenAI's terminology, *tool use* in Anthropic's. Same idea. The practical effect: Trace answers are grounded in your live app state instead of made up from the model's training corpus. It can also mutate state, log a cook, add a pantry row, plan a meal, so the assistant becomes a hands-on second UI rather than a chatbot.
 
-Not every app has tools. LiftTrace intentionally ships text-only Trace with a large live-context payload instead. Rationale is documented per-app below.
+All three TraceApps (CookTrace, LiftTrace, NutriTrace) now expose tool schemas to Trace. Per-app catalogs follow.
 
 ## About this page
 
@@ -14,8 +14,8 @@ Every tool Trace can call, across all three apps, in one table. Use this when yo
 
 **About the columns:**
 
-- **Tool** is the exact `name` the model sees. Present in `src/lib/aiChat.js` under `export const TOOLS`.
-- **App** is which of the three exposes it. LiftTrace intentionally has no tool schema (see below).
+- **Tool** is the exact `name` the model sees. Registered under `export const TOOLS` in each app's `src/lib/aiTools.js` (or `src/lib/aiChat.js` on older apps).
+- **App** is which of the three exposes it.
 - **Purpose** is the one-line description the model reads at call time.
 - **Args** lists parameter names; `*` marks required.
 - **Returns** describes the shape Trace gets back, so you can predict how it will phrase the reply.
@@ -48,11 +48,30 @@ Nineteen tools; the biggest surface of the three. Read tools return recipe, pant
 
 ## LiftTrace
 
-**LiftTrace does not expose a Trace tool schema.** Instead it pre-computes a context block (`buildContext()` in `src/components/ai/Trace.svelte`) and injects it into the system prompt. The block includes user profile, active program, recent workouts (last 14 days), body stats, and PR summaries. Trace answers from that snapshot rather than reaching for live tools.
+Eighteen tools spanning read and write across workouts, exercises, programs, PRs, body stats, and coaching. Read tools surface diary, exercise catalog, active + saved programs, personal records, body-stat time series, weekly rollups, and coach prescriptions. Write tools log a full workout, drop a single exercise onto today's diary, append a set to a workout in flight, log a body-stat measurement, load a template into a diary day, switch the active program, or (for coaches only) prescribe a workout to a trainee.
 
-For write actions, LiftTrace uses **Smart Log**, a separate hold-to-record UI (not a Trace tool) that parses natural-language workout entries (`bench 3x5 @ 225, squats 5x5 @ 315`) with the `smartLogWorkout.js` parser, matches exercises against the user's library, and pre-fills a review modal. The user commits by tapping Save.
+| Tool | Purpose | Args | Returns |
+|------|---------|------|---------|
+| `get_workouts` | Recent workouts with completed sets, per-exercise volume, and top set | `date_from`, `date_to`, `exercise_name` | Shaped workout rows; default window is last 30 days |
+| `get_workout` | One workout in full detail by id, including coach feedback | `id*` | Every set, notes, coach feedback, program context |
+| `get_exercises` | Search the exercise catalog (wger, free-exercise-db, exercisedb variants, custom) | `query`, `muscle`, `equipment`, `source`, `limit` | Compact rows with id, name, muscles, equipment, source |
+| `get_exercise` | One exercise's full detail plus similar exercises | `id`, `name` (id wins if both) | Description, instructions, muscles, equipment, up to 5 similar |
+| `get_programs` | User's program library with active flag | none | Id, name, goal, template count, weeks, is_active |
+| `get_program` | One program with every template laid out | `id*` | Templates with target sets/reps/load/RPE/tempo/rest, per-week overrides |
+| `get_active_program` | The currently active program in full | none | Same shape as `get_program`; `{ active: false }` if none |
+| `get_prs` | Personal records with e1RM | `exercise_name`, `date_from`, `date_to`, `limit` | Top weight, top reps at that weight, estimated 1RM per exercise |
+| `get_body_stats` | Body stats over time (weight, body_fat, any tracked measurement) | `stat`, `date_from`, `date_to` | Time series plus first/last/min/max/change summary when a single stat is queried |
+| `get_stats_overview` | Snapshot over a window: workouts done, streaks, weekly volume + frequency, muscle balance, top PRs | `range` (`7d`\|`30d`\|`90d`\|`1y`\|`all`) | Rollup object; default range `30d` |
+| `get_coach_prescription` | Coach-prescribed workout for a given date if the user has a trainer | `date` (default today) | `{ prescribed: false }` or the prescription record |
+| `log_workout` | Commit a full workout to the diary for a date | `date*`, `exercises*`, `name`, `duration_min` | Workout id, exercises_logged, sets_logged, total_volume |
+| `add_exercise_to_diary` | Quick-add one exercise to a diary day with no sets yet | `exercise_name*`, `date` | Workout id, exercise_added_id, position |
+| `log_set` | Append a single set to an exercise already in a workout | `workout_id*`, `weight*`, `reps*`, `exercise_id` or `exercise_name`, `rpe`, `warmup`, `completed` | Set id, position, workout total volume |
+| `log_body_stat` | Record a body-stat measurement for a date; merges with existing | `stat*`, `value*`, `unit`, `date`, `note` | Stats row id, stat, value, unit, date |
+| `start_workout_from_template` | Load a template into a diary day | `template_id` or `template_name`, `date` | Workout id, exercises_loaded, from_template |
+| `set_active_program` | Switch the user's active program | `program_id` or `program_name` | New active_program_id, previous_active_program_id, name |
+| `add_coach_prescription` | COACH ONLY. Prescribe a workout template to a trainee | `trainee_id*`, `template_id*`, `target_date*`, `notes` | prescription_id, trainee_id, template_id, target_date |
 
-This is a deliberate design call: workout logging is precise (weight, reps, sets, RPE), and passing it through an LLM tool round-trip adds latency without adding correctness. The parser handles the common shapes directly.
+LiftTrace also keeps **Smart Log**, a hold-to-record UI on the Trace FAB (not a Trace tool) that parses natural-language workout entries (`bench 3x5 @ 225, squats 5x5 @ 315`) client-side with the `smartLogWorkout.js` parser, matches exercises against the user's library, and pre-fills a review modal. Faster than a tool round-trip for the common case; the user commits by tapping Save.
 
 ## NutriTrace
 
@@ -79,7 +98,7 @@ Sixteen tools covering diary reads, wellness reads, and structured writes. The `
 
 ## Tool-use loop
 
-CookTrace and NutriTrace both cap the tool-call loop at **5 rounds** per user message. If Trace has not converged on a final text answer within 5 rounds it stops and returns whatever it has. This matches the loop cap set in `_callClaudeWithTools`, `_callOpenAIWithTools`, and `_callGeminiWithTools`.
+All three apps cap the tool-call loop at **5 rounds** per user message. If Trace has not converged on a final text answer within 5 rounds it stops and returns whatever it has. This matches the loop cap set in `_callClaudeWithTools`, `_callOpenAIWithTools`, and `_callGeminiWithTools`.
 
 Tool execution stays **client-side** even when the server-side AI proxy is in use (`AI_ENABLED=1` env-locked mode). The proxy relays messages and returns tool-call requests; the client executes each tool against the user's local database and UI state, then loops. This keeps the API key on the server without giving the server write access to the user's data.
 
