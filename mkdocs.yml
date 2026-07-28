@@ -217,6 +217,7 @@ nav:
   - Reference:
       - Troubleshooting: reference/troubleshooting.md
       - Trace tool catalog: reference/trace-tools.md
+      - Release channels: reference/release-channels.md
       - Food data quality signals: reference/food-data-quality.md
       - Docker image tag matrix: reference/image-tags.md
       - Changelogs: reference/changelogs.md

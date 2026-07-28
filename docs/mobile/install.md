@@ -10,7 +10,7 @@ Every release lives on the app's GitHub Releases page. Pick the `.apk` asset tha
 - LiftTrace: [`TraceApps/lifttrace/releases/latest`](https://github.com/TraceApps/lifttrace/releases/latest)
 - NutriTrace: [`TraceApps/nutritrace/releases/latest`](https://github.com/TraceApps/nutritrace/releases/latest)
 
-Each app also publishes a rolling `dev-latest` pre-release built from the `dev` branch. It is signed with the same keystore as stable, so it upgrades in place. Grab it if you want the leading edge and can live with the occasional rough edge.
+Each app also publishes a rolling `dev-latest` pre-release built from the `dev` branch. It is signed with the same keystore as stable, so it upgrades in place. Grab it if you want the leading edge and can live with the occasional rough edge. Occasionally a specific feature milestone gets a numbered `v<version>-dev.N` pre-release for testers who want to pin it. See [Release channels](../reference/release-channels.md) for the full model.
 
 !!! tip "Debug builds"
     The signed release APK enforces HTTPS-only traffic (Android's cleartext-traffic ban). If your server is plain HTTP on the LAN and you cannot set up TLS, build the debug APK yourself with `npm run android:debug`. The debug APK allows `http://` origins. See [HTTPS on the LAN](../self-hosting/lan-https.md) for the four supported paths.

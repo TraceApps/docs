@@ -16,9 +16,10 @@ Each release adds several tags to the same image so you can pin at whatever risk
 | `X.Y`   | `1.2`   | Any `1.2.z` patch release       | No |
 | `X`     | `1`     | Any `1.y.z` minor or patch release | No |
 | `latest` | `latest` | Every stable release from `main` | No |
+| `X.Y.Z-dev.N` | `1.2.3-dev.1` | Never; points at one milestone dev build | Yes |
 | `dev`   | `dev`   | Every push to the `dev` branch  | No |
 
-Tag generation is driven by [`docker/metadata-action`](https://github.com/docker/metadata-action) in each repo's `.github/workflows/docker.yml`. Semver tags come from git tags of the form `v1.2.3`; `latest` and `dev` come from the `main` and `dev` branches respectively.
+Tag generation is driven by [`docker/metadata-action`](https://github.com/docker/metadata-action) in each repo's `.github/workflows/docker.yml`. Semver tags come from git tags of the form `v1.2.3`; `latest` and `dev` come from the `main` and `dev` branches respectively. Milestone dev tags of the form `v1.2.3-dev.1` publish `:1.2.3-dev.1` alongside `:dev`. See [Release channels](release-channels.md) for the full model.
 
 ## Legacy release-candidate tags
 
@@ -51,4 +52,5 @@ Both architectures are in every published image, so a Pi 4 or Pi 5 just pulls th
 
 - [Install with Docker Compose](../getting-started/compose.md)
 - [Updating](../getting-started/updating.md)
+- [Release channels](release-channels.md)
 - [Changelogs](changelogs.md)
