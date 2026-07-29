@@ -22,7 +22,7 @@ The Android APK is uploaded to the tagged GitHub Release for each version. Grab 
 
 A `dev-latest` pre-release APK exists on each Releases page for testers who want to run the same code that the `:dev` Docker tag serves. It is manually promoted (not auto-published on every `dev` push), so treat it as "the maintainer's latest hand-checked build" rather than continuous.
 
-Each app's `## [Unreleased]` block is the staging area for both `dev-latest` refreshes and any numbered `v<version>-dev.N` milestone builds cut before the next stable release. See [Release channels](release-channels.md) for how the two dev channels differ.
+Each app's `## [Unreleased]` block is the staging area for both `dev-latest` refreshes and any numbered `v<version>-devNN` milestone builds cut before the next stable release. See [Release channels](release-channels.md) for how the two dev channels differ.
 
 ## Related
 
