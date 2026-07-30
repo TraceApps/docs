@@ -35,12 +35,28 @@ The first time you open the app it runs the setup wizard. Every app asks the sam
 
 You can switch later from Settings. See [Local vs server-connected mode](modes.md) for the trade-offs and how the switch handles existing local data.
 
-## Upgrading and downgrading
+## Upgrading
 
-All three apps are signed with the same TraceApps keystore. That has two useful consequences:
+Two ways to upgrade — the in-app updater is the everyday path; sideloading is the fallback.
 
-- **Upgrades work in place.** Install a newer APK straight over an older one. Local SQLite, cached images, and preferences all survive.
-- **Cross-flavour upgrades work too.** Moving from a debug APK to a release APK (or from `dev-latest` to stable, or vice versa) does not wipe anything, because Android checks the signing key, not the flavour.
+### In-app (recommended)
+
+Settings → Updates checks GitHub Releases for a newer version, downloads the signed APK, and hands off to Android's system installer. Because every TraceApps release is signed with the same keystore, the install replaces the app in place — SQLite, cached images, preferences, and login token all survive.
+
+One primary button drives the whole flow: **Check Now** → **Download & Install** (once an update is detected) → **Downloading X%** (progress fills the button). A collapsible **What's new** panel below the button renders the GitHub release notes inline, with a "View on GitHub" link for the full page. A small **Skip This Version** link lets you dismiss without installing.
+
+If you grant the app notification permission (Android Settings → Apps → the app → Notifications), new versions arrive as a silent shade notification on a dedicated "App updates" channel — no sound, no heads-up. Tapping the notification opens the app straight to Settings → Updates. Without the permission, a top-of-app banner does the same job.
+
+**Channels.** Settings → Updates has a Stable / Dev toggle:
+
+- **Stable** tracks `releases/latest` — the tagged production release.
+- **Dev** tracks the newest numbered `-devNN` pre-release, floating with the `dev-latest` GitHub alias. Expect the occasional rough edge.
+
+See [Release channels](../reference/release-channels.md) for the tagging model.
+
+### Sideload (fallback)
+
+Grab the APK from GitHub Releases and install it manually. Same result as the in-app path — Android picks the shared signing key, so the install replaces the previous version in place with no data loss.
 
 !!! danger "Downgrades wipe app data"
     Android refuses to install an APK with a lower `versionCode` than the one already on the device. If you force a downgrade by uninstalling first, the OS deletes the app's private storage on uninstall. That takes your local SQLite database, cached images, and login token with it. If you rely on local mode, [back up first](../self-hosting/backups.md) via Settings before uninstalling anything.
