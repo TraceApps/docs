@@ -2,6 +2,14 @@
 
 All three apps use [svelte-i18n](https://github.com/kaisermann/svelte-i18n) with one JSON file per locale in `src/i18n/`. English (`en.json`) is the source of truth; every other locale is a translated copy with the same key structure. The runtime falls back to English for any missing key, so a partial translation is safe to release.
 
+## Preferred: translate on Weblate (no code required)
+
+**NutriTrace** is hosted on [Weblate](https://weblate.org/) — a browser-based platform for libre translation projects. Pick a language, translate strings inline, and commits land as pull requests automatically. No git, no JSON syntax, no code:
+
+- [hosted.weblate.org/projects/nutritrace/](https://hosted.weblate.org/projects/nutritrace/)
+
+CookTrace and LiftTrace aren't hosted on Weblate yet — for those, follow the JSON-file flow below.
+
 Current locale coverage (2026-07-25):
 
 | App | Locales in tree |
