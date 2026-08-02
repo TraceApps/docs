@@ -115,9 +115,10 @@ Debug builds are exempt from Android's cleartext-traffic ban, so they can talk t
 
 ## Commit and PR conventions
 
+- **Target the `dev` branch, not `main`.** Every TraceApp uses the same workflow: work lands on `dev` first, gets exercised there (dev-latest APKs are cut from `dev`), and is bundled into `main` at release time via a squash-merge PR. PRs opened against `main` will be asked to retarget.
 - Short one-line commit messages. Body only for architectural notes.
 - Do not add `Fixes #NN` or `Closes #NN` trailers without asking; the maintainer prefers to close issues by hand after a release lands.
-- No DCO, no CLA. Just open the PR against `dev`.
+- No DCO, no CLA.
 - If your change touches user-facing strings, add them to `src/i18n/en.json` in the same commit. See [Translations (i18n)](translations.md).
 - If your change adds a Settings-panel field, add matching keywords to `SECTION_KEYWORDS` in `src/routes/Settings.svelte` so the in-Settings search finds it.
 
