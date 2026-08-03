@@ -5,7 +5,7 @@ SMTP is optional. The app runs fine without it. Turn it on if you want any of th
 - **Password resets** (the `Forgot password?` link on the login screen). All three apps.
 - **User invites** (the admin invites someone by email instead of handing them a link). All three apps.
 - **Weekly summary emails** (opt-in per user). All three apps.
-- **CookTrace only**: "someone shared a recipe with you" notification when a share is granted.
+- **Share / feedback notifications** when someone reaches out to you: recipe-shared (CookTrace), food-shared and meal-shared (NutriTrace), coach-feedback (LiftTrace, gated on the same `notifCoachFeedback` opt-in as the push notification).
 
 Without SMTP, password resets and invites fall back to admin-generated links, and the summary/share emails silently skip. Push notifications (expiration digests, cook-day reminders, rest-timer, water reminders, and so on) are delivered by the [notifications channel](notifications.md), not SMTP.
 
