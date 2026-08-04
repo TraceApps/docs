@@ -18,7 +18,7 @@ Mint the token in NutriTrace first: Settings > **API Tokens** > New Token, name 
 
 Then in CookTrace, open Settings and expand **NutriTrace federation**:
 
-1. **Instance URL**: your NT origin, e.g. `https://nutritrace.example.com` or `http://192.168.1.20:3000`. HTTP is allowed for LAN use; HTTPS is the sensible default for anything reachable off your LAN.
+1. **Instance URL**: your NT origin, e.g. `https://nutritrace.example.com` or `http://192.168.1.20:3001`. HTTP is allowed for LAN use; HTTPS is the sensible default for anything reachable off your LAN.
 2. **Access Token**: paste the `nt_pat_...` value.
 3. **Test Connection**: CookTrace calls NT `/api/v1/me` server-side. On success the UI shows "Connected as `<username>`". Errors call out the exact failure (bad URL, invalid token, missing scope).
 4. **Enable Federation**: flip on. Save.

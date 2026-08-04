@@ -44,6 +44,8 @@ Install Tailscale on the host, join your tailnet, then enable HTTPS in the admin
 tailscale serve --bg https / http://localhost:3001
 ```
 
+Adjust the port for the app you're exposing: NT `3001`, LT `3002`, CT `3003`.
+
 Every tailnet-connected device reaches `https://<host>.<tailnet>.ts.net` with a real cert. The Android app installed on any tailnet phone works with no extra config. Certs renew automatically.
 
 If you want the app reachable from outside your tailnet without opening a router port, use `tailscale funnel` instead of `serve`. Funnel exposes the tailnet URL to the public internet through Tailscale's edge, with the same cert. Requires enabling Funnel in the admin console and accepting the ACL.

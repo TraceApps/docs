@@ -1,6 +1,6 @@
 # HTTPS on the LAN
 
-The three apps default to secure cookies, and the Android release APK enforces the platform cleartext-traffic policy. Plain `http://192.168.x.y:3000` will silently fail: cookies get dropped, the WebView refuses to load, and login appears to "just not work". You have four supported ways to give a LAN-only install real HTTPS. Pick one.
+The three apps default to secure cookies, and the Android release APK enforces the platform cleartext-traffic policy. Plain `http://192.168.x.y:3001` (or `:3002` / `:3003`) will silently fail: cookies get dropped, the WebView refuses to load, and login appears to "just not work". You have four supported ways to give a LAN-only install real HTTPS. Pick one.
 
 If you genuinely need plain HTTP inside your LAN, see [LAN HTTP setup](../getting-started/lan-http.md) for the escape hatches (`INSECURE_COOKIES=1` and a debug-build APK). Everything below assumes you want proper HTTPS.
 
@@ -41,7 +41,7 @@ For desktop PWA installs this path works well: import the CA once into Firefox /
 
 ## Path 4: sideload the debug APK
 
-The debug APK is built with `android:usesCleartextTraffic="true"` in the manifest **and** trusts the user CA store. If your install is genuinely LAN-only and you accept the tradeoff, grabbing the debug APK from the GH Releases pre-release channel (`dev-latest`) lets you talk to `http://192.168.x.y:3000` or an HTTPS endpoint using a user-installed self-signed cert.
+The debug APK is built with `android:usesCleartextTraffic="true"` in the manifest **and** trusts the user CA store. If your install is genuinely LAN-only and you accept the tradeoff, grabbing the debug APK from the GH Releases pre-release channel (`dev-latest`) lets you talk to `http://192.168.x.y:3001` (or whichever host port the app is on) or an HTTPS endpoint using a user-installed self-signed cert.
 
 Downsides: no Play-Store update path, and it is a debug build, so any additional security hardening the release variant enables is absent. Handy for testing, less good for daily driving. On the server side, remember to also set `INSECURE_COOKIES=1` if you go plain-HTTP, so the auth cookie is not dropped by the WebView.
 

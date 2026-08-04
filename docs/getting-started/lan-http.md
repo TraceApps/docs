@@ -1,6 +1,6 @@
 # Plain-HTTP LAN (INSECURE_COOKIES)
 
-This is the first-time gotcha almost every self-hoster hits. Symptoms: the app loads over `http://192.168.x.x:3000`, you fill in login, the page reloads, and you're right back at the login screen with no error. Nothing in the logs looks wrong.
+This is the first-time gotcha almost every self-hoster hits. Symptoms: the app loads over `http://192.168.x.x:3001` (or `:3002` / `:3003`), you fill in login, the page reloads, and you're right back at the login screen with no error. Nothing in the logs looks wrong.
 
 The cause is cookies, not credentials.
 
