@@ -20,7 +20,7 @@ Pick the tab for the app you're installing. Each snippet is a complete, working 
         image: ghcr.io/traceapps/cooktrace:1
         container_name: cooktrace
         ports:
-          - "3000:3001"
+          - "3004:3001"
         volumes:
           - ./data/db:/data/db
           - ./data/uploads:/data/uploads
@@ -32,7 +32,7 @@ Pick the tab for the app you're installing. Each snippet is a complete, working 
         restart: unless-stopped
     ```
 
-    Container listens on `3001`, exposed on host port `3000`. Open `http://localhost:3000` after the container is up.
+    Container listens on `3001`, exposed on host port `3004`. Open `http://localhost:3004` after the container is up.
 
 === "LiftTrace"
 
@@ -77,8 +77,8 @@ Pick the tab for the app you're installing. Each snippet is a complete, working 
 
     Container listens on `3001`, exposed on host port `3000`. Open `http://localhost:3000` after the container is up. NutriTrace's image is `node:20-slim` (Debian) rather than Alpine because DuckDB's node bindings need glibc.
 
-!!! warning "Don't run all three on the same host port"
-    CookTrace and NutriTrace both default to host port `3000`. If you're running both on one host, change one of the left-hand port values (e.g. `"3010:3001"` for CookTrace) or put both behind a reverse proxy.
+!!! info "Host-port defaults are staggered"
+    Defaults are chosen so all three can run on the same host without editing: NutriTrace on `3000`, LiftTrace on `3002`, CookTrace on `3004`. If any of those clash with something else on your host, change the left-hand port value in the mapping (e.g. `"3010:3001"` for CookTrace) or put everything behind a reverse proxy.
 
 ## Picking an image tag
 
@@ -100,7 +100,7 @@ More detail in [Docker image tag matrix](../reference/image-tags.md).
 
 | App | Container port | Suggested host port | DB volume | Uploads volume |
 |---|---|---|---|---|
-| CookTrace | `3001` | `3000` | `/data/db` | `/data/uploads` |
+| CookTrace | `3001` | `3004` | `/data/db` | `/data/uploads` |
 | LiftTrace | `3003` | `3002` | `/data/db` | `/data/uploads` |
 | NutriTrace | `3001` | `3000` | `/data/db` | `/data/uploads` |
 
