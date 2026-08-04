@@ -97,7 +97,7 @@ With `BASE_URL` set, the app's assets, API routes, service worker, and image URL
 
     ```nginx
     location /cooktrace/ {
-      proxy_pass http://localhost:3004/cooktrace/;   # trailing slash on both sides
+      proxy_pass http://localhost:3001/cooktrace/;   # trailing slash on both sides
       proxy_http_version 1.1;
       proxy_set_header Host $host;
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
