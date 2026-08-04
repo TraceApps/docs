@@ -1,6 +1,6 @@
 # Install with Docker Compose
 
-Docker Compose is the supported install path for CookTrace, LiftTrace, and NutriTrace. One `docker-compose.yml`, one `.env`, `docker compose up -d`, done. All three images are multi-arch (`linux/amd64` and `linux/arm64`) and published to `ghcr.io/traceapps/<app>`.
+Docker Compose is the supported install path for CookTrace, LiftTrace, and NutriTrace. One `docker-compose.yml`, one `.env`, `docker compose up -d`, done. All three images are multi-arch (`linux/amd64` and `linux/arm64`) and published to **`ghcr.io/traceapps/<app>`** (primary) and **`traceapps/<app>`** on Docker Hub (mirror). The examples below use GHCR; swap in the Docker Hub short form (e.g. `traceapps/cooktrace:1`) if that fits your environment better.
 
 ## Prerequisites
 

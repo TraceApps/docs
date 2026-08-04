@@ -30,7 +30,7 @@ Each numbered milestone gets:
 - A permanent GitHub pre-release at `v<version>-devNN` with tester-facing notes.
 - A `## [X.Y.Z-devNN] - <date>` block in `CHANGELOG.md`, capturing the delta since the previous milestone or the last stable.
 - A version bump in `package.json` and `src/lib/version.js`. Android `versionCode` and `versionName` are NOT bumped on dev iterations.
-- A Docker tag `ghcr.io/traceapps/<app>:X.Y.Z-devNN` alongside `:dev`.
+- A Docker tag `X.Y.Z-devNN` alongside `:dev` on both `ghcr.io/traceapps/<app>` and `traceapps/<app>` (Docker Hub).
 - A refresh of `dev-latest` to point at the same commit.
 
 The `<version>` reflects what will land as the next stable release. After NT `v1.0.3`, the next milestone dev build is `v1.0.4-dev01` (patch-worthy) or `v1.1.0-dev01` (minor-worthy).

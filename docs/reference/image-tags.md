@@ -1,10 +1,20 @@
 # Docker image tag matrix
 
-Every app is published to GHCR as multi-arch (linux/amd64 + linux/arm64) images. Same tag conventions across all three:
+Every app is published to two registries as multi-arch (linux/amd64 + linux/arm64) images. Both registries receive the identical tag set on every build.
+
+**Primary registry (GHCR):**
 
 - `ghcr.io/traceapps/cooktrace`
 - `ghcr.io/traceapps/lifttrace`
 - `ghcr.io/traceapps/nutritrace`
+
+**Mirror (Docker Hub):**
+
+- `traceapps/cooktrace`
+- `traceapps/lifttrace`
+- `traceapps/nutritrace`
+
+GHCR is the primary registry. Docker Hub is a discoverability mirror; both are first-class and either works for pulls. Pick whichever your environment prefers. The Docker Hub short form (`traceapps/<app>`) can be handy for quick `docker pull` or when running behind a registry that already caches Docker Hub.
 
 ## Tag conventions
 
@@ -43,6 +53,19 @@ docker compose up -d
 ```
 
 On a rolling tag (`latest`, `X.Y`, `X`, `dev`), `pull` fetches the new image and `up -d` recreates the container. On an immutable tag (`X.Y.Z`), `pull` is a no-op; bump the tag in your compose file first, then `pull` and `up -d`.
+
+## Switching between GHCR and Docker Hub
+
+The tag set is identical, so switching registries is a one-line edit in your compose file:
+
+```diff
+ services:
+   cooktrace:
+-    image: ghcr.io/traceapps/cooktrace:1
++    image: traceapps/cooktrace:1
+```
+
+Then `docker compose pull && docker compose up -d`. Images are byte-for-byte the same build (one push job publishes to both), so container state carries over cleanly.
 
 ## Arm64 / Raspberry Pi
 
