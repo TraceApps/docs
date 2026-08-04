@@ -20,7 +20,7 @@ Pick the tab for the app you're installing. Each snippet is a complete, working 
         image: ghcr.io/traceapps/cooktrace:1
         container_name: cooktrace
         ports:
-          - "3001:3001"
+          - "3003:3001"
         volumes:
           - ./data/db:/data/db
           - ./data/uploads:/data/uploads
@@ -32,7 +32,7 @@ Pick the tab for the app you're installing. Each snippet is a complete, working 
         restart: unless-stopped
     ```
 
-    Container listens on `3001`, exposed on host port `3001` (same number for convenience). Open `http://localhost:3001` after the container is up.
+    Container listens on `3001`, exposed on host port `3003`. Open `http://localhost:3003` after the container is up.
 
 === "LiftTrace"
 
@@ -63,7 +63,7 @@ Pick the tab for the app you're installing. Each snippet is a complete, working 
         image: ghcr.io/traceapps/nutritrace:1
         container_name: nutritrace
         ports:
-          - "3000:3001"
+          - "3001:3001"
         volumes:
           - ./data/db:/data/db
           - ./data/uploads:/data/uploads
@@ -75,10 +75,10 @@ Pick the tab for the app you're installing. Each snippet is a complete, working 
         restart: unless-stopped
     ```
 
-    Container listens on `3001`, exposed on host port `3000`. Open `http://localhost:3000` after the container is up. NutriTrace's image is `node:20-slim` (Debian) rather than Alpine because DuckDB's node bindings need glibc.
+    Container listens on `3001`, exposed on host port `3001` (same number for convenience). Open `http://localhost:3001` after the container is up. NutriTrace's image is `node:20-slim` (Debian) rather than Alpine because DuckDB's node bindings need glibc.
 
 !!! info "Host-port defaults are staggered"
-    Defaults are chosen so all three can run on the same host without editing: NutriTrace on `3000`, CookTrace on `3001`, LiftTrace on `3002`. If any of those clash with something else on your host, change the left-hand port value in the mapping (e.g. `"3010:3001"` for CookTrace) or put everything behind a reverse proxy.
+    Defaults are chosen so all three can run on the same host without editing, and all avoid the very common `:3000`: NutriTrace on `3001`, LiftTrace on `3002`, CookTrace on `3003`. If any clash with something else on your host, change the left-hand port value in the mapping (e.g. `"3010:3001"` for CookTrace) or put everything behind a reverse proxy.
 
 ## Picking an image tag
 
@@ -100,9 +100,9 @@ More detail in [Docker image tag matrix](../reference/image-tags.md).
 
 | App | Container port | Suggested host port | DB volume | Uploads volume |
 |---|---|---|---|---|
-| CookTrace | `3001` | `3001` | `/data/db` | `/data/uploads` |
+| NutriTrace | `3001` | `3001` | `/data/db` | `/data/uploads` |
 | LiftTrace | `3003` | `3002` | `/data/db` | `/data/uploads` |
-| NutriTrace | `3001` | `3000` | `/data/db` | `/data/uploads` |
+| CookTrace | `3001` | `3003` | `/data/db` | `/data/uploads` |
 
 Both volumes are plain bind mounts. Back them up with the same tool you use for the rest of your host (rsync, restic, borg, whatever).
 

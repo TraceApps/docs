@@ -24,7 +24,7 @@ If you don't want to open any port on your router, expose the app through a tunn
 
 **Cloudflare Tunnel.** Install `cloudflared`, log in, and add a public hostname pointing at `http://cooktrace:3001`. Cloudflare's edge holds the cert, and the tunnel origin gets a valid `Origin` header. Beware the free-tier 100 MB proxied-body cap: it can bite full-backup restore. Split large restores over the LAN instead.
 
-**Tailscale.** Enable HTTPS in the Tailscale admin console, then run `tailscale serve https / http://localhost:3001` on the host. Every machine on your tailnet reaches `https://<host>.<tailnet>.ts.net` with a valid cert issued by Tailscale's ACME. The Android app installed on any tailnet-connected phone works with no extra config.
+**Tailscale.** Enable HTTPS in the Tailscale admin console, then run `tailscale serve https / http://localhost:3003` on the host (adjust the port for the app you're exposing: NT `3001`, LT `3002`, CT `3003`). Every machine on your tailnet reaches `https://<host>.<tailnet>.ts.net` with a valid cert issued by Tailscale's ACME. The Android app installed on any tailnet-connected phone works with no extra config.
 
 In both cases, cookies stay `Secure`, the Android release APK is happy, and you never issue self-signed anything.
 

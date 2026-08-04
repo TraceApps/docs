@@ -53,7 +53,7 @@ services:
       - ./data/db:/data/db
       - ./data/uploads:/data/uploads
     ports:
-      - "3001:3001"
+      - "3003:3001"
 ```
 
 Same shape works for LiftTrace (`ghcr.io/traceapps/lifttrace:1`, container port 3003) and NutriTrace (`ghcr.io/traceapps/nutritrace:1`, container port 3001).

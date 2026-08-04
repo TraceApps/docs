@@ -12,7 +12,7 @@ The simplest setup: each app gets its own subdomain (`cook.example.com`, `lift.e
 
     ```caddy
     cook.example.com {
-        reverse_proxy localhost:3000
+        reverse_proxy localhost:3003
     }
 
     lift.example.com {
@@ -20,7 +20,7 @@ The simplest setup: each app gets its own subdomain (`cook.example.com`, `lift.e
     }
 
     nutri.example.com {
-        reverse_proxy localhost:3000
+        reverse_proxy localhost:3001
     }
     ```
 
@@ -37,7 +37,7 @@ The simplest setup: each app gets its own subdomain (`cook.example.com`, `lift.e
       # ssl_certificate_key ...;
 
       location / {
-        proxy_pass http://localhost:3000;
+        proxy_pass http://localhost:3003;
         proxy_http_version 1.1;
         proxy_set_header Host $host;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -80,13 +80,13 @@ With `BASE_URL` set, the app's assets, API routes, service worker, and image URL
     ```caddy
     example.com {
         handle /cooktrace/* {
-            reverse_proxy localhost:3000
+            reverse_proxy localhost:3003
         }
         handle /lifttrace/* {
             reverse_proxy localhost:3002
         }
         handle /nutritrace/* {
-            reverse_proxy localhost:3000
+            reverse_proxy localhost:3001
         }
     }
     ```
@@ -97,7 +97,7 @@ With `BASE_URL` set, the app's assets, API routes, service worker, and image URL
 
     ```nginx
     location /cooktrace/ {
-      proxy_pass http://localhost:3001/cooktrace/;   # trailing slash on both sides
+      proxy_pass http://localhost:3003/cooktrace/;   # trailing slash on both sides
       proxy_http_version 1.1;
       proxy_set_header Host $host;
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
