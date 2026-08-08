@@ -6,7 +6,9 @@ This is different from **Trace AI** (which runs inside the app with 16 built-in 
 
 Off by default. Opt in with one env var + one API token.
 
-## Phase 1 (this release): read-only
+## Available tools
+
+### Read (Phase 1)
 
 Five tools, all read-only, all scoped to the user the token belongs to:
 
@@ -18,7 +20,20 @@ Five tools, all read-only, all scoped to the user the token belongs to:
 | `search_foods` | Text search over your local foods catalog |
 | `get_recent_foods` | Most-recently-logged foods (last 14 days) |
 
-Write tools (log food, add water, edit entries) land in a follow-up dev release behind a separate opt-in gate. See [Roadmap](#roadmap).
+### Write (Phase 2)
+
+Four additive write tools. All show up as normal entries in the diary UI, editable and deletable through the app like anything else.
+
+| Tool | Effect |
+|---|---|
+| `log_food` | Append a food from your catalog to a diary day (needs `food_id` from `search_foods`). |
+| `log_water` | Append a water log entry (millilitres). |
+| `log_meal` | Log every item of a saved meal (recipes deliberately excluded). |
+| `log_body_stat` | Set weight / body fat / waist / etc. on a diary day (merges with existing stats). |
+
+Write tools are off by default. Turn them on with `MCP_WRITE_ENABLED=1` on the server AND mint a token that holds `mcp:write` in addition to `mcp:read`. Either missing and the write tools simply don't appear in `tools/list`; an agent can't attempt them.
+
+Destructive tools (edit/delete of existing diary entries, create food) are deliberately not in Phase 2. Log tools are additive, so any accidental invocation is one tap in the diary UI to undo.
 
 ## Enable it
 
@@ -91,6 +106,7 @@ The transport is standard MCP Streamable HTTP (single POST endpoint). Any client
 | Variable | Default | Description |
 |---|---|---|
 | `MCP_ENABLED` | `0` | Set to `1` to expose `/api/mcp`. |
+| `MCP_WRITE_ENABLED` | `0` | Set to `1` to allow write tools (`log_food`, `log_water`, `log_meal`, `log_body_stat`) to be registered. Also requires the calling token to hold `mcp:write`. |
 | `ALLOWED_ORIGINS` | (empty) | Comma-separated list of origins that browser-based MCP clients may use. Server-to-server clients (no Origin header) always pass. Leave empty unless you're specifically using the MCP Inspector in a browser. |
 
 ## Verifying
@@ -102,7 +118,7 @@ git clone https://github.com/traceapps/nutritrace && cd nutritrace
 node scripts/mcp-smoke.mjs https://nutritrace.example.com nt_pat_your_token_here
 ```
 
-Expected output ends with `9 passed, 0 failed`.
+Expected output ends with `9 passed, 0 failed`. Add `--writes` to the command to also exercise the write tools (needs `mcp:write` on the token and `MCP_WRITE_ENABLED=1` on the server).
 
 ## Troubleshooting
 
@@ -118,7 +134,7 @@ Expected output ends with `9 passed, 0 failed`.
 
 ## Roadmap
 
-**Phase 2** (dev cycle after this one): Write tools behind a second opt-in `MCP_WRITE_ENABLED=1` and a distinct `mcp:write` scope. Planned tools: `log_food`, `log_water`, `edit_diary_entry`, `delete_diary_entry`.
+**Phase 3 (planned)**: Destructive tools (`edit_diary_entry`, `delete_diary_entry`, `create_food`) behind a third opt-in and a `mcp:destroy` scope. Design tradeoff still open: reliance on client-side "allow this action?" prompts vs a server-side confirmation queue. Feedback welcome.
 
 **Later**: MCP prompts capability (guided workflows), additional read tools (weight history, body composition, recipes) as demand justifies them.
 
