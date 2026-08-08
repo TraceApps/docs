@@ -210,6 +210,7 @@ nav:
       - USDA & Mealie integration: nutritrace/usda-mealie.md
       - Trace in NutriTrace + Smart Log: nutritrace/trace.md
       - Federation API (v1): nutritrace/federation-api.md
+      - Model Context Protocol (MCP): nutritrace/mcp.md
       - Migrate from MyFitnessPal: nutritrace/migrate-mfp.md
       - Migrate from Lose It / Cronometer / Waistline: nutritrace/migrate-other.md
       - Settings reference: nutritrace/settings.md
