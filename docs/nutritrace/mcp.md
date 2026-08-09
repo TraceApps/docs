@@ -33,7 +33,23 @@ Four additive write tools. All show up as normal entries in the diary UI, editab
 
 Write tools are off by default. Turn them on with `MCP_WRITE_ENABLED=1` on the server AND mint a token that holds `mcp:write` in addition to `mcp:read`. Either missing and the write tools simply don't appear in `tools/list`; an agent can't attempt them.
 
-Destructive tools (edit/delete of existing diary entries, create food) are deliberately not in Phase 2. Log tools are additive, so any accidental invocation is one tap in the diary UI to undo.
+### Destructive (Phase 3)
+
+Three destructive tools. Removing or mutating pre-existing data on the server.
+
+| Tool | Effect |
+|---|---|
+| `delete_diary_entry` | Remove one item from a diary day by 0-based `entry_index` (from `list_diary_entries`). |
+| `edit_diary_entry` | Patch one item's `quantity`, `portion`, `meal` slot, or `notes`. Portion change re-scales nutrition. |
+| `create_food` | Add a new food to your catalog (rejects duplicates by name+brand). |
+
+Off by default. Three gates all required:
+
+1. `MCP_DESTROY_ENABLED=1` on the server.
+2. Token holds `mcp:destroy` (mint separately; a `mcp:write` token does NOT unlock destroy).
+3. Every call includes `confirm: true` in the arguments. Belt-and-suspenders: your MCP client already prompts per action, but the tool refuses without the arg so a hallucinated call from a client that skips prompts still gets rejected.
+
+Delete tools return the removed content in the response body so the agent can offer to re-log it as a form of undo. Edit tools return `before` + `after` so the agent can offer to revert.
 
 ## Enable it
 
@@ -107,6 +123,7 @@ The transport is standard MCP Streamable HTTP (single POST endpoint). Any client
 |---|---|---|
 | `MCP_ENABLED` | `0` | Set to `1` to expose `/api/mcp`. |
 | `MCP_WRITE_ENABLED` | `0` | Set to `1` to allow write tools (`log_food`, `log_water`, `log_meal`, `log_body_stat`) to be registered. Also requires the calling token to hold `mcp:write`. |
+| `MCP_DESTROY_ENABLED` | `0` | Set to `1` to allow destructive tools (`delete_diary_entry`, `edit_diary_entry`, `create_food`) to be registered. Also requires the calling token to hold `mcp:destroy` AND every call to include `confirm: true`. |
 | `ALLOWED_ORIGINS` | (empty) | Comma-separated list of origins that browser-based MCP clients may use. Server-to-server clients (no Origin header) always pass. Leave empty unless you're specifically using the MCP Inspector in a browser. |
 
 ## Verifying
@@ -118,7 +135,7 @@ git clone https://github.com/traceapps/nutritrace && cd nutritrace
 node scripts/mcp-smoke.mjs https://nutritrace.example.com nt_pat_your_token_here
 ```
 
-Expected output ends with `9 passed, 0 failed`. Add `--writes` to the command to also exercise the write tools (needs `mcp:write` on the token and `MCP_WRITE_ENABLED=1` on the server).
+Expected output ends with `9 passed, 0 failed`. Add `--writes` to also exercise the write tools (needs `mcp:write` + `MCP_WRITE_ENABLED=1`), and `--destroy` on top to verify the destructive tools' gate-refusal paths (needs `mcp:destroy` + `MCP_DESTROY_ENABLED=1`; the smoke script never actually deletes anything).
 
 ## Troubleshooting
 
@@ -134,8 +151,6 @@ Expected output ends with `9 passed, 0 failed`. Add `--writes` to the command to
 
 ## Roadmap
 
-**Phase 3 (planned)**: Destructive tools (`edit_diary_entry`, `delete_diary_entry`, `create_food`) behind a third opt-in and a `mcp:destroy` scope. Design tradeoff still open: reliance on client-side "allow this action?" prompts vs a server-side confirmation queue. Feedback welcome.
-
-**Later**: MCP prompts capability (guided workflows), additional read tools (weight history, body composition, recipes) as demand justifies them.
+**Later**: MCP prompts capability (guided workflows), additional read tools (weight history, body composition, recipes) as demand justifies them, and possibly `delete_diary_day` (currently blocked by tombstone-resurrection semantics; single-entry delete is the safer starting point).
 
 Feature request and progress: [issue #103](https://github.com/traceapps/nutritrace/issues/103) (thanks @javydekoning).
