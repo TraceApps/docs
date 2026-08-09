@@ -8,48 +8,25 @@ Off by default. Opt in with one env var + one API token.
 
 ## Available tools
 
+Twelve tools across three tiers. Setup for each tier below; full arg/return reference in the [MCP tool catalog](../reference/mcp-tools.md).
+
 ### Read (Phase 1)
 
-Five tools, all read-only, all scoped to the user the token belongs to:
-
-| Tool | Returns |
-|---|---|
-| `get_goals` | Your macro / micronutrient / water goal targets |
-| `get_daily_totals` | Summed calories + macros + water for a day |
-| `list_diary_entries` | Raw item list from a day's diary |
-| `search_foods` | Text search over your local foods catalog |
-| `get_recent_foods` | Most-recently-logged foods (last 14 days) |
+Five tools, read-only, always available when MCP is on: `get_goals`, `get_daily_totals`, `list_diary_entries`, `search_foods`, `get_recent_foods`.
 
 ### Write (Phase 2)
 
-Four additive write tools. All show up as normal entries in the diary UI, editable and deletable through the app like anything else.
-
-| Tool | Effect |
-|---|---|
-| `log_food` | Append a food from your catalog to a diary day (needs `food_id` from `search_foods`). |
-| `log_water` | Append a water log entry (millilitres). |
-| `log_meal` | Log every item of a saved meal (recipes deliberately excluded). |
-| `log_body_stat` | Set weight / body fat / waist / etc. on a diary day (merges with existing stats). |
-
-Write tools are off by default. Turn them on with `MCP_WRITE_ENABLED=1` on the server AND mint a token that holds `mcp:write` in addition to `mcp:read`. Either missing and the write tools simply don't appear in `tools/list`; an agent can't attempt them.
+Four additive log tools: `log_food`, `log_water`, `log_meal`, `log_body_stat`. Everything they write shows up as normal entries in the diary UI, editable and deletable through the app like anything else. Off by default; turn on with `MCP_WRITE_ENABLED=1` AND a token that holds `mcp:write`. Either missing and the write tools simply don't appear in `tools/list`.
 
 ### Destructive (Phase 3)
 
-Three destructive tools. Removing or mutating pre-existing data on the server.
-
-| Tool | Effect |
-|---|---|
-| `delete_diary_entry` | Remove one item from a diary day by 0-based `entry_index` (from `list_diary_entries`). |
-| `edit_diary_entry` | Patch one item's `quantity`, `portion`, `meal` slot, or `notes`. Portion change re-scales nutrition. |
-| `create_food` | Add a new food to your catalog (rejects duplicates by name+brand). |
-
-Off by default. Three gates all required:
+Three destructive tools: `delete_diary_entry`, `edit_diary_entry`, `create_food`. Off by default. Three gates ALL required:
 
 1. `MCP_DESTROY_ENABLED=1` on the server.
 2. Token holds `mcp:destroy` (mint separately; a `mcp:write` token does NOT unlock destroy).
 3. Every call includes `confirm: true` in the arguments. Belt-and-suspenders: your MCP client already prompts per action, but the tool refuses without the arg so a hallucinated call from a client that skips prompts still gets rejected.
 
-Delete tools return the removed content in the response body so the agent can offer to re-log it as a form of undo. Edit tools return `before` + `after` so the agent can offer to revert.
+Delete tools return the removed content so the agent can offer undo; edit tools return `before` and `after`.
 
 ## Enable it
 

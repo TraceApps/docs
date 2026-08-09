@@ -109,9 +109,16 @@ Tool execution stays **client-side** even when the server-side AI proxy is in us
 - **`propose_*` on NutriTrace does not log.** If Trace says "I logged X" after calling `propose_food` or `propose_quick_calories`, that is a hallucination; the actual entry only lands after the user taps **Add to Diary** or **Save & Add to Diary** on the review card.
 - **Trace can call one tool per round.** If your question implies multiple lookups ("compare last week to this week"), Trace will call the first, receive the result, then call the second in the next round.
 
+## Not to be confused with MCP tools
+
+The tools on this page are what NutriTrace's built-in **Trace AI** (the in-app assistant) can call. NutriTrace also exposes a completely separate set of tools via the **Model Context Protocol** for *external* AI clients like Claude Desktop, Cursor, and Codex — those talk to `/api/mcp` over HTTP and don't share code with Trace. Different mechanism, different tool schemas, different auth model (bearer scopes instead of in-app AI settings).
+
+See the dedicated [MCP tool catalog](mcp-tools.md) for the external-agent side.
+
 ## Related
 
 - [Setting up Trace](../trace/setup.md)
 - [Cloud providers](../trace/cloud.md)
 - [Local LLMs](../trace/local-llm.md)
 - [Model list and Gemini retirement remap](../trace/models.md)
+- [MCP tool catalog](mcp-tools.md) — external agents (Claude Desktop, Cursor, Codex)

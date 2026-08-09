@@ -8,7 +8,18 @@ Anything on this page can also be supplied via the `<NAME>_FILE=/run/secrets/...
 
 | Var | Default | Purpose |
 |---|---|---|
-| `API_RATE_LIMIT_PER_MIN` | `60` | Requests per minute per federation-API bearer token. Middleware in `server/middleware/bearer-auth.js`. |
+| `API_RATE_LIMIT_PER_MIN` | `60` | Requests per minute per federation-API bearer token. Middleware in `server/middleware/bearer-auth.js`. Applies to MCP tokens too. |
+
+## Model Context Protocol (MCP)
+
+Three independent flags, each guarding a bigger surface. Off by default; the endpoint returns 404 until `MCP_ENABLED=1`. Every flag change needs a container restart. See the [MCP setup guide](mcp.md) for the full setup path.
+
+| Var | Default | Purpose |
+|---|---|---|
+| `MCP_ENABLED` | `0` | Turns on `/api/mcp` and registers the 5 read tools. Tokens still need the `mcp:read` scope. |
+| `MCP_WRITE_ENABLED` | `0` | Registers the 4 additive log tools (`log_food`, `log_water`, `log_meal`, `log_body_stat`). Tokens need `mcp:write`. |
+| `MCP_DESTROY_ENABLED` | `0` | Registers the 3 destructive tools (`delete_diary_entry`, `edit_diary_entry`, `create_food`). Tokens need `mcp:destroy`, AND every call must include `confirm: true`. |
+| `ALLOWED_ORIGINS` | — | Comma-separated list of browser Origins allowed to call `/api/mcp`. Server-to-server clients (Claude Desktop's HTTP bridge etc.) send no Origin header and always pass, so most self-hosters leave this empty. `*` is refused by design (DNS-rebinding defense). |
 
 ## AI Assistant (env-lock)
 

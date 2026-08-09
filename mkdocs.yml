@@ -218,6 +218,7 @@ nav:
   - Reference:
       - Troubleshooting: reference/troubleshooting.md
       - Trace tool catalog: reference/trace-tools.md
+      - MCP tool catalog: reference/mcp-tools.md
       - Release channels: reference/release-channels.md
       - Food data quality signals: reference/food-data-quality.md
       - Docker image tag matrix: reference/image-tags.md
