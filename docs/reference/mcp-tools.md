@@ -28,6 +28,9 @@ Setup lives on the [Model Context Protocol](../nutritrace/mcp.md) page. This pag
 | `list_diary_entries` | Raw item list from a diary day | `date` | `date`, `items[]`, `count` |
 | `search_foods` | Text search over the user's local catalog | `query*`, `limit` | Match array (id, name, brand, barcode, portion, unit, nutrition) |
 | `get_recent_foods` | Most-logged foods in the last 14 days | `limit` | Same shape as `search_foods` plus `last_logged_on` |
+| `search_meals` | Search saved meals by name, or browse all when `query` is omitted | `query`, `limit`, `include_recipes` | Match array (id, name, is_recipe, servings, portion, unit, nutrition, favorite, usage_count, last_used_at). Recipes excluded by default. |
+| `get_recent_meals` | Most-recently-used saved meals, ordered by `last_used_at` | `limit`, `include_recipes` | Same shape as `search_meals` |
+| `get_meal_details` | Full contents of one saved meal or recipe (items[] + meta) | `meal_id*` | Meal meta plus `item_count` and `items[]` (name, portion, unit, quantity, per-item nutrition, source food id when known) |
 
 ## Write tools (`mcp:write`)
 
