@@ -30,7 +30,9 @@ Two scopes today, gated per-endpoint. Tokens can hold any combination.
 | Scope | Grants | Used by |
 |---|---|---|
 | `read:foods` | Read the token owner's foods library | CookTrace |
-| `write:workouts` | Post workouts into the token owner's wellness history | LiftTrace |
+| `write:workouts` | Post workouts into the token owner's wellness history (Settings → Wellness → Workout History) | LiftTrace |
+| `write:activity` | Log manual activity entries into the diary Activity section | External trackers, headless integrations |
+| `write:body-measurements` | Push scale readings into the diary's body-stats | Home Assistant, Node-RED, Gadgetbridge |
 
 Adding unknown scopes at token-creation time is silently dropped (forward-compat for clients written against a future NT). A token with no valid scopes is rejected.
 
@@ -149,6 +151,53 @@ Returns:
 ```
 
 NT stores the row as `source='lifttrace'` and rolls the day's total up into `wellness_data` under `metric_type='calories_out'` so the cross-source `/api/wellness/calories-out` lookup can find it. The wearable-vs-federation priority is enforced by that lookup, not by the write, so posting is always safe: NT figures out how to combine sources at read time.
+
+Not to be confused with `POST /api/v1/activity` (below), which targets the diary's Activity section instead of the Workout History under Wellness.
+
+### `POST /api/v1/activity`
+
+Log a manual activity entry into the diary's Activity section. Requires `write:activity`.
+
+Use this for external integrations that should show up as diary activities (a Dropbox / TCX / Node-RED pipeline pushing cardio from a map app, a headless HA rule attributing calories, etc.). Writes to the same `activity_log` table the in-app "Add Activity" sheet uses, so entries render in the diary the same way and contribute to the day's kcal-burned tally.
+
+Body:
+
+- `date` (required, `YYYY-MM-DD`).
+- `name` (required, free text, up to 80 chars).
+- `kcal` (required, 0..10000).
+- `duration_min` (optional, 0..1440).
+- `distance` (optional, free text, up to 40 chars — the diary treats it as a display-only string).
+- `external_id` (optional, up to 128 chars). Idempotency key; re-posting the same ID updates the existing entry instead of duplicating.
+
+```bash
+curl -X POST \
+  -H "Authorization: Bearer $NT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "date": "2026-08-12",
+    "name": "Bicycle",
+    "duration_min": 40,
+    "kcal": 270,
+    "distance": "12.4 km",
+    "external_id": "external:workout:abc-123"
+  }' \
+  https://nutritrace.example.com/api/v1/activity
+```
+
+Returns:
+
+```json
+{
+  "ok": true,
+  "activity_id": 42,
+  "date": "2026-08-12",
+  "kcal": 270,
+  "daily_total_kcal": 540,
+  "updated": false
+}
+```
+
+`updated: true` means the row was matched by `external_id` and updated in place; `false` means a new entry was inserted.
 
 ## Rate limits
 
