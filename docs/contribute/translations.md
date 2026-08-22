@@ -2,15 +2,38 @@
 
 All three apps use [svelte-i18n](https://github.com/kaisermann/svelte-i18n) with one JSON file per locale in `src/i18n/`. English (`en.json`) is the source of truth; every other locale is a translated copy with the same key structure. The runtime falls back to English for any missing key, so a partial translation is safe to release.
 
-## Preferred: translate on Weblate (no code required)
+## Two ways to contribute a translation
 
-**NutriTrace** is hosted on [Weblate](https://weblate.org/) — a browser-based platform for libre translation projects. Pick a language, translate strings inline, and commits land as pull requests automatically. No git, no JSON syntax, no code:
+Both end up with the same file (`src/i18n/<code>.json`) in the repo. Pick whichever suits your situation.
 
-- [hosted.weblate.org/projects/nutritrace/](https://hosted.weblate.org/projects/nutritrace/)
+### A. Weblate (preferred for ongoing work)
 
-CookTrace and LiftTrace aren't hosted on Weblate yet — for those, follow the JSON-file flow below.
+[Weblate](https://weblate.org/) is a browser-based translation platform. You pick a language, translate strings inline, and commits go back to `dev` as automatic pull requests. No git, no JSON syntax, no code.
 
-Current locale coverage (2026-07-25):
+Weblate projects per app:
+
+| App | Weblate project |
+|-----|-----------------|
+| CookTrace  | [hosted.weblate.org/projects/cooktrace/](https://hosted.weblate.org/projects/cooktrace/) |
+| LiftTrace  | [hosted.weblate.org/projects/lifttrace/](https://hosted.weblate.org/projects/lifttrace/) |
+| NutriTrace | [hosted.weblate.org/projects/nutritrace/](https://hosted.weblate.org/projects/nutritrace/) |
+
+Flow:
+
+1. Open the Weblate project page. If your language is already in the list, click into it and start translating.
+2. If your language isn't in the list, click **Add new translation**, pick the language, and the project maintainer will approve it (usually same day).
+3. If you have an existing translation file (from a prior PR, an old app fork, or another project), seed the language with it: on the language page, **Files → Upload translation → attach the JSON, pick "Add as translation"**. Weblate imports every matching key and marks the rest for you to fill in.
+4. Translate remaining strings through the web UI. Weblate handles the git side automatically and periodically opens PRs to `dev`.
+
+**One gotcha**: once Weblate is watching a language, direct edits to that file in a PR get overwritten on the next Weblate sync (Weblate holds the authoritative state in its own database). Use Weblate for edits going forward once a language is on it.
+
+### B. Direct JSON PR (fine for a one-shot contribution)
+
+If you have a completed translation file you'd rather submit once and be done, or you prefer working locally, this path still works. Weblate is compatible with any file that already exists in the tree, it picks it up on the next sync (and then owns further edits per the gotcha above).
+
+Follow the "Adding a new language" steps below.
+
+Current locale coverage (2026-08-21):
 
 | App | Locales in tree |
 |-----|-----------------|
@@ -18,9 +41,9 @@ Current locale coverage (2026-07-25):
 | LiftTrace  | `en` |
 | NutriTrace | `en`, `fr` |
 
-## Adding a new language
+## Adding a new language (direct PR path)
 
-1. Copy `src/i18n/en.json` to `src/i18n/<code>.json` where `<code>` is a BCP-47 short code (`fr`, `de`, `nl`, `es`, `pt`, `pt-BR`, `ja`, etc.). Translate the values. Leave the keys untouched. HTML and Markdown inside values (`<strong>`, `<br>`, etc.) stays as-is.
+1. Copy `src/i18n/en.json` to `src/i18n/<code>.json` where `<code>` is a BCP-47 short code (`fr`, `de`, `nl`, `es`, `pt`, `pt-BR`, `ja`, `zh_Hans`, `zh_Hant`, etc.). Translate the values. Leave the keys untouched. HTML and Markdown inside values (`<strong>`, `<br>`, etc.) stays as-is.
 
 2. Register the locale in `src/i18n/index.js`. Add a `register()` call and append the locale to `AVAILABLE_LOCALES`:
 
@@ -44,7 +67,7 @@ Current locale coverage (2026-07-25):
     npm run i18n:check
     ```
 
-    It reports missing keys, orphaned keys (present in your locale file but not in `en.json`), and, on stricter runs, keys where the value matches the English source (usually a sign of copy-paste without translation). Aim for 100 percent coverage on first submit; if the release cycle lands new English strings before you are done, the delta is small and the fallback keeps the app usable.
+    It reports missing keys, orphaned keys (present in your locale file but not in `en.json`), and, on stricter runs, keys where the value matches the English source (usually a sign of copy-paste without translation). Aim for 100 percent coverage on first submit; if new English strings are added during the release cycle before you finish, the delta is small and the fallback keeps the app usable.
 
 4. Test locally. Start the app in dev mode, open **Settings > Regional > Language**, pick your locale, and walk the main screens. Watch for strings that overflow buttons or wrap awkwardly in narrow columns.
 
@@ -86,10 +109,6 @@ Product names, brand names, and third-party service names stay in English regard
 Trace, Trace AI, CookTrace, LiftTrace, NutriTrace, TraceApps, wger, USDA, Open Food Facts, OFF, Mealie, Fitbit, Google Health, Withings, Garmin, Health Connect, Ollama, LM Studio, LocalAI, vLLM, DeepSeek, Groq, Together AI, Mistral, Anthropic, Claude, OpenAI, GPT, Google, Gemini, Authentik, Keycloak, Pocket-ID, Authelia, Auth0, Apprise, Gotify, ntfy, Docker, Caddy, Traefik, nginx, Cloudflare, Tailscale, Capacitor, Svelte, Vite, Node.js, Express, SQLite, DuckDB, JWT, OIDC, SSO.
 
 Feature names inside the apps (Smart Log, Quick Calories, Adaptive TDEE, Meal Planner, Kitchen Gear, Cook Diary, Programs, Radio) also stay in English, matching the UI label.
-
-## Weblate
-
-The project structure is Weblate-ready (per-locale JSON with a stable key layout), but there is no hosted Weblate instance yet. Translations happen through PRs against the app repos. If a translator community forms around any of the apps, a Weblate mirror is the natural next step.
 
 ## Related
 
