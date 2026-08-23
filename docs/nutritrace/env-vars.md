@@ -35,7 +35,7 @@ Setting any of these locks the corresponding UI field for all users. UI shows a 
 
 When any AI env var is set, the server proxies AI calls; the API key never touches the browser. Without env-lock, the browser calls the provider directly with the user's own key.
 
-## Open Food Facts local mirror
+## Open Food Facts (OFF) local mirror
 
 Read in `server/lib/off-local.js`.
 

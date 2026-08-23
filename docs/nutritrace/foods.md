@@ -20,7 +20,7 @@ Search is fuzzy: edit distance 1 for words of four or more characters (`Foods.sv
 
 ## Source filter chips
 
-Across the top of the picker: **Local / OFF / USDA / Mealie / From Others**. Single-tap scopes to one source; long-press combines. A per-row source badge marks the origin in the combined view.
+Across the top of the picker: **Local / OFF (Open Food Facts) / USDA / Mealie / From Others**. Single-tap scopes to one source; long-press combines. A per-row source badge marks the origin in the combined view.
 
 **Per-source tier filters** narrow further:
 

@@ -98,7 +98,7 @@ Open `http://localhost:3001` (or `:3003` on LiftTrace). Re-run all three lines a
 
 **LiftTrace** builds pre-rendered rest-cue audio tones on first Android build via `npm run build:rest-tones`. It runs automatically as part of `npm run android`, `android:run`, and `android:debug`. If you only run `vite build`, the tones will be missing from the APK; use one of the `android:*` scripts instead.
 
-**NutriTrace** uses `node:20-slim` (Debian) rather than Alpine because DuckDB (Open Food Facts local mirror) needs glibc. Local dev on Alpine or musl-libc distros will hit `Error loading shared library ld-linux-x86-64.so.2` when the OFF mirror layer tries to load. On glibc-based Linux, macOS, and Windows this is a non-issue.
+**NutriTrace** uses `node:20-slim` (Debian) rather than Alpine because DuckDB (the Open Food Facts / OFF local mirror) needs glibc. Local dev on Alpine or musl-libc distros will hit `Error loading shared library ld-linux-x86-64.so.2` when the OFF mirror layer tries to load. On glibc-based Linux, macOS, and Windows this is a non-issue.
 
 ## Android debug builds
 

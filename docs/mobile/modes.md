@@ -6,7 +6,7 @@ Every TraceApps Android build can run in one of two modes. You pick one at first
 
 The setup wizard offers two options up front:
 
-- **Local-only.** Leave the server URL blank. All data lives in on-device SQLite (via the Capacitor SQLite plugin). There is no server, no account, and no network traffic beyond what a given feature explicitly needs (Trace AI calls, if configured; OFF/USDA food lookups on NutriTrace; etc.).
+- **Local-only.** Leave the server URL blank. All data lives in on-device SQLite (via the Capacitor SQLite plugin). There is no server, no account, and no network traffic beyond what a given feature explicitly needs (Trace AI calls, if configured; Open Food Facts and USDA food lookups on NutriTrace; etc.).
 - **Connect to my server.** Enter the URL of your self-hosted instance and log in. The app talks to that server over HTTPS, keeps a local SQLite mirror as an offline cache, and syncs both directions in the background.
 
 The choice is not permanent. Both modes are first-class code paths; the wizard just gets you into one of them cleanly.

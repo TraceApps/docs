@@ -1,6 +1,6 @@
 # Food data quality signals
 
-CookTrace and NutriTrace both look up foods against **Open Food Facts** and **USDA FoodData Central**. The two sources are enormous but uneven. To help you pick the trustworthy entry when several hits look similar, the food picker surfaces three visual signals on every result row: an **origin-country flag**, a **completeness dot**, and a **data-type badge**. All three are computed client-side from fields the source itself provides, so there is no extra API call and no risk of over-hitting rate limits.
+CookTrace and NutriTrace both look up foods against **Open Food Facts** (OFF) and **USDA FoodData Central**. The two sources are enormous but uneven. To help you pick the trustworthy entry when several hits look similar, the food picker surfaces three visual signals on every result row: an **origin-country flag**, a **completeness dot**, and a **data-type badge**. All three are computed client-side from fields the source itself provides, so there is no extra API call and no risk of over-hitting rate limits.
 
 The signals mean the same thing in both apps. LiftTrace does not touch food data, so it does not display any of them.
 

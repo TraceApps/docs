@@ -1,6 +1,6 @@
 # Open Food Facts
 
-Open Food Facts is the primary source of ready-made barcode and food lookups in NutriTrace. It requires no API key, no account, and no configuration to use in the default cloud mode. For air-gapped setups or households with flaky connectivity, NutriTrace also supports a **local Parquet mirror** that pulls the whole OFF product database down to disk and serves lookups from there.
+Open Food Facts (OFF) is the primary source of ready-made barcode and food lookups in NutriTrace. It requires no API key, no account, and no configuration to use in the default cloud mode. For air-gapped setups or households with flaky connectivity, NutriTrace also supports a **local Parquet mirror** that pulls the whole OFF product database down to disk and serves lookups from there.
 
 ## Cloud usage (default)
 

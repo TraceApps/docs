@@ -1,6 +1,6 @@
 # NutriTrace
 
-NutriTrace is a self-hosted personal nutrition tracker. It runs as a single Docker container on your own hardware, with a Svelte PWA in the browser and a native Android app for your phone. There is no cloud tenant, no telemetry, no analytics, and no account on any NutriTrace-run service. Third-party integrations (Open Food Facts, USDA, Fitbit via Google Health, Withings, Garmin, Mealie, an LLM provider, SMTP, push services) are all opt-in and configured per user or per instance.
+NutriTrace is a self-hosted personal nutrition tracker. It runs as a single Docker container on your own hardware, with a Svelte PWA in the browser and a native Android app for your phone. There is no cloud tenant, no telemetry, no analytics, and no account on any NutriTrace-run service. Third-party integrations (Open Food Facts / OFF, USDA, Fitbit via Google Health, Withings, Garmin, Mealie, an LLM provider, SMTP, push services) are all opt-in and configured per user or per instance.
 
 The pitch is short. If you have ever used MyFitnessPal, Cronometer, MacroFactor, or Lose It and thought "I want that, but on my NAS", NutriTrace is what that looks like: a full daily diary with configurable meals, a personal food and recipe library, barcode and label scanning, wearable-informed calorie goals with an inspectable Adaptive TDEE algorithm, a wellness dashboard that pulls from Fitbit / Withings / Garmin / Health Connect, and an in-app AI assistant (Trace) that reads your actual data via tool use rather than making things up.
 

@@ -1,6 +1,6 @@
 # USDA and Mealie integration
 
-Two optional per-user sources that live alongside Open Food Facts in the Foods picker. **USDA FoodData Central** gives you the US government's own nutrition database (better than OFF for US foods, narrower coverage). **Mealie** pulls your self-hosted recipes into the picker so you can log them the same way you log any other meal.
+Two optional per-user sources that live alongside Open Food Facts (OFF) in the Foods picker. **USDA FoodData Central** gives you the US government's own nutrition database (better than OFF for US foods, narrower coverage). **Mealie** pulls your self-hosted recipes into the picker so you can log them the same way you log any other meal.
 
 Both are free. Both are configured per-user under **Settings → Connected Services**. Neither requires anything at the container level unless you want to env-lock the setting.
 

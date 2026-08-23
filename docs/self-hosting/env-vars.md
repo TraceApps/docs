@@ -8,7 +8,7 @@ Almost every runtime setting has two homes: an environment variable, and a field
 
 First, the client marks the field read-only (with a small lock badge) and refuses to save changes to it. Any admin who tries to edit an env-locked value gets a "locked by environment variable" error from `GET /api/app-config/env-locks`. Second, if you later unset the variable and restart the container, the lock clears and the field becomes editable again from the UI.
 
-The pattern applies to SMTP, AI, OIDC providers, backup schedule, and (NutriTrace only) OFF mirror settings. Two implications worth internalising: (1) once you decide to manage a setting from env, keep managing it from env, because someone else's UI save will be silently overridden on the next boot; (2) secrets live only on the server. The browser never receives the raw `AI_API_KEY`, `SMTP_PASS`, or `OIDC_CLIENT_SECRET`; the API returns eight-dot placeholders instead.
+The pattern applies to SMTP, AI, OIDC providers, backup schedule, and (NutriTrace only) Open Food Facts (OFF) mirror settings. Two implications worth internalising: (1) once you decide to manage a setting from env, keep managing it from env, because someone else's UI save will be silently overridden on the next boot; (2) secrets live only on the server. The browser never receives the raw `AI_API_KEY`, `SMTP_PASS`, or `OIDC_CLIENT_SECRET`; the API returns eight-dot placeholders instead.
 
 Any variable in the tables below can also be provided via Docker secrets by suffixing `_FILE`. `SMTP_PASS_FILE=/run/secrets/smtp_pass`, `AI_API_KEY_FILE=/run/secrets/openai_key`, `JWT_SECRET_FILE=/run/secrets/jwt`, and so on. Setting both `NAME` and `NAME_FILE` is a boot-time error. See [Docker secrets](secrets.md) for the full pattern.
 

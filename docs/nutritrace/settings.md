@@ -81,7 +81,7 @@ User-defined units on top of the built-in mass / volume set (`customUnits`). Han
 
 Per-user integrations for food data:
 
-- **Open Food Facts** (`offEnabled`, `offSearchLanguage`, `offSearchCountry`, `offUploadCountry`, `offImportPortion`, `offUsername`, `offPassword`). Also the admin-only **local mirror** controls (auto-refresh schedule, Refresh Now) which land in server config, not user prefs. See [Open Food Facts](off.md).
+- **Open Food Facts** (OFF) (`offEnabled`, `offSearchLanguage`, `offSearchCountry`, `offUploadCountry`, `offImportPortion`, `offUsername`, `offPassword`). Also the admin-only **local mirror** controls (auto-refresh schedule, Refresh Now) which land in server config, not user prefs. See [Open Food Facts](off.md).
 - **USDA FoodData Central** (`usdaEnabled`, `usdaApiKey`).
 - **Mealie** (`mealieEnabled`, `mealieBaseUrl`, `mealieApiToken`). Token is filtered from client payloads.
 

@@ -8,7 +8,7 @@ A walkthrough of the flows most users actually do every day. Each section jumps 
 
 Open the **Diary** (the default landing page). The date sits at the top with prev/next arrows and a jump-to-today button. Below it, one card per meal slot: Breakfast, Lunch, Dinner, Snacks by default, or whatever custom names you set in Settings.
 
-Tap **+ Add** on any meal to open the picker. The picker lists your Foods, Meals, and Recipes with a search box, favorites at the top (if you have that sort enabled), and source filter chips: Local / OFF / USDA / Mealie / From Others. Long-press a chip to combine sources (multi-source view). Type a partial name and fuzzy search will match with edit distance 1 for words of four or more characters.
+Tap **+ Add** on any meal to open the picker. The picker lists your Foods, Meals, and Recipes with a search box, favorites at the top (if you have that sort enabled), and source filter chips: Local / OFF (Open Food Facts) / USDA / Mealie / From Others. Long-press a chip to combine sources (multi-source view). Type a partial name and fuzzy search will match with edit distance 1 for words of four or more characters.
 
 Pick a food. The quantity sheet opens with a live nutrition preview: calories, protein, carbs, and fat update as you change the amount, the unit, or the number of servings. Any food note ("1 serving = 150 g cooked", for example) surfaces here. Confirm, and the item lands in the meal.
 

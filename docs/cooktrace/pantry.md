@@ -71,7 +71,7 @@ The scanner is native (ML Kit) on Android via `@capacitor-mlkit/barcode-scanning
 A scan looks the code up in this order:
 
 1. Local pantry (returns the existing item if found).
-2. Open Food Facts (if enabled).
+2. Open Food Facts / OFF (if enabled).
 3. USDA FoodData Central (if enabled and an API key is set).
 
 The result pre-fills a new pantry entry, which you can accept, tweak, or discard.

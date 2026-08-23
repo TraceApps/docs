@@ -73,9 +73,9 @@ Details in [HTTPS on the LAN](../self-hosting/lan-https.md) and [Cloudflare Tunn
 
 ## NutriTrace-specific
 
-### OFF local mirror errors with `EISDIR`
+### Open Food Facts (OFF) local mirror errors with `EISDIR`
 
-**Symptom:** On NutriTrace, the OFF (Open Food Facts) mirror refresh fails with an `EISDIR: illegal operation on a directory` error, and food lookups against the local mirror return empty.
+**Symptom:** On NutriTrace, the OFF mirror refresh fails with an `EISDIR: illegal operation on a directory` error, and food lookups against the local mirror return empty.
 
 **Cause:** `OFF_LOCAL_DB` must point at a **file path**, not a directory. If the compose file bind-mounts a host directory onto the path in `OFF_LOCAL_DB`, Docker auto-creates a directory at that path on first start, and every subsequent file open fails.
 

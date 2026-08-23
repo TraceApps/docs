@@ -77,7 +77,7 @@ The UI groups dates so you can, for example, skip everything before 2024 and ove
 
     ### What survives
 
-    - **Per-food diary rows** with quantity and unit. Cronometer's food catalog is largely USDA-derived; the importer matches against USDA first, then OFF, then your Local foods.
+    - **Per-food diary rows** with quantity and unit. Cronometer's food catalog is largely USDA-derived; the importer matches against USDA first, then Open Food Facts (OFF), then your Local foods.
     - **Biometrics**: weight, body fat, custom fields (any of Cronometer's biometric categories map to Body Stats).
     - **Notes**: per-day notes land on the day's `diary.notes` field.
     - **Exercises**: name, kcal, duration land in `activity_log` with `source='manual_form'`.

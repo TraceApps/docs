@@ -26,7 +26,7 @@ All three publish multi-arch images (`linux/amd64` + `linux/arm64`) with the sam
 
 ## Why NutriTrace uses a Debian base
 
-Alpine's musl libc cannot load the DuckDB native bindings, and NutriTrace uses DuckDB to query the optional Open Food Facts local mirror (`OFF_LOCAL_DB`, roughly 7 to 8 GB Parquet). To keep a single image regardless of whether the mirror is on, the container is built on `node:20-slim` instead of `node:20-alpine`. Expect a slightly larger image in return for the OFF air-gap option. CookTrace and LiftTrace have no glibc-only dependency and stay on Alpine.
+Alpine's musl libc cannot load the DuckDB native bindings, and NutriTrace uses DuckDB to query the optional Open Food Facts (OFF) local mirror (`OFF_LOCAL_DB`, roughly 7 to 8 GB Parquet). To keep a single image regardless of whether the mirror is on, the container is built on `node:20-slim` instead of `node:20-alpine`. Expect a slightly larger image in return for the OFF air-gap option. CookTrace and LiftTrace have no glibc-only dependency and stay on Alpine.
 
 ## Why CookTrace bundles a Python interpreter
 

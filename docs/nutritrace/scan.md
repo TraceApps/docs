@@ -13,7 +13,7 @@ Tap the barcode icon in the Foods picker or in the Diary add sheet, point the ca
 
 ### Match, then what
 
-When the barcode is **in Open Food Facts** (the common case), the product opens straight into the quantity sheet with name, brand, and per-serving nutrition prefilled from OFF. Log it, done.
+When the barcode is **in Open Food Facts** (OFF, the common case), the product opens straight into the quantity sheet with name, brand, and per-serving nutrition prefilled from OFF. Log it, done.
 
 When the barcode is **not in OFF**, the food editor opens **prefilled with the barcode number**. Fill in the name, brand, serving size, and macros yourself. If you have OFF account credentials configured under **Settings → Connected Services → Open Food Facts**, a **Share to Open Food Facts** button uploads your entry (with the product photo) to the community database. Next time anyone scans that barcode, OFF returns your data. This is the primary way to make OFF better without leaving NutriTrace.
 

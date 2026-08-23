@@ -67,7 +67,7 @@ Deep dive: [NutriTrace federation](../integrations/federation.md).
 
 Food-lookup sources:
 
-- **Open Food Facts**: Enable, Search Language, Search Country, Upload Country, and (only for OFF uploads) Account Username and Password.
+- **Open Food Facts** (OFF): Enable, Search Language, Search Country, Upload Country, and (only for OFF uploads) Account Username and Password.
 - **USDA FoodData Central**: Enable and API Key.
 - **Barcode Scanner**: Beep on Scan, Auto-Enable Flashlight (web only).
 

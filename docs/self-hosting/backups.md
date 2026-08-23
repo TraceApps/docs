@@ -39,7 +39,7 @@ Setting any of the three env-locks the tile in Settings, so admins can no longer
     Uploading a backup ZIP replaces the current database and uploads tree in-place. Take a Layer 1 copy first, then restore. There is no undo.
 
 === "NutriTrace note"
-    The optional Open Food Facts local mirror (`OFF_LOCAL_DB`) is **not** included in the Full Backup ZIP. That file is a shared read-only reference (roughly 7 to 8 GB of Parquet) that you can redownload at any time via Settings, OFF Mirror, Refresh. Keeping it out of the ZIP keeps backups small and restore fast. If you have `OFF_LOCAL_ONLY=1` set (air-gap mode), copy `/data/off-mirror` alongside your Layer 1 snapshot; it is not user data, but you'll want it before your container starts refusing lookups.
+    The optional Open Food Facts (OFF) local mirror (`OFF_LOCAL_DB`) is **not** included in the Full Backup ZIP. That file is a shared read-only reference (roughly 7 to 8 GB of Parquet) that you can redownload at any time via Settings, Open Food Facts, Refresh Now. Keeping it out of the ZIP keeps backups small and restore fast. If you have `OFF_LOCAL_ONLY=1` set (air-gap mode), copy `/data/off-mirror` alongside your Layer 1 snapshot; it is not user data, but you'll want it before your container starts refusing lookups.
 
 ## Layer 3: portable JSON export
 
