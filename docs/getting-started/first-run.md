@@ -28,6 +28,15 @@ The moment you add a second user (from **Settings** then **User Management** the
 
 Delete every non-primary account and the login screen goes away again. That's it.
 
+!!! note "Two things get called single-user mode"
+    The above is the **one-account** case: an account exists, and the app auto-signs it in.
+    There is also a **no-accounts** case, reached from Settings, Users, Disable user
+    management, where the `users` table is empty and everything is written without an owner.
+    They look the same from the outside but behave differently underneath. If you are running
+    with no accounts and later want real ones, see
+    [Turning user management on later](../auth/local-users.md#turning-user-management-on-later)
+    for what carries over.
+
 ## Per-app first steps
 
 Each app has its own next-step tour. Do these once and the app is ready to use daily.
