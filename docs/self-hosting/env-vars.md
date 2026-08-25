@@ -98,11 +98,13 @@ The shorthand `OIDC_*` variables alias `OIDC_PROVIDER_1_*`. For multi-provider s
 
 | Variable | Default | Purpose | CT | LT | NT |
 |---|---|---|---|---|---|
-| `HTTP_PROXY` | unset | Forward proxy for outbound HTTP requests (Open Food Facts, USDA, Withings, Google Health, Mealie, ntfy, image fetches). Standard curl / requests convention: `http://proxy.host:3128`. Lowercase `http_proxy` also accepted. |     |     |  Y  |
-| `HTTPS_PROXY` | unset | Forward proxy for outbound HTTPS requests. Typically the same value as `HTTP_PROXY`. Lowercase `https_proxy` also accepted. |     |     |  Y  |
-| `NO_PROXY` | unset | Comma-separated list of hosts / domain suffixes / IPs that bypass the proxy. Example: `localhost,127.0.0.1,.internal,off-mirror.local`. Lowercase `no_proxy` also accepted. |     |     |  Y  |
+| `HTTP_PROXY` | unset | Forward proxy for outbound HTTP requests from the server. Standard curl / requests convention: `http://proxy.host:3128`. Lowercase `http_proxy` also accepted. |  Y  |  Y  |  Y  |
+| `HTTPS_PROXY` | unset | Forward proxy for outbound HTTPS requests. Typically the same value as `HTTP_PROXY`. Lowercase `https_proxy` also accepted. |  Y  |  Y  |  Y  |
+| `NO_PROXY` | unset | Comma-separated list of hosts / domain suffixes / IPs that bypass the proxy. Example: `localhost,127.0.0.1,.internal,off-mirror.local`. Lowercase `no_proxy` also accepted. |  Y  |  Y  |  Y  |
 
 Setting any of the three at container start installs an undici `EnvHttpProxyAgent` as the global fetch dispatcher and monkey-patches `globalThis.fetch` to route through it, so every outbound request from the server obeys the proxy without per-call-site changes. When none are set, fetch behaves as before with no dep cost. Startup logs one line confirming which of the three are active.
+
+CT-specific note: the Enhanced URL Import mode spawns a Python `recipe-scrapers` subprocess for site-specific extractors. The subprocess inherits env vars, so the proxy settings are visible to it, but whether outbound calls from Python honor them depends on which HTTP client `recipe-scrapers` uses internally.
 
 ## App-specific
 
