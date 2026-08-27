@@ -104,6 +104,19 @@ The shorthand `OIDC_*` variables alias `OIDC_PROVIDER_1_*`. For multi-provider s
 
 Setting any of the three at container start installs an undici `EnvHttpProxyAgent` as the global fetch dispatcher and monkey-patches `globalThis.fetch` to route through it, so every outbound request from the server obeys the proxy without per-call-site changes. When none are set, fetch behaves as before with no dep cost. Startup logs one line confirming which of the three are active.
 
+### Value format
+
+The proxy URL **must include a scheme** (`http://` or `https://`). Bare `proxy.host:3128` or `user:pass@proxy.host:3128` fails at startup with `[server] proxy-agent install failed: Invalid URL` and no requests route through the proxy. Most forward proxies (Squid, tinyproxy, Traefik, etc.) speak plain HTTP even when tunneling HTTPS traffic through a `CONNECT`, so `http://…` is almost always the right scheme for both `HTTP_PROXY` and `HTTPS_PROXY`. Only use `https://…` when the proxy itself terminates TLS on its listening port (uncommon in self-host setups).
+
+For authenticated proxies, put credentials in the URL:
+
+```
+HTTP_PROXY=http://username:password@proxy.host:3128
+HTTPS_PROXY=http://username:password@proxy.host:3128
+```
+
+URL-encode any `@`, `:`, `/`, or other reserved characters in the password (`p@ss` becomes `p%40ss`). Credentials in env vars land in container logs on some orchestrators; a proxy that accepts IP-allowlisting on the internal network avoids storing them.
+
 CT-specific note: the Enhanced URL Import mode spawns a Python `recipe-scrapers` subprocess for site-specific extractors. The subprocess inherits env vars, so the proxy settings are visible to it, but whether outbound calls from Python honor them depends on which HTTP client `recipe-scrapers` uses internally.
 
 ## App-specific
