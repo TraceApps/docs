@@ -50,7 +50,7 @@ Downsides: no Play-Store update path, and it is a debug build, so any additional
 Two things, both silent-ish:
 
 1. **The auth cookie is `Secure` by default.** Browsers and WebViews drop it on `http://`. First request after login succeeds; every subsequent one is 401. Setting `INSECURE_COOKIES=1` removes the `Secure` attribute; do this only inside a trusted network.
-2. **Android release APK cleartext policy.** The manifest is `usesCleartextTraffic="false"` in the release variant. Plain-HTTP requests just refuse. There is no in-app toggle to override this; you either need HTTPS on the server or the debug APK.
+2. **Android release APK cleartext policy.** The release variant ships `network_security_config.xml` with `cleartextTrafficPermitted="false"`, which the platform enforces over the manifest's `usesCleartextTraffic` attribute. Plain-HTTP requests just refuse. There is no in-app toggle to override this; you either need HTTPS on the server or the debug APK.
 
 ## Related
 
