@@ -177,6 +177,7 @@ nav:
       - Migrate from Paprika: cooktrace/migrate-paprika.md
       - Migrate from Tandoor: cooktrace/migrate-tandoor.md
       - NutriTrace federation: cooktrace/nt-federation.md
+      - Model Context Protocol (MCP): cooktrace/mcp.md
       - Settings reference: cooktrace/settings.md
       - Env vars (app-specific): cooktrace/env-vars.md
   - LiftTrace:

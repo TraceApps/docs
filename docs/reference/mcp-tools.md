@@ -2,15 +2,15 @@
 
 ## What this page is
 
-Every tool that NutriTrace and LiftTrace expose over the **Model Context Protocol**, in one table per app. This is the reference for external AI clients (Claude Desktop, Cursor, Codex, VS Code, custom agents) that connect to each app's `/api/mcp`. The in-app Trace AI has its own separate tool set, catalogued in [Trace tool catalog](trace-tools.md).
+Every tool that NutriTrace, LiftTrace, and CookTrace expose over the **Model Context Protocol**, in one table per app. This is the reference for external AI clients (Claude Desktop, Cursor, Codex, VS Code, custom agents) that connect to each app's `/api/mcp`. The in-app Trace AI has its own separate tool set, catalogued in [Trace tool catalog](trace-tools.md).
 
-Both apps split their MCP surface into the same three phases, each gated by its own scope + env flag:
+All three apps split their MCP surface into the same three phases, each gated by its own scope + env flag:
 
 - **Read**: `mcp:read` + `MCP_ENABLED=1`. Always available when MCP is on.
 - **Write**: `mcp:write` + `MCP_WRITE_ENABLED=1`. Additive log tools; everything they write shows up as normal entries in the app's own UI.
 - **Destructive**: `mcp:destroy` + `MCP_DESTROY_ENABLED=1` + every call must include `confirm: true`.
 
-Setup lives on each app's own MCP page: [NutriTrace](../nutritrace/mcp.md), [LiftTrace](../lifttrace/mcp.md). This page is the tool reference; the setup pages tell you how to turn it on.
+Setup lives on each app's own MCP page: [NutriTrace](../nutritrace/mcp.md), [LiftTrace](../lifttrace/mcp.md), [CookTrace](../cooktrace/mcp.md). This page is the tool reference; the setup pages tell you how to turn it on.
 
 ## About the columns
 
@@ -127,9 +127,60 @@ Deliberately not in the current MCP surface:
 - Superset detail, cardio sessions, coach prescriptions. Trivial to add; deferred until real demand.
 - MCP prompts capability (guided workflows). Planned; no ETA.
 
+## CookTrace
+
+Fourteen tools across three phases.
+
+### Read tools (`mcp:read`)
+
+| Tool | Purpose | Args | Returns |
+|------|---------|------|---------|
+| `search_recipes` | Text search over the user's own recipes | `query*`, `limit` | Match array (id, name, description, servings, prep/cook/total minutes, rating, tags) |
+| `get_recipe` | Full detail of one recipe | `recipe_id*` | Ingredients (grouped), steps, servings, timings, tags, tools, nutrition, category, cook_count, last_cooked_at |
+| `recent_recipes` | Most recently added or updated recipes | `limit` | Summary array, newest first |
+| `list_pantry` | Search / list the pantry | `query`, `in_stock_only`, `limit` | Item array (id, name, brand, in_stock, quantity, unit, category, expires_on) |
+| `list_shopping_list` | Current shopping list | `include_checked` | Item array (id, name, quantity, unit, aisle, checked), sorted by aisle |
+| `list_cook_diary` | Cook diary entries (logged + planned) | `date_from`, `date_to`, `kind`, `limit` | Entry array (id, recipe_id, recipe_name, date, kind, servings, notes, meal_type, rating) |
+
+### Write tools (`mcp:write`)
+
+| Tool | Purpose | Args | Returns |
+|------|---------|------|---------|
+| `log_cook` | Log that the user cooked a recipe | `recipe_id*`, `date`, `servings`, `notes`, `meal_type`, `rating` | `logged` echo plus updated `recipe_cook_count` / `recipe_last_cooked_at`. Can log against a recipe someone else shared with the caller's Kitchen, matching the app's own "I cooked this" button. |
+| `add_shopping_item` | Add one item to the shopping list | `name*`, `quantity`, `unit`, `aisle` | The created item |
+| `check_shopping_item` | Mark a shopping list item checked/unchecked | `item_id*`, `checked*` | `ok`, `item_id`, `name`, `checked` |
+| `update_pantry_stock` | Update an existing pantry item's stock/quantity | `item_id*`, `in_stock`, `quantity` | `ok`, `item_id`, `name`, `in_stock`, `quantity`. Does not create new pantry rows. |
+
+### Destructive tools (`mcp:destroy` + `confirm: true`)
+
+| Tool | Purpose | Args | Returns |
+|------|---------|------|---------|
+| `create_recipe` | Add a new recipe | `name*`, `ingredients*` (flat `{name, qty, unit, note}` list), `steps*` (plain strings), `description`, `servings`, `prep_minutes`, `cook_minutes`, `tags`, `source_url`, `notes`, `confirm*` | The created recipe's id + counts. Fans out to the caller's Kitchen the same way `POST /api/recipes` does. |
+| `add_pantry_item` | Add a new pantry catalog item | `name*`, `quantity`, `unit`, `category`, `in_stock`, `expires_on`, `notes`, `confirm*` | The created item. Rejects a duplicate top-level name (case-insensitive). `category` is free text, not resolved against the app's category catalog. |
+| `delete_cook_diary_entry` | Remove one cook diary entry | `entry_id*`, `confirm*` | The removed entry. Recomputes the linked recipe's cook_count / last_cooked_at. |
+| `remove_shopping_item` | Remove one shopping list item | `item_id*`, `confirm*` | The removed item |
+
+### CookTrace scoping guarantees
+
+Every tool query prepends `WHERE user_id = ?`, with one deliberate exception: `log_cook`'s recipe lookup is unscoped in SQL, mirroring `POST /api/recipes/:id/cooked` exactly, so it can find a recipe someone else shared with the caller's Kitchen. Ownership is then checked in code (`recipe.user_id === caller OR recipe.visibility === 'group'`) before anything is written, and the write itself is scoped to the caller. A static wiring test (`scripts/mcp-wiring.test.js`) fails CI if a future tool omits its scoping clause.
+
+### CookTrace rate limits
+
+Same per-token bucket model as NutriTrace's and LiftTrace's: 60 requests per minute by default (`API_RATE_LIMIT_PER_MIN`). Responses include `X-RateLimit-Limit`, `X-RateLimit-Remaining`, and `X-RateLimit-Reset` (unix seconds). 429s carry `Retry-After`.
+
+### Not currently exposed (CookTrace)
+
+Deliberately not in the current MCP surface:
+
+- `edit_recipe` / `edit_cook_diary_entry`. The existing tools cover the primary "log what I just did" and "add what I need" cases; patching an existing recipe or entry adds ambiguity without a clear demand signal yet.
+- Cookbooks and Kitchens (list / create / share). Trivial to add; deferred until real demand.
+- `delete_recipe` / `delete_pantry_item`. Deliberately excluded, same reasoning NutriTrace uses for not exposing `delete_food`: these are permanent library content, not a transient log; only the log-like entities (cook diary entries, shopping list items) get a delete tool.
+- MCP prompts capability (guided workflows). Planned; no ETA.
+
 ## Related
 
 - [Model Context Protocol setup (NutriTrace)](../nutritrace/mcp.md): turn it on, wire up Claude Desktop
 - [Model Context Protocol setup (LiftTrace)](../lifttrace/mcp.md): turn it on, wire up Claude Desktop
+- [Model Context Protocol setup (CookTrace)](../cooktrace/mcp.md): turn it on, wire up Claude Desktop
 - [Trace tool catalog](trace-tools.md): in-app Trace AI tools (separate mechanism)
 - [Federation API](../nutritrace/federation-api.md): the older `/api/v1/*` REST surface that NutriTrace's MCP shares its token model with
