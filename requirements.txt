@@ -2,5 +2,5 @@ mkdocs>=1.6.0
 mkdocs-material>=9.5.0
 mkdocs-glightbox>=0.4.0
 mkdocs-git-revision-date-localized-plugin>=1.2.0
-mkdocs-redirects>=1.2.0
+mkdocs-redirects==1.2.2  # pinned: 1.2.3+ rebrands to "ProperDocs" and imports/executes that package's setup() purely to print a migration warning on every build. Same maintainer, not a hijack, but unwanted and unconsented. Re-evaluate before bumping past 1.2.2.
 pymdown-extensions>=10.7.0
