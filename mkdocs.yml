@@ -192,6 +192,7 @@ nav:
       - Statistics & PRs: lifttrace/statistics.md
       - Workout history import: lifttrace/import.md
       - NutriTrace federation: lifttrace/nt-federation.md
+      - Model Context Protocol (MCP): lifttrace/mcp.md
       - Settings reference: lifttrace/settings.md
       - Env vars (app-specific): lifttrace/env-vars.md
   - NutriTrace:
