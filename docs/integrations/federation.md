@@ -1,37 +1,41 @@
 # Federation (cross-app links)
 
-The three TraceApps siblings can talk to each other over HTTP. The point of the wiring: NutriTrace is the hub for anything nutrition-shaped (foods, workouts, calories in/out), and the other two apps read from it or write to it so you don't have to keep three parallel copies of the same data in your head.
+The three TraceApps siblings can talk to each other over HTTP. Some flows keep NutriTrace as the server (foods, workouts). Others put CookTrace on the server side so NutriTrace can pull recipes out of it, same shape as NT's Mealie integration. Each app knows how to be a client and how to be a server, depending on the flow.
 
-This page is the high-level story. Each side has its own configuration page linked at the bottom, and the exact wire contract is at [Federation API (v1)](../nutritrace/federation-api.md).
+This page is the high-level story. Each flow has its own configuration page linked at the bottom, and the exact wire contracts live at [Federation API (v1) on NutriTrace](../nutritrace/federation-api.md) and (soon) an equivalent page on the CookTrace side.
 
 ## What flows where
 
 - **CookTrace pulls foods from NutriTrace.** When you build a recipe in CookTrace, ingredient rows can auto-populate nutrition from your NutriTrace foods library (barcode match preferred, name match as fallback). No more re-typing calories for the same tin of chickpeas you already logged in NT last week.
-- **CookTrace pushes recipes to NutriTrace.** From a CookTrace recipe view, publish the recipe (with per-ingredient nutrition, computed totals, and any rollup warnings) as an NT recipe entry. Re-pushing after edits upserts the same row. See [Push a recipe to NutriTrace](../cooktrace/nt-federation.md#push-a-recipe-to-nutritrace).
+- **NutriTrace pulls recipes from CookTrace.** On the NT Foods search, Recipes tab, a **CookTrace** source chip appears next to Local and From Others once you have configured the connection. Pick a recipe, it opens in NT's Recipe editor with per-ingredient snapshots and rollup totals, ready to save into your NT recipes catalog and log from the diary. Mirrors the Mealie source chip on the Foods tab. See [Pull a CookTrace recipe into NutriTrace](../cooktrace/nt-federation.md#pull-a-cooktrace-recipe-into-nutritrace).
 - **LiftTrace pushes workouts to NutriTrace.** When you finish a lift session in LT, it posts a workout summary (name, duration, kcal burned) to NT. That daily kcal-out then feeds NT's Dynamic and Adaptive calorie-goal modes, so your daily target reflects the fact that you actually lifted this morning.
 
-All directions are opt-in, per-user, and configured from the client app's settings. NutriTrace is always the server side of the conversation; CookTrace and LiftTrace are always the clients.
+Every flow is opt-in, per-user, and configured from the app that acts as the client (the one initiating the request).
 
 ## How auth works
 
-NutriTrace exposes a versioned federation API at `/api/v1/`. Every request needs a Bearer token in the `Authorization` header. Tokens are personal access tokens: minted inside NT, scoped to what the holder is allowed to do, and hashed at rest so the raw value only ever exists once (at creation, shown to you to copy).
+Both NutriTrace and CookTrace expose a versioned federation API at `/api/v1/`. Every request needs a Bearer token in the `Authorization` header. Tokens are personal access tokens: minted inside whichever app hosts the data, scoped to what the holder is allowed to do, and hashed at rest so the raw value only ever exists once (at creation, shown to you to copy).
 
-Scopes today:
+Token format: NT tokens start with `nt_pat_`, CT tokens with `ct_pat_`, followed by 43 base64url characters. The prefix makes leaked tokens easy to spot.
 
-- `read:foods`. Read a user's foods library. CookTrace needs this to pull foods into its pantry.
-- `write:recipes`. Publish recipes into a user's Meals catalog. CookTrace needs this to push completed recipes to NT.
-- `write:workouts`. Log workouts into a user's wellness history. LiftTrace needs this.
-- `write:activity`, `write:body-measurements`. External trackers and headless integrations.
+Scopes today (across both apps):
 
-Tokens are per-user (not per-instance): the token identifies which NT account the calls act on. If two family members share one NT instance and both want federation, they each mint their own token.
+- `read:foods` (NT). Read a user's foods library. CookTrace needs this to pull foods into its pantry.
+- `read:recipes` (CT). Read a user's recipes catalog. NutriTrace needs this to pull CT recipes into its Foods search.
+- `write:workouts` (NT). Log workouts into a user's wellness history. LiftTrace needs this.
+- `write:activity`, `write:body-measurements` (NT). External trackers and headless integrations.
+
+Tokens are per-user (not per-instance): the token identifies which account the calls act on. If two family members share one instance and both want federation, they each mint their own token.
 
 ## Configuring it
 
-Federation always starts on the NT side by minting a token, then the token gets pasted into the client app.
+Federation always starts on the app that owns the data by minting a token, then the token gets pasted into the app that initiates the request.
 
-**On NutriTrace**: sign in as the account you want federated, open Settings, expand **API Tokens**, click **New Token**. Give it a name (something like "CookTrace" or "LiftTrace on the desktop") and tick the scopes the client will need. On save the raw token is shown once, formatted `nt_pat_<43 chars>`. Copy it right then, because NT only stores the hash after that.
+**On NutriTrace**: sign in as the account you want federated, open Settings, expand **API Tokens**, click **New Token**. Give it a name (something like "CookTrace pantry pull" or "LiftTrace on the desktop") and tick the scopes the client will need. On save the raw token is shown once, formatted `nt_pat_<43 chars>`. Copy it right then, because NT only stores the hash after that.
 
-**On CookTrace or LiftTrace**: open Settings, expand **NutriTrace federation**, paste your NT instance URL and the token, click **Save + Test**. The client hits NT's `/api/v1/me` and echoes back the username on success, or a specific error if the URL is wrong, the token is invalid, or the scopes are missing.
+**On CookTrace**: sign in as the account whose recipes you want NT to pull, open Settings, expand **API Tokens**, click **New Token**. Give it a name like "NutriTrace recipe pull" and tick `read:recipes`. Same format (`ct_pat_<43 chars>`), same one-shot reveal.
+
+**On the client side** (the app pulling or pushing): open Settings, find the section for the other app (**NutriTrace federation** on CookTrace/LiftTrace, **CookTrace** under Connected Services on NutriTrace), paste the instance URL and token, click Save. The client hits `/api/v1/me` on the target and echoes back the username on success, or a specific error if the URL is wrong, the token is invalid, or the scopes are missing.
 
 ## Transport, revocation, rotation
 

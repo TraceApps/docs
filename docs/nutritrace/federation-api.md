@@ -33,7 +33,6 @@ Multiple scopes today, gated per-endpoint. Tokens can hold any combination.
 | `write:workouts` | Post workouts into the token owner's wellness history (Settings → Wellness → Workout History) | LiftTrace |
 | `write:activity` | Log manual activity entries into the diary Activity section | External trackers, headless integrations |
 | `write:body-measurements` | Push scale readings into the diary's body-stats | Home Assistant, Node-RED, Gadgetbridge |
-| `write:recipes` | Publish recipes (with per-ingredient nutrition and rollup totals) into the token owner's meals catalog as `is_recipe=1` entries. Upsert by `(user_id, source_app, source_external_id)` so re-pushing after edits updates the same row. | CookTrace |
 
 Adding unknown scopes at token-creation time is silently dropped (forward-compat for clients written against a future NT). A token with no valid scopes is rejected.
 
@@ -199,63 +198,6 @@ Returns:
 ```
 
 `updated: true` means the row was matched by `external_id` and updated in place; `false` means a new entry was inserted.
-
-### `POST /api/v1/recipes`
-
-Publish a recipe into the token owner's Meals catalog as `is_recipe=1`. Requires `write:recipes`.
-
-The endpoint is designed for cross-app federation (CookTrace is the canonical caller today) and always upserts by `(user_id, source_app, source_external_id)`. Re-posting the same triple updates the existing row rather than duplicating; the caller is expected to keep a stable identifier per source recipe on its own side.
-
-Request:
-
-```json
-{
-  "source_app": "cooktrace",
-  "source_external_id": "recipe:42",
-  "source_url": "https://cook.example.com/#/recipes/42",
-  "name": "Chicken curry",
-  "items": [
-    {
-      "name": "Chicken thigh",
-      "brand": "",
-      "portion": 100,
-      "unit": "g",
-      "quantity": 4,
-      "food_server_id": 421,
-      "nutrition": { "calories": 165, "proteins": 27 }
-    }
-  ],
-  "nutrition": { "calories": 850, "proteins": 88 },
-  "servings": 4,
-  "portion": 1200,
-  "unit": "g",
-  "img_url": "https://cook.example.com/uploads/...",
-  "import_warnings": [
-    "1 ingredient without nutrition data: Turmeric. Totals may be underestimated."
-  ]
-}
-```
-
-Field notes:
-
-- `source_app` and `source_external_id` are both required. Together they form the upsert key. Callers namespace their own external ids however they like (e.g. `recipe:42`, `mealie:slug`, `paprika:uuid-...`); NT only cares that the pair stays stable.
-- `items` must be non-empty. Each item is a snapshot for display on the recipe row (NT does not re-run the rollup; the caller's totals in `nutrition` are stored verbatim). When the caller can, it passes `food_server_id` so the ingredient links back to an NT foods row and gets image/nutrition freshening at diary log time.
-- `nutrition` is the caller's aggregate. Servings-scaling is at the caller's discretion; NT stores what arrives.
-- `import_warnings` is a string array capped at 20 entries (400 chars each), surfaced verbatim as a banner on the NT recipe view. Use it to tell the user that the totals are a lower bound because some ingredients lacked nutrition data.
-
-Response:
-
-```json
-{
-  "ok": true,
-  "meal_id": 87,
-  "updated": false,
-  "source_app": "cooktrace",
-  "source_external_id": "recipe:42"
-}
-```
-
-`updated: true` = existing row updated in place; `updated: false` = new row inserted. Callers typically record `meal_id` on their side to link back for future user-facing "view on NutriTrace" affordances.
 
 ## Rate limits
 
