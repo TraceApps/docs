@@ -7,18 +7,21 @@ This page is the high-level story. Each side has its own configuration page link
 ## What flows where
 
 - **CookTrace pulls foods from NutriTrace.** When you build a recipe in CookTrace, ingredient rows can auto-populate nutrition from your NutriTrace foods library (barcode match preferred, name match as fallback). No more re-typing calories for the same tin of chickpeas you already logged in NT last week.
+- **CookTrace pushes recipes to NutriTrace.** From a CookTrace recipe view, publish the recipe (with per-ingredient nutrition, computed totals, and any rollup warnings) as an NT recipe entry. Re-pushing after edits upserts the same row. See [Push a recipe to NutriTrace](../cooktrace/nt-federation.md#push-a-recipe-to-nutritrace).
 - **LiftTrace pushes workouts to NutriTrace.** When you finish a lift session in LT, it posts a workout summary (name, duration, kcal burned) to NT. That daily kcal-out then feeds NT's Dynamic and Adaptive calorie-goal modes, so your daily target reflects the fact that you actually lifted this morning.
 
-Both directions are opt-in, per-user, and configured from the client app's settings. NutriTrace is always the server side of the conversation; CookTrace and LiftTrace are always the clients.
+All directions are opt-in, per-user, and configured from the client app's settings. NutriTrace is always the server side of the conversation; CookTrace and LiftTrace are always the clients.
 
 ## How auth works
 
 NutriTrace exposes a versioned federation API at `/api/v1/`. Every request needs a Bearer token in the `Authorization` header. Tokens are personal access tokens: minted inside NT, scoped to what the holder is allowed to do, and hashed at rest so the raw value only ever exists once (at creation, shown to you to copy).
 
-Two scopes matter today:
+Scopes today:
 
-- `read:foods`. Required to read a user's foods library. CookTrace needs this.
-- `write:workouts`. Required to log workouts into a user's wellness history. LiftTrace needs this.
+- `read:foods`. Read a user's foods library. CookTrace needs this to pull foods into its pantry.
+- `write:recipes`. Publish recipes into a user's Meals catalog. CookTrace needs this to push completed recipes to NT.
+- `write:workouts`. Log workouts into a user's wellness history. LiftTrace needs this.
+- `write:activity`, `write:body-measurements`. External trackers and headless integrations.
 
 Tokens are per-user (not per-instance): the token identifies which NT account the calls act on. If two family members share one NT instance and both want federation, they each mint their own token.
 
