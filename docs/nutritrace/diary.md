@@ -75,31 +75,25 @@ Toggle `fastingEnabled` and the IF widget appears above the meal cards. Presets 
 
 A free-text notes field per date, toggled by `diaryShowNotes`. Handy for context that shifts the numbers ("felt bloated after lunch", "post-workout"). An indicator dot renders on dates that have a note.
 
-## Mark days complete
+## Day completion (opt-in)
 
-Tap the check toggle in the Diary top bar to close the day when everything's logged. It's a manual, opt-in visual affordance for the completionist workflow; no diary math depends on it. Where completed days surface:
+Off by default. Turn on under **Settings → Diary → Show Day Completion** to activate every completion surface in one flip. When off, the diary looks exactly as it did before this feature landed. When on:
 
-- **Week strip** (top of the Diary on desktop, sticky sub-bar on mobile): a small green check next to the day number.
-- **Date picker** (tap the current date to jump): a green corner dot on the calendar cell.
+- **Date bar** grows a check toggle. Tap to close the current day; the icon fills green and a matching check appears next to the date label.
+- **Week strip** shows a small green check next to the day number on marked days.
+- **Date picker** shows a green corner dot on the calendar cell for marked days.
 - **Statistics** (right rail): "Marked complete: N of M days" with a percentage, over the currently viewed range. A row of tiny green dots below the x-axis marks which days in the range were closed.
-- **Weekly summary**: the push and email variants both include a "Marked complete: X of 7 days" line when at least one day was marked.
-- **Bedtime notification** (Android): if the day isn't already closed, the notification carries a **Close today** quick action that marks the day complete without opening the app. Skipped when today is already marked so the action isn't offered redundantly.
+- **Weekly summary** push and email both include a "Marked complete: X of 7 days" line when at least one day was marked in the window.
+- **Bedtime notification** (Android) carries a **Close today** quick action that marks the day complete without opening the app. Skipped when today is already closed so the action isn't offered redundantly.
+- **Per-meal checks**: each meal card gets a small tap-to-toggle check next to the meal name. Green when marked, muted when not.
+- **Auto-mark day** when every meal slot has been marked complete. Saves a second tap when you're checking off meals one by one.
+- **Empty-slot confirm** at day-close: if any meal slot is empty AND not explicitly marked as skipped, a dialog names them ("These meals have no items and haven't been marked as skipped: Breakfast, Snacks") and confirming records the intentional skip so tomorrow's equivalent pattern doesn't re-prompt. Fasters skipping breakfast every day mark it complete once, and it stays cleared.
 
-The mark syncs across devices with an offline-safe rule: a stale device pushing a `null` completion cannot clear a mark another device set. Explicit unmarking still works via the toggle. Storage is one nullable `completed_at TEXT` column on the `diary` table.
+Sync across devices uses an offline-safe rule: a stale device pushing a `null` day-completion cannot clear a mark another device set, and the per-meal set union-merges across devices so a slot marked on either device stays marked. Explicit unmarking still works from the toggle.
 
 First time you mark a day complete without meal reminders enabled, a one-time tip points at **Settings → Notifications** so you can catch a missing snack earlier next time instead of after end of day.
 
-### Per-meal completion (opt-in)
-
-Off by default. Turn on under **Settings → Diary → Show Meal Completion** to add a small check toggle to each meal card header and get an extra safety net at day-close time.
-
-When on:
-
-- Each meal card grows a tap-to-toggle check next to the meal name. Green when marked, muted when not.
-- Marking the day complete first checks for empty-and-unmarked slots. If any exist, a confirm dialog names them ("These meals have no items and haven't been marked as skipped: Breakfast, Snacks") and, on confirm, marks the empty slots as intentionally skipped so tomorrow's equivalent pattern doesn't re-prompt. Fasters skipping breakfast every day mark it complete once, and it stays cleared.
-- Sync uses union-merge across devices: a slot marked on either device stays marked. Explicit unmark still works from the toggle.
-
-Storage: `completed_meals TEXT` on the diary row (JSON array of slot indexes). Column always present regardless of the setting so a device with the toggle on can sync to one that has it off without schema drift.
+Storage: `completed_at TEXT` and `completed_meals TEXT` (JSON array of slot indexes) columns on the `diary` table. Both are covered by the full backup export/import and by cross-device sync.
 
 ## Known caveats
 
