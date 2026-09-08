@@ -75,6 +75,20 @@ Toggle `fastingEnabled` and the IF widget appears above the meal cards. Presets 
 
 A free-text notes field per date, toggled by `diaryShowNotes`. Handy for context that shifts the numbers ("felt bloated after lunch", "post-workout"). An indicator dot renders on dates that have a note.
 
+## Mark days complete
+
+Tap the check toggle in the Diary top bar to close the day when everything's logged. It's a manual, opt-in visual affordance for the completionist workflow; no diary math depends on it. Where completed days surface:
+
+- **Week strip** (top of the Diary on desktop, sticky sub-bar on mobile): a small green check next to the day number.
+- **Date picker** (tap the current date to jump): a green corner dot on the calendar cell.
+- **Statistics** (right rail): "Marked complete: N of M days" with a percentage, over the currently viewed range. A row of tiny green dots below the x-axis marks which days in the range were closed.
+- **Weekly summary**: the push and email variants both include a "Marked complete: X of 7 days" line when at least one day was marked.
+- **Bedtime notification** (Android): if the day isn't already closed, the notification carries a **Close today** quick action that marks the day complete without opening the app. Skipped when today is already marked so the action isn't offered redundantly.
+
+The mark syncs across devices with an offline-safe rule: a stale device pushing a `null` completion cannot clear a mark another device set. Explicit unmarking still works via the toggle. Storage is one nullable `completed_at TEXT` column on the `diary` table.
+
+First time you mark a day complete without meal reminders enabled, a one-time tip points at **Settings → Notifications** so you can catch a missing snack earlier next time instead of after end of day.
+
 ## Known caveats
 
 !!! warning "Android diary persistence gap"
