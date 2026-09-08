@@ -89,6 +89,18 @@ The mark syncs across devices with an offline-safe rule: a stale device pushing 
 
 First time you mark a day complete without meal reminders enabled, a one-time tip points at **Settings → Notifications** so you can catch a missing snack earlier next time instead of after end of day.
 
+### Per-meal completion (opt-in)
+
+Off by default. Turn on under **Settings → Diary → Show Meal Completion** to add a small check toggle to each meal card header and get an extra safety net at day-close time.
+
+When on:
+
+- Each meal card grows a tap-to-toggle check next to the meal name. Green when marked, muted when not.
+- Marking the day complete first checks for empty-and-unmarked slots. If any exist, a confirm dialog names them ("These meals have no items and haven't been marked as skipped: Breakfast, Snacks") and, on confirm, marks the empty slots as intentionally skipped so tomorrow's equivalent pattern doesn't re-prompt. Fasters skipping breakfast every day mark it complete once, and it stays cleared.
+- Sync uses union-merge across devices: a slot marked on either device stays marked. Explicit unmark still works from the toggle.
+
+Storage: `completed_meals TEXT` on the diary row (JSON array of slot indexes). Column always present regardless of the setting so a device with the toggle on can sync to one that has it off without schema drift.
+
 ## Known caveats
 
 !!! warning "Android diary persistence gap"
