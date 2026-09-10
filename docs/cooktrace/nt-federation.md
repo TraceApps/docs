@@ -102,6 +102,14 @@ The reverse of the "CookTrace pulls foods from NutriTrace" flow above: NT can al
 
 The scope is separate from `read:recipes` on purpose (you may want to share only one). Open CookTrace **Settings, API Tokens, New Token**, tick **read:pantry** (add **read:recipes** too if you also want the recipe-pull flow above), save, copy the `ct_pat_...` value.
 
+### Search and pick a single pantry item
+
+For one-offs rather than a full backfill, open NutriTrace's **Foods** screen, tap the source chip row, and pick **CookTrace**. Typing proxies each keystroke to `GET /api/v1/pantry?q=...` and lists matching pantry rows with their brand and calories. Picking one opens NutriTrace's Food editor pre-filled with the pantry row's nutrition, serving size, photo, brand, barcode, and density, stamped with the same `(source_app, source_external_id)` provenance the bulk import uses. Saving therefore updates the same row a later **Import Pantry Items** run manages, rather than creating a duplicate.
+
+The chip also participates in **All** mode, so a single search merges CookTrace pantry hits alongside your local foods, Open Food Facts, USDA, and Mealie, each row carrying a source badge.
+
+Search matches against the **composed** name, not the raw database column. A variant stored as "Bread" under a "Flour" generic is presented (and matched) as "Flour, Bread", so typing `flour` still finds it. Without that, filtering out the generic parent would make its variants unreachable by the word people actually search for. Brand and category are in the match set too.
+
 ### Run the import in NutriTrace
 
 In NutriTrace **Settings, Connected Services, CookTrace**, once the connection is verified, use **Import Pantry Items**. NT pulls every leaf pantry row from CookTrace and upserts it into your foods library via the same `(source_app='cooktrace', source_external_id='pantry:<id>')` dedup key the recipe flow uses.
