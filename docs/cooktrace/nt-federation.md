@@ -77,6 +77,10 @@ Save the recipe and it lands in NT's Recipes catalog with a **From CookTrace** b
 
 Every save on the NT side stamps `(source_app='cooktrace', source_external_id='recipe:<id>')` on the meals row. Re-pulling the same recipe and saving again updates the same row rather than duplicating (partial unique index on `meals(user_id, source_app, source_external_id)`), so edits on CookTrace flow through to NT with one pick + save.
 
+### Auto-refresh prompt
+
+When you open a CookTrace-imported recipe in NT's Meal Editor, NT quietly checks the CookTrace source in the background. If CookTrace's `updated_at` is newer than your local NT copy, a **CookTrace has newer content** banner appears above the recipe with **Refresh** and **Dismiss** buttons. Tapping **Refresh** re-fetches the recipe, remaps ingredients + totals, and applies them to the current row so the next save persists the update. Never overwrites without your consent, silent on any failure (offline, missing token, etc.), and never fires when CookTrace federation is disabled.
+
 Deleting the CookTrace recipe does **not** delete the NT copy. NT treats the imported recipe as a snapshot the user owns; deleting on the NT side is a separate action.
 
 ## Related
