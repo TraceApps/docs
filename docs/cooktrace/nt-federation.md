@@ -81,7 +81,47 @@ Every save on the NT side stamps `(source_app='cooktrace', source_external_id='r
 
 When you open a CookTrace-imported recipe in NT's Meal Editor, NT quietly checks the CookTrace source in the background. If CookTrace's `updated_at` is newer than your local NT copy, a **CookTrace has newer content** banner appears above the recipe with **Refresh** and **Dismiss** buttons. Tapping **Refresh** re-fetches the recipe, remaps ingredients + totals, and applies them to the current row so the next save persists the update. Never overwrites without your consent, silent on any failure (offline, missing token, etc.), and never fires when CookTrace federation is disabled.
 
-Deleting the CookTrace recipe does **not** delete the NT copy. NT treats the imported recipe as a snapshot the user owns; deleting on the NT side is a separate action.
+### Source-deleted indicator
+
+If that same background probe comes back with a hard **404** (the CookTrace recipe was deleted, or the token lost read access to it), NT shows a warning-tinted **CookTrace source no longer available** banner in place of the refresh prompt, with two actions:
+
+- **Unlink**: strips the CookTrace provenance from the NT copy but keeps the recipe. The row becomes an ordinary NT-authored recipe with no further sync attempts.
+- **Delete**: removes the NT copy entirely. Diary entries that already referenced it stay logged with the nutrition they captured at log time.
+
+A network failure or other non-404 error does **not** trigger the banner (offline users would otherwise see it constantly); only an unambiguous "gone" from CookTrace does.
+
+### Bulk import all recipes
+
+Instead of pulling recipes one at a time from the source-chip picker, you can also grab everything CookTrace has in one shot. In NutriTrace open **Settings, Connected Services, CookTrace** and use the **Import All Recipes** action once the connection is verified. NT pages through every recipe on the CookTrace side, upserts each one via the same `(source_app, source_external_id)` dedup key the single-recipe picker uses, and reports imported / updated / skipped counts. Safe to re-run: subsequent invocations update existing imports in place rather than duplicating.
+
+## Pull CookTrace pantry items into NutriTrace foods
+
+The reverse of the "CookTrace pulls foods from NutriTrace" flow above: NT can also pull the pantry items you keep on CookTrace into its own foods library. Useful for onboarding NutriTrace when you have been living in CookTrace's pantry for a while.
+
+### Mint a token with `read:pantry`
+
+The scope is separate from `read:recipes` on purpose (you may want to share only one). Open CookTrace **Settings, API Tokens, New Token**, tick **read:pantry** (add **read:recipes** too if you also want the recipe-pull flow above), save, copy the `ct_pat_...` value.
+
+### Run the import in NutriTrace
+
+In NutriTrace **Settings, Connected Services, CookTrace**, once the connection is verified, use **Import Pantry Items**. NT pulls every leaf pantry row from CookTrace and upserts it into your foods library via the same `(source_app='cooktrace', source_external_id='pantry:<id>')` dedup key the recipe flow uses.
+
+Leaf-only rule: **generic parents with variants are skipped**. Their variants carry the real nutrition; a top-level "Flour" placeholder next to "Flour, Bread" and "Flour, All-Purpose" in your foods library would be misleading and unusable. Standalone pantry items and individual variants both come across; variants get a "Parent, Child" display name (e.g. "Flour, Bread") so they read cleanly in NT's foods list.
+
+Nutrition per row uses the same resolver the recipe pull uses, so a variant whose own row has no nutrition inherits from the parent's designated variant if one is set. Rows that resolve to nothing still come across (as empty-nutrition placeholders); NT lets you fill them in on the NT side.
+
+## How images come across
+
+Both flows carry an `img_url` for recipes and pantry items. On import, NutriTrace's server downloads the image and self-hosts it under `/uploads/`, so from that point on every client viewing the recipe or pantry row loads the picture from NutriTrace's own origin (no runtime dependency on the CookTrace host).
+
+For the download step to succeed, **the NutriTrace server** must be able to reach the CookTrace origin. Two setups behave differently:
+
+- **NutriTrace server and CookTrace on the same LAN, or both on the same public origin.** The download works, the image lands in `/uploads/`, and every client sees the thumbnail. NutriTrace trusts the CookTrace base URL you saved in Settings so a private-IP LAN address is not refused by NutriTrace's SSRF guard.
+- **NutriTrace on a public origin and CookTrace on a LAN address the NT server cannot reach** (or the other way around). The NutriTrace server literally has no network path to the CookTrace host, so the download fails. The recipe or pantry row still imports fine (name, ingredients, nutrition, everything else); only the thumbnail is missing. Edit the imported row and re-upload the photo locally on the NutriTrace side if you need it.
+
+Nothing on the client (browser or Android WebView) has to reach CookTrace after import; whether the thumbnail shows up depends only on the NT server's reachability at import time.
+
+Deleting the CookTrace recipe does **not** automatically delete the NT copy. NT treats the imported recipe as a snapshot the user owns; deletion is triggered explicitly via the source-deleted indicator's **Delete** action or by opening the recipe in NT and using the standard delete affordance.
 
 ## Related
 
