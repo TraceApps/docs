@@ -61,31 +61,34 @@ The UI groups dates so you can, for example, skip everything before 2024 and ove
     ### Export from Cronometer
 
     1. Log in to [cronometer.com](https://cronometer.com/) on desktop.
-    2. **Settings → Account → Data → Export Data**.
-    3. Pick a date range. Cronometer produces one CSV per data type (Servings, Biometrics, Notes, Exercises).
-    4. Download.
+    2. Open your **Account** page, scroll to **Account Data**, and click **Export Data**.
+    3. Pick a date range.
+    4. Click **Export Food & Recipe Entries**. It downloads a file named `servings.csv`, with one row per food you logged, which is why older guides call it the Servings export.
 
-    The mobile app also has an export under **Settings → Data**, but the desktop export is more thorough.
+    Don't use **Export Daily Nutrition**. It only has daily or per-meal totals, not individual foods, so there's nothing to turn into diary entries. If you upload it by mistake, NutriTrace tells you which export to use instead.
 
     ### Import into NutriTrace
 
     1. **Settings → Import & Export → Import from another app**.
     2. Pick **Cronometer (CSV)**.
-    3. Upload the **Servings** CSV (the per-food diary rows). **Preview**, pick a conflict policy, **Commit**.
-    4. Repeat with the **Biometrics** CSV for weight and body measurements.
-    5. Optionally, the **Exercises** CSV for manual workouts (these land in the `activity_log` table).
+    3. Upload the Food & Recipe Entries CSV. **Preview**, pick a conflict policy, **Commit**.
+
+    The file name doesn't matter. NutriTrace recognizes the export by its columns, so a renamed file imports the same way.
 
     ### What survives
 
-    - **Per-food diary rows** with quantity and unit. Cronometer's food catalog is largely USDA-derived; the importer matches against USDA first, then Open Food Facts (OFF), then your Local foods.
-    - **Biometrics**: weight, body fat, custom fields (any of Cronometer's biometric categories map to Body Stats).
-    - **Notes**: per-day notes land on the day's `diary.notes` field.
-    - **Exercises**: name, kcal, duration land in `activity_log` with `source='manual_form'`.
+    - **One diary entry per food you logged**, with the name and the amount you entered ("150.00 g", "1 cup", "2 each").
+    - **The meal it was in.** Cronometer's diary groups map to your NutriTrace meals by name. Anything that doesn't match goes to your last meal, and the preview lists those names before you commit.
+    - **The time you logged it**, including AM and PM, so entries keep their order within the day.
+    - **Nutrition exactly as Cronometer recorded it** for that entry: calories, macros, and the micronutrients NutriTrace tracks.
+    - **Zero-calorie entries** like supplements and most spices, together with their vitamins and minerals.
 
     ### What doesn't
 
-    - **Recipes**: Cronometer exports recipes as flat serving lines rather than structured ingredients. Re-create the important ones in NutriTrace's Recipe editor.
-    - **Custom foods**: partial. The Servings export flattens to per-day rows; custom-food metadata (barcode, category, notes) is not fully preserved. Bulk-import your custom foods separately via **Settings → Import & Export → Bulk Import** if you need them intact.
+    - **Cronometer's other exports.** Only Food & Recipe Entries is imported. Biometrics (weight, body measurements), Exercises, Notes and Fasts are not.
+    - **Your Cronometer food library.** Imported entries go into your diary with their nutrition; they aren't added to your NutriTrace Foods.
+    - **Recipes as recipes.** A logged recipe comes across as a diary entry, not as a NutriTrace recipe with ingredients. Re-create the ones you use often in the Recipe editor.
+    - **Brand as its own field.** Cronometer includes the brand in the food name ("Kirkland Signature, ..."), and it stays there.
 
 ## Waistline
 
