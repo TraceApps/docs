@@ -1,6 +1,9 @@
 # Environment reference
 
-Every knob the three apps expose is in the table below. Defaults come from the actual server code, not the sample compose files, so if a README example and this page disagree, this page wins. The last three columns show which app reads which variable: `Y` means the app respects it, blank means it does not.
+Every knob CookTrace, LiftTrace, and NutriTrace expose is in the table below. Defaults come from the actual server code, not the sample compose files, so if a README example and this page disagree, this page wins. The last three columns show which app reads which variable: `Y` means the app respects it, blank means it does not. In these columns `NT` is NutriTrace.
+
+!!! note "NoteTrace"
+    NoteTrace reads the shared core, storage, auth, SMTP, OIDC, AI, backup, MCP, and webhook variables the same way. Its defaults and the few worth calling out are on [NoteTrace env vars](../notetrace/env-vars.md).
 
 ## Env-lock: what setting a var does to the UI
 

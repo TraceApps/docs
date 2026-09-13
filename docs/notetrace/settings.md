@@ -1,0 +1,89 @@
+# Settings reference
+
+Every section on the NoteTrace Settings page, and where to read more. Per-user sections apply to the signed-in account. Admin sections apply to the whole server and only appear for the `admin` role. Use the search box at the top of Settings to jump to a section by name or keyword (search for "keep", "lock", or "ntfy", for example).
+
+Settings is grouped into **Display**, **Integrations**, **App**, and **Admin**. On a wide screen the sections sit in a rail on the left; on a phone each opens as its own page.
+
+## Profile (per-user)
+
+Top of the page: avatar, name, and role. Opens the profile page for display name, password, biometric sign-in (Android), and sign out.
+
+## Display
+
+### Appearance (per-user)
+
+- **Theme**: System Default, Dark, or Light.
+- **Accent Color**: preset accents, Lavender by default.
+- **Navigation Style**: bottom tab bar, side panel, or both.
+- **Persistent Sidebar**: on screens 768px and wider the sidebar stays open (on by default) and hides the bottom tab bar.
+- **Reduce Motion**, **Page Banners**, and **Animation Style**, shared with the other Trace apps.
+
+### Regional (per-user)
+
+- **Language**
+- **Date Format**: `YYYY-MM-DD`, `MM/DD/YYYY`, `DD/MM/YYYY`, or natural.
+- **Time Format**: 12-hour or 24-hour. Also used by reminder times.
+
+## Integrations
+
+### Trace AI (per-user)
+
+Provider, key, and model for the Trace assistant. See [Setting up Trace](../trace/setup.md).
+
+## App
+
+### Server Connection (Android)
+
+Switch between local mode and a server, and see sync status. See [Local vs server-connected mode](../mobile/modes.md).
+
+### App Lock (Android, per-device)
+
+**Lock NoteTrace** and **Lock After**. See [App Lock](android.md#app-lock).
+
+### Notifications (per-user)
+
+- **Enable on This Device** and **Browser Permission** for device notifications.
+- **Push Service**: None, Apprise, Gotify, or ntfy, with a **Send Test** button. See [Push notifications overview](../integrations/notifications.md).
+- **Note Reminders**: when on (the default), the server sends due reminders through the push service. See [Reminders](reminders.md#from-the-server).
+
+### Import & Export (per-user)
+
+Google Keep and Markdown import, Markdown export. See [Import and export](import-export.md).
+
+### Backup
+
+Full backups, scheduled auto-backups (admin), restore from a zip, and the portable JSON export. On Android local mode, a local backup zip. See [Backups and restore](../self-hosting/backups.md).
+
+### Updates
+
+Stable or Dev channel and the in-app updater. See [Release channels](../reference/release-channels.md).
+
+### Diagnostics
+
+Server and sync status, for troubleshooting.
+
+## Admin
+
+### Users
+
+Invite people, change roles, reset passwords, and remove accounts. Accounts are also who you can [share notes](sharing.md) with. See [Local users, invites, roles](../auth/local-users.md).
+
+### Authentication
+
+Password policy, session length, and OIDC providers. See [OIDC / SSO overview](../auth/oidc.md).
+
+### API Tokens
+
+Personal access tokens (prefix `note_pat_`) for scripts and the MCP endpoint.
+
+### Webhooks
+
+Signed outgoing webhooks for `note.created`, `checklist.completed`, and `reminder.fired`. Needs `WEBHOOKS_ENABLED=1`. See [Webhooks](webhooks.md).
+
+### Email
+
+SMTP for password resets and invites. See [Email / SMTP](../integrations/smtp.md).
+
+## About
+
+Version, links, and licenses.

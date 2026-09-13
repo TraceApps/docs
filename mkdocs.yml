@@ -1,5 +1,5 @@
 site_name: TraceApps Documentation
-site_description: Documentation for the TraceApps self-hosted family. Covers CookTrace, LiftTrace, and NutriTrace.
+site_description: Documentation for the TraceApps self-hosted family. Covers CookTrace, LiftTrace, NoteTrace, and NutriTrace.
 site_url: https://traceapps.github.io/docs/
 site_author: TraceApps
 
@@ -126,7 +126,7 @@ nav:
       - Updating: getting-started/updating.md
   - Configure:
       - Server:
-          - How the three apps compare: self-hosting/compare.md
+          - How the apps compare: self-hosting/compare.md
           - Environment reference: self-hosting/env-vars.md
           - Docker Secrets (*_FILE): self-hosting/secrets.md
           - Backups and restore: self-hosting/backups.md
@@ -197,6 +197,17 @@ nav:
       - Model Context Protocol (MCP): lifttrace/mcp.md
       - Settings reference: lifttrace/settings.md
       - Env vars (app-specific): lifttrace/env-vars.md
+  - NoteTrace:
+      - Overview: notetrace/index.md
+      - Feature tour: notetrace/features.md
+      - Notes, checklists & labels: notetrace/notes.md
+      - Reminders: notetrace/reminders.md
+      - Sharing: notetrace/sharing.md
+      - "Android: share sheet & App Lock": notetrace/android.md
+      - Import & export (Google Keep, Markdown): notetrace/import-export.md
+      - Webhooks: notetrace/webhooks.md
+      - Settings reference: notetrace/settings.md
+      - Env vars (app-specific): notetrace/env-vars.md
   - NutriTrace:
       - Overview: nutritrace/index.md
       - Feature tour: nutritrace/features.md
