@@ -58,36 +58,45 @@ The UI groups dates so you can, for example, skip everything before 2024 and ove
 ??? details "Cronometer (CSV, free)"
     Cronometer exports for free. No subscription needed.
 
-    ### Export from Cronometer
+    Cronometer offers two exports with diary data in them, and which one you need depends on what your account gives you.
+
+    ### Try Food & Recipe Entries first
 
     1. Log in to [cronometer.com](https://cronometer.com/) on desktop.
     2. Open your **Account** page, scroll to **Account Data**, and click **Export Data**.
-    3. Pick a date range.
-    4. Click **Export Food & Recipe Entries**. It downloads a file named `servings.csv`, with one row per food you logged, which is why older guides call it the Servings export.
+    3. Pick a date range, then click **Export Food & Recipe Entries**. It downloads a file named `servings.csv`, with one row per food you logged, which is why older guides call it the Servings export.
+    4. Open it and look at the columns. If it has `Energy (kcal)` and the other nutrient columns, that's the one to import: it gives you every food with its own nutrition.
 
-    Don't use **Export Daily Nutrition**. It only has daily or per-meal totals, not individual foods, so there's nothing to turn into diary entries. If you upload it by mistake, NutriTrace tells you which export to use instead.
+    On free accounts Cronometer has stopped putting the nutrition in this file, leaving only `Day, Time, Group, Food Name, Amount, Category`. If that's what you have, there is nothing in it to import, and NutriTrace will say so and point you to the other export.
+
+    ### Otherwise use Daily Nutrition
+
+    1. In the same **Export Data** dialog, tick **Include diary group rows**.
+    2. Click **Export Daily Nutrition**. It downloads `dailysummary.csv`.
+
+    This one always has the numbers, but as totals rather than per food. With the group rows ticked you get one row per meal per day, which imports as one entry in each of your meals. Without it you get one row per day, which imports as a single entry per day in your first meal.
 
     ### Import into NutriTrace
 
     1. **Settings → Import & Export → Import from another app**.
     2. Pick **Cronometer (CSV)**.
-    3. Upload the Food & Recipe Entries CSV. **Preview**, pick a conflict policy, **Commit**.
+    3. Upload the file. **Preview**, pick a conflict policy, **Commit**.
 
-    The file name doesn't matter. NutriTrace recognizes the export by its columns, so a renamed file imports the same way.
+    The file name doesn't matter. NutriTrace works out which export it is from the columns, so a renamed file imports the same way.
 
     ### What survives
 
-    - **One diary entry per food you logged**, with the name and the amount you entered ("150.00 g", "1 cup", "2 each").
-    - **The meal it was in.** Cronometer's diary groups map to your NutriTrace meals by name. Anything that doesn't match goes to your last meal, and the preview lists those names before you commit.
-    - **The time you logged it**, including AM and PM, so entries keep their order within the day.
-    - **Nutrition exactly as Cronometer recorded it** for that entry: calories, macros, and the micronutrients NutriTrace tracks.
-    - **Zero-calorie entries** like supplements and most spices, together with their vitamins and minerals.
+    - **From Food & Recipe Entries**: one diary entry per food, with the amount you logged ("150.00 g", "1 cup", "2 each"), the time including AM and PM, and the nutrition Cronometer recorded for it. Zero-calorie entries such as supplements and most spices come across too, with their vitamins and minerals.
+    - **From Daily Nutrition**: one entry per meal per day (or per day), named "Cronometer total", carrying that row's calories, macros and micronutrients.
+    - **The meal it was in.** Cronometer's diary groups map to your NutriTrace meals by name, including `Uncategorized`. Anything that doesn't match goes to your last meal, and the preview lists those names before you commit.
+    - **Dates in any order.** Cronometer writes them in your account's format, so NutriTrace reads the file to tell `9/4` (September 4th) from `9/4` (April 9th) rather than assuming.
 
     ### What doesn't
 
-    - **Cronometer's other exports.** Only Food & Recipe Entries is imported. Biometrics (weight, body measurements), Exercises, Notes and Fasts are not.
+    - **Cronometer's other exports.** Only these two are read. Biometrics (weight, body measurements), Exercises, Notes and Fasts are not.
+    - **Per-food detail from Daily Nutrition.** The file simply doesn't contain it. Totals are the most that export carries.
     - **Your Cronometer food library.** Imported entries go into your diary with their nutrition; they aren't added to your NutriTrace Foods.
-    - **Recipes as recipes.** A logged recipe comes across as a diary entry, not as a NutriTrace recipe with ingredients. Re-create the ones you use often in the Recipe editor.
+    - **Recipes as recipes.** A logged recipe comes across as a diary entry, not as a NutriTrace recipe with ingredients.
     - **Brand as its own field.** Cronometer includes the brand in the food name ("Kirkland Signature, ..."), and it stays there.
 
 ## Waistline
