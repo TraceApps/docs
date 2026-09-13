@@ -11,7 +11,7 @@ Six pills at the top of the page. Tap one to switch view; the range selector bel
 - **Records** every exercise's current top weight and current top estimated 1RM.
 - **Volume** weekly total volume bar chart across the range.
 - **Frequency** weekly workout count plus a weekday distribution.
-- **Body Weight** logged body-weight points over time (sourced from Diary body-stats).
+- **Body Weight** logged body-weight points over time (sourced from Diary body-stats). A card at the top of this view opens [Progress photos](progress.md), the visual counterpart to the weight line.
 
 The `All` range resolves the earliest workout in the log via `GET /api/stats/earliest-workout-date` instead of a fixed 10-year window, so imported historical data from Strong or Hevy is visible without a wall.
 
@@ -54,3 +54,4 @@ Streaks come from `GET /api/stats/streaks`: current streak in days, longest stre
 - [Diary and set logging](diary.md)
 - [Programs and templates](programs.md)
 - [Body stats](diary.md#anatomy-of-a-set)
+- [Progress photos](progress.md)
