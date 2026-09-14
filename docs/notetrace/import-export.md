@@ -33,6 +33,30 @@ Color mapping: red and orange become clay, yellow and brown become sand, green b
 !!! tip "Big exports"
     The zip is read on your device or in your browser. Notes are saved first, then their images are uploaded, with a progress count for each. The server accepts about 60 image uploads a minute, so a Keep export with hundreds of photos pauses now and then to stay under that limit; leave the page open until the summary appears.
 
+## Evernote {#evernote}
+
+1. In Evernote, export a notebook (or selected notes) and choose the **ENEX** format. Evernote writes one `.enex` file per export.
+2. In NoteTrace, choose **Evernote, Choose File** and pick the `.enex` file. To bring several notebooks over at once, zip their `.enex` files together and pick the zip.
+
+What comes across:
+
+| Evernote | NoteTrace |
+|---|---|
+| Title and text | Title and body, one line per Evernote line, with bold, italic, strikethrough, links, headings, lists, quotes, and code |
+| Checkboxes (older and Evernote 10 style) | A checklist when the note is only checkboxes; otherwise `- [ ]` lines in the text, which **Show Checkboxes** turns into a checklist |
+| Evernote 10 tasks | Checklist items |
+| Images | Images on the note, in the order the note shows them |
+| Tables | One line per row, with cells separated by a vertical bar |
+| Tags | Labels |
+| Notebook | A label with the notebook's name (the export's file name), when **Label notes with their notebook name** is on |
+| Created and updated dates | Kept |
+| Source URL (web clips) | Added to the end of the note |
+| Reminders | Kept when they're still ahead and not marked done |
+| PDFs, audio, other files | Not imported; the summary counts them |
+| Encrypted text | Replaced with "(encrypted text not imported)" |
+
+The whole `.enex` file is read on your device, so a very large export can be slow on a phone. Exporting one notebook at a time keeps each file manageable.
+
 ## Memos {#memos}
 
 Memos has no export file, so NoteTrace reads your memos straight from your Memos server.

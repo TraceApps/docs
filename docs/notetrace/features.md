@@ -66,4 +66,4 @@ The Android app works fully offline in local mode, or syncs with your server. Sh
 
 ![Import and Export settings](../assets/img/notetrace/05-import-export.png)
 
-Bring notes in from Google Keep (Takeout), Memos, Blinko, or Markdown files, images included, and export every note as a Markdown ZIP. See [Import and export](import-export.md).
+Bring notes in from Google Keep (Takeout), Evernote, Memos, Blinko, or Markdown files, images included, and export every note as a Markdown ZIP. See [Import and export](import-export.md).

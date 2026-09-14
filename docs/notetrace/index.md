@@ -15,6 +15,7 @@ NoteTrace isn't trying to be a knowledge base. It's for the notes you'd put in K
 
 - **Google Keep** is quick and simple, and it's Google's. NoteTrace keeps the card grid, checklists, colors, labels, pins, archive, and reminders, runs on your own server, and imports your Keep notes, photos included, straight from Google Takeout.
 - **Memos** and **Blinko** are timeline-first and lean on tags and AI. NoteTrace is grid-first with real checklists and reminders, and imports straight from both.
+- **Evernote** grew into a heavyweight workspace. NoteTrace keeps the everyday part (quick notes, checklists, clipped links, reminders) and imports your `.enex` exports with their images and tags.
 - **Obsidian**, **Joplin**, and **Trilium** are built for long-form, linked documents. NoteTrace stores Markdown too, so notes stay portable, but it's tuned for short notes and lists you check every day.
 
 ## What's inside
@@ -27,7 +28,7 @@ NoteTrace isn't trying to be a knowledge base. It's for the notes you'd put in K
 - Version history: every editing session leaves a restore point, and sync conflicts never throw an edit away.
 - Reminders, one-off or repeating (daily, weekly, monthly, yearly): exact alarms on the phone, notifications in the browser, and pushes through ntfy, Gotify, or Apprise.
 - Sharing with view or edit access for other accounts on your server.
-- Import from Google Keep (Takeout, photos included), Memos, Blinko, and Markdown; export everything as Markdown with images.
+- Import from Google Keep (Takeout, photos included), Evernote, Memos, Blinko, and Markdown; export everything as Markdown with images.
 - Android app with share-sheet capture for text, links, and photos, an optional fingerprint or face app lock, and full offline mode.
 - The shared Trace foundation: OIDC SSO, backups, in-app updates, Trace AI, API tokens, webhooks.
 
@@ -35,7 +36,7 @@ NoteTrace isn't trying to be a knowledge base. It's for the notes you'd put in K
 
 - [Install with Docker Compose](../getting-started/compose.md) has a NoteTrace tab.
 - [Feature tour](features.md) walks through the app before you install.
-- [Import and export](import-export.md) covers moving your notes in from Google Keep.
+- [Import and export](import-export.md) covers moving your notes in from Google Keep, Evernote, and others.
 
 ## Shared setup pages
 

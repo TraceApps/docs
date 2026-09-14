@@ -50,7 +50,7 @@ Switch between local mode and a server, and see sync status. See [Local vs serve
 
 ### Import & Export (per-user)
 
-Google Keep, Memos, Blinko, and Markdown import, and Markdown export. See [Import and export](import-export.md).
+Google Keep, Evernote, Memos, Blinko, and Markdown import, and Markdown export. See [Import and export](import-export.md).
 
 ### Backup
 
