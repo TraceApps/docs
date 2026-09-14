@@ -16,6 +16,10 @@ Switching a checklist to text writes one line per item, with checked items wrapp
 
 When every item on a checklist is checked, the `checklist.completed` [webhook](webhooks.md) fires.
 
+## Images
+
+Images are stored per note in `note_attachments`, each with a stable id, like checklist items, so adding or removing an image on one device merges with changes elsewhere. The file itself is uploaded to the server's uploads folder first (scaled down in the browser when it's a large photo); a note links to files on its own server only. In Android local mode photos are saved on the phone and uploaded by the first sync after you connect. A note holds up to 50 images.
+
 ## Pin, archive, trash
 
 - **Pin** keeps a note in the pinned section. Archiving or trashing a note unpins it.
@@ -34,7 +38,7 @@ Notes can be plum, tide, moss, sand, clay, rose, or the default. Each color has 
 
 ## Search
 
-Search uses SQLite FTS5 over titles, bodies, and checklist item text, kept current by database triggers. Each word you type matches as a prefix, and all words must match. Results are limited to the view you search from (Notes, Archive, Trash, or a label).
+**Ctrl+K** (**Cmd+K**) focuses search from anywhere in the app. Search uses SQLite FTS5 over titles, bodies, and checklist item text, kept current by database triggers. Each word you type matches as a prefix, and all words must match. Results are limited to the view you search from (Notes, Archive, Trash, or a label).
 
 ## Version history
 

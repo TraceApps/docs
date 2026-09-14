@@ -13,21 +13,22 @@ The idea is Keep's speed with the pieces Keep leaves out: open it and start typi
 
 NoteTrace isn't trying to be a knowledge base. It's for the notes you'd put in Keep.
 
-- **Google Keep** is quick and simple, and it's Google's. NoteTrace keeps the card grid, checklists, colors, labels, pins, archive, and reminders, runs on your own server, and imports your Keep notes straight from Google Takeout.
-- **Memos** and **Blinko** are timeline-first and lean on tags and AI. NoteTrace is grid-first with real checklists and reminders, and imports Markdown exports from other apps.
+- **Google Keep** is quick and simple, and it's Google's. NoteTrace keeps the card grid, checklists, colors, labels, pins, archive, and reminders, runs on your own server, and imports your Keep notes, photos included, straight from Google Takeout.
+- **Memos** and **Blinko** are timeline-first and lean on tags and AI. NoteTrace is grid-first with real checklists and reminders, and imports straight from both.
 - **Obsidian**, **Joplin**, and **Trilium** are built for long-form, linked documents. NoteTrace stores Markdown too, so notes stay portable, but it's tuned for short notes and lists you check every day.
 
 ## What's inside
 
 - Card grid with a pinned section, quick capture, and a layout that fills wide screens (1 to 6 columns).
 - Rich editor that saves Markdown, and checklists with drag to reorder. Switch any note between text and checklist without losing content.
+- Images on any note: add, paste, drag in, or share them from your phone's gallery.
 - Labels with colors, six note colors, archive, and a trash that empties itself after 30 days.
-- Full-text search across titles, bodies, and checklist items.
+- Full-text search across titles, bodies, and checklist items, one Ctrl+K away.
 - Version history: every editing session leaves a restore point, and sync conflicts never throw an edit away.
-- Reminders, one-off or repeating (daily, weekly, monthly, yearly), on the phone and through ntfy, Gotify, or Apprise.
+- Reminders, one-off or repeating (daily, weekly, monthly, yearly): exact alarms on the phone, notifications in the browser, and pushes through ntfy, Gotify, or Apprise.
 - Sharing with view or edit access for other accounts on your server.
-- Import from Google Keep (Takeout) and Markdown; export everything as Markdown.
-- Android app with share-sheet capture, an optional fingerprint or face app lock, and full offline mode.
+- Import from Google Keep (Takeout, photos included), Memos, Blinko, and Markdown; export everything as Markdown with images.
+- Android app with share-sheet capture for text, links, and photos, an optional fingerprint or face app lock, and full offline mode.
 - The shared Trace foundation: OIDC SSO, backups, in-app updates, Trace AI, API tokens, webhooks.
 
 ## Get started

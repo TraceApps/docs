@@ -16,7 +16,7 @@ The note appears in the other person's NoteTrace right away, and on their phone 
 
 | | Owner | Can edit | Can view |
 |---|---|---|---|
-| Title, body, color, checklist items | Edit | Edit | Read |
+| Title, body, color, checklist items, images | Edit | Edit | Read |
 | Check off items | Yes | Yes | No |
 | Version history | Browse and restore | Browse and restore | Browse |
 | Pin and archive | Their own | Their own | Their own |

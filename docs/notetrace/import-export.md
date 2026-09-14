@@ -4,7 +4,9 @@ Everything lives under **Settings, Import & Export**. Imports and exports work t
 
 ![Import and Export settings](../assets/img/notetrace/05-import-export.png)
 
-## Import from Google Keep {#keep}
+Importing the same export twice is safe: notes that are already there (same title, text, type, and created date) are skipped, and their images aren't uploaded again. After each import, a summary lists what came across and what didn't.
+
+## Google Keep {#keep}
 
 1. Go to [Google Takeout](https://takeout.google.com/), click **Deselect all**, then select only **Keep**.
 2. Create the export and download the `.zip` when Google emails you.
@@ -16,40 +18,61 @@ What comes across:
 |---|---|
 | Title and text | Title and body, with line breaks kept |
 | Checkbox lists | Checklist with checked state and order |
+| Photos and drawings | Images on the note |
 | Labels | Labels, matched to existing ones by name or created |
 | Colors | Nearest NoteTrace color (see below) |
 | Pinned, archived | Pinned, archived |
 | Links (web link previews) | Added to the end of the note |
 | Created and edited dates | Kept |
 | Trash | Left out, unless **Include notes from Keep's trash** is on |
-| Images, drawings, audio | Not imported yet; the summary counts them |
+| Voice recordings | Not imported; the summary counts them |
 | Reminders, collaborators | Not in Takeout's note files, so not imported |
 
 Color mapping: red and orange become clay, yellow and brown become sand, green becomes moss, teal, blue, and dark blue become tide, purple becomes plum, pink becomes rose, and gray and default stay uncolored.
 
 !!! tip "Big exports"
-    The zip is read on your device or in your browser, and only the note text is sent to the server, so a large Keep export full of photos still imports quickly. Importing the same export twice is safe: notes that are already there are skipped.
+    The zip is read on your device or in your browser. Notes are saved first, then their images are uploaded, with a progress count for each. The server accepts about 60 image uploads a minute, so a Keep export with hundreds of photos pauses now and then to stay under that limit; leave the page open until the summary appears.
 
-## Import Markdown files {#markdown}
+## Memos {#memos}
 
-Choose **Markdown Files, Choose File** and pick a `.zip` of `.md`, `.markdown`, or `.txt` files, or a single file. This covers Obsidian vaults, Memos and Joplin Markdown exports, a NoteTrace export, and any other app that exports Markdown.
+Memos has no export file, so NoteTrace reads your memos straight from your Memos server.
+
+1. In Memos' settings, create a personal access token.
+2. In NoteTrace, under **Memos**, enter your Memos address (for example `https://memos.example.com`) and paste the token.
+3. Tap **Import**.
+
+Your memos' content, tags (as labels), images, pinned state, archived memos, and created and updated times come across. Only your own memos are imported, not other people's public memos, and comments aren't. The token is used once from your browser or phone and isn't saved; you can delete it in Memos afterward.
+
+!!! note "https"
+    If NoteTrace is on `https`, your browser only lets it reach a Memos server that's also on `https`. An address typed without `https://` tries `https` first, then `http`.
+
+## Blinko {#blinko}
+
+In Blinko's settings, download a backup (a `.bko` file). In NoteTrace, choose **Blinko Backup, Choose File** and pick it.
+
+Notes, images, tags (Blinko keeps them in the text, so they become labels), pinned, archived, and dates come across. A Blinko backup holds every account on that Blinko server; NoteTrace imports the account whose name matches your NoteTrace username, or the only account when there's just one. Blinko's backup doesn't mark which notes are in its trash, so those come across as regular notes.
+
+Blinko's **Markdown** export works too, through the Markdown importer below.
+
+## Markdown files {#markdown}
+
+Choose **Markdown Files, Choose File** and pick a `.zip` of `.md`, `.markdown`, or `.txt` files, or a single file. This covers Obsidian vaults, Joplin Markdown exports, Blinko's Markdown export, a NoteTrace export, and any other app that exports Markdown.
 
 How each file becomes a note:
 
-- **Title**: `title` in front matter, else a leading `# Heading` (removed from the body), else the file name. File names that are just dates, ids, or "Untitled" leave the note untitled.
+- **Title**: `title` in front matter, else a leading `# Heading` (removed from the body), else the file name. File names that are just dates, ids, `note-<id>-<time>` (Blinko), or "Untitled" leave the note untitled.
 - **Body**: the Markdown after the front matter. `.txt` files keep their line breaks.
+- **Images**: images the note embeds from inside the zip, `![](images/photo.jpg)` or Obsidian's `![[photo.jpg]]`, become images on the note. Images on the web (`https://...`) stay in the text as they are.
 - **Checklist**: a file whose lines are all tasks (`- [ ]` and `- [x]`) becomes a checklist, as does `kind: checklist` in front matter.
 - **Labels**: `labels` or `tags` in front matter, plus inline `#tags` in the text when **Turn #tags into labels** is on. Headings, code, and `#123` numbers aren't treated as tags.
-- **Dates**: `created` (or `created_at`, `date`) and `updated` (or `updated_at`, `modified`).
+- **Dates**: `created` (or `created_at`, `date`) and `updated` (or `updated_at`, `modified`). Blinko file names carry the creation time.
 - **Other front matter**: `color`, `pinned`, `archived`, `reminder`, `repeat`, and `timezone`, as written by a NoteTrace export.
 - Files inside a folder named `Archive` are archived.
 - Hidden folders and files such as `.obsidian`, `.trash`, and `__MACOSX` are skipped.
 
-Notes already present (same title, body, type, and created date) are skipped.
-
 ## Export as Markdown {#export}
 
-**Export as Markdown** builds a zip of every note you can see, including notes shared with you:
+**Export as Markdown** builds a zip of every note you can see, including notes shared with you, with their images:
 
 ```
 NoteTrace/
@@ -58,9 +81,11 @@ NoteTrace/
     Homelab to-do.md
   Archive/
     Old project.md
+  attachments/
+    5f0c...e1.jpg
 ```
 
-Trashed notes aren't exported. Each file has front matter with everything needed to import it back:
+Trashed notes aren't exported. Each file has front matter with everything needed to import it back, and its images as embeds at the top, so any Markdown app shows them:
 
 ```markdown
 ---
@@ -76,10 +101,12 @@ created: "2026-09-01T12:00:00Z"
 updated: "2026-09-12T14:30:00Z"
 ---
 
+![](../attachments/5f0c...e1.jpg)
+
 - [ ] Chicken thighs
 - [x] Coffee beans
 ```
 
 Notes shared with you also carry `shared_by`. On Android the zip opens the share sheet so you can save it to Files or send it somewhere; in a browser it downloads.
 
-The Markdown export is for portability. For a complete copy of your server, including accounts, settings, and version history, use a [full backup](../self-hosting/backups.md).
+The Markdown export is for portability. For a complete copy of your server, including accounts, settings, sharing, and version history, use a [full backup](../self-hosting/backups.md).

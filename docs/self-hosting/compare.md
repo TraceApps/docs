@@ -17,7 +17,7 @@ CookTrace, LiftTrace, NoteTrace, and NutriTrace are siblings by design: same Nod
 | Subpath env | `BASE_URL=/cooktrace` | `BASE_URL=/lifttrace` | `BASE_URL=/notetrace` | `BASE_URL=/nutritrace` |
 | Health endpoint | `GET /api/health` | `GET /api/health` | `GET /api/health` | `GET /api/health` |
 | Python bundled | yes (recipe-scrapers) | yes (better-sqlite3 build) | yes (better-sqlite3 build) | yes (better-sqlite3 build) |
-| Android reminders | JS `LocalNotifications` | JS `LocalNotifications` | JS `LocalNotifications` (note reminders) | native WorkManager |
+| Android reminders | JS `LocalNotifications` | JS `LocalNotifications` | native exact alarms (AlarmManager) | native WorkManager |
 | SMTP settings live in | Settings, Email | Settings, Email | Settings, Email | Settings, Authentication |
 | Federation | pulls foods from NutriTrace | none | none | serves foods to CT |
 | App-only env vars | `IMPORT_ZIP_MAX_MB` | `EXERCISE_SOURCES`, `EXERCISEDB_OSS_URL`, `ALLOW_PRIVATE_RADIO_URLS` | none (see [NoteTrace env vars](../notetrace/env-vars.md)) | `OFF_LOCAL_DB`, `OFF_LOCAL_ONLY`, `OFF_LOCAL_URL`, `API_RATE_LIMIT_PER_MIN` |

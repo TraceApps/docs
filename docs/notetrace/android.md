@@ -4,16 +4,17 @@ The NoteTrace Android app is the same app as the web version, plus a few things 
 
 ## Save from any app
 
-Share text or a link from any Android app (a browser, a chat, a news reader) and pick **NoteTrace** in the share sheet. NoteTrace opens a new note with the shared text in it, and a shared page title becomes the note's title. It saves on its own; close it or keep typing.
+Share text, a link, or photos from any Android app (a browser, a chat, the gallery, a news reader) and pick **NoteTrace** in the share sheet. NoteTrace opens a new note with the shared content in it: text goes in the body, a shared page title becomes the note's title, and photos are added as images (up to 20 at a time). It saves on its own; close it or keep typing.
 
-The installed web app (PWA) accepts shares the same way on platforms that support the Web Share Target API, such as Chrome on Android.
+The installed web app (PWA) accepts shared text and links the same way on platforms that support the Web Share Target API, such as Chrome on Android. Sharing photos needs the Android app.
 
-!!! note
-    Sharing images into a note isn't supported yet.
+## Photos
+
+Tap the image button in the editor's bottom bar to add photos from the gallery or the camera. Large photos are scaled down on the phone before they're saved, so they sync quickly. In local mode, photos stay on the phone; once you connect to a server, the next sync uploads them.
 
 ## Reminders as notifications
 
-Reminders are scheduled as Android notifications on the device, with **Done** and **Snooze 1 Hour** buttons. See [Reminders](reminders.md#on-android).
+Reminders are exact Android alarms that fire with the app closed and after a reboot, with **Done** and **Snooze 1 Hour** buttons. See [Reminders](reminders.md#on-android).
 
 ## App Lock
 
@@ -30,7 +31,7 @@ App Lock is separate from **biometric sign-in** on your profile page, which only
 
 ## Local mode
 
-In local mode everything, including reminders, labels, version history, and imports, lives in the on-device SQLite database. Sharing needs a server, so it's hidden in local mode. Connecting to a server later uploads your local notes.
+In local mode everything, including reminders, labels, images, version history, and imports, lives on the phone. Sharing needs a server, so it's hidden in local mode. Connecting to a server later uploads your local notes and photos.
 
 ## Related
 

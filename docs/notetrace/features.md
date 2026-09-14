@@ -8,7 +8,7 @@ A guided walkthrough of NoteTrace. Each section anchors so you can deep-link.
 
 Notes open to a card grid. Pinned notes sit in their own section at the top; everything else follows, newest edit first. The grid adds columns as the window grows, from one on a narrow phone to six on an ultrawide, and cards keep their natural height so short notes don't leave gaps.
 
-Each card shows the title (set in Newsreader), a preview of the body or the first open checklist items, the reminder chip, labels, and a sharing chip when the note is shared. On a desktop, hovering a card shows quick actions (remind, color, archive, trash). On a phone, long-press a card for those plus pin and labels. Tick a checklist item right on the card without opening it.
+Each card shows its images across the top, the title (set in Newsreader), a preview of the body or the first open checklist items, the reminder chip, labels, and a sharing chip when the note is shared. On a desktop, hovering a card shows quick actions (remind, color, archive, trash). On a phone, long-press a card for those plus pin and labels. Tick a checklist item right on the card without opening it.
 
 Type in **Take a note** to start a text note, or tap the checkbox icon to start a checklist. On a phone the round **+** button does the same.
 
@@ -22,7 +22,11 @@ Text notes use a rich editor with bold, italic, strikethrough, headings, lists, 
 
 Checklists have one row per item. Press Enter for the next item, drag the handle to reorder, and checked items collapse into a **checked items** group under the list. **Show Checkboxes** and **Hide Checkboxes** switch a note between text and checklist: each line becomes an item, and checked items come back as struck-through lines.
 
-The bar along the bottom holds reminder, share, color, labels, text/checklist, archive, trash, and version history.
+The bar along the bottom holds reminder, share, add image, color, labels, text/checklist, archive, trash, and version history.
+
+## Images {#images}
+
+Add images with the image button, by pasting an image, or by dragging image files onto the editor. They sit above the text or checklist: one image fills the width, more form a grid. Tap one to see it full screen, and swipe or use the arrow keys to move between them. Large photos are scaled down before upload (longest side 2400px). Images sync to every device and come along when a note is shared.
 
 ## Labels, colors, archive, trash {#organize}
 
@@ -34,7 +38,7 @@ Archive hides a note from the grid without deleting it. Trash keeps notes for 30
 
 ## Search {#search}
 
-The search box searches titles, note bodies, and checklist items together within the view you're in (Notes, Archive, Trash, or a label), and matches word beginnings as you type, so `jelly` finds "Jellyfin".
+The search box searches titles, note bodies, and checklist items together within the view you're in (Notes, Archive, Trash, or a label), and matches word beginnings as you type, so `jelly` finds "Jellyfin". Press **Ctrl+K** (**Cmd+K** on a Mac) from anywhere to jump to it.
 
 ## Version history {#history}
 
@@ -44,7 +48,7 @@ Open **Version History** in the editor to see earlier versions of a note and res
 
 ![Setting a reminder on a note](../assets/img/notetrace/03-reminders.png)
 
-Tap the bell on a note for **Later today**, **Tomorrow**, **Next week**, or a date and time of your choice, with an optional repeat. The Reminders view lists upcoming reminders soonest first, with past ones underneath. See [Reminders](reminders.md) for how delivery works on the phone and through the server.
+Tap the bell on a note for **Later today**, **Tomorrow**, **Next week**, or a date and time of your choice, with an optional repeat. The Reminders view lists upcoming reminders soonest first, with past ones underneath. Reminders arrive as exact alarms on Android, as notifications in an open browser tab, and through your push service. See [Reminders](reminders.md).
 
 ## Sharing {#sharing}
 
@@ -56,10 +60,10 @@ Share a note or checklist with other accounts on your NoteTrace server and choos
 
 ![NoteTrace on a phone](../assets/img/notetrace/06-phone.png)
 
-The Android app works fully offline in local mode, or syncs with your server. Share text or a link from any app into a new note, get reminders as notifications with **Done** and **Snooze** buttons, and optionally lock the app behind your fingerprint, face, or PIN. See [Android: share sheet and App Lock](android.md).
+The Android app works fully offline in local mode, or syncs with your server. Share text, links, or photos from any app into a new note, get reminders as notifications with **Done** and **Snooze** buttons, and optionally lock the app behind your fingerprint, face, or PIN. See [Android: share sheet and App Lock](android.md).
 
 ## Import and export {#import}
 
 ![Import and Export settings](../assets/img/notetrace/05-import-export.png)
 
-Bring notes in from Google Keep (Takeout) or Markdown files, and export every note as a Markdown ZIP. See [Import and export](import-export.md).
+Bring notes in from Google Keep (Takeout), Memos, Blinko, or Markdown files, images included, and export every note as a Markdown ZIP. See [Import and export](import-export.md).

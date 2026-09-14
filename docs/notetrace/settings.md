@@ -42,13 +42,15 @@ Switch between local mode and a server, and see sync status. See [Local vs serve
 
 ### Notifications (per-user)
 
-- **Enable on This Device** and **Browser Permission** for device notifications.
+- **Enable on This Device**: reminder notifications on this phone, or in this browser while NoteTrace is open. Set per device.
+- **Browser Permission** (web): asks the browser once to allow notifications.
+- **Exact Reminder Times** (Android): appears only when the phone isn't letting NoteTrace fire at the exact minute, with an **Allow** button.
 - **Push Service**: None, Apprise, Gotify, or ntfy, with a **Send Test** button. See [Push notifications overview](../integrations/notifications.md).
 - **Note Reminders**: when on (the default), the server sends due reminders through the push service. See [Reminders](reminders.md#from-the-server).
 
 ### Import & Export (per-user)
 
-Google Keep and Markdown import, Markdown export. See [Import and export](import-export.md).
+Google Keep, Memos, Blinko, and Markdown import, and Markdown export. See [Import and export](import-export.md).
 
 ### Backup
 
