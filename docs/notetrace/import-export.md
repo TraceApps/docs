@@ -72,11 +72,11 @@ Your memos' content, tags (as labels), images, pinned state, archived memos, and
 
 ## Blinko {#blinko}
 
-In Blinko's settings, download a backup (a `.bko` file). In NoteTrace, choose **Blinko Backup, Choose File** and pick it.
+Current Blinko versions no longer create backups from their settings (Blinko has that option turned off), so use Blinko's **Markdown** export: in Blinko, open **Settings, Export**, set **Export Format** to Markdown, and export. In NoteTrace, import the zip with **Markdown Files, Choose File** (below). Note text, `#tags` (as labels), images, and creation dates come across. Pinned and archived status don't, because Blinko's export leaves them out, and the export includes notes in Blinko's trash. Blinko's JSON and CSV exports carry only the text and date, without images, so NoteTrace doesn't read them.
+
+If you have a `.bko` backup from an older Blinko version, choose **Blinko Backup, Choose File** and pick it.
 
 Notes, images, tags (Blinko keeps them in the text, so they become labels), pinned, archived, and dates come across. A Blinko backup holds every account on that Blinko server; NoteTrace imports the account whose name matches your NoteTrace username, or the only account when there's just one. Blinko's backup doesn't mark which notes are in its trash, so those come across as regular notes.
-
-Blinko's **Markdown** export works too, through the Markdown importer below.
 
 ## Markdown files {#markdown}
 
