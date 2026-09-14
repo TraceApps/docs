@@ -29,11 +29,11 @@ Reminders reach you three ways. Use any combination.
 
 ### On Android
 
-The app schedules each reminder as an exact Android alarm, straight from the notes stored on the phone, so it fires on the minute with the app closed and after a reboot. When the alarm goes off, NoteTrace checks the note again first: a reminder you changed, cleared, or trashed on another device (and synced) won't fire.
+The app schedules each reminder as an exact Android alarm, so it fires on the minute with the app closed and after a reboot. Whenever notes change or sync, the app refreshes the reminder list the alarms work from, and an alarm checks that list before it shows anything: a reminder you've since changed, cleared, or trashed (on this phone, or on another device once it has synced here) won't fire.
 
 The notification has two buttons:
 
-- **Done** clears a one-off reminder. A repeating reminder keeps going.
+- **Done** clears a one-off reminder (right away if NoteTrace is running, otherwise the next time it opens, then it syncs). A repeating reminder keeps going.
 - **Snooze 1 Hour** shows it again an hour later.
 
 Tapping the notification opens the note. The app asks for notification permission the first time you set a reminder.
