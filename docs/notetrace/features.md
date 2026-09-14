@@ -22,11 +22,25 @@ Text notes use a rich editor with bold, italic, strikethrough, headings, lists, 
 
 Checklists have one row per item. Press Enter for the next item, drag the handle to reorder, and checked items collapse into a **checked items** group under the list. **Show Checkboxes** and **Hide Checkboxes** switch a note between text and checklist: each line becomes an item, and checked items come back as struck-through lines.
 
-The bar along the bottom holds reminder, share, add image, color, labels, text/checklist, archive, trash, and version history.
+The bar along the bottom holds reminder, Ask Trace, Send to CookTrace, share, add image, record voice note, color, labels, text/checklist, archive, trash, and version history. Buttons only appear where they apply: Ask Trace on text notes once Trace is set up, Send to CookTrace on checklists once CookTrace is linked.
 
 ## Images {#images}
 
 Add images with the image button, by pasting an image, or by dragging image files onto the editor. They sit above the text or checklist: one image fills the width, more form a grid. Tap one to see it full screen, and swipe or use the arrow keys to move between them. Large photos are scaled down before upload (longest side 2400px). Images sync to every device and come along when a note is shared.
+
+## Links and the timeline {#links}
+
+Type `[[` in a text note to link to another note; NoteTrace suggests titles as you type. Tap a link to open that note, and see which notes link to the one you're reading under **Linked From**. Rename a note and your links follow. See [Links between notes](notes.md#links).
+
+The **Timeline View** button beside the search box switches the grid to a timeline, grouped by the day you last edited each note. See [Timeline view](notes.md#timeline).
+
+## Voice notes and text in images {#voice}
+
+Tap the microphone in the editor to record a voice note. Trace transcribes it so you can read it at a glance, search for it, and add it to the note. Open an image full screen and tap **Read Text** to pull the text out of a receipt, whiteboard, or screenshot, and search finds the note by it. See [Trace in NoteTrace](trace.md#voice).
+
+## Trace {#trace}
+
+**Ask Trace** in the editor tidies up a note, summarizes it, or turns it into a checklist, and shows you the result before anything changes. In the Trace chat, ask about your notes or have Trace create lists, add and check items, set reminders, and apply labels. See [Trace in NoteTrace](trace.md).
 
 ## Labels, colors, archive, trash {#organize}
 
@@ -38,7 +52,7 @@ Archive hides a note from the grid without deleting it. Trash keeps notes for 30
 
 ## Search {#search}
 
-The search box searches titles, note bodies, and checklist items together within the view you're in (Notes, Archive, Trash, or a label), and matches word beginnings as you type, so `jelly` finds "Jellyfin". Press **Ctrl+K** (**Cmd+K** on a Mac) from anywhere to jump to it.
+The search box searches titles, note bodies, checklist items, voice note transcripts, and text read from images together within the view you're in (Notes, Archive, Trash, or a label), and matches word beginnings as you type, so `jelly` finds "Jellyfin". Press **Ctrl+K** (**Cmd+K** on a Mac) from anywhere to jump to it.
 
 ## Version history {#history}
 
@@ -60,7 +74,11 @@ Share a note or checklist with other accounts on your NoteTrace server and choos
 
 ![NoteTrace on a phone](../assets/img/notetrace/06-phone.png)
 
-The Android app works fully offline in local mode, or syncs with your server. Share text, links, or photos from any app into a new note, get reminders as notifications with **Done** and **Snooze** buttons, and optionally lock the app behind your fingerprint, face, or PIN. See [Android: share sheet and App Lock](android.md).
+The Android app works fully offline in local mode, or syncs with your server. Share text, links, or photos from any app into a new note (the installed web app accepts shared photos too), get reminders as notifications with **Done** and **Snooze** buttons, and optionally lock the app behind your fingerprint, face, or PIN. See [Android: share sheet and App Lock](android.md).
+
+## CookTrace {#cooktrace}
+
+Link your CookTrace server in Settings and send a checklist's open items to your CookTrace shopping list in one tap. See [Send to CookTrace](cooktrace.md).
 
 ## Import and export {#import}
 

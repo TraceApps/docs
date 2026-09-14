@@ -22,7 +22,7 @@ Start here: [LiftTrace overview](../lifttrace/index.md).
 
 ## NoteTrace
 
-For everyday notes. A self-hosted Google Keep: notes and checklists in a card grid, labels and colors, archive and trash, full-text search, and version history. Reminders repeat daily, weekly, monthly, or yearly and reach you on your phone or through ntfy, Gotify, or Apprise. Share a list with the rest of your household, and bring your notes over from Google Keep or Evernote in one import.
+For everyday notes. A self-hosted Google Keep: notes and checklists in a card grid, labels and colors, archive and trash, full-text search, and version history. Reminders repeat daily, weekly, monthly, or yearly and reach you on your phone or through ntfy, Gotify, or Apprise. Share a list with the rest of your household, link notes with `[[links]]`, record voice notes that Trace transcribes, send a grocery list to CookTrace, and bring your notes over from Google Keep or Evernote in one import.
 
 Best fit if you want out of Google Keep or Evernote without giving up the speed of a simple notes app. NoteTrace is the newest app and is working toward its first release candidate.
 

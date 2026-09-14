@@ -6,23 +6,22 @@ A **tool** in this context is a function the AI model can decide to call on its 
 
 This is called *function calling* in OpenAI's terminology, *tool use* in Anthropic's. Same idea. The practical effect: Trace answers are grounded in your live app state instead of made up from the model's training corpus. It can also mutate state, log a cook, add a pantry row, plan a meal, so the assistant becomes a hands-on second UI rather than a chatbot.
 
-All three TraceApps (CookTrace, LiftTrace, NutriTrace) now expose tool schemas to Trace. Per-app catalogs follow.
+All four TraceApps (CookTrace, LiftTrace, NoteTrace, NutriTrace) expose tool schemas to Trace. Per-app catalogs follow.
 
 ## About this page
 
-Every tool Trace can call, across all three apps, in one table. Use this when you are writing prompts, debugging a "Trace refused to do X" report, or wondering whether an app can do a thing conversationally.
+Every tool Trace can call, across the apps, one table per app. Use this when you are writing prompts, debugging a "Trace refused to do X" report, or wondering whether an app can do a thing conversationally.
 
 **About the columns:**
 
 - **Tool** is the exact `name` the model sees. Registered under `export const TOOLS` in each app's `src/lib/aiTools.js` (or `src/lib/aiChat.js` on older apps).
-- **App** is which of the three exposes it.
 - **Purpose** is the one-line description the model reads at call time.
 - **Args** lists parameter names; `*` marks required.
 - **Returns** describes the shape Trace gets back, so you can predict how it will phrase the reply.
 
 ## CookTrace
 
-Nineteen tools; the biggest surface of the three. Read tools return recipe, pantry, diary, shopping-list, and cookbook state. Write tools log a cook, plan a cook, add pantry rows, add shopping items, import a recipe from a URL, and create a recipe from scratch.
+Nineteen tools; the biggest surface of the four. Read tools return recipe, pantry, diary, shopping-list, and cookbook state. Write tools log a cook, plan a cook, add pantry rows, add shopping items, import a recipe from a URL, and create a recipe from scratch.
 
 | Tool | Purpose | Args | Returns |
 |------|---------|------|---------|
@@ -73,6 +72,29 @@ Eighteen tools spanning read and write across workouts, exercises, programs, PRs
 
 LiftTrace also keeps **Smart Log**, a hold-to-record UI on the Trace FAB (not a Trace tool) that parses natural-language workout entries (`bench 3x5 @ 225, squats 5x5 @ 315`) client-side with the `smartLogWorkout.js` parser, matches exercises against the user's library, and pre-fills a review modal. Faster than a tool round-trip for the common case; the user commits by tapping Save.
 
+## NoteTrace
+
+Twelve tools for finding, creating, and changing notes. They're defined once in `server/lib/note-tools.js` and shared with NoteTrace's [MCP endpoint](../notetrace/mcp.md), so Trace and external agents follow the same rules: a view-only shared note can't be changed, and only a note's owner can set its reminder or move it to the trash. Tools run against the same notes API as the app, so they work offline in Android local mode.
+
+| Tool | Purpose | Args | Returns |
+|------|---------|------|---------|
+| `search_notes` | Full-text search over titles, text, checklist items, voice note transcripts, and image text; or list a view or label when `query` is empty | `query`, `label`, `view` (`notes`\|`archive`\|`trash`\|`reminders`), `limit` (up to 25, default 10) | `count` and `notes[]` (id, title, kind, a text preview or up to 8 open items with the checked count, labels, pinned, archived, reminder, updated_at) |
+| `get_note` | One note in full | `id*` | Title, Markdown text or every item with its checked state, labels, color, pinned, archived, trashed, reminder, sharing, dates, image text, voice note transcripts |
+| `list_labels` | Labels with note counts | none | `labels[]` (name, number of notes) |
+| `list_reminders` | Notes with reminders, soonest first | `upcoming_only` | `reminders[]`: note summaries (as `search_notes`), each with the next time it fires and its repeat |
+| `create_note` | Create a text note or a checklist | `title`, `text`, `kind` (`text`\|`checklist`), `items`, `labels`, `color`, `pinned` | `ok` and the new note, as `get_note`. Labels are matched by name and created when missing. |
+| `update_note` | Change the title, replace the text, or change color, pinned, or archived | `id*`, `title`, `text`, `color`, `pinned`, `archived` | `ok` and the updated note. The previous text is kept in version history. |
+| `append_to_note` | Add to the end: a paragraph on a text note, one item per line on a checklist | `id*`, `text*` | `ok` and the updated note |
+| `add_checklist_items` | Add items to a checklist | `id*`, `items*` | `ok`, how many were added, and the updated note |
+| `check_checklist_item` | Check or uncheck an item found by its text (exact match first, then the only item containing the text) | `id*`, `item*`, `checked` (default true) | `ok`, the item's text, and its new state; an error when no item or more than one matches |
+| `set_reminder` | Set or clear a reminder | `id*`, `at` (local `2026-09-20T09:00` in the user's time zone, or ISO with an offset), `repeat` (`daily`\|`weekly`\|`monthly`\|`yearly`), `clear` | `ok` and the reminder (next time, repeat), or `cleared`. Owner only. |
+| `set_labels` | Replace a note's labels by name | `id*`, `labels*` (empty removes all) | The labels now on the note |
+| `move_to_trash` | Move a note to the trash (restorable for 30 days) | `id*` | `ok` and the trashed note's title. Owner only. |
+
+Every message includes the user's local date, time, and time zone, so "tomorrow at 9" becomes the right `at`. When Trace rewrites a note's text (`update_note` with `text`), the text it replaces is always saved as a restore point.
+
+NoteTrace's editor actions (Tidy Up, Summarize, Make a Checklist) and voice note transcription are separate single requests, not tools. See [Trace in NoteTrace](../notetrace/trace.md).
+
 ## NutriTrace
 
 Sixteen tools covering diary reads, wellness reads, and structured writes. The `propose_*` tools are photo-review paths; they display a card the user must confirm before anything writes.
@@ -98,7 +120,7 @@ Sixteen tools covering diary reads, wellness reads, and structured writes. The `
 
 ## Tool-use loop
 
-All three apps cap the tool-call loop at **5 rounds** per user message. If Trace has not converged on a final text answer within 5 rounds it stops and returns whatever it has. This matches the loop cap set in `_callClaudeWithTools`, `_callOpenAIWithTools`, and `_callGeminiWithTools`.
+Every app caps the tool-call loop at **5 rounds** per user message. If Trace has not converged on a final text answer within 5 rounds it stops and returns whatever it has. This matches the loop cap set in `_callClaudeWithTools`, `_callOpenAIWithTools`, and `_callGeminiWithTools`.
 
 Tool execution stays **client-side** even when the server-side AI proxy is in use (`AI_ENABLED=1` env-locked mode). The proxy relays messages and returns tool-call requests; the client executes each tool against the user's local database and UI state, then loops. This keeps the API key on the server without giving the server write access to the user's data.
 

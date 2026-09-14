@@ -42,6 +42,10 @@ The quick-add row at the top of the page takes a name, optional quantity, option
 
 The list is per-user. There's no built-in "share the shopping list with my flatmate" flow in v1.0. If both users are in a [Kitchen](kitchens.md), the practical pattern is: one person runs Shop This Plan on the shared plan, everyone else shops from their own screen, and only the person who checked something has that row checked.
 
+## From NoteTrace
+
+If you keep lists in [NoteTrace](../notetrace/index.md), a checklist there can send its open items straight to this shopping list. It uses CookTrace's MCP endpoint, so it needs `MCP_ENABLED=1` and `MCP_WRITE_ENABLED=1` here and an `mcp:write` token. See [Send to CookTrace](../notetrace/cooktrace.md).
+
 ## Related
 
 - [Recipes](recipes.md)

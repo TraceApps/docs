@@ -19,8 +19,8 @@ CookTrace, LiftTrace, NoteTrace, and NutriTrace are siblings by design: same Nod
 | Python bundled | yes (recipe-scrapers) | yes (better-sqlite3 build) | yes (better-sqlite3 build) | yes (better-sqlite3 build) |
 | Android reminders | JS `LocalNotifications` | JS `LocalNotifications` | native exact alarms (AlarmManager) | native WorkManager |
 | SMTP settings live in | Settings, Email | Settings, Email | Settings, Email | Settings, Authentication |
-| Federation | pulls foods from NutriTrace | none | none | serves foods to CT |
-| App-only env vars | `IMPORT_ZIP_MAX_MB` | `EXERCISE_SOURCES`, `EXERCISEDB_OSS_URL`, `ALLOW_PRIVATE_RADIO_URLS` | none (see [NoteTrace env vars](../notetrace/env-vars.md)) | `OFF_LOCAL_DB`, `OFF_LOCAL_ONLY`, `OFF_LOCAL_URL`, `API_RATE_LIMIT_PER_MIN` |
+| Federation | pulls foods from NutriTrace; takes shopping items from NoteTrace | none | sends checklist items to CookTrace | serves foods to CT |
+| App-only env vars | `IMPORT_ZIP_MAX_MB` | `EXERCISE_SOURCES`, `EXERCISEDB_OSS_URL`, `ALLOW_PRIVATE_RADIO_URLS` | `ALLOW_PRIVATE_COOKTRACE_URLS`, `AI_TRANSCRIBE_MODEL` (see [NoteTrace env vars](../notetrace/env-vars.md)) | `OFF_LOCAL_DB`, `OFF_LOCAL_ONLY`, `OFF_LOCAL_URL`, `API_RATE_LIMIT_PER_MIN` |
 
 NoteTrace is in development toward its first release candidate; its image and APK are published with that release. The released apps publish multi-arch images (`linux/amd64` + `linux/arm64`) with the same tag matrix: `X.Y.Z`, `X.Y`, `X`, `latest`, `dev`. Legacy `X.Y.Z-rc.N` tags stay pinned indefinitely.
 
@@ -34,7 +34,7 @@ Recipe import from third-party sites goes through [recipe-scrapers](https://gith
 
 ## Android reminder backend
 
-NutriTrace's Android build uses a native WorkManager worker for meal, water, weigh-in, and wind-down reminders (gated by the internal `_USE_NATIVE_WORKER` toggle). This survives WebView suspension and battery-optimisation kills better than the Capacitor `LocalNotifications` scheduler. CookTrace and LiftTrace still route reminders through the JS `LocalNotifications` plugin. If you run all three and reminders occasionally miss on the two lighter apps, this is why.
+NutriTrace's Android build uses a native WorkManager worker for meal, water, weigh-in, and wind-down reminders (gated by the internal `_USE_NATIVE_WORKER` toggle). This survives WebView suspension and battery-optimisation kills better than the Capacitor `LocalNotifications` scheduler. CookTrace and LiftTrace still route reminders through the JS `LocalNotifications` plugin. If you run CookTrace and LiftTrace alongside NutriTrace and reminders occasionally miss on those two, this is why. NoteTrace schedules its reminders as native exact alarms.
 
 ## NoteTrace's server-side reminders
 

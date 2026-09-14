@@ -204,8 +204,11 @@ nav:
       - Reminders: notetrace/reminders.md
       - Sharing: notetrace/sharing.md
       - "Android: share sheet & App Lock": notetrace/android.md
+      - Trace in NoteTrace: notetrace/trace.md
+      - Send to CookTrace: notetrace/cooktrace.md
       - Import & export (Google Keep, Markdown): notetrace/import-export.md
       - Webhooks: notetrace/webhooks.md
+      - Model Context Protocol (MCP): notetrace/mcp.md
       - Settings reference: notetrace/settings.md
       - Env vars (app-specific): notetrace/env-vars.md
   - NutriTrace:

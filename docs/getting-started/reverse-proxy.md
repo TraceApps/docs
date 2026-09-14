@@ -1,6 +1,6 @@
 # Reverse proxy
 
-Front the app with Caddy, nginx, or Traefik and let the proxy handle TLS, virtual hosts, and any subpath rewriting. All three apps behave the same way behind a proxy; the only per-app difference is the internal port number.
+Front the app with Caddy, nginx, or Traefik and let the proxy handle TLS, virtual hosts, and any subpath rewriting. Every Trace app behaves the same way behind a proxy; the only per-app difference is the internal port number.
 
 Internal ports as a reminder: CookTrace and NutriTrace listen on `3001`, LiftTrace on `3003`.
 
@@ -121,7 +121,7 @@ With `BASE_URL` set, the app's assets, API routes, service worker, and image URL
 
 ## The `BASE_URL` env var
 
-`BASE_URL` is the one thing the app itself needs to know about the subpath, and it's the same var across all three apps. Rules:
+`BASE_URL` is the one thing the app itself needs to know about the subpath, and it's the same var in every app. Rules:
 
 - Must start with `/`. `BASE_URL=/cooktrace` is right; `BASE_URL=cooktrace` is not.
 - Must not have a trailing slash. `BASE_URL=/cooktrace` is right; `BASE_URL=/cooktrace/` is not.

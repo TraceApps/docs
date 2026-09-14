@@ -2,7 +2,7 @@
 
 Point LiftTrace at a NutriTrace instance and every completed workout automatically posts its calorie burn into NT. That kcal-out then feeds NT's Dynamic and Adaptive calorie-goal modes, so your daily nutrition target reflects the fact that you actually lifted this morning.
 
-For the high-level story and the token model shared across all three apps, see [Federation (cross-app links)](../integrations/federation.md).
+For the high-level story and the token model shared across the apps, see [Federation (cross-app links)](../integrations/federation.md).
 
 ## What LiftTrace sends
 

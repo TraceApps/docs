@@ -1,6 +1,6 @@
 # Docker Secrets (`*_FILE`)
 
-Every env var the three apps read supports a `<NAME>_FILE` variant that points at a file on disk instead of an inline value. The server reads the file at boot, trims one trailing newline, and treats the contents as if you had set `<NAME>` directly. It is the pattern Postgres, Redis, and a lot of other well-behaved container images use, and it is the cleanest way to keep secrets out of `docker-compose.yml`, `.env`, `docker inspect` output, and shell history.
+Every env var the Trace apps read supports a `<NAME>_FILE` variant that points at a file on disk instead of an inline value. The server reads the file at boot, trims one trailing newline, and treats the contents as if you had set `<NAME>` directly. It is the pattern Postgres, Redis, and a lot of other well-behaved container images use, and it is the cleanest way to keep secrets out of `docker-compose.yml`, `.env`, `docker inspect` output, and shell history.
 
 ## When to reach for it
 
@@ -60,7 +60,7 @@ Same shape works for LiftTrace (`ghcr.io/traceapps/lifttrace:1`, container port 
 
 ## Gotchas
 
-- The file must be readable by the container process. All three images run as a non-root `node` user; if you keep the file `0400 root:root` on the host, the container cannot read it.
+- The file must be readable by the container process. The images run as a non-root `node` user; if you keep the file `0400 root:root` on the host, the container cannot read it.
 - One trailing newline is trimmed; the rest of the file is used verbatim. A leading blank line will end up in the value.
 - Docker Compose outside Swarm mode also supports the `secrets:` block with `file:` sources. Swarm is not required to use `<NAME>_FILE`.
 

@@ -1,6 +1,6 @@
 # HTTPS on the LAN
 
-The three apps default to secure cookies, and the Android release APK enforces the platform cleartext-traffic policy. Plain `http://192.168.x.y:3001` (or `:3002` / `:3003`) will silently fail: cookies get dropped, the WebView refuses to load, and login appears to "just not work". You have four supported ways to give a LAN-only install real HTTPS. Pick one.
+The Trace apps default to secure cookies, and the Android release APK enforces the platform cleartext-traffic policy. Plain `http://192.168.x.y:3001` (or `:3002` / `:3003` / `:3004`) will silently fail: cookies get dropped, the WebView refuses to load, and login appears to "just not work". You have four supported ways to give a LAN-only install real HTTPS. Pick one.
 
 If you genuinely need plain HTTP inside your LAN, see [LAN HTTP setup](../getting-started/lan-http.md) for the escape hatches (`INSECURE_COOKIES=1` and a debug-build APK). Everything below assumes you want proper HTTPS.
 

@@ -8,7 +8,7 @@ hide:
 
 <p style="font-size:1.25rem; margin-top:-0.5rem;">Four self-hosted apps. One design language. Your data on your hardware.</p>
 
-TraceApps is a family of four single-container self-hosted apps. They share the same install story, the same on-device AI assistant ("Trace"), the same data-stays-on-your-hardware principles, and the same Android companion model. Pick the app you want. The shared setup pages here (Docker install, OIDC, Trace AI, backups, mobile) are written once and apply to all three.
+TraceApps is a family of four single-container self-hosted apps. They share the same install story, the same on-device AI assistant ("Trace"), the same data-stays-on-your-hardware principles, and the same Android companion model. Pick the app you want. The shared setup pages here (Docker install, OIDC, Trace AI, backups, mobile) are written once and apply to all four.
 
 <div class="grid cards" markdown>
 

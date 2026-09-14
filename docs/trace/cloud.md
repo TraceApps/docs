@@ -20,7 +20,7 @@ AI_API_KEY=sk-ant-api03-...
 AI_MODEL=claude-haiku-4-5-20251001
 ```
 
-Wire endpoint is `https://api.anthropic.com/v1/messages` with header `anthropic-version: 2023-06-01`. Claude has the richest native tool-use, which is why it's the default across all three apps.
+Wire endpoint is `https://api.anthropic.com/v1/messages` with header `anthropic-version: 2023-06-01`. Claude has the richest native tool-use, which is why it's the default in every app.
 
 ## OpenAI
 

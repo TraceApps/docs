@@ -17,7 +17,14 @@ NoteTrace reads the same shared variables as the other Trace apps (`PORT`, `BASE
 | --- | --- | --- |
 | `WEBHOOKS_ENABLED` | (unset) | Set to `1` to turn on outgoing [webhooks](webhooks.md) (`note.created`, `checklist.completed`, `reminder.fired`). |
 | `ALLOW_PRIVATE_WEBHOOK_URLS` | (unset) | Set to `1` to allow webhook targets on private or loopback addresses, such as a Home Assistant container on the same Docker network. |
-| `MCP_ENABLED` / `MCP_WRITE_ENABLED` / `MCP_DESTROY_ENABLED` | (unset) | Model Context Protocol endpoint and its write and destructive tiers. |
+| `MCP_ENABLED` / `MCP_WRITE_ENABLED` / `MCP_DESTROY_ENABLED` | (unset) | Model Context Protocol endpoint and its write and destructive tiers. See [MCP](mcp.md). |
+| `ALLOW_PRIVATE_COOKTRACE_URLS` | (unset) | Set to `1` so [Send to CookTrace](cooktrace.md) can reach a CookTrace on a LAN, loopback, or Docker network address. |
+
+## Trace
+
+| Env var | Default | Purpose |
+| --- | --- | --- |
+| `AI_TRANSCRIBE_MODEL` | provider default | Speech-to-text model for [voice notes](trace.md#voice) when Trace is set by env vars: `gpt-4o-mini-transcribe` on OpenAI, `whisper-1` on an OpenAI-compatible server. Gemini uses `AI_MODEL`. |
 
 ## Backup
 

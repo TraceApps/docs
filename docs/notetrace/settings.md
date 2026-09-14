@@ -1,6 +1,6 @@
 # Settings reference
 
-Every section on the NoteTrace Settings page, and where to read more. Per-user sections apply to the signed-in account. Admin sections apply to the whole server and only appear for the `admin` role. Use the search box at the top of Settings to jump to a section by name or keyword (search for "keep", "lock", or "ntfy", for example).
+Every section on the NoteTrace Settings page, and where to read more. Per-user sections apply to the signed-in account. Admin sections apply to the whole server and only appear for the `admin` role. Use the search box at the top of Settings to jump to a section by name or keyword (search for "keep", "lock", "shopping", or "ntfy", for example).
 
 Settings is grouped into **Display**, **Integrations**, **App**, and **Admin**. On a wide screen the sections sit in a rail on the left; on a phone each opens as its own page.
 
@@ -16,6 +16,7 @@ Top of the page: avatar, name, and role. Opens the profile page for display name
 - **Accent Color**: preset accents, Lavender by default.
 - **Navigation Style**: bottom tab bar, side panel, or both.
 - **Persistent Sidebar**: on screens 768px and wider the sidebar stays open (on by default) and hides the bottom tab bar.
+- **Start Page**: open NoteTrace to Notes (the default), Reminders, or Archive.
 - **Reduce Motion**, **Page Banners**, and **Animation Style**, shared with the other Trace apps.
 
 ### Regional (per-user)
@@ -28,6 +29,16 @@ Top of the page: avatar, name, and role. Opens the profile page for display name
 ### Trace AI (per-user)
 
 Provider, key, and model for the Trace assistant. See [Setting up Trace](../trace/setup.md).
+
+- **Transcribe Voice Notes**: Trace writes out new voice notes (on by default). Needs OpenAI, Gemini, or an OpenAI-compatible Whisper server.
+- **Transcription Model**: overrides the default speech-to-text model name. Empty uses the default.
+- **Read Text in New Images**: Trace reads the text in every image you add (off by default; sends each image to your provider).
+
+See [Trace in NoteTrace](trace.md).
+
+### CookTrace (per-user)
+
+Link a CookTrace server with its address and an API token (`mcp:write`), or unlink it. Needs a NoteTrace server, so it's unavailable in Android local mode. See [Send to CookTrace](cooktrace.md).
 
 ## App
 
@@ -75,7 +86,7 @@ Password policy, session length, and OIDC providers. See [OIDC / SSO overview](.
 
 ### API Tokens
 
-Personal access tokens (prefix `note_pat_`) for scripts and the MCP endpoint.
+Personal access tokens (prefix `note_pat_`) for scripts and the MCP endpoint. See [Model Context Protocol (MCP)](mcp.md).
 
 ### Webhooks
 

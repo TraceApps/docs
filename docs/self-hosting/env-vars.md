@@ -57,7 +57,7 @@ The whole group is optional. If `SMTP_HOST` is set, the entire Email tile locks 
 
 ## Trace AI
 
-Same envelope across all three apps: pick a provider, hand it a key, optionally pin a model. `AI_ENABLED=true` auto-enables Trace for every user; leave it unset if you want each user to opt in themselves.
+Same envelope in every app: pick a provider, hand it a key, optionally pin a model. `AI_ENABLED=true` auto-enables Trace for every user; leave it unset if you want each user to opt in themselves.
 
 | Variable | Default | Purpose | CT | LT | NT |
 |---|---|---|---|---|---|

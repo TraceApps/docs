@@ -16,9 +16,19 @@ Switching a checklist to text writes one line per item, with checked items wrapp
 
 When every item on a checklist is checked, the `checklist.completed` [webhook](webhooks.md) fires.
 
-## Images
+## Links between notes {#links}
+
+Type `[[` in a text note to pick another note by title, or type the whole `[[Note title]]`; it becomes a link chip. Tap the chip to open that note. If no note has that title yet, NoteTrace offers to create it. In the Markdown body the link is plain `[[Note title]]`, the same syntax Obsidian and other Markdown apps use, so it survives export and import.
+
+A note that other notes link to shows a **Linked From** section at the bottom of the editor, listing those notes. Titles match ignoring case.
+
+When you rename a note, links to it in your own notes update to the new title. Links in notes that other people own and share with you aren't changed.
+
+## Images and voice notes
 
 Images are stored per note in `note_attachments`, each with a stable id, like checklist items, so adding or removing an image on one device merges with changes elsewhere. The file itself is uploaded to the server's uploads folder first (scaled down in the browser when it's a large photo); a note links to files on its own server only. In Android local mode photos are saved on the phone and uploaded by the first sync after you connect. A note holds up to 50 images.
+
+Voice notes are audio attachments in the same table, with their length. A transcript of a voice note, or the text [Trace read from an image](trace.md#image-text), is saved on that attachment and included in search. See [Trace in NoteTrace](trace.md).
 
 ## Pin, archive, trash
 
@@ -38,7 +48,11 @@ Notes can be plum, tide, moss, sand, clay, rose, or the default. Each color has 
 
 ## Search
 
-**Ctrl+K** (**Cmd+K**) focuses search from anywhere in the app. Search uses SQLite FTS5 over titles, bodies, and checklist item text, kept current by database triggers. Each word you type matches as a prefix, and all words must match. Results are limited to the view you search from (Notes, Archive, Trash, or a label).
+**Ctrl+K** (**Cmd+K**) focuses search from anywhere in the app. Search uses SQLite FTS5 over titles, bodies, checklist item text, voice note transcripts, and text read from images, kept current by database triggers. Each word you type matches as a prefix, and all words must match. Results are limited to the view you search from (Notes, Archive, Trash, or a label).
+
+## Timeline view {#timeline}
+
+The **Timeline View** button beside the search box switches between the card grid and a timeline: one column of notes grouped by the day each was last edited (Today, Yesterday, the weekday for the past week, then dates). Pinned notes stay at the top. The choice is remembered on each device and applies to Notes, Archive, Trash, and labels.
 
 ## Version history
 
