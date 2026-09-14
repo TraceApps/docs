@@ -22,7 +22,7 @@ Type `[[` in a text note to pick another note by title, or type the whole `[[Not
 
 A note that other notes link to shows a **Linked From** section at the bottom of the editor, listing those notes. Titles match ignoring case.
 
-When you rename a note, links to it in your own notes update to the new title. Links in notes that other people own and share with you aren't changed.
+When you rename a note, links to it in your own notes update to the new title once you close the editor, so a half-typed title never touches your links. Links in notes that other people own and share with you aren't changed, and nothing is rewritten when another note already has the old or the new title, since those links could belong to it.
 
 ## Images and voice notes
 

@@ -199,7 +199,7 @@ Twelve tools across three phases. They're the same tools NoteTrace's in-app Trac
 | `append_to_note` | Add to the end: a paragraph on a text note, one item per line on a checklist | `id*`, `text*` | `ok` and the updated note |
 | `add_checklist_items` | Add items to a checklist | `id*`, `items*` | `ok`, how many were added, and the updated note |
 | `check_checklist_item` | Check or uncheck an item found by its text (exact match first, then the only item containing the text) | `id*`, `item*`, `checked` (default true) | `ok`, the item's text, and its new state; an error when no item or more than one matches |
-| `set_reminder` | Set or clear a reminder | `id*`, `at` (local `2026-09-20T09:00` in the user's time zone, or ISO with an offset), `repeat` (`daily`\|`weekly`\|`monthly`\|`yearly`), `clear` | `ok` and the reminder (next time, repeat), or `cleared`. Owner only. |
+| `set_reminder` | Set or clear a reminder | `id*`, `at` (`2026-09-20T09:00` in `time_zone`, or ISO with an offset), `repeat` (`daily`\|`weekly`\|`monthly`\|`yearly`), `clear`, `time_zone` (IANA, like `America/New_York`) | `ok` and the reminder (next time, repeat), or `cleared`. Owner only. |
 | `set_labels` | Replace a note's labels by name | `id*`, `labels*` (empty removes all) | The labels now on the note |
 
 ### Destructive tools (`mcp:destroy` + `confirm: true`)
@@ -210,7 +210,7 @@ Twelve tools across three phases. They're the same tools NoteTrace's in-app Trac
 
 ### NoteTrace scoping guarantees
 
-Every tool acts as the token's owner through the same notes layer the app uses: the owner's notes plus notes shared with them. A note shared as view-only can be read but not changed, and reminders and trash are owner-only, matching the app. Labels are personal, as in the app.
+Every tool acts as the token's owner through the same notes layer the app uses: the owner's notes plus notes shared with them. A note shared as view-only can be read but not changed, and reminders and trash are owner-only, matching the app. Labels are personal, as in the app. `set_reminder` reads a time without an offset in `time_zone`, else the zone of the user's latest reminder set from a device, else the server's.
 
 ### NoteTrace rate limits
 

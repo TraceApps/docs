@@ -27,7 +27,7 @@ Open Trace from the round button and ask in plain words. Trace can call note too
 - "Label everything about the homelab as Homelab."
 - "Move the old moving checklist to the trash."
 
-Reminder times are read in your own time zone; Trace is told the current date and time with every message. Trace follows the same rules you do: it can't edit a note shared with you as view-only, and only a note's owner can set its reminder or move it to the trash. When Trace rewrites a note's text, the previous text goes to version history. Trash is always restorable for 30 days.
+Reminder times are read in your own time zone (the one your device is set to); Trace is told the current date and time with every message. Trace follows the same rules you do: it can't edit a note shared with you as view-only, and only a note's owner can set its reminder or move it to the trash. When Trace rewrites a note's text, the previous text goes to version history. Trash is always restorable for 30 days.
 
 The full tool list is in the [Trace tool catalog](../reference/trace-tools.md#notetrace). The same tools are available to external AI agents over [MCP](mcp.md).
 
@@ -58,7 +58,9 @@ Reading images works with Claude, OpenAI, Gemini, and OpenAI-compatible servers 
 
 ## Where the requests go {#privacy}
 
-Like the Trace chat, these features call your provider directly from your browser or phone with your own key. When an admin sets Trace with environment variables (`AI_PROVIDER`, `AI_API_KEY`), requests go through the NoteTrace server instead, so the key never reaches the device. Transcripts and image text are saved on your NoteTrace server with the note.
+With your own key, Trace calls your provider directly from your browser or phone. When an admin sets Trace with environment variables (`AI_PROVIDER`, `AI_API_KEY`), requests go through the NoteTrace server instead, so the key never reaches the device. The chat still works with your notes in that setup: the server passes each request on to the provider with its key and the configured model, and the note tools run on your device as usual. Transcripts and image text are saved on your NoteTrace server with the note.
+
+With Trace set by environment variables, voice note transcription and image reading follow the server's provider: on a Claude server there's no transcription, so voice notes are saved without a transcript and no Transcribe button shows.
 
 ## Related
 
