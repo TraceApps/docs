@@ -22,7 +22,7 @@ Each NoteTrace account links its own CookTrace account.
 
 ### CookTrace on your local network
 
-NoteTrace refuses private and loopback addresses by default, so a link can't be used to probe your network. If CookTrace runs on your LAN (`http://192.168.1.20:3000`), on the same host (`http://localhost:3000`), or on the same Docker network (`http://cooktrace:3001`), set this on the NoteTrace server:
+NoteTrace refuses private and loopback addresses by default, so a link can't be used to probe your network. If CookTrace runs on your LAN (`http://192.168.1.20:3003`), on the same host (`http://localhost:3003`), or on the same Docker network (`http://cooktrace:3001`), set this on the NoteTrace server:
 
 ```yaml
 services:

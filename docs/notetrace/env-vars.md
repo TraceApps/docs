@@ -6,7 +6,7 @@ NoteTrace reads the same shared variables as the other Trace apps (`PORT`, `BASE
 
 | Env var | Default | Purpose |
 | --- | --- | --- |
-| `PORT` | `3001` | Port the server listens on inside the container. The sample compose file maps it to host port `3004`. |
+| `PORT` | `3004` | Port the server listens on inside the container. The sample compose file maps it to the same host port. |
 | `DB_PATH` | `/data/db/notetrace.db` | SQLite database file. Mount `/data/db` as a volume. |
 | `UPLOADS_PATH` | `/data/uploads` | Uploaded images and server-side backups. Mount `/data/uploads` as a volume. |
 | `BASE_URL` | (empty) | Subpath mount, for example `/notetrace`. |

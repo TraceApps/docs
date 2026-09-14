@@ -63,7 +63,7 @@ Pick the tab for the app you're installing. Each snippet is a complete, working 
         image: ghcr.io/traceapps/notetrace:latest
         container_name: notetrace
         ports:
-          - "3004:3001"
+          - "3004:3004"
         volumes:
           - ./data/db:/data/db
           - ./data/uploads:/data/uploads
@@ -75,7 +75,7 @@ Pick the tab for the app you're installing. Each snippet is a complete, working 
         restart: unless-stopped
     ```
 
-    Container listens on `3001`, exposed on host port `3004`. Open `http://localhost:3004` after the container is up. NoteTrace is working toward its first release candidate; the image is published with that release.
+    Container listens on `3004`, exposed on host port `3004` (same number for convenience). Open `http://localhost:3004` after the container is up. NoteTrace is working toward its first release candidate; the image is published with that release.
 
 === "NutriTrace"
 
@@ -125,7 +125,7 @@ More detail in [Docker image tag matrix](../reference/image-tags.md).
 | NutriTrace | `3001` | `3001` | `/data/db` | `/data/uploads` |
 | LiftTrace | `3003` | `3002` | `/data/db` | `/data/uploads` |
 | CookTrace | `3001` | `3003` | `/data/db` | `/data/uploads` |
-| NoteTrace | `3001` | `3004` | `/data/db` | `/data/uploads` |
+| NoteTrace | `3004` | `3004` | `/data/db` | `/data/uploads` |
 
 Both volumes are plain bind mounts. Back them up with the same tool you use for the rest of your host (rsync, restic, borg, whatever).
 

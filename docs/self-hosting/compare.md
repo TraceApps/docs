@@ -8,8 +8,8 @@ CookTrace, LiftTrace, NoteTrace, and NutriTrace are siblings by design: same Nod
 |---|---|---|---|---|
 | Docker image | `ghcr.io/traceapps/cooktrace` | `ghcr.io/traceapps/lifttrace` | `ghcr.io/traceapps/notetrace` | `ghcr.io/traceapps/nutritrace` |
 | Base image | `node:20-alpine` | `node:20-alpine` | `node:20-alpine` | `node:20-slim` (Debian) |
-| Container port | `3001` | `3003` | `3001` | `3001` |
-| Sample host port | `3000` | `3002` | `3004` | `3000` |
+| Container port | `3001` | `3003` | `3004` | `3001` |
+| Sample host port | `3003` | `3002` | `3004` | `3001` |
 | DB mount | `/data/db` | `/data/db` | `/data/db` | `/data/db` |
 | Uploads mount | `/data/uploads` | `/data/uploads` | `/data/uploads` | `/data/uploads` |
 | Extra mount | none | none | none | `/data/off-mirror` (optional) |
