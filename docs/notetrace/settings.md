@@ -20,7 +20,6 @@ Top of the page: avatar, name, and role. Opens the profile page for display name
 
 ### Regional (per-user)
 
-- **Language**
 - **Date Format**: `YYYY-MM-DD`, `MM/DD/YYYY`, `DD/MM/YYYY`, or natural.
 - **Time Format**: 12-hour or 24-hour. Also used by reminder times.
 
