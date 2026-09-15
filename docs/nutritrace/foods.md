@@ -29,6 +29,8 @@ Across the top of the picker: **Local / OFF (Open Food Facts) / USDA / Mealie / 
 
 Both are client-side filters (no extra API calls) and were added in 1.0.3. Every OFF result carries an **origin-country flag** and a **completeness dot**; every USDA result carries a **data-type badge**. See [Food data quality signals](../reference/food-data-quality.md) for what each signal means and when to trust each tier.
 
+**Open Food Facts result order.** OFF results keep Open Food Facts' own relevance order, so the product that best matches your search stays at the top even when it has no photo and little data (common for products from regions OFF contributors photograph less). Where several results match about equally well (relevance scores within 10% of each other, such as a dozen identical "Nutella" entries), they are sorted so entries with a photo come first, then the more complete ones, then those with a Nutri-Score. Results from a [local OFF mirror](off.md) carry no relevance score and are sorted by completeness and Nutri-Score instead, since curated mirror entries usually have no photos.
+
 ## Barcode scanner
 
 Camera-based scanner using Open Food Facts on web (QuaggaJS) and native `@capacitor-mlkit/barcode-scanning` on Android, with Google Code Scanner as fallback. Toggles: `barcodeBeep` (audio confirmation), `barcodeFlashlight` (device-only, per-device pref, does not sync).

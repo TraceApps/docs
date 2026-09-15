@@ -149,6 +149,8 @@ Current sharing state summary. Bulk share / unshare foods and meals across speci
 
 500-line in-app ring buffer log viewer. **Verbose diagnostic logging** toggle. Copy / Share / Clear log. Share log file. Share crash report. **Calibration export** dumps the raw wellness-scoring inputs used to produce the last N scores.
 
+While **Diagnostic Mode** is on, the log also records a one-line screen layout snapshot (lines starting with `[viewport]`) at startup, on each page change, when a field gains or loses focus, when the keyboard or browser toolbar changes the visible area, on zoom and rotation, on returning to the app, and when scrolling stops. Each line has the screen, window and page sizes, zoom level, safe-area insets, where the tab bar and Diary's summary bar sit, and the focused field's text size. They exist to diagnose display problems on specific phones, iPhones in particular: turn Diagnostic Mode on, reproduce the problem, then **View logs** and **Copy**. Only sizes and positions are recorded, never what you type.
+
 ## User Management (admin)
 
 Create the initial admin (setup wizard entry). Invites list, revoke invite. User list, per-user delete / role change / password reset. **Disable user management** (recovery-token gated) is the escape hatch back to single-user mode.
