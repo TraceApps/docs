@@ -24,7 +24,9 @@ With **Persistent Sidebar** on, the button beside the logo collapses the sidebar
 
 ## Tasks {#tasks}
 
-**Tasks** in the sidebar gathers every unchecked item from all your checklists into one list. Group it **By Due Date** (Overdue, Today, Tomorrow, This Week, Later, No Due Date) or **By List**. Check items off right there (with Undo), tap the calendar on a task to set or change its due date, or tap a list's name to open it. **Add a task** at the top puts new tasks in a checklist called Tasks, created the first time you use it, with an optional due date. The sidebar shows how many tasks are due today or overdue.
+**Tasks** in the sidebar gathers your to-dos from every checklist into one list. An unchecked item counts as a task when it has a due date, or when its checklist is set to **Show in Tasks** (the circled check in the editor's toolbar, or ⋯ on a phone and in the List layout's note pane). Shopping and packing lists stay out unless you date an item, and the Tasks list itself is always shown. To list every checklist instead, turn on **Settings, Appearance, Show Every Checklist in Tasks**.
+
+ Group it **By Due Date** (Overdue, Today, Tomorrow, This Week, Later, No Due Date) or **By List**. Check items off right there (with Undo), tap the calendar on a task to set or change its due date, or tap a list's name to open it. **Add a task** at the top puts new tasks in a checklist called Tasks, created the first time you use it, with an optional due date. The sidebar shows how many tasks are due today or overdue.
 
 Any checklist item can have a due date: hover an item in the editor (or tap into it on a phone) and pick the calendar. Cards show the date next to the item, in red when it's overdue. Turn on **Tasks Due** in **Settings, Notifications** for one notification a day listing what's due today and overdue.
 

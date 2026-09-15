@@ -24,6 +24,7 @@ The pinned sidebar collapses to icons with the button beside the logo, and the â
 **Notes** group:
 
 - **Card Density**: Comfortable or Compact. Per device.
+- **Show Every Checklist in Tasks**: Tasks lists every open item from every checklist, not just dated items and checklists set to Show in Tasks. Off by default; synced to your account.
 - **Note Order**: Last Edited or Your Order (the order you drag notes into). Synced to your account.
 - **Swipe to Archive** (touch screens): swipe a card sideways to archive it, with Undo. Per device.
 - **Keyboard Shortcuts** (devices with a keyboard): single-key shortcuts on or off, and **View** to see them all. Per device. See [Keyboard shortcuts](shortcuts.md).
