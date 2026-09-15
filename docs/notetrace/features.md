@@ -16,7 +16,7 @@ Type in **Take a note** to start a text note, or tap the checkbox icon to start 
 
 The sidebar holds Notes, Reminders, **Shared with Me** (notes other people share with you), Archive, Trash, your labels, and Settings, with your name and the app version at the bottom. A highlight glides to the page you're on, and Reminders shows how many reminders are due today.
 
-On a wide screen, the button next to the logo collapses the sidebar to icons for more room (or use **Settings, Appearance, Collapse Sidebar to Icons**). Fold the Labels section with the arrow next to its heading. On the Android app connected to a server, the bottom of the sidebar also shows when it last synced.
+On a screen 768px or wider, the button next to the logo collapses the sidebar to icons for more room. If the sidebar opens from ☰ instead of staying open, the same button pins it open as icons in one tap. Phones always use the slide-out menu. Fold the Labels section with the arrow next to its heading. On the Android app connected to a server, the bottom of the sidebar also shows when it last synced.
 
 ## Tasks {#tasks}
 
