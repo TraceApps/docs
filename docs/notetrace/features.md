@@ -18,7 +18,9 @@ The page header keeps two buttons beside the title: **Search** (the magnifier) a
 
 The sidebar holds Notes, Reminders, **Shared with Me** (notes other people share with you), Archive, Trash, your labels, and Settings, with your name and the app version at the bottom. A highlight glides to the page you're on, and Reminders shows how many reminders are due today.
 
-With **Persistent Sidebar** on (a screen 768px or wider), the button beside the logo collapses the sidebar to a slim strip of icons, and the ☰ button at the top of the strip opens it again. Point at an icon to see its name. The choice is remembered on each device. When the sidebar opens from ☰ instead of staying open, it has no collapse button, and phones always use the slide-out menu. Fold the Labels section with the arrow next to its heading. On the Android app connected to a server, the bottom of the sidebar also shows when it last synced.
+Navigation fits the screen by default (**Settings, Appearance, Navigation Style, Auto**): a phone gets the tab bar and the ☰ menu, an unfolded foldable or small tablet gets a strip of icons beside the page, and a larger screen gets the full sidebar. Pick **Both** to keep the tab bar on a wide screen too.
+
+With **Persistent Sidebar** on, the button beside the logo collapses the sidebar to a slim strip of icons, and the ☰ button at the top of the strip opens it again. Point at an icon to see its name. The choice is remembered on each device. When the sidebar opens from ☰ instead of staying open, it has no collapse button, and phones always use the slide-out menu. Fold the Labels section with the arrow next to its heading. On the Android app connected to a server, the bottom of the sidebar also shows when it last synced.
 
 ## Tasks {#tasks}
 
@@ -30,7 +32,7 @@ Any checklist item can have a due date: hover an item in the editor (or tap into
 
 **View Options** in the header switches between **Grid**, **List**, and **Timeline**. The List layout shows one row per note: the title, two lines of preview, when it was edited with checklist progress and labels, and a thumbnail when the note has an image. It can **group notes** by label, color, or date edited.
 
-On a screen 1100px or wider, List becomes a two-pane workspace that fills the window: the list of notes on the left and the open note on the right, each scrolling on its own.
+When there's room (about 740px beside the sidebar, which includes an unfolded foldable), List becomes a two-pane workspace that fills the window: the list of notes on the left and the open note on the right, each scrolling on its own.
 
 - The list column has the note count and **New Note**; its arrow also offers a new checklist or a note from an image.
 - The open note has one toolbar across the top: where the note lives (its first label, like Home › Garage), when it was edited, and pin, reminder, share, image, voice, color, labels, and ⋯ for the rest. Changes save as you type, so there's no Done button; ✕ closes the note.
@@ -38,6 +40,18 @@ On a screen 1100px or wider, List becomes a two-pane workspace that fills the wi
 - Drag the line between the panes to widen or narrow the list (double-click it to reset). The width is remembered on each device.
 
 On a phone or a narrower window, the rows sit in one column and a row opens the note full screen.
+
+## Foldables {#foldables}
+
+NoteTrace follows a foldable as you fold and unfold it:
+
+- **Each screen keeps its own layout.** Pick Grid on the cover screen and List on the inner screen, and each comes back when you switch.
+- **The open note follows you.** Unfold with a note open and it moves beside the list; fold again and it's full screen, with what you typed intact.
+- **The cover screen** shows one column of cards when it's narrow, so titles aren't squeezed onto several lines.
+- **Half open like a book**, the list fills the left side of the fold and the note the right, and windows such as the editor, dialogs, and the image viewer open on the right side instead of across the crease.
+- **Half open on a table**, the note stays above the fold while its toolbar and the keyboard sit below; the image viewer shows the photo above the fold and its details below.
+
+The fold's position comes from Android in the app. In the installed web app, it works where the browser reports the fold (Chrome on Android); elsewhere the size-based changes still apply. See [Android](android.md#foldables).
 
 ## Organize many notes at once {#select}
 

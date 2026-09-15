@@ -34,7 +34,13 @@ App Lock is separate from **biometric sign-in** on your profile page, which only
 - **Swipe** a card sideways to archive it; **Undo** puts it back. In Archive, a swipe unarchives. Turn it off in Settings, Appearance, Swipe to Archive.
 - **Long-press** a card to select it, then tap more cards to act on them together from the bar at the bottom. Keep holding and move your finger to drag the card to a new spot.
 - **Pull down** at the top of the list to sync (connected to a server) or refresh the list.
-- The bottom tab bar has Notes, Reminders, Tasks, Archive, Trash, and Settings. Search is the magnifier in the page header.
+- The bottom tab bar has Notes, Reminders, Tasks, Archive, Trash, and Settings. Search is the magnifier in the page header. On an unfolded foldable the tab bar gives way to a strip of icons beside the page.
+
+## Foldables {#foldables}
+
+On a foldable, the app adapts to the cover screen, the inner screen, and the fold itself: an icon strip instead of the tab bar when unfolded, each screen remembering its layout, the open note moving between full screen and the side pane as you fold and unfold, and layouts that keep content off the crease when the phone is half open. See [Foldables](features.md#foldables).
+
+On a Samsung foldable, to keep NoteTrace open when you close the phone, turn on **Settings, Display, Continue apps on cover screen** for NoteTrace.
 
 ## Local mode
 
