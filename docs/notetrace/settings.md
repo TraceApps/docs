@@ -67,6 +67,7 @@ Switch between local mode and a server, and see sync status. See [Local vs serve
 - **Exact Reminder Times** (Android): appears only when the phone isn't letting NoteTrace fire at the exact minute, with an **Allow** button.
 - **Push Service**: None, Apprise, Gotify, or ntfy, with a **Send Test** button. See [Push notifications overview](../integrations/notifications.md).
 - **Note Reminders**: when on (the default), the server sends due reminders through the push service. See [Reminders](reminders.md#from-the-server).
+- **Tasks Due** and **Time**: one notification a day listing checklist items due today and overdue. Off by default; syncs across devices. See [Due dates and Tasks](notes.md#due).
 
 ### Import & Export (per-user)
 

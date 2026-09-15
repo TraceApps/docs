@@ -18,9 +18,9 @@ When every item on a checklist is checked, the `checklist.completed` [webhook](w
 
 ## Due dates and Tasks {#due}
 
-A checklist item can have a due date: a calendar day, stored as `due_date` on the item and synced with it, so there's no time zone to get wrong. Set it from the item's calendar button in the editor or from the Tasks view. The Tasks view lists every unchecked item across your checklists (your own and ones shared with you), grouped by due date or by list; checking one there checks it in its note. Trace and MCP see an item's due date in `get_note`.
+A checklist item can have a due date: a calendar day, stored as `due_date` on the item and synced with it, so there's no time zone to get wrong. Set it from the item's calendar button in the editor or from the Tasks view. The Tasks view lists every unchecked item across your checklists (your own and ones shared with you), grouped by due date or by list; checking one there checks it in its note. Trace and MCP see an item's due date in `get_note`, list open items with `list_tasks`, and set dates with `set_due_date` or the `due` argument of `add_checklist_items`.
 
-Due dates don't send notifications yet; use a note reminder for that.
+**Tasks Due** (in Settings, Notifications, off by default) sends one notification a day at the time you pick (9:00 by default) listing items due today and overdue, and opens the Tasks view when tapped. It uses the same delivery as reminders: on Android the phone schedules it, in a browser it fires while NoteTrace is open, and with a push service the server sends it once per day in your time zone (catching up until 20:00 if the server was down at that time). Nothing is sent on a day with nothing due.
 
 ## Links between notes {#links}
 

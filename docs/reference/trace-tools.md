@@ -74,19 +74,21 @@ LiftTrace also keeps **Smart Log**, a hold-to-record UI on the Trace FAB (not a 
 
 ## NoteTrace
 
-Twelve tools for finding, creating, and changing notes. They're defined once in `server/lib/note-tools.js` and shared with NoteTrace's [MCP endpoint](../notetrace/mcp.md), so Trace and external agents follow the same rules: a view-only shared note can't be changed, and only a note's owner can set its reminder or move it to the trash. Tools run against the same notes API as the app, so they work offline in Android local mode.
+Fourteen tools for finding, creating, and changing notes. They're defined once in `server/lib/note-tools.js` and shared with NoteTrace's [MCP endpoint](../notetrace/mcp.md), so Trace and external agents follow the same rules: a view-only shared note can't be changed, and only a note's owner can set its reminder or move it to the trash. Tools run against the same notes API as the app, so they work offline in Android local mode.
 
 | Tool | Purpose | Args | Returns |
 |------|---------|------|---------|
 | `search_notes` | Full-text search over titles, text, checklist items, voice note transcripts, and image text; or list a view or label when `query` is empty | `query`, `label`, `view` (`notes`\|`archive`\|`trash`\|`reminders`), `limit` (up to 25, default 10) | `count` and `notes[]` (id, title, kind, a text preview or up to 8 open items with the checked count, labels, pinned, archived, reminder, updated_at) |
-| `get_note` | One note in full | `id*` | Title, Markdown text or every item with its checked state, labels, color, pinned, archived, trashed, reminder, sharing, dates, image text, voice note transcripts |
+| `get_note` | One note in full | `id*` | Title, Markdown text or every item with its checked state and due date, labels, color, pinned, archived, trashed, reminder, sharing, dates, image text, voice note transcripts |
 | `list_labels` | Labels with note counts | none | `labels[]` (name, number of notes) |
 | `list_reminders` | Notes with reminders, soonest first | `upcoming_only` | `reminders[]`: note summaries (as `search_notes`), each with the next time it fires and its repeat |
+| `list_tasks` | Open checklist items across every checklist, dated first (soonest first), then undated | `due_by` (YYYY-MM-DD), `include_undated` (default true, or false when `due_by` is set), `limit` (up to 100, default 40) | `count` and `tasks[]` (text, due, note_id, list) |
 | `create_note` | Create a text note or a checklist | `title`, `text`, `kind` (`text`\|`checklist`), `items`, `labels`, `color`, `pinned` | `ok` and the new note, as `get_note`. Labels are matched by name and created when missing. |
 | `update_note` | Change the title, replace the text, or change color, pinned, or archived | `id*`, `title`, `text`, `color`, `pinned`, `archived` | `ok` and the updated note. The previous text is kept in version history. |
 | `append_to_note` | Add to the end: a paragraph on a text note, one item per line on a checklist | `id*`, `text*` | `ok` and the updated note |
-| `add_checklist_items` | Add items to a checklist | `id*`, `items*` | `ok`, how many were added, and the updated note |
+| `add_checklist_items` | Add items to a checklist | `id*`, `items*`, `due` (YYYY-MM-DD, for every new item) | `ok`, how many were added, and the updated note |
 | `check_checklist_item` | Check or uncheck an item found by its text (exact match first, then the only item containing the text) | `id*`, `item*`, `checked` (default true) | `ok`, the item's text, and its new state; an error when no item or more than one matches |
+| `set_due_date` | Set or clear a checklist item's due date, found by its text (as `check_checklist_item`) | `id*`, `item*`, `due` (YYYY-MM-DD), `clear` | `ok`, the item's text, and its due date (null when cleared) |
 | `set_reminder` | Set or clear a reminder | `id*`, `at` (`2026-09-20T09:00` in `time_zone`, or ISO with an offset), `repeat` (`daily`\|`weekly`\|`monthly`\|`yearly`), `clear`, `time_zone` (IANA, like `America/New_York`) | `ok` and the reminder (next time, repeat), or `cleared`. Owner only. |
 | `set_labels` | Replace a note's labels by name | `id*`, `labels*` (empty removes all) | The labels now on the note |
 | `move_to_trash` | Move a note to the trash (restorable for 30 days) | `id*` | `ok` and the trashed note's title. Owner only. |

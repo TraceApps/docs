@@ -10,7 +10,9 @@ Notes open to a card grid. Pinned notes sit in their own section at the top; eve
 
 Each card shows its images across the top, a preview of the first link in the note (the page's title, image, and site, fetched by your server), the title (set in Newsreader), a preview of the body or the first open checklist items, the reminder chip, labels, and a sharing chip when the note is shared. On a desktop, hovering a card shows quick actions (remind, color, archive, trash). On a phone, long-press a card for those plus pin and labels. Tick a checklist item right on the card without opening it.
 
-Type in **Take a note** to start a text note, or tap the checkbox icon to start a checklist. On a phone the round **+** button does the same.
+Type in **Take a note** to start a text note, tap the checkbox icon to start a checklist, or tap the image icon to start a note from photos. On a phone the round **+** button does the same.
+
+The page header keeps two buttons beside the title: **Search** (the magnifier) and **View Options**. Search and Take a note never share the screen: opening search swaps the header for a search box and tucks Take a note away until you close it.
 
 ## The sidebar {#sidebar}
 
@@ -22,11 +24,11 @@ On a screen 768px or wider, the button next to the logo collapses the sidebar to
 
 **Tasks** in the sidebar gathers every unchecked item from all your checklists into one list. Group it **By Due Date** (Overdue, Today, Tomorrow, This Week, Later, No Due Date) or **By List**. Check items off right there (with Undo), tap the calendar on a task to set or change its due date, or tap a list's name to open it. **Add a task** at the top puts new tasks in a checklist called Tasks, created the first time you use it, with an optional due date. The sidebar shows how many tasks are due today or overdue.
 
-Any checklist item can have a due date: hover an item in the editor (or tap into it on a phone) and pick the calendar. Cards show the date next to the item, in red when it's overdue.
+Any checklist item can have a due date: hover an item in the editor (or tap into it on a phone) and pick the calendar. Cards show the date next to the item, in red when it's overdue. Turn on **Tasks Due** in **Settings, Notifications** for one notification a day listing what's due today and overdue.
 
 ## List layout {#list}
 
-The layout buttons beside search switch between **Grid**, **List**, and **Timeline**. The List layout shows one row per note (title, a line of preview, when it was edited, labels, and checklist progress) and can **group notes** by label, color, or date edited. On a wide screen, picking a note opens it on the right, where you read and edit it in place while the list stays beside it; switching to another note saves the one you were on. On a phone, a row opens the note full screen.
+**View Options** in the header switches between **Grid**, **List**, and **Timeline**. The List layout shows one row per note (title, a line of preview, when it was edited, labels, and checklist progress) and can **group notes** by label, color, or date edited. On a wide screen, picking a note opens it on the right, where you read and edit it in place while the list stays beside it; switching to another note saves the one you were on. On a phone, a row opens the note full screen.
 
 ## Organize many notes at once {#select}
 
@@ -60,7 +62,7 @@ Add images with the image button, by pasting an image, or by dragging image file
 
 Type `[[` in a text note to link to another note; NoteTrace suggests titles as you type. Tap a link to open that note, and see which notes link to the one you're reading under **Linked From**. Rename a note and your links follow. See [Links between notes](notes.md#links).
 
-The **Timeline View** button beside the search box switches the grid to a timeline, grouped by the day you last edited each note. See [Timeline view](notes.md#timeline).
+**Timeline** in **View Options** switches the grid to a timeline, grouped by the day you last edited each note. See [Timeline view](notes.md#timeline).
 
 ## Voice notes and text in images {#voice}
 
@@ -80,7 +82,7 @@ Archive hides a note from the grid without deleting it. Trash keeps notes for 30
 
 ## Search {#search}
 
-When you click into search, chips appear under it to narrow the list by type (Lists, Text, Images, Voice, Reminders, Shared, Links), by color, and by label. Pick more than one in a group to match any of them; picks in different groups must all match. **Clear Filters** removes them. The search box searches titles, note bodies, checklist items, voice note transcripts, and text read from images together within the view you're in (Notes, Archive, Trash, or a label), and matches word beginnings as you type, so `jelly` finds "Jellyfin". Press **Ctrl+K** (**Cmd+K** on a Mac) from anywhere to jump to it.
+Tap the magnifier in the header (or press `/`) to search. The header turns into a search box that says what you're searching (Search Notes, Search Archive, or a label), and chips appear under it to narrow the list by type (Lists, Text, Images, Voice, Reminders, Shared, Links), by color, and by label. Pick more than one in a group to match any of them; picks in different groups must all match. **Clear Filters** removes them, and the ✕ or **Esc** closes search and clears both the text and the chips. The search box searches titles, note bodies, checklist items, voice note transcripts, and text read from images together within the view you're in (Notes, Archive, Trash, or a label), and matches word beginnings as you type, so `jelly` finds "Jellyfin". Press **Ctrl+K** (**Cmd+K** on a Mac) from anywhere to jump to it.
 
 ## Version history {#history}
 

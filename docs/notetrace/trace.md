@@ -24,6 +24,7 @@ Open Trace from the round button and ask in plain words. Trace can call note too
 - "Start a packing list for the cabin: charger, boots, headlamp."
 - "Add oat milk to groceries and check off the coffee."
 - "Remind me about the car registration next Friday at 9."
+- "What's due this week?" or "Make the taxes item due April 15."
 - "Label everything about the homelab as Homelab."
 - "Move the old moving checklist to the trash."
 
