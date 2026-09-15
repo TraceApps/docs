@@ -42,6 +42,10 @@ Each voice note shows a waveform with its length.
 
 Voice notes sync to your other devices like images do, and in Android local mode they stay on the phone until you connect to a server.
 
+## When the upload fails {#pending}
+
+A recording whose upload doesn't go through (no signal, the server restarting) is kept on the device and shown on its note as **waiting to upload**, with **Retry**. It goes up on its own when the connection is back, when the app comes forward, or within a minute, and is then transcribed as usual. A note with a recording waiting isn't treated as empty, so it won't be cleaned up.
+
 ## Audio files {#files}
 
 Audio you already have becomes a voice note too:

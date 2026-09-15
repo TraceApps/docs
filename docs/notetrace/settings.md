@@ -21,7 +21,9 @@ Top of the page: avatar, name, and role. Opens the profile page for display name
 
 The pinned sidebar collapses to icons with the button beside the logo, and the ☰ at the top of the icons opens it again.
 
-**Notes** group:
+### Notes
+
+How notes behave, rather than how the app looks.
 
 - **Card Density**: Comfortable or Compact. Per device.
 - **Show Every Checklist in Tasks**: Tasks lists every open item from every checklist, not just dated items and checklists set to Show in Tasks. Off by default; synced to your account.

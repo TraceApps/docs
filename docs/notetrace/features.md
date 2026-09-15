@@ -8,7 +8,7 @@ A guided walkthrough of NoteTrace. Each section anchors so you can deep-link.
 
 Notes open to a card grid. Pinned notes sit in their own section at the top; everything else follows, newest edit first. The grid adds columns as the window grows, from one on a narrow phone to six on an ultrawide, and cards keep their natural height so short notes don't leave gaps.
 
-Each card shows its images across the top, a preview of the first link in the note (the page's title, image, and site, fetched by your server), the title (set in Newsreader), a preview of the body or the first open checklist items, the reminder chip, labels, and a sharing chip when the note is shared. On a desktop, hovering a card shows quick actions (remind, color, archive, trash). On a phone, long-press a card for those plus pin and labels. Tick a checklist item right on the card without opening it.
+Each card shows its images across the top, a preview of the first link in the note (the page's title, image, and site, fetched by your server), the title in a band across the card (set in Newsreader, tinted with the note's color), a preview of the body or the first open checklist items, the reminder chip, labels, and a sharing chip when the note is shared. On a desktop, hovering a card shows quick actions (remind, color, archive, trash). On a phone, long-press a card for those plus pin and labels. Tick a checklist item right on the card without opening it.
 
 Type in **Take a note** to start a text note, tap the checkbox icon to start a checklist, the microphone to start a voice note, or the image icon to start a note from photos. On a phone, upright or on its side, Take a note gives way to the round **+** button: tap it for **Text Note**, **List**, **Voice Note**, or **Image**, or hold it to start a voice note straight away. Long-press the app's icon on your home screen for **Voice Note**, **New Note**, and **New List**.
 
@@ -56,6 +56,8 @@ NoteTrace follows a foldable as you fold and unfold it:
 The fold's position comes from Android in the app. In the installed web app, it works where the browser reports the fold (Chrome on Android); elsewhere the size-based changes still apply. See [Android](android.md#foldables).
 
 ## Organize many notes at once {#select}
+
+Deleting a checklist item, removing an image or a voice note, and switching a note between text and checklist can all be taken back with **Undo** in the message that appears.
 
 Select notes with **Ctrl+click** (**Cmd+click** on a Mac), the round check that appears on a card's corner when you hover, or a **long press** on a phone. Once one is selected, a click or tap adds more, and **Shift+click** selects a range. A bar at the bottom pins, sets a reminder, colors, labels, archives, or trashes them all at once. In the Trash it restores or deletes them forever. Press **Esc** or the ✕ to clear the selection.
 
@@ -109,9 +111,19 @@ Sixteen note colors tint the card and editor, each with a matching light-theme v
 
 Archive hides a note from the grid without deleting it. Trash keeps notes for 30 days, then deletes them for good; restore or delete one early from the Trash view, or empty the whole trash at once.
 
+## A big library {#performance}
+
+Notes are drawn a screenful at a time and more appear as you scroll, so thousands of notes open as quickly as a handful. Searching, **Select All**, and the keyboard keys still cover every note, not just the ones on screen.
+
+## Offline {#offline}
+
+The installed web app opens without a connection and shows the notes, images, and voice notes it has already seen; new writes wait until you're back. Signing out clears that offline copy from the device. The Android app has its own offline story: see [Local vs server-connected mode](../mobile/modes.md).
+
+A voice note whose upload fails isn't lost: it's kept on the device, shows as **waiting to upload** on its note, and goes up when the connection is back (or when you press **Retry**).
+
 ## Search {#search}
 
-Tap the magnifier in the header (or press `/`) to search. The header turns into a search box that says what you're searching (Search Notes, Search Archive, or a label), and chips appear under it to narrow the list by type (Lists, Text, Images, Voice, Reminders, Shared, Links), by color, and by label. Pick more than one in a group to match any of them; picks in different groups must all match. **Clear Filters** removes them, and the ✕ or **Esc** closes search and clears both the text and the chips. The search box searches titles, note bodies, checklist items, voice note transcripts, and text read from images together within the view you're in (Notes, Archive, Trash, or a label), and matches word beginnings as you type, so `jelly` finds "Jellyfin". Press **Ctrl+K** (**Cmd+K** on a Mac) from anywhere to jump to it.
+Tap the magnifier in the header (or press `/`) to search. The header turns into a search box that says what you're searching (Search Notes, Search Archive, or a label), and chips appear under it to narrow the list by type (Lists, Text, Images, Voice, Reminders, Shared, Links), by color, and by label. Pick more than one in a group to match any of them; picks in different groups must all match. **Clear Filters** removes them, and the ✕ or **Esc** closes search and clears both the text and the chips. Matching words are marked on the cards, and a note found by a word inside a voice note or an image shows that line with a microphone or image icon. Your recent searches appear under an empty search box, ready to run again. The search box searches titles, note bodies, checklist items, voice note transcripts, and text read from images together within the view you're in (Notes, Archive, Trash, or a label), and matches word beginnings as you type, so `jelly` finds "Jellyfin". Press **Ctrl+K** (**Cmd+K** on a Mac) from anywhere to jump to it.
 
 ## Version history {#history}
 

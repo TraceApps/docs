@@ -24,13 +24,15 @@ NoteTrace isn't trying to be a knowledge base. It's for the notes you'd put in K
 - Rich editor that saves Markdown, and checklists with drag to reorder. Switch any note between text and checklist without losing content.
 - Images on any note: add, paste, drag in, or share them from your phone's gallery.
 - Labels with colors and icons, nested labels, sixteen note colors, archive, and a trash that empties itself after 30 days.
-- Full-text search across titles, bodies, checklist items, voice note transcripts, and text in images, one Ctrl+K away.
+- Full-text search across titles, bodies, checklist items, voice note transcripts, and text in images, one Ctrl+K away, with matches marked on the cards and recent searches kept.
 - `[[Note title]]` links with a Linked From section, and a timeline view grouped by day.
 - Voice notes: record with pause and a level meter (with the screen off in the Android app), a waveform to scrub, play speed, audio files and Keep recordings, and transcripts from Trace with tappable timestamps.
 - A Tasks view of dated checklist items and the lists you choose, with due dates and a daily Tasks Due notification, and a List layout that opens notes beside the list.
 - Trace in the editor (Tidy Up, Summarize, Make a Checklist) and a Trace chat that can find and change notes; the same note tools for external AI agents over [MCP](mcp.md).
 - Send a checklist to your [CookTrace](cooktrace.md) shopping list.
-- Version history: every editing session leaves a restore point, and sync conflicts never throw an edit away.
+- Version history: every editing session leaves a restore point, sync conflicts never throw an edit away, and Undo covers deleted items, removed attachments, and text/checklist switches.
+- Thousands of notes stay quick: they're drawn a screenful at a time as you scroll.
+- The installed web app opens offline with the notes and files it has seen.
 - Reminders, one-off or repeating (daily, weekly, monthly, yearly): exact alarms on the phone, notifications in the browser, and pushes through ntfy, Gotify, or Apprise.
 - Sharing with view or edit access for other accounts on your server.
 - Import from Google Keep (Takeout, photos included), Evernote, Memos, Blinko, and Markdown; export everything as Markdown with images.
