@@ -28,7 +28,7 @@ What comes across:
 | Voice recordings | Not imported; the summary counts them |
 | Reminders, collaborators | Not in Takeout's note files, so not imported |
 
-Color mapping: red and orange become clay, yellow and brown become sand, green becomes moss, teal, blue, and dark blue become tide, purple becomes plum, pink becomes rose, and gray and default stay uncolored.
+Color mapping: red becomes ember, orange becomes amber, yellow becomes sand, green becomes moss, teal becomes sage, blue becomes sky, dark blue becomes tide, purple becomes plum, pink becomes rose, brown becomes bark, gray becomes slate, and default stays uncolored.
 
 !!! tip "Big exports"
     The zip is read on your device or in your browser. Notes are saved first, then their images are uploaded, with a progress count for each. The server accepts about 60 image uploads a minute, so a Keep export with hundreds of photos pauses now and then to stay under that limit; leave the page open until the summary appears.

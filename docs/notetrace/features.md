@@ -85,7 +85,7 @@ Tap the microphone in the editor to record a voice note. Trace transcribes it so
 
 Labels live in the sidebar with their note counts. Name a label with a slash, like `Home/Garage`, to nest it under `Home`; the parent can be a label itself or just a group, a parent's view includes its nested labels' notes, and renaming a parent renames everything under it. Pick one to see only its notes, or use **Edit Labels** to rename, recolor, reorder, or delete them. Notes can carry several labels.
 
-Six note colors (plum, tide, moss, sand, clay, rose) tint the card and editor, with matching light-theme versions.
+Sixteen note colors tint the card and editor, each with a matching light-theme version. Labels use the same colors for their dot or icon.
 
 Archive hides a note from the grid without deleting it. Trash keeps notes for 30 days, then deletes them for good; restore or delete one early from the Trash view, or empty the whole trash at once.
 

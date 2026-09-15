@@ -62,7 +62,7 @@ When a note contains a link, the card shows a preview of the first one: the page
 
 ## Colors
 
-Notes can be plum, tide, moss, sand, clay, rose, or the default. Each color has a dark and a light variant, so a colored card stays readable in either theme.
+Notes can be one of sixteen colors (ember, clay, amber, sand, lime, moss, sage, mint, sky, tide, indigo, plum, orchid, rose, bark, slate) or the default. Each color has a dark and a light variant, so a colored card stays readable in either theme.
 
 ## Search
 
