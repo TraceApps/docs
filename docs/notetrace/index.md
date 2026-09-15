@@ -27,6 +27,7 @@ NoteTrace isn't trying to be a knowledge base. It's for the notes you'd put in K
 - Full-text search across titles, bodies, checklist items, voice note transcripts, and text in images, one Ctrl+K away.
 - `[[Note title]]` links with a Linked From section, and a timeline view grouped by day.
 - Voice notes, transcribed by Trace.
+- A Tasks view of every open checklist item, with due dates, and a List layout that opens notes beside the list.
 - Trace in the editor (Tidy Up, Summarize, Make a Checklist) and a Trace chat that can find and change notes; the same note tools for external AI agents over [MCP](mcp.md).
 - Send a checklist to your [CookTrace](cooktrace.md) shopping list.
 - Version history: every editing session leaves a restore point, and sync conflicts never throw an edit away.

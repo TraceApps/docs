@@ -18,6 +18,16 @@ The sidebar holds Notes, Reminders, **Shared with Me** (notes other people share
 
 On a wide screen, the button next to the logo collapses the sidebar to icons for more room (or use **Settings, Appearance, Collapse Sidebar to Icons**). Fold the Labels section with the arrow next to its heading. On the Android app connected to a server, the bottom of the sidebar also shows when it last synced.
 
+## Tasks {#tasks}
+
+**Tasks** in the sidebar gathers every unchecked item from all your checklists into one list. Group it **By Due Date** (Overdue, Today, Tomorrow, This Week, Later, No Due Date) or **By List**. Check items off right there (with Undo), tap the calendar on a task to set or change its due date, or tap a list's name to open it. **Add a task** at the top puts new tasks in a checklist called Tasks, created the first time you use it, with an optional due date. The sidebar shows how many tasks are due today or overdue.
+
+Any checklist item can have a due date: hover an item in the editor (or tap into it on a phone) and pick the calendar. Cards show the date next to the item, in red when it's overdue.
+
+## List layout {#list}
+
+The layout buttons beside search switch between **Grid**, **List**, and **Timeline**. The List layout shows one row per note (title, a line of preview, when it was edited, labels, and checklist progress) and can **group notes** by label, color, or date edited. On a wide screen, picking a note opens it on the right, where you read and edit it in place while the list stays beside it; switching to another note saves the one you were on. On a phone, a row opens the note full screen.
+
 ## Organize many notes at once {#select}
 
 Select notes with **Ctrl+click** (**Cmd+click** on a Mac), the round check that appears on a card's corner when you hover, or a **long press** on a phone. Once one is selected, a click or tap adds more, and **Shift+click** selects a range. A bar at the bottom pins, sets a reminder, colors, labels, archives, or trashes them all at once. In the Trash it restores or deletes them forever. Press **Esc** or the ✕ to clear the selection.

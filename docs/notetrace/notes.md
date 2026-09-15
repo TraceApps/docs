@@ -16,6 +16,12 @@ Switching a checklist to text writes one line per item, with checked items wrapp
 
 When every item on a checklist is checked, the `checklist.completed` [webhook](webhooks.md) fires.
 
+## Due dates and Tasks {#due}
+
+A checklist item can have a due date: a calendar day, stored as `due_date` on the item and synced with it, so there's no time zone to get wrong. Set it from the item's calendar button in the editor or from the Tasks view. The Tasks view lists every unchecked item across your checklists (your own and ones shared with you), grouped by due date or by list; checking one there checks it in its note. Trace and MCP see an item's due date in `get_note`.
+
+Due dates don't send notifications yet; use a note reminder for that.
+
 ## Links between notes {#links}
 
 Type `[[` in a text note to pick another note by title, or type the whole `[[Note title]]`; it becomes a link chip. Tap the chip to open that note. If no note has that title yet, NoteTrace offers to create it. In the Markdown body the link is plain `[[Note title]]`, the same syntax Obsidian and other Markdown apps use, so it survives export and import.
