@@ -10,7 +10,7 @@ Notes open to a card grid. Pinned notes sit in their own section at the top; eve
 
 Each card shows its images across the top, a preview of the first link in the note (the page's title, image, and site, fetched by your server), the title (set in Newsreader), a preview of the body or the first open checklist items, the reminder chip, labels, and a sharing chip when the note is shared. On a desktop, hovering a card shows quick actions (remind, color, archive, trash). On a phone, long-press a card for those plus pin and labels. Tick a checklist item right on the card without opening it.
 
-Type in **Take a note** to start a text note, tap the checkbox icon to start a checklist, the microphone to start a voice note, or the image icon to start a note from photos. On a phone, where Take a note doesn't fit, tap the round **+** button for **Text Note**, **List**, **Voice Note**, or **Image**, or hold it to start a voice note straight away. Long-press the app's icon on your home screen for **Voice Note**, **New Note**, and **New List**.
+Type in **Take a note** to start a text note, tap the checkbox icon to start a checklist, the microphone to start a voice note, or the image icon to start a note from photos. On a phone, upright or on its side, Take a note gives way to the round **+** button: tap it for **Text Note**, **List**, **Voice Note**, or **Image**, or hold it to start a voice note straight away. Long-press the app's icon on your home screen for **Voice Note**, **New Note**, and **New List**.
 
 The page header keeps two buttons beside the title: **Search** (the magnifier) and **View Options**. Search and Take a note never share the screen: opening search swaps the header for a search box and tucks Take a note away until you close it.
 
