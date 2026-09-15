@@ -34,7 +34,7 @@ App Lock is separate from **biometric sign-in** on your profile page, which only
 - **Swipe** a card sideways to archive it; **Undo** puts it back. In Archive, a swipe unarchives. Turn it off in Settings, Appearance, Swipe to Archive.
 - **Long-press** a card to select it, then tap more cards to act on them together from the bar at the bottom. Keep holding and move your finger to drag the card to a new spot.
 - **Pull down** at the top of the list to sync (connected to a server) or refresh the list.
-- The bottom tab bar has Notes, Reminders, Archive, Trash, and Settings. Search is the magnifier in the page header.
+- The bottom tab bar has Notes, Reminders, Tasks, Archive, Trash, and Settings. Search is the magnifier in the page header.
 
 ## Local mode
 

@@ -15,7 +15,7 @@ Top of the page: avatar, name, and role. Opens the profile page for display name
 - **Theme**: System Default, Dark, or Light.
 - **Accent Color**: preset accents, Lavender by default.
 - **Navigation Style**: bottom tab bar, side panel, or both.
-- **Persistent Sidebar**: on screens 768px and wider the sidebar stays open (on by default) and hides the bottom tab bar.
+- **Persistent Sidebar**: on screens 768px and wider the sidebar stays open (on by default). With Navigation Style set to Both, the tab bar sits beside it. **Keep Sidebar Open as Icons** in the ☰ menu turns this on with the narrow icon rail.
 - **Start Page**: open NoteTrace to Notes (the default), Reminders, Tasks, or Archive.
 - **Reduce Motion**, **Page Banners**, and **Animation Style**, shared with the other Trace apps.
 
