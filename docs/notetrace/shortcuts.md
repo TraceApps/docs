@@ -20,6 +20,7 @@ Single-key shortcuts only work when you're not typing in a field. Turn them off 
 | `#` | Move to trash |
 | `Ctrl` + `A` | Select all notes in view |
 | `Esc` | Clear the selection |
+| `↑` / `↓` | In the List layout's two-pane view, open the previous / next note |
 | `?` | Show all shortcuts |
 
 ## Go to

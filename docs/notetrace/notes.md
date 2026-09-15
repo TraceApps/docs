@@ -44,7 +44,7 @@ Voice notes are audio attachments in the same table, with their length. A transc
 
 ## Labels
 
-Labels belong to the account that made them, have an optional color, and can be reordered in **Edit Labels**. Label names are unique per account, ignoring case. Deleting a label removes it from its notes but doesn't delete the notes.
+Labels belong to the account that made them, have an optional color and icon, and can be reordered in **Edit Labels**. Tap the dot beside a label there to pick its color and one of 48 icons; the icon replaces the dot in the sidebar, the icon rail, and the label picker, and syncs with the label. Label names are unique per account, ignoring case. Deleting a label removes it from its notes but doesn't delete the notes.
 
 On a [shared note](sharing.md), labels are personal: each person sees only the labels they added.
 
@@ -70,7 +70,7 @@ Notes can be plum, tide, moss, sand, clay, rose, or the default. Each color has 
 
 ## Timeline view {#timeline}
 
-The **Timeline View** button beside the search box switches between the card grid and a timeline: one column of notes grouped by the day each was last edited (Today, Yesterday, the weekday for the past week, then dates). Pinned notes stay at the top. The choice is remembered on each device and applies to Notes, Archive, Trash, and labels.
+**Timeline** in **View Options** (in the page header) switches the notes to a timeline: one column of notes grouped by the day each was last edited (Today, Yesterday, the weekday for the past week, then dates). Pinned notes stay at the top. The choice is remembered on each device and applies to Notes, Archive, Trash, and labels.
 
 ## Version history
 

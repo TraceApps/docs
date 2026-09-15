@@ -18,7 +18,7 @@ The page header keeps two buttons beside the title: **Search** (the magnifier) a
 
 The sidebar holds Notes, Reminders, **Shared with Me** (notes other people share with you), Archive, Trash, your labels, and Settings, with your name and the app version at the bottom. A highlight glides to the page you're on, and Reminders shows how many reminders are due today.
 
-On a screen 768px or wider, the button next to the logo collapses the sidebar to icons for more room. If the sidebar opens from ☰ instead of staying open, the same button pins it open as icons in one tap. Phones always use the slide-out menu. Fold the Labels section with the arrow next to its heading. On the Android app connected to a server, the bottom of the sidebar also shows when it last synced.
+With **Persistent Sidebar** on (a screen 768px or wider), the button beside the logo collapses the sidebar to a slim strip of icons, and the ☰ button at the top of the strip opens it again. Point at an icon to see its name. The choice is remembered on each device. When the sidebar opens from ☰ instead of staying open, it has no collapse button, and phones always use the slide-out menu. Fold the Labels section with the arrow next to its heading. On the Android app connected to a server, the bottom of the sidebar also shows when it last synced.
 
 ## Tasks {#tasks}
 
@@ -28,7 +28,16 @@ Any checklist item can have a due date: hover an item in the editor (or tap into
 
 ## List layout {#list}
 
-**View Options** in the header switches between **Grid**, **List**, and **Timeline**. The List layout shows one row per note (title, a line of preview, when it was edited, labels, and checklist progress) and can **group notes** by label, color, or date edited. On a wide screen, picking a note opens it on the right, where you read and edit it in place while the list stays beside it; switching to another note saves the one you were on. On a phone, a row opens the note full screen.
+**View Options** in the header switches between **Grid**, **List**, and **Timeline**. The List layout shows one row per note: the title, two lines of preview, when it was edited with checklist progress and labels, and a thumbnail when the note has an image. It can **group notes** by label, color, or date edited.
+
+On a screen 1100px or wider, List becomes a two-pane workspace that fills the window: the list of notes on the left and the open note on the right, each scrolling on its own.
+
+- The list column has the note count and **New Note**; its arrow also offers a new checklist or a note from an image.
+- The open note has one toolbar across the top: where the note lives (its first label, like Home › Garage), when it was edited, and pin, reminder, share, image, voice, color, labels, and ⋯ for the rest. Changes save as you type, so there's no Done button; ✕ closes the note.
+- Switching to another note saves the one you were on. **Up** and **Down** move through the list and open each note.
+- Drag the line between the panes to widen or narrow the list (double-click it to reset). The width is remembered on each device.
+
+On a phone or a narrower window, the rows sit in one column and a row opens the note full screen.
 
 ## Organize many notes at once {#select}
 
