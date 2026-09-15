@@ -34,20 +34,20 @@ The full tool list is in the [Trace tool catalog](../reference/trace-tools.md#no
 
 ## Voice notes {#voice}
 
-The microphone button in the editor records a voice note (up to 10 minutes) and attaches it to the note. Voice notes play inline, show their length, and sync to your other devices like images do. On Android the first recording asks for microphone access.
-
-With **Transcribe Voice Notes** on (Settings, Trace; on by default), Trace writes out each new voice note. The transcript shows under the recording, is included in search, and can be added to the note with **Add to Note**: as a paragraph on a text note, or as items on a checklist. A voice note recorded before transcription was on, or one that failed, has a **Transcribe** button.
+With **Transcribe Voice Notes** on (Settings, Trace; on by default), Trace writes out each new voice note. The transcript shows under the recording with timestamps you can tap to jump to, is included in search, and can be added to the note with **Add to Note**: as a paragraph on a text note, or as items on a checklist. A voice note that wasn't transcribed has a **Transcribe** button. A quick voice note (the microphone on Take a note) also gets its text from the transcript and a title suggested by Trace.
 
 Transcription needs a provider that accepts audio:
 
-| Provider | Transcription |
-|---|---|
-| OpenAI | Yes (`gpt-4o-mini-transcribe` by default) |
-| Gemini | Yes (your chosen Gemini model) |
-| OpenAI-compatible | Yes, when the server has a Whisper-style `/v1/audio/transcriptions` endpoint (`whisper-1` by default), such as Speaches or LocalAI |
-| Claude | No; Claude can't transcribe audio |
+| Provider | Transcription | Timestamps |
+|---|---|---|
+| OpenAI | Yes (`gpt-4o-mini-transcribe` by default) | With `whisper-1` as the Transcription Model |
+| Gemini | Yes (your chosen Gemini model) | Yes |
+| OpenAI-compatible | Yes, when the server has a Whisper-style `/v1/audio/transcriptions` endpoint (`whisper-1` by default), such as Speaches or LocalAI | When the server supports `verbose_json` |
+| Claude | No; Claude can't transcribe audio | |
 
-**Transcription Model** in Settings, Trace overrides the default model name. When Trace is set by environment variables, the server does the transcription and `AI_TRANSCRIBE_MODEL` sets the model.
+**Transcription Model** in Settings, Trace overrides the default model name. When Trace is set by environment variables, the server does the transcription and `AI_TRANSCRIBE_MODEL` sets the model. Recordings longer than a provider takes in one request are split, transcribed in pieces, and joined with their timestamps lined up.
+
+Recording, playback, audio files, and imports are covered in [Voice notes](voice-notes.md).
 
 ## Text in images {#image-text}
 
@@ -68,3 +68,4 @@ With Trace set by environment variables, voice note transcription and image read
 - [Setting up Trace](../trace/setup.md)
 - [Model Context Protocol (MCP)](mcp.md)
 - [Notes, checklists, and labels](notes.md)
+- [Voice notes](voice-notes.md)

@@ -202,9 +202,10 @@ nav:
       - Feature tour: notetrace/features.md
       - Notes, checklists & labels: notetrace/notes.md
       - Keyboard shortcuts & slash commands: notetrace/shortcuts.md
+      - Voice notes: notetrace/voice-notes.md
       - Reminders: notetrace/reminders.md
       - Sharing: notetrace/sharing.md
-      - "Android: share sheet & App Lock": notetrace/android.md
+      - "Android: share sheet, voice notes & App Lock": notetrace/android.md
       - Trace in NoteTrace: notetrace/trace.md
       - Send to CookTrace: notetrace/cooktrace.md
       - Import & export (Google Keep, Markdown): notetrace/import-export.md

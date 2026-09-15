@@ -25,7 +25,7 @@ What comes across:
 | Links (web link previews) | Added to the end of the note |
 | Created and edited dates | Kept |
 | Trash | Left out, unless **Include notes from Keep's trash** is on |
-| Voice recordings | Not imported; the summary counts them |
+| Voice recordings | Voice notes on the note. Keep's 3GP/AMR files are converted to M4A by the server; in Android local mode, or on a server without audio support, the summary counts them as not added |
 | Reminders, collaborators | Not in Takeout's note files, so not imported |
 
 Color mapping: red becomes ember, orange becomes amber, yellow becomes sand, green becomes moss, teal becomes sage, blue becomes sky, dark blue becomes tide, purple becomes plum, pink becomes rose, brown becomes bark, gray becomes slate, and default stays uncolored.

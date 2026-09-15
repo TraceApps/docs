@@ -10,6 +10,7 @@ Single-key shortcuts only work when you're not typing in a field. Turn them off 
 |---|---|
 | `c` | New note |
 | `l` | New list |
+| `v` | New voice note (starts recording) |
 | `/` | Search (opens the search box in the header) |
 | `Ctrl` + `K` (`⌘` + `K` on a Mac) | Search, from anywhere in the app |
 | `j` / `k` | Next / previous note |

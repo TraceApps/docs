@@ -25,7 +25,16 @@ NoteTrace reads the same shared variables as the other Trace apps (`PORT`, `BASE
 
 | Env var | Default | Purpose |
 | --- | --- | --- |
-| `AI_TRANSCRIBE_MODEL` | provider default | Speech-to-text model for [voice notes](trace.md#voice) when Trace is set by env vars: `gpt-4o-mini-transcribe` on OpenAI, `whisper-1` on an OpenAI-compatible server. Gemini uses `AI_MODEL`. |
+| `AI_TRANSCRIBE_MODEL` | provider default | Speech-to-text model for [voice notes](voice-notes.md#transcripts) when Trace is set by env vars: `gpt-4o-mini-transcribe` on OpenAI, `whisper-1` on an OpenAI-compatible server. Gemini uses `AI_MODEL`. Whisper-style models give timestamped transcripts. |
+
+## Audio
+
+The Docker image includes a small audio-only ffmpeg, used to convert voice recordings browsers can't play (Google Keep's 3GP and AMR) and to split long recordings for transcription. Running the server outside Docker, install ffmpeg or point these at it; without it those two features are off and everything else works.
+
+| Env var | Default | Purpose |
+| --- | --- | --- |
+| `FFMPEG_PATH` | `ffmpeg` | ffmpeg binary. |
+| `FFPROBE_PATH` | `ffprobe` | ffprobe binary, used to read a recording's length. |
 
 ## Backup
 

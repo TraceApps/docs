@@ -1,12 +1,20 @@
-# Android: share sheet and App Lock
+# Android: share sheet, voice notes, and App Lock
 
 The NoteTrace Android app is the same app as the web version, plus a few things only a phone can do. Install and mode selection work like the other Trace apps: see [Install the Android app](../mobile/install.md) and [Local vs server-connected mode](../mobile/modes.md).
 
 ## Save from any app
 
-Share text, a link, or photos from any Android app (a browser, a chat, the gallery, a news reader) and pick **NoteTrace** in the share sheet. NoteTrace opens a new note with the shared content in it: text goes in the body, a shared page title becomes the note's title, and photos are added as images (up to 20 at a time). It saves on its own; close it or keep typing.
+Share text, a link, or photos from any Android app (a browser, a chat, the gallery, a news reader) and pick **NoteTrace** in the share sheet. NoteTrace opens a new note with the shared content in it: text goes in the body, a shared page title becomes the note's title, photos are added as images (up to 20 at a time), and audio (a recording from a voice recorder app, say) becomes a [voice note](voice-notes.md). It saves on its own; close it or keep typing.
 
-The installed web app (PWA) accepts shared text and links the same way on platforms that support the Web Share Target API, such as Chrome on Android. Sharing photos needs the Android app.
+The installed web app (PWA) accepts shared text, links, photos, and audio the same way on platforms that support the Web Share Target API, such as Chrome on Android.
+
+## Home screen shortcuts
+
+Long-press the NoteTrace icon for **Voice Note**, **New Note**, and **New List**. Each opens the app straight into a new note; Voice Note starts recording. The installed web app offers the same shortcuts on Android.
+
+## Voice notes
+
+The Android app records voice notes itself rather than through the web view, so recording keeps going with the screen off or another app open, for up to 3 hours. While it records, a notification shows the time with **Pause** or **Resume** and **Stop**; stop it there and the recording is saved to the note when you come back. A recording too long for your transcription service is split on the phone in local mode. See [Voice notes](voice-notes.md).
 
 ## Photos
 

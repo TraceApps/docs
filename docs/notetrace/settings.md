@@ -42,7 +42,7 @@ The pinned sidebar collapses to icons with the button beside the logo, and the â
 Provider, key, and model for the Trace assistant. See [Setting up Trace](../trace/setup.md).
 
 - **Transcribe Voice Notes**: Trace writes out new voice notes (on by default). Needs OpenAI, Gemini, or an OpenAI-compatible Whisper server.
-- **Transcription Model**: overrides the default speech-to-text model name. Empty uses the default.
+- **Transcription Model**: overrides the default speech-to-text model name. Empty uses the default. With OpenAI, `whisper-1` gives transcripts with timestamps. See [Voice notes](voice-notes.md#transcripts).
 - **Read Text in New Images**: Trace reads the text in every image you add (off by default; sends each image to your provider).
 
 See [Trace in NoteTrace](trace.md).
