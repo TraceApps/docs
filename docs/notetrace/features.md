@@ -10,7 +10,7 @@ Notes open to a card grid. Pinned notes sit in their own section at the top; eve
 
 Each card shows its images across the top, a preview of the first link in the note (the page's title, image, and site, fetched by your server), the title (set in Newsreader), a preview of the body or the first open checklist items, the reminder chip, labels, and a sharing chip when the note is shared. On a desktop, hovering a card shows quick actions (remind, color, archive, trash). On a phone, long-press a card for those plus pin and labels. Tick a checklist item right on the card without opening it.
 
-Type in **Take a note** to start a text note, tap the checkbox icon to start a checklist, the microphone to start a voice note, or the image icon to start a note from photos. On a phone the round **+** button starts a note; hold it for a voice note. Long-press the app's icon on your home screen for **Voice Note**, **New Note**, and **New List**.
+Type in **Take a note** to start a text note, tap the checkbox icon to start a checklist, the microphone to start a voice note, or the image icon to start a note from photos. On a phone, where Take a note doesn't fit, tap the round **+** button for **Text Note**, **List**, **Voice Note**, or **Image**, or hold it to start a voice note straight away. Long-press the app's icon on your home screen for **Voice Note**, **New Note**, and **New List**.
 
 The page header keeps two buttons beside the title: **Search** (the magnifier) and **View Options**. Search and Take a note never share the screen: opening search swaps the header for a search box and tucks Take a note away until you close it.
 
@@ -93,7 +93,7 @@ Type `[[` in a text note to link to another note; NoteTrace suggests titles as y
 
 ![A voice note with its waveform and a timestamped transcript](../assets/img/notetrace/voice-note.png)
 
-Start a voice note from the microphone on Take a note (or hold **+** on a phone), or add one to any note from the editor. Pause and resume while you record; the Android app keeps recording with the screen off, for up to 3 hours. Drag along the waveform to find a spot, change the play speed, and pick up where you left off. Audio files, recordings shared from other apps, and Google Keep's voice recordings become voice notes too. Trace transcribes each one so you can read it, search for it, and tap a line of the transcript to hear that part. See [Voice notes](voice-notes.md).
+Start a voice note from the microphone on Take a note (or **+**, then **Voice Note**, on a phone), or add one to any note from the editor. Pause and resume while you record; the Android app keeps recording with the screen off, for up to 3 hours. Drag along the waveform to find a spot, change the play speed, and pick up where you left off. Audio files, recordings shared from other apps, and Google Keep's voice recordings become voice notes too. Trace transcribes each one so you can read it, search for it, and tap a line of the transcript to hear that part. See [Voice notes](voice-notes.md).
 
  Open an image full screen and tap **Read Text** to pull the text out of a receipt, whiteboard, or screenshot, and search finds the note by it. See [Trace in NoteTrace](trace.md#voice).
 

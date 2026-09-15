@@ -9,11 +9,11 @@ A voice note is a recording attached to a note. Record one in the app, or bring 
 There's a quick way from wherever you are:
 
 - **Take a note**: the microphone button on the bar starts a new voice note.
-- **Phone**: hold the round **+** button. A tap still starts a text note.
+- **Phone**: tap the round **+** button and pick **Voice Note**, or hold **+** to start recording straight away.
 - **List layout**: the arrow next to **New Note** offers **New Voice Note**.
 - **Keyboard**: press `v` in the notes list. See [Keyboard shortcuts](shortcuts.md).
 - **Home screen**: long-press the NoteTrace icon (the Android app, or the installed web app on Android) and pick **Voice Note**. **New Note** and **New List** are there too.
-- **In a note**: the microphone button in the editor's toolbar (on a phone, **Add**, then **Record Voice Note**), or type `/voice` as a [slash command](shortcuts.md#slash-commands).
+- **In a note**: the microphone button in the editor's toolbar (on a phone too), or type `/voice` as a [slash command](shortcuts.md#slash-commands).
 
 A quick voice note opens straight into recording. When you stop, the transcript becomes the note's text and Trace suggests a short title. If you discard the recording and haven't written anything, the empty note closes.
 
