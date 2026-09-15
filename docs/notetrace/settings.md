@@ -1,6 +1,6 @@
 # Settings reference
 
-Every section on the NoteTrace Settings page, and where to read more. Per-user sections apply to the signed-in account. Admin sections apply to the whole server and only appear for the `admin` role. Use the search box at the top of Settings to jump to a section by name or keyword (search for "keep", "lock", "shopping", or "ntfy", for example).
+Every section on the NoteTrace Settings page, and where to read more. Per-user sections apply to the signed-in account. Admin sections apply to the whole server and only appear for the `admin` role. Use the search box at the top of Settings to jump to a section by name or keyword (search for "keep", "lock", "shopping", "shortcuts", "density", or "ntfy", for example).
 
 Settings is grouped into **Display**, **Integrations**, **App**, and **Admin**. On a wide screen the sections sit in a rail on the left; on a phone each opens as its own page.
 
@@ -16,7 +16,13 @@ Top of the page: avatar, name, and role. Opens the profile page for display name
 - **Accent Color**: preset accents, Lavender by default.
 - **Navigation Style**: bottom tab bar, side panel, or both.
 - **Persistent Sidebar**: on screens 768px and wider the sidebar stays open (on by default) and hides the bottom tab bar.
+- **Collapse Sidebar to Icons** (wide screens, pinned sidebar): show only icons. Same as the button beside the logo. Per device.
 - **Start Page**: open NoteTrace to Notes (the default), Reminders, or Archive.
+- **Card Density**: Comfortable or Compact. Per device.
+- **Note Order**: Last Edited or Your Order (the order you drag notes into). Synced to your account.
+- **Swipe to Archive** (touch screens): swipe a card sideways to archive it, with Undo. Per device.
+- **Keyboard Shortcuts** (devices with a keyboard): single-key shortcuts on or off, and **View** to see them all. Per device. See [Keyboard shortcuts](shortcuts.md).
+- **Link Previews**: show the first link's title, image, and site on cards. Synced to your account.
 - **Reduce Motion**, **Page Banners**, and **Animation Style**, shared with the other Trace apps.
 
 ### Regional (per-user)

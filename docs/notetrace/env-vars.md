@@ -19,6 +19,7 @@ NoteTrace reads the same shared variables as the other Trace apps (`PORT`, `BASE
 | `ALLOW_PRIVATE_WEBHOOK_URLS` | (unset) | Set to `1` to allow webhook targets on private or loopback addresses, such as a Home Assistant container on the same Docker network. |
 | `MCP_ENABLED` / `MCP_WRITE_ENABLED` / `MCP_DESTROY_ENABLED` | (unset) | Model Context Protocol endpoint and its write and destructive tiers. See [MCP](mcp.md). |
 | `ALLOW_PRIVATE_COOKTRACE_URLS` | (unset) | Set to `1` so [Send to CookTrace](cooktrace.md) can reach a CookTrace on a LAN, loopback, or Docker network address. |
+| `ALLOW_PRIVATE_LINK_PREVIEWS` | (unset) | Set to `1` to show [link previews](notes.md#link-previews) for links to LAN, loopback, or Docker network addresses. |
 
 ## Trace
 

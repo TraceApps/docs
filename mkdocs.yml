@@ -201,6 +201,7 @@ nav:
       - Overview: notetrace/index.md
       - Feature tour: notetrace/features.md
       - Notes, checklists & labels: notetrace/notes.md
+      - Keyboard shortcuts & slash commands: notetrace/shortcuts.md
       - Reminders: notetrace/reminders.md
       - Sharing: notetrace/sharing.md
       - "Android: share sheet & App Lock": notetrace/android.md

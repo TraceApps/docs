@@ -42,6 +42,18 @@ Labels belong to the account that made them, have an optional color, and can be 
 
 On a [shared note](sharing.md), labels are personal: each person sees only the labels they added.
 
+A slash in a name nests a label: `Home/Garage` and `Home/Kitchen` show under `Home` in the sidebar and in the label picker, each group folds, and opening `Home` shows notes from `Home` and every label under it. Nesting is only in the name, so it survives export, import, and sync unchanged.
+
+## Order and density {#order}
+
+Notes are newest edit first until you drag one; then Notes, Shared with Me, and label views use **Your Order**, saved as a setting so every device shows the same arrangement. Reordering doesn't change a note's edited time or add to its version history. New notes appear at the top. **Settings, Appearance, Note Order** switches between the two.
+
+**Card Density** in the same place makes cards compact: smaller text, fewer checklist lines, and link previews without their image.
+
+## Link previews {#link-previews}
+
+When a note contains a link, the card shows a preview of the first one: the page title, its image, and the site. Your NoteTrace server fetches the page (not your browser or phone), through the same address checks webhooks use, and keeps the result for a week. Links to private or loopback addresses get no preview unless the server has `ALLOW_PRIVATE_LINK_PREVIEWS=1`. Turn previews off in **Settings, Appearance, Link Previews**. They need a server, so Android local mode doesn't show them.
+
 ## Colors
 
 Notes can be plum, tide, moss, sand, clay, rose, or the default. Each color has a dark and a light variant, so a colored card stays readable in either theme.

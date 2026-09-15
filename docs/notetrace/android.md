@@ -29,6 +29,13 @@ App Lock is a screen lock for the app. Your notes are already encrypted at rest 
 
 App Lock is separate from **biometric sign-in** on your profile page, which only unlocks a saved server session.
 
+## Gestures
+
+- **Swipe** a card sideways to archive it; **Undo** puts it back. In Archive, a swipe unarchives. Turn it off in Settings, Appearance, Swipe to Archive.
+- **Long-press** a card to select it, then tap more cards to act on them together from the bar at the bottom. Keep holding and move your finger to drag the card to a new spot.
+- **Pull down** at the top of the list to sync (connected to a server) or refresh the list.
+- The bottom tab bar has **Search**; Trash is in the ☰ menu. (With Navigation Style set to Bottom Tab Bar only, Trash stays in the tab bar.)
+
 ## Local mode
 
 In local mode everything, including reminders, labels, images, version history, and imports, lives on the phone. Sharing needs a server, so it's hidden in local mode. Connecting to a server later uploads your local notes and photos.
