@@ -32,7 +32,7 @@ Deactivate from the same button, or from `POST /api/programs/deactivate` if you 
 Set a program's **Duration (weeks)** in the editor and the Workout template gains a **Week tab strip** across the top. Each week gets its own per-exercise matrix:
 
 - **Sets**: how many
-- **Reps**: target rep count or range (`6-8`)
+- **Reps**: target rep count or range (`6-8`), or **Time** for a [timed exercise](diary.md#timed-sets-planks-holds-carries) (`45`, `1:00`)
 - **Tempo**: eccentric / pause / concentric / pause (e.g. `3010`)
 - **Rest (s)**: per-exercise rest to feed the timer
 - **Load**: absolute weight, percentage of a reference, or an RPE target

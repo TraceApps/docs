@@ -16,7 +16,7 @@ Nine read-only tools: `get_workout`, `list_recent_workouts`, `get_records`, `get
 
 ### Write (Phase 2)
 
-Three additive log tools: `log_set`, `log_body_stat`, `add_progress_photo`. Everything they write shows up as normal entries in the Diary UI, editable and deletable through the app like anything else. Off by default; turn on with `MCP_WRITE_ENABLED=1` AND a token that holds `mcp:write`. Either missing and the write tools simply don't appear in `tools/list`.
+Three additive log tools: `log_set`, `log_body_stat`, `add_progress_photo`. For a timed exercise (plank, wall sit, dead hang, carry) `log_set` takes `duration_sec` instead of `reps`; `search_exercises` reports each exercise's `set_type` so a client can tell which to send. Everything they write shows up as normal entries in the Diary UI, editable and deletable through the app like anything else. Off by default; turn on with `MCP_WRITE_ENABLED=1` AND a token that holds `mcp:write`. Either missing and the write tools simply don't appear in `tools/list`.
 
 `add_progress_photo` takes an image **URL**, not file bytes: MCP has no multipart upload path, so point it at an image you already host. Uploading from a phone or laptop goes through the app instead. See [Progress photos](progress.md).
 

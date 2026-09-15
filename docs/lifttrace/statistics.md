@@ -7,8 +7,8 @@ The Statistics tab is the training-history dashboard. Six views (Overview, Exerc
 Six pills at the top of the page. Tap one to switch view; the range selector below (`1W / 1M / 3M / 6M / 1Y / All`) applies globally so a range you pick on Volume carries over to Frequency and Records without a second click. Scroll position is remembered per metric, so hopping Volume > Frequency > Volume lands back where you were.
 
 - **Overview** the summary board: current streak, longest streak, total workouts, weekly-goal progress, muscle-recovery heatmap, and a body map colored by recent effective sets per muscle.
-- **Exercise Progress** pick an exercise; get a weight-per-session sparkline plus per-session sets, volume, and average RPE.
-- **Records** every exercise's current top weight and current top estimated 1RM.
+- **Exercise Progress** pick an exercise; get a weight-per-session sparkline plus per-session sets, volume, and average RPE. A [timed exercise](diary.md#timed-sets-planks-holds-carries) charts its longest hold per session instead.
+- **Records** every exercise's current top weight and current top estimated 1RM, or its longest hold for a timed exercise.
 - **Volume** weekly total volume bar chart across the range.
 - **Frequency** weekly workout count plus a weekday distribution.
 - **Body Weight** logged body-weight points over time (sourced from Diary body-stats). A card at the top of this view opens [Progress photos](progress.md), the visual counterpart to the weight line.
@@ -31,13 +31,15 @@ A record is set the moment a completed working set beats the previous best for t
 - **Top weight** the heaviest single set logged.
 - **Top estimated 1RM** using the Epley formula (`weight * (1 + reps / 30)`, or the raw weight for 1-rep sets).
 
-Warm-up sets never count. Sets with zero or negative weight never count. Incomplete sets (the completion checkbox never got checked) never count. Detection happens server-side on every stats query, so a PR you set in one session shows up on the Records view before you leave the page.
+For a [timed exercise](diary.md#timed-sets-planks-holds-carries) (plank, wall sit, carry) the record is the **longest hold**, with the heaviest load held as the tiebreak, and bodyweight holds count.
+
+Warm-up sets never count. Rep sets with zero or negative weight never count. Incomplete sets (the completion checkbox never got checked) never count. Detection happens server-side on every stats query, so a PR you set in one session shows up on the Records view before you leave the page.
 
 Inline in the Diary, a set row also gets a PR badge the moment its weight or estimated 1RM exceeds the prior best for that exercise (see [Diary and set logging](diary.md#anatomy-of-a-set)).
 
 ## Volume math
 
-Volume for a set is `weight * reps`, adjusted by the exercise's load type: bilateral sets count as one, unilateral sets (single-arm rows, split squats) sum both sides. Warm-ups are skipped. Full logic is in [`server/lib/volume.js`](https://github.com/TraceApps/lifttrace/blob/main/server/lib/volume.js).
+Volume for a set is `weight * reps`, adjusted by the exercise's load type: bilateral sets count as one, unilateral sets (single-arm rows, split squats) sum both sides. Warm-ups are skipped, and so are timed sets, where weight x reps has no meaning. Full logic is in [`server/lib/volume.js`](https://github.com/TraceApps/lifttrace/blob/main/server/lib/volume.js).
 
 The weekly volume view rolls up by ISO week (Monday-anchored). The muscle-group breakdown maps each exercise to its primary muscle tag and sums; secondary muscles are ignored to keep the totals from double-counting a bench press against both chest and triceps.
 
