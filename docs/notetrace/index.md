@@ -22,6 +22,7 @@ NoteTrace isn't trying to be a knowledge base. It's for the notes you'd put in K
 
 - Card grid with a pinned section, quick capture, and a layout that fills wide screens (1 to 6 columns).
 - Rich editor that saves Markdown, and checklists with drag to reorder. Switch any note between text and checklist without losing content.
+- Drawings: pen, marker, highlighter, eraser, and lasso on a paper or dark sheet, with stylus pressure, palm rejection, pinch zoom, and every stroke still editable later.
 - Images and files on any note: add, paste, drag in, or share them from another app. PDFs open page by page with a picture of the first page on the note, and any file can be downloaded or opened in another app.
 - Labels with colors and icons, nested labels, sixteen note colors, archive, and a trash that empties itself after 30 days.
 - Full-text search across titles, bodies, checklist items, voice note transcripts, text in images, and the text inside PDFs, one Ctrl+K away, with matches marked on the cards and recent searches kept.

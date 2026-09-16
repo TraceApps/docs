@@ -16,6 +16,10 @@ Long-press the NoteTrace icon for **Voice Note**, **New Note**, and **New List**
 
 The Android app records voice notes itself rather than through the web view, so recording keeps going with the screen off or another app open, for up to 3 hours. While it records, a notification shows the time with **Pause** or **Resume** and **Stop**; stop it there and the recording is saved to the note when you come back. A recording too long for your transcription service is split on the phone in local mode. See [Voice notes](voice-notes.md).
 
+## Drawings
+
+Drawings work with a finger or a stylus. With a stylus, fingers stop drawing (so a resting palm doesn't leave marks) and one finger moves the sheet; two fingers pan and zoom either way. The back gesture saves the drawing and closes it rather than leaving the note. See [Drawings](features.md#drawings).
+
 ## Files
 
 Tap a file on a note to open it in NoteTrace: PDFs page by page, text as text, videos in a player. **Open With** hands any file to another app on the phone (a PDF reader, Sheets, a zip tool); if nothing on the phone opens that kind of file, the share sheet appears so you can save it to Files or Drive.

@@ -113,6 +113,18 @@ The bar along the bottom holds reminder, Ask Trace, Send to CookTrace, share, ad
 
 Add images with the image button, by pasting an image, or by dragging image files onto the editor. They sit above the text or checklist: one image fills the width, more form a grid. Tap one to see it full screen, and swipe or use the arrow keys to move between them. Large photos are scaled down before upload (longest side 2400px). Images sync to every device and come along when a note is shared.
 
+## Drawings {#drawings}
+
+Sketch, handwrite, or whiteboard straight into a note, the way Google Keep does.
+
+- **Start one** with the brush on the **Take a note** bar or **Drawing** in a phone's **+** menu (a new note that opens on a blank sheet), or add one to any note with the brush in the editor's toolbar, **Drawing** in a phone's **Add** sheet, or `/drawing`.
+- **Tools**: **Pen**, **Marker**, and **Highlighter**, each with its own colour and three sizes; an **Eraser** that removes whole strokes it touches; and **Select**, a lasso that picks up strokes to move or **Delete**. A stylus draws thinner and thicker with pressure.
+- **The sheet**: **Paper** or **Dark**, plain or with **Dots**, **Squares**, or **Lines**. It grows downward as you draw near the bottom, and **Clear the Drawing** starts over.
+- **Getting around**: two fingers pan and zoom on a touch screen. With a stylus, fingers never draw, so your palm can rest on the screen, and one finger pans. With a mouse, the wheel scrolls, **Ctrl** or **Cmd** with the wheel zooms, and the middle button or **Space** and drag pans. The zoom button returns to the full width.
+- **Undo** and **Redo** cover every stroke, erase, move, and sheet change.
+
+**Done** (or the back arrow, or Android's back gesture) saves the drawing as a picture on the note, with a small brush on it. It shows on the card like any image, and tapping it in the editor opens it again with every stroke still editable. A drawing cleared of every stroke leaves the note, with Undo. With **Read Text in New Images** on, Trace reads handwriting in a drawing into search as well. Tools, colours, sizes, and the sheet you last used are remembered on each device.
+
 ## Files {#files}
 
 A note can carry any kind of file, the way Apple Notes and Evernote do: a PDF quote, a lease, a spreadsheet, a zip of photos, a video clip.

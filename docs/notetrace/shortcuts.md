@@ -24,6 +24,21 @@ Single-key shortcuts only work when you're not typing in a field. Turn them off 
 | `↑` / `↓` | In the List layout's two-pane view, open the previous / next note |
 | `?` | Show all shortcuts |
 
+## Drawing {#drawing}
+
+| Keys | Does |
+|---|---|
+| `p` / `m` / `h` | Pen / marker / highlighter |
+| `e` | Eraser |
+| `s` | Select (lasso) |
+| `Ctrl` + `Z` | Undo |
+| `Ctrl` + `Shift` + `Z` or `Ctrl` + `Y` | Redo |
+| `Delete` | Delete the selected strokes |
+| `Space` + drag | Pan |
+| `Ctrl` + wheel | Zoom |
+| `0` | Fit the sheet to the width |
+| `Esc` | Clear the selection, or save and close |
+
 ## Tasks {#tasks}
 
 | Keys | Does |
