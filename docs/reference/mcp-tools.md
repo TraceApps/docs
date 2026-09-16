@@ -30,11 +30,15 @@ Twelve tools across three phases.
 | `get_goals` | Macro / micro / water targets | none | `goals` object plus `water_goal_ml` |
 | `get_daily_totals` | Summed nutrition + water for a day | `date` | `totals` (calories, macros, micros), `water_ml`, `item_count` |
 | `list_diary_entries` | Raw item list from a diary day | `date` | `date`, `items[]`, `count` |
+| `get_daily_totals_range` | `get_daily_totals` for every logged day in a date range | `start`, `end` | `start`, `end`, `totals[]` (one `get_daily_totals` result per logged day), `count` |
+| `list_diary_entries_range` | Raw item lists for every logged day in a date range, at most 366 logged days per call | `start`, `end` | `start`, `end`, `entries[]` (`date`, `items[]`, `count`), `count` |
 | `search_foods` | Text search over the user's local catalog | `query*`, `limit` | Match array (id, name, brand, barcode, portion, unit, nutrition) |
-| `get_recent_foods` | Most-logged foods in the last 14 days | `limit` | Same shape as `search_foods` plus `last_logged_on` |
+| `get_recent_foods` | Most-logged foods in the last 14 days, or within `start`/`end` when given | `limit`, `start`, `end` | Same shape as `search_foods` plus `last_logged_on` |
 | `search_meals` | Search saved meals by name, or browse all when `query` is omitted | `query`, `limit`, `include_recipes` | Match array (id, name, is_recipe, servings, portion, unit, nutrition, favorite, usage_count, last_used_at). Recipes excluded by default. |
-| `get_recent_meals` | Most-recently-used saved meals, ordered by `last_used_at` | `limit`, `include_recipes` | Same shape as `search_meals` |
+| `get_recent_meals` | Most-recently-used saved meals, ordered by `last_used_at`; `start`/`end` filter by the date last used | `limit`, `include_recipes`, `start`, `end` | Same shape as `search_meals` |
 | `get_meal_details` | Full contents of one saved meal or recipe (items[] + meta) | `meal_id*` | Meal meta plus `item_count` and `items[]` (name, portion, unit, quantity, per-item nutrition, source food id when known) |
+
+**Date ranges.** `start` and `end` are `YYYY-MM-DD` and inclusive. Leave either out to leave that side open, for example only `start` for everything from that date on, including future-dated entries. With neither, the two range tools cover the last 90 days ending today (server time). A reversed range or an impossible date such as `2026-02-31` returns an error. For more than 366 logged days, split `list_diary_entries_range` into several calls or use `get_daily_totals_range`, which has no limit.
 
 ### Write tools (`mcp:write`)
 
