@@ -40,6 +40,7 @@ NoteTrace isn't trying to be a knowledge base. It's for the notes you'd put in K
 - Import from Google Keep (Takeout, photos included), Evernote, Memos, Blinko, and Markdown; export everything as Markdown with images.
 - Android app with share-sheet capture for text, links, photos, and audio, Quick Note and Notes home screen widgets, a New Note Quick Settings tile, home screen shortcuts, an optional fingerprint or face app lock, and full offline mode.
 - Layouts that follow the screen, including foldables: each screen keeps its own layout, and a half-open phone keeps notes off the crease.
+- Accessible: keyboard use throughout, named controls for screen readers, AA contrast in both themes, and zoom.
 - The shared Trace foundation: OIDC SSO, backups, in-app updates, Trace AI, API tokens, webhooks.
 
 ## Get started

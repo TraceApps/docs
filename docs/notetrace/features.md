@@ -227,6 +227,15 @@ The Android app works fully offline in local mode, or syncs with your server. Sh
 
 Link your CookTrace server in Settings and send a checklist's open items to your CookTrace shopping list in one tap. See [Send to CookTrace](cooktrace.md).
 
+## Accessibility {#accessibility}
+
+NoteTrace is checked against WCAG 2.1 AA with axe-core on its main screens, dialogs, and menus, in dark and light themes and at phone size.
+
+- **Keyboard**: everything opens and works from the keyboard. Dialogs, sheets, menus, and viewers take focus when they open, keep **Tab** inside them, close with **Esc** (only the top one), and hand focus back to where you were. Notes open with **Enter** or **Space**, and the [keyboard shortcuts](shortcuts.md) cover the rest.
+- **Screen readers**: buttons, fields, switches, lists, the note text, and every popup have names; pages have a main landmark and headings; the offline and sync status is announced.
+- **Reading**: secondary text meets 4.5:1 contrast in both themes, and the web app can be zoomed.
+- **Motion**: **Reduce Motion** in Settings, or the system's reduced-motion setting, turns animations off.
+
 ## Import and export {#import}
 
 ![Import and Export settings](../assets/img/notetrace/05-import-export.png)
