@@ -8,11 +8,11 @@ Off by default. Opt in with one env var + one API token.
 
 ## Available tools
 
-Twelve tools across three tiers. Setup for each tier below; full arg/return reference in the [MCP tool catalog](../reference/mcp-tools.md).
+Seventeen tools across three tiers. Setup for each tier below; full arg/return reference in the [MCP tool catalog](../reference/mcp-tools.md).
 
 ### Read (Phase 1)
 
-Five tools, read-only, always available when MCP is on: `get_goals`, `get_daily_totals`, `list_diary_entries`, `search_foods`, `get_recent_foods`.
+Ten tools, read-only, always available when MCP is on: `get_goals`, `get_daily_totals`, `get_daily_totals_range`, `list_diary_entries`, `list_diary_entries_range`, `search_foods`, `get_recent_foods`, `search_meals`, `get_recent_meals`, `get_meal_details`. The `_range` tools and the two recent tools accept `start`/`end` dates for questions like "what was my average protein last month?"
 
 ### Write (Phase 2)
 
