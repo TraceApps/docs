@@ -212,7 +212,7 @@ Share a note or checklist with other accounts on your NoteTrace server and choos
 
 ![NoteTrace on a phone](../assets/img/notetrace/06-phone.png)
 
-The Android app works fully offline in local mode, or syncs with your server. Share text, links, photos, or audio from any app into a new note (the installed web app accepts them too), start a voice note or a list from a home screen shortcut, record voice notes with the screen off, get reminders as notifications with **Done** and **Snooze** buttons, and optionally lock the app behind your fingerprint, face, or PIN. See [Android: share sheet, voice notes, and App Lock](android.md).
+The Android app works fully offline in local mode, or syncs with your server. Share text, links, photos, or audio from any app into a new note (the installed web app accepts them too), start a note, list, voice note, or drawing from a home screen widget, shortcut, or Quick Settings tile, see pinned and recent notes in a Notes widget, record voice notes with the screen off, get reminders as notifications with **Done** and **Snooze** buttons, and optionally lock the app behind your fingerprint, face, or PIN. See [Android: share sheet, voice notes, and App Lock](android.md).
 
 ## CookTrace {#cooktrace}
 

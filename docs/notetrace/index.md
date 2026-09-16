@@ -38,7 +38,7 @@ NoteTrace isn't trying to be a knowledge base. It's for the notes you'd put in K
 - Reminders, one-off or repeating (daily, weekly, monthly, yearly): exact alarms on the phone, notifications in the browser, and pushes through ntfy, Gotify, or Apprise.
 - Sharing with view or edit access for other accounts on your server.
 - Import from Google Keep (Takeout, photos included), Evernote, Memos, Blinko, and Markdown; export everything as Markdown with images.
-- Android app with share-sheet capture for text, links, photos, and audio, home screen shortcuts, an optional fingerprint or face app lock, and full offline mode.
+- Android app with share-sheet capture for text, links, photos, and audio, Quick Note and Notes home screen widgets, a New Note Quick Settings tile, home screen shortcuts, an optional fingerprint or face app lock, and full offline mode.
 - Layouts that follow the screen, including foldables: each screen keeps its own layout, and a half-open phone keeps notes off the crease.
 - The shared Trace foundation: OIDC SSO, backups, in-app updates, Trace AI, API tokens, webhooks.
 

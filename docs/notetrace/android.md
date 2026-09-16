@@ -10,7 +10,22 @@ The installed web app (PWA) accepts shared text, links, and files the same way o
 
 ## Home screen shortcuts
 
-Long-press the NoteTrace icon for **Voice Note**, **New Note**, and **New List**. Each opens the app straight into a new note; Voice Note starts recording. The installed web app offers the same shortcuts on Android.
+Long-press the NoteTrace icon for **Voice Note**, **New Note**, and **New List**. Each opens the app straight into a new note; Voice Note starts recording. The installed web app offers the same shortcuts on Android. For more ways in from the home screen, see [Widgets](#widgets) and the [Quick Settings tile](#tile).
+
+## Widgets {#widgets}
+
+Long-press an empty spot on your home screen, choose **Widgets**, and find NoteTrace. There are two:
+
+- **Quick Note** (4 by 1): a **Take a note** bar with buttons for a list, a voice note, and a drawing. Each opens the app straight into a new one, and the voice note starts recording.
+- **Notes** (3 by 3, resizable): your pinned notes, then the ones you edited last, up to 25. Each shows its title, a few lines of text or the open items of a list, and a dot in the note's colour. Tap one to open it, **+** for a new note, or the microphone for a voice note.
+
+The Notes widget updates whenever notes change in the app, after a sync, and when you leave the app. It's filled by the app, so a new widget says to open NoteTrace once. With **App Lock** on, it shows no notes at all, only a line saying App Lock is on. Signing out clears it.
+
+If you force stop NoteTrace in Android's settings, Android cancels the widget's buttons; remove the widget and add it again if tapping it stops doing anything.
+
+## Quick Settings tile {#tile}
+
+Swipe down twice, tap the pencil to edit your Quick Settings, and drag **New Note** into place. Tapping it opens a new note from anywhere, over any app; if the phone is locked, it asks you to unlock first.
 
 ## Voice notes
 
