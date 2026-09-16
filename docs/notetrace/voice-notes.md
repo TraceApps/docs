@@ -82,7 +82,7 @@ A long recording is the one you don't want to read back. **Summarize** on a voic
 - **One press is enough.** On a recording that hasn't been transcribed yet, Summarize transcribes it first and then summarizes it.
 - **The summary reads first.** It sits under the player, with the transcript folded behind **Show Transcript**, so the recording stays legible. **Add to Note** writes the summary into the note; the transcript is still one press away.
 - **Redo Summary** asks again, for example after changing provider or model.
-- Short recordings don't offer it, since a summary of a sentence is the sentence.
+- **Short recordings don't offer it**, since a summary of a sentence is the sentence. The button appears on recordings from about half a minute, and on any transcript long enough to be worth compressing. This is separate from the 10 minute rule below, which is only about summarizing without being asked.
 - The summary is saved on the recording, so it syncs to your other devices and stays out of the note's text until you put it there.
 
 With **Summarize Long Recordings** on (Settings, Trace; off by default), anything over 10 minutes is summarized as soon as it's transcribed, with no press at all.
