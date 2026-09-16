@@ -75,9 +75,21 @@ Transcription services limit how much audio one request can carry (25 MB for Ope
 
 When Trace is set by environment variables, the server transcribes and splits voice notes itself. See [Where the requests go](trace.md#privacy).
 
+## Summaries {#summaries}
+
+A long recording is the one you don't want to read back. **Summarize** on a voice note asks Trace for a handful of bullet points covering what was said: the facts, decisions, names, dates, and anything you said you would do.
+
+- **One press is enough.** On a recording that hasn't been transcribed yet, Summarize transcribes it first and then summarizes it.
+- **The summary reads first.** It sits under the player, with the transcript folded behind **Show Transcript**, so the recording stays legible. **Add to Note** writes the summary into the note; the transcript is still one press away.
+- **Redo Summary** asks again, for example after changing provider or model.
+- Short recordings don't offer it, since a summary of a sentence is the sentence.
+- The summary is saved on the recording, so it syncs to your other devices and stays out of the note's text until you put it there.
+
+With **Summarize Long Recordings** on (Settings, Trace; off by default), anything over 10 minutes is summarized as soon as it's transcribed, with no press at all.
+
 ## How it's stored {#storage}
 
-A voice note is an audio attachment on the note, with its length, a small waveform, its transcript, and the transcript's timestamps. See [Images and voice notes](notes.md#attachments).
+A voice note is an audio attachment on the note, with its length, a small waveform, its transcript, the transcript's timestamps, and Trace's summary when it has one. See [Images and voice notes](notes.md#attachments).
 
 ## Related
 

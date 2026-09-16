@@ -44,6 +44,7 @@ How notes behave, rather than how the app looks.
 Provider, key, and model for the Trace assistant. See [Setting up Trace](../trace/setup.md).
 
 - **Transcribe Voice Notes**: Trace writes out new voice notes (on by default). Needs OpenAI, Gemini, or an OpenAI-compatible Whisper server.
+- **Summarize Long Recordings**: a recording over 10 minutes also gets a short summary when it is transcribed (off by default). Shorter recordings have a **Summarize** button on them instead. See [Voice notes](voice-notes.md#summaries).
 - **Transcription Model**: overrides the default speech-to-text model name. Empty uses the default. With OpenAI, `whisper-1` gives transcripts with timestamps. See [Voice notes](voice-notes.md#transcripts).
 - **Read Text in New Images**: Trace reads the text in every image you add (off by default; sends each image to your provider).
 
