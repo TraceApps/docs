@@ -113,6 +113,18 @@ The bar along the bottom holds reminder, Ask Trace, Send to CookTrace, share, ad
 
 Add images with the image button, by pasting an image, or by dragging image files onto the editor. They sit above the text or checklist: one image fills the width, more form a grid. Tap one to see it full screen, and swipe or use the arrow keys to move between them. Large photos are scaled down before upload (longest side 2400px). Images sync to every device and come along when a note is shared.
 
+## Files {#files}
+
+A note can carry any kind of file, the way Apple Notes and Evernote do: a PDF quote, a lease, a spreadsheet, a zip of photos, a video clip.
+
+- **Add one** with the paperclip in the editor's toolbar (**Attach File** in a phone's **Add** sheet), by typing `/file`, or by dropping or pasting files onto the note. On Android and in the installed web app, sharing a file to NoteTrace from another app attaches it to a new note.
+- **Each file shows as a chip** with its name, what kind of file it is, and its size. A PDF's chip shows a picture of its first page.
+- **Tap a chip to open it.** PDFs open page by page, text files (`.txt`, Markdown, CSV, JSON) show as text, and videos play. Anything else says what it is and offers **Download** (in the Android app, **Open With** hands it to another app). The arrow keys and side buttons move between a note's files.
+- **Search reads inside them.** The words in a PDF or a text file are read when it's added, so searching for something in the document finds the note, with a line showing where it matched.
+- **Cards** show the first two files by name with a count of the rest, and the **Files** chip under search finds notes that have any.
+
+Remove a file with the ✕ on its chip; Undo puts it back. Files sync to your other devices, come along when a note is shared, and are included in backups. The largest file a server accepts is 100 MB unless the admin changes it (`UPLOAD_MAX_MB`).
+
 ## Links and the timeline {#links}
 
 Type `[[` in a text note to link to another note; NoteTrace suggests titles as you type. Tap a link to open that note, and see which notes link to the one you're reading under **Linked From**. Rename a note and your links follow. See [Links between notes](notes.md#links).
@@ -151,7 +163,7 @@ A voice note whose upload fails isn't lost: it's kept on the device, shows as **
 
 ## Search {#search}
 
-Tap the magnifier in the header (or press `/`) to search. The header turns into a search box that says what you're searching (Search Notes, Search Archive, or a label), and chips appear under it to narrow the list by type (Lists, Text, Images, Voice, Reminders, Shared, Links), by color, and by label. Pick more than one in a group to match any of them; picks in different groups must all match. **Clear Filters** removes them, and the ✕ or **Esc** closes search and clears both the text and the chips. Matching words are marked on the cards, and a note found by a word inside a voice note or an image shows that line with a microphone or image icon. Your recent searches appear under an empty search box, ready to run again. The search box searches titles, note bodies, checklist items, voice note transcripts, and text read from images together within the view you're in (Notes, Archive, Trash, or a label), and matches word beginnings as you type, so `jelly` finds "Jellyfin". Press **Ctrl+K** (**Cmd+K** on a Mac) from anywhere to jump to it.
+Tap the magnifier in the header (or press `/`) to search. The header turns into a search box that says what you're searching (Search Notes, Search Archive, or a label), and chips appear under it to narrow the list by type (Lists, Text, Images, Voice, Files, Reminders, Shared, Links), by color, and by label. Pick more than one in a group to match any of them; picks in different groups must all match. **Clear Filters** removes them, and the ✕ or **Esc** closes search and clears both the text and the chips. Matching words are marked on the cards, and a note found by a word inside a voice note, an image, or a file shows that line with a microphone, image, or file icon. Your recent searches appear under an empty search box, ready to run again. The search box searches titles, note bodies, checklist items, voice note transcripts, text read from images, and the text inside PDFs and text files together within the view you're in (Notes, Archive, Trash, or a label), and matches word beginnings as you type, so `jelly` finds "Jellyfin". Press **Ctrl+K** (**Cmd+K** on a Mac) from anywhere to jump to it.
 
 ## Version history {#history}
 

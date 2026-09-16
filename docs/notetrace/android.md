@@ -4,9 +4,9 @@ The NoteTrace Android app is the same app as the web version, plus a few things 
 
 ## Save from any app
 
-Share text, a link, or photos from any Android app (a browser, a chat, the gallery, a news reader) and pick **NoteTrace** in the share sheet. NoteTrace opens a new note with the shared content in it: text goes in the body, a shared page title becomes the note's title, photos are added as images (up to 20 at a time), and audio (a recording from a voice recorder app, say) becomes a [voice note](voice-notes.md). It saves on its own; close it or keep typing.
+Share text, a link, photos, or any file from any Android app (a browser, a chat, the gallery, a file manager, your email) and pick **NoteTrace** in the share sheet. NoteTrace opens a new note with the shared content in it: text goes in the body, a shared page title becomes the note's title, photos are added as images, audio (a recording from a voice recorder app, say) becomes a [voice note](voice-notes.md), and anything else, like a PDF or a document, is attached as a [file](features.md#files). Up to 20 at a time. It saves on its own; close it or keep typing.
 
-The installed web app (PWA) accepts shared text, links, photos, and audio the same way on platforms that support the Web Share Target API, such as Chrome on Android.
+The installed web app (PWA) accepts shared text, links, and files the same way on platforms that support the Web Share Target API, such as Chrome on Android.
 
 ## Home screen shortcuts
 
@@ -15,6 +15,10 @@ Long-press the NoteTrace icon for **Voice Note**, **New Note**, and **New List**
 ## Voice notes
 
 The Android app records voice notes itself rather than through the web view, so recording keeps going with the screen off or another app open, for up to 3 hours. While it records, a notification shows the time with **Pause** or **Resume** and **Stop**; stop it there and the recording is saved to the note when you come back. A recording too long for your transcription service is split on the phone in local mode. See [Voice notes](voice-notes.md).
+
+## Files
+
+Tap a file on a note to open it in NoteTrace: PDFs page by page, text as text, videos in a player. **Open With** hands any file to another app on the phone (a PDF reader, Sheets, a zip tool); if nothing on the phone opens that kind of file, the share sheet appears so you can save it to Files or Drive.
 
 ## Photos
 

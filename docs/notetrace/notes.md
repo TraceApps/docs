@@ -30,11 +30,13 @@ A note that other notes link to shows a **Linked From** section at the bottom of
 
 When you rename a note, links to it in your own notes update to the new title once you close the editor, so a half-typed title never touches your links. Links in notes that other people own and share with you aren't changed, and nothing is rewritten when another note already has the old or the new title, since those links could belong to it.
 
-## Images and voice notes {#attachments}
+## Images, voice notes, and files {#attachments}
 
 Images are stored per note in `note_attachments`, each with a stable id, like checklist items, so adding or removing an image on one device merges with changes elsewhere. The file itself is uploaded to the server's uploads folder first (scaled down in the browser when it's a large photo); a note links to files on its own server only. In Android local mode photos are saved on the phone and uploaded by the first sync after you connect. A note holds up to 50 images.
 
 Voice notes are audio attachments in the same table, with their length (`duration_ms`), a waveform of 64 bar heights (`waveform`), and, once transcribed, the transcript's timestamped lines (`segments`, seconds from the start). A transcript of a voice note, or the text [Trace read from an image](trace.md#image-text), is saved on that attachment as `extracted_text` and included in search. All of it syncs with the attachment. Audio a browser can't play (Google Keep's 3GP and AMR) is converted to M4A by the server's built-in ffmpeg on upload. Uploads are stored under a file extension the server picks from the file's type, and served with headers that stop a browser treating one as a page. See [Voice notes](voice-notes.md).
+
+Any other file (a PDF, a document, an archive, a video) is an attachment in the same table too, with the name it was added under (`name`, folders stripped), its size (`size_bytes`), and, for a PDF, a picture of its first page (`preview_url`, a JPEG uploaded alongside it). A PDF's text and a text file's contents are read on the device when the file is added and saved as `extracted_text`, so search finds them. The server keeps a document's own extension when it's a known, harmless kind (`.pdf`, `.docx`, `.zip`, and so on) and stores anything else, including HTML and SVG, as `.bin`. Only pictures, audio, and video are served to display in place; every other file is served as a download (`Content-Disposition: attachment`), and NoteTrace shows PDFs and text itself, from the file's bytes, with PDF.js (scripting off). A file's picture that's still on an Android phone in local mode waits for the next upload pass, and the file itself syncs without it. See [Files](features.md#files).
 
 ## Pin, archive, trash
 

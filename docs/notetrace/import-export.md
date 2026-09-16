@@ -26,6 +26,7 @@ What comes across:
 | Created and edited dates | Kept |
 | Trash | Left out, unless **Include notes from Keep's trash** is on |
 | Voice recordings | Voice notes on the note. Keep's 3GP/AMR files are converted to M4A by the server; in Android local mode, or on a server without audio support, the summary counts them as not added |
+| Other attachments | Files on the note, with a PDF's first page and text read for search |
 | Reminders, collaborators | Not in Takeout's note files, so not imported |
 
 Color mapping: red becomes ember, orange becomes amber, yellow becomes sand, green becomes moss, teal becomes sage, blue becomes sky, dark blue becomes tide, purple becomes plum, pink becomes rose, brown becomes bark, gray becomes slate, and default stays uncolored.
@@ -52,7 +53,7 @@ What comes across:
 | Created and updated dates | Kept |
 | Source URL (web clips) | Added to the end of the note |
 | Reminders | Kept when they're still ahead and not marked done |
-| PDFs, audio, other files | Not imported; the summary counts them |
+| PDFs, audio, other files | Files on the note, with a PDF's first page and text read for search |
 | Encrypted text | Replaced with "(encrypted text not imported)" |
 
 The whole `.enex` file is read on your device, so a very large export can be slow on a phone. Exporting one notebook at a time keeps each file manageable.
@@ -65,7 +66,7 @@ Memos has no export file, so NoteTrace reads your memos straight from your Memos
 2. In NoteTrace, under **Memos**, enter your Memos address (for example `https://memos.example.com`) and paste the token.
 3. Tap **Import**.
 
-Your memos' content, tags (as labels), images, pinned state, archived memos, and created and updated times come across. Only your own memos are imported, not other people's public memos, and comments aren't. The token is used once from your browser or phone and isn't saved; you can delete it in Memos afterward.
+Your memos' content, tags (as labels), images and other attached files, pinned state, archived memos, and created and updated times come across. Only your own memos are imported, not other people's public memos, and comments aren't. The token is used once from your browser or phone and isn't saved; you can delete it in Memos afterward.
 
 !!! note "https"
     If NoteTrace is on `https`, your browser only lets it reach a Memos server that's also on `https`. An address typed without `https://` tries `https` first, then `http`.
@@ -76,7 +77,7 @@ Current Blinko versions no longer create backups from their settings (Blinko has
 
 If you have a `.bko` backup from an older Blinko version, choose **Blinko Backup, Choose File** and pick it.
 
-Notes, images, tags (Blinko keeps them in the text, so they become labels), pinned, archived, and dates come across. A Blinko backup holds every account on that Blinko server; NoteTrace imports the account whose name matches your NoteTrace username, or the only account when there's just one. Blinko's backup doesn't mark which notes are in its trash, so those come across as regular notes.
+Notes, images and other attached files, tags (Blinko keeps them in the text, so they become labels), pinned, archived, and dates come across. A Blinko backup holds every account on that Blinko server; NoteTrace imports the account whose name matches your NoteTrace username, or the only account when there's just one. Blinko's backup doesn't mark which notes are in its trash, so those come across as regular notes.
 
 ## Markdown files {#markdown}
 
@@ -96,7 +97,7 @@ How each file becomes a note:
 
 ## Export as Markdown {#export}
 
-**Export as Markdown** builds a zip of every note you can see, including notes shared with you, with their images:
+**Export as Markdown** builds a zip of every note you can see, including notes shared with you, with their images, voice notes, and files:
 
 ```
 NoteTrace/
@@ -109,7 +110,7 @@ NoteTrace/
     5f0c...e1.jpg
 ```
 
-Trashed notes aren't exported. Each file has front matter with everything needed to import it back, and its images as embeds at the top, so any Markdown app shows them:
+Trashed notes aren't exported. Each file has front matter with everything needed to import it back, and its images as embeds at the top, so any Markdown app shows them. Voice notes and other files are links at the end, each under the name it was added with:
 
 ```markdown
 ---

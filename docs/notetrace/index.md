@@ -22,9 +22,9 @@ NoteTrace isn't trying to be a knowledge base. It's for the notes you'd put in K
 
 - Card grid with a pinned section, quick capture, and a layout that fills wide screens (1 to 6 columns).
 - Rich editor that saves Markdown, and checklists with drag to reorder. Switch any note between text and checklist without losing content.
-- Images on any note: add, paste, drag in, or share them from your phone's gallery.
+- Images and files on any note: add, paste, drag in, or share them from another app. PDFs open page by page with a picture of the first page on the note, and any file can be downloaded or opened in another app.
 - Labels with colors and icons, nested labels, sixteen note colors, archive, and a trash that empties itself after 30 days.
-- Full-text search across titles, bodies, checklist items, voice note transcripts, and text in images, one Ctrl+K away, with matches marked on the cards and recent searches kept.
+- Full-text search across titles, bodies, checklist items, voice note transcripts, text in images, and the text inside PDFs, one Ctrl+K away, with matches marked on the cards and recent searches kept.
 - `[[Note title]]` links with a Linked From section, and a timeline view grouped by day.
 - Voice notes: record with pause and a level meter (with the screen off in the Android app), a waveform to scrub, play speed, audio files and Keep recordings, and transcripts from Trace with tappable timestamps.
 - A Tasks view of dated checklist items and the lists you choose: edit, move, and delete in place, repeating tasks, a Completed section, drag to reorder, swipe on a phone, and a daily Tasks Due notification. And a List layout that opens notes beside the list.

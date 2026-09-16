@@ -8,7 +8,8 @@ NoteTrace reads the same shared variables as the other Trace apps (`PORT`, `BASE
 | --- | --- | --- |
 | `PORT` | `3004` | Port the server listens on inside the container. The sample compose file maps it to the same host port. |
 | `DB_PATH` | `/data/db/notetrace.db` | SQLite database file. Mount `/data/db` as a volume. |
-| `UPLOADS_PATH` | `/data/uploads` | Uploaded images and server-side backups. Mount `/data/uploads` as a volume. |
+| `UPLOADS_PATH` | `/data/uploads` | Uploaded images, voice notes, files, and server-side backups. Mount `/data/uploads` as a volume. |
+| `UPLOAD_MAX_MB` | `100` | The largest single upload (an image, a recording, or a file on a note), in MB. A bigger file is refused with a message saying so. Raise your reverse proxy's body limit to match (Nginx `client_max_body_size`). |
 | `BASE_URL` | (empty) | Subpath mount, for example `/notetrace`. |
 
 ## Integrations
