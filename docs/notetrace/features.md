@@ -169,7 +169,16 @@ Notes are drawn a screenful at a time and more appear as you scroll, so thousand
 
 ## Offline {#offline}
 
-The installed web app opens without a connection and shows the notes, images, and voice notes it has already seen; new writes wait until you're back. Signing out clears that offline copy from the device. The Android app has its own offline story: see [Local vs server-connected mode](../mobile/modes.md).
+The web app keeps working when the connection drops, in a browser tab or installed as an app. It opens without a connection and shows the notes, images, and voice notes it has already seen, and you can keep editing:
+
+- **What works offline**: writing and editing notes and lists (titles, text, items, ticking, reordering, due dates), new notes and lists, colours, pins, labels on a note, reminders, archive, trash and restore, and search over the notes this browser has seen. Tasks and the Tasks Due badge follow along.
+- **What waits for the connection**: pictures, files, drawings, and voice notes being added (a recorded voice note is kept and uploads later), version history, sharing, creating or renaming labels, imports, and Trace. These say they need a connection.
+
+A small bar at the top says **Offline** and how many edits are waiting. Edits are kept in the browser, so they survive closing the tab or a reload. When the connection is back they go to the server on their own (tap the bar to send them sooner) and it says **Edits synced**.
+
+They sync the same way the Android app does. If a note was also changed somewhere else while you were offline, the newer change wins and the other one is kept in [version history](#history), so nothing is lost. Checklist items merge one by one, so ticking an item offline and adding one on your phone both stick.
+
+Signing out clears this browser's offline copy. If edits are still waiting, NoteTrace tries to send them first and asks before signing out without them. The Android app has its own offline story: see [Local vs server-connected mode](../mobile/modes.md).
 
 A voice note whose upload fails isn't lost: it's kept on the device, shows as **waiting to upload** on its note, and goes up when the connection is back (or when you press **Retry**).
 

@@ -34,7 +34,7 @@ NoteTrace isn't trying to be a knowledge base. It's for the notes you'd put in K
 - Print a note or save it as a PDF, and start new notes from your own templates with the date filled in.
 - Version history: every editing session leaves a restore point, sync conflicts never throw an edit away, and Undo covers deleted items, removed attachments, and text/checklist switches.
 - Thousands of notes stay quick: they're drawn a screenful at a time as you scroll.
-- The installed web app opens offline with the notes and files it has seen.
+- The web app keeps working offline: it opens with the notes and files it has seen, keeps your edits, and syncs them when you're back, newer changes winning and nothing lost.
 - Reminders, one-off or repeating (daily, weekly, monthly, yearly): exact alarms on the phone, notifications in the browser, and pushes through ntfy, Gotify, or Apprise.
 - Sharing with view or edit access for other accounts on your server.
 - Import from Google Keep (Takeout, photos included), Evernote, Memos, Blinko, and Markdown; export everything as Markdown with images.
