@@ -69,6 +69,9 @@ Press `g`, then:
 | Keys | Does |
 |---|---|
 | `Ctrl` + `Enter` | Done (save and close) |
+| `Ctrl` + `B` / `I` / `U` | Bold / italic / underline |
+| `Ctrl` + `Shift` + `H` | Highlight |
+| `Tab` / `Shift` + `Tab` | Nest or un-nest a list item or checkbox |
 | `Ctrl` + `P` | Print or save the note as a PDF |
 | `Esc` | Close the note |
 | `[[` | Link to another note |
