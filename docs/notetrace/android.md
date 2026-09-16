@@ -24,6 +24,10 @@ Drawings work with a finger or a stylus. With a stylus, fingers stop drawing (so
 
 Tap a file on a note to open it in NoteTrace: PDFs page by page, text as text, videos in a player. **Open With** hands any file to another app on the phone (a PDF reader, Sheets, a zip tool); if nothing on the phone opens that kind of file, the share sheet appears so you can save it to Files or Drive.
 
+## Print and PDF
+
+**Print or Save as PDF** in a note's **⋮** menu opens Android's print screen with the note laid out as a page. Pick a printer, or **Save as PDF** to keep a PDF in Files or Drive. It works in local mode too, pictures included. See [Print or save as PDF](features.md#print).
+
 ## Photos
 
 Tap the image button in the editor's bottom bar to add photos from the gallery or the camera. Large photos are scaled down on the phone before they're saved, so they sync quickly. In local mode, photos stay on the phone; once you connect to a server, the next sync uploads them.

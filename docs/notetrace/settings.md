@@ -31,6 +31,7 @@ How notes behave, rather than how the app looks.
 - **Swipe to Archive** (touch screens): swipe a card sideways to archive it, with Undo. Per device.
 - **Keyboard Shortcuts** (devices with a keyboard): single-key shortcuts on or off, and **View** to see them all. Per device. See [Keyboard shortcuts](shortcuts.md).
 - **Link Previews**: show the first link's title, image, and site on cards. Synced to your account.
+- **Templates**: the notes you saved to start from, with Rename and Delete (with Undo). Synced to your account. See [Templates](features.md#templates).
 
 ### Regional (per-user)
 

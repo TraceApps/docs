@@ -177,9 +177,24 @@ A voice note whose upload fails isn't lost: it's kept on the device, shows as **
 
 Tap the magnifier in the header (or press `/`) to search. The header turns into a search box that says what you're searching (Search Notes, Search Archive, or a label), and chips appear under it to narrow the list by type (Lists, Text, Images, Voice, Files, Reminders, Shared, Links), by color, and by label. Pick more than one in a group to match any of them; picks in different groups must all match. **Clear Filters** removes them, and the ✕ or **Esc** closes search and clears both the text and the chips. Matching words are marked on the cards, and a note found by a word inside a voice note, an image, or a file shows that line with a microphone, image, or file icon. Your recent searches appear under an empty search box, ready to run again. The search box searches titles, note bodies, checklist items, voice note transcripts, text read from images, and the text inside PDFs and text files together within the view you're in (Notes, Archive, Trash, or a label), and matches word beginnings as you type, so `jelly` finds "Jellyfin". Press **Ctrl+K** (**Cmd+K** on a Mac) from anywhere to jump to it.
 
+## Print or save as PDF {#print}
+
+**Print or Save as PDF** in a note's **⋮** menu (or **Ctrl+P**, **Cmd+P** on a Mac, while the note is open) lays the note out as a clean page: the title, its labels and when it was last edited, the text with its headings, lists, and links, or the list with checked items struck through and due dates beside them, then the note's pictures and drawings, voice note summaries and transcripts, and the names of attached files. Your browser's or Android's print dialog opens with it, and choosing **Save as PDF** there makes a PDF. The page always prints on white, whatever the note's colour or your theme.
+
+## Templates {#templates}
+
+A template is a note to start from, like a meeting agenda, a packing list, or a weekly review.
+
+- **Save one**: open a note and choose **Save as Template** in its **⋮** menu, then name it. The template keeps the note's title, text or list items, and colour; pictures, files, labels, and reminders stay with the note, and checked items come back unchecked.
+- **Use one**: **New from Template** on the **Take a note** bar, or **Template** at the top of a phone's **+** menu. With one template it opens straight away; with more, pick from the list. The new note is an ordinary note, so changing it never changes the template.
+- **Fill-ins**: `{date}`, `{time}`, and `{weekday}` in a template's title, text, or items become today's date (in your Date Format), the time, and the day of the week, so "Standup {date}" starts as "Standup Sep 16, 2026".
+- **Manage them** in **Settings › Notes › Templates**: rename, or delete with Undo. To change what a template holds, make a note from it, edit that, and save it as a template again.
+
+Templates sync with your account setting, so every device has them, and they never show up among your notes, in search, Tasks, or reminders. You can keep up to 50.
+
 ## Version history {#history}
 
-Open **Version History** in the editor to see earlier versions of a note and restore one. A new restore point is saved at the start of each editing session (not every keystroke), before a restore or a text/checklist switch, and whenever sync resolves a conflict between two devices, so the losing edit is always recoverable. The last 50 versions of each note are kept.
+Open **Version History** from a note's **⋮** menu to see earlier versions of a note and restore one. A new restore point is saved at the start of each editing session (not every keystroke), before a restore or a text/checklist switch, and whenever sync resolves a conflict between two devices, so the losing edit is always recoverable. The last 50 versions of each note are kept.
 
 ## Reminders {#reminders}
 

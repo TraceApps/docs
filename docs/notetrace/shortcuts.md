@@ -69,6 +69,7 @@ Press `g`, then:
 | Keys | Does |
 |---|---|
 | `Ctrl` + `Enter` | Done (save and close) |
+| `Ctrl` + `P` | Print or save the note as a PDF |
 | `Esc` | Close the note |
 | `[[` | Link to another note |
 | `/` | Slash commands (below) |
