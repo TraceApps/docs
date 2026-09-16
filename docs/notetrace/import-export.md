@@ -95,6 +95,17 @@ How each file becomes a note:
 - Files inside a folder named `Archive` are archived.
 - Hidden folders and files such as `.obsidian`, `.trash`, and `__MACOSX` are skipped.
 
+## Apple Notes and OneNote {#apple-notes-onenote}
+
+NoteTrace doesn't read Apple Notes or OneNote directly: Apple keeps notes in a private database that changes between system versions, and OneNote's own export is a closed format. Both convert cleanly to Markdown, which NoteTrace imports with images and checkboxes intact.
+
+1. Install [Obsidian](https://obsidian.md) (free) and its **Importer** plugin (Settings, Community plugins).
+2. In the Importer, choose **Apple Notes** (on a Mac, from the notes on that Mac) or **Microsoft OneNote** (sign in to your Microsoft account), and import into an empty vault.
+3. Zip the vault folder, or pick its Markdown files.
+4. In NoteTrace, open **Settings > Import & Export**, choose **Markdown Files, Choose File**, and pick the zip or files.
+
+Each note keeps its text, headings, lists, and checkboxes, and images it embeds come in as images on the note (see [Markdown files](#markdown)). Other attachments, such as PDFs, stay as links in the text. If your Apple devices offer a Markdown export in Notes itself, those files import the same way.
+
 ## Export as Markdown {#export}
 
 **Export as Markdown** builds a zip of every note you can see, including notes shared with you, with their images, voice notes, and files:

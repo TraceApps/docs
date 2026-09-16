@@ -101,11 +101,15 @@ On a phone, swipe a card sideways to archive it (in Archive, a swipe brings it b
 
 The editor saves as you type; there is no Save button. A brand-new note is only created once it has something in it, and a note you empty out is removed instead of leaving a blank card behind.
 
-Text notes use a rich editor with bold, italic, strikethrough, headings, lists, quotes, and code. What's saved is plain Markdown, so the same note reads correctly in an export or any other Markdown app. Type **/** for slash commands (headings, lists, a checklist, an image, a reminder, and more), and press **?** in the notes list for keyboard shortcuts. See [Keyboard shortcuts and slash commands](shortcuts.md).
+Text notes use a rich editor with bold, italic, strikethrough, highlight, headings, lists, checkboxes, quotes, and code. What's saved is plain Markdown, so the same note reads correctly in an export or any other Markdown app. Type **/** for slash commands (headings, lists, a checkbox, an image, a reminder, and more), and press **?** in the notes list for keyboard shortcuts. See [Keyboard shortcuts and slash commands](shortcuts.md).
+
+**Checkboxes in a text note** let you tick things off in the middle of your writing, the way Apple Notes does: type `[ ]` and a space at the start of a line, use the checkbox button in the formatting bar, or type `/checkbox`. Enter adds the next one, and a ticked line fades and strikes through. They're saved as Markdown task items (`- [ ]` and `- [x]`) and show as boxes on the note's card. They belong to the note: for items with due dates, repeats, and a place in [Tasks](#tasks), use a checklist.
+
+**Highlight** marks text with a soft yellow, from the formatting bar, `/highlight`, or by typing `==text==`. It's saved as `==text==`.
 
 A note opens by growing out of its card, and shrinks back into it when you close it.
 
-Checklists have one row per item. Press Enter for the next item, drag the handle to reorder, and checked items collapse into a **checked items** group under the list. **Show Checkboxes** and **Hide Checkboxes** switch a note between text and checklist: each line becomes an item, and checked items come back as struck-through lines.
+Checklists have one row per item. Press Enter for the next item, drag the handle to reorder, and checked items collapse into a **checked items** group under the list. **Show Checkboxes** and **Hide Checkboxes** switch a note between text and checklist: each line becomes an item, and a checklist turned into text becomes checkboxes in the text, ticks and all, so switching back gives the same list.
 
 The bar along the bottom holds reminder, Ask Trace, Send to CookTrace, share, add image, record voice note, color, labels, text/checklist, archive, trash, and version history. Buttons only appear where they apply: Ask Trace on text notes once Trace is set up, Send to CookTrace on checklists once CookTrace is linked. On a phone the bar stays above the keyboard while you type and keeps a short row: **Add** (image, voice note, checkboxes), **Formatting** (swaps the bar to bold, headings, lists, and the rest), color, reminder, and **More Options** for labels, sharing, Trace, CookTrace, archive, version history, and trash.
 

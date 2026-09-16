@@ -80,7 +80,9 @@ In a text note, type `/` at the start of a line or after a space. A menu of comm
 
 | Command | Does |
 |---|---|
-| Checklist | Turns the note into a checklist |
+| Checkbox | Starts a checkbox in the text |
+| Turn into List | Turns the note into a checklist |
+| Highlight | Highlights the selection, or what you type next |
 | Large Heading, Heading, Small Heading | Makes the line a heading |
 | Bulleted List, Numbered List | Starts a list |
 | Quote | Makes a quote |
@@ -89,10 +91,12 @@ In a text note, type `/` at the start of a line or after a space. A menu of comm
 | Link to a Note | Starts a `[[link]]` |
 | Today's Date, Current Time | Inserts the date or time |
 | Image | Opens the image picker |
+| File | Attaches a file |
+| Drawing | Opens a new drawing |
 | Voice Note | Starts recording |
 | Reminder | Opens the reminder picker |
 
-Checklist, Image, Voice Note, and Reminder only show where they apply: not on a note shared with you as view-only, and Reminder only on your own notes.
+Turn into List, Image, File, Drawing, Voice Note, and Reminder only show where they apply: not on a note shared with you as view-only, and Reminder only on your own notes.
 
 ## Related
 
