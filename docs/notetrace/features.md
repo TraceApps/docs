@@ -24,9 +24,37 @@ With **Persistent Sidebar** on, the button beside the logo collapses the sidebar
 
 ## Tasks {#tasks}
 
-**Tasks** in the sidebar gathers your to-dos from every checklist into one list. An unchecked item counts as a task when it has a due date, or when its checklist is set to **Show in Tasks** (the circled check in the editor's toolbar, or ⋯ on a phone and in the List layout's note pane). Shopping and packing lists stay out unless you date an item, and the Tasks list itself is always shown. To list every checklist instead, turn on **Settings, Appearance, Show Every Checklist in Tasks**.
+**Tasks** in the sidebar gathers your to-dos from every checklist into one list. An unchecked item counts as a task when it has a due date, or when its checklist is set to **Show in Tasks** (the circled check in the editor's toolbar, or ⋯ on a phone and in the List layout's note pane). Shopping and packing lists stay out unless you date an item, and the Tasks list itself is always shown. To list every checklist instead, turn on **Settings, Notes, Show Every Checklist in Tasks**.
 
- Group it **By Due Date** (Overdue, Today, Tomorrow, This Week, Later, No Due Date) or **By List**. Check items off right there (with Undo), tap the calendar on a task to set or change its due date, or tap a list's name to open it. **Add a task** at the top puts new tasks in a checklist called Tasks, created the first time you use it, with an optional due date. The sidebar shows how many tasks are due today or overdue.
+Group it **By Due Date** (Overdue, Today, Tomorrow, This Week, Later, No Due Date) or **By List**. Under each task is the list it belongs to; tap the name to open that list. The sidebar shows how many tasks are due today or overdue.
+
+### Working with a task {#task-actions}
+
+- **Tick it** with the circle, or swipe it right on a phone. Undo puts it back.
+- **Edit it** by tapping its text. Enter saves, Escape leaves it as it was, and clearing the text deletes it.
+- **Change the date** with the calendar on the right.
+- **The ⋯ menu** (or a right-click) has Edit, Due Date and Repeat, Move to List, Open the List, and Delete. On a phone, swiping left deletes. Delete and Move both have Undo.
+- **Drag to reorder**: By List, hold the handle on the left of a task and drag. The order is the list's own, so the note shows it the same way.
+
+A task is still just an item on its checklist: every change here is a change to that note, and it syncs the same way.
+
+### Adding tasks {#adding-tasks}
+
+**Add a task** at the top puts new tasks in a checklist called Tasks, created the first time you use it. The list button beside it picks another list instead, and the calendar sets a due date and repeat as you add. By List, each list also has its own **Add a task** row at the bottom.
+
+Lists already in Tasks come first. Adding or moving an undated task to one of the **Other Lists** also shows that list in Tasks, so the task doesn't vanish from view; the message says so, and **Hide the List** turns it back off.
+
+### Repeating tasks {#repeat}
+
+A task can repeat **Daily**, on **Weekdays**, **Weekly**, **Monthly**, or **Yearly**: open its due date and pick one under Repeat (a task with no date yet starts today). Ticking a repeating task doesn't finish it. It moves to the next time it comes round and a message says when, with Undo. Ticked early, it moves on one step; ticked late, the missed ones are skipped rather than piling up as overdue. The 31st of a month lands on the last day of a shorter month. The date's icon has a small repeat arrow, in Tasks and in the note.
+
+### Completed {#completed}
+
+Tasks ticked in the last week wait in **Completed** at the bottom, folded away. Open it to see them, and tap a circle to untick one.
+
+### Keyboard {#tasks-keyboard}
+
+`j` and `k` move between tasks, `x` ticks, `e` edits, `d` opens the date and repeat, `m` moves to another list, `o` opens the list, `#` deletes, and `n` jumps to Add a task. See [Keyboard shortcuts](shortcuts.md#tasks).
 
 Any checklist item can have a due date: hover an item in the editor (or tap into it on a phone) and pick the calendar. Cards show the date next to the item, in red when it's overdue. Turn on **Tasks Due** in **Settings, Notifications** for one notification a day listing what's due today and overdue.
 

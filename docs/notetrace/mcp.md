@@ -11,7 +11,7 @@ Off by default. Opt in with an env var and an API token.
 Fourteen tools across three tiers. The full argument reference is in the [MCP tool catalog](../reference/mcp-tools.md#notetrace).
 
 - **Read** (`mcp:read` and `MCP_ENABLED=1`): `search_notes`, `get_note`, `list_labels`, `list_reminders`, `list_tasks`.
-- **Write** (`mcp:write` and `MCP_WRITE_ENABLED=1`): `create_note`, `update_note`, `append_to_note`, `add_checklist_items`, `check_checklist_item`, `set_due_date`, `set_reminder`, `set_labels`. A text rewrite from `update_note` keeps the previous text in version history. `set_reminder` reads a time without an offset in its `time_zone` argument, or else in the time zone of your most recent reminder set from a device, or else the server's.
+- **Write** (`mcp:write` and `MCP_WRITE_ENABLED=1`): `create_note`, `update_note`, `append_to_note`, `add_checklist_items`, `check_checklist_item`, `set_due_date`, `set_reminder`, `set_labels`. A text rewrite from `update_note` keeps the previous text in version history. `set_due_date` can also make an item repeat, and `check_checklist_item` on a repeating item moves it to its next date (returned as `next_due`) rather than finishing it. `set_reminder` reads a time without an offset in its `time_zone` argument, or else in the time zone of your most recent reminder set from a device, or else the server's.
 - **Destructive** (`mcp:destroy`, `MCP_DESTROY_ENABLED=1`, and `confirm: true` on every call): `move_to_trash`. Trashed notes can still be restored for 30 days.
 
 A tool from a tier that isn't enabled, or that the token's scopes don't cover, doesn't appear in `tools/list`.

@@ -24,6 +24,19 @@ Single-key shortcuts only work when you're not typing in a field. Turn them off 
 | `↑` / `↓` | In the List layout's two-pane view, open the previous / next note |
 | `?` | Show all shortcuts |
 
+## Tasks {#tasks}
+
+| Keys | Does |
+|---|---|
+| `n` or `c` | Add a task |
+| `j` / `k` | Next / previous task |
+| `x` or `Space` | Tick the task (a repeating one moves to its next date) |
+| `e` or `Enter` | Edit the task |
+| `d` | Due date and repeat |
+| `m` | Move to another list |
+| `o` | Open its list |
+| `#` or `Delete` | Delete the task (with Undo) |
+
 ## Go to
 
 Press `g`, then:
