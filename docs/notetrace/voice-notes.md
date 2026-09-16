@@ -19,7 +19,7 @@ A quick voice note opens straight into recording. When you stop, the transcript 
 
 ## Recording {#recording}
 
-The recorder shows the time and a live level meter, so you can see it's hearing you.
+The recorder shows the time and a live meter of what the microphone hears, so you can see it's picking you up. The bars are scaled by ear rather than by raw signal, so ordinary speech fills most of the meter, and they shade from one accent colour toward the other as your voice gets brighter. The Android app records through a background service that reports loudness only, so there the bars stay a single colour.
 
 - **Pause** and **Resume** as often as you like; the length leaves the pauses out.
 - **Stop and Save** attaches the recording; **Discard** throws it away.
