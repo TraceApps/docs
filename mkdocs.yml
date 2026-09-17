@@ -234,6 +234,7 @@ nav:
       - Migrate from Lose It / Cronometer / Waistline: nutritrace/migrate-other.md
       - Settings reference: nutritrace/settings.md
       - Env vars (app-specific): nutritrace/env-vars.md
+  - Support: support.md
   - Reference:
       - Troubleshooting: reference/troubleshooting.md
       - Trace tool catalog: reference/trace-tools.md
