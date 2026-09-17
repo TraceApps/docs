@@ -16,7 +16,7 @@ The page header keeps two buttons beside the title: **Search** (the magnifier) a
 
 ## The sidebar {#sidebar}
 
-The sidebar holds Notes, Reminders, **Shared with Me** (notes other people share with you), Archive, Trash, your labels, and Settings, with your name and the app version at the bottom. A highlight glides to the page you're on, and Reminders shows how many reminders are due today.
+The sidebar holds Notes, Tasks, Reminders, **Shared with Me** (notes other people share with you), Archive, Trash, your labels (with **Shopping List** at the top when CookTrace is on), and Settings, with your name and the app version at the bottom. A highlight glides to the page you're on, Tasks shows how many items are due, and Reminders shows how many reminders are due today.
 
 Navigation fits the screen by default (**Settings, Appearance, Navigation Style, Auto**): a phone gets the tab bar and the ☰ menu, an unfolded foldable or small tablet gets a strip of icons beside the page, and a larger screen gets the full sidebar. Pick **Both** to keep the tab bar on a wide screen too.
 

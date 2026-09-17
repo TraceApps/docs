@@ -16,7 +16,7 @@ Top of the page: avatar, name, and role. Opens the profile page for display name
 - **Accent Color**: preset accents, Lavender by default.
 - **Navigation Style**: **Auto** (the default) fits the screen: tab bar and ☰ menu on a phone, icons beside the page on an unfolded foldable or small tablet, the full sidebar on a larger screen. Or pick Bottom Tab Bar, Side Panel, or Both.
 - **Persistent Sidebar**: on wider screens the sidebar stays open (on by default; from 600px with Auto, 768px otherwise). With Auto, an unfolded foldable or small tablet remembers its own choice of icons or the full sidebar. With Navigation Style set to Both, the tab bar sits beside it. Collapse it to icons with the button beside the logo.
-- **Start Page**: open NoteTrace to Notes (the default), Reminders, Tasks, or Archive.
+- **Start Page**: open NoteTrace to Notes (the default), Tasks, Reminders, or Archive.
 - **Reduce Motion**, **Page Banners**, and **Animation Style**, shared with the other Trace apps.
 
 The pinned sidebar collapses to icons with the button beside the logo, and the ☰ at the top of the icons opens it again.
