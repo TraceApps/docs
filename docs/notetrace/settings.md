@@ -82,6 +82,10 @@ Google Keep, Evernote, Memos, Blinko, and Markdown import, and Markdown export. 
 
 Full backups, scheduled auto-backups (admin), restore from a zip, and the portable JSON export. On Android local mode, a local backup zip. See [Backups and restore](../self-hosting/backups.md).
 
+A full backup holds everything the server keeps: accounts and their settings, notes with their checklist items, labels, attachments, version history and sharing, Trace chats, OIDC providers and links, pending invitations, API tokens, webhooks, and the uploads folder (images, voice notes, drawings, and files). Left out on purpose: sign-ins in progress, password reset tokens, the notification log, and the link preview cache, all of which are short-lived or refill themselves.
+
+The Android local backup (local mode) holds the same note data from the device: notes, checklist items, labels, attachments, version history, settings, and Trace chats, plus the files themselves. Sync bookkeeping stays on the device.
+
 ### Updates
 
 Stable or Dev channel and the in-app updater. See [Release channels](../reference/release-channels.md).
