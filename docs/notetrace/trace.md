@@ -34,7 +34,7 @@ The full tool list is in the [Trace tool catalog](../reference/trace-tools.md#no
 
 ## Voice notes {#voice}
 
-With **Transcribe Voice Notes** on (Settings, Trace; on by default), Trace writes out each new voice note. The transcript shows under the recording with timestamps you can tap to jump to, is included in search, and can be added to the note with **Add to Note**: as a paragraph on a text note, or as items on a checklist. A voice note that wasn't transcribed has a **Transcribe** button. A quick voice note (the microphone on Take a note) also gets its text from the transcript and a title suggested by Trace.
+With **Transcribe Voice Notes** on (Settings, Trace; on by default), Trace writes out each new voice note. The transcript shows under the recording with timestamps you can tap to jump to, is included in search, and can be added to the note with **Add to Note**: as a paragraph on a text note, or as items on a checklist. A voice note that wasn't transcribed has a **Transcribe** button. A quick voice note (the microphone on Capture a thought) also gets its text from the transcript and a title suggested by Trace.
 
 Transcription needs a provider that accepts audio:
 

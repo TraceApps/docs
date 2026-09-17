@@ -10,9 +10,9 @@ Notes open to a card grid. Pinned notes sit in their own section at the top; eve
 
 Each card shows its images across the top, a preview of the first link in the note (the page's title, image, and site, fetched by your server), the title in a band across the card (set in Newsreader, tinted with the note's color), a preview of the body or the first open checklist items, the reminder chip, labels, and a sharing chip when the note is shared. On a desktop, hovering a card shows quick actions (remind, color, archive, trash). On a phone, long-press a card for those plus pin and labels. Tick a checklist item right on the card without opening it.
 
-Type in **Take a note** to start a text note, tap the checkbox icon to start a checklist, the microphone to start a voice note, or the image icon to start a note from photos. On a phone, upright or on its side, Take a note gives way to the round **+** button: tap it for **Text Note**, **List**, **Voice Note**, or **Image**, or hold it to start a voice note straight away. Long-press the app's icon on your home screen for **Voice Note**, **New Note**, and **New List**.
+Type in **Capture a thought** to start a text note, tap the checkbox icon to start a checklist, the microphone to start a voice note, or the image icon to start a note from photos. On a phone, upright or on its side, Capture a thought gives way to the round **+** button: tap it for **Text Note**, **List**, **Voice Note**, or **Image**, or hold it to start a voice note straight away. Long-press the app's icon on your home screen for **Voice Note**, **New Note**, and **New List**.
 
-The page header keeps two buttons beside the title: **Search** (the magnifier) and **View Options**. Search and Take a note never share the screen: opening search swaps the header for a search box and tucks Take a note away until you close it.
+The page header keeps two buttons beside the title: **Search** (the magnifier) and **View Options**. Search and Capture a thought never share the screen: opening search swaps the header for a search box and tucks Capture a thought away until you close it.
 
 ## The sidebar {#sidebar}
 
@@ -123,7 +123,7 @@ Add images with the image button, by pasting an image, or by dragging image file
 
 Sketch, handwrite, or whiteboard straight into a note, the way Google Keep does.
 
-- **Start one** with the brush on the **Take a note** bar or **Drawing** in a phone's **+** menu (a new note that opens on a blank sheet), or add one to any note with the brush in the editor's toolbar, **Drawing** in a phone's **Add** sheet, or `/drawing`.
+- **Start one** with the brush on the **Capture a thought** bar or **Drawing** in a phone's **+** menu (a new note that opens on a blank sheet), or add one to any note with the brush in the editor's toolbar, **Drawing** in a phone's **Add** sheet, or `/drawing`.
 - **Tools**: **Pen**, **Marker**, and **Highlighter**, each with its own colour and three sizes; an **Eraser** that removes whole strokes it touches; and **Select**, a lasso that picks up strokes to move or **Delete**. A stylus draws thinner and thicker with pressure.
 - **The sheet**: **Paper** or **Dark**, plain or with **Dots**, **Squares**, or **Lines**. It grows downward as you draw near the bottom, and **Clear the Drawing** starts over.
 - **Getting around**: two fingers pan and zoom on a touch screen. With a stylus, fingers never draw, so your palm can rest on the screen, and one finger pans. With a mouse, the wheel scrolls, **Ctrl** or **Cmd** with the wheel zooms, and the middle button or **Space** and drag pans. The zoom button returns to the full width.
@@ -153,7 +153,7 @@ Type `[[` in a text note to link to another note; NoteTrace suggests titles as y
 
 ![A voice note with its waveform and a timestamped transcript](../assets/img/notetrace/voice-note.png)
 
-Start a voice note from the microphone on Take a note (or **+**, then **Voice Note**, on a phone), or add one to any note from the editor. Pause and resume while you record; the Android app keeps recording with the screen off, for up to 3 hours. Drag along the waveform to find a spot, change the play speed, and pick up where you left off. Audio files, recordings shared from other apps, and Google Keep's voice recordings become voice notes too. Trace transcribes each one so you can read it, search for it, and tap a line of the transcript to hear that part. See [Voice notes](voice-notes.md).
+Start a voice note from the microphone on Capture a thought (or **+**, then **Voice Note**, on a phone), or add one to any note from the editor. Pause and resume while you record; the Android app keeps recording with the screen off, for up to 3 hours. Drag along the waveform to find a spot, change the play speed, and pick up where you left off. Audio files, recordings shared from other apps, and Google Keep's voice recordings become voice notes too. Trace transcribes each one so you can read it, search for it, and tap a line of the transcript to hear that part. See [Voice notes](voice-notes.md).
 
  Open an image full screen and tap **Read Text** to pull the text out of a receipt, whiteboard, or screenshot, and search finds the note by it. See [Trace in NoteTrace](trace.md#voice).
 
@@ -201,7 +201,7 @@ Tap the magnifier in the header (or press `/`) to search. The header turns into 
 A template is a note to start from, like a meeting agenda, a packing list, or a weekly review.
 
 - **Save one**: open a note and choose **Save as Template** in its **⋮** menu, then name it. The template keeps the note's title, text or list items, and colour; pictures, files, labels, and reminders stay with the note, and checked items come back unchecked.
-- **Use one**: **New from Template** on the **Take a note** bar, or **Template** at the top of a phone's **+** menu. With one template it opens straight away; with more, pick from the list. The new note is an ordinary note, so changing it never changes the template.
+- **Use one**: **New from Template** on the **Capture a thought** bar, or **Template** at the top of a phone's **+** menu. With one template it opens straight away; with more, pick from the list. The new note is an ordinary note, so changing it never changes the template.
 - **Fill-ins**: `{date}`, `{time}`, and `{weekday}` in a template's title, text, or items become today's date (in your Date Format), the time, and the day of the week, so "Standup {date}" starts as "Standup Sep 16, 2026".
 - **Manage them** in **Settings › Notes › Templates**: rename, or delete with Undo. To change what a template holds, make a note from it, edit that, and save it as a template again.
 

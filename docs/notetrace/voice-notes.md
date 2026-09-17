@@ -8,7 +8,7 @@ A voice note is a recording attached to a note. Record one in the app, or bring 
 
 There's a quick way from wherever you are:
 
-- **Take a note**: the microphone button on the bar starts a new voice note.
+- **Capture a thought**: the microphone button on the bar starts a new voice note.
 - **Phone**: tap the round **+** button and pick **Voice Note**, or hold **+** to start recording straight away.
 - **List layout**: the arrow next to **New Note** offers **New Voice Note**.
 - **Keyboard**: press `v` in the notes list. See [Keyboard shortcuts](shortcuts.md).

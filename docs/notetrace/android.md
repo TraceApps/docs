@@ -16,7 +16,7 @@ Long-press the NoteTrace icon for **Voice Note**, **New Note**, and **New List**
 
 Long-press an empty spot on your home screen, choose **Widgets**, and find NoteTrace. There are two:
 
-- **Quick Note** (4 by 1): a **Take a note** bar with buttons for a list, a voice note, and a drawing. Each opens the app straight into a new one, and the voice note starts recording.
+- **Quick Note** (4 by 1): a **Capture a thought** bar with buttons for a list, a voice note, and a drawing. Each opens the app straight into a new one, and the voice note starts recording.
 - **Notes** (3 by 3, resizable): your pinned notes, then the ones you edited last, up to 25. Each shows its title, a few lines of text or the open items of a list, and a dot in the note's colour. Tap one to open it, **+** for a new note, or the microphone for a voice note.
 
 The Notes widget updates whenever notes change in the app, after a sync, and when you leave the app. It's filled by the app, so a new widget says to open NoteTrace once. With **App Lock** on, it shows no notes at all, only a line saying App Lock is on. Signing out clears it.
