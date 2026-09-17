@@ -4,6 +4,7 @@ Each app maintains its own `CHANGELOG.md` in-tree rather than duplicating them h
 
 - **CookTrace:** [`TraceApps/cooktrace/CHANGELOG.md`](https://github.com/TraceApps/cooktrace/blob/main/CHANGELOG.md)
 - **LiftTrace:** [`TraceApps/lifttrace/CHANGELOG.md`](https://github.com/TraceApps/lifttrace/blob/main/CHANGELOG.md)
+- **NoteTrace:** [`TraceApps/notetrace/CHANGELOG.md`](https://github.com/TraceApps/notetrace/blob/main/CHANGELOG.md)
 - **NutriTrace:** [`TraceApps/nutritrace/CHANGELOG.md`](https://github.com/TraceApps/nutritrace/blob/main/CHANGELOG.md)
 
 ## Release cadence
