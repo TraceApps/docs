@@ -48,11 +48,17 @@ Any other file (a PDF, a document, an archive, a video) is an attachment in the 
 
 ## Labels
 
-Labels belong to the account that made them, have an optional color and icon, and can be reordered in **Edit Labels**. Tap the dot beside a label there to pick its color and one of 48 icons; the icon replaces the dot in the sidebar, the icon rail, and the label picker, and syncs with the label. Label names are unique per account, ignoring case. Deleting a label removes it from its notes but doesn't delete the notes.
+Labels belong to the account that made them and have an optional color and icon. Tap the dot beside a label there to pick its color and one of 48 icons; the icon replaces the dot in the sidebar, the icon rail, and the label picker, and syncs with the label. Label names are unique per account, ignoring case. Deleting a label removes it from its notes but doesn't delete the notes.
 
 On a [shared note](sharing.md), labels are personal: each person sees only the labels they added.
 
 A slash in a name nests a label: `Home/Garage` and `Home/Kitchen` show under `Home` in the sidebar and in the label picker, each group folds, and opening `Home` shows notes from `Home` and every label under it. Nesting is only in the name, so it survives export, import, and sync unchanged.
+
+**Settings, Notes, Label Order** sets how labels are listed in the sidebar, the icon rail, the label picker, and search filters, on every device:
+
+- **A to Z** (the default): new labels fall into place.
+- **Most Used:** the labels with the most notes first. A parent counts the notes of the labels nested under it.
+- **Custom:** your own order. Drag the handles in **Edit Labels** to set it. Nested labels always stay with their parent, so dragging a parent moves its group.
 
 ## Order and density {#order}
 

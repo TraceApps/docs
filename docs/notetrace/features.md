@@ -163,7 +163,7 @@ Start a voice note from the microphone on Take a note (or **+**, then **Voice No
 
 ## Labels, colors, archive, trash {#organize}
 
-Labels live in the sidebar with their note counts. Name a label with a slash, like `Home/Garage`, to nest it under `Home`; the parent can be a label itself or just a group, a parent's view includes its nested labels' notes, and renaming a parent renames everything under it. Pick one to see only its notes, or use **Edit Labels** to rename, recolor, reorder, or delete them. Notes can carry several labels.
+Labels live in the sidebar with their note counts. Name a label with a slash, like `Home/Garage`, to nest it under `Home`; the parent can be a label itself or just a group, a parent's view includes its nested labels' notes, and renaming a parent renames everything under it. Pick one to see only its notes, or use **Edit Labels** to rename, recolor, or delete them. Labels list A to Z, by most used, or in your own dragged order (Settings, Notes, Label Order). Notes can carry several labels.
 
 Sixteen note colors tint the card and editor, each with a matching light-theme version. Labels use the same colors for their dot or icon.
 
