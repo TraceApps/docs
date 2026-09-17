@@ -41,6 +41,8 @@ Running and building these apps costs real money. In order of what the fund cove
 3. **The public demo instance,** so people can try the apps before installing anything.
 4. **AI credits for testing Trace** across Claude, OpenAI, and Gemini, since each provider has to be tested against real models.
 
+Also coming: the Google Play Developer account, $25 one time, so the Android apps can be listed on Play rather than only as APKs on GitHub.
+
 Nothing here funds a salary. When something is bought, it's listed below.
 
 ## Bought so far
