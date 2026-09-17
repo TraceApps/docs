@@ -1,6 +1,6 @@
 # CookTrace shopping list
 
-If you also run [CookTrace](../cooktrace/index.md), NoteTrace works with your CookTrace [shopping list](../cooktrace/shopping.md): see it in a **Shopping** page, grouped by aisle, check things off as you shop, and send a NoteTrace checklist's open items to it. CookTrace stays the one shopping list; NoteTrace shows it live and adds to it, it doesn't keep a second copy.
+If you also run [CookTrace](../cooktrace/index.md), NoteTrace works with your CookTrace [shopping list](../cooktrace/shopping.md): see it as **Shopping List** in the menu, grouped by aisle, check things off as you shop, and send a NoteTrace checklist's open items to it. CookTrace stays the one shopping list; NoteTrace shows it live and adds to it, it doesn't keep a second copy.
 
 ## Set it up
 
@@ -25,9 +25,9 @@ services:
 
 Cloud metadata addresses stay blocked either way.
 
-## The Shopping page
+## The Shopping List
 
-Once CookTrace is linked and on, **Shopping** appears in the menu under Tasks.
+Once CookTrace is linked and on, **Shopping List** appears in the menu at the top of Labels, with the number of items left to buy.
 
 - Items are grouped by aisle in CookTrace's order, with items that have no aisle under **Other**. Each shows its amount and, when it came from a recipe, the recipe's name.
 - Tap the circle to check an item off. It moves to **checked**, a collapsed group at the bottom, and is checked off in CookTrace too. Tap it there to put it back.
