@@ -44,7 +44,9 @@ The list is per-user. There's no built-in "share the shopping list with my flatm
 
 ## From NoteTrace
 
-If you keep lists in [NoteTrace](../notetrace/index.md), a checklist there can send its open items straight to this shopping list. It uses CookTrace's MCP endpoint, so it needs `MCP_ENABLED=1` and `MCP_WRITE_ENABLED=1` here and an `mcp:write` token. See [Send to CookTrace](../notetrace/cooktrace.md).
+If you keep lists in [NoteTrace](../notetrace/index.md), a checklist there can send its open items straight to this shopping list, and NoteTrace can show this list, grouped by aisle, and check items off. Items it sends are title-cased, take the aisle of a pantry item with the same name, and aren't added twice when they're already on the list.
+
+It needs no server setting here. In CookTrace **Settings, API Tokens**, create a token with just the **shopping** scope (it reaches nothing but your shopping list) and paste it into NoteTrace. See [Send to CookTrace](../notetrace/cooktrace.md).
 
 ## Related
 
