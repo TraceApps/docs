@@ -30,7 +30,7 @@ NoteTrace isn't trying to be a knowledge base. It's for the notes you'd put in K
 - Voice notes: record with pause and a level meter (with the screen off in the Android app), a waveform to scrub, play speed, audio files and Keep recordings, and transcripts from Trace with tappable timestamps.
 - A Tasks view of dated checklist items and the lists you choose: edit, move, and delete in place, repeating tasks, a Completed section, drag to reorder, swipe on a phone, and a daily Tasks Due notification. And a List layout that opens notes beside the list.
 - Trace in the editor (Tidy Up, Summarize, Make a Checklist) and a Trace chat that can find and change notes; the same note tools for external AI agents over [MCP](mcp.md).
-- Send a checklist to your [CookTrace](cooktrace.md) shopping list.
+- Your [CookTrace](cooktrace.md) shopping list in NoteTrace, grouped by aisle and usable offline, and checklists sent to it in one tap.
 - Print a note or save it as a PDF, and start new notes from your own templates with the date filled in.
 - Version history: every editing session leaves a restore point, sync conflicts never throw an edit away, and Undo covers deleted items, removed attachments, and text/checklist switches.
 - Thousands of notes stay quick: they're drawn a screenful at a time as you scroll.

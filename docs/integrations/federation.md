@@ -8,7 +8,7 @@ This page is the high-level story. Each flow has its own configuration page link
 
 - **CookTrace pulls foods from NutriTrace.** When you build a recipe in CookTrace, ingredient rows can auto-populate nutrition from your NutriTrace foods library (barcode match preferred, name match as fallback). No more re-typing calories for the same tin of chickpeas you already logged in NT last week.
 - **NutriTrace pulls recipes from CookTrace.** On the NT Foods search, Recipes tab, a **CookTrace** source chip appears next to Local and From Others once you have configured the connection. Pick a recipe, it opens in NT's Recipe editor with per-ingredient snapshots and rollup totals, ready to save into your NT recipes catalog and log from the diary. Mirrors the Mealie source chip on the Foods tab. See [Pull a CookTrace recipe into NutriTrace](../cooktrace/nt-federation.md#pull-a-cooktrace-recipe-into-nutritrace).
-- **NoteTrace sends checklist items to CookTrace.** From a NoteTrace checklist, **Send to CookTrace** adds the unchecked items to your CookTrace shopping list. This flow uses CookTrace's MCP endpoint (`add_shopping_item`) with an `mcp:write` token rather than the `/api/v1` federation API, so CookTrace needs `MCP_ENABLED=1` and `MCP_WRITE_ENABLED=1`. See [Send to CookTrace](../notetrace/cooktrace.md).
+- **NoteTrace shows and adds to the CookTrace shopping list.** NoteTrace's **Shopping** page shows your CookTrace list grouped by aisle and checks items off there, and **Send to CookTrace** adds a checklist's unchecked items to it. Both use CookTrace's `/api/v1/shopping` with a `shopping` token; CookTrace needs no server setting. See [CookTrace shopping list](../notetrace/cooktrace.md).
 - **LiftTrace pushes workouts to NutriTrace.** When you finish a lift session in LT, it posts a workout summary (name, duration, kcal burned) to NT. That daily kcal-out then feeds NT's Dynamic and Adaptive calorie-goal modes, so your daily target reflects the fact that you actually lifted this morning.
 
 Every flow is opt-in, per-user, and configured from the app that acts as the client (the one initiating the request).
@@ -25,7 +25,7 @@ Scopes today (across both apps):
 - `read:recipes` (CT). Read a user's recipes catalog. NutriTrace needs this to pull CT recipes into its Foods search.
 - `write:workouts` (NT). Log workouts into a user's wellness history. LiftTrace needs this.
 - `write:activity`, `write:body-measurements` (NT). External trackers and headless integrations.
-- `mcp:write` (CT). Used by NoteTrace's Send to CookTrace, which adds shopping items through CookTrace's MCP endpoint.
+- `shopping` (CT). List, add to, check off, and clear a user's shopping list. NoteTrace needs this for its Shopping page and Send to CookTrace.
 
 Tokens are per-user (not per-instance): the token identifies which account the calls act on. If two family members share one instance and both want federation, they each mint their own token.
 

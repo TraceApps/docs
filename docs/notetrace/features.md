@@ -231,7 +231,7 @@ The Android app works fully offline in local mode, or syncs with your server. Sh
 
 ## CookTrace {#cooktrace}
 
-Link your CookTrace server in Settings and send a checklist's open items to your CookTrace shopping list in one tap. See [Send to CookTrace](cooktrace.md).
+Link your CookTrace server in Settings to see its shopping list in a **Shopping** page, grouped by aisle, and check things off as you shop (it works offline too), or send a checklist's open items to it in one tap. See [CookTrace shopping list](cooktrace.md).
 
 ## Accessibility {#accessibility}
 

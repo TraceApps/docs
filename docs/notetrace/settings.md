@@ -53,7 +53,7 @@ See [Trace in NoteTrace](trace.md).
 
 ### CookTrace (per-user)
 
-Link a CookTrace server with its address and an API token (`mcp:write`), or unlink it. Needs a NoteTrace server, so it's unavailable in Android local mode. See [Send to CookTrace](cooktrace.md).
+Link a CookTrace server with its address and an API token with the **shopping** scope, or unlink it. Linked, **Shopping** appears in the menu. Needs a NoteTrace server, so it's unavailable in Android local mode. See [CookTrace shopping list](cooktrace.md).
 
 ## App
 
