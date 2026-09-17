@@ -14,13 +14,14 @@ None of the Trace apps run properly on an iPhone. The web app works in Safari, b
 | iPhone 15, used | Testing on a real device, not just the simulator. Used to keep the total down, and recent enough to keep getting iOS updates for years. | $500 |
 | Apple Developer Program | Required for TestFlight and the App Store. Renews yearly. | $99 |
 | Google Play developer account | So the Android apps can be listed on Play, not only as APKs on GitHub. One time. | $25 |
-| | **Total** | **$1,224** |
+| Sales tax and payment fees | Tax on the hardware, plus roughly 3% taken by the payment processor. | $105 |
+| | **Total** | **$1,329** |
 
-The Ko-fi goal is the round $1,200. The difference is covered either way.
+The goal is set at the round $1,300. The rest is covered either way.
 
-**Milestone 1, $700: the Mac and the developer accounts.** Building and testing can start in the simulator, the PWA can finally be checked on macOS Safari, and the Android apps can go on Google Play.
+**Milestone 1, $750: the Mac and the developer accounts.** Building and testing can start in the simulator, the PWA can finally be checked on macOS Safari, and the Android apps can go on Google Play.
 
-**Milestone 2, $1,200: the iPhone.** Real-device testing: layout, gestures, notifications, storage limits, and how the installed web app behaves when iOS evicts it.
+**Milestone 2, $1,300: the iPhone.** Real-device testing: layout, gestures, notifications, storage limits, and how the installed web app behaves when iOS evicts it.
 
 **Anything past the goal** goes to the yearly Apple fee and the monthly costs of development: the demo instance, the domain, and AI credits for testing Trace against every provider.
 
