@@ -1,6 +1,6 @@
 # Scheduled auto-backups
 
-The three apps have a built-in backup scheduler that runs inside the container: no host cron, no external timer, no sidecar. Turn it on with three env vars or from the admin UI, and the container writes a fresh ZIP on the interval you pick.
+The Trace apps have a built-in backup scheduler that runs inside the container: no host cron, no external timer, no sidecar. Turn it on with three env vars or from the admin UI, and the container writes a fresh ZIP on the interval you pick.
 
 For the anatomy of the ZIP itself and the manual button, see [Backups and restore](backups.md). This page covers the scheduling knobs and the env-lock behaviour.
 

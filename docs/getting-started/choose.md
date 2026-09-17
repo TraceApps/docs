@@ -1,6 +1,6 @@
 # Choose your app
 
-TraceApps is three self-hosted trackers built by the same author, sharing the same design language, the same "Trace" assistant, and the same install story. Pick whichever fits what you want to track. Nothing stops you running all three side by side on one box; they each get their own container, their own database, and their own port.
+TraceApps is four self-hosted apps built by the same author, sharing the same design language, the same "Trace" assistant, and the same install story. Pick whichever fits what you want to track. Nothing stops you running all of them side by side on one box; they each get their own container, their own database, and their own port.
 
 If you already know which app you want, jump straight into [Install with Docker Compose](compose.md).
 
@@ -20,6 +20,14 @@ Best fit if you're done wrestling with Hevy or Strong and want your set history 
 
 Start here: [LiftTrace overview](../lifttrace/index.md).
 
+## NoteTrace
+
+For everyday notes. A self-hosted Google Keep: notes and checklists in a card grid, labels and colors, archive and trash, full-text search, and version history. Reminders repeat daily, weekly, monthly, or yearly and reach you on your phone or through ntfy, Gotify, or Apprise. Share a list with the rest of your household, link notes with `[[links]]`, record voice notes that Trace transcribes (with timestamps you can tap), send a grocery list to CookTrace, and bring your notes over from Google Keep or Evernote in one import.
+
+Best fit if you want out of Google Keep or Evernote without giving up the speed of a simple notes app. NoteTrace is the newest app and is working toward its first release candidate.
+
+Start here: [NoteTrace overview](../notetrace/index.md).
+
 ## NutriTrace
 
 For nutrition. Food diary with barcode scan and photo-based Scan Label, an adaptive TDEE that adjusts to how you actually move and eat, a Wellness tab that pulls from Fitbit, Google Health, Withings, Garmin, and Health Connect, water and fasting tracking, manual activity logging, and goal celebrations that fire once (not every login). Full Open Food Facts integration with an optional local DuckDB mirror for air-gapped setups.
@@ -30,7 +38,7 @@ Start here: [NutriTrace overview](../nutritrace/index.md).
 
 ## Shared plumbing
 
-All three install the same way, use the same env vars, share the same OIDC and SMTP setup, and the same Docker tag scheme. Configure once, apply everywhere:
+All four install the same way, use the same env vars, share the same OIDC and SMTP setup, and the same Docker tag scheme. Configure once, apply everywhere:
 
 - [Install with Docker Compose](compose.md)
 - [First-run wizard](first-run.md)

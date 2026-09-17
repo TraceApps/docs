@@ -1,6 +1,9 @@
 # Environment reference
 
-Every knob the three apps expose is in the table below. Defaults come from the actual server code, not the sample compose files, so if a README example and this page disagree, this page wins. The last three columns show which app reads which variable: `Y` means the app respects it, blank means it does not.
+Every knob CookTrace, LiftTrace, and NutriTrace expose is in the table below. Defaults come from the actual server code, not the sample compose files, so if a README example and this page disagree, this page wins. The last three columns show which app reads which variable: `Y` means the app respects it, blank means it does not. In these columns `NT` is NutriTrace.
+
+!!! note "NoteTrace"
+    NoteTrace reads the shared core, storage, auth, SMTP, OIDC, AI, backup, MCP, and webhook variables the same way. Its defaults and the few worth calling out are on [NoteTrace env vars](../notetrace/env-vars.md).
 
 ## Env-lock: what setting a var does to the UI
 
@@ -54,7 +57,7 @@ The whole group is optional. If `SMTP_HOST` is set, the entire Email tile locks 
 
 ## Trace AI
 
-Same envelope across all three apps: pick a provider, hand it a key, optionally pin a model. `AI_ENABLED=true` auto-enables Trace for every user; leave it unset if you want each user to opt in themselves.
+Same envelope in every app: pick a provider, hand it a key, optionally pin a model. `AI_ENABLED=true` auto-enables Trace for every user; leave it unset if you want each user to opt in themselves.
 
 | Variable | Default | Purpose | CT | LT | NT |
 |---|---|---|---|---|---|

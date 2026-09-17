@@ -49,7 +49,7 @@ Switching back and forth is safe as long as you understand the merge dialog. The
 | Server-side push notifications (Apprise/ntfy)  |     No     |        Yes       |
 | Local device backup (share sheet ZIP/JSON)     |     Yes    |        Yes       |
 
-Local mode is genuinely complete for a single-device workflow. If you never want a server, you never need one. Server mode is the right call as soon as you want the same data on more than one surface, want a browser tab open on your desk, or want federation between the three apps.
+Local mode is genuinely complete for a single-device workflow. If you never want a server, you never need one. Server mode is the right call as soon as you want the same data on more than one surface, want a browser tab open on your desk, or want federation between the apps.
 
 !!! tip "CookTrace can import from a local NutriTrace"
     CookTrace's first-run wizard offers to import an existing on-device NutriTrace database when both apps run in local mode on the same phone. Handy if you already had NT installed and want to seed pantry entries and food catalog.

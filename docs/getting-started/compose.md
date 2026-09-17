@@ -1,6 +1,6 @@
 # Install with Docker Compose
 
-Docker Compose is the supported install path for CookTrace, LiftTrace, and NutriTrace. One `docker-compose.yml`, one `.env`, `docker compose up -d`, done. All three images are multi-arch (`linux/amd64` and `linux/arm64`) and published to **`ghcr.io/traceapps/<app>`** (primary) and **`traceapps/<app>`** on Docker Hub (mirror). The examples below use GHCR; swap in the Docker Hub short form (e.g. `traceapps/cooktrace:1`) if that fits your environment better.
+Docker Compose is the supported install path for CookTrace, LiftTrace, NoteTrace, and NutriTrace. One `docker-compose.yml`, one `.env`, `docker compose up -d`, done. All images are multi-arch (`linux/amd64` and `linux/arm64`) and published to **`ghcr.io/traceapps/<app>`** (primary) and **`traceapps/<app>`** on Docker Hub (mirror). The examples below use GHCR; swap in the Docker Hub short form (e.g. `traceapps/cooktrace:1`) if that fits your environment better.
 
 ## Prerequisites
 
@@ -55,6 +55,28 @@ Pick the tab for the app you're installing. Each snippet is a complete, working 
 
     Container listens on `3003`, exposed on host port `3002`. Open `http://localhost:3002` after the container is up.
 
+=== "NoteTrace"
+
+    ```yaml
+    services:
+      notetrace:
+        image: ghcr.io/traceapps/notetrace:latest
+        container_name: notetrace
+        ports:
+          - "3004:3004"
+        volumes:
+          - ./data/db:/data/db
+          - ./data/uploads:/data/uploads
+        environment:
+          DB_PATH: /data/db/notetrace.db
+          UPLOADS_PATH: /data/uploads
+          JWT_SECRET: change-me-to-a-long-random-string
+        env_file: .env
+        restart: unless-stopped
+    ```
+
+    Container listens on `3004`, exposed on host port `3004` (same number for convenience). Open `http://localhost:3004` after the container is up. NoteTrace is working toward its first release candidate; the image is published with that release.
+
 === "NutriTrace"
 
     ```yaml
@@ -78,7 +100,7 @@ Pick the tab for the app you're installing. Each snippet is a complete, working 
     Container listens on `3001`, exposed on host port `3001` (same number for convenience). Open `http://localhost:3001` after the container is up. NutriTrace's image is `node:20-slim` (Debian) rather than Alpine because DuckDB's node bindings need glibc.
 
 !!! info "Host-port defaults are staggered"
-    Defaults are chosen so all three can run on the same host without editing, and all avoid the very common `:3000`: NutriTrace on `3001`, LiftTrace on `3002`, CookTrace on `3003`. If any clash with something else on your host, change the left-hand port value in the mapping (e.g. `"3010:3001"` for CookTrace) or put everything behind a reverse proxy.
+    Defaults are chosen so every app can run on the same host without editing, and all avoid the very common `:3000`: NutriTrace on `3001`, LiftTrace on `3002`, CookTrace on `3003`, NoteTrace on `3004`. If any clash with something else on your host, change the left-hand port value in the mapping (e.g. `"3010:3001"` for CookTrace) or put everything behind a reverse proxy.
 
 ## Picking an image tag
 
@@ -103,6 +125,7 @@ More detail in [Docker image tag matrix](../reference/image-tags.md).
 | NutriTrace | `3001` | `3001` | `/data/db` | `/data/uploads` |
 | LiftTrace | `3003` | `3002` | `/data/db` | `/data/uploads` |
 | CookTrace | `3001` | `3003` | `/data/db` | `/data/uploads` |
+| NoteTrace | `3004` | `3004` | `/data/db` | `/data/uploads` |
 
 Both volumes are plain bind mounts. Back them up with the same tool you use for the rest of your host (rsync, restic, borg, whatever).
 
@@ -123,13 +146,13 @@ SMTP_PASS=your-smtp-password
 SMTP_FROM="TraceApps" <noreply@example.com>
 ```
 
-CookTrace and NutriTrace include `env_file: .env` in their compose examples so every variable in `.env` reaches the container. LiftTrace works the same way once you add the `env_file:` line, or you can enumerate variables under `environment:`. See [Environment reference](../self-hosting/env-vars.md) for the full list.
+CookTrace, NoteTrace, and NutriTrace include `env_file: .env` in their compose examples so every variable in `.env` reaches the container. LiftTrace works the same way once you add the `env_file:` line, or you can enumerate variables under `environment:`. See [Environment reference](../self-hosting/env-vars.md) for the full list.
 
 For values you don't want on disk in plaintext (SMTP passwords, AI keys, OIDC client secrets), the container also accepts any variable name suffixed with `_FILE`. See [Docker Secrets](../self-hosting/secrets.md).
 
 ## Healthcheck
 
-None of the three images include a built-in healthcheck. If you want one, add it yourself:
+None of the images include a built-in healthcheck. If you want one, add it yourself:
 
 ```yaml
     healthcheck:

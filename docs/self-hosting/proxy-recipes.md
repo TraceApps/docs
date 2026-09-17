@@ -1,6 +1,6 @@
 # Reverse-proxy recipes
 
-Drop-in configs for the three proxies people actually use. Each block assumes the app container is reachable at `cooktrace:3001` on a shared Docker network, with a public hostname of `cook.example.com`. Swap the service name and port for LiftTrace (`lifttrace:3003`) or NutriTrace (`nutritrace:3001`).
+Drop-in configs for the three proxies people actually use. Each block assumes the app container is reachable at `cooktrace:3001` on a shared Docker network, with a public hostname of `cook.example.com`. Swap the service name and port for LiftTrace (`lifttrace:3003`), NoteTrace (`notetrace:3004`), or NutriTrace (`nutritrace:3001`).
 
 All three examples cover the same four things: TLS termination, correct `X-Forwarded-*` headers so the app knows its public URL, a raised upload-size cap for full-backup restores, and websocket upgrade headers (used by the settings-sync live channel and, in LiftTrace, the radio player metadata stream).
 

@@ -2,15 +2,15 @@
 
 ## What this page is
 
-Every tool that NutriTrace, LiftTrace, and CookTrace expose over the **Model Context Protocol**, in one table per app. This is the reference for external AI clients (Claude Desktop, Cursor, Codex, VS Code, custom agents) that connect to each app's `/api/mcp`. The in-app Trace AI has its own separate tool set, catalogued in [Trace tool catalog](trace-tools.md).
+Every tool that NutriTrace, LiftTrace, CookTrace, and NoteTrace expose over the **Model Context Protocol**, in one table per app. This is the reference for external AI clients (Claude Desktop, Cursor, Codex, VS Code, custom agents) that connect to each app's `/api/mcp`. The in-app Trace AI has its own separate tool set, catalogued in [Trace tool catalog](trace-tools.md).
 
-All three apps split their MCP surface into the same three phases, each gated by its own scope + env flag:
+Every app splits its MCP surface into the same three phases, each gated by its own scope + env flag:
 
 - **Read**: `mcp:read` + `MCP_ENABLED=1`. Always available when MCP is on.
 - **Write**: `mcp:write` + `MCP_WRITE_ENABLED=1`. Additive log tools; everything they write shows up as normal entries in the app's own UI.
 - **Destructive**: `mcp:destroy` + `MCP_DESTROY_ENABLED=1` + every call must include `confirm: true`.
 
-Setup lives on each app's own MCP page: [NutriTrace](../nutritrace/mcp.md), [LiftTrace](../lifttrace/mcp.md), [CookTrace](../cooktrace/mcp.md). This page is the tool reference; the setup pages tell you how to turn it on.
+Setup lives on each app's own MCP page: [NutriTrace](../nutritrace/mcp.md), [LiftTrace](../lifttrace/mcp.md), [CookTrace](../cooktrace/mcp.md), [NoteTrace](../notetrace/mcp.md). This page is the tool reference; the setup pages tell you how to turn it on.
 
 ## About the columns
 
@@ -30,11 +30,15 @@ Twelve tools across three phases.
 | `get_goals` | Macro / micro / water targets | none | `goals` object plus `water_goal_ml` |
 | `get_daily_totals` | Summed nutrition + water for a day | `date` | `totals` (calories, macros, micros), `water_ml`, `item_count` |
 | `list_diary_entries` | Raw item list from a diary day | `date` | `date`, `items[]`, `count` |
+| `get_daily_totals_range` | `get_daily_totals` for every logged day in a date range | `start`, `end` | `start`, `end`, `totals[]` (one `get_daily_totals` result per logged day), `count` |
+| `list_diary_entries_range` | Raw item lists for every logged day in a date range, at most 366 logged days per call | `start`, `end` | `start`, `end`, `entries[]` (`date`, `items[]`, `count`), `count` |
 | `search_foods` | Text search over the user's local catalog | `query*`, `limit` | Match array (id, name, brand, barcode, portion, unit, nutrition) |
-| `get_recent_foods` | Most-logged foods in the last 14 days | `limit` | Same shape as `search_foods` plus `last_logged_on` |
+| `get_recent_foods` | Most-logged foods in the last 14 days, or within `start`/`end` when given | `limit`, `start`, `end` | Same shape as `search_foods` plus `last_logged_on` |
 | `search_meals` | Search saved meals by name, or browse all when `query` is omitted | `query`, `limit`, `include_recipes` | Match array (id, name, is_recipe, servings, portion, unit, nutrition, favorite, usage_count, last_used_at). Recipes excluded by default. |
-| `get_recent_meals` | Most-recently-used saved meals, ordered by `last_used_at` | `limit`, `include_recipes` | Same shape as `search_meals` |
+| `get_recent_meals` | Most-recently-used saved meals, ordered by `last_used_at`; `start`/`end` filter by the date last used | `limit`, `include_recipes`, `start`, `end` | Same shape as `search_meals` |
 | `get_meal_details` | Full contents of one saved meal or recipe (items[] + meta) | `meal_id*` | Meal meta plus `item_count` and `items[]` (name, portion, unit, quantity, per-item nutrition, source food id when known) |
+
+**Date ranges.** `start` and `end` are `YYYY-MM-DD` and inclusive. Leave either out to leave that side open, for example only `start` for everything from that date on, including future-dated entries. With neither, the two range tools cover the last 90 days ending today (server time). A reversed range or an impossible date such as `2026-02-31` returns an error. For more than 366 logged days, split `list_diary_entries_range` into several calls or use `get_daily_totals_range`, which has no limit.
 
 ### Write tools (`mcp:write`)
 
@@ -177,8 +181,56 @@ Deliberately not in the current MCP surface:
 - `delete_recipe` / `delete_pantry_item`. Deliberately excluded, same reasoning NutriTrace uses for not exposing `delete_food`: these are permanent library content, not a transient log; only the log-like entities (cook diary entries, shopping list items) get a delete tool.
 - MCP prompts capability (guided workflows). Planned; no ETA.
 
+## NoteTrace
+
+Fourteen tools across three phases. They're the same tools NoteTrace's in-app Trace uses, defined once in `server/lib/note-tools.js`.
+
+### Read tools (`mcp:read`)
+
+| Tool | Purpose | Args | Returns |
+|------|---------|------|---------|
+| `search_notes` | Full-text search over titles, text, checklist items, voice note transcripts, and image text; or list a view or label when `query` is empty | `query`, `label`, `view` (`notes`\|`archive`\|`trash`\|`reminders`), `limit` (up to 25, default 10) | `count` and `notes[]` (id, title, kind, a text preview or up to 8 open items with the checked count, labels, pinned, archived, reminder, updated_at) |
+| `get_note` | One note in full | `id*` | Title, Markdown text or every item with its checked state and due date, labels, color, pinned, archived, trashed, reminder, sharing, dates, image text, voice note transcripts |
+| `list_labels` | Labels with note counts | none | `labels[]` (name, number of notes) |
+| `list_reminders` | Notes with reminders, soonest first | `upcoming_only` | `reminders[]`: note summaries (as `search_notes`), each with the next time it fires and its repeat |
+| `list_tasks` | The user's tasks: open items with a due date, plus every open item on checklists set to Show in Tasks; dated first (soonest first), then undated | `due_by` (YYYY-MM-DD), `include_undated` (default true, or false when `due_by` is set), `limit` (up to 100, default 40), `all_checklists` (every open item, shopping lists included) | `count` and `tasks[]` (text, due, note_id, list) |
+
+### Write tools (`mcp:write`)
+
+| Tool | Purpose | Args | Returns |
+|------|---------|------|---------|
+| `create_note` | Create a text note or a checklist | `title`, `text`, `kind` (`text`\|`checklist`), `items`, `labels`, `color`, `pinned`, `show_in_tasks` (checklists) | `ok` and the new note, as `get_note`. Labels are matched by name and created when missing. |
+| `update_note` | Change the title, replace the text, or change color, pinned, archived, or Show in Tasks | `id*`, `title`, `text`, `color`, `pinned`, `archived`, `show_in_tasks` (checklists) | `ok` and the updated note. The previous text is kept in version history. |
+| `append_to_note` | Add to the end: a paragraph on a text note, one item per line on a checklist | `id*`, `text*` | `ok` and the updated note |
+| `add_checklist_items` | Add items to a checklist | `id*`, `items*`, `due` (YYYY-MM-DD, for every new item) | `ok`, how many were added, and the updated note |
+| `check_checklist_item` | Check or uncheck an item found by its text (exact match first, then the only item containing the text) | `id*`, `item*`, `checked` (default true) | `ok`, the item's text, and its new state; an error when no item or more than one matches |
+| `set_due_date` | Set or clear a checklist item's due date, found by its text (as `check_checklist_item`) | `id*`, `item*`, `due` (YYYY-MM-DD), `clear` | `ok`, the item's text, and its due date (null when cleared) |
+| `set_reminder` | Set or clear a reminder | `id*`, `at` (`2026-09-20T09:00` in `time_zone`, or ISO with an offset), `repeat` (`daily`\|`weekly`\|`monthly`\|`yearly`), `clear`, `time_zone` (IANA, like `America/New_York`) | `ok` and the reminder (next time, repeat), or `cleared`. Owner only. |
+| `set_labels` | Replace a note's labels by name | `id*`, `labels*` (empty removes all) | The labels now on the note |
+
+### Destructive tools (`mcp:destroy` + `confirm: true`)
+
+| Tool | Purpose | Args | Returns |
+|------|---------|------|---------|
+| `move_to_trash` | Move a note to the trash (restorable for 30 days) | `id*`, `confirm*` | `ok` and the trashed note's title. Owner only. |
+
+### NoteTrace scoping guarantees
+
+Every tool acts as the token's owner through the same notes layer the app uses: the owner's notes plus notes shared with them. A note shared as view-only can be read but not changed, and reminders and trash are owner-only, matching the app. Labels are personal, as in the app. `set_reminder` reads a time without an offset in `time_zone`, else the zone of the user's latest reminder set from a device, else the server's.
+
+### NoteTrace rate limits
+
+60 requests per minute per token by default (`API_RATE_LIMIT_PER_MIN`), with the same `X-RateLimit-*` headers and `Retry-After` on 429.
+
+### Not currently exposed (NoteTrace)
+
+- Deleting a note forever, emptying the trash, and deleting labels. Trash is the only destructive tool, and it's restorable for 30 days.
+- Sharing (adding or removing people). Deliberately left to the app.
+- Images and voice notes. Their text is readable through `get_note`, but files can't be added.
+
 ## Related
 
+- [Model Context Protocol setup (NoteTrace)](../notetrace/mcp.md): turn it on, wire up Claude Desktop
 - [Model Context Protocol setup (NutriTrace)](../nutritrace/mcp.md): turn it on, wire up Claude Desktop
 - [Model Context Protocol setup (LiftTrace)](../lifttrace/mcp.md): turn it on, wire up Claude Desktop
 - [Model Context Protocol setup (CookTrace)](../cooktrace/mcp.md): turn it on, wire up Claude Desktop

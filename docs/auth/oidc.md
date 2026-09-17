@@ -91,7 +91,7 @@ Read [SSO-only mode and recovery](sso-only.md) before turning this on, or you ca
 
 ## Per-app cookie names
 
-One tiny divergence to know about if you're browsing dev tools. Each app writes a scoped logout cookie during the OIDC round-trip: `ct_oidc_logout` (CookTrace), `lt_oidc_logout` (LiftTrace), `nt_oidc_logout` (NutriTrace). This lets all three run on sibling subdomains without stomping on each other's session state.
+One tiny divergence to know about if you're browsing dev tools. Each app writes a scoped logout cookie during the OIDC round-trip: `ct_oidc_logout` (CookTrace), `lt_oidc_logout` (LiftTrace), `note_oidc_logout` (NoteTrace), `nt_oidc_logout` (NutriTrace). This lets them all run on sibling subdomains without stomping on each other's session state.
 
 ## Provider recipes
 

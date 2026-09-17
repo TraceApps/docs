@@ -1,6 +1,6 @@
 # Install the Android app
 
-Each of the three apps publishes a signed Android APK. There is no Play Store listing; grab the APK from GitHub Releases and sideload it. This page covers the install, the first-launch prompt, and the shared-keystore rules that let you upgrade in place without losing data.
+Each app publishes a signed Android APK. There is no Play Store listing; grab the APK from GitHub Releases and sideload it. This page covers the install, the first-launch prompt, and the shared-keystore rules that let you upgrade in place without losing data.
 
 ## Get the APK
 
@@ -8,6 +8,7 @@ Every release lives on the app's GitHub Releases page. Pick the `.apk` asset tha
 
 - CookTrace: [`TraceApps/cooktrace/releases/latest`](https://github.com/TraceApps/cooktrace/releases/latest)
 - LiftTrace: [`TraceApps/lifttrace/releases/latest`](https://github.com/TraceApps/lifttrace/releases/latest)
+- NoteTrace: published with its first release candidate
 - NutriTrace: [`TraceApps/nutritrace/releases/latest`](https://github.com/TraceApps/nutritrace/releases/latest)
 
 Each app also publishes a rolling `dev-latest` pre-release built from the `dev` branch. It is signed with the same keystore as stable, so it upgrades in place. Grab it if you want the leading edge and can live with the occasional rough edge. Occasionally a specific feature milestone gets a numbered `v<version>-devNN` pre-release for testers who want to pin it. See [Release channels](../reference/release-channels.md) for the full model.

@@ -1,6 +1,6 @@
 # How sync works
 
-Sync is the same story in all three apps by design. `server/routes/sync.js` cross-references NutriTrace's version in the other two repos, and the client orchestrator (`src/lib/sync.js`) shares the same shape. This page explains the wire contract, the conflict rules, and what you need to configure as a self-hoster (nothing).
+Sync is the same story in every Trace app by design. `server/routes/sync.js` cross-references NutriTrace's version in the other repos, and the client orchestrator (`src/lib/sync.js`) shares the same shape. This page explains the wire contract, the conflict rules, and what you need to configure as a self-hoster (nothing).
 
 ## The wire contract
 

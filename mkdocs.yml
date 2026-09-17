@@ -1,5 +1,5 @@
 site_name: TraceApps Documentation
-site_description: Documentation for the TraceApps self-hosted family. Covers CookTrace, LiftTrace, and NutriTrace.
+site_description: Documentation for the TraceApps self-hosted family. Covers CookTrace, LiftTrace, NoteTrace, and NutriTrace.
 site_url: https://traceapps.github.io/docs/
 site_author: TraceApps
 
@@ -126,7 +126,7 @@ nav:
       - Updating: getting-started/updating.md
   - Configure:
       - Server:
-          - How the three apps compare: self-hosting/compare.md
+          - How the apps compare: self-hosting/compare.md
           - Environment reference: self-hosting/env-vars.md
           - Docker Secrets (*_FILE): self-hosting/secrets.md
           - Backups and restore: self-hosting/backups.md
@@ -191,11 +191,28 @@ nav:
       - Radio player: lifttrace/radio.md
       - Coaching: lifttrace/coaching.md
       - Statistics & PRs: lifttrace/statistics.md
+      - Progress photos: lifttrace/progress.md
       - Workout history import: lifttrace/import.md
       - NutriTrace federation: lifttrace/nt-federation.md
       - Model Context Protocol (MCP): lifttrace/mcp.md
       - Settings reference: lifttrace/settings.md
       - Env vars (app-specific): lifttrace/env-vars.md
+  - NoteTrace:
+      - Overview: notetrace/index.md
+      - Feature tour: notetrace/features.md
+      - Notes, checklists & labels: notetrace/notes.md
+      - Keyboard shortcuts & slash commands: notetrace/shortcuts.md
+      - Voice notes: notetrace/voice-notes.md
+      - Reminders: notetrace/reminders.md
+      - Sharing: notetrace/sharing.md
+      - "Android: share sheet, voice notes & App Lock": notetrace/android.md
+      - Trace in NoteTrace: notetrace/trace.md
+      - CookTrace Shopping List: notetrace/cooktrace.md
+      - Import & export (Google Keep, Markdown): notetrace/import-export.md
+      - Webhooks: notetrace/webhooks.md
+      - Model Context Protocol (MCP): notetrace/mcp.md
+      - Settings reference: notetrace/settings.md
+      - Env vars (app-specific): notetrace/env-vars.md
   - NutriTrace:
       - Overview: nutritrace/index.md
       - Feature tour: nutritrace/features.md
@@ -217,6 +234,7 @@ nav:
       - Migrate from Lose It / Cronometer / Waistline: nutritrace/migrate-other.md
       - Settings reference: nutritrace/settings.md
       - Env vars (app-specific): nutritrace/env-vars.md
+  - Support: support.md
   - Reference:
       - Troubleshooting: reference/troubleshooting.md
       - Trace tool catalog: reference/trace-tools.md

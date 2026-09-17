@@ -1,5 +1,8 @@
 # Translations (i18n)
 
+!!! note "NoteTrace is English only"
+    NoteTrace doesn't take translations. Its UI text lives in `en.json` like the other apps, but no other languages ship and it has no Weblate project. This page covers CookTrace, LiftTrace, and NutriTrace.
+
 All three apps use [svelte-i18n](https://github.com/kaisermann/svelte-i18n) with one JSON file per locale in `src/i18n/`. English (`en.json`) is the source of truth; every other locale is a translated copy with the same key structure. The runtime falls back to English for any missing key, so a partial translation is safe to release.
 
 ## Two ways to contribute a translation

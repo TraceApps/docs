@@ -22,7 +22,7 @@ Passwords must be at least 8 characters and include an uppercase letter, a lower
 
 ## Single-user vs multi-user
 
-All three apps run in "single-user mode" by default. As long as there's exactly one account in the database, the app skips the login screen and auto-signs that user in on every page load. Nobody outside the install sees anything.
+CookTrace, LiftTrace, and NutriTrace run in "single-user mode" by default. As long as there's exactly one account in the database, the app skips the login screen and auto-signs that user in on every page load. Nobody outside the install sees anything.
 
 The moment you add a second user (from **Settings** then **User Management** then **Add user**, or via an invite email if SMTP is configured), the login screen turns on automatically for every visitor. There's no toggle to flip; the count of users decides.
 

@@ -1,6 +1,6 @@
 # Local users, invites, roles
 
-The local-user layer is a bcrypt-backed username/password store shared by all three apps. Same rules, same rate-limits, same recovery pattern in CookTrace, LiftTrace, and NutriTrace. This page covers how accounts get created, who can invite whom, what the password policy actually checks, and how to recover if you lock yourself out.
+The local-user layer is a bcrypt-backed username/password store shared by every Trace app. Same rules, same rate-limits, same recovery pattern in CookTrace, LiftTrace, NoteTrace, and NutriTrace. This page covers how accounts get created, who can invite whom, what the password policy actually checks, and how to recover if you lock yourself out.
 
 ## First user becomes admin
 
@@ -44,10 +44,10 @@ Nothing is asked of you beyond creating the account. There is no export/import s
 
 Disabling it (Settings, Users, Disable user management) removes every account. What happens to the data differs by app, and the confirmation dialog in each one states which:
 
-- **NutriTrace and CookTrace** delete the data along with the accounts. The dialog says "their data cannot be recovered", and it means it. Disable then re-enable is not a round trip.
+- **NutriTrace, CookTrace, and NoteTrace** delete the data along with the accounts. The dialog says "their data cannot be recovered", and it means it. Disable then re-enable is not a round trip.
 - **LiftTrace** keeps it. Its dialog only offers to remove accounts, so a single account's data is handed back to single-user mode and is waiting for you afterwards, including if you later re-enable. With more than one account there is no single owner to hand it to, so it is removed instead.
 
-In all three, deleting an individual account removes that account's data, including any connected wearable tokens.
+In every app, deleting an individual account removes that account's data, including any connected wearable tokens.
 
 !!! warning "Take a backup before experimenting"
     Whichever app you are on, run a Full Backup before turning user management off if you are not certain what you want. It is the only way back from the deleting variants.
