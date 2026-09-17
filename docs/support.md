@@ -13,13 +13,16 @@ None of the Trace apps run properly on an iPhone. The web app works in Safari, b
 | Mac mini (base model) | Xcode only runs on macOS. There is no way around this. | $600 |
 | iPhone 15, used | Testing on a real device, not just the simulator. Used to keep the total down, and recent enough to keep getting iOS updates for years. | $500 |
 | Apple Developer Program | Required for TestFlight and the App Store. Renews yearly. | $99 |
-| | **Total** | **$1,200** |
+| Google Play developer account | So the Android apps can be listed on Play, not only as APKs on GitHub. One time. | $25 |
+| | **Total** | **$1,224** |
 
-**Milestone 1, $700: the Mac and the developer account.** Building and testing can start in the simulator, and the PWA can finally be checked on macOS Safari.
+The Ko-fi goal is the round $1,200. The difference is covered either way.
+
+**Milestone 1, $700: the Mac and the developer accounts.** Building and testing can start in the simulator, the PWA can finally be checked on macOS Safari, and the Android apps can go on Google Play.
 
 **Milestone 2, $1,200: the iPhone.** Real-device testing: layout, gestures, notifications, storage limits, and how the installed web app behaves when iOS evicts it.
 
-**Anything past the goal** goes to the yearly Apple fee first, then the public demo instance.
+**Anything past the goal** goes to the yearly Apple fee and the monthly costs of development: the demo instance, the domain, and AI credits for testing Trace against every provider.
 
 [Chip in on Ko-fi](https://ko-fi.com/traceapps){ .md-button .md-button--primary }
 
@@ -36,12 +39,10 @@ These matter more than they sound, and they're free:
 
 Running and building these apps costs real money. In order of what the fund covers:
 
-1. **iOS hardware and the developer account** (the current goal).
+1. **iOS hardware and the developer accounts** (the current goal), including the $25 Google Play account.
 2. **The Apple Developer Program renewal,** $99 a year, ongoing.
 3. **The public demo instance,** so people can try the apps before installing anything.
 4. **AI credits for testing Trace** across Claude, OpenAI, and Gemini, since each provider has to be tested against real models.
-
-Also coming: the Google Play Developer account, $25 one time, so the Android apps can be listed on Play rather than only as APKs on GitHub.
 
 Nothing here funds a salary. When something is bought, it's listed below.
 
