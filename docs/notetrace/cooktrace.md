@@ -29,7 +29,7 @@ Cloud metadata addresses stay blocked either way.
 
 Once CookTrace is linked and on, **Shopping List** appears in the menu at the top of Labels, with the number of items left to buy.
 
-- Items are grouped by aisle in CookTrace's order, with items that have no aisle under **Other**. Each shows its amount and, when it came from a recipe, the recipe's name.
+- Items are grouped by aisle in CookTrace's order, with items that have no aisle under **Other**. Each shows its amount and, when it came from a recipe, the recipe's name. The same item from more than one recipe shows once, as it does in CookTrace, with the amounts added up and every recipe named; checking it off checks off all of them.
 - Tap the circle to check an item off. It moves to **checked**, a collapsed group at the bottom, and is checked off in CookTrace too. Tap it there to put it back.
 - **Add to the shopping list** adds an item. CookTrace fills in its aisle when the name matches a pantry item, and doesn't add it twice when it's already on the list.
 - **Clear Checked** removes checked items from the CookTrace list.
