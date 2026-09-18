@@ -23,6 +23,8 @@ The goal is set at the round $1,300. The rest is covered either way.
 
 **Milestone 2, $1,300: the iPhone.** Real-device testing: layout, gestures, notifications, storage limits, and how the installed web app behaves when iOS evicts it.
 
+The same Mac also builds [Fathom](https://github.com/Fathom-Media/fathom), a Jellyfin client from the same developer, for macOS and iOS.
+
 **Anything past the goal** goes to the yearly Apple fee and the monthly costs of development: the demo instance, the domain, and AI credits for testing Trace against every provider.
 
 [Chip in on Ko-fi](https://ko-fi.com/traceapps){ .md-button .md-button--primary }
