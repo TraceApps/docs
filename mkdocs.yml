@@ -205,6 +205,7 @@ nav:
       - Reminders: notetrace/reminders.md
       - Sharing: notetrace/sharing.md
       - "Android: share sheet, voice notes & App Lock": notetrace/android.md
+      - Wear OS: notetrace/wear.md
       - Trace in NoteTrace: notetrace/trace.md
       - CookTrace Shopping List: notetrace/cooktrace.md
       - Import & export (Google Keep, Markdown): notetrace/import-export.md
