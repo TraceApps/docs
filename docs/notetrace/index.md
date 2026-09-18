@@ -1,6 +1,6 @@
 # NoteTrace
 
-NoteTrace is a self-hosted alternative to Google Keep: notes, checklists, and reminders in a clean card grid, in a single Docker container on your own hardware. One Node/Express server, one Svelte PWA, a SQLite database, and a Capacitor Android app that either runs fully offline or syncs against the same server. AGPL-3.0, no telemetry, nothing leaves your network unless you point it at a push service or AI provider yourself.
+NoteTrace is a self-hosted home for everyday notes: notes, checklists, and reminders in a clean card grid, in a single Docker container on your own hardware. It replaces Google Keep, the everyday half of Evernote, Apple Notes, OneNote, Memos, Blinko, Simplenote, and whatever came with your phone, and imports from most of them. One Node/Express server, one Svelte PWA, a SQLite database, and a Capacitor Android app that either runs fully offline or syncs against the same server. AGPL-3.0, no telemetry, nothing leaves your network unless you point it at a push service or AI provider yourself.
 
 The idea is Keep's speed with the pieces Keep leaves out: open it and start typing, and when you need more there is Markdown formatting, voice notes with searchable transcripts, version history, repeating reminders that keep their local time, sharing with other people on your server, and a one-click move out of Google Keep.
 
@@ -11,11 +11,12 @@ The idea is Keep's speed with the pieces Keep leaves out: open it and start typi
 
 ## Compared to other note apps
 
-NoteTrace isn't trying to be a knowledge base. It's for the notes you'd put in Keep.
+NoteTrace isn't trying to be a knowledge base. It's for the notes you jot down and check the same week.
 
 - **Google Keep** is quick and simple, and it's Google's. NoteTrace keeps the card grid, checklists, colors, labels, pins, archive, and reminders, runs on your own server, and imports your Keep notes, photos included, straight from Google Takeout.
 - **Memos** and **Blinko** are timeline-first and lean on tags and AI. NoteTrace is grid-first with real checklists and reminders, and imports straight from both.
 - **Evernote** grew into a heavyweight workspace. NoteTrace keeps the everyday part (quick notes, checklists, clipped links, reminders) and imports your `.enex` exports with their images and tags.
+- **Apple Notes**, **OneNote**, **Simplenote**, and **Standard Notes** are tied to one company's account or one platform. NoteTrace is yours, syncs to the browser and Android, and takes their notes in through Markdown.
 - **Obsidian**, **Joplin**, and **Trilium** are built for long-form, linked documents. NoteTrace stores Markdown too, with the same `[[links]]`, so notes stay portable, but it's tuned for short notes and lists you check every day.
 
 ## What's inside
