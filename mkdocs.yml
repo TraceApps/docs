@@ -191,7 +191,6 @@ nav:
       - Radio player: lifttrace/radio.md
       - Coaching: lifttrace/coaching.md
       - Statistics & PRs: lifttrace/statistics.md
-      - Progress photos: lifttrace/progress.md
       - Workout history import: lifttrace/import.md
       - NutriTrace federation: lifttrace/nt-federation.md
       - Model Context Protocol (MCP): lifttrace/mcp.md
