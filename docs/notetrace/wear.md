@@ -32,9 +32,21 @@ There is nothing to type on the watch, and no separate account. Signing out on t
 
 **A time you say becomes the reminder.** "Call the plumber tomorrow at nine" makes a note that says "call the plumber", due at nine tomorrow, rather than writing the time into the text. It understands the phrases people actually say to a watch: in twenty minutes, tonight, tomorrow at nine, Friday at eight, at 6:30 pm. A time already past today is taken as tomorrow. This is worked out on the watch, so it still happens with no connection, and the note goes up later with the time it was meant to have. Anything more involved is Trace's job, on the phone.
 
+**Refresh.** The app asks the server every time you open it. The Refresh row at the bottom of the list asks again without leaving and coming back.
+
 **A tile.** One swipe from the watch face: what's due, or what's left to buy. Add it by long-pressing the watch face, then Tiles.
 
 **A complication.** The same counts on the watch face itself, as "3 Due" or "7 Buy", tapping through to the app. Add it from your watch face's own customisation screen.
+
+## Choosing what's on the watch
+
+With a big library, the watch list gets long. On the phone, **Settings, Notes, On Your Watch** narrows it:
+
+- **Everything** is the default, and nothing changes until you pick something.
+- **Only what I pick** gives each note and checklist a switch. The heading says where you stand: "4 notes on the watch", or "Nothing picked yet, so the watch shows everything".
+- Clearing every pick puts it back to everything, so the watch can't end up empty by accident.
+
+The narrowing happens on the server, so a shorter list is also a smaller download. Reminders and the shopping list are never hidden by this: a reminder is time-sensitive, and there's only one shopping list.
 
 ## Without a connection
 
