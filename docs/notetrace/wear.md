@@ -20,7 +20,7 @@ There is nothing to type on the watch, and no separate account. Signing out on t
 
 **The list.** Pinned notes first, then the rest, newest first, each showing either how many items are left or the first lines of its text. The CookTrace shopping list sits near the top when CookTrace is linked, and a Reminders row appears above it when anything is scheduled.
 
-**A checklist.** Tap an item, or its tick, to check it off. The whole row is a target, which matters on a small screen.
+**A checklist.** Tap an item, or its tick, to check it off; the whole row is a target, and it buzzes so you can tell it took. Ticked things drop to the bottom under a heading that counts them, dimmed and struck through, so you can see what you just did and put it back if it was the wrong one. The crown scrolls every screen.
 
 **A note.** Tap to read it. Long notes show their first stretch and say to open the phone for the rest; writing and editing belong where there's a keyboard.
 
@@ -29,6 +29,8 @@ There is nothing to type on the watch, and no separate account. Signing out on t
 **Reminders.** What's coming up, soonest first, with "Today 6:30 PM", "Tomorrow", a weekday, or "Overdue" in red, and repeating ones marked. Tap the row to open the note, or the tick to be done with it. When a reminder actually fires, it arrives as a notification on the wrist with **Done** and **Snooze 1 Hour**.
 
 **Speaking.** "Speak a note" on the main screen makes a new note, "Add an item" inside a checklist adds to it, and "Add to the list" on the shopping list sends it to CookTrace. The watch's own speech recognition does the listening, so nothing is recorded or uploaded and it follows the language your watch is set to.
+
+**A time you say becomes the reminder.** "Call the plumber tomorrow at nine" makes a note that says "call the plumber", due at nine tomorrow, rather than writing the time into the text. It understands the phrases people actually say to a watch: in twenty minutes, tonight, tomorrow at nine, Friday at eight, at 6:30 pm. A time already past today is taken as tomorrow. This is worked out on the watch, so it still happens with no connection, and the note goes up later with the time it was meant to have. Anything more involved is Trace's job, on the phone.
 
 **A tile.** One swipe from the watch face: what's due, or what's left to buy. Add it by long-pressing the watch face, then Tiles.
 
@@ -42,7 +44,7 @@ The watch keeps the last lists it loaded, so it opens and works in a shop with n
 - speaking a note, an item, or something to buy
 - finishing a reminder
 
-The screen says "Offline" or "2 waiting" while that's true. Ticks collapse, so tapping twice sends once, while spoken things never collapse: saying two items gives you two items.
+Each of those says so as you do it ("Note saved", "Reminder set", "Added"), and adds "waiting for a connection" when there's nothing to send it over. The screen says "Offline" or "2 waiting" while that's true, and shows the reason in red if the server refuses. Ticks collapse, so tapping twice sends once, while spoken things never collapse: saying two items gives you two items.
 
 The tile and the complication read the same saved copy, so they show something sensible with no connection and no battery cost.
 
