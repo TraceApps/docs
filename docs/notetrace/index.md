@@ -4,8 +4,8 @@ NoteTrace is a self-hosted alternative to Google Keep: notes, checklists, and re
 
 The idea is Keep's speed with the pieces Keep leaves out: open it and start typing, and when you need more there is Markdown formatting, voice notes with searchable transcripts, version history, repeating reminders that keep their local time, sharing with other people on your server, and a one-click move out of Google Keep.
 
-!!! note "In development"
-    NoteTrace is the newest Trace app and is working toward its first release candidate. Docker images and signed APKs are published when that release candidate is out. Until then, these pages describe the app as it stands on the `dev` branch.
+!!! note "Dev pre-release"
+    NoteTrace is the newest Trace app. It is feature complete and in testing toward v1.0.0, with builds published on the dev channel: the `:dev` Docker image and a signed APK on the [Releases page](https://github.com/TraceApps/notetrace/releases). These pages describe the app as it stands there.
 
 ![NoteTrace notes grid with pinned notes, checklists, reminders, and labels](../assets/img/notetrace/01-notes.png)
 

@@ -10,8 +10,8 @@ None of the Trace apps run properly on an iPhone. The web app works in Safari, b
 
 | What | Why | Cost |
 |---|---|---|
-| Mac mini (base model) | Xcode only runs on macOS. There is no way around this. | $600 |
-| iPhone 15, used | Testing on a real device, not just the simulator. Used to keep the total down, and recent enough to keep getting iOS updates for years. | $500 |
+| A Mac | Xcode only runs on macOS. There is no way around this. | $600 |
+| An iPhone, used | Testing on a real device, not just the simulator. Used to keep the total down, and recent enough to keep getting iOS updates for years. | $500 |
 | Apple Developer Program | Required for TestFlight and the App Store. Renews yearly. | $99 |
 | Google Play developer account | So the Android apps can be listed on Play, not only as APKs on GitHub. One time. | $25 |
 | Sales tax and payment fees | Tax on the hardware, plus roughly 3% taken by the payment processor. | $105 |
