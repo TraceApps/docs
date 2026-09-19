@@ -2,7 +2,7 @@
 
 Front the app with Caddy, nginx, or Traefik and let the proxy handle TLS, virtual hosts, and any subpath rewriting. Every Trace app behaves the same way behind a proxy; the only per-app difference is the internal port number.
 
-Internal ports as a reminder: CookTrace and NutriTrace listen on `3001`, LiftTrace on `3003`.
+Internal ports as a reminder: each app listens on the same port inside the container as its sample host port. NutriTrace `3001`, LiftTrace `3002`, CookTrace `3003`, NoteTrace `3004`. (Before 1.3.0, LiftTrace listened on `3003` and CookTrace on `3001` inside the container; see [Updating](updating.md#lifttrace-and-cooktrace-130-container-port-change).)
 
 ## Root path (one app per hostname)
 
@@ -59,7 +59,7 @@ The simplest setup: each app gets its own subdomain (`cook.example.com`, `lift.e
           - "traefik.http.routers.cooktrace.rule=Host(`cook.example.com`)"
           - "traefik.http.routers.cooktrace.entrypoints=websecure"
           - "traefik.http.routers.cooktrace.tls.certresolver=le"
-          - "traefik.http.services.cooktrace.loadbalancer.server.port=3001"
+          - "traefik.http.services.cooktrace.loadbalancer.server.port=3003"
     ```
 
 ## Subpath (multiple apps on one hostname)

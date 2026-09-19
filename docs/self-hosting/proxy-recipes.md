@@ -1,6 +1,6 @@
 # Reverse-proxy recipes
 
-Drop-in configs for the three proxies people actually use. Each block assumes the app container is reachable at `cooktrace:3001` on a shared Docker network, with a public hostname of `cook.example.com`. Swap the service name and port for LiftTrace (`lifttrace:3003`), NoteTrace (`notetrace:3004`), or NutriTrace (`nutritrace:3001`).
+Drop-in configs for the three proxies people actually use. Each block assumes the app container is reachable at `cooktrace:3003` on a shared Docker network, with a public hostname of `cook.example.com`. Swap the service name and port for LiftTrace (`lifttrace:3002`), NoteTrace (`notetrace:3004`), or NutriTrace (`nutritrace:3001`).
 
 All three examples cover the same four things: TLS termination, correct `X-Forwarded-*` headers so the app knows its public URL, a raised upload-size cap for full-backup restores, and websocket upgrade headers (used by the settings-sync live channel and, in LiftTrace, the radio player metadata stream).
 
@@ -17,7 +17,7 @@ All three examples cover the same four things: TLS termination, correct `X-Forwa
             max_size 512MB
         }
 
-        reverse_proxy cooktrace:3001 {
+        reverse_proxy cooktrace:3003 {
             header_up X-Forwarded-Proto {scheme}
             header_up X-Forwarded-Host  {host}
             header_up X-Real-IP         {remote_host}
@@ -41,7 +41,7 @@ All three examples cover the same four things: TLS termination, correct `X-Forwa
         client_max_body_size 512M;
 
         location / {
-            proxy_pass http://cooktrace:3001;
+            proxy_pass http://cooktrace:3003;
 
             proxy_set_header Host              $host;
             proxy_set_header X-Real-IP         $remote_addr;
@@ -76,7 +76,7 @@ All three examples cover the same four things: TLS termination, correct `X-Forwa
           - "traefik.http.routers.cooktrace.rule=Host(`cook.example.com`)"
           - "traefik.http.routers.cooktrace.entrypoints=websecure"
           - "traefik.http.routers.cooktrace.tls.certresolver=letsencrypt"
-          - "traefik.http.services.cooktrace.loadbalancer.server.port=3001"
+          - "traefik.http.services.cooktrace.loadbalancer.server.port=3003"
           # Raise the buffering cap on the entrypoint (see Traefik static config)
           # or add a per-router middleware; Traefik's default is 512 MB body but
           # only 4 KB response headers, so no per-router tweak is usually needed.
@@ -95,7 +95,7 @@ Mount the app at `/cooktrace` on an existing domain by setting `BASE_URL=/cooktr
     ```caddy
     tools.example.com {
         handle /cooktrace/* {
-            reverse_proxy cooktrace:3001 {
+            reverse_proxy cooktrace:3003 {
                 header_up X-Forwarded-Proto {scheme}
                 header_up X-Forwarded-Host  {host}
             }
@@ -112,7 +112,7 @@ Mount the app at `/cooktrace` on an existing domain by setting `BASE_URL=/cooktr
 
     ```nginx
     location /cooktrace/ {
-        proxy_pass http://cooktrace:3001;   # trailing slash preserves prefix
+        proxy_pass http://cooktrace:3003;   # trailing slash preserves prefix
         proxy_set_header Host              $host;
         proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header X-Forwarded-Host  $host;
@@ -133,7 +133,7 @@ Mount the app at `/cooktrace` on an existing domain by setting `BASE_URL=/cooktr
       - "traefik.http.routers.cooktrace.rule=Host(`tools.example.com`) && PathPrefix(`/cooktrace`)"
       - "traefik.http.routers.cooktrace.entrypoints=websecure"
       - "traefik.http.routers.cooktrace.tls.certresolver=letsencrypt"
-      - "traefik.http.services.cooktrace.loadbalancer.server.port=3001"
+      - "traefik.http.services.cooktrace.loadbalancer.server.port=3003"
       # NOTE: no stripprefix middleware. The app expects to see /cooktrace.
     ```
 

@@ -12,6 +12,18 @@ Compose pulls the newest image that matches the tag in your `docker-compose.yml`
 !!! warning "Back up first for major bumps"
     Data lives in your bind-mounted volumes and persists across container recreates, but a bad upgrade is easier to undo when you have a snapshot to fall back to. Before crossing a major version boundary (`1.x` to `2.x`), stop the container, copy the DB and uploads directories aside, then restart and pull. Details at [Backups and restore](../self-hosting/backups.md).
 
+## LiftTrace and CookTrace 1.3.0: Container Port Change
+
+Starting with 1.3.0, LiftTrace and CookTrace listen inside the container on the same port as their sample host port, like NutriTrace and NoteTrace already do. The host port does not change, so bookmarks and the Android app's server address keep working, but the right-hand side of your compose mapping has to.
+
+| App | Before 1.3.0 | 1.3.0 and later |
+|---|---|---|
+| LiftTrace | `"3002:3003"` | `"3002:3002"` |
+| CookTrace | `"3003:3001"` | `"3003:3003"` |
+
+!!! warning "Action needed when you update"
+    If you pull 1.3.0 (or `:latest`, `:1`, or `:dev` once it carries the change) with the old mapping, the app will not respond. Update the mapping before or right after the pull, then `docker compose up -d`. Also update anything that talks to the container directly on the old port: a reverse proxy on the same Docker network (`lifttrace:3003`, `cooktrace:3001`), a Traefik `loadbalancer.server.port` label, a Cloudflare Tunnel service URL, or a healthcheck. Installs that set `PORT` themselves are not affected.
+
 ## What "the newest image" means depends on your tag
 
 The image tag in your compose file controls how much you get on each `pull`.
