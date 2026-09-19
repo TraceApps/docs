@@ -100,6 +100,8 @@ The reverse of the "CookTrace pulls foods from NutriTrace" flow above: NT can al
 
 ### Mint a token with `read:pantry`
 
+Pantry import needs NutriTrace 1.3.0 or later and a CookTrace version that has the `read:pantry` scope (CookTrace 1.3.0 and later). On an older CookTrace the scope isn't in the list yet; recipe import works either way.
+
 The scope is separate from `read:recipes` on purpose (you may want to share only one). Open CookTrace **Settings, API Tokens, New Token**, tick **read:pantry** (add **read:recipes** too if you also want the recipe-pull flow above), save, copy the `ct_pat_...` value.
 
 ### Search and pick a single pantry item
