@@ -1,6 +1,6 @@
 # Exercise library
 
-![Exercise library with wger, Free Exercise DB, and custom-source badges](../assets/img/lifttrace/02-exercises.png)
+![Exercise library filtered to Chest, with a photo, equipment, and target muscles for each exercise](../assets/img/lifttrace/02-exercises.png)
 
 
 LiftTrace comes with a multi-source exercise catalog. Every source is optional, every source can be enabled or disabled independently, and every source is licensed for redistribution. You can also add your own exercises one at a time or bulk-import via spreadsheet.
