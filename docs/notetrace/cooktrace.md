@@ -3,7 +3,7 @@
 If you also run [CookTrace](../cooktrace/index.md), NoteTrace works with your CookTrace [shopping list](../cooktrace/shopping.md): see it as **Shopping List** in the menu, grouped by aisle, check things off as you shop, and send a NoteTrace checklist's open items to it. CookTrace stays the one shopping list; NoteTrace shows it live and adds to it, it doesn't keep a second copy.
 
 !!! note "Needs a recent CookTrace"
-    The shopping list API this uses is on CookTrace's dev channel; CookTrace v1.0.0 doesn't have it yet. If linking says CookTrace is too old, update CookTrace.
+    This needs CookTrace 1.3.0 or later, which is on CookTrace's dev channel (the `:dev` image) until 1.3.0 is released. CookTrace 1.2.0 and earlier don't have the shopping list API. If linking says CookTrace is too old, update CookTrace.
 
 ## Set it up
 
