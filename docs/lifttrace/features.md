@@ -25,7 +25,7 @@ Full details in [Diary and set logging](diary.md).
 
 ## Follow an active program
 
-![Programs and templates with multi-week progression matrix](../assets/img/lifttrace/03-programs.png)
+![Programs with Push / Pull / Legs active and a preview of its three workouts](../assets/img/lifttrace/03-programs.png)
 
 
 Open **Programs**. Every fresh install seeds a handful of starter templates (Push/Pull/Legs, Upper/Lower, Full Body 3x, plus two branded programs). Pick one, tap **Activate**, and it becomes your active program. Only one program is active at a time.
@@ -56,7 +56,7 @@ PR detection also runs inline in Diary: when a completed set beats the prior top
 
 ## Use the radio during a session
 
-![Radio player with Subsonic / Jellyfin / Icecast / HLS source picker](../assets/img/lifttrace/05-radio.png)
+![Radio with a list of internet radio stations grouped under SomaFM](../assets/img/lifttrace/05-radio.png)
 
 
 The **Radio** tab is a full music player, not a background afterthought. Two source types:

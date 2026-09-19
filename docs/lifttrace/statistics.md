@@ -2,6 +2,8 @@
 
 The Statistics tab is the training-history dashboard. Six views (Overview, Exercise Progress, Records, Volume, Frequency, Body Weight), a shared date range across all of them, and a metric-pill row along the top for switching. Warm-ups are excluded everywhere; only completed working sets with positive weight count.
 
+![Statistics overview: weekly goal ring, streaks, 90-day activity grid, and muscle recovery map](../assets/img/lifttrace/04-statistics.png)
+
 ## The metric-pill layout
 
 Six pills at the top of the page. Tap one to switch view; the range selector below (`1W / 1M / 3M / 6M / 1Y / All`) applies globally so a range you pick on Volume carries over to Frequency and Records without a second click. Scroll position is remembered per metric, so hopping Volume > Frequency > Volume lands back where you were.
