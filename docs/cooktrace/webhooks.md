@@ -23,8 +23,7 @@ Then add a webhook under **Settings, Webhooks** (admin, multi-user mode). Enter 
 
 Events go to webhooks owned by the account that made the change. Re-checking an item that was already checked doesn't fire `shopping_list.completed` again.
 
-!!! note "Android app"
-    Changes made in the Android app reach the server through sync, and sync doesn't fire webhooks yet. Cooking, finishing the list, or running out of something on the phone won't send an event; the same action in the web app, the REST API, or MCP will.
+Changes made in the Android app fire the same events once they sync to the server, so an event from the phone arrives when it next syncs rather than the instant you tap. Checking off several items in one go sends one `shopping_list.completed`, not one per item.
 
 ## Target URLs
 
