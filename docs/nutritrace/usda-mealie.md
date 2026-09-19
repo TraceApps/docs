@@ -97,7 +97,7 @@ When you pick a CookTrace recipe from the picker, NutriTrace opens the Recipe ed
 
 Save the recipe and it lands in NT's Recipes catalog with a **From CookTrace** badge and a back-link to the original recipe on CookTrace. Re-pulling and saving again updates the same row rather than duplicating, so edits on CookTrace flow through with one pick + save.
 
-See [Pull a CookTrace recipe into NutriTrace](../cooktrace/nt-federation.md#pull-a-cooktrace-recipe-into-nutritrace) for the CookTrace-side setup and the full field-by-field wire contract.
+See [Pull a CookTrace recipe into NutriTrace](../cooktrace/nt-federation.md#pull-a-cooktrace-recipe-into-nutritrace-ct-is-the-server) for the CookTrace-side setup and the full field-by-field wire contract.
 
 ## USER_PREFS vs DEVICE_PREFS
 

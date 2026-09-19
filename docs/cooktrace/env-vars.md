@@ -17,7 +17,19 @@ Only CookTrace-specific env vars are listed here. Shared env vars (`PORT`, `BASE
 | `BACKUP_SCHEDULE` | (unset) | Auto-backup cadence: `off` \| `daily` \| `weekly` \| `monthly`. When set, locks the Settings UI field. |
 | `BACKUP_TIME` | `02:00` | Auto-backup time of day (`HH:MM`, container timezone). Locks the UI when set. |
 | `BACKUP_RETENTION` | (unset) | How many auto-backups to keep (older auto-purged). Locks the UI when set. |
-| `BACKUPS_PATH` | `<UPLOADS_PATH>/backups` | Where full-backup zips write. Change only if you want backups on a different volume. |
+| `BACKUPS_PATH` | `<UPLOADS_PATH>/backups` | Where full-backup zips write. Change only if you want backups on a different volume. Wherever it points inside `UPLOADS_PATH`, that directory is never served publicly. |
+
+## Integrations
+
+All off by default.
+
+| Env var | Default | Purpose |
+| --- | --- | --- |
+| `MCP_ENABLED` / `MCP_WRITE_ENABLED` / `MCP_DESTROY_ENABLED` | `0` | The three MCP tiers. See [Model Context Protocol](mcp.md), which also covers `ALLOWED_ORIGINS`. |
+| `PUBLIC_API_ENABLED` | `0` | Turns on the read routes of the [public REST API](public-api.md). |
+| `PUBLIC_API_WRITE_ENABLED` | `0` | Also turns on its write routes. Needs `PUBLIC_API_ENABLED`. |
+| `WEBHOOKS_ENABLED` | `0` | Turns on outgoing [webhooks](webhooks.md). |
+| `ALLOW_PRIVATE_WEBHOOK_URLS` | `0` | Lets a webhook target a private or loopback address (a Home Assistant container on the same Docker network, for example). Link-local and cloud-metadata addresses stay blocked. |
 
 ## Path convenience (Docker compose only)
 
