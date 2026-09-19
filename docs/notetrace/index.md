@@ -1,11 +1,8 @@
 # NoteTrace
 
-NoteTrace is a self-hosted home for everyday notes: notes, checklists, and reminders in a clean card grid, in a single Docker container on your own hardware. It replaces Google Keep, the everyday half of Evernote, Apple Notes, OneNote, Memos, Blinko, Simplenote, and whatever came with your phone, and imports from most of them. One Node/Express server, one Svelte PWA, a SQLite database, and a Capacitor Android app that either runs fully offline or syncs against the same server. AGPL-3.0, no telemetry, nothing leaves your network unless you point it at a push service or AI provider yourself.
+NoteTrace is a self-hosted home for everyday notes: notes, checklists, and reminders in a clean card grid, in a single Docker container on your own hardware. It replaces Google Keep, the everyday half of Evernote, Apple Notes, OneNote, Memos, Blinko, Simplenote, and whatever came with your phone, and imports from most of them. One Node/Express server, one Svelte PWA, a SQLite database, a Capacitor Android app that either runs fully offline or syncs against the same server, and a [Wear OS app](wear.md) for the wrist. AGPL-3.0, no telemetry, nothing leaves your network unless you point it at a push service or AI provider yourself.
 
 The idea is Keep's speed with the pieces Keep leaves out: open it and start typing, and when you need more there is Markdown formatting, voice notes with searchable transcripts, version history, repeating reminders that keep their local time, sharing with other people on your server, and a one-click move out of Google Keep.
-
-!!! note "Dev pre-release"
-    NoteTrace is the newest Trace app. It is feature complete and in testing toward v1.0.0, with builds published on the dev channel: the `:dev` Docker image and a signed APK on the [Releases page](https://github.com/TraceApps/notetrace/releases). These pages describe the app as it stands there.
 
 ![NoteTrace notes grid with pinned notes, checklists, reminders, and labels](../assets/img/notetrace/01-notes.png)
 
