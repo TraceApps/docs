@@ -4,9 +4,9 @@ NutriTrace, LiftTrace, CookTrace, and NoteTrace are free to self-host and always
 
 If you want to help, there are two ways, and one of them costs nothing.
 
-## The current goal: iOS
+## The current goal: the Trace apps on iPhone and in the app stores
 
-None of the Trace apps run properly on an iPhone. The web app works in Safari, but nobody has tested it on real hardware, and there's no native app, because building and testing for iOS needs Apple hardware. That's what this fund is for.
+None of the Trace apps run properly on an iPhone, and the Android apps are only available as APKs on GitHub. The web app works in Safari, but nobody has tested it on real hardware, and there's no native iPhone app, because building and testing for iOS needs Apple hardware and a developer account. Listing on Google Play needs a Play developer account. That's what this fund is for.
 
 | What | Why | Cost |
 |---|---|---|
@@ -18,6 +18,8 @@ None of the Trace apps run properly on an iPhone. The web app works in Safari, b
 | | **Total** | **$1,329** |
 
 The goal is set at the round $1,300. The rest is covered either way.
+
+**Where it stands:** the live total is on [Ko-fi](https://ko-fi.com/traceapps), and this page lists each thing as it's bought.
 
 **Milestone 1, $750: the Mac and the developer accounts.** Building and testing can start in the simulator, the PWA can finally be checked on macOS Safari, and the Android apps can go on Google Play.
 
