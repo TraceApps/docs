@@ -1,6 +1,6 @@
 # Trace in CookTrace
 
-![Trace AI chat inside CookTrace with the chef-hat mascot](../assets/img/cooktrace/07-trace.png)
+![Trace suggesting what to cook tonight from what is in the pantry](../assets/img/cooktrace/07-trace.png)
 
 
 Trace is the AI assistant shared across the TraceApps family (CookTrace, LiftTrace, NutriTrace). Same persona, same setup surface, different tools per app. In CookTrace, Trace focuses on cooking: your recipes, your pantry, your diary, your shopping list.

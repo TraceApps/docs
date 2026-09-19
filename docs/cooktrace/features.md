@@ -31,7 +31,7 @@ Each ingredient row has an inline unit converter that draws on a 37-unit catalog
 
 ## Plan the week {#plan}
 
-![Cook Diary and Meal Planner calendar view](../assets/img/cooktrace/03-diary.png)
+![Cook Diary with the cooking activity grid and a list of planned and cooked meals](../assets/img/cooktrace/03-diary.png)
 
 
 The Diary page has a list view (60 days back, 30 days forward, grouped by date) and a month calendar. Drag a recipe between calendar cells to reschedule it. Planned cooks are grey; a one-tap toggle promotes them to logged cooks and records the date.
@@ -40,7 +40,7 @@ A **heatmap** at the top of the page shows cook density over the last year (cont
 
 ## Stock the pantry {#pantry}
 
-![Pantry with variants, expiration pills, and barcode-scan chips](../assets/img/cooktrace/02-pantry.png)
+![Pantry with the Expiring Soon strip, product photos, and expiration pills](../assets/img/cooktrace/02-pantry.png)
 
 
 The Pantry page mirrors Recipes: grid or list, per-user preference. Tap an item and a **slide-up details sheet** covers the lower half of the screen with hero, brand, category, barcode, stock pill, serving size, on-hand quantity, expiration date, and nutrition. Hit Edit to swap that same layout into inputs, no navigation to a separate editor.
@@ -57,7 +57,7 @@ Expiration works two ways: a chip on the item card (Expiring Soon, Expired) and 
 
 ## Shop from the plan {#shop}
 
-![Shopping list grouped by aisle with pantry-match pills](../assets/img/cooktrace/04-shopping.png)
+![Shopping list grouped by aisle, each item tagged with the recipe it is for](../assets/img/cooktrace/04-shopping.png)
 
 
 Open a recipe and hit **Add to Shopping** to push its ingredients onto the list, skipping anything already stocked. Or open Diary, select a date range, and **Shop This Plan** fans every planned recipe's ingredients out at once, dedupping across recipes (buy one bag of flour, not three).
