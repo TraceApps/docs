@@ -20,7 +20,7 @@ Pick the tab for the app you're installing. Each snippet is a complete, working 
         image: ghcr.io/traceapps/cooktrace:1
         container_name: cooktrace
         ports:
-          - "3003:3001"
+          - "3003:3003"
         volumes:
           - ./data/db:/data/db
           - ./data/uploads:/data/uploads
@@ -32,7 +32,7 @@ Pick the tab for the app you're installing. Each snippet is a complete, working 
         restart: unless-stopped
     ```
 
-    Container listens on `3001`, exposed on host port `3003`. Open `http://localhost:3003` after the container is up.
+    Container listens on `3003`, exposed on host port `3003` (same number for convenience). Open `http://localhost:3003` after the container is up.
 
 === "LiftTrace"
 
@@ -124,7 +124,7 @@ More detail in [Docker image tag matrix](../reference/image-tags.md).
 |---|---|---|---|---|
 | NutriTrace | `3001` | `3001` | `/data/db` | `/data/uploads` |
 | LiftTrace | `3002` | `3002` | `/data/db` | `/data/uploads` |
-| CookTrace | `3001` | `3003` | `/data/db` | `/data/uploads` |
+| CookTrace | `3003` | `3003` | `/data/db` | `/data/uploads` |
 | NoteTrace | `3004` | `3004` | `/data/db` | `/data/uploads` |
 
 Both volumes are plain bind mounts. Back them up with the same tool you use for the rest of your host (rsync, restic, borg, whatever).
@@ -162,7 +162,7 @@ None of the images include a built-in healthcheck. If you want one, add it yours
       retries: 3
 ```
 
-Adjust the port for the app: NutriTrace `3001`, LiftTrace `3002`, CookTrace `3001`, NoteTrace `3004`. The `/api/health` endpoint returns `200 OK` with a short JSON body once the app finishes booting.
+Adjust the port for the app: NutriTrace `3001`, LiftTrace `3002`, CookTrace `3003`, NoteTrace `3004`. The `/api/health` endpoint returns `200 OK` with a short JSON body once the app finishes booting.
 
 ## First-boot verification
 

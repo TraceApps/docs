@@ -17,7 +17,7 @@ Every var below also accepts the Docker secrets convention `<NAME>_FILE=/run/sec
 
 ### `PORT`
 
-The container listens on `3002` (it was `3003` before 1.3.0; see [Updating](../getting-started/updating.md#lifttrace-130-container-port-change)). Every reverse-proxy snippet in the docs assumes that. If you change `PORT` inside the container, keep it in sync with your compose `expose` / `ports` mapping. The healthcheck in the app is `GET /api/health`.
+The container listens on `3002` (it was `3003` before 1.3.0; see [Updating](../getting-started/updating.md#lifttrace-and-cooktrace-130-container-port-change)). Every reverse-proxy snippet in the docs assumes that. If you change `PORT` inside the container, keep it in sync with your compose `expose` / `ports` mapping. The healthcheck in the app is `GET /api/health`.
 
 ### `EXERCISE_SOURCES`
 

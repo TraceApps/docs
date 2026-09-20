@@ -26,7 +26,7 @@ services:
   cooktrace:
     image: ghcr.io/traceapps/cooktrace:latest
     ports:
-      - "3003:3001"
+      - "3003:3003"
     volumes:
       - ./data/db:/data/db
       - ./data/uploads:/data/uploads

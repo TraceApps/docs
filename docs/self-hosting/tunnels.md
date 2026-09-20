@@ -21,13 +21,13 @@ credentials-file: /root/.cloudflared/<tunnel-uuid>.json
 
 ingress:
   - hostname: cook.example.com
-    service: http://cooktrace:3001
+    service: http://cooktrace:3003
   - service: http_status:404
 ```
 
 Run it as a systemd service (`cloudflared service install`) or as a compose sidecar. Cloudflare's edge terminates TLS with a Cloudflare-issued cert; the tunnel origin serves plain HTTP on the docker network.
 
-You do not need your own domain. `cloudflared tunnel --url http://cooktrace:3001` prints a throwaway `https://<random>.trycloudflare.com` URL that lasts for the life of the process. Good for a quick share, not for daily use (URL changes on every restart, no auth in front).
+You do not need your own domain. `cloudflared tunnel --url http://cooktrace:3003` prints a throwaway `https://<random>.trycloudflare.com` URL that lasts for the life of the process. Good for a quick share, not for daily use (URL changes on every restart, no auth in front).
 
 !!! warning "100 MB proxied-body cap on the free plan"
     Cloudflare's free plan caps proxied request bodies at 100 MB. A full-backup restore ZIP that pushes past that limit gets a `413 Payload Too Large` at the edge, before the app ever sees it. Same for very large recipe-import ZIPs in CookTrace. Two workarounds: temporarily move the restore ZIP into `BACKUPS_PATH` on the host and pick it from the in-app list (skips the upload entirely), or restore over the LAN.

@@ -5,7 +5,7 @@
 
 Trace is the AI assistant shared across the TraceApps family (CookTrace, LiftTrace, NutriTrace). Same persona, same setup surface, different tools per app. In CookTrace, Trace focuses on cooking: your recipes, your pantry, your diary, your shopping list.
 
-The provider and key setup is identical across the three apps and lives on a shared page: see [Trace setup](../trace/setup.md) for cloud providers, [Local LLM](../trace/local-llm.md) for Ollama and friends, and [Models](../trace/models.md) for what to pick when.
+The provider and key setup is identical across the Trace apps and lives on a shared page: see [Trace setup](../trace/setup.md) for cloud providers, [Local LLM](../trace/local-llm.md) for Ollama and friends, and [Models](../trace/models.md) for what to pick when.
 
 ## The chef-hat mascot
 

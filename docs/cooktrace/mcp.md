@@ -10,9 +10,9 @@ Off by default. Opt in with one env var + one API token.
 
 Fourteen tools across three tiers. Setup for each tier below; full arg/return reference in the [MCP tool catalog](../reference/mcp-tools.md).
 
-### Read (always available when MCP is on)
+### Read
 
-Six read-only tools: `search_recipes`, `get_recipe`, `recent_recipes`, `list_pantry`, `list_shopping_list`, `list_cook_diary`.
+Six read-only tools: `search_recipes`, `get_recipe`, `recent_recipes`, `list_pantry`, `list_shopping_list`, `list_cook_diary`. Available whenever MCP is on, to a token that holds `mcp:read`. A token minted with only `mcp:write` or `mcp:destroy` gets that tier's tools and no read tools.
 
 ### Write (Phase 2)
 
@@ -119,7 +119,9 @@ Add `--writes` to also exercise the write tools (needs `mcp:write` + `MCP_WRITE_
 
 **`{"error":"auth_missing"}` (401).** No `Authorization: Bearer ct_pat_...` header.
 
-**`{"error":"auth_scope"}` (403).** The token was minted without `mcp:read`. Revoke and create a new one with the scope checked.
+**`{"error":"auth_scope"}` (403).** The token holds none of the `mcp:*` scopes. Revoke it and create a new one with `mcp:read` checked (plus `mcp:write` / `mcp:destroy` for those tiers).
+
+**Connected, but the read tools are missing.** The token has `mcp:write` or `mcp:destroy` but not `mcp:read`. Each tier needs its own scope; create a token with `mcp:read` checked too.
 
 **`{"error":"Origin not allowed"}` (403).** A browser-based client is sending an `Origin` header that isn't in `ALLOWED_ORIGINS`. Server-to-server clients (Claude Desktop, Cursor CLI) don't send Origin and are unaffected.
 
