@@ -88,7 +88,23 @@ The web app keeps working when the signal drops, in a browser tab or installed a
 
 - **What works offline**: logging a session (sets, reps, weight, notes, adding or removing exercises), deleting a session, body stats, cardio (logging, editing, deleting), starting a program or moving its week, creating, editing and deleting your own exercises, and settings. Reading works for anything this browser has already seen: the diary, your exercise catalogue, programs, templates, recent workouts, Statistics, Progress, coach notes and your profile.
 - **Coaching offline**: a coach can write a note on a member's session, and a member can reply to one and mark notes read. Prescribed work can be added, changed or removed. A note is pinned to the exercise it is about, so it stays on the right lift even if the member reorders the session before the note arrives.
-- **What waits for the connection**: photos and media uploads, exercise catalogue imports and wger sync, creating or editing a program or template, Trace, adding or removing a member, assigning a program, and anything admin. These say they need a connection rather than failing quietly.
+### What does not work offline
+
+These need your server or the internet, and say so plainly rather than failing quietly:
+
+| Not available offline | Why |
+| --- | --- |
+| Adding a photo: progress photos, exercise media, avatars | The file has to reach your server |
+| Importing an exercise catalogue, syncing wger | It downloads from the internet |
+| Creating or editing a program or a workout template | Planning work, done against a server that can answer |
+| Adding or removing a member, assigning a program to one | These decide who can see whose data, so they are never done from a list pulled down hours ago |
+| Trace | It talks to an AI provider |
+| Workout import, backups, API tokens, webhooks | They move data in or out of your server |
+| Radio | It streams |
+| Admin: users, invites, server settings, updates | They change your server |
+| Signing in, or signing up a new account | The sign-in screen needs your server |
+
+Anything this browser has never seen is not there offline either: a day you have not opened, a program you have not looked at, an exercise picture you have not been shown. Settings, Exercise Catalog has a **Download media for offline** button if you want the pictures in advance.
 
 The menu button shows an amber cloud while anything is waiting, and red if your server refuses it. What you change is kept in the browser, so it survives closing the tab, and it goes up on its own when the connection returns, replayed against the same routes the Android app replays its own queue against: a session changed in two places merges set by set rather than one copy overwriting the other. Two tabs cannot send it twice. Nothing is sent while you are offline, and the queue is cleared only once your server has confirmed it. If your server refuses one of your changes when it finally reaches it, that one change is set aside and named in plain words ("Your server would not accept the run you logged: ..."), everything else queued behind it still goes up, and the reason is written to **Settings, Diagnostics** so you can find it later. A server that is merely struggling is retried instead.
 

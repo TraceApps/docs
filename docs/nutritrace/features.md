@@ -88,7 +88,22 @@ Trace can answer "what's my fasting streak?" via the `get_fasting_history` tool.
 The web app keeps working when the connection drops, in a browser tab or installed as an app, and comes back up offline after a reload or a relaunch. It shows the days, foods and pictures this browser has already seen, and you can keep logging.
 
 - **What works offline**: opening any day you have already seen, adding, editing and deleting diary entries, water and body stats; your own foods, meals and recipes, including making a new one and logging it straight away; manual activity, with the day's calories out recalculated from what you have; the fasting timer, including starting and ending a fast; settings and goals; and Statistics over the history this browser holds.
-- **What waits for the connection**: Open Food Facts, USDA, Mealie and CookTrace searches and the barcode lookups that use them, photo uploads, the wellness providers, Trace, import and export, and anything admin. These say they need a connection rather than looking empty, and a barcode scanned offline says only your own foods were checked.
+### What does not work offline
+
+These need your server or the internet, and say so plainly rather than failing quietly or looking empty:
+
+| Not available offline | What you see instead |
+| --- | --- |
+| Open Food Facts, USDA, Mealie and CookTrace searches | The sources are labelled "needs a connection" and only your own foods are searched |
+| Barcode lookups against those sources | "You're offline, so only your own foods were checked for this barcode" |
+| Adding a photo to a food, and Scan Label | A message that it needs a connection |
+| Connecting or syncing a wellness provider (Fitbit, Garmin, Withings, Google Health) | Figures already seen stay on screen; a day never opened says it needs a connection |
+| Trace and Smart Log | A message that it needs a connection |
+| Import and export, backups | A message that it needs a connection |
+| Admin: users, invites, server settings | A message that it needs a connection |
+| Signing in, or signing up a new account | The sign-in screen needs your server |
+
+A day, food or picture this browser has never seen is not there offline either: nothing is fetched in the background for later.
 
 The menu button shows an amber cloud while anything is waiting, and red if your server refuses it, with the reason said in words and written to **Settings, Diagnostics**; what was refused is kept and tried again rather than dropped. What you log is kept in the browser, so it survives closing the tab, and it goes up on its own when the connection returns, through the same sync the Android app uses: a day changed in two places merges entry by entry rather than one copy overwriting the other. Two tabs cannot send it twice. Nothing is sent while you are offline, and the queue is only cleared once the server has confirmed it. Signing out sends what is waiting first, then clears this browser's copy. If it cannot reach your server, it asks before discarding anything rather than clearing it silently.
 
