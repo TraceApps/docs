@@ -82,6 +82,21 @@ Provider is your call: Claude, OpenAI, Gemini, or any OpenAI-compatible endpoint
 
 See [Trace in LiftTrace](trace.md).
 
+## Train without a connection {#offline}
+
+The web app keeps working when the signal drops, in a browser tab or installed as an app, and comes back up offline after a reload. Gyms in basements are the reason this exists.
+
+- **What works offline**: logging a session (sets, reps, weight, notes, adding or removing exercises), deleting a session, body stats, cardio (logging, editing, deleting), starting a program or moving its week, creating, editing and deleting your own exercises, and settings. Reading works for anything this browser has already seen: the diary, your exercise catalogue, programs, templates, recent workouts, Statistics, Progress, coach notes and your profile.
+- **What waits for the connection**: photos and media uploads, exercise catalogue imports and wger sync, creating or editing a program or template, Trace, coaching and trainer actions, and anything admin. These say they need a connection rather than failing quietly.
+
+The menu button shows an amber cloud while anything is waiting, and red if your server refuses it. What you change is kept in the browser, so it survives closing the tab, and it goes up on its own when the connection returns, replayed against the same routes the Android app replays its own queue against: a session changed in two places merges set by set rather than one copy overwriting the other. Two tabs cannot send it twice. Nothing is sent while you are offline, and the queue is cleared only once your server has confirmed it. A change your server refuses is kept and reported rather than dropped.
+
+Signing out sends what is waiting first. If it cannot (you are signing out in a dead zone), it asks before discarding it.
+
+Exercise pictures and animations are kept as you see them. Settings, Exercise Catalog also has a **Download media for offline** button that fetches the lot in advance, for a gym with no signal at all.
+
+This is not built on Background Sync, which Safari does not have, so an iPhone behaves the same as everything else. The Android app is unaffected: it has its own offline story in local mode.
+
 ## Related
 
 - [Diary and set logging](diary.md)
