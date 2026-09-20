@@ -72,6 +72,37 @@ Every recipe has a **Share** dialog with per-user grants ("share with Alice") an
 
 Full instance backups (admin only) zip the DB and uploads together. Portable JSON export is per-user and images-free, useful for phone-to-phone or account-to-account moves. See [Import and migration](import.md) for the incoming side.
 
+## Cook and shop without a connection {#offline}
+
+The web app keeps working when the signal drops, in a browser tab or installed as an app, and comes back up offline after a reload. A supermarket with no signal is the case it is built for.
+
+- **What works offline**: your shopping list (adding items, ticking them off, editing, removing, clearing what you ticked, reordering); the pantry (adding, editing, removing, marking in or out of stock); the cook diary; your recipes and the notes you leave on them; and settings. Reading works for anything this browser has already seen: recipes with their pictures, cookbooks, the pantry, the diary and your units.
+
+### What does not work offline
+
+These need your server or the internet, and say so plainly rather than failing quietly:
+
+| Not available offline | Why |
+| --- | --- |
+| Adding a photo to a recipe or a pantry item | The file has to reach your server |
+| Importing recipes (a URL, a file, Mealie, Paprika, a zip) | It reads from the internet or your server |
+| Sharing a recipe or a cookbook, share links | Sharing decides who can see your food, so it is never done from a list pulled down hours ago |
+| Kitchens: creating one, adding or removing members | Same reason |
+| Trace, and anything that asks an AI | It talks to an AI provider |
+| Backups, export, API tokens, webhooks | They move data in or out of your server |
+| Admin: users, invites, server settings, updates | They change your server |
+| Signing in, or signing up a new account | The sign-in screen needs your server |
+
+A recipe, pantry item or picture this browser has never seen is not there offline either: nothing is fetched in the background for later, so open what you plan to cook from before you lose signal.
+
+The menu button shows an amber cloud while anything is waiting. What you change is kept in the browser, so it survives closing the tab, and it goes up on its own when the connection returns, as the very requests the app made, so your server does exactly what it would have done anyway. Two tabs cannot send it twice, and nothing is sent while you are offline: the queue is cleared only once your server has confirmed it.
+
+If your server refuses one of your changes when it finally reaches it, that one change is set aside and named in plain words ("Your server would not accept the item you added to your shopping list: ..."), everything else queued behind it still goes up, and the reason is written to the diagnostics log. A server that is merely busy, or a session that has expired, is retried instead, so nothing is thrown away because a cookie timed out.
+
+Signing out sends what is waiting first, then clears this browser's copy. If it cannot reach your server, it asks before discarding anything.
+
+This is not built on Background Sync, which Safari does not have, so an iPhone behaves the same as everything else. The Android app is unaffected: it has its own offline story in local mode.
+
 ## Related
 
 - [Recipes deep dive](recipes.md)
