@@ -19,7 +19,7 @@ Any variable in the tables below can also be provided via Docker secrets by suff
 
 | Variable | Default | Purpose | CT | LT | NT |
 |---|---|---|---|---|---|
-| `PORT` | `3001` (CT/NT), `3003` (LT) | Container listen port. Change if you remap. | Y | Y | Y |
+| `PORT` | `3001` (CT/NT), `3002` (LT) | Container listen port. Change if you remap. | Y | Y | Y |
 | `BASE_URL` | (empty) | Subpath mount, e.g. `/cooktrace`. Must start with `/`, no trailing slash. Emitted to the browser as `window.__<APP>_CONFIG__.basePath`. | Y | Y | Y |
 | `LOG_LEVEL` | `info` | `error`, `warn`, `info`, `debug`. | Y | Y | Y |
 | `NODE_ENV` | (empty) | Set to `production` in real deployments. Refuses to boot without `JWT_SECRET`. | Y | Y | Y |

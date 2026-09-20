@@ -54,7 +54,7 @@ Each app lives in its own repo under [TraceApps on GitHub](https://github.com/Tr
 | App | Vite dev server | Backend Express |
 |-----|-----------------|-----------------|
 | CookTrace  | `:5175` | `:3001` |
-| LiftTrace  | `:5173` | `:3003` |
+| LiftTrace  | `:5173` | `:3002` |
 | NutriTrace | `:5173` | `:3001` |
 
 Vite falls forward if a port is already taken (`:5174`, `:5175`), so if you run two apps side by side, check the terminal for the real URL.
@@ -65,7 +65,7 @@ Both flows work for all three apps. Pick based on what you are changing.
 
 ### Path A: Vite dev server with API proxy
 
-Fast HMR, but the frontend runs on a separate origin (`:5173` or `:5175`) from the backend (`:3001` or `:3003`). Vite proxies `/api` and `/uploads` through to the backend. Handy for iterating on markup and Svelte components.
+Fast HMR, but the frontend runs on a separate origin (`:5173` or `:5175`) from the backend (`:3001` or `:3002`). Vite proxies `/api` and `/uploads` through to the backend. Handy for iterating on markup and Svelte components.
 
 ```bash
 # terminal 1: backend
@@ -87,7 +87,7 @@ rm -rf server/dist && cp -r dist server/dist
 cd server && node index.js
 ```
 
-Open `http://localhost:3001` (or `:3003` on LiftTrace). Re-run all three lines after any frontend change; the server templates `dist/index.html` at startup, so a rebuild needs a server restart to be picked up. Backend-only changes just need the server restarted.
+Open `http://localhost:3001` (or `:3002` on LiftTrace). Re-run all three lines after any frontend change; the server templates `dist/index.html` at startup, so a rebuild needs a server restart to be picked up. Backend-only changes just need the server restarted.
 
 !!! tip "Blank page in Path A"
     A stale PWA service worker will keep serving the previous shell even though your new build is on disk. Open DevTools, unregister the service worker, clear site data, hard-reload. If that does not fix it, switch to Path B; single-origin sidesteps the whole class of problem.

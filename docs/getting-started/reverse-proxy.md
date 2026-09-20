@@ -2,7 +2,7 @@
 
 Front the app with Caddy, nginx, or Traefik and let the proxy handle TLS, virtual hosts, and any subpath rewriting. Every Trace app behaves the same way behind a proxy; the only per-app difference is the internal port number.
 
-Internal ports as a reminder: CookTrace and NutriTrace listen on `3001`, LiftTrace on `3003`.
+Internal ports as a reminder: CookTrace and NutriTrace listen on `3001`, LiftTrace on `3002`. (Before 1.3.0, LiftTrace listened on `3003` inside the container; see [Updating](updating.md#lifttrace-130-container-port-change).)
 
 ## Root path (one app per hostname)
 

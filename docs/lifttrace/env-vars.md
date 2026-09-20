@@ -8,7 +8,7 @@ Every var below also accepts the Docker secrets convention `<NAME>_FILE=/run/sec
 
 | Var | Default | Purpose |
 |---|---|---|
-| `PORT` | `3003` | Internal Express port. Compose maps host `3002:3003` in the reference file. |
+| `PORT` | `3002` | Internal Express port. Compose maps host `3002:3002` in the reference file. Was `3003` before 1.3.0. |
 | `EXERCISE_SOURCES` | (empty) | Comma list of exercise-source IDs to auto-seed on first boot: any of `wger`, `free-db`, `exercisedb`, `exercisedb-oss`. Empty triggers the first-run wizard's library picker instead of seeding blind. |
 | `EXERCISEDB_OSS_URL` | `https://oss.exercisedb.dev` | Override the community mirror URL for the `exercisedb-oss` source. Point at your own deployment if you want to self-host the mirror or reduce load on the public one. |
 | `ALLOW_PRIVATE_RADIO_URLS` | `0` | Set `1` or `true` to let the radio proxy fetch loopback, RFC1918, or IPv6 ULA stream URLs. Off by default to prevent SSRF. A warning is logged at startup when the opt-out is active. |
@@ -17,7 +17,7 @@ Every var below also accepts the Docker secrets convention `<NAME>_FILE=/run/sec
 
 ### `PORT`
 
-The container listens on `3003`. Every reverse-proxy snippet in the docs assumes that. If you change `PORT` inside the container, keep it in sync with your compose `expose` / `ports` mapping. The healthcheck in the app is `GET /api/health`.
+The container listens on `3002` (it was `3003` before 1.3.0; see [Updating](../getting-started/updating.md#lifttrace-130-container-port-change)). Every reverse-proxy snippet in the docs assumes that. If you change `PORT` inside the container, keep it in sync with your compose `expose` / `ports` mapping. The healthcheck in the app is `GET /api/health`.
 
 ### `EXERCISE_SOURCES`
 

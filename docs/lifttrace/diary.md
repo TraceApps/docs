@@ -13,6 +13,20 @@ Every set row carries:
 - **Unilateral L/R split** on exercises that ask for it (single-arm rows, split squats). Reps become two inputs.
 - **Set-number override** in supersets, so a paired A1/A2/B1 flow keeps the round math right.
 
+## Timed sets (planks, holds, carries)
+
+Some exercises are tracked by how long you hold them, not by reps: planks, wall sits, dead hangs, hollow holds, farmer's walks. For those, the set row shows a **Time** field where reps would be. Weight stays, so a weighted plank is `25 lbs` for `1:00`; leave weight empty for bodyweight.
+
+Typing a time works like a microwave or a phone timer: digits fill in from the right, and the field shows minutes and seconds as you type. `45` is 0:45, `130` is 1:30, `200` is 2:00. No colon needed, so it works on a phone's number pad. Seconds that overflow carry over, so `90` tidies to 1:30 when you leave the field.
+
+Or skip typing entirely: tap the **timer** button inside the time field to start a hold. You get a three second count-in to get into position (tap the number to start straight away), then a large clock you can read from the floor. Tap **Stop** when you're done and the set is filled in and ticked off. If the set already had a time on it, from a program or your last session, you get a cue when you reach it and the clock keeps going so you can beat it. The timer uses your rest timer sound and vibration settings, keeps the screen on during the hold, and stays accurate if the phone locks.
+
+To switch an exercise between Reps and Time, tap the chip beside its name (the same chip that sets Per Side or Alternating) and pick under **Tracked By**. Tick **Remember for this exercise** to make every future session start that way, or set it for good in the Exercise Editor. Common timed exercises such as plank, side plank, wall sit, dead hang, hollow hold, L-sit and farmer's walk start as timed without you doing anything.
+
+Switching never deletes data. Reps you typed before switching to Time are kept and come back if you switch back. And an exercise that already has sets logged keeps the shape of that data: marking Plank as timed does not turn last month's "30 reps" planks into times.
+
+A timed exercise's PR is its **longest hold**, or the heaviest load you held it with. Timed sets count as completed sets and as training in muscle recovery, but carry no weight x reps volume or estimated 1RM.
+
 Sets you add on the fly through the row menu inherit the previous set's weight and reps. Empty sets never save; empty workouts auto-delete server-side.
 
 Writes are debounced by 350 ms with optimistic UI. Pending writes flush on `pause`, `visibilitychange`, and `pagehide`, so a set entered right before backgrounding the phone hits the server or the offline queue instead of dying with the timer (fix in v1.0.1).
@@ -42,6 +56,7 @@ The parser handles:
 - **RPE targets**: `RPE 8`, `@8`.
 - **Rep ranges**: `range 6-8`, `6-8 reps`.
 - **AMRAP**: `AMRAP`, `x AMRAP`.
+- **Timed sets**: `plank 3x45s`, `wall sit 90 seconds`, `farmer carry 3x40s @ 50`.
 - **Bodyweight**: `@ BW`, `bodyweight`.
 - **Supersets**: prefixes `A1:`, `A2:`, `B1:`, `B2:` group into paired exercises. Same letter = same superset.
 - **Aliases**: `BB`, `DB`, `BP`, `OHP`, `DL`, `SQ`, `RDL` map to their full names.

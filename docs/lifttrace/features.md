@@ -86,6 +86,7 @@ See [Trace in LiftTrace](trace.md).
 
 - [Diary and set logging](diary.md)
 - [Programs and templates](programs.md)
+- [Progress photos](progress.md)
 - [Exercise library](exercises.md)
 - [Radio player](radio.md)
 - [Trace in LiftTrace](trace.md)

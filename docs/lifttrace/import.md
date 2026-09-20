@@ -20,6 +20,7 @@ Unmatched exercise names persist as free-text and stay attached to their sets. Y
 - **Superset grouping** is not exported by Strong, FitNotes, or Jefit. Sets from a superset arrive as ungrouped consecutive exercises. Hevy exports superset markers; the Hevy adapter reconstructs the grouping.
 - **Rest-timer values** are exported by some sources but LiftTrace does not currently store per-set rest values on imported workouts.
 - **Notes** carry through when the source exports them.
+- **Hold times** carry through from Strong, Hevy, FitNotes and Garmin. A set exported with a duration and no reps (a plank, a dead hang) arrives as a [timed set](diary.md#timed-sets-planks-holds-carries) with its time. A row with both reps and a duration stays a rep set.
 - **Body weight** and body-stat entries are not part of workout export files; log those separately.
 
 ## Per-source instructions

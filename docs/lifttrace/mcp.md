@@ -12,11 +12,13 @@ Eleven tools across three tiers. Setup for each tier below; full arg/return refe
 
 ### Read (always available when MCP is on)
 
-Eight read-only tools: `get_workout`, `list_recent_workouts`, `get_records`, `get_exercise_progress`, `search_exercises`, `list_programs`, `get_active_program`, `get_body_stat`.
+Nine read-only tools: `get_workout`, `list_recent_workouts`, `get_records`, `get_exercise_progress`, `search_exercises`, `list_programs`, `get_active_program`, `get_body_stat`, `list_progress_photos`.
 
 ### Write (Phase 2)
 
-Two additive log tools: `log_set`, `log_body_stat`. Everything they write shows up as normal entries in the Diary UI, editable and deletable through the app like anything else. Off by default; turn on with `MCP_WRITE_ENABLED=1` AND a token that holds `mcp:write`. Either missing and the write tools simply don't appear in `tools/list`.
+Three additive log tools: `log_set`, `log_body_stat`, `add_progress_photo`. For a timed exercise (plank, wall sit, dead hang, carry) `log_set` takes `duration_sec` instead of `reps`; `search_exercises` reports each exercise's `set_type` so a client can tell which to send. Everything they write shows up as normal entries in the Diary UI, editable and deletable through the app like anything else. Off by default; turn on with `MCP_WRITE_ENABLED=1` AND a token that holds `mcp:write`. Either missing and the write tools simply don't appear in `tools/list`.
+
+`add_progress_photo` takes an image **URL**, not file bytes: MCP has no multipart upload path, so point it at an image you already host. Uploading from a phone or laptop goes through the app instead. See [Progress photos](progress.md).
 
 ### Destructive (Phase 3)
 
@@ -98,7 +100,7 @@ The transport is standard MCP Streamable HTTP (single POST endpoint). Any client
 | Variable | Default | Description |
 |---|---|---|
 | `MCP_ENABLED` | `0` | Set to `1` to expose `/api/mcp`. |
-| `MCP_WRITE_ENABLED` | `0` | Set to `1` to allow write tools (`log_set`, `log_body_stat`) to be registered. Also requires the calling token to hold `mcp:write`. |
+| `MCP_WRITE_ENABLED` | `0` | Set to `1` to allow write tools (`log_set`, `log_body_stat`, `add_progress_photo`) to be registered. Also requires the calling token to hold `mcp:write`. |
 | `MCP_DESTROY_ENABLED` | `0` | Set to `1` to allow the destructive tool (`delete_workout`) to be registered. Also requires the calling token to hold `mcp:destroy` AND every call to include `confirm: true`. |
 | `ALLOWED_ORIGINS` | (empty) | Comma-separated list of origins that browser-based MCP clients may use. Server-to-server clients (no Origin header) always pass. Leave empty unless you're specifically using the MCP Inspector in a browser. |
 
