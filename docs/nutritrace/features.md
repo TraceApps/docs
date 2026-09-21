@@ -87,7 +87,7 @@ Trace can answer "what's my fasting streak?" via the `get_fasting_history` tool.
 
 The web app keeps working when the connection drops, in a browser tab or installed as an app, and comes back up offline after a reload or a relaunch. It shows the days, foods and pictures this browser has already seen, and you can keep logging.
 
-- **What works offline**: opening any day you have already seen, adding, editing and deleting diary entries, water and body stats; your own foods, meals and recipes, including making a new one, photographing it and logging it straight away (the photo travels with the food and becomes a file on your server when it arrives); manual activity, with the day's calories out recalculated from what you have; the fasting timer, including starting and ending a fast; settings and goals; and Statistics over the history this browser holds.
+- **What works offline**: opening any day you have already seen, adding, editing and deleting diary entries, water and body stats; your own foods, meals and recipes, including making a new one, photographing it and logging it straight away (the photo travels with the food and becomes a file on your server when it arrives); manual activity, with the day's calories out recalculated from what you have; the fasting timer, including starting and ending a fast; settings and goals; your own profile, picture included; and Statistics over the history this browser holds.
 ### What does not work offline
 
 These need your server or the internet, and say so plainly rather than failing quietly or looking empty:
@@ -97,7 +97,6 @@ These need your server or the internet, and say so plainly rather than failing q
 | Open Food Facts, USDA, Mealie and CookTrace searches | The sources are labelled "needs a connection" and only your own foods are searched |
 | Barcode lookups against those sources | "You're offline, so only your own foods were checked for this barcode" |
 | Scan Label (reading a nutrition label with AI) | A message that it needs a connection |
-| Changing your profile picture | A message that it needs a connection |
 | Connecting or syncing a wellness provider (Fitbit, Garmin, Withings, Google Health) | Figures already seen stay on screen; a day never opened says it needs a connection |
 | Trace and Smart Log | A message that it needs a connection |
 | Import and export, backups | A message that it needs a connection |
