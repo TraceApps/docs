@@ -8,11 +8,11 @@ Off by default. Opt in with one env var + one API token.
 
 ## Available tools
 
-Nineteen tools across three tiers. Setup for each tier below; full arg/return reference in the [MCP tool catalog](../reference/mcp-tools.md).
+Twenty tools across three phases. Setup for each phase below; full arg/return reference in the [MCP tool catalog](../reference/mcp-tools.md).
 
 ### Read (Phase 1)
 
-Twelve tools, read-only, always available when MCP is on: `get_goals`, `get_profile`, `get_steps`, `get_daily_totals`, `get_daily_totals_range`, `list_diary_entries`, `list_diary_entries_range`, `search_foods`, `get_recent_foods`, `search_meals`, `get_recent_meals`, `get_meal_details`. The `_range` tools, `get_steps` and the two recent tools accept `start`/`end` dates for questions like "what was my average protein last month?" `get_profile` returns your date of birth and gender, so any AI client you connect with an `mcp:read` token can read them.
+Thirteen tools, read-only, always available when MCP is on: `get_goals`, `get_profile`, `get_steps`, `get_body_composition`, `get_daily_totals`, `get_daily_totals_range`, `list_diary_entries`, `list_diary_entries_range`, `search_foods`, `get_recent_foods`, `search_meals`, `get_recent_meals`, `get_meal_details`. The `_range` tools, `get_steps`, `get_body_composition` and the two recent tools accept `start`/`end` dates for questions like "what was my average protein last month?" `get_body_composition` returns body-composition and scale observations with an optional exact source filter; observations from different sources remain separate. `get_profile` returns your date of birth and gender, so any AI client you connect with an `mcp:read` token can read them.
 
 ### Write (Phase 2)
 
@@ -128,6 +128,6 @@ Expected output ends with `9 passed, 0 failed`. Add `--writes` to also exercise 
 
 ## Roadmap
 
-**Later**: MCP prompts capability (guided workflows), additional read tools (weight history, body composition, recipes) as demand justifies them, and possibly `delete_diary_day` (currently blocked by tombstone-resurrection semantics; single-entry delete is the safer starting point).
+**Later**: MCP prompts capability (guided workflows), additional read tools (recipes) as demand justifies them, and possibly `delete_diary_day` (currently blocked by tombstone-resurrection semantics; single-entry delete is the safer starting point).
 
 Feature request and progress: [issue #103](https://github.com/traceapps/nutritrace/issues/103) (thanks @javydekoning).
