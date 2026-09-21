@@ -192,6 +192,7 @@ nav:
       - Trace in LiftTrace + Smart Log: lifttrace/trace.md
       - Radio player: lifttrace/radio.md
       - Coaching: lifttrace/coaching.md
+      - Set videos: lifttrace/set-videos.md
       - Statistics & PRs: lifttrace/statistics.md
       - Workout history import: lifttrace/import.md
       - NutriTrace federation: lifttrace/nt-federation.md

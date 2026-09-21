@@ -67,6 +67,12 @@ Push delivery uses the same Gotify / ntfy / Apprise pipeline every other alert u
 
 If you want a member to follow a whole training block rather than one session at a time, build the program, then assign it: `POST /api/programs/:id/assign` (see [Programs and templates](programs.md#trainer-authored-programs)). The member sees the program in their Programs list and can activate it. Edits you make propagate on their next load.
 
+## Reviewing a filmed set
+
+A member can attach a short clip to a set, and a coach note can be stamped
+at a moment inside it, so tapping the timestamp seeks the video there. See
+[Set videos](set-videos.md).
+
 ## Related
 
 - [Programs and templates](programs.md)
