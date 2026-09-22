@@ -171,6 +171,7 @@ nav:
       - Shopping list: cooktrace/shopping.md
       - Cookbooks: cooktrace/cookbooks.md
       - Kitchens: cooktrace/kitchens.md
+      - Wear OS: cooktrace/wear.md
       - Trace in CookTrace: cooktrace/trace.md
       - URL / file / photo import: cooktrace/import.md
       - Migrate from Mealie: cooktrace/migrate-mealie.md
@@ -193,6 +194,7 @@ nav:
       - Radio player: lifttrace/radio.md
       - Coaching: lifttrace/coaching.md
       - Set videos: lifttrace/set-videos.md
+      - Wear OS: lifttrace/wear.md
       - Statistics & PRs: lifttrace/statistics.md
       - Workout history import: lifttrace/import.md
       - NutriTrace federation: lifttrace/nt-federation.md
