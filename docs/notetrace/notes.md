@@ -14,7 +14,7 @@ Each checklist item is its own row with a stable id (a UUID generated on the dev
 
 Switching a checklist to text writes one line per item, with checked items wrapped in `~~strikethrough~~`, separated by blank lines. Switching text to a checklist turns each non-empty line into an item, strips bullets and numbering, and treats `- [x]` tasks and struck-through lines as checked.
 
-Checked items collect under a bar that counts them, which also carries **Uncheck All**: a shopping list is the same list next week, so putting the whole thing back is one tap rather than one per item. It sends the same write a single tick sends, one per item, so it works with no connection and merges the same way. Unchecking never moves a repeating item on; only ticking one off does that.
+Checked items collect under a bar that counts them, which also carries **Uncheck All** and **Delete Checked**: a shopping list is the same list next week, so putting the whole thing back, or clearing out what is done, is one tap rather than one per item. Each offers a single undo that puts back exactly what went, deleted items returning where they were and still ticked. Both send the same writes a single tick or delete sends, one per item, so they work with no connection and merge the same way. Unchecking never moves a repeating item on; only ticking one off does that. Uncheck All is on the [watch](wear.md) too, under the list of what is done; deleting stays on the phone and the web, where an undo is easy to reach.
 
 When every item on a checklist is checked, the `checklist.completed` [webhook](webhooks.md) fires.
 
