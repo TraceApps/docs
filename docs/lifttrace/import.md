@@ -74,6 +74,14 @@ Unmatched exercise names persist as free-text and stay attached to their sets. Y
 
     Notes: FitNotes does not track supersets or RPE at all, so nothing is lost that was ever there.
 
+    Units and dates come straight from the file. FitNotes records the unit
+    against each exercise, so an export mixing kilos and pounds imports both
+    correctly, whichever unit LiftTrace is set to. The date is written in your
+    phone's own format, so an export from a phone set to Spanish or German
+    reads `23/12/2025` rather than `2025-12-23`; both are read, and the whole
+    file decides day-first versus month-first rather than each row guessing on
+    its own.
+
 ??? details "Jefit (iOS / Android)"
     **Export from Jefit**
 
