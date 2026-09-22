@@ -14,6 +14,8 @@ Each checklist item is its own row with a stable id (a UUID generated on the dev
 
 Switching a checklist to text writes one line per item, with checked items wrapped in `~~strikethrough~~`, separated by blank lines. Switching text to a checklist turns each non-empty line into an item, strips bullets and numbering, and treats `- [x]` tasks and struck-through lines as checked.
 
+Checked items collect under a bar that counts them, which also carries **Uncheck All**: a shopping list is the same list next week, so putting the whole thing back is one tap rather than one per item. It sends the same write a single tick sends, one per item, so it works with no connection and merges the same way. Unchecking never moves a repeating item on; only ticking one off does that.
+
 When every item on a checklist is checked, the `checklist.completed` [webhook](webhooks.md) fires.
 
 ## Due dates and Tasks {#due}
