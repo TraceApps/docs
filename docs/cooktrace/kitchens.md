@@ -12,6 +12,33 @@ Under **Settings > Kitchens**, tap **Create Kitchen**. A name up to 80 character
 
 From the Kitchen's member panel, type a username and hit **Add Member**. Lookup is case-insensitive against the users table. New members join with `auto_share = 0`, so they see other members' recipes if those other members have auto-share on, but their own library stays private until they turn it on themselves.
 
+## Roles: who can edit
+
+A recipe shared into a Kitchen is read-only by default: only its owner (or an admin) can change it. If your household cooks from one library and everyone fixes quantities as they go, the Kitchen's owner can give a member the right to edit, one member at a time, from the member list in **Settings, Kitchens**.
+
+| Role | Can do |
+|---|---|
+| **Head Chef** | The Kitchen's owner. Invites and removes members, sets roles, turns Auto-Share on for their own library, deletes the Kitchen. |
+| **Sous Chef** | Everything a Line Cook can, plus editing the recipes shared into this Kitchen. |
+| **Line Cook** | Cooks from the shared recipes, adds them to the shopping list and the diary. The default for everyone who joins. |
+
+**Let Everyone Edit** above the member list sets every member to Sous Chef in one go, and flips back the same way. When you add someone, the picker next to the invite box chooses the role they join with, so a household where everyone edits is one step rather than invite-then-promote.
+
+A Sous Chef can also edit the **cookbooks** shared into the Kitchen: renaming one, changing its cover, and adding or removing recipes, so a recipe they just fixed can be filed where it belongs. Smart cookbooks stay generated from their filter.
+
+What a Sous Chef cannot touch, because it belongs to the owner:
+
+- Deleting a recipe or a cookbook, or sharing either with anyone else.
+- A recipe's visibility, and which category it sits in (categories are per person).
+- Its star rating and whether it is a favourite, which are the owner's own opinion of it.
+
+A recipe saved by anyone other than its owner shows "Last edited by ..." under the title, so a shared library can answer who changed step 3.
+
+Access is checked on every save, never stored, so demoting someone to Line Cook or removing them from the Kitchen stops their editing at once. Recipes shared one to one, outside a Kitchen, stay read-only however the roles are set.
+
+!!! note "On the phone"
+    Your phone only keeps copies of your own recipes, so editing one shared with you goes straight to your server. With no connection the app says so rather than pretending the change was saved.
+
 ## Auto-Share Your Recipes
 
 The per-member **Auto-Share Your Recipes** toggle is the flow that makes Kitchens click. Turning it on does two things:
@@ -34,6 +61,12 @@ Even without auto-share on, you can share individual recipes or cookbooks with a
 - **Cookbook**: `POST /api/kitchens/:id/share-cookbook` with `{ cookbook_id }`. Mints one `cookbook_shares` row per member, tagged `via_kitchen_id`. Recipes inside the cookbook that aren't independently shared render as [locked placeholders](cookbooks.md#locked-placeholders) to the recipient.
 
 Both endpoints are idempotent thanks to `INSERT OR IGNORE` on the unique (recipe_id, grantee_id) / (cookbook_id, grantee_id) constraint. Calling twice doesn't duplicate rows.
+
+## Handing a Kitchen over
+
+A Kitchen has exactly one Head Chef, and only they can invite, remove, set roles or delete it. To pass that on, the Head Chef picks **Make Head Chef** next to a member. The Kitchen moves across at once, and the outgoing owner stays in the Kitchen as a Sous Chef, so they keep editing the recipes shared into it. Only the new Head Chef can hand it back.
+
+This is also the way out of the "owner cannot leave" message: hand the Kitchen over first, then leave as an ordinary member.
 
 ## Leaving or being removed
 
