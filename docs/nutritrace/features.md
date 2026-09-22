@@ -109,6 +109,14 @@ The menu button shows an amber cloud while anything is waiting, and red if your 
 
 What is kept is what you look at: a catalogue is kept whole the first time its screen lists it, a diary day when you open it, all of your history when Statistics asks for it, and a photo once it has been shown. Nothing is fetched in the background for later.
 
+### Details worth knowing
+
+- **Signing out** sends what is waiting first. If it cannot reach your server, it asks before discarding your unsent work rather than clearing it silently.
+- **Photos taken offline** are scaled to a size a request comfortably carries, so your server does not refuse one after you have been told it was saved. A picture with any see-through pixel is kept as a PNG so it does not come back with a black background, and a format this browser can read but not write, such as an iPhone's HEIC, is converted on the way in. One that cannot be read at all says it needs a connection instead of disappearing.
+- **If storage runs out**, what you have changed is kept and the copy of your data makes way for it, so you are never left unable to log.
+- **Anything you create offline** can be used straight away, and keeps its identity when the queue goes up: a food made in a dead zone and logged immediately arrives as one food with your entries pointing at it, even if a sync is interrupted halfway.
+- **One fast at a time**, offline as well as online, exactly as the server insists.
+
 This is not built on Background Sync, which Safari does not have, so an iPhone behaves the same as everything else. The Android app is unaffected: it has its own offline story in local mode.
 
 ## Related
