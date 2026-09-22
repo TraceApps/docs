@@ -20,9 +20,9 @@ A recipe shared into a Kitchen is read-only by default: only its owner (or an ad
 |---|---|
 | **Head Chef** | The Kitchen's owner. Invites and removes members, sets roles, turns Auto-Share on for their own library, deletes the Kitchen. |
 | **Sous Chef** | Everything a Line Cook can, plus editing the recipes shared into this Kitchen. |
-| **Line Cook** | Cooks from the shared recipes, adds them to the shopping list and the diary. The default for everyone who joins. |
+| **Line Cook** | Read only: cooks from the shared recipes, adds them to the shopping list and the diary, but cannot change them. The default for everyone who joins. |
 
-**Let Everyone Edit** above the member list sets every member to Sous Chef in one go, and flips back the same way. When you add someone, the picker next to the invite box chooses the role they join with, so a household where everyone edits is one step rather than invite-then-promote.
+Each member's row carries their role and a button to remove them from the Kitchen. Tapping the role opens a picker with all three; the page above the list says what each one can do. **Let Everyone Edit** above the member list sets every member to Sous Chef in one go, and flips back the same way. When you add someone, the picker next to the invite box chooses the role they join with, so a household where everyone edits is one step rather than invite-then-promote.
 
 A Sous Chef can also edit the **cookbooks** shared into the Kitchen: renaming one, changing its cover, and adding or removing recipes, so a recipe they just fixed can be filed where it belongs. Smart cookbooks stay generated from their filter.
 
@@ -64,7 +64,7 @@ Both endpoints are idempotent thanks to `INSERT OR IGNORE` on the unique (recipe
 
 ## Handing a Kitchen over
 
-A Kitchen has exactly one Head Chef, and only they can invite, remove, set roles or delete it. To pass that on, the Head Chef picks **Make Head Chef** next to a member. The Kitchen moves across at once, and the outgoing owner stays in the Kitchen as a Sous Chef, so they keep editing the recipes shared into it. Only the new Head Chef can hand it back.
+A Kitchen has exactly one Head Chef, and only they can invite, remove, set roles or delete it. To pass that on, the Head Chef opens the role picker next to a member and chooses **Head Chef**, which asks for confirmation first because only the new Head Chef can hand it back. The Kitchen moves across at once, and the outgoing owner stays in the Kitchen as a Sous Chef, so they keep editing the recipes shared into it. Only the new Head Chef can hand it back.
 
 This is also the way out of the "owner cannot leave" message: hand the Kitchen over first, then leave as an ordinary member.
 
