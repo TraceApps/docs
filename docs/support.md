@@ -31,6 +31,12 @@ The same Mac also builds [Fathom](https://github.com/Fathom-Media/fathom), a Jel
 
 [Chip in on Ko-fi](https://ko-fi.com/traceapps){ .md-button .md-button--primary }
 
+## Monthly support
+
+The iOS fund is a one-time goal. The monthly costs are separate: right now, that's the AI tools the apps are built and tested with, about $100 a month. [GitHub Sponsors](https://github.com/sponsors/TraceApps) covers those, from $1 a month, and takes one-time amounts too. Once that's covered, the next step is a public demo instance and a domain, so people can try the apps before installing anything.
+
+[Sponsor on GitHub](https://github.com/sponsors/TraceApps){ .md-button }
+
 ## Helping without money
 
 These matter more than they sound, and they're free:

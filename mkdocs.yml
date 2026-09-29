@@ -110,6 +110,9 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/TraceApps
       name: TraceApps on GitHub
+    - icon: fontawesome/solid/heart
+      link: https://github.com/sponsors/TraceApps
+      name: Sponsor TraceApps
   generator: false
 
 extra_css:
