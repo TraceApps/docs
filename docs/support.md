@@ -33,7 +33,7 @@ The same Mac also builds [Fathom](https://github.com/Fathom-Media/fathom), a Jel
 
 ## Monthly support
 
-The iOS fund is a one-time goal. The monthly costs are separate: right now, that's the AI tools the apps are built and tested with, about $100 a month. [GitHub Sponsors](https://github.com/sponsors/TraceApps) covers those, from $1 a month, and takes one-time amounts too. Once that's covered, the next step is a public demo instance and a domain, so people can try the apps before installing anything.
+The Mac and iPhone above are a one-time goal. The monthly costs are separate: right now, that's the AI tools the apps are built and tested with, about $100 a month. [GitHub Sponsors](https://github.com/sponsors/TraceApps) covers those, from $1 a month, and takes one-time amounts too. Once that's covered, the next step is a public demo instance and a domain, so people can try the apps before installing anything.
 
 [Sponsor on GitHub](https://github.com/sponsors/TraceApps){ .md-button }
 
