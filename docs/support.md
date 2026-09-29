@@ -27,13 +27,13 @@ The goal is set at the round $1,300. The rest is covered either way.
 
 The same Mac also builds [Fathom](https://github.com/Fathom-Media/fathom), a Jellyfin client from the same developer, for macOS and iOS.
 
-**Anything past the goal** goes to the yearly Apple fee and the monthly costs of development: the demo instance, the domain, and AI credits for testing Trace against every provider.
+**Anything past the goal** goes to the yearly Apple fee and the monthly costs of development: the demo instance, the domain, and the tools the apps are built and tested with.
 
 [Chip in on Ko-fi](https://ko-fi.com/traceapps){ .md-button .md-button--primary }
 
 ## Monthly support
 
-The Mac and iPhone above are a one-time goal. The monthly costs are separate: right now, that's the AI tools the apps are built and tested with, about $100 a month. [GitHub Sponsors](https://github.com/sponsors/TraceApps) covers those, from $1 a month, and takes one-time amounts too. Once that's covered, the next step is a public demo instance and a domain, so people can try the apps before installing anything.
+The Mac and iPhone above are a one-time goal. The monthly costs are separate: right now, that's the tools the apps are built and tested with, about $100 a month. [GitHub Sponsors](https://github.com/sponsors/TraceApps) covers those, from $1 a month, and takes one-time amounts too. Once that's covered, the next step is a public demo instance and a domain, so people can try the apps before installing anything.
 
 [Sponsor on GitHub](https://github.com/sponsors/TraceApps){ .md-button }
 
@@ -54,7 +54,7 @@ Running and building these apps costs real money. In order of what the fund cove
 1. **iOS hardware and the developer accounts** (the current goal), including the $25 Google Play account.
 2. **The Apple Developer Program renewal,** $99 a year, ongoing.
 3. **The public demo instance,** so people can try the apps before installing anything.
-4. **AI credits for testing Trace** across Claude, OpenAI, and Gemini, since each provider has to be tested against real models.
+4. **Development tools,** the monthly cost of the tools the apps are built and tested with.
 
 Nothing here funds a salary. When something is bought, it's listed below.
 
