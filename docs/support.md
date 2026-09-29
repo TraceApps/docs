@@ -43,6 +43,7 @@ These matter more than they sound, and they're free:
 
 - **Star the repos.** [NutriTrace](https://github.com/TraceApps/nutritrace), [LiftTrace](https://github.com/TraceApps/lifttrace), [CookTrace](https://github.com/TraceApps/cooktrace), [NoteTrace](https://github.com/TraceApps/notetrace). Stars are how self-hosted projects get found, and it's the single cheapest thing you can do.
 - **Report bugs, with detail.** A clear issue is worth more than a donation. It fixes the app for everyone who hits the same thing.
+- **Give a 👍 to the issues you want.** It's the quickest way to tell me what matters to you, and I look at those counts when picking what to work on next. It takes one click.
 - **Translate.** See [Translations](contribute/translations.md). Every language makes the apps usable for people who can't use them today.
 - **Tell someone.** A comment on a forum thread where someone is looking for a self-hosted alternative reaches more people than any post from the project itself.
 
@@ -65,6 +66,6 @@ Nothing yet. This list gets updated as the fund does.
 
 - **No features locked behind donations.** Everything is AGPL-3.0 and free, forever.
 - **No donor-only builds,** early access, or priority support.
-- **No influence over the roadmap** beyond what any user gets by opening an issue.
+- **No influence over the roadmap** beyond what any user gets by opening an issue or giving one a 👍.
 
 Support is a thank-you for work that already exists, not a purchase.
