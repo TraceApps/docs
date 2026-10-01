@@ -111,7 +111,7 @@ extra:
       link: https://github.com/TraceApps
       name: TraceApps on GitHub
     - icon: fontawesome/solid/heart
-      link: https://github.com/sponsors/TraceApps
+      link: https://github.com/sponsors/TraceApps?metadata_from=docs
       name: Sponsor TraceApps
   generator: false
 
