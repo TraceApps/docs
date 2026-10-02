@@ -2,7 +2,7 @@
 
 The Trace apps default to secure cookies, and the Android release APK enforces the platform cleartext-traffic policy. Plain `http://192.168.x.y:3001` (or `:3002` / `:3003` / `:3004`) will silently fail: cookies get dropped, the WebView refuses to load, and login appears to "just not work". You have four supported ways to give a LAN-only install real HTTPS. Pick one.
 
-If you genuinely need plain HTTP inside your LAN, see [LAN HTTP setup](../getting-started/lan-http.md) for the escape hatches (`INSECURE_COOKIES=1` and a debug-build APK). Everything below assumes you want proper HTTPS.
+If you genuinely need plain HTTP inside your LAN, see [LAN HTTP setup](../getting-started/lan-http.md) for the escape hatches (`INSECURE_COOKIES=1` and a debug-build APK). Everything below assumes you want proper HTTPS. A self-signed certificate is a supported way to get it, including on the Android release app: see Path 3.
 
 ## Path 1: real domain + Let's Encrypt
 
@@ -32,16 +32,16 @@ In both cases, cookies stay `Secure`, the Android release APK is happy, and you 
 
 You can run your own tiny CA (mkcert, step-ca, smallstep, or a hand-rolled OpenSSL script), issue a cert for `cook.lan` or `192.168.1.10`, and terminate TLS at Caddy or nginx.
 
-Every client that talks to the server has to trust your CA. On desktops this is usually fine; on Android it's the sticking point.
+Every client that talks to the server has to trust your CA. On desktops that is a one-off import, and on Android it is one too.
 
-!!! warning "Android certificate store gotcha"
-    Android release APKs (including the TraceApps ones from GH Releases) only trust the **system** CA store by default. A cert installed via Settings, Security, Encryption and credentials, Install a certificate lands in the **user** store, which release-built apps ignore unless a Network Security Configuration explicitly opts in. You either need to add the CA to the system store (root/Magisk trick, or a custom ROM), sideload the debug APK (which trusts the user store), or move to Path 1 or Path 2.
+!!! tip "The release APKs trust your own CA"
+    Android apps ignore user-installed CAs by default, which is why this path fails for most apps. The Trace release APKs opt in: their `network_security_config.xml` lists both the **system** and the **user** trust anchors. Install your CA under Settings, Security, Encryption and credentials, Install a certificate, and the release app from GH Releases accepts your cert. No root, no custom ROM, no debug build.
 
-For desktop PWA installs this path works well: import the CA once into Firefox / Chrome / the OS keychain and everything after is transparent. Just do not expect the release Android app to pick it up.
+For desktop PWA installs this path works the same way: import the CA once into Firefox, Chrome or the OS keychain and everything after is transparent.
 
 ## Path 4: sideload the debug APK
 
-The debug APK is built with `android:usesCleartextTraffic="true"` in the manifest **and** trusts the user CA store. If your install is genuinely LAN-only and you accept the tradeoff, grabbing the debug APK from the GH Releases pre-release channel (`dev-latest`) lets you talk to `http://192.168.x.y:3001` (or whichever host port the app is on) or an HTTPS endpoint using a user-installed self-signed cert.
+Only for plain `http://`. A self-signed cert needs no debug build any more: see Path 3. The debug APK permits cleartext traffic, so if your install is genuinely LAN-only and you accept the tradeoff, grabbing it from the GH Releases pre-release channel (`dev-latest`) lets you talk to `http://192.168.x.y:3001`, or whichever host port the app is on.
 
 Downsides: no Play-Store update path, and it is a debug build, so any additional security hardening the release variant enables is absent. Handy for testing, less good for daily driving. On the server side, remember to also set `INSECURE_COOKIES=1` if you go plain-HTTP, so the auth cookie is not dropped by the WebView.
 
@@ -50,7 +50,7 @@ Downsides: no Play-Store update path, and it is a debug build, so any additional
 Two things, both silent-ish:
 
 1. **The auth cookie is `Secure` by default.** Browsers and WebViews drop it on `http://`. First request after login succeeds; every subsequent one is 401. Setting `INSECURE_COOKIES=1` removes the `Secure` attribute; do this only inside a trusted network.
-2. **Android release APK cleartext policy.** The release variant ships `network_security_config.xml` with `cleartextTrafficPermitted="false"`, which the platform enforces over the manifest's `usesCleartextTraffic` attribute. Plain-HTTP requests just refuse. There is no in-app toggle to override this; you either need HTTPS on the server or the debug APK.
+2. **Android release APK cleartext policy.** The release variant ships `network_security_config.xml` with `cleartextTrafficPermitted="false"`, which the platform enforces over the manifest's `usesCleartextTraffic` attribute. Plain-HTTP requests just refuse. There is no in-app toggle to override this; you either need HTTPS on the server or the debug APK. Certificates are a different question: a self-signed one works on the release build once its CA is installed on the phone (Path 3).
 
 ## Related
 
