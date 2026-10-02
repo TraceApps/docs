@@ -76,7 +76,7 @@ Full instance backups (admin only) zip the DB and uploads together. Portable JSO
 
 The web app keeps working when the signal drops, in a browser tab or installed as an app, and comes back up offline after a reload. A supermarket with no signal is the case it is built for.
 
-- **What works offline**: your shopping list (adding items, ticking them off, editing, removing, clearing what you ticked, reordering); the pantry (adding, editing, removing, marking in or out of stock); the cook diary, including photographing what you cooked; your recipes, their photos and the notes you leave on them; cookbook covers; your own profile with its picture; and settings. Photos work anywhere you can attach one, on adding and on editing: a cook, a recipe, a cookbook cover, a pantry item. A photo taken with no signal travels inside the entry and becomes an ordinary file on your server when the queue goes up; one too large to hold says so rather than being lost quietly. Reading works for anything this browser has already seen: recipes with their pictures, cookbooks, the pantry, the diary and your units.
+- **What works offline**: your shopping list (adding items, ticking them off, editing, removing, clearing what you ticked, reordering); the pantry (adding, editing, removing, marking in or out of stock); the cook diary, including photographing what you cooked; your recipes, their photos and the notes you leave on them; your own profile with its picture; and settings. Photos work on adding and on editing a cook, a recipe or a pantry item. A photo taken with no signal travels inside the entry and becomes an ordinary file on your server when the queue goes up; one too large to hold says so rather than being lost quietly. Reading works for anything this browser has already seen: recipes with their pictures, cookbooks, the pantry, the diary and your units.
 
 ### What does not work offline
 
@@ -87,6 +87,7 @@ These need your server or the internet, and say so plainly rather than failing q
 | Importing recipes (a URL, a file, Mealie, Paprika, a zip) | It reads from the internet or your server |
 | Sharing a recipe or a cookbook, share links | Sharing decides who can see your food, so it is never done from a list pulled down hours ago |
 | Kitchens: creating one, adding or removing members | Same reason |
+| Cookbooks: creating or editing one, its cover, adding recipes to it | Changes to a cookbook go straight to your server |
 | Trace, and anything that asks an AI | It talks to an AI provider |
 | Backups, export, API tokens, webhooks | They move data in or out of your server |
 | Admin: users, invites, server settings, updates | They change your server |
