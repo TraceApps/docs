@@ -30,7 +30,7 @@ A new client is restricted to its **Allowed User Groups**, and starts with none,
 
 ### 4. Verified emails
 
-Pocket ID sends `email_verified` from each user's verified flag, which is off unless the user verified their email or your instance has **Emails verified by default** turned on. The app only links an SSO sign-in to an existing account in the app when the email is verified. For people who already have an account, either verify their email in Pocket ID, or have them link Pocket ID from their profile (**Linked Accounts**) after signing in with their password. Without either, their first SSO sign-in is refused, or with `OIDC_AUTO_REGISTER=1` gets a second, empty account.
+Pocket ID sends `email_verified` from each user's verified flag, which is off unless the user verified their email or your instance has **Emails verified by default** turned on. The app only links an SSO sign-in to an existing account in the app when the email is verified. For people who already have an account, either verify their email in Pocket ID, or have them link Pocket ID from their profile (**Linked Accounts**) after signing in with their password. Without either, their first SSO sign-in is refused with a message telling them to link it from their profile.
 
 ### 5. Make sure users can sign in to Pocket ID
 

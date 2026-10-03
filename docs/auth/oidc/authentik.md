@@ -36,12 +36,7 @@ When someone signs out of the app, the app also ends their Authentik session and
 
 ### 3. Optional: let existing accounts link by email
 
-Since authentik 2025.10, the default `email` mapping sends `email_verified: false` for everyone, and the app only links an SSO sign-in to an existing account when the email is verified. So by default, when someone who already has an account in the app signs in through Authentik for the first time:
-
-- with `OIDC_AUTO_REGISTER=0` (the default), the sign-in is refused, and
-- with `OIDC_AUTO_REGISTER=1`, the app creates a **second, empty account** with the same email, and they land in that one instead of their own.
-
-Either way, they can link Authentik to their real account themselves: sign in with their password, then add the provider under **Linked Accounts** in their profile. After that, SSO signs them straight into it.
+Since authentik 2025.10, the default `email` mapping sends `email_verified: false` for everyone, and the app only links an SSO sign-in to an existing account when the email is verified. So by default, when someone who already has an account in the app signs in through Authentik for the first time, the sign-in is refused with a message asking them to link Authentik themselves: sign in with their password, then add the provider under **Linked Accounts** in their profile. After that, SSO signs them straight into it.
 
 If you trust the email addresses in your Authentik, you can have them treated as verified instead: under **Customization → Property Mappings**, create a **Scope Mapping** with scope name `email` and this expression, then select it in place of the default `email` mapping on the provider:
 
@@ -103,13 +98,13 @@ The log should show `[oidc-env] Loaded 1 OIDC provider from environment (IDs: 1)
 ## Troubleshooting
 
 !!! warning "Blank page after signing in at Authentik"
-    The callback URL is wrong, so Authentik sent you back to a path the app doesn't handle. It must be exactly `https://<your-host>/api/auth/oidc/callback/<id>`, the same in Authentik and in `OIDC_REDIRECT_URIS`. Older versions of this page showed `/api/oidc/callback`, which doesn't work.
+    The callback URL is wrong, so Authentik sent you back to a path the app doesn't handle. It must be `https://<your-host>/api/auth/oidc/callback/<id>`, the same in Authentik and in `OIDC_REDIRECT_URIS`. (The app also accepts the path without the number, and `/api/oidc/callback`, which older versions of this page showed.)
 
 !!! warning "`redirect_uri` error at Authentik"
     Authentik refuses to continue if the URL in `OIDC_REDIRECT_URIS` doesn't match one of the provider's **Authorization** redirect rows. With **Strict** matching, trailing slashes, `http` vs `https`, and port numbers all count. Paste the same string into both places.
 
-!!! warning "Existing users are refused, or land in a new empty account"
-    Their email matches an account in the app, but Authentik marked it unverified, so the app won't link it automatically. Link it from the profile, or use the custom email mapping; step 3 above has both. If someone already ended up in a second account, an admin deletes that account in **Settings → Users** first (it holds the Authentik link), then they link Authentik from their real account.
+!!! warning "Existing users are refused at their first sign-in"
+    Their email matches an account in the app, but Authentik marked it unverified, so the app won't link it automatically. Link it from the profile, or use the custom email mapping; step 3 above has both. Older versions of the app gave such a sign-in a second, empty account instead. If someone has one, an admin deletes that account in **Settings → Users** first (it holds the Authentik link), then they link Authentik from their real account.
 
 !!! warning "Group-based admin doesn't apply"
     Check that the `profile` scope is still selected on the provider (it carries `groups`), that **Include claims in id_token** is on, and that `OIDC_ADMIN_GROUP_VALUE` is the group's exact name. The role is set at sign-in, so sign out and back in after changing it.

@@ -57,7 +57,7 @@ Save. Then **Groups, Create group**: `cooktrace-admins`. Add your admin user to 
 
 ### 5. Verified emails
 
-Keycloak sends `email_verified` from each user's **Email verified** flag. The app only links an SSO sign-in to an existing account in the app when that flag is on, so for people who already have an account, turn it on (**Users → &lt;user&gt; → Email verified**), or have them link Keycloak from their profile (**Linked Accounts**) after signing in with their password. Without either, their first SSO sign-in is refused, or with `OIDC_AUTO_REGISTER=1` gets a second, empty account.
+Keycloak sends `email_verified` from each user's **Email verified** flag. The app only links an SSO sign-in to an existing account in the app when that flag is on, so for people who already have an account, turn it on (**Users → &lt;user&gt; → Email verified**), or have them link Keycloak from their profile (**Linked Accounts**) after signing in with their password. Without either, their first SSO sign-in is refused with a message telling them to link it from their profile.
 
 ## TraceApps side
 

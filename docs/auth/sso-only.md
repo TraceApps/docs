@@ -15,9 +15,6 @@ There are two ways to do it:
 
     Truthy values (`1`, `true`, `yes`, `on`) explicitly enable password login, falsy values (`0`, `false`, `no`, `off`) disable it, and unset leaves the toggle in **Settings → Authentication** in charge. While the variable is set, that toggle is locked.
 
-!!! note "The env var needs an env-defined provider"
-    In current versions, `OIDC_ENABLE_EMAIL_PASSWORD_LOGIN` only takes effect when at least one provider is also defined through `OIDC_*` env vars. If you added your provider in **Settings → Authentication**, use the toggle there instead.
-
 With password login off:
 
 - Password sign-in attempts get `403`.
@@ -33,7 +30,7 @@ With password login off:
 
 Everyone who has a password can sign in again, and nothing is deleted. Accounts that were created through SSO have no password, so make sure at least one admin has one before going SSO-only.
 
-If you turned it off with the env var (and a provider is defined through env vars), set it back and recreate the container:
+If you turned it off with the env var, set it back and recreate the container:
 
 ```env
 OIDC_ENABLE_EMAIL_PASSWORD_LOGIN=1

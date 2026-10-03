@@ -86,7 +86,7 @@ The shorthand `OIDC_*` variables alias `OIDC_PROVIDER_1_*`. For multi-provider s
 | `OIDC_AUTO_LINK` | `1` | Link SSO identity to an existing account with the same verified email. | Y | Y | Y |
 | `OIDC_AUTO_REGISTER` | `0` | Create a new account on first SSO sign-in. | Y | Y | Y |
 | `OIDC_IS_ACTIVE` | `1` | Set `0` to disable the provider without removing the config. | Y | Y | Y |
-| `OIDC_ENABLE_EMAIL_PASSWORD_LOGIN` | unset | Set `0` for SSO-only mode (password login disabled server-wide); locks the admin toggle while set. Currently only applied when a provider is also defined through env vars. | Y | Y | Y |
+| `OIDC_ENABLE_EMAIL_PASSWORD_LOGIN` | unset | Set `0` for SSO-only mode (password login disabled server-wide); locks the admin toggle while set. | Y | Y | Y |
 
 ## Backup
 

@@ -59,7 +59,7 @@ Details in [HTTPS on the LAN](../self-hosting/lan-https.md) and [Cloudflare Tunn
 
 **Symptom:** You sign in at your IdP fine, it redirects back, and the app shows a blank white page. The container log shows requests like `GET /api/oidc/callback` or `GET /api/oidc/assets/...`.
 
-**Cause:** The callback URL is wrong. The IdP sent you back to a path the app doesn't handle.
+**Cause:** The callback URL is wrong. The IdP sent you back to a path the app doesn't handle. (The path without the number, and `/api/oidc/callback`, are both accepted.)
 
 **Fix:** Use `https://<your-host>/api/auth/oidc/callback/<provider-id>` (the ID is in the startup log line `[oidc-env] Loaded 1 OIDC provider from environment (IDs: 1)`, usually `1`), in both your IdP and `OIDC_REDIRECT_URIS`, then `docker compose up -d`. See [The callback URL](../auth/oidc.md#the-callback-url).
 
