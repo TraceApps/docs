@@ -39,7 +39,7 @@ secrets:
 
 services:
   cooktrace:
-    image: ghcr.io/traceapps/cooktrace:1
+    image: ghcr.io/traceapps/cooktrace:latest
     environment:
       NODE_ENV: production
       JWT_SECRET_FILE: /run/secrets/jwt
@@ -56,7 +56,7 @@ services:
       - "3003:3003"
 ```
 
-Same shape works for LiftTrace (`ghcr.io/traceapps/lifttrace:1`, container port 3002) and NutriTrace (`ghcr.io/traceapps/nutritrace:1`, container port 3001).
+Same shape works for LiftTrace (`ghcr.io/traceapps/lifttrace:latest`, container port 3002), NoteTrace (`ghcr.io/traceapps/notetrace:latest`, container port 3004) and NutriTrace (`ghcr.io/traceapps/nutritrace:latest`, container port 3001).
 
 ## Gotchas
 

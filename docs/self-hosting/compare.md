@@ -23,7 +23,7 @@ CookTrace, LiftTrace, NoteTrace, and NutriTrace are siblings by design: same Nod
 | Federation | pulls foods from NutriTrace; takes shopping items from NoteTrace | none | sends checklist items to CookTrace | serves foods to CT |
 | App-only env vars | `IMPORT_ZIP_MAX_MB` | `EXERCISE_SOURCES`, `EXERCISEDB_OSS_URL`, `ALLOW_PRIVATE_RADIO_URLS` | `ALLOW_PRIVATE_COOKTRACE_URLS`, `ALLOW_PRIVATE_LINK_PREVIEWS`, `AI_TRANSCRIBE_MODEL`, `FFMPEG_PATH` (see [NoteTrace env vars](../notetrace/env-vars.md)) | `OFF_LOCAL_DB`, `OFF_LOCAL_ONLY`, `OFF_LOCAL_URL`, `API_RATE_LIMIT_PER_MIN` |
 
-NoteTrace is in development toward its first release candidate; its image and APK are published with that release. The released apps publish multi-arch images (`linux/amd64` + `linux/arm64`) with the same tag matrix: `X.Y.Z`, `X.Y`, `X`, `latest`, `dev`. Legacy `X.Y.Z-rc.N` tags stay pinned indefinitely.
+All four apps publish multi-arch images (`linux/amd64` + `linux/arm64`) with the same two tags: `latest` for stable releases and `dev` for the development branch.
 
 ## Why NutriTrace uses a Debian base
 

@@ -6,44 +6,40 @@ Every app is published to two registries as multi-arch (linux/amd64 + linux/arm6
 
 - `ghcr.io/traceapps/cooktrace`
 - `ghcr.io/traceapps/lifttrace`
+- `ghcr.io/traceapps/notetrace`
 - `ghcr.io/traceapps/nutritrace`
 
 **Mirror (Docker Hub):**
 
 - `traceapps/cooktrace`
 - `traceapps/lifttrace`
+- `traceapps/notetrace`
 - `traceapps/nutritrace`
 
 GHCR is the primary registry. Docker Hub is a discoverability mirror; both are first-class and either works for pulls. Pick whichever your environment prefers. The Docker Hub short form (`traceapps/<app>`) can be handy for quick `docker pull` or when running behind a registry that already caches Docker Hub.
 
-## Tag conventions
+## Tags
 
-Each release adds several tags to the same image so you can pin at whatever risk level fits.
+Each app publishes two tags:
 
-| Tag | Example | Updates when | Immutable? |
-|-----|---------|--------------|------------|
-| `X.Y.Z` | `1.2.3` | Never; points at one exact build | Yes |
-| `X.Y`   | `1.2`   | Any `1.2.z` patch release       | No |
-| `X`     | `1`     | Any `1.y.z` minor or patch release | No |
-| `latest` | `latest` | Every stable release from `main` | No |
-| `X.Y.Z-devNN` | `1.2.3-dev01` | Never; points at one milestone dev build | Yes |
-| `dev`   | `dev`   | Every push to the `dev` branch  | No |
+| Tag | Updates when | Use it for |
+|-----|--------------|------------|
+| `latest` | Every stable release | Running the app. This is the tag the install guide uses. |
+| `dev` | Every push to the `dev` branch | Testing what is coming next; expect rough edges. |
 
-Tag generation is driven by [`docker/metadata-action`](https://github.com/docker/metadata-action) in each repo's `.github/workflows/docker.yml`. Semver tags come from git tags of the form `v1.2.3`; `latest` and `dev` come from the `main` and `dev` branches respectively. Milestone dev tags of the form `v1.2.3-dev01` publish `:1.2.3-dev01` alongside `:dev`. See [Release channels](release-channels.md) for the full model, including why the iteration number is zero-padded and glued to `dev` without a dot.
+There are no version-number tags such as `:1`, `:1.4` or `:1.4.0`. Version tags were published for the first releases and then retired, because a tag like `:1` quietly stops moving once nothing updates it, and an install on it falls behind without any warning. If your compose file still names one of them, change it to `:latest`.
 
-## Legacy release-candidate tags
+Tag generation lives in each app's `.github/workflows/docker.yml`: a push to `main` publishes `latest`, a push to `dev` publishes `dev`.
 
-Pre-1.0 releases used `X.Y.Z-rc.N` tags (for example `0.34.0-rc.42`). Those tags remain in the registry indefinitely so anyone pinned to one keeps working. **No new `-rc` tags are cut post-1.0.0**; the versioning ladder is strict `MAJOR.MINOR.PATCH` now. If you are still on an `-rc` tag, move to a rolling tag when convenient.
+## Pinning one exact build
 
-## Which tag should you pick?
+To hold an install on one build, pin the image by digest instead of a tag. Find the digest you are running:
 
-| Use case | Recommended tag | Why |
-|----------|-----------------|-----|
-| Personal single-user install; you want the newest features | `latest` | One tag, always current stable, no compose edits between releases |
-| Family install; you want bug fixes without breaking-change surprises | `X.Y` (e.g. `1.2`) | Auto-receives patches, holds at the current minor |
-| "Production-ish" homelab you care about; you want to opt into upgrades | `X.Y.Z` (e.g. `1.2.3`) | Immutable; upgrades are a deliberate compose edit + `pull` + restart |
-| Following along with active development | `dev` | Rolls forward on every push to the `dev` branch; expect breakage |
-| Air-gapped mirror where you tarball images | `X.Y.Z` | Pinned digest keeps reproducibility across offline transfers |
+```bash
+docker inspect --format '{{index .RepoDigests 0}}' ghcr.io/traceapps/cooktrace:latest
+```
+
+That prints something like `ghcr.io/traceapps/cooktrace@sha256:1bad1f...`. Put that whole value in `image:` and the install stays on that build until you change it. Earlier builds stay on GHCR under their digests, so a digest you noted before an update still pulls for a rollback.
 
 ## Pulling and upgrading
 
@@ -52,7 +48,7 @@ docker compose pull
 docker compose up -d
 ```
 
-On a rolling tag (`latest`, `X.Y`, `X`, `dev`), `pull` fetches the new image and `up -d` recreates the container. On an immutable tag (`X.Y.Z`), `pull` is a no-op; bump the tag in your compose file first, then `pull` and `up -d`.
+On `latest` or `dev`, `pull` fetches the new image and `up -d` recreates the container. On a digest pin, `pull` is a no-op; change the digest in your compose file first, then `pull` and `up -d`.
 
 ## Switching between GHCR and Docker Hub
 
@@ -61,8 +57,8 @@ The tag set is identical, so switching registries is a one-line edit in your com
 ```diff
  services:
    cooktrace:
--    image: ghcr.io/traceapps/cooktrace:1
-+    image: traceapps/cooktrace:1
+-    image: ghcr.io/traceapps/cooktrace:latest
++    image: traceapps/cooktrace:latest
 ```
 
 Then `docker compose pull && docker compose up -d`. Images are byte-for-byte the same build (one push job publishes to both), so container state carries over cleanly.

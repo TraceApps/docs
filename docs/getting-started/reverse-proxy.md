@@ -53,7 +53,7 @@ The simplest setup: each app gets its own subdomain (`cook.example.com`, `lift.e
     ```yaml
     services:
       cooktrace:
-        image: ghcr.io/traceapps/cooktrace:1
+        image: ghcr.io/traceapps/cooktrace:latest
         labels:
           - "traefik.enable=true"
           - "traefik.http.routers.cooktrace.rule=Host(`cook.example.com`)"

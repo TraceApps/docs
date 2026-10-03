@@ -1,6 +1,6 @@
 # Install with Docker Compose
 
-Docker Compose is the supported install path for CookTrace, LiftTrace, NoteTrace, and NutriTrace. One `docker-compose.yml`, one `.env`, `docker compose up -d`, done. All images are multi-arch (`linux/amd64` and `linux/arm64`) and published to **`ghcr.io/traceapps/<app>`** (primary) and **`traceapps/<app>`** on Docker Hub (mirror). The examples below use GHCR; swap in the Docker Hub short form (e.g. `traceapps/cooktrace:1`) if that fits your environment better.
+Docker Compose is the supported install path for CookTrace, LiftTrace, NoteTrace, and NutriTrace. One `docker-compose.yml`, one `.env`, `docker compose up -d`, done. All images are multi-arch (`linux/amd64` and `linux/arm64`) and published to **`ghcr.io/traceapps/<app>`** (primary) and **`traceapps/<app>`** on Docker Hub (mirror). The examples below use GHCR; swap in the Docker Hub short form (e.g. `traceapps/cooktrace:latest`) if that fits your environment better.
 
 ## Prerequisites
 
@@ -17,7 +17,7 @@ Pick the tab for the app you're installing. Each snippet is a complete, working 
     ```yaml
     services:
       cooktrace:
-        image: ghcr.io/traceapps/cooktrace:1
+        image: ghcr.io/traceapps/cooktrace:latest
         container_name: cooktrace
         ports:
           - "3003:3003"
@@ -39,7 +39,7 @@ Pick the tab for the app you're installing. Each snippet is a complete, working 
     ```yaml
     services:
       lifttrace:
-        image: ghcr.io/traceapps/lifttrace:1
+        image: ghcr.io/traceapps/lifttrace:latest
         container_name: lifttrace
         ports:
           - "3002:3002"
@@ -82,7 +82,7 @@ Pick the tab for the app you're installing. Each snippet is a complete, working 
     ```yaml
     services:
       nutritrace:
-        image: ghcr.io/traceapps/nutritrace:1
+        image: ghcr.io/traceapps/nutritrace:latest
         container_name: nutritrace
         ports:
           - "3001:3001"
@@ -100,21 +100,18 @@ Pick the tab for the app you're installing. Each snippet is a complete, working 
     Container listens on `3001`, exposed on host port `3001` (same number for convenience). Open `http://localhost:3001` after the container is up. NutriTrace's image is `node:20-slim` (Debian) rather than Alpine because DuckDB's node bindings need glibc.
 
 !!! info "Host-port defaults are staggered"
-    Defaults are chosen so every app can run on the same host without editing, and all avoid the very common `:3000`: NutriTrace on `3001`, LiftTrace on `3002`, CookTrace on `3003`, NoteTrace on `3004`. If any clash with something else on your host, change the left-hand port value in the mapping (e.g. `"3010:3001"` for CookTrace) or put everything behind a reverse proxy.
+    Defaults are chosen so every app can run on the same host without editing, and all avoid the very common `:3000`: NutriTrace on `3001`, LiftTrace on `3002`, CookTrace on `3003`, NoteTrace on `3004`. If any clash with something else on your host, change the left-hand port value in the mapping (e.g. `"3010:3003"` for CookTrace) or put everything behind a reverse proxy.
 
 ## Picking an image tag
 
-Each release publishes to several tags at once. Pin to whatever risk level fits.
+Each app publishes two tags:
 
 | Tag | Updates when | Use case |
 |---|---|---|
-| `:1.2.3` | Never (exact pin) | Reproducible pin to one release |
-| `:1.2` | Any `1.2.x` patch | Auto-receive bug fixes, no new features |
-| `:1` | Any `1.x.y` minor | Auto-receive minor releases within the major |
-| `:latest` | Every stable release | Whatever the newest stable happens to be |
-| `:dev` | Every push to `dev` branch | Leading edge, not for production |
+| `:latest` | Every stable release | Running the app |
+| `:dev` | Every push to the `dev` branch | Leading edge, not for production |
 
-The default compose files above use `:1` because that's the sweet spot for most self-hosters: patch and minor updates land automatically, breaking changes never do. Skittish? Pin to `:1.2` or a full `:1.2.3`. Adventurous? Use `:dev` and read the CHANGELOG before each `pull`.
+The compose files above use `:latest`. There are no version-number tags such as `:1` or `:1.4`; to hold an install on one exact build, pin it by digest.
 
 More detail in [Docker image tag matrix](../reference/image-tags.md).
 
