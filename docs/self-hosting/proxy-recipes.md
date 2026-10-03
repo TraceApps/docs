@@ -70,7 +70,7 @@ All three examples cover the same four things: TLS termination, correct `X-Forwa
     ```yaml
     services:
       cooktrace:
-        image: ghcr.io/traceapps/cooktrace:1
+        image: ghcr.io/traceapps/cooktrace:latest
         labels:
           - "traefik.enable=true"
           - "traefik.http.routers.cooktrace.rule=Host(`cook.example.com`)"

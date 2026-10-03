@@ -1,13 +1,13 @@
 # Release channels
 
-The three TraceApps (CookTrace, LiftTrace, NutriTrace) publish across three parallel channels. Same model for all of them.
+The four TraceApps (CookTrace, LiftTrace, NoteTrace, NutriTrace) publish across three parallel channels. Same model for all of them.
 
 ## Stable
 
 Regular releases follow strict `MAJOR.MINOR.PATCH` semver. Every stable release:
 
 - Lives on the app's GitHub Releases page marked "Latest" (for example `v1.2.3`).
-- Publishes multi-arch Docker images tagged `:X.Y.Z`, `:X.Y`, `:X`, and `:latest`.
+- Publishes a multi-arch Docker image tagged `:latest`.
 - Uploads a signed Android APK to the release assets.
 - Bumps `package.json`, `src/lib/version.js`, Android `versionCode` + `versionName`, and adds a `CHANGELOG.md` block.
 
@@ -30,7 +30,6 @@ Each numbered milestone gets:
 - A permanent GitHub pre-release at `v<version>-devNN` with tester-facing notes.
 - A `## [X.Y.Z-devNN] - <date>` block in `CHANGELOG.md`, capturing the delta since the previous milestone or the last stable.
 - A version bump in `package.json` and `src/lib/version.js`. Android `versionCode` and `versionName` are NOT bumped on dev iterations.
-- A Docker tag `X.Y.Z-devNN` alongside `:dev` on both `ghcr.io/traceapps/<app>` and `traceapps/<app>` (Docker Hub).
 - A refresh of `dev-latest` to point at the same commit.
 
 The `<version>` reflects what will land as the next stable release. After NT `v1.0.3`, the next milestone dev build is `v1.0.4-dev01` (patch-worthy) or `v1.1.0-dev01` (minor-worthy).
@@ -39,7 +38,7 @@ The `<version>` reflects what will land as the next stable release. After NT `v1
 
 - Zero-padded two digits for 1 through 9: `dev01`, `dev02`, …, `dev09`.
 - Natural two digits from 10 onward: `dev10`, `dev11`, …, `dev99`.
-- No dot between `dev` and the number. This makes the whole `devNN` one alphanumeric semver pre-release identifier, which stays inside SemVer 2.0.0 §9 (which forbids leading zeros in *pure-numeric* identifiers like `.01`). It also sorts identically in lex and semver order, so the GitHub Tags page, `gh release list`, Docker Hub tag lists, and the in-app updater all agree on the order `dev01 < dev02 < … < dev09 < dev10 < … < dev99 < <stable>`.
+- No dot between `dev` and the number. This makes the whole `devNN` one alphanumeric semver pre-release identifier, which stays inside SemVer 2.0.0 §9 (which forbids leading zeros in *pure-numeric* identifiers like `.01`). It also sorts identically in lex and semver order, so the GitHub Tags page, `gh release list`, and the in-app updater all agree on the order `dev01 < dev02 < … < dev09 < dev10 < … < dev99 < <stable>`.
 - Not expected to hit `dev100+` in any patch cycle; if that ever happens, revisit padding width.
 - Historical note: NT tags `v1.1.0-dev.1` through `v1.1.0-dev.15` used the older dotted format. They sort correctly ahead of new no-dot tags (`dev.15 < dev16`), so no retroactive rename was needed.
 
@@ -47,14 +46,10 @@ The `<version>` reflects what will land as the next stable release. After NT `v1
 
 | Tag | Channel | Updates when |
 |-----|---------|--------------|
-| `:X.Y.Z` (e.g. `1.2.3`) | Stable | Never; immutable pin |
-| `:X.Y` (e.g. `1.2`) | Stable | Any `1.2.z` patch release |
-| `:X` (e.g. `1`) | Stable | Any `1.y.z` minor or patch |
 | `:latest` | Stable | Every stable release |
-| `:X.Y.Z-devNN` | Milestone dev | Never; immutable pin to that milestone |
 | `:dev` | Rolling dev | Every push to the `dev` branch |
 
-Legacy `:X.Y.Z-rc.N` tags from before the semver switch remain in the registry; no new `-rc` tags are cut.
+Numbered milestones are GitHub pre-releases with an APK; they have no Docker tag of their own. To hold a server on one build, pin it by digest, as described in [Docker image tag matrix](image-tags.md#pinning-one-exact-build).
 
 ## How Android APKs map
 

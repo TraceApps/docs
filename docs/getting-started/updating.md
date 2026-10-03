@@ -22,37 +22,35 @@ Starting with 1.3.0, LiftTrace and CookTrace listen inside the container on the 
 | CookTrace | `"3003:3001"` | `"3003:3003"` |
 
 !!! warning "Action needed when you update"
-    If you pull 1.3.0 (or `:latest`, `:1`, or `:dev` once it carries the change) with the old mapping, the app will not respond. Update the mapping before or right after the pull, then `docker compose up -d`. Also update anything that talks to the container directly on the old port: a reverse proxy on the same Docker network (`lifttrace:3003`, `cooktrace:3001`), a Traefik `loadbalancer.server.port` label, a Cloudflare Tunnel service URL, or a healthcheck. Installs that set `PORT` themselves are not affected.
+    If you pull 1.3.0 or later (`:latest`, or `:dev` once it carries the change) with the old mapping, the app will not respond. Update the mapping before or right after the pull, then `docker compose up -d`. Also update anything that talks to the container directly on the old port: a reverse proxy on the same Docker network (`lifttrace:3003`, `cooktrace:3001`), a Traefik `loadbalancer.server.port` label, a Cloudflare Tunnel service URL, or a healthcheck. Installs that set `PORT` themselves are not affected.
 
-## What "the newest image" means depends on your tag
+## Which tag you are on
 
-The image tag in your compose file controls how much you get on each `pull`.
+The image tag in your compose file decides what a `pull` gives you.
 
 | Your tag | `pull` gives you |
 |---|---|
-| `:1.2.3` | Nothing new. Exact pins never move. |
-| `:1.2` | Any newer `1.2.x` patch release. Bug fixes only, no new features. |
-| `:1` | Any newer `1.x.y` release within the same major. New features, no breaking changes. |
-| `:latest` | The newest stable release, whatever it is. Crosses majors when a new major is out. |
-| `:dev` | Whatever's on the `dev` branch right now. Rebuilt on every push. |
+| `:latest` | The newest stable release. |
+| `:dev` | Whatever is on the `dev` branch right now. Rebuilt on every push. |
+| `@sha256:...` (a digest pin) | Nothing new. A digest names one exact build. |
 
-If a `docker compose pull` is unexpectedly quiet and you thought there was a new release, check which tag you're on. `:1.2.3` (an exact pin) never pulls a new image.
+!!! warning "On `:1`, `:1.x` or `:main`?"
+    Those tags were published for the first releases and then stopped updating, so an install on one of them has been sitting on an old build without saying so. Change the tag to `:latest`, then `docker compose pull && docker compose up -d`. If you are coming from before 1.3.0, check the port change above first.
 
-## Tag-pinning tactics for skittish operators
+If a `docker compose pull` is unexpectedly quiet and you thought there was a new release, check which tag you are on.
 
-For production installs on hardware you don't want to babysit, pin narrower than the defaults suggest:
+## Rollback
 
-- `:1.2` receives only patch-level updates. Bug fixes, no behavior changes. Safest for "set it and forget it" boxes.
-- `:1.2.3` receives nothing. Use this if you audit each release manually and only move deliberately.
+Before an update you might want to undo, note the digest you are running:
 
-Bump the tag in `docker-compose.yml` on your own schedule, run `docker compose pull && docker compose up -d`, done. Read the [CHANGELOG](../reference/changelogs.md) between bumps so nothing surprises you.
+```bash
+docker inspect --format '{{index .RepoDigests 0}}' ghcr.io/traceapps/cooktrace:latest
+```
 
-## Rollback with an old tag
-
-Rollback is a tag change and a recreate. Edit `docker-compose.yml`:
+To roll back, put that value in `docker-compose.yml`:
 
 ```yaml
-image: ghcr.io/traceapps/cooktrace:1.2.3   # was :1
+image: ghcr.io/traceapps/cooktrace@sha256:...   # was :latest
 ```
 
 Then:
@@ -62,7 +60,7 @@ docker compose pull
 docker compose up -d
 ```
 
-The old image is still on GHCR (all tags stay published indefinitely, including legacy `-rc.N` tags from before the semver switch). If migrations ran during the failed upgrade, the schema may be forward of what the old image expects; that's when the pre-upgrade DB snapshot from the backup step above earns its keep. Restore the snapshot before starting the older container.
+Earlier builds stay on GHCR under their digests. If migrations ran during the failed upgrade, the schema may be forward of what the old image expects; that's when the pre-upgrade DB snapshot from the backup step above earns its keep. Restore the snapshot before starting the older container.
 
 ## After the update
 
