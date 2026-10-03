@@ -72,7 +72,7 @@ Three separate sharing surfaces:
 
 - **Per-user grants**: `POST /api/recipes/:id/shares` adds a grantee by user id. The recipe surfaces on their Shared tab.
 - **Kitchens fan-out**: sharing a recipe with a Kitchen mints one grant per member, tagged `via_kitchen_id`. Removing a member (or leaving the Kitchen) revokes only grants tagged that way. See [Kitchens](kitchens.md).
-- **Public share link**: `POST /api/recipes/:id/share` mints a random URL-safe token. The recipe is then readable without login at `/r/<token>`. Bypasses the setup-required gate so a fresh install serving a shared link doesn't 503. `DELETE /api/recipes/:id/share` revokes.
+- **Public share link**: `POST /api/recipes/:id/share` mints a random URL-safe token. The recipe is then readable without login at `/r/<token>` (older `/#/r/<token>` links still open). Bypasses the setup-required gate so a fresh install serving a shared link doesn't 503. `DELETE /api/recipes/:id/share` revokes. The page carries link-preview tags (the recipe's name, description, and photo) so chat apps show a preview, and asks search engines to skip it. Only these two routes set the token: sync sends it to devices but never takes it from them, so a removed link stays removed.
 
 Card image: `GET /api/recipes/:id/card.png` returns a server-rendered Pinterest-style card for social sharing.
 
