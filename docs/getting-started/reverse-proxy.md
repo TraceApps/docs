@@ -144,7 +144,7 @@ When registering an OIDC provider with your IdP, the callback URL must be the **
 https://example.com/cooktrace/api/auth/oidc/callback/1
 ```
 
-Enter the same URL in **Settings** then **User Management** then **OIDC providers**. The provider redirects the user back through the proxy to the prefixed path, and the app finishes the flow.
+Enter the same URL in the app: in `OIDC_REDIRECT_URIS`, or in the provider's Redirect URIs under **Settings → Authentication**. The provider redirects the user back through the proxy to the prefixed path, and the app finishes the flow.
 
 ## Deeper recipes
 

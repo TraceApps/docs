@@ -73,20 +73,20 @@ The shorthand `OIDC_*` variables alias `OIDC_PROVIDER_1_*`. For multi-provider s
 
 | Variable | Default | Purpose | CT | LT | NT |
 |---|---|---|---|---|---|
-| `OIDC_ISSUER` | unset | Discovery URL root. | Y | Y | Y |
+| `OIDC_ISSUER` | unset | Issuer URL; the app fetches `<issuer>/.well-known/openid-configuration`. | Y | Y | Y |
 | `OIDC_CLIENT_ID` | unset | Client ID from your IdP. | Y | Y | Y |
 | `OIDC_CLIENT_SECRET` | unset | Client secret. Encrypted at rest with `TOKEN_ENC_KEY`. | Y | Y | Y |
-| `OIDC_DISPLAY_NAME` | unset | Button label on the login page. | Y | Y | Y |
+| `OIDC_DISPLAY_NAME` | unset | Button label on the login page (shows `OIDC` when unset). | Y | Y | Y |
 | `OIDC_LOGO_URL` | unset | Optional icon on the login button. | Y | Y | Y |
 | `OIDC_SCOPE` | `openid profile email` | Space-separated scopes. | Y | Y | Y |
-| `OIDC_REDIRECT_URIS` | unset | Comma-separated. Include both the PWA callback and the `<app>://oidc-callback` deep link if you use Android. | Y | Y | Y |
+| `OIDC_REDIRECT_URIS` | unset | Comma-separated callback URLs: `https://<host>/api/auth/oidc/callback/<provider-id>` (the ID is in the startup log, usually `1`). The Android app uses the same one. See [The callback URL](../auth/oidc.md#the-callback-url). | Y | Y | Y |
 | `OIDC_TOKEN_AUTH_METHOD` | `client_secret_post` | Also `client_secret_basic` or `none`. | Y | Y | Y |
 | `OIDC_ADMIN_GROUP_CLAIM` | unset | Claim name that lists groups, e.g. `groups`. | Y | Y | Y |
-| `OIDC_ADMIN_GROUP_VALUE` | unset | Membership in this group promotes the user to admin on every sign-in. | Y | Y | Y |
+| `OIDC_ADMIN_GROUP_VALUE` | unset | Members of this group become admins at each sign-in; everyone else becomes a regular user. | Y | Y | Y |
 | `OIDC_AUTO_LINK` | `1` | Link SSO identity to an existing account with the same verified email. | Y | Y | Y |
 | `OIDC_AUTO_REGISTER` | `0` | Create a new account on first SSO sign-in. | Y | Y | Y |
 | `OIDC_IS_ACTIVE` | `1` | Set `0` to disable the provider without removing the config. | Y | Y | Y |
-| `OIDC_ENABLE_EMAIL_PASSWORD_LOGIN` | `1` | Set `0` for SSO-only mode (password login disabled server-wide). Locks the admin toggle. | Y | Y | Y |
+| `OIDC_ENABLE_EMAIL_PASSWORD_LOGIN` | unset | Set `0` for SSO-only mode (password login disabled server-wide); locks the admin toggle while set. Currently only applied when a provider is also defined through env vars. | Y | Y | Y |
 
 ## Backup
 

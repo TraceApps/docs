@@ -55,21 +55,37 @@ Details in [HTTPS on the LAN](../self-hosting/lan-https.md) and [Cloudflare Tunn
 
 ## OIDC / SSO
 
+### SSO sign-in ends on a blank page
+
+**Symptom:** You sign in at your IdP fine, it redirects back, and the app shows a blank white page. The container log shows requests like `GET /api/oidc/callback` or `GET /api/oidc/assets/...`.
+
+**Cause:** The callback URL is wrong. The IdP sent you back to a path the app doesn't handle.
+
+**Fix:** Use `https://<your-host>/api/auth/oidc/callback/<provider-id>` (the ID is in the startup log line `[oidc-env] Loaded 1 OIDC provider from environment (IDs: 1)`, usually `1`), in both your IdP and `OIDC_REDIRECT_URIS`, then `docker compose up -d`. See [The callback URL](../auth/oidc.md#the-callback-url).
+
+### SSO sign-in works but you're "not authenticated" right after
+
+**Symptom:** Sign-in (SSO or password) appears to succeed, then every page says you're not signed in.
+
+**Cause:** You're reaching the app over plain `http://` on an address other than `localhost`. The session cookie is marked Secure, and browsers drop Secure cookies on plain HTTP.
+
+**Fix:** Use HTTPS (a reverse proxy), or set `INSECURE_COOKIES=1` on a trusted LAN. See [LAN HTTP notes](../getting-started/lan-http.md).
+
 ### OIDC login works but the user has no admin rights
 
-**Symptom:** Users authenticate through your IdP fine, get logged in, but land with the default `user` role even though they are in the group that is supposed to grant admin.
+**Symptom:** Users authenticate through your IdP fine, get logged in, but land as regular users even though they are in the group that is supposed to grant admin.
 
-**Cause:** The group claim your IdP emits is not matching what the app is looking for. Two things have to line up: the claim name (`OIDC_PROVIDER_1_ADMIN_GROUP_CLAIM`, default `groups`) and the value inside that claim (`OIDC_PROVIDER_1_ADMIN_GROUP_VALUE`).
+**Cause:** The group claim in the ID token doesn't match what the app is looking for. Two things have to line up: the claim name (`OIDC_ADMIN_GROUP_CLAIM`) and the value inside it (`OIDC_ADMIN_GROUP_VALUE`). There is no default; both must be set. The claim also has to be in the **ID token**: the app doesn't read the userinfo endpoint.
 
-**Fix:** Decode the ID token your IdP issues (the OIDC provider's admin console usually has a debug view, or use jwt.io) and confirm the exact claim name and value. Update the two env vars to match, restart the container, and have the user log out and back in. Role elevation runs on each sign-in, so an existing session will not pick up the new mapping until the next login. Full walkthroughs per IdP live under [OIDC recipes](../auth/oidc.md).
+**Fix:** Decode the ID token your IdP issues (the IdP's admin console usually has a preview, or paste it into a JWT decoder) and confirm the exact claim name and value. Update the two env vars to match, run `docker compose up -d`, and have the user sign out and back in. The role is set at each sign-in, so an existing session won't pick up the change until the next one. Per-IdP walkthroughs live under [OIDC recipes](../auth/oidc.md#provider-recipes).
 
-### Rotating JWT_SECRET locks out users mid-OIDC-flow
+### SSO stops working after rotating JWT_SECRET
 
-**Symptom:** After rotating `JWT_SECRET` the login page rejects fresh OIDC callbacks with a "state mismatch" or "invalid token" error, even though the IdP end of the handshake completed.
+**Symptom:** After changing `JWT_SECRET`, everyone is signed out (expected), and SSO sign-in fails for providers you added in **Settings → Authentication**.
 
-**Cause:** The app signs OIDC state and nonce tokens with `JWT_SECRET`. Rotating the secret invalidates every in-flight state token, so any user mid-redirect from the IdP gets rejected on the callback. Existing sessions are also invalidated, which is the whole point of the rotation.
+**Cause:** Unless `TOKEN_ENC_KEY` is set, the key that encrypts stored OIDC client secrets is derived from `JWT_SECRET`. A new `JWT_SECRET` means the stored secrets can no longer be decrypted. Providers defined through env vars are unaffected: their secret is re-read from the environment at every start.
 
-**Fix:** Warn users before rotating, or accept the brief outage. Once the container is back up on the new secret, users just need to re-login from scratch (a fresh state token is issued on the new redirect). If you also want the encrypted OIDC client secrets in the database to survive rotation, set `TOKEN_ENC_KEY` explicitly to something stable; otherwise `TOKEN_ENC_KEY` derives from `JWT_SECRET` and rotates with it, requiring you to re-enter every OIDC provider secret in the admin UI. See [Session lifetime and password policy](../auth/sessions.md).
+**Fix:** Re-enter the client secret of each provider in **Settings → Authentication**. To be able to rotate `JWT_SECRET` later without this, set `TOKEN_ENC_KEY` to a stable value and re-enter the secrets once more (setting it changes the key too); after that, `JWT_SECRET` can change freely. See [Session lifetime and password policy](../auth/sessions.md).
 
 ## NutriTrace-specific
 
