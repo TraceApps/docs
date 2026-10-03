@@ -1,6 +1,9 @@
 # OIDC recipe: Authelia
 
-[Authelia](https://www.authelia.com/) is a self-hosted SSO + 2FA portal that speaks OIDC as of the 4.38 series. If you already run it in front of other services, TraceApps drops in as another client under `identity_providers.oidc.clients`. This recipe assumes an Authelia instance with OIDC enabled (or that you're about to enable it) and file-based configuration you can edit.
+[Authelia](https://www.authelia.com/) is a self-hosted SSO + 2FA portal with an OpenID Connect provider. If you already run it in front of other services, TraceApps drops in as another client under `identity_providers.oidc.clients`. This recipe assumes an Authelia instance with file-based configuration you can edit, and was checked against Authelia 4.39. The examples use CookTrace at `https://cook.example.com`.
+
+!!! warning "Authelia 4.39 and later: the claims policy in step 2 is required"
+    Since 4.39, Authelia leaves the user's email, name, username and groups out of the ID token by default and only serves them from its userinfo endpoint. TraceApps reads the ID token, so without the claims policy below it sees no email (no linking to existing accounts), no username (auto-registered accounts get a generated name) and no groups (no admin mapping).
 
 ## Authelia side
 
@@ -25,19 +28,33 @@ identity_providers:
 
 Generate an RSA key with `openssl genrsa -out oidc.key 2048` and paste the contents into `key:` (or use Authelia's `authelia crypto pair rsa generate` helper).
 
-### 2. Define the client
+### 2. Define the claims policy and the client
 
-Under `identity_providers.oidc.clients`, add a block for the app:
+Generate the client secret first. This prints a random password (for the app's `OIDC_CLIENT_SECRET`) and its digest (for Authelia's `client_secret`):
+
+```bash
+authelia crypto hash generate pbkdf2 --variant sha512 --random --random.length 72 --random.charset rfc3986
+```
+
+Then add a claims policy that puts what TraceApps needs into the ID token, and the client that uses it. Both go into the same `identity_providers.oidc` block as step 1 (merge them in; don't add a second `identity_providers:` key):
 
 ```yaml
+identity_providers:
+  oidc:
+    claims_policies:
+      traceapps:
+        id_token: ['email', 'email_verified', 'preferred_username', 'name', 'groups']
     clients:
       - client_id: 'cooktrace'
         client_name: 'CookTrace'
-        client_secret: '$pbkdf2-sha512$310000$...'
+        client_secret: '$pbkdf2-sha512$310000$...the Digest from the command above...'
         public: false
         authorization_policy: 'one_factor'
+        claims_policy: 'traceapps'
+        require_pkce: true
+        pkce_challenge_method: 'S256'
         redirect_uris:
-          - 'https://cook.example.com/api/auth/oidc/callback'
+          - 'https://cook.example.com/api/auth/oidc/callback/1'
         scopes:
           - 'openid'
           - 'profile'
@@ -50,10 +67,13 @@ Under `identity_providers.oidc.clients`, add a block for the app:
         token_endpoint_auth_method: 'client_secret_post'
 ```
 
-Two things worth calling out:
+Worth calling out:
 
-- `client_secret` must be the **hashed** form, not the plaintext. Generate the pair with `authelia crypto hash generate pbkdf2 --variant sha512 --iterations 310000 --password '<your secret>'`. The command prints both the plaintext (keep it for the TraceApps env var) and the hash (paste into `client_secret:`).
-- `authorization_policy: one_factor` lets password-authenticated users through. Switch to `two_factor` to require Authelia's 2FA (TOTP, WebAuthn, Duo) on every SSO into TraceApps. That gate applies here just like it does for any other Authelia-fronted app.
+- The `1` in the redirect URI is the provider ID in the app; see [The callback URL](../oidc.md#the-callback-url).
+- Authelia's docs describe ID-token claims policies as an escape hatch for apps that don't read the userinfo endpoint, which is the case here.
+- `client_secret` should be the digest. Authelia still accepts a plaintext secret, but that is deprecated.
+- `authorization_policy: one_factor` lets password-authenticated users through. Use `two_factor` to require Authelia's 2FA on every sign-in into the app.
+- By default Authelia asks for consent on each sign-in. To remember it, set `pre_configured_consent_duration` on the client (for example `'1 month'`).
 
 ### 3. Note the issuer URL
 
@@ -63,58 +83,67 @@ Authelia's issuer is the base URL of your Authelia instance, no path suffix:
 https://auth.example.com
 ```
 
-Confirm by hitting `/.well-known/openid-configuration` under that host and checking the `issuer` field matches exactly. That value goes into `OIDC_ISSUER`.
+Confirm by opening `/.well-known/openid-configuration` under that host and checking that the `issuer` field matches. That value goes into `OIDC_ISSUER`.
 
 ### 4. (Optional) Group claim
 
-If you use Authelia groups (from `users_database.yml` or LDAP) to gate admin access, they're emitted in the `groups` claim when you include the `groups` scope on the client (as above). No extra mapper needed.
+Authelia groups (from `users_database.yml` or LDAP) arrive in the `groups` claim, as long as the client has the `groups` scope and the claims policy lists `groups` (both above).
 
 ## TraceApps side
 
-Add to your `.env`:
+Add to the app's environment, for example in `.env` next to the compose file (the [install examples](../../getting-started/compose.md) load it with `env_file: .env`):
 
 ```env
 OIDC_ISSUER=https://auth.example.com
 OIDC_CLIENT_ID=cooktrace
-OIDC_CLIENT_SECRET=...plaintext secret from step 2...
-OIDC_REDIRECT_URIS=https://cook.example.com/api/auth/oidc/callback
+OIDC_CLIENT_SECRET=...the Random Password from step 2...
+OIDC_REDIRECT_URIS=https://cook.example.com/api/auth/oidc/callback/1
 OIDC_DISPLAY_NAME=Authelia
 OIDC_SCOPE=openid profile email groups
 OIDC_TOKEN_AUTH_METHOD=client_secret_post
 ```
 
-For group-based admin promotion (recommended if you already have an admin group):
+For group-based admin (recommended if you already have an admin group):
 
 ```env
 OIDC_ADMIN_GROUP_CLAIM=groups
 OIDC_ADMIN_GROUP_VALUE=admins
 ```
 
-Members of the `admins` group in Authelia pick up `role='admin'` on the next SSO login. Adjust the value to match whatever your group is called.
+At each SSO sign-in, members of the `admins` group in Authelia become admins in the app and everyone else becomes a regular user, so make sure your own account is in it. Adjust the value to match whatever your group is called.
 
-Restart the container:
+Recreate the container (a plain restart keeps the old values):
 
 ```bash
 docker compose up -d
 ```
 
+The log should show `[oidc-env] Loaded 1 OIDC provider from environment (IDs: 1)`. If the ID isn't `1`, use that number in the redirect URI, in both Authelia and `OIDC_REDIRECT_URIS`.
+
 ## Verify
 
-1. Open the app in a private window. A **Sign in with Authelia** button appears next to the local login form.
-2. Click it. Authelia takes over, prompts for whatever `authorization_policy` requires (password only for `one_factor`, password + 2FA for `two_factor`), then redirects back.
-3. You land inside the app, logged in.
-4. In **Settings, Users, OIDC providers**, the Authelia row appears with a padlock badge.
+1. Open the app in a private window. A **Sign In with Authelia** button appears next to the local login form.
+2. Click it. Authelia asks for whatever `authorization_policy` requires (password only for `one_factor`, password + 2FA for `two_factor`), then redirects back.
+3. You land inside the app, signed in.
+4. In **Settings → Authentication**, the Authelia row appears with an **env** padlock badge.
+
+## Signing out
+
+Authelia doesn't support RP-initiated logout yet, so signing out of the app doesn't end the Authelia session. The next **Sign In with Authelia** passes straight through while that session lasts. Sign out at Authelia itself if you need to switch users.
 
 ## Troubleshooting
 
-!!! warning "Client secret hash mismatch"
-    Pasting the plaintext secret into `client_secret:` in `configuration.yml` looks like it works until you try to sign in, at which point Authelia rejects the token exchange. Regenerate the hash with `authelia crypto hash generate pbkdf2 ...` and paste the `$pbkdf2-sha512$...` output.
+!!! warning "Blank page after signing in at Authelia"
+    The redirect URI is wrong, so Authelia sent you back to a path the app doesn't handle. It must be exactly `https://<your-host>/api/auth/oidc/callback/<id>`, the same in Authelia and in `OIDC_REDIRECT_URIS`.
 
-!!! warning "Empty groups claim"
-    If `groups` never resolves in the ID token, double-check that `scopes:` on the client includes `groups`, and that `OIDC_SCOPE` on the TraceApps side asks for it too. Re-sign-in from a fresh session so the token isn't cached.
+!!! warning "Sign-in fails at the token exchange (`invalid_client`)"
+    `OIDC_CLIENT_SECRET` must be the random password the command printed, and Authelia's `client_secret` its digest. Regenerate both with the command in step 2 if in doubt.
 
-!!! tip "Two-factor for admin only"
-    If you want casual users on one-factor but admins forced through 2FA, keep `authorization_policy: one_factor` here and set up an Authelia access-control rule that requires two-factor for the specific admin group. TraceApps doesn't care which factor Authelia used; it just consumes the ID token.
+!!! warning "No email, odd usernames, or no groups"
+    The claims aren't in the ID token: check that the `traceapps` claims policy exists and that the client has `claims_policy: 'traceapps'` (step 2). For groups, also check that the client's `scopes:` and `OIDC_SCOPE` both include `groups`. Sign out and back in after changing it.
+
+!!! tip "Two-factor for admins only"
+    To let everyday users in with one factor but require two for admins, define an OIDC authorization policy under `identity_providers.oidc.authorization_policies` (a `default_policy` plus a rule with `subject: 'group:admins'` and `policy: 'two_factor'`), and set the client's `authorization_policy` to its name. Authelia's regular `access_control` rules don't apply to OIDC sign-ins.
 
 ## Related
 
