@@ -59,7 +59,7 @@ The default bulk-import policy is `dedup: 'skip'`. A recipe is treated as a dupl
 - The name matches an existing recipe on your account (case-insensitive), or
 - The `source_url` matches an existing recipe on your account.
 
-Skipped duplicates are reported in the commit result so you can spot-check. If you want to reimport intentionally (say, Mealie's copy has been updated), use the individual **Import** path with `dedup: 'force'`, or delete the CookTrace copy first.
+The summary after the import lists every skipped duplicate by name, linked to the recipe it matched. To reimport intentionally (say, Mealie's copy has been updated), set **If a Recipe Already Exists** to **Replace with the Imported Version** or **Allow Duplicates** and import again. See [the dedup policy](import.md#dedup-policy).
 
 ## After importing
 

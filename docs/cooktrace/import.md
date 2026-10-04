@@ -73,12 +73,17 @@ Cancelling from the picker deletes the cache. Committing keeps the cache in `.im
 
 ### Dedup policy
 
-The import endpoint (`POST /api/recipes/import`) takes `dedup: 'skip' | 'force'`.
+A recipe counts as a duplicate when its name matches one of your recipes (ignoring case) **or** its source link matches exactly. That includes a recipe imported earlier in the same archive, so an export that holds the same recipe twice imports it once.
 
-- **`skip`** (default in the bulk UI): a case-insensitive name match **or** an exact `source_url` match against your existing recipes counts as a duplicate and gets skipped.
-- **`force`**: import anyway, adding a second copy. Handy when you're intentionally re-importing an updated version.
+The bulk import's **If a Recipe Already Exists** option decides what happens (`dedup` on `POST /api/recipes/import-zip/commit`):
 
-The commit response reports how many landed, how many were skipped as dupes, and how many failed to parse.
+- **Skip It** (`skip`, the default): the duplicate is left out and your recipe stays as it is.
+- **Replace with the Imported Version** (`replace`): your recipe is updated from the archive.
+- **Allow Duplicates** (`force`): import anyway, adding a second copy.
+
+After a bulk import, the summary reads "Imported 119 of 121 Recipes" when anything was left out. It lists the skipped duplicates by name (each links to the recipe it matched) and, separately, any recipe that failed with the reason. To bring skipped ones in anyway, set the option to Allow Duplicates and import the file again.
+
+Single imports (a URL, pasted JSON or HTML, or one uploaded file) always skip a duplicate. You get "This recipe already exists. Opening it." and the existing recipe opens. A Paprika archive uploaded this way reports how many it imported and how many duplicates it skipped.
 
 ## Size cap
 

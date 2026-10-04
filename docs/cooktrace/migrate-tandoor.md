@@ -39,7 +39,7 @@ Under **Settings > Import from Another App**:
 - **Single JSON**: drop the file into the File / Paste dialog. The detector recognises Tandoor's shape (steps carrying nested ingredients, plus a top-level name and `working_time`) and imports one recipe.
 - **Bulk zip**: use the **Bulk Import** card with the zip Tandoor's export gives you, as is. Tandoor puts each recipe in its own zip inside it (recipe.json plus its picture); CookTrace opens those, detects each recipe, and shows a picker with thumbnails. Confirm and commit.
 
-The commit response reports how many landed, how many were skipped as duplicates (case-insensitive name match or exact `source_url` match), and how many failed to parse. See [dedup policy](import.md#dedup-policy) for the `force` option that bypasses the skip.
+The summary shows how many recipes were imported out of how many were found, and lists any that were skipped as duplicates (same name, ignoring case, or same source link) or failed, by name. Tandoor allows two recipes with the same name, so an export can hold duplicates of its own; the second copy is skipped unless you choose **Allow Duplicates**. See the [dedup policy](import.md#dedup-policy).
 
 ## What carries over
 
