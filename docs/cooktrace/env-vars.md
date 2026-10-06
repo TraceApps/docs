@@ -44,7 +44,7 @@ All off by default.
 
 | Env var | Default | Purpose |
 | --- | --- | --- |
-| `APP_ORIGIN` / `PUBLIC_URL` | (unset) | Used by `server/lib/push-notify.js` to build absolute links inside push messages (so tapping a notification lands on the right host). Set to your public URL if you use push. |
+| `APP_ORIGIN` / `PUBLIC_URL` | (unset) | The address in links: push messages, and (`PUBLIC_URL`) password reset, invite and sharing emails. Set to the full address people open CookTrace at. |
 
 ## Not env vars but adjacent
 

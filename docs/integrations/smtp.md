@@ -64,6 +64,10 @@ Env vars take priority over anything already in `app_config`, and the seed runs 
 
 **Local test relay.** [MailHog](https://github.com/mailhog/MailHog) or [Mailpit](https://github.com/axllent/mailpit) at `smtp.local:1025` (no TLS, no auth) is the easy way to inspect templates without sending real mail.
 
+## Links in emails
+
+Password reset, invite and sharing emails link back to the app. The address comes from `PUBLIC_URL` when it's set, and otherwise from an address an admin has opened the app at, never from the request that asked for the email (anyone can fake that one to point a reset link at their own site). Set `PUBLIC_URL` to the full address people use, for example `https://lift.example.com`, or `https://example.com/lifttrace` behind a subpath. Until it's set or an admin has opened the app once, password reset and sharing emails aren't sent; the server log says why.
+
 ## Troubleshooting
 
 If Send Test returns "SMTP test failed":

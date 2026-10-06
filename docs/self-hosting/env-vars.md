@@ -21,6 +21,7 @@ Any variable in the tables below can also be provided via Docker secrets by suff
 |---|---|---|---|---|---|
 | `PORT` | `3003` (CT), `3002` (LT), `3001` (NT) | Container listen port, the same as each app's sample host port. Change if you remap. | Y | Y | Y |
 | `BASE_URL` | (empty) | Subpath mount, e.g. `/cooktrace`. Must start with `/`, no trailing slash. Emitted to the browser as `window.__<APP>_CONFIG__.basePath`. | Y | Y | Y |
+| `PUBLIC_URL` | (empty) | The full address people open the app at, subpath included (e.g. `https://lift.example.com`). Links in emails (password reset, invites, sharing) use it. Unset, they use an address an admin has opened the app at. | Y | Y | Y |
 | `LOG_LEVEL` | `info` | `error`, `warn`, `info`, `debug`. | Y | Y | Y |
 | `NODE_ENV` | (empty) | Set to `production` in real deployments. Refuses to boot without `JWT_SECRET`. | Y | Y | Y |
 

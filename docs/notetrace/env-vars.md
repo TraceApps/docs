@@ -11,6 +11,7 @@ NoteTrace reads the same shared variables as the other Trace apps (`PORT`, `BASE
 | `UPLOADS_PATH` | `/data/uploads` | Uploaded images, voice notes, files, and server-side backups. Mount `/data/uploads` as a volume. |
 | `UPLOAD_MAX_MB` | `100` | The largest single upload (an image, a recording, or a file on a note), in MB. A bigger file is refused with a message saying so. Raise your reverse proxy's body limit to match (Nginx `client_max_body_size`). |
 | `BASE_URL` | (empty) | Subpath mount, for example `/notetrace`. |
+| `PUBLIC_URL` | (empty) | The full address people open the app at, subpath included (e.g. `https://notes.example.com`). Links in emails (password reset, invites, sharing) use it. Unset, they use an address an admin has opened the app at. |
 
 ## Integrations
 
