@@ -21,7 +21,7 @@ CookTrace, LiftTrace, NoteTrace, and NutriTrace are siblings by design: same Nod
 | Android reminders | JS `LocalNotifications` | JS `LocalNotifications` | native exact alarms (AlarmManager) | native WorkManager |
 | SMTP settings live in | Settings, Email | Settings, Email | Settings, Email | Settings, Authentication |
 | Federation | pulls foods from NutriTrace; takes shopping items from NoteTrace | none | sends checklist items to CookTrace | serves foods to CT |
-| App-only env vars | `IMPORT_ZIP_MAX_MB` | `EXERCISE_SOURCES`, `EXERCISEDB_OSS_URL`, `ALLOW_PRIVATE_RADIO_URLS` | `ALLOW_PRIVATE_COOKTRACE_URLS`, `ALLOW_PRIVATE_LINK_PREVIEWS`, `AI_TRANSCRIBE_MODEL`, `FFMPEG_PATH` (see [NoteTrace env vars](../notetrace/env-vars.md)) | `OFF_LOCAL_DB`, `OFF_LOCAL_ONLY`, `OFF_LOCAL_URL`, `API_RATE_LIMIT_PER_MIN` |
+| App-only env vars | `IMPORT_ZIP_MAX_MB`, `ALLOW_PRIVATE_RECIPE_URLS`, `ALLOW_PRIVATE_AI_URLS` | `EXERCISE_SOURCES`, `EXERCISEDB_OSS_URL`, `ALLOW_PRIVATE_RADIO_URLS` | `ALLOW_PRIVATE_LINK_PREVIEWS`, `AI_TRANSCRIBE_MODEL`, `FFMPEG_PATH` (see [NoteTrace env vars](../notetrace/env-vars.md)) | `OFF_LOCAL_DB`, `OFF_LOCAL_ONLY`, `OFF_LOCAL_URL`, `API_RATE_LIMIT_PER_MIN`, `ALLOW_PRIVATE_IMAGE_URLS` |
 
 All four apps publish multi-arch images (`linux/amd64` + `linux/arm64`) with the same two tags: `latest` for stable releases and `dev` for the development branch.
 
@@ -41,9 +41,13 @@ NutriTrace's Android build uses a native WorkManager worker for meal, water, wei
 
 NoteTrace is the only app that also delivers reminders from the server: a one-minute check sends each due note reminder through the user's push service and the `reminder.fired` webhook, alongside the Android app's on-device notifications. See [NoteTrace reminders](../notetrace/reminders.md).
 
-## LiftTrace's radio LAN allowance
+## Addresses on your own network
 
-Only LiftTrace has a built-in radio player. If you run a Subsonic, Navidrome, or Icecast server on the same LAN as LiftTrace, set `ALLOW_PRIVATE_RADIO_URLS=1` so the radio proxy stops refusing RFC 1918 and IPv6 ULA addresses. CookTrace and NutriTrace have no equivalent knob because they have no radio.
+When an app fetches an address someone typed, it checks every address the name resolves to, connects only to those, checks every redirect, and never reaches cloud-metadata addresses. What may reach your own network (LAN, localhost, Docker networks) depends on what the feature is for:
+
+- **Made for services on your network**, open to every account: push notifications (ntfy, Gotify, Apprise), the CookTrace and Mealie connections in NutriTrace, the NutriTrace link in CookTrace and LiftTrace, Send to CookTrace in NoteTrace, and LiftTrace's music server (Subsonic, Navidrome, Jellyfin, Plex, Emby). Only the parts of each service's API the app uses are called.
+- **Made for the public web**, open to an admin: CookTrace recipe links and an AI address an account sets (`ALLOW_PRIVATE_RECIPE_URLS`, `ALLOW_PRIVATE_AI_URLS`), LiftTrace radio stations (`ALLOW_PRIVATE_RADIO_URLS`), and NutriTrace images from a link (`ALLOW_PRIVATE_IMAGE_URLS`). Set the variable to open it to every account, and to a single-user install, which has no sign-in.
+- **NoteTrace link previews** reach your network only with `ALLOW_PRIVATE_LINK_PREVIEWS`, for every account alike: they load on their own for links other people put in shared notes.
 
 ## SMTP form location
 

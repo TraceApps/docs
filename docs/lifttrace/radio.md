@@ -27,21 +27,17 @@ Now-playing metadata is extracted from `StreamTitle` in the Icy stream, the `tex
 
 An **Icon suggest** endpoint (`GET /api/radio-proxy/icon-suggest`) grabs a station's favicon or logo when you add it. You can override with a custom URL per station.
 
-## SSRF safety: `ALLOW_PRIVATE_RADIO_URLS`
+## Stations on your own network: `ALLOW_PRIVATE_RADIO_URLS`
 
-The radio proxy fetches remote stream URLs from the LiftTrace container. To prevent Server-Side Request Forgery, it blocks loopback, RFC1918, and IPv6 ULA ranges by default. If a station URL resolves to `127.0.0.1`, `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`, or `fc00::/7`, the request is refused with:
+The radio proxy fetches station addresses from the LiftTrace server, and only for a signed-in account. It checks every address a station's name resolves to, connects only to those, and checks every redirect, so a station address can't be used to read services on your network. Cloud-metadata addresses are always refused.
 
-```text
-Private / loopback addresses are blocked. Set ALLOW_PRIVATE_RADIO_URLS=1 to enable LAN streams.
-```
-
-If you actually stream from an Icecast box on your LAN and you understand the trade-off, opt in:
+An admin can play stations on your own network (`127.0.0.1`, `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`, `fc00::/7`). For other accounts such a station fails with "Could not reach that station". To let every account, and a single-user install (which has no sign-in), play them:
 
 ```env
 ALLOW_PRIVATE_RADIO_URLS=1
 ```
 
-Accepted values: `1` or `true`. Anything else keeps the guard on. The startup log emits a warning when the opt-out is active. Do not enable this on a public-facing deployment unless you have thought carefully about what a malicious station URL could reach on your internal network.
+Accepted values: `1` or `true`. The startup log emits a warning when it is set. Your music server (Navidrome, Subsonic, Jellyfin, Plex, Emby) doesn't need it: those connections are open to every account, for the parts of its API the app uses.
 
 HLS bypasses the proxy entirely: `hls.js` in the browser does its own XHR for the manifest and segments, and the radio proxy does not rewrite HLS manifests. Same-origin manifests work; cross-origin needs CORS on the origin server.
 

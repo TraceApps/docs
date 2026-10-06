@@ -70,7 +70,7 @@ Notes are newest edit first until you drag one; then Notes, Shared with Me, and 
 
 ## Link previews {#link-previews}
 
-When a note contains a link, the card shows a preview of the first one: the page title, its image, and the site. Your NoteTrace server fetches the page (not your browser or phone), through the same address checks webhooks use, and keeps the result for a week. Links to private or loopback addresses get no preview unless the server has `ALLOW_PRIVATE_LINK_PREVIEWS=1`. Turn previews off in **Settings, Appearance, Link Previews**. They need a server, so Android local mode doesn't show them.
+When a note contains a link, the card shows a preview of the first one: the page title, its image, and the site. Your NoteTrace server fetches the page (not your browser or phone), through the same address checks webhooks use, and keeps the result for a week. Links to private or loopback addresses get no preview unless the server has `ALLOW_PRIVATE_LINK_PREVIEWS=1`, the same for every account: previews load on their own for links other people put in shared notes. Turn previews off in **Settings, Appearance, Link Previews**. They need a server, so Android local mode doesn't show them.
 
 ## Colors
 

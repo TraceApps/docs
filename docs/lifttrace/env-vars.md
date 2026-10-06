@@ -11,7 +11,7 @@ Every var below also accepts the Docker secrets convention `<NAME>_FILE=/run/sec
 | `PORT` | `3002` | Internal Express port. Compose maps host `3002:3002` in the reference file. Was `3003` before 1.3.0. |
 | `EXERCISE_SOURCES` | (empty) | Comma list of exercise-source IDs to auto-seed on first boot: any of `wger`, `free-db`, `exercisedb`, `exercisedb-oss`. Empty triggers the first-run wizard's library picker instead of seeding blind. |
 | `EXERCISEDB_OSS_URL` | `https://oss.exercisedb.dev` | Override the community mirror URL for the `exercisedb-oss` source. Point at your own deployment if you want to self-host the mirror or reduce load on the public one. |
-| `ALLOW_PRIVATE_RADIO_URLS` | `0` | Set `1` or `true` to let the radio proxy fetch loopback, RFC1918, or IPv6 ULA stream URLs. Off by default to prevent SSRF. A warning is logged at startup when the opt-out is active. |
+| `ALLOW_PRIVATE_RADIO_URLS` | `0` | Set `1` or `true` to let every account play radio stations on your own network (loopback, RFC1918, IPv6 ULA). An admin always can. A warning is logged at startup when it is set. |
 
 ## Notes on each
 
@@ -36,13 +36,7 @@ The `exercisedb-oss` source hits `https://oss.exercisedb.dev` by default. The mi
 
 ### `ALLOW_PRIVATE_RADIO_URLS`
 
-The radio proxy blocks stream URLs that resolve to `127.0.0.1`, `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`, or `fc00::/7` by default. Blocked requests fail with:
-
-```text
-Private / loopback addresses are blocked. Set ALLOW_PRIVATE_RADIO_URLS=1 to enable LAN streams.
-```
-
-If you actually stream from an Icecast box on your LAN and understand the SSRF trade-off, set `ALLOW_PRIVATE_RADIO_URLS=1`. Do not enable on a public-facing deployment unless you have thought carefully about what a hostile station URL could reach on your internal network. Full detail in [Radio player](radio.md#ssrf-safety-allow_private_radio_urls).
+An admin can play stations on your own network (`127.0.0.1`, `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`, `fc00::/7`); other accounts get "Could not reach that station". Set `ALLOW_PRIVATE_RADIO_URLS=1` to let every account, and a single-user install, play them. Your music server doesn't need it. Full detail in [Radio player](radio.md#stations-on-your-own-network-allow_private_radio_urls).
 
 ## Not LiftTrace-specific
 

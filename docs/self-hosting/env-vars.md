@@ -130,7 +130,7 @@ CT-specific note: the Enhanced URL Import mode spawns a Python `recipe-scrapers`
 | `PYTHON_BIN` | `python3` | Interpreter used by the recipe-scrapers bridge. |  Y  |     |     |
 | `EXERCISE_SOURCES` | (empty) | Comma-separated auto-seed IDs: `wger`, `free-db`, `exercisedb`, `exercisedb-oss`. Empty triggers the wizard picker. |     |  Y  |     |
 | `EXERCISEDB_OSS_URL` | `https://oss.exercisedb.dev` | Override the ExerciseDB-OSS mirror. |     |  Y  |     |
-| `ALLOW_PRIVATE_RADIO_URLS` | `0` | Set `1` to allow the radio proxy to reach RFC 1918 / loopback / IPv6 ULA (LAN Icecast, Navidrome, Subsonic). |     |  Y  |     |
+| `ALLOW_PRIVATE_RADIO_URLS` | `0` | Set `1` to let every account play radio stations on your own network (a LAN Icecast). An admin always can. Music servers (Navidrome, Subsonic, Jellyfin) don't need it. |     |  Y  |     |
 | `OFF_LOCAL_DB` | unset | In-container path to the OFF Parquet or DuckDB mirror (e.g. `/data/off-mirror/off.parquet`). |     |     |  Y  |
 | `OFF_LOCAL_ONLY` | unset | Set `1` for air-gap mode: refuse the public OFF fallback. |     |     |  Y  |
 | `OFF_LOCAL_URL` | HuggingFace `food.parquet` | Override the download source used to refresh the mirror. |     |     |  Y  |

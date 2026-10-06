@@ -56,7 +56,13 @@ See [Wellness and wearables](wellness.md), [Fitbit → Google Health migration](
 
 ## USDA and Mealie
 
-**None.** Both are per-user under **Settings → Connected Services**. USDA needs a free `api.data.gov` key; Mealie needs the base URL of your running Mealie plus a personal API token. See [USDA and Mealie integration](usda-mealie.md).
+**None.** Both are per-user under **Settings → Connected Services**. USDA needs a free `api.data.gov` key; Mealie needs the base URL of your running Mealie plus a personal API token. See [USDA and Mealie integration](usda-mealie.md). A Mealie or CookTrace on your own network works for every account.
+
+## Images from a link
+
+| Var | Default | Purpose |
+|---|---|---|
+| `ALLOW_PRIVATE_IMAGE_URLS` | unset | Lets every account have a food, meal, or profile photo downloaded from a link on your own network. An admin may; other accounts, and a single-user install (which has no sign-in), only with this set. Images from your saved CookTrace or Mealie never need it. Only real images are kept. |
 
 ## Full Backup schedule
 
