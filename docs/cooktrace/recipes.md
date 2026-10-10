@@ -29,7 +29,9 @@ Each step has a camera button that attaches a photo taken or picked on device. I
 
 ## Live recipe scaling
 
-Chips above the ingredient list let you scale ×0.5 / ×1 / ×2 / ×3, or set a custom serving count. Quantities re-render as clean mixed fractions (`¼ cup`, `1½ tsp`) using the snapper in `src/lib/qty.js`, which picks cooking-friendly denominators (halves, quarters, thirds, eighths). Scaling is view-only; the saved recipe is untouched.
+Chips above the ingredient list let you scale ×0.5 / ×1 / ×2 / ×3, or set a custom serving count. Quantities re-render as clean fractions (`1/4 cup`, `1 1/2 tsp`) for cups and spoons, picking cooking-friendly denominators (halves, quarters, thirds, eighths), and as decimals for grams and milliliters. Ranges scale at both ends (4-5 becomes 8-10). Scaling is view-only; the saved recipe is untouched.
+
+Amounts written in the steps scale too, and are tinted so you can see which changed: "Whisk in 2 cups of milk" doubled reads "4 cups". Only measures scale (cups, spoons, grams, milliliters, ounces, pounds, and ranges of them). Times, temperatures, pan sizes and plain counts ("cut into 4 pieces") stay as written, and so does an amount for each piece ("2 tbsp of batter per pancake", "1/2 cup at a time"). The ingredients listed under a step scale with the rest.
 
 ## Inline unit converter
 
