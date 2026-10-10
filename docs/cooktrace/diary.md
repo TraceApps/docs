@@ -8,6 +8,8 @@ Rows grouped by date, 60 days back and 30 days forward by default. Each row show
 
 Add a cook or a plan from the **+** button: pick a recipe, date, and meal type (Breakfast / Lunch / Dinner / Snack, or unset). Notes and a per-cook rating are optional.
 
+**Plan a Cook** also asks for **Servings**, starting at the recipe's own. The Diary shows them on each planned cook, and [Add from Planned Cooks](shopping.md#add-from-planned-cooks) scales the recipe to them. **Plan a Cook** on a recipe card opens the same dialog with that recipe already picked.
+
 ## Month calendar
 
 Toggle to Calendar for a month grid with recipes as chips inside each cell. Drag a chip between cells to reschedule. Drag between planned and today's cell to "cook now". The calendar respects the same `meal_type` colouring and shows a small stack when a day has more than three entries (tap to expand).

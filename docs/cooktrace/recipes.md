@@ -78,7 +78,7 @@ Card image: `GET /api/recipes/:id/card.png` returns a server-rendered Pinterest-
 
 ## Long-press and print
 
-Long-press any recipe card for a context menu with Cook Now, Add to Cookbook, Share, Print, and Delete. The recipe view has a print stylesheet via `@media print` that strips chrome, sidebars, and interactive controls for a clean paper copy.
+Long-press any recipe card for a menu: Open Recipe, Add to Favorites, Add to Cookbook, Create Share Link, Plan a Cook (the Diary's planner, with this recipe picked), Add to Shopping List, Duplicate, Share Card, Select Multiple, and Delete. The recipe view has a print stylesheet via `@media print` that strips chrome, sidebars, and interactive controls for a clean paper copy.
 
 ## Comments
 
