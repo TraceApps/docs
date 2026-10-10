@@ -13,13 +13,14 @@ The floating chat FAB opens the Trace panel. In CookTrace, the TraceFace mascot 
 
 ## Tools Trace can call
 
-CookTrace registers 19 tools that Trace can call in a single conversation, spanning read and write across the app:
+CookTrace registers 20 tools that Trace can call in a single conversation, spanning read and write across the app:
 
 **Read**
 
 - `get_recipes`: filtered list of your recipes.
 - `list_recipe_categories`: categories with counts.
 - `get_recipe`: full detail of one recipe (ingredients, steps, nutrition).
+- `get_recipe_history`: a recipe's [versions](recipes.md#history), what changed in each, the cooks made from each and how they rated, and the best-rated version. Ask "what did I change since my best batch of scones?"
 - `get_pantry`: your pantry with stock and expiration.
 - `list_pantry_categories`: pantry categories with counts.
 - `find_recipes_from_pantry`: matches your in-stock pantry against your recipe library.

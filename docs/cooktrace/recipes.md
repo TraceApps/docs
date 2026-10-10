@@ -75,9 +75,10 @@ A version opens its own page:
 - **Cooked From This Version**: each cook, its rating, notes and photos.
 - **I Cooked This Version** logs a cook of it without changing the recipe, for when you bake the old base again.
 - **Restore This Version** puts its ingredients, steps, servings and times back. The name, photo and notes stay as they are, and nothing is lost: what you had becomes a version too, and restoring an old version again makes it current rather than adding a copy.
+- **Name This Version** gives it a name of its own ("Less flour", "The base"), shown in History, Compare and the cook dialog.
 - **Delete Version**, only for a version no cook was made from.
 
-Every version is kept, with no limit. Recipes from before 1.5 start their history with what they hold now; cooks logged before then say "Made before history was kept", because what they were made from isn't known. History works offline and on the Android app with no server, and syncs like the rest. Copies the app kept when two edits met (**Earlier Copies**) are at the bottom of History.
+Every version is kept, with no limit. Recipes from before 1.5 start their history with what they hold now; cooks logged before then say "Made before history was kept", because what they were made from isn't known. History works offline and on the Android app with no server, and syncs like the rest. Copies the app kept when two edits met (**Earlier Copies**) are at the bottom of History. [Trace](trace.md) can read the history too: ask it what changed since your best batch, or which version you liked most.
 
 ## Allergens
 
