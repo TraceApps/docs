@@ -18,7 +18,7 @@ The typical week:
 
 1. Open Diary, Calendar view, forward one week.
 2. Drop recipes into the days you want them from the recipe picker.
-3. Open Shopping and use **Shop This Plan** (or `POST /api/shopping/from-plan` under the hood) to pull every planned recipe's ingredients onto the list, dedupped, aisle-grouped.
+3. Open Shopping and use **Add from Planned Cooks** to put every planned recipe's ingredients on the list, scaled to each cook's servings and added up across recipes. Building it again after changing the plan updates the list rather than doubling it.
 4. During the week, tap **Mark as Cooked** as you go.
 
 Planned entries that lapse without being marked cooked stay planned; delete or drag them to a new date if you want to keep the calendar honest.
@@ -33,15 +33,16 @@ Every recipe view shows its own cook history as a table (date, meal type, rating
 
 ## Meal-plan-to-shopping-list
 
-The `POST /api/shopping/from-plan` endpoint (Shop This Plan in the UI) does three things:
+**Add from Planned Cooks** on the Shopping page (`POST /api/shopping/from-plan`):
 
-- Walks every planned entry in the chosen date range.
-- Sums each recipe's ingredient quantities, converting units where the density table allows.
-- Skips anything already stocked in the pantry (via each ingredient's pantry link).
+- Walks every planned entry in the chosen date range, scaling each recipe to the entry's servings.
+- Adds up the same ingredient across recipes and across units of one kind (cups with millilitres, grams with kilograms).
+- Skips anything stocked in the pantry (via each ingredient's pantry link), and anything already checked off on the list.
+- Keeps, on each list item, the recipes and planned cooks it's for, so building the same range again replaces their share instead of adding it twice, and a cook taken off the plan takes its share out.
 
-The result lands on the Shopping list, grouped by aisle by default, with a `via_recipe` tag on each row so you can see what came from where.
+`POST /api/shopping/from-recipe/:id` handles a single recipe ("Add to Shopping List" on a recipe card), scaled with `?servings=` when given.
 
-Similarly, `POST /api/shopping/from-recipe/:id` handles the single-recipe case ("Add to Shopping" on a recipe view).
+See [Shopping](shopping.md#add-from-planned-cooks) for the details.
 
 ## Data model
 

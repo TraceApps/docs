@@ -45,7 +45,7 @@ Per `_importPaprika` in `server/lib/recipe-importers.js`:
 
 ## What doesn't
 
-Paprika keeps **meal plans** and **grocery lists** in a separate export path that CookTrace doesn't ingest. Rebuild the meal plan directly in the [Cook Diary](diary.md) and let [Shop This Plan](shopping.md#shop-this-plan) regenerate the grocery list from the pantry-aware endpoint.
+Paprika keeps **meal plans** and **grocery lists** in a separate export path that CookTrace doesn't ingest. Rebuild the meal plan directly in the [Cook Diary](diary.md) and let [Add from Planned Cooks](shopping.md#add-from-planned-cooks) build the grocery list from it.
 
 Paprika **bookmarks** and **cookmarks** (the "I cooked this" history) also don't round-trip. If you want the cook history preserved, hand-log a few of the most recent cooks in the Cook Log after import; going deeper isn't worth it in practice.
 

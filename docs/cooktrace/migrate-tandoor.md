@@ -56,7 +56,7 @@ Per `_importTandoor` in `server/lib/recipe-importers.js`:
 ## What doesn't
 
 - **Category**: Tandoor doesn't have first-class categories. It uses keywords for both tags AND categorisation. Since those keywords already flow into the tags array on import, promoting one to the category slot would be guesswork. Category is left blank on purpose; assign one in CookTrace after the fact if you want the recipe filed under a category too.
-- **Meal plans** and **shopping lists**: separate Tandoor exports, not ingested. Rebuild in [Cook Diary](diary.md) and let [Shop This Plan](shopping.md#shop-this-plan) generate the list.
+- **Meal plans** and **shopping lists**: separate Tandoor exports, not ingested. Rebuild in [Cook Diary](diary.md) and let [Add from Planned Cooks](shopping.md#add-from-planned-cooks) build the list.
 - **Nutrition**: passed through as-is when present, but Tandoor's nutrition JSON is loosely typed. **Recompute From Pantry** on the recipe view is usually the cleaner path once your imported ingredients are linked to pantry rows.
 
 ## Unit conversion mismatches

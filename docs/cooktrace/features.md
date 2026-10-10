@@ -60,7 +60,7 @@ Expiration works two ways: a chip on the item card (Expiring Soon, Expired) and 
 ![Shopping list grouped by aisle, each item tagged with the recipe it is for](../assets/img/cooktrace/04-shopping.png)
 
 
-Open a recipe and hit **Add to Shopping** to push its ingredients onto the list, skipping anything already stocked. Or open Diary, select a date range, and **Shop This Plan** fans every planned recipe's ingredients out at once, dedupping across recipes (buy one bag of flour, not three).
+Long-press a recipe and choose **Add to Shopping List** to put its ingredients on the list, skipping anything already stocked. Or, on the Shopping page, **Add from Planned Cooks** puts a whole date range of planned cooks on it at once, each scaled to its servings and added up across recipes (buy one bag of flour, not three). Build it again after changing the plan and the list follows, without doubling.
 
 The list groups **By Aisle** by default (aisle comes from the linked pantry item's category), with By Recipe and Flat as alternatives. Checked items either sink to the bottom or hide entirely, per-user preference. Drag to reorder within a group, and the sort persists.
 

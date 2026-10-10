@@ -36,17 +36,23 @@ Restocking marks the item in stock and clears a quantity of 0. Expiry dates and 
 
 ## Add from a recipe
 
-Open any recipe and tap **Add to Shopping**. Every ingredient lands on your list, stamped with `recipe_id` so the By-Recipe view can badge the block and so the small trash icon on that block can wipe all of that recipe's rows in one shot (`DELETE /api/shopping/by-recipe/:id`).
+Long-press a recipe card and choose **Add to Shopping List**, or use **Add from Recipe** in the Shopping page's add menu. Every ingredient lands on your list, stamped with `recipe_id` so the By-Recipe view can badge the block and so the small trash icon on that block can wipe all of that recipe's rows in one shot (`DELETE /api/shopping/by-recipe/:id`).
 
 The picker's **Only add items I don't have in pantry** toggle (on by default) uses each ingredient's pantry link plus the item's `in_stock` value to skip anything you already have. Turn it off to force the full ingredient list onto the shopping list regardless of stock. See [Pantry](pantry.md) for how stock tracking works.
 
-## Shop This Plan
+## Add from Planned Cooks
 
-Open the Diary page, hit **Shop This Plan**, pick a date range (defaults to today plus 7 days), and `POST /api/shopping/from-plan` walks every planned cook in that window and merges their ingredients before writing:
+In the Shopping page's add menu, **Add from Planned Cooks** asks for a date range (today plus 7 days to begin with) and puts every planned cook in it on the list (`POST /api/shopping/from-plan`):
 
-- Same name plus same unit collapses into a single row.
-- Numeric quantities sum when every contributor has one. If any contributor is qty-less ("flour", no number), the merged row goes qty-less rather than lie about totals.
-- The pantry-stocked skip applies the same way, controlled by the same "Only add items I don't have in pantry" toggle.
+- Each recipe is scaled to the servings planned for that cook. A recipe written for 2 and planned for 4 adds twice its amounts. A planned cook with no servings, or a recipe with none, uses the recipe as written.
+- The same ingredient from several recipes becomes one item. Names match regardless of case and plurals ("Tomatoes" and "tomato"), and amounts add up across units of one kind: 1 cup and 120 ml of milk become one amount, shown in the unit that reads best. Amounts that can't be added up (grams and cups, or cloves and pieces) stay as separate items.
+- Fractions, mixed numbers and ranges count: "1/2", "1 1/2", "½", and "4-5" (the larger number, so there's enough). A line without an amount ("salt, to taste") adds the item with no amount, without wiping out the amounts from other recipes.
+- Every item remembers which recipes and planned cooks it's for.
+- Building the list for the same range again updates it instead of adding everything twice. A cook taken off the plan, or moved out of the range, takes its share out, and an item only that cook needed leaves the list. An amount you typed into an item yourself stays. Items you've already checked off count as bought and aren't added back.
+- An item that already exists on the list, added by hand or from a recipe, gets the plan's amounts added to it rather than a second row.
+- **Only add items I don't have in pantry** (on to begin with) leaves out ingredients whose linked pantry item is in stock.
+
+Adding a single recipe works the same way, except that each time adds again: you might cook it twice.
 
 See [Cook Diary and Meal Planner](diary.md) for how planned cooks land in the calendar.
 
@@ -56,7 +62,7 @@ The quick-add row at the top of the page takes a name, optional quantity, option
 
 ## Shared list?
 
-The list is per-user. There's no built-in "share the shopping list with my flatmate" flow in v1.0. If both users are in a [Kitchen](kitchens.md), the practical pattern is: one person runs Shop This Plan on the shared plan, everyone else shops from their own screen, and only the person who checked something has that row checked.
+The list is per-user. There's no built-in "share the shopping list with my flatmate" flow in v1.0. If both users are in a [Kitchen](kitchens.md), the practical pattern is: one person runs **Add from Planned Cooks** on the shared plan, everyone else shops from their own screen, and only the person who checked something has that row checked.
 
 ## From NoteTrace
 
