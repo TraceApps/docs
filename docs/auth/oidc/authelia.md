@@ -2,8 +2,8 @@
 
 [Authelia](https://www.authelia.com/) is a self-hosted SSO + 2FA portal with an OpenID Connect provider. If you already run it in front of other services, TraceApps drops in as another client under `identity_providers.oidc.clients`. This recipe assumes an Authelia instance with file-based configuration you can edit, and was checked against Authelia 4.39. The examples use CookTrace at `https://cook.example.com`.
 
-!!! warning "Authelia 4.39 and later: the claims policy in step 2 is required"
-    Since 4.39, Authelia leaves the user's email, name, username and groups out of the ID token by default and only serves them from its userinfo endpoint. TraceApps reads the ID token, so without the claims policy below it sees no email (no linking to existing accounts), no username (auto-registered accounts get a generated name) and no groups (no admin mapping).
+!!! warning "Authelia 4.39 and later: the claims policy in step 2"
+    Since 4.39, Authelia leaves the user's email, name, username and groups out of the ID token by default and only serves them from its userinfo endpoint. CookTrace, LiftTrace and NoteTrace read only the ID token, so for them the claims policy below is required: without it they see no email (no linking to existing accounts), no username (auto-registered accounts get a generated name) and no groups (no admin mapping). NutriTrace 1.4.0 and later reads the userinfo endpoint when the ID token lacks them, so for NutriTrace alone the policy is optional; it puts them in the ID token as well.
 
 ## Authelia side
 
@@ -70,7 +70,7 @@ identity_providers:
 Worth calling out:
 
 - The `1` in the redirect URI is the provider ID in the app; see [The callback URL](../oidc.md#the-callback-url).
-- Authelia's docs describe ID-token claims policies as an escape hatch for apps that don't read the userinfo endpoint, which is the case here.
+- Authelia's docs describe ID-token claims policies as an escape hatch for apps that don't read the userinfo endpoint, which is the case for CookTrace, LiftTrace and NoteTrace. Keeping the policy costs NutriTrace nothing.
 - `client_secret` should be the digest. Authelia still accepts a plaintext secret, but that is deprecated.
 - `authorization_policy: one_factor` lets password-authenticated users through. Use `two_factor` to require Authelia's 2FA on every sign-in into the app.
 - By default Authelia asks for consent on each sign-in. To remember it, set `pre_configured_consent_duration` on the client (for example `'1 month'`).
@@ -140,7 +140,7 @@ Authelia doesn't support RP-initiated logout yet, so signing out of the app does
     `OIDC_CLIENT_SECRET` must be the random password the command printed, and Authelia's `client_secret` its digest. Regenerate both with the command in step 2 if in doubt.
 
 !!! warning "No email, odd usernames, or no groups"
-    The claims aren't in the ID token: check that the `traceapps` claims policy exists and that the client has `claims_policy: 'traceapps'` (step 2). For groups, also check that the client's `scopes:` and `OIDC_SCOPE` both include `groups`. Sign out and back in after changing it.
+    Check that the client's `scopes:` and `OIDC_SCOPE` both include `profile`, `email` and, for groups, `groups`: Authelia only releases what the client may ask for. For CookTrace, LiftTrace and NoteTrace, also check that the `traceapps` claims policy exists and that the client has `claims_policy: 'traceapps'` (step 2), since they read only the ID token. Sign out and back in after changing it.
 
 !!! tip "Two-factor for admins only"
     To let everyday users in with one factor but require two for admins, define an OIDC authorization policy under `identity_providers.oidc.authorization_policies` (a `default_policy` plus a rule with `subject: 'group:admins'` and `policy: 'two_factor'`), and set the client's `authorization_policy` to its name. Authelia's regular `access_control` rules don't apply to OIDC sign-ins.

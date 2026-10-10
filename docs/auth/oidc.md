@@ -17,7 +17,7 @@ https://<your-host>/api/auth/oidc/callback/<provider-id>
 The Android app signs in through the same callback, so it needs nothing extra for sign-in. See [Sign-out](#sign-out) for the one Android-specific entry.
 
 !!! warning "A wrong callback path shows a blank page"
-    If the IdP sends you back to any other path (for example `/api/oidc/callback`, or the right path without the number), the sign-in at the IdP succeeds but the app never receives it, and you land on a blank page. Check the path first when SSO "works at the IdP" but ends on a white screen.
+    If the IdP sends you back to any other path (for example `/api/oidc/callback`, a form older versions of these docs showed, or the right path without the number), the sign-in at the IdP succeeds but the app never receives it, and you end up on a blank page. Check the path first when SSO "works at the IdP" but ends on a white screen. NutriTrace 1.4.0 and later also accepts those two forms; CookTrace, LiftTrace and NoteTrace accept only the path above.
 
 ## Env-var contract
 
@@ -63,7 +63,7 @@ Full field reference (defaults in parentheses):
 
 Every server env var also accepts a `<NAME>_FILE` suffix for Docker secrets: `OIDC_CLIENT_SECRET_FILE=/run/secrets/oidc_secret` reads the value from that file instead.
 
-Sign-in uses the authorization code flow with PKCE, and the app reads the user's details (`sub`, `email`, `email_verified`, `preferred_username`, `name`, and the group claim) from the **ID token**. It does not call the userinfo endpoint, so anything your IdP only puts in userinfo is invisible to the app.
+Sign-in uses the authorization code flow with PKCE. The app reads the user's details (`sub`, `email`, `email_verified`, `preferred_username`, `name`, and the group claim) from the ID token. NutriTrace 1.4.0 and later fills in anything missing there from the IdP's userinfo endpoint (Authelia 4.39 and later only puts them there). CookTrace, LiftTrace and NoteTrace don't call the userinfo endpoint, so anything your IdP only puts in userinfo is invisible to them.
 
 ## Single vs multi-provider
 
@@ -105,7 +105,7 @@ Leave both unset if you'd rather manage admin from inside the app. SSO sign-ins 
 
 Two independent settings govern what happens the first time someone signs in through a provider:
 
-- **`AUTO_LINK` (default on)**: if the ID token's `email` matches an existing local account and the token says `email_verified: true`, the SSO identity is linked to that account and the person is signed in. Without `email_verified: true` there is no automatic link, and the sign-in is treated like a new person's: refused with auto-register off, or given a second, empty account with auto-register on. Some IdPs mark every email unverified by default (Authentik since 2025.10, Pocket ID unless configured), and Authelia 4.39 and later doesn't put it in the ID token at all; the recipe pages show how to fix each. With auto-link off, a matching email is refused with a message asking the person to sign in with their password once and link the provider from their profile (**Linked Accounts**); after that, SSO signs them straight in.
+- **`AUTO_LINK` (default on)**: if the ID token's `email` matches an existing local account and the token says `email_verified: true`, the SSO identity is linked to that account and the person is signed in. Without `email_verified: true` there is no automatic link. In NutriTrace 1.4.0 and later the sign-in is then refused with a message asking the person to link the provider from their profile, whatever auto-register is set to. In CookTrace, LiftTrace and NoteTrace it's treated like a new person's: refused with auto-register off, or given a second, empty account with auto-register on. Some IdPs mark every email unverified by default (Authentik since 2025.10, Pocket ID unless configured), and Authelia 4.39 and later leaves it out of the ID token unless you add a claims policy; the recipe pages show how to fix each. With auto-link off, a matching email is refused with a message asking the person to sign in with their password once and link the provider from their profile (**Linked Accounts**); after that, SSO signs them straight in.
 - **`AUTO_REGISTER` (default off)**: if no local account matches, create one on the fly. The username comes from `preferred_username` (or the part of the email before the `@`), plus the IdP's `name` and `email`. New accounts are regular users unless the group mapping above makes them admin (or the instance had no accounts yet, in which case the first one becomes the admin). With auto-register off, someone without an account is refused and asked to get an invite first.
 
 The usual setups:
@@ -125,7 +125,7 @@ If your IdP keeps an allowlist of post-logout redirect URIs (Keycloak does, for 
 
 ## SSO-only mode
 
-Setting `OIDC_ENABLE_EMAIL_PASSWORD_LOGIN=0` turns off local password login server-wide. Password sign-in attempts get `403` and the login page shows only the SSO buttons. Truthy values (`1`, `true`, `yes`, `on`) explicitly enable password login. Unset leaves the admin UI in charge.
+Setting `OIDC_ENABLE_EMAIL_PASSWORD_LOGIN=0` turns off local password login server-wide. Password sign-in attempts get `403` and the login page shows only the SSO buttons. Truthy values (`1`, `true`, `yes`, `on`) explicitly enable password login. Unset leaves the admin UI in charge. In CookTrace, LiftTrace and NoteTrace the variable only takes effect when at least one provider is also defined through `OIDC_*` env vars; with only providers added in **Settings → Authentication**, use the toggle there. NutriTrace 1.4.0 and later applies it either way.
 
 Read [SSO-only mode and recovery](sso-only.md) before turning this on, or you can lock yourself out.
 

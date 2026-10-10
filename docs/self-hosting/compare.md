@@ -21,7 +21,7 @@ CookTrace, LiftTrace, NoteTrace, and NutriTrace are siblings by design: same Nod
 | Android reminders | JS `LocalNotifications` | JS `LocalNotifications` | native exact alarms (AlarmManager) | native WorkManager |
 | SMTP settings live in | Settings, Email | Settings, Email | Settings, Email | Settings, Authentication |
 | Federation | pulls foods from NutriTrace; takes shopping items from NoteTrace | none | sends checklist items to CookTrace | serves foods to CT |
-| App-only env vars | `IMPORT_ZIP_MAX_MB` | `EXERCISE_SOURCES`, `EXERCISEDB_OSS_URL`, `ALLOW_PRIVATE_RADIO_URLS` | `ALLOW_PRIVATE_COOKTRACE_URLS`, `ALLOW_PRIVATE_LINK_PREVIEWS`, `AI_TRANSCRIBE_MODEL`, `FFMPEG_PATH` (see [NoteTrace env vars](../notetrace/env-vars.md)) | `OFF_LOCAL_DB`, `OFF_LOCAL_ONLY`, `OFF_LOCAL_URL`, `API_RATE_LIMIT_PER_MIN` |
+| App-only env vars | `IMPORT_ZIP_MAX_MB` | `EXERCISE_SOURCES`, `EXERCISEDB_OSS_URL`, `ALLOW_PRIVATE_RADIO_URLS` | `ALLOW_PRIVATE_COOKTRACE_URLS`, `ALLOW_PRIVATE_LINK_PREVIEWS`, `AI_TRANSCRIBE_MODEL`, `FFMPEG_PATH` (see [NoteTrace env vars](../notetrace/env-vars.md)) | `OFF_LOCAL_DB`, `OFF_LOCAL_ONLY`, `OFF_LOCAL_URL`, `API_RATE_LIMIT_PER_MIN`, `ALLOW_PRIVATE_IMAGE_URLS` |
 
 All four apps publish multi-arch images (`linux/amd64` + `linux/arm64`) with the same two tags: `latest` for stable releases and `dev` for the development branch.
 
@@ -44,6 +44,10 @@ NoteTrace is the only app that also delivers reminders from the server: a one-mi
 ## LiftTrace's radio LAN allowance
 
 Only LiftTrace has a built-in radio player. If you run a Subsonic, Navidrome, or Icecast server on the same LAN as LiftTrace, set `ALLOW_PRIVATE_RADIO_URLS=1` so the radio proxy stops refusing RFC 1918 and IPv6 ULA addresses. CookTrace and NutriTrace have no equivalent knob because they have no radio.
+
+## NutriTrace images from a link
+
+From NutriTrace 1.4.0, a food, meal or profile photo given as a link is downloaded only after every address the name resolves to has been checked, every redirect is checked too, and cloud-metadata addresses are never reached. An admin may download from your own network (LAN, localhost, Docker networks); other accounts, and a single-user install (which has no sign-in), only with `ALLOW_PRIVATE_IMAGE_URLS=1`. Images from your saved CookTrace or Mealie never need it, and only real images are kept.
 
 ## SMTP form location
 

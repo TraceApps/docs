@@ -21,7 +21,7 @@ Setup lives on each app's own MCP page: [NutriTrace](../nutritrace/mcp.md), [Lif
 
 ## NutriTrace
 
-Twelve tools across three phases.
+Twenty tools across three phases.
 
 ### Read tools (`mcp:read`)
 
@@ -30,6 +30,7 @@ Twelve tools across three phases.
 | `get_goals` | Macro / micro / water targets | none | `goals` object plus `water_goal_ml` |
 | `get_profile` | The user's gender and date of birth, as set on the Profile page or during onboarding | none | `gender`, `birthday` (`YYYY-MM-DD`); either is `null` when unset |
 | `get_steps` | Daily step counts from connected wearables, one row per source | `start`, `end`, `source` | `start`, `end`, `steps[]` (`date`, `source`, `steps`, `synced_at`), `count`. Sources are never added together, and a day with no data is left out rather than shown as 0 |
+| `get_body_composition` | Body-composition and scale observations, one observation per `date` + `source`; providers are never merged | `start`, `end`, `source` | `start`, `end`, `measurements[]` (`date`, `source`, `metrics`), `count`. Absent observations are omitted. |
 | `get_daily_totals` | Summed nutrition + water for a day | `date` | `totals` (calories, macros, micros), `water_ml`, `item_count` |
 | `list_diary_entries` | Raw item list from a diary day | `date` | `date`, `items[]`, `count` |
 | `get_daily_totals_range` | `get_daily_totals` for every logged day in a date range | `start`, `end` | `start`, `end`, `totals[]` (one `get_daily_totals` result per logged day), `count` |
@@ -40,7 +41,7 @@ Twelve tools across three phases.
 | `get_recent_meals` | Most-recently-used saved meals, ordered by `last_used_at`; `start`/`end` filter by the date last used | `limit`, `include_recipes`, `start`, `end` | Same shape as `search_meals` |
 | `get_meal_details` | Full contents of one saved meal or recipe (items[] + meta) | `meal_id*` | Meal meta plus `item_count` and `items[]` (name, portion, unit, quantity, per-item nutrition, source food id when known) |
 
-**Date ranges.** `start` and `end` are `YYYY-MM-DD` and inclusive. Leave either out to leave that side open, for example only `start` for everything from that date on, including future-dated entries. With neither, the two range tools and `get_steps` cover the last 90 days ending today (server time). A reversed range or an impossible date such as `2026-02-31` returns an error. For more than 366 logged days, split `list_diary_entries_range` into several calls or use `get_daily_totals_range`, which has no limit.
+**Date ranges.** `start` and `end` are `YYYY-MM-DD` and inclusive. Leave either out to leave that side open, for example only `start` for everything from that date on, including future-dated entries. With neither, the two range tools, `get_steps`, and `get_body_composition` cover the last 90 days ending today (server time). A reversed range or an impossible date such as `2026-02-31` returns an error. For more than 366 logged days, split `list_diary_entries_range` into several calls or use `get_daily_totals_range`, which has no limit.
 
 ### Write tools (`mcp:write`)
 
@@ -83,7 +84,7 @@ Deliberately not in the current MCP surface:
 
 - `delete_diary_day` (whole-day nuke). Blocked by tombstone-resurrection semantics; single-entry delete covers the common "I logged the wrong day" case safely.
 - `log_recipe`. Recipes vary in yield semantics; logging component foods with `log_food` is the safe path today.
-- `get_weight_history`, `list_meals`, `get_food_by_id`. Trivial to add; deferred until real demand.
+- `list_meals`, `get_food_by_id`. Trivial to add; deferred until real demand.
 - MCP prompts capability (guided workflows). Planned; no ETA.
 
 ## LiftTrace
