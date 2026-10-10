@@ -37,6 +37,18 @@ Top of the Settings page. Avatar, name, role pill. Tap the card to open **/profi
 - **Shopping List > Default Grouping**: By Aisle, By Recipe, or Flat.
 - **Shopping List > Checked Items**: Sink to Bottom or Hide.
 
+## Household (per-user)
+
+Who you cook for. Each person has a name, **Allergies** (the EU's 14 allergens, which cover the US's nine), a **Diet** (Vegetarian, Pescatarian, Vegan, Gluten Free, Dairy Free), **Dislikes** (foods, typed one at a time) and the **Home** days they eat with you; none picked means every day. The day toggles work right on each person's card, and the pencil opens the rest.
+
+What it changes:
+
+- Planned servings start at who's home that day: in Plan a Cook, in Build My Week, and when Trace plans a cook. A number you set by hand stays.
+- Allergy and diet warnings name the person they're for ("Peanuts · Alex"). On a planned day they count only who's home that day. See [Allergens](recipes.md#allergens).
+- Build My Week leaves out what's a problem for someone home that day and ranks lower what someone doesn't like.
+
+The setup wizard asks the same question (**Who Do You Cook For?**), and you can skip it. The household syncs with your account like your other settings. Allergy warnings are a help, not a guarantee: they come from ingredient names and product labels, so always check the packaging.
+
 ## Nutrition (per-user)
 
 - **Visible Nutriments**: pick which of the 31 nutriments in the catalog show inline on the Nutrition Facts box and the Pantry details sheet. Everything else still counts toward totals; this is a display filter.

@@ -86,6 +86,12 @@ Free, no key. Enable under Settings > Connected Services > Open Food Facts. Opti
 
 v1.0.1 added an All-mode search that pulls from every regional OFF instance, source pinning, client-side tier filters, and the shared **quality signals** (origin-country flag + completeness dot on every OFF result). See [Food data quality signals](../reference/food-data-quality.md) for what each signal means and how to filter on it.
 
+## Allergens
+
+A pantry item keeps the allergens on its label: what it **Contains** and what it **May Contain**. Scanning a barcode or downloading a product from Open Food Facts fills them in, marked **From the label**. **Edit** in the item's Allergens box lets you set them yourself (a store brand, a product Open Food Facts doesn't have), and the box then says **You set this**. An item nobody has set says **Not known yet**.
+
+A recipe that uses the item picks these up, so a gluten-free flour linked to the recipe makes the recipe gluten free, where the word "flour" alone would not. Allergens that are a problem for someone in your [household](settings.md#household-per-user) name them ("Gluten · Sam").
+
 ## USDA FoodData Central
 
 Optional. Grab a free API key from `https://fdc.nal.usda.gov/api-key-signup`, paste it into Settings > Connected Services > USDA. Results carry a **data-type badge** (Foundation, SR Legacy, Branded, Survey (FNDDS), Experimental) so you can tell what kind of entry you are picking. Per-user, so different household members can use different keys or none at all. See [Food data quality signals](../reference/food-data-quality.md) for how to read the badges.

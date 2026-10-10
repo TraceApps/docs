@@ -60,6 +60,22 @@ Log a cook from Cook Mode or from the recipe view. Each entry has:
 
 The recipe view shows a **per-recipe cook history** so you can flip back to what you tweaked last time. `last_cooked_at` and cook count roll up on the card.
 
+## Allergens
+
+CookTrace works out what each recipe contains, using the EU's 14 allergens:
+
+1. An ingredient linked to a pantry item uses that item's [allergens](pantry.md#allergens), from its label or set by you.
+2. Otherwise the ingredient's name decides: "flour" reads as gluten, "soy sauce" as soy and gluten, "parmesan" as milk. Names that only look like one don't count: peanut butter isn't milk, eggplant isn't eggs, nutmeg isn't a nut, and "gluten-free flour" isn't gluten.
+3. Your correction comes last. **Correct**, in the recipe's Allergens box, lets you mark what the recipe really contains, for what names and labels can't know.
+
+Where it shows:
+
+- **Recipe cards**: a warning for each allergen or diet that's a problem for someone in your [household](settings.md#household-per-user), naming them ("Peanuts · Alex"). Nothing else, so the cards stay quiet when there's nothing to watch for. **Safe for Everyone**, next to Favorites, keeps to recipes nobody has to avoid.
+- **The recipe view**: under the title, everything it contains (warnings first, named), what it may contain (dashed), and who doesn't like an ingredient. Each ingredient that brings an allergen is marked on its line.
+- **The week**: see [Week view](diary.md#week-view) and [Build My Week](diary.md#build-my-week).
+
+It's a help, not a guarantee: it's worked out from ingredient names and pantry labels, so check the packaging when it matters.
+
 ## FDA-style Nutrition Facts box
 
 The Nutrition column renders a full FDA-style label via `NutritionFactsBox.svelte`. Thirty-one nutriments in real label order, %DV column, sodium and salt auto-derived from each other (factor 400), servings and serving-size at the top. A per-user picker under Settings > Nutrition controls which rows the label shows inline; the rest still count for totals.

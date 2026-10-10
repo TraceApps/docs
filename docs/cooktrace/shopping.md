@@ -42,6 +42,7 @@ Tap an item's name to open it:
 - **In Your Pantry**: what the pantry has (or that it's out of stock or not tracked), and its use-by date, in amber when it's close.
 - **For These Cooks**: each planned cook (or recipe) that put it on the list, its day and how much it needs. Tap one to open the recipe.
 - **Kinds you buy**: the pantry's [variants](pantry.md#variants) of it, and about how much one weighs (from the pantry item's serving) or how much an amount in cups weighs (from its density).
+- **Allergens**: what the item contains, from its pantry item's label or its name, naming anyone in your [household](settings.md#household-per-user) it's a problem for.
 - **Note**: a short note ("riper ones for Monday") that also shows under the item on the list.
 
 **Check Off** and **Open in Pantry** are at the bottom. Edit and Change Aisle stay in the long-press menu. On a tablet or an unfolded phone the sheet lays out in two columns.
