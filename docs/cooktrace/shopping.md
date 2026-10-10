@@ -34,6 +34,18 @@ An item is only offered when it's clearly the same thing: the shopping row is li
 
 Restocking marks the item in stock and clears a quantity of 0. Expiry dates and other quantities are left as they are.
 
+## An item in full
+
+Tap an item's name to open it:
+
+- **On the List**: the amount, and how many planned cooks it's for.
+- **In Your Pantry**: what the pantry has (or that it's out of stock or not tracked), and its use-by date, in amber when it's close.
+- **For These Cooks**: each planned cook (or recipe) that put it on the list, its day and how much it needs. Tap one to open the recipe.
+- **Kinds you buy**: the pantry's [variants](pantry.md#variants) of it, and about how much one weighs (from the pantry item's serving) or how much an amount in cups weighs (from its density).
+- **Note**: a short note ("riper ones for Monday") that also shows under the item on the list.
+
+**Check Off** and **Open in Pantry** are at the bottom. Edit and Change Aisle stay in the long-press menu. On a tablet or an unfolded phone the sheet lays out in two columns.
+
 ## Add from a recipe
 
 Long-press a recipe card and choose **Add to Shopping List**, or use **Add from Recipe** in the Shopping page's add menu. Every ingredient lands on your list, stamped with `recipe_id` so the By-Recipe view can badge the block and so the small trash icon on that block can wipe all of that recipe's rows in one shot (`DELETE /api/shopping/by-recipe/:id`).

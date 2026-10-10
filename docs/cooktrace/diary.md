@@ -10,17 +10,29 @@ Add a cook or a plan from the **+** button: pick a recipe, date, and meal type (
 
 **Plan a Cook** also asks for **Servings**, starting at the recipe's own. The Diary shows them on each planned cook, and [Add from Planned Cooks](shopping.md#add-from-planned-cooks) scales the recipe to them. **Plan a Cook** on a recipe card opens the same dialog with that recipe already picked.
 
+## Week view
+
+**Week**, next to List, Month and Photos, shows one week at a time, cooked and planned together. The arrows move a week back or forward, and tapping the dates returns to this week. Weeks start on Sunday or Monday, as your device's locale has them.
+
+- **Days behind you** show what you cooked: the photo, a Cooked badge and your rating.
+- **Today and the days ahead** show your planned cooks. Each has a servings stepper; the shopping list scales the recipe to it. A plan for today (or an earlier day still waiting) has **Mark as Cooked**.
+- **A free day** has a **Plan a Cook** button that opens the planner on that date.
+- **Any Day This Week**: a cook planned with **Any Day That Week** waits in a tray above the days. Tap it and choose **Pick a Day** to give it one; marking it cooked dates it today when today is in its week. The week's shopping list includes it either way.
+- Long-press any cook for Open Recipe, Mark as Cooked and Delete.
+
+For the current week and weeks ahead, a summary above the days counts the meals planned, the ingredients to buy, the ones already in the pantry, and the items about to expire that the plan uses up. **Build Shopping List** puts the week's plan on the list (see [Add from Planned Cooks](shopping.md#add-from-planned-cooks)); once the list holds it, the button reads **Update Shopping List**.
+
 ## Month calendar
 
-Toggle to Calendar for a month grid with recipes as chips inside each cell. Drag a chip between cells to reschedule. Drag between planned and today's cell to "cook now". The calendar respects the same `meal_type` coloring and shows a small stack when a day has more than three entries (tap to expand).
+Toggle to Month for a month grid with recipes as chips inside each cell. Drag a chip between cells to reschedule. Drag between planned and today's cell to "cook now". The calendar respects the same `meal_type` coloring and shows a small stack when a day has more than three entries (tap to expand).
 
 ## Plan-then-cook workflow
 
 The typical week:
 
-1. Open Diary, Calendar view, forward one week.
-2. Drop recipes into the days you want them from the recipe picker.
-3. Open Shopping and use **Add from Planned Cooks** to put every planned recipe's ingredients on the list, scaled to each cook's servings and added up across recipes. Building it again after changing the plan updates the list rather than doubling it.
+1. Open the Diary's **Week** view and move to next week.
+2. Tap **Plan a Cook** on the days you want, or plan a few for **Any Day That Week**, and set the servings.
+3. Tap **Build Shopping List** in the week's summary: every planned recipe's ingredients go on the list, scaled to each cook's servings and added up across recipes. Building it again after changing the plan updates the list rather than doubling it.
 4. During the week, tap **Mark as Cooked** as you go.
 
 Planned entries that lapse without being marked cooked stay planned; delete or drag them to a new date if you want to keep the calendar honest.
@@ -48,7 +60,7 @@ See [Shopping](shopping.md#add-from-planned-cooks) for the details.
 
 ## Data model
 
-`cook_diary` carries: `user_id`, `recipe_id` (nullable, in case the recipe is deleted later), `date` (`YYYY-MM-DD`), `kind` (`cooked | planned`), `servings`, `meal_type`, `rating`, `notes`, timestamps. Deletes are soft (`deleted_at`), which keeps `last_cooked_at` roll-ups on the recipe honest during sync.
+`cook_diary` carries: `user_id`, `recipe_id` (nullable, in case the recipe is deleted later), `date` (`YYYY-MM-DD`), `kind` (`cooked | planned`), `servings`, `meal_type`, `rating`, `notes`, `any_day` (a plan for any day of the week its `date` starts), timestamps. Deletes are soft (`deleted_at`), which keeps `last_cooked_at` roll-ups on the recipe honest during sync.
 
 ## Related
 
