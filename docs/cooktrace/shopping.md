@@ -20,7 +20,7 @@ Checking, removing, dragging, or changing the aisle of a combined row applies to
 
 **By Recipe** doesn't combine anything, so each recipe still shows its own rows, and the recipe block's trash icon removes only that recipe's share. The list is stored one row per recipe either way; combining only changes how it's shown.
 
-## Checked-item behaviour
+## Checked-item behavior
 
 Tap the checkbox and the row strikes through and drops to the bottom of the list; the DB flips `checked = 1` and the sort clause slots checked rows last. Under Settings > Cooking > Shopping List > Checked Items you can switch this to **Hide** if you'd rather not see checked rows at all.
 

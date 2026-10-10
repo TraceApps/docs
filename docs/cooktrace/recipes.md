@@ -15,7 +15,7 @@ Each recipe carries:
 - **Steps**, ordered, with per-step text and optional per-step photo.
 - **Kitchen gear** (`tools`) as a chip list, icon-mapped where recognised.
 - **Source URL** (where you imported it from) and optional **video URL**.
-- **Notes**, rich-text with bold, italic, underline, strikethrough, colour, bulleted and numbered lists. HTML sanitised on save.
+- **Notes**, rich-text with bold, italic, underline, strikethrough, color, bulleted and numbered lists. HTML sanitized on save.
 - **Category**, **tags**, **cookbooks** it belongs to.
 - **Cook history**, updated whenever a cook is logged.
 

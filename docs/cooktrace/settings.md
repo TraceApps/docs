@@ -11,7 +11,7 @@ Top of the Settings page. Avatar, name, role pill. Tap the card to open **/profi
 ## Appearance (per-user)
 
 - **Theme**: System, Dark, or Light.
-- **Accent Color**: 12 preset chips, or a custom colour via the HSL/RGB/Hex sheet.
+- **Accent Color**: 12 preset chips, or a custom color via the HSL/RGB/Hex sheet.
 - **Navigation Style**: Bottom Tab Bar, Side Panel, or Both.
 - **Persistent Sidebar**: keeps the sidebar mounted on viewports at or above 768px when navigation is set to Sidebar or Both.
 - **Start Page**: which page CookTrace opens to (Recipes / Pantry / Diary / Shopping / Settings).

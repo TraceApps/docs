@@ -30,7 +30,7 @@ Recipe ingredients link to the parent when possible. Any in-stock variant satisf
 
 Delete a generic parent and CookTrace prompts **Keep Variants** (promote each variant to flat) vs **Remove All**. Three-level nesting is rejected at the server, per `src/lib/pantry-variants.js`.
 
-## Search behaviour
+## Search behavior
 
 Pantry search picks the right thing depending on how specific your query is:
 
@@ -92,9 +92,9 @@ Optional. Grab a free API key from `https://fdc.nal.usda.gov/api-key-signup`, pa
 
 ## Pantry categories
 
-Server-managed per user. Fifteen defaults seed on first boot (`server/db.js:506`), each with an icon, colour, and **default aisle**. The shopping list uses `default_aisle` to auto-populate an item's aisle when you send ingredients from a recipe.
+Server-managed per user. Fifteen defaults seed on first boot (`server/db.js:506`), each with an icon, color, and **default aisle**. The shopping list uses `default_aisle` to auto-populate an item's aisle when you send ingredients from a recipe.
 
-Manage them under **Manage > Pantry Categories** (drag to reorder, add, rename, recolour, or delete).
+Manage them under **Manage > Pantry Categories** (drag to reorder, add, rename, recolor, or delete).
 
 ## Auto-add ingredients
 

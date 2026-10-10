@@ -48,7 +48,7 @@ CookTrace stores images under `/data/uploads/`. The importer copies hero images 
 
 ## Category carry-over
 
-Mealie categories map to CookTrace **Recipe Categories** on your user account. If you already have categories with matching names, the importer reuses them; otherwise it creates them. Colours are assigned from the default palette, tweak them later under **Manage > Recipe Categories**.
+Mealie categories map to CookTrace **Recipe Categories** on your user account. If you already have categories with matching names, the importer reuses them; otherwise it creates them. Colors are assigned from the default palette, tweak them later under **Manage > Recipe Categories**.
 
 Tags come across as CookTrace tags (per-user catalog). Recipe types and course info that Mealie split across multiple fields collapse into tags when there's no direct category equivalent.
 
@@ -63,7 +63,7 @@ The summary after the import lists every skipped duplicate by name, linked to th
 
 ## After importing
 
-- Open **Manage > Recipe Categories** and tidy names and colours if you had inconsistent capitalisation in Mealie.
+- Open **Manage > Recipe Categories** and tidy names and colors if you had inconsistent capitalisation in Mealie.
 - If you use the Pantry, enable **Settings > Cooking > Auto-Add Ingredients to Pantry** and re-save a couple of recipes to backfill pantry entries. Or bulk-add the ingredients from **Settings > NutriTrace** if you have a NutriTrace instance handy.
 - Trace can help too: ask "review my new imports and add missing tags for cuisine" and it'll walk the batch.
 

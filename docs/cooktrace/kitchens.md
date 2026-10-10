@@ -30,7 +30,7 @@ What a Sous Chef cannot touch, because it belongs to the owner:
 
 - Deleting a recipe or a cookbook, or sharing either with anyone else.
 - A recipe's visibility, and which category it sits in (categories are per person).
-- Its star rating and whether it is a favourite, which are the owner's own opinion of it.
+- Its star rating and whether it is a favorite, which are the owner's own opinion of it.
 
 A recipe saved by anyone other than its owner shows "Last edited by ..." under the title, so a shared library can answer who changed step 3.
 
@@ -88,7 +88,7 @@ The Cookbooks tab has an equivalent Shared section listing cookbooks granted to 
 
 - Household of two or three cooks who want each other's recipes on tap without manually sharing every new one.
 - A friend group swapping recipes casually; auto-share off, share on demand.
-- A "test kitchen" for a couple where one person imports aggressively and the other picks favourites.
+- A "test kitchen" for a couple where one person imports aggressively and the other picks favorites.
 
 If you only ever share one or two recipes, per-user grants from the recipe's Share dialog are probably enough; skip the Kitchen.
 

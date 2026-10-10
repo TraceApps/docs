@@ -12,7 +12,7 @@ Add a cook or a plan from the **+** button: pick a recipe, date, and meal type (
 
 ## Month calendar
 
-Toggle to Calendar for a month grid with recipes as chips inside each cell. Drag a chip between cells to reschedule. Drag between planned and today's cell to "cook now". The calendar respects the same `meal_type` colouring and shows a small stack when a day has more than three entries (tap to expand).
+Toggle to Calendar for a month grid with recipes as chips inside each cell. Drag a chip between cells to reschedule. Drag between planned and today's cell to "cook now". The calendar respects the same `meal_type` coloring and shows a small stack when a day has more than three entries (tap to expand).
 
 ## Plan-then-cook workflow
 
@@ -27,7 +27,7 @@ Planned entries that lapse without being marked cooked stay planned; delete or d
 
 ## Heatmap
 
-The top of the Diary page shows a contribution-graph-style **heatmap** of cook density over the last year. Colours pull from your accent colour with luminance steps by cook count. Click a cell to jump to that day's row in the list. Backed by `GET /api/cook-diary/heatmap`.
+The top of the Diary page shows a contribution-graph-style **heatmap** of cook density over the last year. Colors pull from your accent color with luminance steps by cook count. Click a cell to jump to that day's row in the list. Backed by `GET /api/cook-diary/heatmap`.
 
 ## Per-recipe cook history
 

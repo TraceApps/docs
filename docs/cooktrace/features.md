@@ -34,7 +34,7 @@ Each ingredient row has an inline unit converter that draws on a 37-unit catalog
 ![Cook Diary with the cooking activity grid and a list of planned and cooked meals](../assets/img/cooktrace/03-diary.png)
 
 
-The Diary page has a list view (60 days back, 30 days forward, grouped by date) and a month calendar. Drag a recipe between calendar cells to reschedule it. Planned cooks are grey; a one-tap toggle promotes them to logged cooks and records the date.
+The Diary page has a list view (60 days back, 30 days forward, grouped by date) and a month calendar. Drag a recipe between calendar cells to reschedule it. Planned cooks are gray; a one-tap toggle promotes them to logged cooks and records the date.
 
 A **heatmap** at the top of the page shows cook density over the last year (contribution-graph style). Click a cell to jump to that day's entries.
 

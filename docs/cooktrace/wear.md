@@ -26,9 +26,9 @@ There is nothing to type on the watch, and no separate account. Signing out on t
 
 **Timers.** A step that mentions a time offers a timer for it, and the watch runs up to eight at once, a pan and an oven. The watch buzzes at the end with a real alarm, so it happens with the app long gone from the screen, and says which dish it was rather than buzzing about nothing.
 
-**The timer face.** One timer running gives you the whole screen: a ring that empties as the time goes, the time left, and `+1`, `+5` and Stop. Several gives you the list, soonest first, each in its own colour; tapping one opens it. Tapping never stops a timer, so a mis-tap can't throw away a braise.
+**The timer face.** One timer running gives you the whole screen: a ring that empties as the time goes, the time left, and `+1`, `+5` and Stop. Several gives you the list, soonest first, each in its own color; tapping one opens it. Tapping never stops a timer, so a mis-tap can't throw away a braise.
 
-**The colour.** Green while there's time, amber when it's getting on, red at the death, on the ring and on every row. A three hour braise isn't urgent at five minutes left, so the colour goes by the clock rather than by the fraction remaining.
+**The color.** Green while there's time, amber when it's getting on, red at the death, on the ring and on every row. A three hour braise isn't urgent at five minutes left, so the color goes by the clock rather than by the fraction remaining.
 
 **On the watch face.** While a timer runs it shows on the face and in the launcher's top row, counting down without the app open. With several running, the face follows the soonest and says "and 2 more"; tapping it opens the timers, where they're all listed. The system draws the counting, so nothing wakes up to tick it. Faces that don't support ongoing activities show it in the notification stream instead.
 

@@ -27,7 +27,7 @@ The commit response reports how many landed, how many were skipped as duplicates
 
 ### Import as a Cookbook
 
-CookTrace also has a **CookbookImportDialog** flow that treats a `.paprikarecipes` archive as a single Cookbook: every recipe in the archive lands as usual, plus a new [Cookbook](cookbooks.md) is created containing all of them. Handy when your Paprika library is already organised by cookbook and you want to preserve the grouping instead of dumping everything flat into your library.
+CookTrace also has a **CookbookImportDialog** flow that treats a `.paprikarecipes` archive as a single Cookbook: every recipe in the archive lands as usual, plus a new [Cookbook](cookbooks.md) is created containing all of them. Handy when your Paprika library is already organized by cookbook and you want to preserve the grouping instead of dumping everything flat into your library.
 
 ## What carries over
 
