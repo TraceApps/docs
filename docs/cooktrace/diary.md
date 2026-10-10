@@ -25,7 +25,7 @@ For the current week and weeks ahead, a summary above the days counts the meals 
 
 ### Uses Up
 
-Below the days, **Uses Up** lists what's in stock and about to expire (by the week's end, and at least a week ahead), with the days each has left and which planned cook uses it. Under it come the recipes you haven't planned that would use the most of those items ("Uses Avocados and Cilantro"); **Plan** opens the planner with the recipe picked, on the week's next free day. The summary's Uses Up tile jumps here.
+Below the days, **Uses Up** lists what's in stock and about to expire (by the week's end, and at least a week ahead), with the days each has left and which planned cook uses it. Under it come the recipes you haven't planned that would use the most of those items ("Uses Avocados and Cilantro"), then the ones that share the most with what's planned, so one pack of tortillas covers two dinners; **Plan** opens the planner with the recipe picked, on the week's next free day. The summary's Uses Up tile jumps here.
 
 CookTrace doesn't know how much is left in a package, so Uses Up goes by use-by dates rather than leftovers.
 
