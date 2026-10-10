@@ -22,6 +22,23 @@ Add a cook or a plan from the **+** button: pick a recipe, date, and meal type (
 
 For the current week and weeks ahead, a summary above the days counts the meals planned, the ingredients to buy, the ones already in the pantry, and the items about to expire that the plan uses up. **Build Shopping List** puts the week's plan on the list (see [Add from Planned Cooks](shopping.md#add-from-planned-cooks)); once the list holds it, the button reads **Update Shopping List**.
 
+### Uses Up
+
+Below the days, **Uses Up** lists what's in stock and about to expire (by the week's end, and at least a week ahead), with the days each has left and which planned cook uses it. Under it come the recipes you haven't planned that would use the most of those items ("Uses Avocados and Cilantro"); **Plan** opens the planner with the recipe picked, on the week's next free day. The summary's Uses Up tile jumps here.
+
+CookTrace doesn't know how much is left in a package, so Uses Up goes by use-by dates rather than leftovers.
+
+### Build My Week
+
+**Build My Week**, in the week's summary, picks dinners for you:
+
+- **Dinners** (starts at the number of free days left, up to five) and **Servings**.
+- **Use Expiring** favors recipes that use what's about to expire, **Not Cooked Lately** passes over what you cooked in the last week or two, and **Under 30 Min** keeps to quick recipes.
+
+The picks are ranked by how much of each recipe is in your pantry, what it uses up, ingredients it shares with the other picks (one bunch of cilantro for two dinners), and how long since you cooked it. Recipes already planned that week aren't picked. Each says why ("Uses Avocados and Cilantro", "6 of 7 on hand", "Not cooked in 5 weeks"), and **Swap** brings the next best for that slot. The totals at the bottom (dinners, things to buy, expiring items used) update as you go. **Add to Week** plans them as dinners on the week's free days from today, in order; any more than there are free days go to Any Day This Week.
+
+Trace can do the same in a chat ("plan three dinners for next week"): its planning tool takes servings and can plan for any day of a week.
+
 ## Month calendar
 
 Toggle to Month for a month grid with recipes as chips inside each cell. Drag a chip between cells to reschedule. Drag between planned and today's cell to "cook now". The calendar respects the same `meal_type` coloring and shows a small stack when a day has more than three entries (tap to expand).
