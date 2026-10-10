@@ -177,6 +177,7 @@ nav:
       - Wear OS: cooktrace/wear.md
       - Trace in CookTrace: cooktrace/trace.md
       - URL / file / photo import: cooktrace/import.md
+      - Migrate from Mealime: cooktrace/migrate-mealime.md
       - Migrate from Mealie: cooktrace/migrate-mealie.md
       - Migrate from Paprika: cooktrace/migrate-paprika.md
       - Migrate from Tandoor: cooktrace/migrate-tandoor.md

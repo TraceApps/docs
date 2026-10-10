@@ -16,7 +16,7 @@ The file is a normal zip, so if you're curious you can rename it to `.zip` and p
 
 ## Import into CookTrace
 
-Under **Settings > Import from Another App > Bulk Import**, drop the `.paprikarecipes` file (or click to pick). The server unpacks it into `.import-cache/<uuid>/` and returns a picker of every recipe it found, with a thumbnail if the recipe carried one.
+Under **Settings > Import from Another App**, **Choose File** and pick the `.paprikarecipes` file. The server unpacks it into `.import-cache/<uuid>/` and returns a picker of every recipe it found, with a thumbnail if the recipe carried one.
 
 Two-step flow:
 

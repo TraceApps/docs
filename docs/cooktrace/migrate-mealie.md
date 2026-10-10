@@ -31,11 +31,10 @@ The Mealie backup format is the whole household's recipes plus assets. CookTrace
 In CookTrace:
 
 1. Open **Settings > Import from Another App**.
-2. Click **Bulk Import**.
-3. Drop the Mealie backup zip. Upload progress shows.
-4. The **scan** step runs on the server, unpacking the zip into `.import-cache/<uuid>/` and returning a list of every recipe found, each with a thumbnail.
-5. Review the list. Everything is selected by default. Uncheck anything you don't want.
-6. Click **Commit** to import the selected recipes.
+2. Click **Choose File** and pick the Mealie backup zip. Upload progress shows.
+3. The **scan** step runs on the server, unpacking the zip into `.import-cache/<uuid>/` and returning a list of every recipe found, each with a thumbnail.
+4. Review the list. Everything is selected by default. Uncheck anything you don't want.
+5. Click **Import N Recipes** to import the selected recipes.
 
 The commit response tells you how many landed, how many were skipped as duplicates, and how many failed to parse (if any).
 

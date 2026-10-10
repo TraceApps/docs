@@ -62,7 +62,7 @@ The system prompt is tuned to preserve ingredient groupings ("Dough" vs "Sauce")
 
 ## Bulk zip import
 
-For whole libraries (a Mealie backup, a Paprika archive, a folder of exported files), use **Bulk Import** under Settings > Import from Another App.
+For whole libraries (a Mealie backup, a Paprika archive, a folder of exported files), open **Settings > Import from Another App** and **Choose File**.
 
 The flow is two-step:
 
