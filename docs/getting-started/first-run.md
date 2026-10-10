@@ -58,6 +58,7 @@ Each app has its own next-step tour. Do these once and the app is ready to use d
     - Pick your unit preferences and macro targets in the **Onboarding** flow. NutriTrace's Adaptive TDEE learns as you log, so a rough starting point is fine.
     - Log one meal by barcode from the **Diary** to confirm Open Food Facts lookups are reaching the app.
     - Optional: connect a wearable from **Settings** then **Wellness** (Fitbit, Withings, Google Health, Garmin, or Android Health Connect).
+    - Setup asks whether to check for updates (NutriTrace 1.4.0 and later). Checks stay off unless you turn them on, so a fresh install contacts nothing on its own. When on, the web app asks your server, which asks GitHub; the Android app asks GitHub itself, and only once you said yes on that phone. Change it any time in **Settings** then **Updates**, or turn the server's checks off for good with `UPDATE_CHECK=off` (see [NutriTrace env vars](../nutritrace/env-vars.md#update-checks)).
 
 ## Optional: enable OIDC/SSO later
 

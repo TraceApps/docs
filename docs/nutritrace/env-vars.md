@@ -16,7 +16,7 @@ Three independent flags, each guarding a bigger surface. Off by default; the end
 
 | Var | Default | Purpose |
 |---|---|---|
-| `MCP_ENABLED` | `0` | Turns on `/api/mcp` and registers the 12 read tools. Tokens still need the `mcp:read` scope. |
+| `MCP_ENABLED` | `0` | Turns on `/api/mcp` and registers the 13 read tools. Tokens still need the `mcp:read` scope. |
 | `MCP_WRITE_ENABLED` | `0` | Registers the 4 additive log tools (`log_food`, `log_water`, `log_meal`, `log_body_stat`). Tokens need `mcp:write`. |
 | `MCP_DESTROY_ENABLED` | `0` | Registers the 3 destructive tools (`delete_diary_entry`, `edit_diary_entry`, `create_food`). Tokens need `mcp:destroy`, AND every call must include `confirm: true`. |
 | `ALLOWED_ORIGINS` | — | Comma-separated list of browser Origins allowed to call `/api/mcp`. Server-to-server clients (Claude Desktop's HTTP bridge etc.) send no Origin header and always pass, so most self-hosters leave this empty. `*` is refused by design (DNS-rebinding defense). |
@@ -63,6 +63,14 @@ See [Wellness and wearables](wellness.md), [Fitbit → Google Health migration](
 | Var | Default | Purpose |
 |---|---|---|
 | `ALLOW_PRIVATE_IMAGE_URLS` | unset | Lets every account have a food, meal, or profile photo downloaded from a link on your own network. An admin may; other accounts, and a single-user install (which has no sign-in), only with this set. Images from your saved CookTrace or Mealie never need it. Only real images are kept. |
+
+## Update checks
+
+| Var | Default | Purpose |
+|---|---|---|
+| `UPDATE_CHECK` | unset | `off` (or `0`, `false`, `no`) stops the server asking GitHub about new releases for good, whatever **Settings → Updates** says, and locks that setting. Unset, the setting decides. |
+
+Update checks are off on a fresh install until someone says yes: the setup wizard asks, and an admin can change it later in **Settings → Updates**. An install that was already running before 1.4.0 keeps checking, as it did before. When checks are on, the server asks `api.github.com` for the latest release at most once a day (**Check Now** asks at once), and nothing about you or your data is sent. Browsers never contact GitHub themselves: they ask your server. The Android app asks GitHub directly for a new APK, and only once you said yes on that phone; `UPDATE_CHECK` doesn't reach it. Read in `server/lib/update-check.js`.
 
 ## Full Backup schedule
 

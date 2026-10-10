@@ -145,6 +145,15 @@ See [Migrate from MyFitnessPal](migrate-mfp.md) and [Migrate from Lose It, Crono
 
 Current sharing state summary. Bulk share / unshare foods and meals across specific users on the same instance. Row-level grants live in `food_shares` and `meal_shares`. See the Sharing subsection of [Foods, meals and recipes](foods.md).
 
+## Updates
+
+Update checks are off until you turn them on. The setup wizard asks (**Check For Updates**), and a fresh install contacts nothing on its own until someone says yes; an install that was already running before 1.4.0 keeps checking as it did.
+
+- **Automatically Check for Updates** turns them on or off, **Check Frequency** sets how often (every hour, every 4 hours, every 12 hours, once a day, or Manual Only), and **Check Now** checks at once (in the Android app, even with the toggle off). **Update Channel** picks Stable or Dev.
+- **In a browser**, the app never contacts GitHub itself: it asks your server, which asks GitHub for the latest release (when the server's checks are on) and sends nothing about you. Admins see a **Server** panel with the version the server runs, the latest release, and the command to update it. An admin's toggle is also the server's setting.
+- **In the Android app**, the phone asks GitHub directly for a new APK, and only once you said yes on that phone, in setup or here. Download and install happen from this page; see [Upgrading the Android app](../mobile/install.md#upgrading).
+- `UPDATE_CHECK=off` on the server turns its checks off for good and locks the toggle. See [env vars](env-vars.md#update-checks).
+
 ## Diagnostics
 
 500-line in-app ring buffer log viewer. **Verbose diagnostic logging** toggle. Copy / Share / Clear log. Share log file. Share crash report. **Calibration export** dumps the raw wellness-scoring inputs used to produce the last N scores.
@@ -167,9 +176,13 @@ Host, port, TLS toggle, user, pass, from address. Test-email button. Server-side
 
 Federation API tokens: create with name and scopes (`read:foods`, `write:workouts`, `read:me`, ...), list, delete. Hashed with SHA-256 (raw token shown once at creation). See [Federation API](federation-api.md).
 
+## Support
+
+Next to About. NutriTrace is free and always will be; support is optional and never unlocks anything. Links to Ko-fi and GitHub Sponsors, plus free ways to help: **Star on GitHub**, **Report a Bug** and **Help Translate** (on Weblate). See [Support TraceApps](../support.md).
+
 ## About
 
-Version, links, license (AGPL-3.0), credits.
+Version, links, license (AGPL-3.0), credits, and links to the other TraceApps apps.
 
 ## Related
 

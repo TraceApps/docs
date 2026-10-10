@@ -21,7 +21,7 @@ Any variable in the tables below can also be provided via Docker secrets by suff
 |---|---|---|---|---|---|
 | `PORT` | `3003` (CT), `3002` (LT), `3001` (NT) | Container listen port, the same as each app's sample host port. Change if you remap. | Y | Y | Y |
 | `BASE_URL` | (empty) | Subpath mount, e.g. `/cooktrace`. Must start with `/`, no trailing slash. Emitted to the browser as `window.__<APP>_CONFIG__.basePath`. | Y | Y | Y |
-| `PUBLIC_URL` | (empty) | The full address people open the app at, subpath included (e.g. `https://lift.example.com`). Links in emails (password reset, invites, sharing) use it. Unset, they use an address an admin has opened the app at. | Y | Y | Y |
+| `PUBLIC_URL` | (empty) | NutriTrace 1.4.0 and later: the full address people open the app at, subpath included (e.g. `https://nutrition.example.com`). Links in emails (password reset, invites, sharing) use it. Unset, they use an address an admin has opened the app at. CookTrace reads it only for the links in its weekly summary email; LiftTrace doesn't read it. See [Links in emails](../integrations/smtp.md#links-in-emails). | Y |  | Y |
 | `LOG_LEVEL` | `info` | `error`, `warn`, `info`, `debug`. | Y | Y | Y |
 | `NODE_ENV` | (empty) | Set to `production` in real deployments. Refuses to boot without `JWT_SECRET`. | Y | Y | Y |
 
@@ -87,7 +87,7 @@ The shorthand `OIDC_*` variables alias `OIDC_PROVIDER_1_*`. For multi-provider s
 | `OIDC_AUTO_LINK` | `1` | Link SSO identity to an existing account with the same verified email. | Y | Y | Y |
 | `OIDC_AUTO_REGISTER` | `0` | Create a new account on first SSO sign-in. | Y | Y | Y |
 | `OIDC_IS_ACTIVE` | `1` | Set `0` to disable the provider without removing the config. | Y | Y | Y |
-| `OIDC_ENABLE_EMAIL_PASSWORD_LOGIN` | unset | Set `0` for SSO-only mode (password login disabled server-wide); locks the admin toggle while set. | Y | Y | Y |
+| `OIDC_ENABLE_EMAIL_PASSWORD_LOGIN` | unset | Set `0` for SSO-only mode (password login disabled server-wide); locks the admin toggle while set. CookTrace and LiftTrace apply it only when a provider is also defined through env vars; NutriTrace 1.4.0 and later applies it either way. | Y | Y | Y |
 
 ## Backup
 

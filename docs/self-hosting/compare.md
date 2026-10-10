@@ -46,7 +46,7 @@ NoteTrace is the only app that also delivers reminders from the server: a one-mi
 When an app fetches an address someone typed, it checks every address the name resolves to, connects only to those, checks every redirect, and never reaches cloud-metadata addresses. What may reach your own network (LAN, localhost, Docker networks) depends on what the feature is for:
 
 - **Made for services on your network**, open to every account: push notifications (ntfy, Gotify, Apprise), the CookTrace and Mealie connections in NutriTrace, the NutriTrace link in CookTrace and LiftTrace, Send to CookTrace in NoteTrace, and LiftTrace's music server (Subsonic, Navidrome, Jellyfin, Plex, Emby). Only the parts of each service's API the app uses are called.
-- **Made for the public web**, open to an admin: CookTrace recipe links and an AI address an account sets (`ALLOW_PRIVATE_RECIPE_URLS`, `ALLOW_PRIVATE_AI_URLS`), LiftTrace radio stations (`ALLOW_PRIVATE_RADIO_URLS`), and NutriTrace images from a link (`ALLOW_PRIVATE_IMAGE_URLS`). Set the variable to open it to every account, and to a single-user install, which has no sign-in.
+- **Made for the public web**, open to an admin: CookTrace recipe links and an AI address an account sets (`ALLOW_PRIVATE_RECIPE_URLS`, `ALLOW_PRIVATE_AI_URLS`), LiftTrace radio stations (`ALLOW_PRIVATE_RADIO_URLS`), and NutriTrace images from a link (`ALLOW_PRIVATE_IMAGE_URLS`, NutriTrace 1.4.0 and later). Set the variable to open it to every account, and to a single-user install, which has no sign-in.
 - **NoteTrace link previews** reach your network only with `ALLOW_PRIVATE_LINK_PREVIEWS`, for every account alike: they load on their own for links other people put in shared notes.
 
 ## SMTP form location
