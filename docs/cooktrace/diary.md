@@ -18,7 +18,7 @@ Add a cook or a plan from the **+** button: pick a recipe, date, and meal type (
 - **Today and the days ahead** show your planned cooks. Each has a servings stepper; the shopping list scales the recipe to it. A plan for today (or an earlier day still waiting) has **Mark as Cooked**.
 - **A free day** has a **Plan a Cook** button that opens the planner on that date.
 - **Any Day This Week**: a cook planned with **Any Day That Week** waits in a tray above the days. Tap it and choose **Pick a Day** to give it one; marking it cooked dates it today when today is in its week. The week's shopping list includes it either way.
-- Long-press any cook for Open Recipe, Mark as Cooked and Delete.
+- Tap a cook you made to open the recipe **as you made it**, at the version it was made from, with what has changed since (see [History](recipes.md#history)). Long-press any cook for As You Made It, Open Recipe, Mark as Cooked and Delete.
 - With a [household](settings.md#household-per-user) set up, a planned cook warns about an allergen or diet that's a problem for someone home that day ("Gluten · Sam" on a weekday, nothing on the weekend Sam is away).
 
 For the current week and weeks ahead, a summary above the days counts the meals planned, the ingredients to buy, the ones already in the pantry, and the items about to expire that the plan uses up. **Build Shopping List** puts the week's plan on the list (see [Add from Planned Cooks](shopping.md#add-from-planned-cooks)); once the list holds it, the button reads **Update Shopping List**.
@@ -63,7 +63,7 @@ The top of the Diary page shows a contribution-graph-style **heatmap** of cook d
 
 ## Per-recipe cook history
 
-Every recipe view shows its own cook history as a table (date, meal type, rating, notes). Handy when you want to remember "did I use the small pan or the big pan last time?" and the note you left past-you is right there.
+Every recipe view shows its own cook history as a table (date, meal type, rating, notes). Handy when you want to remember "did I use the small pan or the big pan last time?" and the note you left past-you is right there. Each cook links to the version of the recipe it was made from, and the List view opens a cook the same way.
 
 ## Meal-plan-to-shopping-list
 

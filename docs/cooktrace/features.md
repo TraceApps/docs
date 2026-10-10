@@ -38,6 +38,10 @@ The Diary page has a list view (60 days back, 30 days forward, grouped by date) 
 
 A **heatmap** at the top of the page shows cook density over the last year (contribution-graph style). Click a cell to jump to that day's entries.
 
+### Every version of a recipe
+
+Change a recipe and the old version is kept; log a cook and it remembers the version it was made from. Open an old diary entry to see exactly what you made, see what changed since ("Flour: 300 g → 250 g"), compare any two versions, see how each version's cooks turned out, and put an old one back. See [History](recipes.md#history).
+
 ### Who you cook for
 
 Under Settings, **Household** lists the people you cook for, with their allergies, diets, dislikes and the days they're home. Planned servings follow who's home, and allergy warnings name who they're for on recipe cards, in the recipe view, on the week's planned cooks and in the shopping list. **Safe for Everyone** filters the recipe list, and Build My Week leaves out what someone home that day can't eat. Allergens come from pantry labels (Open Food Facts) and ingredient names, with a per-recipe correction. See [Allergens](recipes.md#allergens).
