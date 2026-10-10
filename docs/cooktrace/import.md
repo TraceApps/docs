@@ -54,6 +54,16 @@ Under Settings > Import from Another App, or from the Recipes page's **Import** 
 
 Nothing to configure per format; the detector inspects the payload and picks the right parser.
 
+## How ingredient lines are read
+
+Every importer splits each ingredient line into an amount, a unit, a name and a note, the same way on the server and in the Android app:
+
+- **Amounts**: whole numbers, decimals, fractions and mixed numbers (`1 1/2`, `½`, `1½`), and ranges (`4 - 5`, `1 to 2`), kept as one amount.
+- **Units**: spelled out or abbreviated, singular or plural (`tablespoons`, `Tbsp.`, `cups`), stored as the short form (`tbsp`, `cup`).
+- **The note** gets what describes this batch rather than the ingredient: anything in parentheses, sizes (`large`, `medium`), package sizes (`15-ounce`, `14.5 oz`), packing (`packed`) and prep after a comma (`garlic, minced`). A comma that's part of the name stays (`boneless, skinless chicken thighs`).
+
+The name is what links to the pantry. With **Link Ingredients to Pantry** on, each ingredient links to the pantry item of the same name, regardless of case or plural (`tomato` finds `Tomatoes`), and a new pantry item, out of stock, is made for any name the pantry doesn't have yet.
+
 ## Photo import
 
 The `PhotoImportDialog` (also accessible via the `create_recipe` tool that Trace calls) takes a picture of a printed recipe, a handwritten card, or a phone screenshot and returns a filled-in recipe you can review before saving. Trace does the OCR and structuring in one pass, so you need a configured AI provider.
