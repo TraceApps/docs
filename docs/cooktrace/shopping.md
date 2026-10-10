@@ -58,7 +58,7 @@ See [Cook Diary and Meal Planner](diary.md) for how planned cooks land in the ca
 
 ## Manual rows
 
-The quick-add row at the top of the page takes a name, optional quantity, optional unit, and optional aisle. Quantities take fractions as well as decimals ("1/2", "1 1/2"), and the list shows them the way a cook writes them: 3/8 cup rather than 0.375 cup for cups and spoons, decimals for grams and millilitres. Things you count round up to whole ones when a plan or recipe adds them (8 tomatoes rather than 7.5). Names get title-cased on save so the list reads consistently regardless of source (Mealie's canonical `"fresh lemon juice"` becomes `Fresh Lemon Juice`; small connective words like "and" or "of" stay lowercase per Chicago rules).
+The quick-add row at the top of the page takes a name, optional quantity, optional unit, and optional aisle. Quantities take fractions as well as decimals ("1/2", "1 1/2"), and the list shows them the way a cook writes them: 3/8 cup rather than 0.375 cup for cups and spoons, decimals for grams and milliliters. Things you count round up to whole ones when a plan or recipe adds them (8 tomatoes rather than 7.5). Names get title-cased on save so the list reads consistently regardless of source (Mealie's canonical `"fresh lemon juice"` becomes `Fresh Lemon Juice`; small connective words like "and" or "of" stay lowercase per Chicago rules).
 
 ## Shared list?
 

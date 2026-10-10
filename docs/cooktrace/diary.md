@@ -38,7 +38,7 @@ Every recipe view shows its own cook history as a table (date, meal type, rating
 **Add from Planned Cooks** on the Shopping page (`POST /api/shopping/from-plan`):
 
 - Walks every planned entry in the chosen date range, scaling each recipe to the entry's servings.
-- Adds up the same ingredient across recipes and across units of one kind (cups with millilitres, grams with kilograms).
+- Adds up the same ingredient across recipes and across units of one kind (cups with milliliters, grams with kilograms).
 - Skips anything stocked in the pantry (via each ingredient's pantry link), and anything already checked off on the list.
 - Keeps, on each list item, the recipes and planned cooks it's for, so building the same range again replaces their share instead of adding it twice, and a cook taken off the plan takes its share out.
 
