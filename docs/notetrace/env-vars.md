@@ -11,6 +11,8 @@ NoteTrace reads the same shared variables as the other Trace apps (`PORT`, `BASE
 | `UPLOADS_PATH` | `/data/uploads` | Uploaded images, voice notes, files, and server-side backups. Mount `/data/uploads` as a volume. |
 | `UPLOAD_MAX_MB` | `100` | The largest single upload (an image, a recording, or a file on a note), in MB. A bigger file is refused with a message saying so. Raise your reverse proxy's body limit to match (Nginx `client_max_body_size`). |
 | `BASE_URL` | (empty) | Subpath mount, for example `/notetrace`. |
+| `PUBLIC_URL` | (empty) | The full address people open the app at, subpath included (e.g. `https://notes.example.com`). Links in emails (password reset, invites, sharing) use it. Unset, they use an address an admin has opened the app at. |
+| `UPDATE_CHECK` | (unset) | `off` (or `0`, `false`, `no`) stops the server asking GitHub about new releases for good, whatever **Settings, Updates** says, and locks that setting. Unset, the setting decides. |
 
 ## Integrations
 
@@ -19,7 +21,6 @@ NoteTrace reads the same shared variables as the other Trace apps (`PORT`, `BASE
 | `WEBHOOKS_ENABLED` | (unset) | Set to `1` to turn on outgoing [webhooks](webhooks.md) (`note.created`, `checklist.completed`, `reminder.fired`). |
 | `ALLOW_PRIVATE_WEBHOOK_URLS` | (unset) | Set to `1` to allow webhook targets on private or loopback addresses, such as a Home Assistant container on the same Docker network. |
 | `MCP_ENABLED` / `MCP_WRITE_ENABLED` / `MCP_DESTROY_ENABLED` | (unset) | Model Context Protocol endpoint and its write and destructive tiers. See [MCP](mcp.md). |
-| `ALLOW_PRIVATE_COOKTRACE_URLS` | (unset) | Set to `1` so the [CookTrace link](cooktrace.md) can reach a CookTrace on a LAN, loopback, or Docker network address. |
 | `ALLOW_PRIVATE_LINK_PREVIEWS` | (unset) | Set to `1` to show [link previews](notes.md#link-previews) for links to LAN, loopback, or Docker network addresses. |
 
 ## Trace

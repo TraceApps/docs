@@ -21,7 +21,7 @@ Any variable in the tables below can also be provided via Docker secrets by suff
 |---|---|---|---|---|---|
 | `PORT` | `3003` (CT), `3002` (LT), `3001` (NT) | Container listen port, the same as each app's sample host port. Change if you remap. | Y | Y | Y |
 | `BASE_URL` | (empty) | Subpath mount, e.g. `/cooktrace`. Must start with `/`, no trailing slash. Emitted to the browser as `window.__<APP>_CONFIG__.basePath`. | Y | Y | Y |
-| `PUBLIC_URL` | (empty) | NutriTrace 1.4.0 and later: the full address people open the app at, subpath included (e.g. `https://nutrition.example.com`). Links in emails (password reset, invites, sharing) use it. Unset, they use an address an admin has opened the app at. CookTrace reads it only for the links in its weekly summary email; LiftTrace doesn't read it. See [Links in emails](../integrations/smtp.md#links-in-emails). | Y |  | Y |
+| `PUBLIC_URL` | (empty) | NutriTrace 1.4.0 and later (and NoteTrace 1.1.0, see its [env vars](../notetrace/env-vars.md)): the full address people open the app at, subpath included (e.g. `https://nutrition.example.com`). Links in emails (password reset, invites, sharing) use it. Unset, they use an address an admin has opened the app at. CookTrace reads it only for the links in its weekly summary email; LiftTrace doesn't read it. See [Links in emails](../integrations/smtp.md#links-in-emails). | Y |  | Y |
 | `LOG_LEVEL` | `info` | `error`, `warn`, `info`, `debug`. | Y | Y | Y |
 | `NODE_ENV` | (empty) | Set to `production` in real deployments. Refuses to boot without `JWT_SECRET`. | Y | Y | Y |
 
@@ -40,7 +40,7 @@ Any variable in the tables below can also be provided via Docker secrets by suff
 | `JWT_SECRET` | insecure dev fallback | Signs the auth cookie and Bearer tokens. Required when `NODE_ENV=production`. Long random string; never share across apps. | Y | Y | Y |
 | `TOKEN_ENC_KEY` | HKDF-derived from `JWT_SECRET` | AES-GCM key at rest for OIDC client secrets and (NT) wearable OAuth tokens. Set explicitly if you plan to rotate `JWT_SECRET`. | Y | Y | Y |
 | `RECOVERY_TOKEN` | unset | Enables `POST /api/auth/recover` from the login page. Passphrase compare is constant-time. Without this the endpoint is disabled. | Y | Y | Y |
-| `INSECURE_COOKIES` | `0` | Set `1` to send the sign-in cookie over plain HTTP too. The cookie is HTTPS-only by default, so at a plain `http://` address other than `localhost` (a LAN IP, an Unraid WebUI link) the browser drops it and signing in loops back to the sign-in page. NutriTrace 1.4.0 and later say so on the sign-in and setup screens. Use `1` only on a trusted LAN, and leave it `0` behind HTTPS. The Android app signs in with a token and isn't affected. See [Plain-HTTP LAN](../getting-started/lan-http.md). | Y | Y | Y |
+| `INSECURE_COOKIES` | `0` | Set `1` to send the sign-in cookie over plain HTTP too. The cookie is HTTPS-only by default, so at a plain `http://` address other than `localhost` (a LAN IP, an Unraid WebUI link) the browser drops it and signing in loops back to the sign-in page. NutriTrace 1.4.0 and NoteTrace 1.1.0 and later say so on the sign-in and setup screens; CookTrace and LiftTrace from their next release. Use `1` only on a trusted LAN, and leave it `0` behind HTTPS. The Android app signs in with a token and isn't affected. See [Plain-HTTP LAN](../getting-started/lan-http.md). | Y | Y | Y |
 | `MAX_SESSION_HOURS` | `8760` (1 year) | Cap on JWT and cookie lifetime. Per-user overrides may be lower. | Y | Y | Y |
 
 ## SMTP
@@ -87,7 +87,7 @@ The shorthand `OIDC_*` variables alias `OIDC_PROVIDER_1_*`. For multi-provider s
 | `OIDC_AUTO_LINK` | `1` | Link SSO identity to an existing account with the same verified email. | Y | Y | Y |
 | `OIDC_AUTO_REGISTER` | `0` | Create a new account on first SSO sign-in. | Y | Y | Y |
 | `OIDC_IS_ACTIVE` | `1` | Set `0` to disable the provider without removing the config. | Y | Y | Y |
-| `OIDC_ENABLE_EMAIL_PASSWORD_LOGIN` | unset | Set `0` for SSO-only mode (password login disabled server-wide); locks the admin toggle while set. CookTrace and LiftTrace apply it only when a provider is also defined through env vars; NutriTrace 1.4.0 and later applies it either way. | Y | Y | Y |
+| `OIDC_ENABLE_EMAIL_PASSWORD_LOGIN` | unset | Set `0` for SSO-only mode (password login disabled server-wide); locks the admin toggle while set. CookTrace and LiftTrace apply it only when a provider is also defined through env vars; NutriTrace 1.4.0 and NoteTrace 1.1.0 and later apply it either way. | Y | Y | Y |
 
 ## Backup
 

@@ -3,7 +3,7 @@
 [Authelia](https://www.authelia.com/) is a self-hosted SSO + 2FA portal with an OpenID Connect provider. If you already run it in front of other services, TraceApps drops in as another client under `identity_providers.oidc.clients`. This recipe assumes an Authelia instance with file-based configuration you can edit, and was checked against Authelia 4.39. The examples use CookTrace at `https://cook.example.com`.
 
 !!! warning "Authelia 4.39 and later: the claims policy in step 2"
-    Since 4.39, Authelia leaves the user's email, name, username and groups out of the ID token by default and only serves them from its userinfo endpoint. CookTrace, LiftTrace and NoteTrace read only the ID token, so for them the claims policy below is required: without it they see no email (no linking to existing accounts), no username (auto-registered accounts get a generated name) and no groups (no admin mapping). NutriTrace 1.4.0 and later reads the userinfo endpoint when the ID token lacks them, so for NutriTrace alone the policy is optional; it puts them in the ID token as well.
+    Since 4.39, Authelia leaves the user's email, name, username and groups out of the ID token by default and only serves them from its userinfo endpoint. CookTrace and LiftTrace read only the ID token, so for them the claims policy below is required: without it they see no email (no linking to existing accounts), no username (auto-registered accounts get a generated name) and no groups (no admin mapping). NutriTrace 1.4.0 and NoteTrace 1.1.0 and later read the userinfo endpoint when the ID token lacks them, so for those two the policy is optional; it puts them in the ID token as well.
 
 ## Authelia side
 

@@ -3,7 +3,7 @@
 If you also run [CookTrace](../cooktrace/index.md), NoteTrace works with your CookTrace [shopping list](../cooktrace/shopping.md): see it as **Shopping List** in the menu, grouped by aisle, check things off as you shop, and send a NoteTrace checklist's open items to it. CookTrace stays the one shopping list; NoteTrace shows it live and adds to it, it doesn't keep a second copy.
 
 !!! note "Needs a recent CookTrace"
-    This needs CookTrace 1.3.0 or later, which is on CookTrace's dev channel (the `:dev` image) until 1.3.0 is released. CookTrace 1.2.0 and earlier don't have the shopping list API. If linking says CookTrace is too old, update CookTrace.
+    This needs CookTrace 1.3.0 or later. CookTrace 1.2.0 and earlier don't have the shopping list API. If linking says CookTrace is too old, update CookTrace.
 
 ## Set it up
 
@@ -17,16 +17,7 @@ Each NoteTrace account links its own CookTrace account.
 
 ### CookTrace on your local network
 
-NoteTrace refuses private and loopback addresses by default, so a link can't be used to probe your network. If CookTrace runs on your LAN (`http://192.168.1.20:3003`), on the same host (`http://localhost:3003`), or on the same Docker network (`http://cooktrace:3001`), set this on the NoteTrace server:
-
-```yaml
-services:
-  notetrace:
-    environment:
-      - ALLOW_PRIVATE_COOKTRACE_URLS=1
-```
-
-Cloud metadata addresses stay blocked either way.
+A CookTrace on your LAN (`http://192.168.1.20:3003`), on the same host (`http://localhost:3003`), or on the same Docker network (`http://cooktrace:3003`) works with no setting. NoteTrace only calls CookTrace's shopping API there, connects only to the address it checked, follows no redirect, and never reaches cloud-metadata addresses. (`ALLOW_PRIVATE_COOKTRACE_URLS`, which earlier versions needed, is no longer used.)
 
 ## The Shopping List
 
