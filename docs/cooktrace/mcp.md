@@ -16,11 +16,11 @@ Six read-only tools: `search_recipes`, `get_recipe`, `recent_recipes`, `list_pan
 
 ### Write (Phase 2)
 
-Four additive tools: `log_cook`, `add_shopping_item`, `check_shopping_item`, `update_pantry_stock`. Everything they write shows up as normal entries in the app's UI, editable and deletable through the app like anything else. Off by default; turn on with `MCP_WRITE_ENABLED=1` AND a token that holds `mcp:write`. Either missing and the write tools simply don't appear in `tools/list`.
+Six tools: `log_cook`, `add_shopping_item`, `check_shopping_item`, `update_pantry_stock`, `update_recipe` and `set_recipe_image`. Everything they write shows up as normal entries in the app's UI, editable and deletable through the app like anything else. `update_recipe` changes only the fields you send (ingredients and steps replace the whole list; nutrition merges), and saves the way the app's own edit does: the copy it replaces is kept as an earlier version and a change to what you cook is a new version in the recipe's History, so an agent's edit can always be undone. `set_recipe_image` takes a public image address, which the server downloads through the same address guard as URL import, or the image itself as base64. Off by default; turn on with `MCP_WRITE_ENABLED=1` AND a token that holds `mcp:write`. Either missing and the write tools simply don't appear in `tools/list`.
 
 ### Destructive (Phase 3)
 
-Four destructive tools: `create_recipe`, `add_pantry_item`, `delete_cook_diary_entry`, `remove_shopping_item`. Off by default. Three gates ALL required:
+Five destructive tools: `create_recipe` (with an optional per-serving `nutrition`, for a source that states its macros), `import_recipe_from_url` (the app's URL import, with its Standard, Enhanced and Smart tiers), `add_pantry_item`, `delete_cook_diary_entry`, `remove_shopping_item`. Off by default. Three gates ALL required:
 
 1. `MCP_DESTROY_ENABLED=1` on the server.
 2. Token holds `mcp:destroy` (mint separately; a `mcp:write` token does NOT unlock destroy).
@@ -92,14 +92,16 @@ The transport is standard MCP Streamable HTTP (single POST endpoint). Any client
 - **Origin gating (DNS-rebinding defense).** Server-to-server clients (Claude Desktop, Cursor, etc.) send no Origin header and pass. Browser-based MCP inspectors need to be listed in `ALLOWED_ORIGINS` explicitly. This is the [MCP spec's recommended](https://modelcontextprotocol.io/specification/basic/authorization) defense against DNS rebinding attacks and CookTrace does not soften it with a "trust the Host header" fallback.
 - **Bearer over HTTPS only.** Never send the token over plain HTTP; it's equivalent to a user password for the tools it grants.
 - **Recipe creation fans out to your Kitchen the same way the app does.** `create_recipe` calls the same auto-share hook `POST /api/recipes` uses, so an MCP-created recipe reaches Kitchen members identically to one created in the app.
+- **Recipe edits go through the app's own save.** `update_recipe` and `set_recipe_image` only touch the token owner's own recipes, keep the replaced copy, and reach phones on their next sync like any edit.
+- **Image and recipe addresses are checked.** `set_recipe_image` and `import_recipe_from_url` refuse addresses on your server's own network (loopback, private ranges, cloud metadata), re-checked on every redirect, unless `ALLOW_PRIVATE_RECIPE_URLS` is set. That holds for an admin's token too: in the app an admin picks the link, but an agent can be steered by what a page tells it. An image must be one by its bytes, at most 12 MB.
 
 ## Env vars
 
 | Variable | Default | Description |
 |---|---|---|
 | `MCP_ENABLED` | `0` | Set to `1` to expose `/api/mcp`. |
-| `MCP_WRITE_ENABLED` | `0` | Set to `1` to allow write tools (`log_cook`, `add_shopping_item`, `check_shopping_item`, `update_pantry_stock`) to be registered. Also requires the calling token to hold `mcp:write`. |
-| `MCP_DESTROY_ENABLED` | `0` | Set to `1` to allow the destructive tools (`create_recipe`, `add_pantry_item`, `delete_cook_diary_entry`, `remove_shopping_item`) to be registered. Also requires the calling token to hold `mcp:destroy` AND every call to include `confirm: true`. |
+| `MCP_WRITE_ENABLED` | `0` | Set to `1` to allow write tools (`log_cook`, `add_shopping_item`, `check_shopping_item`, `update_pantry_stock`, `update_recipe`, `set_recipe_image`) to be registered. Also requires the calling token to hold `mcp:write`. |
+| `MCP_DESTROY_ENABLED` | `0` | Set to `1` to allow the destructive tools (`create_recipe`, `import_recipe_from_url`, `add_pantry_item`, `delete_cook_diary_entry`, `remove_shopping_item`) to be registered. Also requires the calling token to hold `mcp:destroy` AND every call to include `confirm: true`. |
 | `ALLOWED_ORIGINS` | (empty) | Comma-separated list of origins that browser-based MCP clients may use. Server-to-server clients (no Origin header) always pass. Leave empty unless you're specifically using the MCP Inspector in a browser. |
 
 ## Verifying
@@ -131,4 +133,4 @@ Add `--writes` to also exercise the write tools (needs `mcp:write` + `MCP_WRITE_
 
 ## Roadmap
 
-**Later**: MCP prompts capability (guided workflows), additional read tools (cookbooks, kitchens) as demand justifies them, and possibly `edit_recipe` / `edit_cook_diary_entry` (currently out of scope, the existing tools cover the primary "log what I just did" and "add what I need" use cases).
+**Later**: MCP prompts capability (guided workflows), and additional read tools (cookbooks, kitchens) as demand justifies them.

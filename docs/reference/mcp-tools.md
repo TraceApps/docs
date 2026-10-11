@@ -157,12 +157,15 @@ Fourteen tools across three phases.
 | `add_shopping_item` | Add one item to the shopping list | `name*`, `quantity`, `unit`, `aisle` | The created item |
 | `check_shopping_item` | Mark a shopping list item checked/unchecked | `item_id*`, `checked*` | `ok`, `item_id`, `name`, `checked` |
 | `update_pantry_stock` | Update an existing pantry item's stock/quantity | `item_id*`, `in_stock`, `quantity` | `ok`, `item_id`, `name`, `in_stock`, `quantity`. Does not create new pantry rows. |
+| `update_recipe` | Change one of the caller's recipes; only the fields sent change | `recipe_id*`, `name`, `description`, `servings`, `prep_minutes`, `cook_minutes`, `rest_minutes`, `ingredients` (replaces the list; pantry links kept by name), `steps` (replaces the list), `tags`, `source_url`, `notes`, `nutrition` (per serving, by key: `calories`, `proteins`, `carbohydrates`, `fat`, `fiber`, `sugars`, `sodium` and the rest the app's Nutrition Facts box shows; `null` removes one; merged) | `updated`: id, name, servings, counts, `img_url`, `nutrition`. Saves as the app does: the replaced copy is kept as an earlier version and a change to what you cook is a new version in History, so every edit can be undone in the app. |
+| `set_recipe_image` | Set a recipe's photo | `recipe_id*`, `image_url` (public http/https, fetched through the address guard; your server's own network only with `ALLOW_PRIVATE_RECIPE_URLS`) or `image_data` (base64, with or without a `data:` prefix) | `updated`, with the new `/uploads/...` path. JPEG, PNG, WebP, GIF, AVIF or HEIC by its bytes, up to 12 MB. The previous photo stays in the earlier version. |
 
 ### Destructive tools (`mcp:destroy` + `confirm: true`)
 
 | Tool | Purpose | Args | Returns |
 |------|---------|------|---------|
-| `create_recipe` | Add a new recipe | `name*`, `ingredients*` (flat `{name, qty, unit, note}` list), `steps*` (plain strings), `description`, `servings`, `prep_minutes`, `cook_minutes`, `tags`, `source_url`, `notes`, `confirm*` | The created recipe's id + counts. Fans out to the caller's Kitchen the same way `POST /api/recipes` does. |
+| `create_recipe` | Add a new recipe | `name*`, `ingredients*` (flat `{name, qty, unit, note}` list), `steps*` (plain strings), `description`, `servings`, `prep_minutes`, `cook_minutes`, `tags`, `source_url`, `notes`, `nutrition` (per serving, by key: `calories`, `proteins`, `carbohydrates`, `fat`, `fiber`, `sugars`, `sodium` and the rest the app's Nutrition Facts box shows; `null` removes one), `confirm*` | The created recipe's id + counts. Fans out to the caller's Kitchen the same way `POST /api/recipes` does. |
+| `import_recipe_from_url` | Import a recipe from a web page, as the app's URL import does | `url*`, `tier` (`standard`, `enhanced` or `smart`; without it, the user's choice in Settings), `confirm*` | `created` and the `tier` that read it, or `skipped` with `existing_id` when the recipe (same name or link) is already in the library. `standard` named here uses the page's data only, never AI; `smart` needs an AI provider set up for Trace. |
 | `add_pantry_item` | Add a new pantry catalog item | `name*`, `quantity`, `unit`, `category`, `in_stock`, `expires_on`, `notes`, `confirm*` | The created item. Rejects a duplicate top-level name (case-insensitive). `category` is free text, not resolved against the app's category catalog. |
 | `delete_cook_diary_entry` | Remove one cook diary entry | `entry_id*`, `confirm*` | The removed entry. Recomputes the linked recipe's cook_count / last_cooked_at. |
 | `remove_shopping_item` | Remove one shopping list item | `item_id*`, `confirm*` | The removed item |
@@ -179,7 +182,7 @@ Same per-token bucket model as NutriTrace's and LiftTrace's: 60 requests per min
 
 Deliberately not in the current MCP surface:
 
-- `edit_recipe` / `edit_cook_diary_entry`. The existing tools cover the primary "log what I just did" and "add what I need" cases; patching an existing recipe or entry adds ambiguity without a clear demand signal yet.
+- `edit_cook_diary_entry`. `log_cook` and `delete_cook_diary_entry` cover the log; the app edits an entry.
 - Cookbooks and Kitchens (list / create / share). Trivial to add; deferred until real demand.
 - `delete_recipe` / `delete_pantry_item`. Deliberately excluded, same reasoning NutriTrace uses for not exposing `delete_food`: these are permanent library content, not a transient log; only the log-like entities (cook diary entries, shopping list items) get a delete tool.
 - MCP prompts capability (guided workflows). Planned; no ETA.

@@ -4,7 +4,7 @@ CookTrace's import surface is deliberately broad because the recipes you already
 
 ## URL import: three tiers
 
-Under Settings > Cooking > URL Import Engine, pick one:
+Under Settings > Cooking > URL Import Engine, pick one. An AI agent can run the same import over [MCP](mcp.md) with `import_recipe_from_url`, using your choice here or a tier it names.
 
 ### Standard
 
