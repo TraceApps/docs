@@ -40,7 +40,7 @@ Any variable in the tables below can also be provided via Docker secrets by suff
 | `JWT_SECRET` | insecure dev fallback | Signs the auth cookie and Bearer tokens. Required when `NODE_ENV=production`. Long random string; never share across apps. | Y | Y | Y |
 | `TOKEN_ENC_KEY` | HKDF-derived from `JWT_SECRET` | AES-GCM key at rest for OIDC client secrets and (NT) wearable OAuth tokens. Set explicitly if you plan to rotate `JWT_SECRET`. | Y | Y | Y |
 | `RECOVERY_TOKEN` | unset | Enables `POST /api/auth/recover` from the login page. Passphrase compare is constant-time. Without this the endpoint is disabled. | Y | Y | Y |
-| `INSECURE_COOKIES` | unset | Set `1` on plain-HTTP LAN deployments so the `Secure` attribute comes off the cookie. Otherwise every request after login 401s. | Y | Y | Y |
+| `INSECURE_COOKIES` | `0` | Set `1` to send the sign-in cookie over plain HTTP too. The cookie is HTTPS-only by default, so at a plain `http://` address other than `localhost` (a LAN IP, an Unraid WebUI link) the browser drops it and signing in loops back to the sign-in page. NutriTrace 1.4.0 and later say so on the sign-in and setup screens. Use `1` only on a trusted LAN, and leave it `0` behind HTTPS. The Android app signs in with a token and isn't affected. See [Plain-HTTP LAN](../getting-started/lan-http.md). | Y | Y | Y |
 | `MAX_SESSION_HOURS` | `8760` (1 year) | Cap on JWT and cookie lifetime. Per-user overrides may be lower. | Y | Y | Y |
 
 ## SMTP

@@ -2,6 +2,9 @@
 
 Front the app with Caddy, nginx, or Traefik and let the proxy handle TLS, virtual hosts, and any subpath rewriting. Every Trace app behaves the same way behind a proxy; the only per-app difference is the internal port number.
 
+!!! tip "Signed in, then sent back to the sign-in page?"
+    See [If signing in doesn't stick](#sign-in-doesnt-stick) at the end of this page.
+
 Internal ports as a reminder: each app listens on the same port inside the container as its sample host port. NutriTrace `3001`, LiftTrace `3002`, CookTrace `3003`, NoteTrace `3004`. (Before 1.3.0, LiftTrace listened on `3003` and CookTrace on `3001` inside the container; see [Updating](updating.md#lifttrace-and-cooktrace-130-container-port-change).)
 
 ## Root path (one app per hostname)
@@ -145,6 +148,17 @@ https://example.com/cooktrace/api/auth/oidc/callback/1
 ```
 
 Enter the same URL in the app: in `OIDC_REDIRECT_URIS`, or in the provider's Redirect URIs under **Settings → Authentication**. The provider redirects the user back through the proxy to the prefixed path, and the app finishes the flow.
+
+## If signing in doesn't stick { #sign-in-doesnt-stick }
+
+Your password is accepted, then you're back on the sign-in page. NutriTrace 1.4.0 and later explain it on the sign-in screen: **Signing in won't work on this address** when the page is plain HTTP, or **Your browser didn't keep you signed in** when it's HTTPS. Either way the browser threw away the sign-in cookie (`ct_token`, `lt_token`, `note_token` or `nt_token`). Check, in this order:
+
+1. **The address bar says `https://`.** At a plain `http://` address, the proxy's own HTTP port included, the browser drops the cookie because it is HTTPS-only. Open the `https://` address, or have the proxy redirect HTTP to HTTPS (Caddy does on its own). On a LAN without TLS, see [Plain-HTTP LAN](lan-http.md).
+2. **Cookies are allowed for the site.** Blocked cookies, a privacy extension or strict private-window settings drop it.
+3. **The app is open in its own tab.** Inside a frame on another site (a dashboard at another address), the browser can refuse the cookie.
+4. **The proxy passes `Set-Cookie` through unchanged.** No rule should strip it or rewrite its domain. With a subpath, forward the prefix unchanged, as above.
+
+To see where it goes wrong, sign in with the browser's developer tools open on the Network tab. The sign-in response should set the cookie named above, with `HttpOnly`, `Secure` and `SameSite=Lax`, and the next request should send it back. Firefox's console names a cookie it rejected.
 
 ## Deeper recipes
 

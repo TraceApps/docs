@@ -4,13 +4,19 @@ A running list of the failure modes that actually catch self-hosters out. Organi
 
 ## Login and cookies
 
-### Login succeeds but every request 401s over plain HTTP { #login-401-loop }
+### Signing in over plain HTTP sends you back to the sign-in page { #login-401-loop }
 
-**Symptom:** The login form accepts your password, the browser redirects, and then every subsequent request returns 401. Refreshing sends you back to the login page.
+**Symptom:** You open the app at a plain `http://` address (a LAN IP, an Unraid WebUI link), the sign-in form takes your password, and you're back on the sign-in page. NutriTrace 1.4.0 and later say **Signing in won't work on this address** on the sign-in and setup screens, and log `Sign-in from a plain-HTTP page`. CookTrace, LiftTrace and NoteTrace don't explain it.
 
-**Cause:** Auth cookies are marked `Secure` by default. Over plain `http://` the browser silently drops them, so the session never actually sticks. Firefox logs the rejection in its console; Safari fails without any warning at all.
+**Cause:** The sign-in cookie is marked `Secure` by default, so browsers keep it only on HTTPS pages and `http://localhost`. Over any other plain `http://` address the browser silently throws it away, so the session never sticks. Firefox's console names the rejected cookie.
 
-**Fix:** Add `INSECURE_COOKIES=1` to the container environment and restart. Only do this on a trusted LAN; the variable is named the way it is for a reason. The better long-term answer is real TLS. See [HTTPS on the LAN](../self-hosting/lan-https.md) for how to set that up with Let's Encrypt, a Cloudflare Tunnel, or a self-signed CA installed on your devices.
+**Fix:** Add `INSECURE_COOKIES=1` to the container environment and restart. Only do this on a trusted LAN; the variable is named the way it is for a reason. The better long-term answer is real TLS. See [Plain-HTTP LAN](../getting-started/lan-http.md), and [HTTPS on the LAN](../self-hosting/lan-https.md) for how to set that up with Let's Encrypt, a Cloudflare Tunnel, or a self-signed CA installed on your devices.
+
+### Signing in over HTTPS sends you back to the sign-in page { #login-https-dropped }
+
+**Symptom:** The page is `https://` and your password is right, but you're back on the sign-in page. NutriTrace 1.4.0 and later say **Your browser didn't keep you signed in**.
+
+**Cause and fix:** Something between the sign-in and the next request dropped the cookie: blocked cookies, a frame on another site, or a proxy that changes it. See [If signing in doesn't stick](../getting-started/reverse-proxy.md#sign-in-doesnt-stick).
 
 ### Android release APK will not connect to my LAN server
 
@@ -67,9 +73,9 @@ Details in [HTTPS on the LAN](../self-hosting/lan-https.md) and [Cloudflare Tunn
 
 **Symptom:** Sign-in (SSO or password) appears to succeed, then every page says you're not signed in.
 
-**Cause:** You're reaching the app over plain `http://` on an address other than `localhost`. The session cookie is marked Secure, and browsers drop Secure cookies on plain HTTP.
+**Cause:** You're reaching the app over plain `http://` on an address other than `localhost`. The sign-in cookie is marked `Secure`, and browsers drop `Secure` cookies on plain HTTP. Over HTTPS, see [Signing in over HTTPS sends you back](#login-https-dropped).
 
-**Fix:** Use HTTPS (a reverse proxy), or set `INSECURE_COOKIES=1` on a trusted LAN. See [LAN HTTP notes](../getting-started/lan-http.md).
+**Fix:** Use HTTPS (a reverse proxy), or set `INSECURE_COOKIES=1` on a trusted LAN. See [Plain-HTTP LAN](../getting-started/lan-http.md).
 
 ### OIDC login works but the user has no admin rights
 
