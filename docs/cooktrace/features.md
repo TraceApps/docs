@@ -44,7 +44,7 @@ Change a recipe and the old version is kept; log a cook and it remembers the ver
 
 ### Who you cook for
 
-Under Settings, **Household** lists the people you cook for, with their allergies, diets, dislikes and the days they're home. Planned servings follow who's home, and allergy warnings name who they're for on recipe cards, in the recipe view, on the week's planned cooks and in the shopping list. **Safe for Everyone** filters the recipe list, and Build My Week leaves out what someone home that day can't eat. Allergens come from pantry labels (Open Food Facts) and ingredient names, with a per-recipe correction. See [Allergens](recipes.md#allergens).
+Under Settings, **Household** lists the people you cook for, with their allergies (the 14 plus any other food by name), diets, dislikes and the days they're home. Planned servings follow who's home, and allergy warnings name who they're for on recipe cards, in the recipe view, on the week's planned cooks and in the shopping list. **Safe for Everyone** filters the recipe list, and Build My Week leaves out what someone home that day can't eat. Allergens come from pantry labels (Open Food Facts) and ingredient names, with a per-recipe correction. See [Allergens](recipes.md#allergens).
 
 ## Stock the pantry {#pantry}
 

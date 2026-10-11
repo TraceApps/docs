@@ -39,7 +39,7 @@ Top of the Settings page. Avatar, name, role pill. Tap the card to open **/profi
 
 ## Household (per-user)
 
-Who you cook for. Each person has a name, **Allergies** (the EU's 14 allergens, which cover the US's nine), a **Diet** (Vegetarian, Pescatarian, Vegan, Gluten Free, Dairy Free), **Dislikes** (foods, typed one at a time) and the **Home** days they eat with you; none picked means every day. The day toggles work right on each person's card, and the pencil opens the rest.
+Who you cook for. Each person has a name, **Allergies** (the EU's 14 allergens, which cover the US's nine), **Other Allergies** (any other food, such as corn or kiwi, as strict as an allergen but found by ingredient name only, since labels don't list them), a **Diet** (Vegetarian, Pescatarian, Vegan, Gluten Free, Dairy Free), **Dislikes** (foods, typed one at a time) and the **Home** days they eat with you; none picked means every day. The day toggles work right on each person's card, and the pencil opens the rest.
 
 What it changes:
 
