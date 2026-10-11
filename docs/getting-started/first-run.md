@@ -6,7 +6,7 @@ The first time you open the app in a browser after `docker compose up -d`, the s
 
 The wizard is short by design:
 
-1. Checks that signing in will stick. Opened at a plain `http://` address other than `localhost` with `INSECURE_COOKIES` off, the account step says **Signing in won't work on this address** and links to [Plain-HTTP LAN](lan-http.md) (NutriTrace 1.4.0 and later; CookTrace, LiftTrace and NoteTrace from their next release).
+1. Checks that signing in will stick. Opened at a plain `http://` address other than `localhost` with `INSECURE_COOKIES` off, the account step says **Signing in won't work on this address** and links to [Plain-HTTP LAN](lan-http.md) (NutriTrace 1.4.0 and NoteTrace 1.1.0 and later; CookTrace and LiftTrace from their next release).
 2. Prompts for the first admin account (email, display name, password).
 3. Creates that user and marks them admin.
 4. Signs you in and drops you on the app's home screen.
@@ -52,6 +52,13 @@ Each app has its own next-step tour. Do these once and the app is ready to use d
     - On first boot the exercise library auto-seeds from wger and a bundled free DB. This takes a minute or two; the **Exercises** page shows a progress bar.
     - Create your first program from **Programs** then **New Program**, or start freestyle from **Diary** and log sets ad hoc.
     - Optional: point the **Radio** player at your Subsonic or Navidrome server from **Settings** then **Radio**.
+
+=== "NoteTrace"
+
+    - Write a first note from **Capture a thought** at the top of **Notes**, or press **+** for a checklist, a voice note or a picture.
+    - Install the Android app and connect it to your server, or install the web app from your browser's menu. Both keep working with no connection.
+    - Optional: link your CookTrace shopping list from **Settings** then **CookTrace**. See [CookTrace shopping list](../notetrace/cooktrace.md).
+    - Setup asks whether to check for updates (NoteTrace 1.1.0 and later). Checks stay off unless you turn them on, so a fresh install contacts nothing on its own. When on, the web app asks your server, which asks GitHub; the Android app asks GitHub itself, and only once you said yes on that phone. Change it any time in **Settings** then **Updates**, or turn the server's checks off for good with `UPDATE_CHECK=off` (see [NoteTrace env vars](../notetrace/env-vars.md#container)).
 
 === "NutriTrace"
 
