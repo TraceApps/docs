@@ -2,6 +2,10 @@
 
 Docker Compose is the supported install path for CookTrace, LiftTrace, NoteTrace, and NutriTrace. One `docker-compose.yml`, one `.env`, `docker compose up -d`, done. All images are multi-arch (`linux/amd64` and `linux/arm64`) and published to **`ghcr.io/traceapps/<app>`** (primary) and **`traceapps/<app>`** on Docker Hub (mirror). The examples below use GHCR; swap in the Docker Hub short form (e.g. `traceapps/cooktrace:latest`) if that fits your environment better.
 
+## On Unraid
+
+All four apps are in Unraid's Community Applications. In the Apps tab, search for CookTrace, LiftTrace, NoteTrace or NutriTrace and install from there: the template sets the port, the appdata folders (`/mnt/user/appdata/<app>/db` and `/uploads`) and the settings. Fill in **JWT Secret** before the first start. **Insecure Cookies** starts at 1 so signing in works at the plain `http://` address the WebUI link opens; set it to 0 once the app sits behind HTTPS (see [Plain-HTTP LAN](lan-http.md)). The templates live in [TraceApps/unraid-templates](https://github.com/TraceApps/unraid-templates).
+
 ## Prerequisites
 
 - Docker Engine 24+ with the Compose plugin (`docker compose`, not the legacy `docker-compose`).
