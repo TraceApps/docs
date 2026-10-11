@@ -171,7 +171,7 @@ docker compose logs -f
 
 You should see the app announce its listen port, run migrations, then go quiet. Open the app in a browser at the host port from the table above. First screen is the setup wizard, covered in [First-run wizard](first-run.md).
 
-If the browser loads but login fails silently over plain HTTP, jump to [Plain-HTTP LAN (INSECURE_COOKIES)](lan-http.md). That's the single most common first-time issue.
+If signing in over plain HTTP sends you back to the sign-in page (NutriTrace 1.4.0 and later say **Signing in won't work on this address**), jump to [Plain-HTTP LAN (INSECURE_COOKIES)](lan-http.md). That's the single most common first-time issue.
 
 ## Related
 

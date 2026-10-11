@@ -54,7 +54,7 @@ When sync misbehaves, turn on verbose logs and reproduce.
 
 The client also exposes a `syncState` writable store (`{ syncing, phase, progress, lastSync, error, online }`) that a Diagnostics panel surfaces so you can watch a round in real time.
 
-If the log shows a 401 loop instead of a real sync failure, check [Troubleshooting](../reference/troubleshooting.md#login-401-loop) for the plain-HTTP cookie trap.
+If the log shows every request refused with 401 instead of a real sync failure, the app's sign-in is no longer valid: sign in again. The plain-HTTP cookie trap in [Troubleshooting](../reference/troubleshooting.md#login-401-loop) is a browser problem; the Android app signs in with a token, not the cookie.
 
 ## Related
 

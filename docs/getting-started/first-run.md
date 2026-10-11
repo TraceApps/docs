@@ -6,7 +6,7 @@ The first time you open the app in a browser after `docker compose up -d`, the s
 
 The wizard is short by design:
 
-1. Sanity-checks the environment. It confirms the database is writable, `JWT_SECRET` is set to something other than the dev default, and (if you left `INSECURE_COOKIES=0`) that the browser is reaching the app over HTTPS.
+1. Checks that signing in will stick. Opened at a plain `http://` address other than `localhost` with `INSECURE_COOKIES` off, the account step says **Signing in won't work on this address** and links to [Plain-HTTP LAN](lan-http.md) (NutriTrace 1.4.0 and later; CookTrace, LiftTrace and NoteTrace from their next release).
 2. Prompts for the first admin account (email, display name, password).
 3. Creates that user and marks them admin.
 4. Signs you in and drops you on the app's home screen.

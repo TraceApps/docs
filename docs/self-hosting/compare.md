@@ -13,7 +13,7 @@ CookTrace, LiftTrace, NoteTrace, and NutriTrace are siblings by design: same Nod
 | DB mount | `/data/db` | `/data/db` | `/data/db` | `/data/db` |
 | Uploads mount | `/data/uploads` | `/data/uploads` | `/data/uploads` | `/data/uploads` |
 | Extra mount | none | none | none | `/data/off-mirror` (optional) |
-| Auth cookie | `ct_token` | `lt_token` | `note_token` | `nutritrace_token` |
+| Auth cookie | `ct_token` | `lt_token` | `note_token` | `nt_token` |
 | Subpath env | `BASE_URL=/cooktrace` | `BASE_URL=/lifttrace` | `BASE_URL=/notetrace` | `BASE_URL=/nutritrace` |
 | Health endpoint | `GET /api/health` | `GET /api/health` | `GET /api/health` | `GET /api/health` |
 | Python bundled | yes (recipe-scrapers) | yes (better-sqlite3 build) | yes (better-sqlite3 build) | yes (better-sqlite3 build) |

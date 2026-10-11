@@ -1,6 +1,6 @@
 # HTTPS on the LAN
 
-The Trace apps default to secure cookies, and the Android release APK enforces the platform cleartext-traffic policy. Plain `http://192.168.x.y:3001` (or `:3002` / `:3003` / `:3004`) will silently fail: cookies get dropped, the WebView refuses to load, and login appears to "just not work". You have four supported ways to give a LAN-only install real HTTPS. Pick one.
+The Trace apps default to secure cookies, and the Android release APK enforces the platform cleartext-traffic policy. Plain `http://192.168.x.y:3001` (or `:3002` / `:3003` / `:3004`) will silently fail: browsers drop the sign-in cookie, so signing in loops back to the sign-in page, and the Android release app refuses to connect. You have four supported ways to give a LAN-only install real HTTPS. Pick one.
 
 If you genuinely need plain HTTP inside your LAN, see [LAN HTTP setup](../getting-started/lan-http.md) for the escape hatches (`INSECURE_COOKIES=1` and a debug-build APK). Everything below assumes you want proper HTTPS. A self-signed certificate is a supported way to get it, including on the Android release app: see Path 3.
 
@@ -43,13 +43,13 @@ For desktop PWA installs this path works the same way: import the CA once into F
 
 Only for plain `http://`. A self-signed cert needs no debug build any more: see Path 3. The debug APK permits cleartext traffic, so if your install is genuinely LAN-only and you accept the tradeoff, grabbing it from the GH Releases pre-release channel (`dev-latest`) lets you talk to `http://192.168.x.y:3001`, or whichever host port the app is on.
 
-Downsides: no Play-Store update path, and it is a debug build, so any additional security hardening the release variant enables is absent. Handy for testing, less good for daily driving. On the server side, remember to also set `INSECURE_COOKIES=1` if you go plain-HTTP, so the auth cookie is not dropped by the WebView.
+Downsides: no Play-Store update path, and it is a debug build, so any additional security hardening the release variant enables is absent. Handy for testing, less good for daily driving. The app signs in with a token, not the cookie, so it needs no `INSECURE_COOKIES`; set that only if browsers also open the app over plain HTTP (see [LAN HTTP setup](../getting-started/lan-http.md)).
 
 ## What actually breaks without HTTPS
 
 Two things, both silent-ish:
 
-1. **The auth cookie is `Secure` by default.** Browsers and WebViews drop it on `http://`. First request after login succeeds; every subsequent one is 401. Setting `INSECURE_COOKIES=1` removes the `Secure` attribute; do this only inside a trusted network.
+1. **The sign-in cookie is `Secure` by default.** Browsers drop it on any plain `http://` address other than `localhost`, so signing in loops back to the sign-in page. NutriTrace 1.4.0 and later say so on the sign-in and setup screens; CookTrace, LiftTrace and NoteTrace from their next release. Setting `INSECURE_COOKIES=1` removes the `Secure` attribute; do this only inside a trusted network. The Android app signs in with a token and isn't affected by it.
 2. **Android release APK cleartext policy.** The release variant ships `network_security_config.xml` with `cleartextTrafficPermitted="false"`, which the platform enforces over the manifest's `usesCleartextTraffic` attribute. Plain-HTTP requests just refuse. There is no in-app toggle to override this; you either need HTTPS on the server or the debug APK. Certificates are a different question: a self-signed one works on the release build once its CA is installed on the phone (Path 3).
 
 ## Related

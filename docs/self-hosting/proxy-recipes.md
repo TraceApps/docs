@@ -141,13 +141,13 @@ Mount the app at `/cooktrace` on an existing domain by setting `BASE_URL=/cooktr
 
 ## Verifying the proxy is doing its job
 
-After reload, curl the app through the proxy and check two things: the scheme in the response body reflects `https`, and cookies come back with the `Secure` attribute.
+After reload, check that the app answers through the proxy:
 
 ```bash
-curl -sSI https://cook.example.com/ | grep -i 'set-cookie\|content-type'
+curl -sS https://cook.example.com/api/auth/status
 ```
 
-If cookies come back without `Secure`, `X-Forwarded-Proto` is not reaching the app. If login appears to succeed but the next request 401s, the cookie is being set but not sent, usually because `INSECURE_COOKIES` is unset while the browser is talking plain HTTP.
+A JSON reply means the proxy reaches the app. Then open the `https://` address in a browser and sign in: if you're still signed in after a reload, the sign-in cookie works. The app marks that cookie `Secure` unless `INSECURE_COOKIES=1`, whatever the proxy sends it, so the browser keeps it only over HTTPS. Sent back to the sign-in page instead? See [If signing in doesn't stick](../getting-started/reverse-proxy.md#sign-in-doesnt-stick).
 
 ## Related
 
