@@ -6,13 +6,13 @@ The cause is cookies, not credentials.
 
 ## What you'll see
 
-- **NutriTrace 1.4.0 and later** say so before you even try. The sign-in and setup screens show **Signing in won't work on this address**, with a **How to fix it** link to this page, and the server log says it too, at most once an hour:
+- **NutriTrace 1.4.0 and NoteTrace 1.1.0 and later** say so before you even try. The sign-in and setup screens show **Signing in won't work on this address**, with a **How to fix it** link to this page, and the server log says it too, at most once an hour:
 
     ```text
     [WARN] Sign-in from a plain-HTTP page (http://192.168.1.20:3001). The sign-in cookie only works over HTTPS, so the browser drops it and the user lands back on the login page. Serve NutriTrace over HTTPS, or set INSECURE_COOKIES=1 on a trusted LAN. See https://traceapps.github.io/docs/getting-started/lan-http/
     ```
 
-- **CookTrace, LiftTrace and NoteTrace** do the same from their next release. Until then they send you back to the sign-in page with no explanation (LiftTrace can open the app first, with nothing in it, until you reload), and nothing in the server log says why.
+- **CookTrace and LiftTrace** do the same from their next release. Until then they send you back to the sign-in page with no explanation (LiftTrace can open the app first, with nothing in it, until you reload), and nothing in the server log says why.
 
 `http://localhost`, opened on the server itself, is the exception in Chrome and Firefox: they treat it as secure and keep the cookie, so signing in there works without any of this. Safari may not.
 

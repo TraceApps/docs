@@ -151,7 +151,7 @@ Enter the same URL in the app: in `OIDC_REDIRECT_URIS`, or in the provider's Red
 
 ## If signing in doesn't stick { #sign-in-doesnt-stick }
 
-Your password is accepted, then you're back on the sign-in page. NutriTrace 1.4.0 and later explain it on the sign-in screen: **Signing in won't work on this address** when the page is plain HTTP, or **Your browser didn't keep you signed in** when it's HTTPS (CookTrace, LiftTrace and NoteTrace from their next release). Either way the browser threw away the sign-in cookie (`ct_token`, `lt_token`, `note_token` or `nt_token`). Check, in this order:
+Your password is accepted, then you're back on the sign-in page. NutriTrace 1.4.0 and NoteTrace 1.1.0 and later explain it on the sign-in screen: **Signing in won't work on this address** when the page is plain HTTP, or **Your browser didn't keep you signed in** when it's HTTPS (CookTrace and LiftTrace from their next release). Either way the browser threw away the sign-in cookie (`ct_token`, `lt_token`, `note_token` or `nt_token`). Check, in this order:
 
 1. **The address bar says `https://`.** At a plain `http://` address, the proxy's own HTTP port included, the browser drops the cookie because it is HTTPS-only. Open the `https://` address, or have the proxy redirect HTTP to HTTPS (Caddy does on its own). On a LAN without TLS, see [Plain-HTTP LAN](lan-http.md).
 2. **Cookies are allowed for the site.** Blocked cookies, a privacy extension or strict private-window settings drop it.

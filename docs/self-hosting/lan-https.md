@@ -49,7 +49,7 @@ Downsides: no Play-Store update path, and it is a debug build, so any additional
 
 Two things, both silent-ish:
 
-1. **The sign-in cookie is `Secure` by default.** Browsers drop it on any plain `http://` address other than `localhost`, so signing in loops back to the sign-in page. NutriTrace 1.4.0 and later say so on the sign-in and setup screens; CookTrace, LiftTrace and NoteTrace from their next release. Setting `INSECURE_COOKIES=1` removes the `Secure` attribute; do this only inside a trusted network. The Android app signs in with a token and isn't affected by it.
+1. **The sign-in cookie is `Secure` by default.** Browsers drop it on any plain `http://` address other than `localhost`, so signing in loops back to the sign-in page. NutriTrace 1.4.0 and NoteTrace 1.1.0 and later say so on the sign-in and setup screens; CookTrace and LiftTrace from their next release. Setting `INSECURE_COOKIES=1` removes the `Secure` attribute; do this only inside a trusted network. The Android app signs in with a token and isn't affected by it.
 2. **Android release APK cleartext policy.** The release variant ships `network_security_config.xml` with `cleartextTrafficPermitted="false"`, which the platform enforces over the manifest's `usesCleartextTraffic` attribute. Plain-HTTP requests just refuse. There is no in-app toggle to override this; you either need HTTPS on the server or the debug APK. Certificates are a different question: a self-signed one works on the release build once its CA is installed on the phone (Path 3).
 
 ## Related
