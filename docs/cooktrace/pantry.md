@@ -4,19 +4,22 @@ The Pantry is the catalog of ingredients you actually have on hand. Recipe ingre
 
 ## Layout
 
-Grid or List view, per-user preference. Cards show hero image, name (with brand suffix on variants), stock pill, category chip, and an "Expiring Soon" chip when the item is inside the digest window.
+Grid or List view, per-user preference. Cards show hero image, name (with brand suffix on variants), stock pill, category chip, an "Expiring Soon" chip when the item is inside the digest window, and how many recipes use the item. Tap that number to open the item's sheet on its **Used In** list.
 
 Tap any item to open the **slide-up details sheet**. It covers the lower half of the screen with:
 
 - Hero and brand.
 - Category.
 - Barcode (if scanned).
-- Stock pill (In Stock / Out / Low).
-- Serving size and on-hand quantity.
+- An **In Stock** switch. Flip it right there, no need to enter Edit: back in stock keeps the amount you have (or sets 1), out of stock sets 0. A generic item's stock is its variants', so it shows a summary instead.
+- On Hand with **-** and **+**, and the serving size. Reaching 0 marks the item out of stock; a blank amount stays blank (untracked) until you tap +.
 - Expiration date.
 - Nutrition table (respects your visible-nutriments picker under Settings > Nutrition).
+- **Used In**: every recipe that uses the item, with its photo. Tap one to open it; back returns to the Pantry with the sheet open where you left it. Long lists show six with a Show All. For a variant, the recipes that ask for its generic follow under "Also Through ..."; for a generic, the ones that ask for a particular variant follow under "Through Its Variants". Useful before renaming, merging or deleting an item.
 
 Hit **Edit** and the same sheet swaps its display rows for input fields. No separate editor screen, no route change. Save writes back and the sheet re-renders in display mode.
+
+A link to `#/pantry/<id>` (an old bookmark, or **Open in Pantry** from a shopping list item) opens the Pantry with that item's sheet up.
 
 ## Variants
 
