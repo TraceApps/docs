@@ -16,6 +16,16 @@ There is nothing to type on the watch, and no separate account. Signing out on t
 !!! warning "Both apps must be signed with the same key"
     If you build the apps yourself, sign the watch app with the same key as the phone app. Wear only carries data between apps that share a package name and a signing certificate, and when they differ, pairing silently does nothing.
 
+## Updates
+
+Installed from the Releases page, the watch app keeps itself on the same release as the phone. When the phone app updates, it tells the watch the next time it opens, and the watch downloads that release's watch app from GitHub.
+
+- **The first time,** opening NoteTrace on the watch shows Android's install screen, saying the watch isn't allowed to install apps from this source. Tap **Settings**, turn on **Install unknown apps** for NoteTrace, and go back: the update installs.
+- **After that,** updates install by themselves while the watch is on its charger, so an update never closes the app while you are using it.
+- **On a watch without that setting,** each update is offered when you open NoteTrace. Cancel it and it's offered again later in the day.
+
+Only the first install needs adb (step 1 above).
+
 ## What's on the watch
 
 **The list.** Pinned notes first, then the rest, newest first, each showing either how many items are left or the first lines of its text. The CookTrace shopping list sits near the top when CookTrace is linked, and a Reminders row appears above it when anything is scheduled.

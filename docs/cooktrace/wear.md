@@ -16,6 +16,16 @@ There is nothing to type on the watch, and no separate account. Signing out on t
 !!! warning "Both apps must be signed with the same key"
     If you build the apps yourself, sign the watch app with the same key as the phone app. Wear only carries data between apps that share a package name and a signing certificate, and when they differ, pairing silently does nothing.
 
+## Updates
+
+Installed from the Releases page, the watch app keeps itself on the same release as the phone. When the phone app updates, it tells the watch the next time it opens, and the watch downloads that release's watch app from GitHub.
+
+- **The first time,** opening CookTrace on the watch shows Android's install screen, saying the watch isn't allowed to install apps from this source. Tap **Settings**, turn on **Install unknown apps** for CookTrace, and go back: the update installs.
+- **After that,** updates install by themselves while the watch is on its charger, so an update never closes the app in the middle of cooking.
+- **On a watch without that setting,** each update is offered when you open CookTrace. Cancel it and it's offered again later in the day.
+
+Only the first install needs adb (step 1 above).
+
 ## What's on the watch
 
 **The shopping list.** Home, because it's the thing you use every week with a trolley in one hand. Grouped by aisle, in the order a shop is laid out. Tap an item to check it off.
