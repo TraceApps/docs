@@ -101,7 +101,7 @@ Top-level enable (`wellnessEnabled`), sync range, wellness-metrics selection, wo
 
 - **Fitbit** / **Google Health**: legacy Fitbit Web API plus successor Google Health API. Client ID / Secret pair per user. Sync mode / interval / window. See [Fitbit → Google Health migration](google-health.md).
 - **Withings**: same shape. See [Withings](withings.md).
-- **Garmin**: OAuth 1.0a, experimental (partnership-gated).
+- **Garmin**: OAuth 1.0a (partnership-gated).
 - **Health Connect** (Android-only, on-device permissions). See [Health Connect](health-connect.md).
 - **LiftTrace** (federation source; `lifttraceOverlapFill` toggle).
 

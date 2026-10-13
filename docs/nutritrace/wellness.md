@@ -60,7 +60,7 @@ Each provider has its own page for the developer-account setup and the OAuth det
 - [Withings](withings.md): free developer account, OAuth 2.
 - [Health Connect (Android)](health-connect.md): on-device permissions.
 
-Garmin uses OAuth 1.0a and requires a Health API partnership from Garmin (not a free developer program). If you have access, the callback is `/api/wellness/garmin/callback`. Marked Experimental in the UI.
+Garmin uses OAuth 1.0a and requires a Health API partnership from Garmin (not a free developer program). If you have access, the callback is `/api/wellness/garmin/callback`.
 
 ## USER_PREFS vs DEVICE_PREFS
 
