@@ -58,7 +58,7 @@ Ask Trace to look at a client and draft targets or a day plan ("draft a lighter 
 
 Goals has a **Coach** tab when you have a coach or a request.
 
-- **Requests.** "Sam wants to be your coach" says what the coach would see: your diary, targets, weight and your foods, meals and recipes. Accept or decline. Accepting is your consent; until then the coach sees nothing.
+- **Requests.** "Sam wants to be your coach" says what the coach would see: your diary, targets, weight and your foods, meals and recipes. It also says that if the coach asks their Trace about you, what Trace reads goes to the coach's AI provider. Accept or decline. Accepting is your consent; until then the coach sees nothing.
 - **Recommendations.** Each arrives as a card on the Coach tab and in the conversation; targets also show on Goals (and once on the Diary), and a day plan on its Diary day. Accept or decline, with a note if you like.
     - **Targets.** The card shows each target now, recommended and the change. Accepting first saves your targets as a template ("Before coach change" and the date), then changes only the recommended ones. **Undo** puts them back. With Dynamic or Adaptive calorie goals, the card says Accept switches you to Fixed.
     - **Day plans.** After Accept, **Log This** logs a meal and **Log All** the rest; tapping an item opens the usual add sheet with the plan's amount. Logged items are ordinary diary items. A food you don't have is copied into your foods when you log it. Deleting an item from the Diary brings Log This back for it. A plan you didn't answer shows Expired after its day.
@@ -74,14 +74,14 @@ The conversation checks for new messages when you open it and every 10 seconds w
 
 ## Notifications
 
-Under **Settings → Notifications → Coaching** (shown only to people in coaching), all on by default:
+Under **Settings → Notifications → Coaching** (shown only to people in coaching):
 
-- **New Message**: a message from your coach or client.
-- **New Recommendation**: a recommendation or a coaching request.
-- **Client's Answer** (coaches): a client accepted or declined.
+- **New Message** (on by default): a message from your coach or client.
+- **New Recommendation** (on by default): a recommendation or a coaching request.
+- **Client's Answer** (coaches, on by default): a client accepted or declined, with what it was (targets, the plan's date, or the meal's name).
 - **Email Me Too** (off by default): also email new messages, at most one per conversation every 30 minutes.
 
-They go through your ntfy, Gotify or Apprise, and say who wrote, never what.
+They go through your ntfy, Gotify or Apprise. A message notification says who wrote, never what.
 
 ## Privacy
 

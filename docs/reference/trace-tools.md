@@ -122,7 +122,7 @@ Sixteen tools covering diary reads, wellness reads, and structured writes. The `
 
 ### NutriTrace coaching
 
-Offered only to people in coaching (a coach with clients, a client with a coach). None reads the conversation between a coach and a client, and none sends a recommendation: the `draft_*` tools prepare a draft the coach opens, reviews and sends. See [Coaching](../nutritrace/coaching.md).
+Offered only to people in coaching: the coach tools to anyone with the Coach role (or an admin who coaches), the client tool to anyone with a coach, a request or a past coach. None reads the conversation between a coach and a client, and none sends a recommendation: the `draft_*` tools prepare a draft the coach opens, reviews and sends. See [Coaching](../nutritrace/coaching.md).
 
 | Tool | Purpose | Args | Returns |
 |------|---------|------|---------|
