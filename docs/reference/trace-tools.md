@@ -120,6 +120,19 @@ Sixteen tools covering diary reads, wellness reads, and structured writes. The `
 | `propose_food` | Photo-based reusable food, user must confirm | `name*`, `nutrition*`, `brand`, `portion`, `unit`, `meal_hint`, `notes` | Review card shown; nothing saved yet |
 | `get_activity_log` | Manually-logged activities | `from*`, `to*` | Name, kcal, duration, distance, source per entry |
 
+### NutriTrace coaching
+
+Offered only to people in coaching (a coach with clients, a client with a coach). None reads the conversation between a coach and a client, and none sends a recommendation: the `draft_*` tools prepare a draft the coach opens, reviews and sends. See [Coaching](../nutritrace/coaching.md).
+
+| Tool | Purpose | Args | Returns |
+|------|---------|------|---------|
+| `get_coaching_clients` | A coach's active clients | none | Id, name, last logged day, last 7 days on target |
+| `get_client_summary` | One client's last 7 days, targets and context | `client_id*` | Days vs targets, targets, calorie mode, adaptive TDEE, weights, meal names |
+| `get_client_foods` | Search a client's (or the coach's own) foods and recipes | `client_id*`, `query`, `mine` | Id, kind, name, brand, portion, calories and macros |
+| `draft_targets` | Draft recommended targets (not sent) | `client_id*`, `calories`, `protein_g`, `carbs_g`, `fat_g`, `mode`, `note` | A draft card: Open in Targets |
+| `draft_day_plan` | Draft a day plan from catalog items (not sent) | `client_id*`, `date*`, `meals*`, `note` | A draft card with the day's totals: Open in Plans |
+| `get_coach_recommendations` | A client's recommendations, to explain them | `status` | Kind, status, note, contents (targets, plan meals and totals, meal or recipe) |
+
 ## Tool-use loop
 
 Every app caps the tool-call loop at **5 rounds** per user message. If Trace has not converged on a final text answer within 5 rounds it stops and returns whatever it has. This matches the loop cap set in `_callClaudeWithTools`, `_callOpenAIWithTools`, and `_callGeminiWithTools`.

@@ -230,6 +230,7 @@ nav:
       - Foods, meals & recipes: nutritrace/foods.md
       - Barcode & Scan Label: nutritrace/scan.md
       - Goals & Adaptive TDEE: nutritrace/goals.md
+      - Coaching: nutritrace/coaching.md
       - Wellness & wearables: nutritrace/wellness.md
       - Fitbit → Google Health migration: nutritrace/google-health.md
       - Withings: nutritrace/withings.md

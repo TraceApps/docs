@@ -38,6 +38,10 @@ Two tools deliberately don't write anything on their own. They surface a review 
 
 These two tools have the strictest system-prompt guardrails. The model is told: calling this tool means "the card was shown", **not** "the food was logged". After calling it, Trace should not claim to have logged anything until you confirm.
 
+### In coaching
+
+For a coach, Trace can look at a client and **draft** targets or a day plan; a card opens the draft in the Targets editor or the Plans builder, where the coach changes anything and sends it. For a client, Trace can explain a recommendation from their coach. Trace never sends a recommendation and never reads the conversation. See [Coaching](coaching.md).
+
 ## Sample prompts
 
 Trace responds well to natural phrasing. Some prompts that exercise the tool set:
