@@ -37,7 +37,7 @@ one.
 
 ## The coach's side
 
-In **Coaching**, open a member and then one of their sessions. Any exercise
+In **Coaching**, open a client and then one of their sessions. Any exercise
 they filmed carries a **Watch** chip. Opening it gives the coach the same
 player plus a note composer:
 
@@ -46,11 +46,11 @@ player plus a note composer:
 3. Write the note and save.
 
 The note is stored against the exercise the way coach notes always were, so
-it also appears in the member's normal feedback surfaces. What the clip adds
-is the timestamp: in the member's player the note carries a chip like
+it also appears in the client's normal feedback surfaces. What the clip adds
+is the timestamp: in the client's player the note carries a chip like
 `0:04`, and tapping it seeks the video straight there.
 
-The member can reply from the player without leaving it, and the coach sees
+The client can reply from the player without leaving it, and the coach sees
 that reply next time they open the clip. A coach cannot attach or delete
 clips, only watch and comment.
 
@@ -63,7 +63,7 @@ avatar or a shared exercise demo:
   the auth check so images can load without a header, which makes anything
   in it readable by anyone with the URL. Clips are read through
   `GET /api/set-media/:id/file`, which checks the row's owner.
-- Only **the owner and that owner's assigned trainer** can open one. An
+- Only **the owner and their coach, while coaching them** can open one. An
   instance admin is not an exception, matching progress photos.
 - Deleting a clip removes the row and the file. The coach's note survives,
   minus its pointer to the video.
@@ -95,6 +95,6 @@ along with your data if you delete your account or clear your data.
 
 ## Related
 
-- [Coaching](coaching.md) for the trainer and member roles this builds on.
+- [Coaching](coaching.md) for the coach and client relationship this builds on.
 - [Progress photos](progress.md), which established the private-media
   handling clips reuse.

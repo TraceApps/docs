@@ -69,7 +69,7 @@ Reorder templates within a program with the drag handle or arrow buttons (`PUT /
 
 ## Trainer-authored programs
 
-Trainers can build a program and assign it to specific members. The assigned member sees it in their Programs list alongside their own, and can activate it like any other. If the trainer edits the program, the change propagates on the member's next load.
+Trainers can build a program and assign it to their clients (people who accepted them as coach). The client sees it in their Programs list alongside their own, and can activate it like any other. If the trainer edits the program, the change propagates on the client's next load.
 
 Prescribing a single workout on a single day is different from assigning a whole program; see [Diary and set logging](diary.md#coach-prescriptions) for the day-of-the-week flow.
 

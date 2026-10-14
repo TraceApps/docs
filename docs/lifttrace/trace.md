@@ -20,7 +20,7 @@ LiftTrace registers 18 tools that Trace can call across a single conversation, s
 - `get_prs`: personal records with weight, reps, and estimated 1RM per exercise.
 - `get_body_stats`: body stats over time (weight, body_fat, any tracked measurement) with change summary.
 - `get_stats_overview`: snapshot for a range: workouts done, streaks, weekly volume and frequency, muscle balance, top PRs.
-- `get_coach_prescription`: the coach-prescribed workout for a date if the user has a trainer.
+- `get_coach_prescription`: the coach-prescribed workout for a date if the user has a coach, with its answer (waiting, accepted). Trace doesn't load one the user hasn't accepted.
 
 **Write (7)**
 

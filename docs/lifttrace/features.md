@@ -88,7 +88,7 @@ The web app keeps working when the signal drops, in a browser tab or installed a
 
 - **Progress photos**: take one with no signal and it travels inside the entry, becoming an ordinary file on your server when the queue goes up. A photo too large to hold says so rather than being lost quietly.
 - **What works offline**: logging a session (sets, reps, weight, notes, adding or removing exercises), deleting a session, body stats, cardio (logging, editing, deleting), starting a program or moving its week, creating, editing and deleting your own exercises, your own profile with its picture, and settings. Reading works for anything this browser has already seen: the diary, your exercise catalogue, programs, templates, recent workouts, Statistics, Progress, coach notes and your profile.
-- **Coaching offline**: a coach can write a note on a member's session, and a member can reply to one and mark notes read. Prescribed work can be added, changed or removed. A note is pinned to the exercise it is about, so it stays on the right lift even if the member reorders the session before the note arrives.
+- **Coaching offline**: a coach can write a note on a client's session, and a client can reply to one and mark notes read. Prescribed work can be added, changed or removed, and a client can accept or decline it. The conversation is kept on the device: it opens with no connection, and a message written offline waits and is sent once. A note is pinned to the exercise it is about, so it stays on the right lift even if the client reorders the session before the note arrives.
 ### What does not work offline
 
 These need your server or the internet, and say so plainly rather than failing quietly:
@@ -98,7 +98,7 @@ These need your server or the internet, and say so plainly rather than failing q
 | Exercise media (a photo or GIF on a custom exercise) | The file has to reach your server |
 | Importing an exercise catalogue, syncing wger | It downloads from the internet |
 | Creating or editing a program or a workout template | Planning work, done against a server that can answer |
-| Adding or removing a member, assigning a program to one | These decide who can see whose data, so they are never done from a list pulled down hours ago |
+| Asking someone to be your client, answering a request, leaving or ending coaching, assigning a program to a client | These decide who can see whose data, so they are never done from a list pulled down hours ago |
 | Trace | It talks to an AI provider |
 | Workout import, backups, API tokens, webhooks | They move data in or out of your server |
 | Radio | It streams |

@@ -1,81 +1,97 @@
 # Coaching
 
-LiftTrace has a first-class coach and trainee relationship built into the multi-user model. A trainer sees their assigned members' workouts, prescribes sessions on specific dates or as an open backlog, and leaves feedback per exercise or per workout. Trainees pull prescriptions into their Diary, complete them, and reply to notes. Nothing in the coaching flow is a paid tier, and everything lives on your own server.
+A coach and a client on one LiftTrace server: the coach asks, the client accepts, and from then on the coach sees the client's workouts, prescribes sessions, leaves notes on workouts and exercises, and talks with them in one conversation. Either side can end it at any time. Nothing in coaching is a paid tier, and everything lives on your own server.
+
+Coaching needs accounts on a server. The Android app without a server says **Coaching Needs a Server** on the Coach and Coaching tabs, with a button to connect one.
 
 ## Roles
 
-Three roles, set by an admin in Settings > User Management:
+Three roles, set by an admin in Settings, Users:
 
-- **admin** everything: create users, assign roles, wire up OIDC, manage backups, and see every member and trainer.
-- **trainer** the coach role. Sees only members assigned to them, prescribes their workouts, and leaves feedback.
-- **member** the default. Sees their own diary, programs, and the Coaching tab if a trainer has been assigned.
+- **Admin**: manages accounts, roles and pairings. An admin can also coach, but sees a client's data only as that client's coach.
+- **Trainer**: the coach role. Can ask people to be their clients and coach the ones who accept.
+- **Member**: the default for everyone else. A member can be coached.
 
-One member can have exactly one primary trainer (the `trainer_id` foreign key). A trainer can have many members. If a member needs to switch coaches, an admin unassigns and reassigns from User Management. The first-created account on a fresh install is always `admin`.
+A client has one coach at a time; a coach can have many clients. The first account on a fresh install is always an admin.
 
-## Assigning a trainer to a member
+## Asking someone to be your client
 
-Consent is admin-managed. LiftTrace does not have a self-service "invite a client" or "request my coach" flow between users; the person with the admin badge decides who works with whom. Two paths:
+On **Programs**, **Coaching**, tap **Add**. Pick a person (the list shows names only) and add a note if you like, then **Send Request**. Nothing of theirs is shared until they accept. Your request shows under **Requests** as **Waiting for an Answer**; you can **Cancel Request** while it waits. A declined request, or a client who leaves, shows there for a week.
 
-1. **Direct assign.** Settings > User Management > pick a user > **Assign trainer** > choose from the trainer list. Instant. The member sees the Coaching tab appear on their next navigation.
-2. **Trainer-claim.** A trainer opens the Coaching tab and sees an **Unassigned members** list of every member with no trainer yet (`GET /api/trainer/unassigned-members`). Tap **Claim** and the trainer becomes that user's `trainer_id`. Refused if someone else has already claimed them; admins can reassign to break ties.
+A request also comes from:
 
-To invite a person who does not have an account yet, use the general **Invite User** flow (Settings > User Management > **Invite User**), which sends an email invite via SMTP or produces a shareable link. Once they accept and land as a `member`, use one of the two paths above to assign a trainer.
+- an admin choosing a trainer for a member in **Settings, Users** (the picker sends that trainer's request);
+- an invite, or an account an admin creates, as the inviting or creating admin's request.
 
-## The trainer view
+Asking never tells you whether someone already has a coach.
 
-Coaching tab, trainer side: a roster of assigned members with each member's latest workout, active program, and 7-day workout count. Tap a member to see their full workout history, body stats, PRs, and the Prescriptions and Feedback panels.
+## Answering a request
 
-- **Recent workouts** for the selected member. Each card carries an indicator when the trainer has already left feedback on it, and a second indicator when the member has replied.
-- **Feedback threads.** Open a completed workout and drop a note either at the workout level or on a specific exercise position within it. The position is by index (not by exercise ID), so if the same exercise appears twice in one workout each surface gets its own thread. Empty note deletes the thread. Notes are single-reply (bidirectional): the member sees the note, taps to acknowledge, and can post one reply.
-- **Prescriptions.** Send the member a workout to do. Two flavors:
-    - **Dated** the prescription shows in the member's Diary on that exact date.
-    - **Undated** the prescription sits in the member's Coaching inbox and can be pulled into any day.
+The person asked sees a dot on **Programs** and a **Coach** tab there, with a card: who wants to be their coach, what that coach will see (your workouts, the programs you follow and your set videos) and what they can do (assign programs, prescribe workouts, leave notes). **Accept** or **Decline**. To accept a second coach, leave the first one; the card says so.
 
-Prescriptions can be built from an existing template (`template_id`) or by hand-writing name plus exercises. See `POST /api/trainer/members/:id/prescriptions` for the shape.
+## Leaving, and ending coaching
 
-## The member view
+- The client leaves from their coach's name on the **Coach** tab: **Leave Coach**.
+- The coach ends it from the client's page in Coaching (**End Coaching**).
+- An admin ends any pairing by setting the member's trainer to **No trainer** in Settings, Users.
 
-Coaching tab, member side: prescriptions inbox (upcoming dated ones plus undated backlog), feedback inbox (unread first), and reply thread on each note. Dated prescriptions also appear inline in the Diary on their day, with the trainer's name on the card. See [Diary and set logging](diary.md#coach-prescriptions).
+When the client leaves or the coach ends it, the prescriptions and programs that coach gave the client are removed, as before. When an admin ends it, or a role change does, they stay. Either way the coach loses access at once. The conversation stays readable for the client, under **Past Coaching**.
 
-## Activity feed
+## The coach's side
 
-The trainer dashboard carries a chronological **Activity** feed of what has happened across all assigned members. Three kinds:
+**Programs**, **Coaching** lists your clients with their latest workout, active program, workouts this week and unread messages. Open a client for:
 
-- `prescription_completed` a member logged the workout you prescribed on the date it was due.
-- `prescription_missed` the date passed and the prescribed template was not logged. Fired by the 15-minute scheduler.
-- `feedback_reply` a member replied to one of your notes.
+- **Conversation**: see below.
+- **Programs**: assign one of your programs, make it their active one, or remove it.
+- **Prescribed Workouts**: what you prescribed, with the client's answer (**Waiting for an Answer**, **Accepted**, **Declined**) and whether it was completed or missed.
+- **Recent Workouts**: open a completed workout to read it and leave a note on the workout or on any exercise. Each note gets one reply from the client. Filmed sets carry a **Watch** chip ([Set videos](set-videos.md)).
 
-Rows are marked seen with `POST /api/trainer/activity/seen`; unread counts drive the Coaching tab badge.
+**Recent Activity** on the Coaching list shows your own clients' events: a prescribed workout completed or missed, and replies to your notes.
 
-## Dropping a member
+## The conversation
 
-A trainer can drop a member from the Coaching tab (`DELETE /api/trainer/members/:id`). That clears the trainer link, deletes prescriptions the trainer had sent to that member, and removes any program assignments the trainer created for them. The member keeps every workout they logged. To reassign, an admin picks it up from User Management.
+One conversation per coach and client, beside the notes on workouts and exercises (which stay where they are). The client finds it on the **Coach** tab, the coach on the client's page in Coaching.
 
-There is no "trainee revokes coach" endpoint. If a member wants a different coach or none, the admin handles it: unassign the trainer or reassign to a different one.
+- Text up to 4,000 characters and one photo per message. Photos are served only to the two of you (the coach only while coaching), and where a photo was taken is not sent.
+- Read receipts, an unread count on the Coach and Coaching tabs, and a dot on Programs.
+- Delete your own message; the other person sees "Message deleted".
+- It is kept on the device and opens with no connection. A message written offline shows as waiting and is sent once when the connection returns. While a conversation is on screen it checks for news every 10 seconds; nowhere else does.
+- Trace never reads it.
 
-## Notifications for coaches
+## Prescriptions
 
-Trainer-side notification toggles live in Settings > App > Notifications:
+A coach sends a workout to do, from one of their templates or written out, on a date or for any day. The client answers first:
 
-- **Member completes prescribed** push when someone logs a workout you prescribed on the correct day.
-- **Member missed a prescription** push when the scheduler marks a dated prescription as missed.
-- **Member replied to feedback** push when a note gets a reply.
+- On the Diary, a prescribed workout shows **Accept** and **Decline**: on its day in the banner, and under **Waiting for Your Answer** on any day.
+- Once accepted, **Load** puts it in the Diary as before. Undated accepted ones sit under **Suggested by Your Coach** on an empty day.
+- A declined one goes away; the coach sees the answer, and a declined workout is never reported as missed. If the coach gives it again, or changes which workout it is, it asks again.
+- Answering works offline and goes when the connection returns.
 
-Push delivery uses the same Gotify / ntfy / Apprise pipeline every other alert uses. See the Notifications section of [Settings reference](settings.md#notifications).
+Prescriptions made before this version count as accepted, so nothing already given asks again. An Android app from before it still shows **Load** without asking.
 
-## Assigning a program instead of a workout
+## Notifications
 
-If you want a member to follow a whole training block rather than one session at a time, build the program, then assign it: `POST /api/programs/:id/assign` (see [Programs and templates](programs.md#trainer-authored-programs)). The member sees the program in their Programs list and can activate it. Edits you make propagate on their next load.
+In Settings, Notifications, **Coaching** (shown to people in coaching, all on unless noted), through your Gotify, ntfy or Apprise:
 
-## Reviewing a filmed set
+- **New Message**, with **Email Me Too** (off by default; at most one email per conversation every 30 minutes, and it needs an email on your account and email set up on the server).
+- **New Recommendation**: a coach asks to coach you, or prescribes a workout.
+- **Client's Answer**: someone accepts or declines your request or a workout you prescribed, or leaves.
+- For coaches: **Client Completes Prescribed Workout**, **Client Missed a Prescription**, **Client Replied to Feedback**.
 
-A member can attach a short clip to a set, and a coach note can be stamped
-at a moment inside it, so tapping the timestamp seeks the video there. See
-[Set videos](set-videos.md).
+They say who, never what was written or the note.
+
+## Privacy
+
+- A coach reads a client's data only while the client has accepted them. Every coach request checks for that pairing, so another coach's client, a request still waiting and coaching that ended are refused alike, admins included.
+- The list for adding a client carries only names. A coach's activity feed shows only their own clients.
+
+## Upgrading
+
+Coaching set up before consent stays as it was: a member who already had a trainer keeps them, accepted, with nothing to answer, and their prescriptions, notes, replies and set-video notes all stay. Restoring a backup from before this version does the same.
 
 ## Related
 
 - [Programs and templates](programs.md)
-- [Multi-week progression](progression.md)
 - [Diary and set logging](diary.md)
+- [Set videos](set-videos.md)
 - [Settings reference](settings.md)

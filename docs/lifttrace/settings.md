@@ -98,7 +98,7 @@ Inline block near the top of Settings on the native app. Shows Connected, URL, L
 - **Device notifications** browser or OS notification permission.
 - **Push service** None, Gotify, ntfy, or Apprise; each brings provider-specific URL / token / topic / tag fields.
 - Per-alert toggles: **Workout reminder** (with time), **Rest-day reminder**, **Streak alert** (with time), **Workout complete**, **Personal records**, **Coach feedback**.
-- Trainer-only alerts: **Member completes prescribed**, **Member missed a prescription**, **Member replied to feedback**. See [Coaching](coaching.md#notifications-for-coaches).
+- **Coaching** (people in coaching only): **New Message** with **Email Me Too**, **New Recommendation**, **Client's Answer**, and for coaches **Client Completes Prescribed Workout**, **Client Missed a Prescription**, **Client Replied to Feedback**. See [Coaching](coaching.md#notifications).
 - **Weekly summary** with delivery day and time.
 - Android adds battery-optimization, low-battery, sound, and channel controls.
 
@@ -124,7 +124,7 @@ Only visible to `admin` in server mode.
 
 ### User management
 
-- **Users list** with role picker (`admin` / `trainer` / `member`), **Assign trainer**, **Reset user password**, **Delete user**.
+- **Users list** with role picker (Admin / Trainer / Member), a trainer picker for members (choosing a trainer sends that trainer's coaching request, shown as waiting until the member answers; **No trainer** ends their coaching), **Reset user password**, **Delete user**.
 - **Invite user** email (SMTP) or shareable link.
 - **Require strong passwords** enforces zxcvbn score >= 3.
 - **Session duration** hours; capped by `MAX_SESSION_HOURS`.
