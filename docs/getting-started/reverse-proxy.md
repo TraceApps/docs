@@ -160,6 +160,58 @@ Your password is accepted, then you're back on the sign-in page. NutriTrace 1.4.
 
 To see where it goes wrong, sign in with the browser's developer tools open on the Network tab. The sign-in response should set the cookie named above, with `HttpOnly`, `Secure` and `SameSite=Lax`, and the next request should send it back. Firefox's console names a cookie it rejected.
 
+## Public links behind a login { #public-links-behind-a-login }
+
+If your proxy asks for its own login in front of the app (basic auth, Authelia, an Authentik proxy outpost, Cloudflare Access), it stops everyone who opens a NoteTrace public link too. To let people without that login open them, leave these paths open and keep everything else behind the login:
+
+| Leave open | What it is |
+|---|---|
+| `/n/`, `/api/n/` | The link page and the note it shows (NoteTrace 1.1.0 and later) |
+| `/assets/`, `/fonts/`, `/icons/`, `/uploads/` | The page's own scripts, fonts and icons, and the pictures on the note |
+
+These paths only read. Leaving `/uploads/` open makes every uploaded file reachable by its address, not only the pictures on shared notes: the app names them so they can't be guessed, but anyone who has an address can open it without the proxy's login. `/manifest.webmanifest` may be left open too; without it a stranger's browser only logs an error.
+
+You open your own links with the proxy's login as usual (NoteTrace 1.1.2 and later; before that, its page says **Couldn't Load the Note** behind such a proxy).
+
+=== "nginx"
+
+    ```nginx
+    # Public links: no login.
+    location ~ ^/(n|api/n|assets|fonts|icons|uploads)/ {
+        proxy_pass http://notetrace:3004;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+    # Everything else: the proxy's login, plus the usual settings from above.
+    location / {
+        auth_basic "NoteTrace";
+        auth_basic_user_file /etc/nginx/htpasswd;
+        proxy_pass http://notetrace:3004;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+    ```
+
+    Behind a subpath (`BASE_URL=/notetrace`), the open location becomes `location ~ ^/notetrace/(n|api/n|assets|fonts|icons|uploads)/` with `proxy_pass http://notetrace:3004;` and no path after the port: nginx refuses one in a regex location, and the app expects the subpath kept.
+
+=== "Authelia"
+
+    Put the rule above every other rule that matches the host, wildcards like `*.example.com` included: the first rule that matches wins.
+
+    ```yaml
+    access_control:
+      rules:
+        - domain: 'notes.example.com'
+          policy: 'bypass'
+          resources:
+            - '^/(n|api/n|assets|fonts|icons|uploads)/.*$'
+    ```
+
 ## Deeper recipes
 
 Per-proxy walkthroughs, Cloudflare Tunnel setup, Tailscale Funnel, self-signed CA, and Android certificate trust all live in [Reverse-proxy recipes](../self-hosting/proxy-recipes.md). This page covers the essentials that apply everywhere; that page covers the specifics.
