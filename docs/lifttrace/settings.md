@@ -125,7 +125,7 @@ Only visible to `admin` in server mode.
 ### User management
 
 - **Users list** with role picker (Admin / Trainer / Member), a trainer picker for members (choosing a trainer sends that trainer's coaching request, shown as waiting until the member answers; **No trainer** ends their coaching), **Reset user password**, **Delete user**.
-- **Invite user** email (SMTP) or shareable link.
+- **Invite user** email (SMTP) or shareable link. For a member you can choose a **Coach**; the new account then gets that coach's request to accept or decline (the same choice is on **Add User Manually**).
 - **Require strong passwords** enforces zxcvbn score >= 3.
 - **Session duration** hours; capped by `MAX_SESSION_HOURS`.
 - **Disable user management** danger; drops the app back to zero-user mode.

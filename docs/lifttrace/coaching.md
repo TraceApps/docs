@@ -21,7 +21,9 @@ On **Programs**, **Coaching**, tap **Add**. Pick a person (the list shows names 
 A request also comes from:
 
 - an admin choosing a trainer for a member in **Settings, Users** (the picker sends that trainer's request);
-- an invite, or an account an admin creates, as the inviting or creating admin's request.
+- choosing a **Coach** when creating or inviting a member in **Settings, Users**: the request comes from that coach (an admin can choose themselves) and waits for the new account's first sign-in.
+
+An account created or invited with no coach chosen gets no request.
 
 Asking never tells you whether someone already has a coach.
 
