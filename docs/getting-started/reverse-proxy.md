@@ -172,7 +172,7 @@ If your proxy asks for its own login in front of the app (basic auth, Authelia, 
 
 The first two rows are the link page and the note or recipe it shows. The last row is the page's own scripts, fonts and icons, and the pictures on the note or recipe. These paths only read. Leaving `/uploads/` open makes every uploaded file reachable by its address, not only the pictures on shared notes: the app names them so they can't be guessed, but anyone who has an address can open it without the proxy's login. `/manifest.webmanifest` may be left open too; without it a stranger's browser only logs an error. Earlier CookTrace links look like `/#/r/...`, which a proxy can't tell apart from the rest of the app, so they need the app's page open as well.
 
-You open your own links with the proxy's login as usual (NoteTrace and CookTrace from their next release; until then, NoteTrace's page says **Couldn't Load the Note** behind such a proxy).
+You open your own links with the proxy's login as usual (NoteTrace 1.1.2 and later, CookTrace from its next release; before 1.1.2, NoteTrace's page says **Couldn't Load the Note** behind such a proxy).
 
 === "nginx"
 
