@@ -13,8 +13,8 @@ Every release lives on the app's GitHub Releases page. Pick the `.apk` asset tha
 
 Each app also publishes a rolling `dev-latest` pre-release built from the `dev` branch. It is signed with the same keystore as stable, so it upgrades in place. Grab it if you want the leading edge and can live with the occasional rough edge. Occasionally a specific feature milestone gets a numbered `v<version>-devNN` pre-release for testers who want to pin it. See [Release channels](../reference/release-channels.md) for the full model.
 
-!!! tip "Debug builds"
-    The signed release APK enforces HTTPS-only traffic (Android's cleartext-traffic ban). If your server is plain HTTP on the LAN and you cannot set up TLS, build the debug APK yourself with `npm run android:debug`. The debug APK allows `http://` origins. See [HTTPS on the LAN](../self-hosting/lan-https.md) for the four supported paths.
+!!! tip "Plain HTTP on your LAN"
+    NutriTrace's Android app, from 1.5.0, connects to a server on your own network over plain `http://` after a warning: see [LAN HTTP setup](../getting-started/lan-http.md#the-android-apps). The CookTrace, LiftTrace and NoteTrace APKs, `dev-latest` included, are signed release builds that need HTTPS: see [HTTPS on the LAN](../self-hosting/lan-https.md). Only a debug build you make yourself from the source allows plain HTTP for them: `npm run android:debug` in LiftTrace, `npm run android:apk:debug` in CookTrace and NoteTrace. See [Android debug builds](../contribute/dev-setup.md#android-debug-builds).
 
 ## Enable "Install unknown apps"
 

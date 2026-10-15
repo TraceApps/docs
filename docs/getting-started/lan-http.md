@@ -22,7 +22,7 @@ By default the app issues its sign-in cookie with the `Secure` attribute set, wh
 
 This is the browser doing exactly what it's supposed to. The default is `Secure` because that's the safe choice for anything reachable from outside a trusted network.
 
-The Android app signs in with a token, not this cookie, so `INSECURE_COOKIES` makes no difference to it. For the app over plain HTTP, see [HTTPS on the LAN](../self-hosting/lan-https.md#path-4-sideload-the-debug-apk).
+The Android apps sign in with a token, not this cookie, so `INSECURE_COOKIES` makes no difference to them. For the apps over plain HTTP, see [The Android apps](#the-android-apps).
 
 ## The escape hatch: `INSECURE_COOKIES=1`
 
@@ -68,6 +68,20 @@ Then `docker compose up -d` to recreate the container. `INSECURE_COOKIES=1` in `
 
 !!! danger "Only for trusted LAN, never for internet-exposed installs"
     `INSECURE_COOKIES=1` strips the single browser-side defense that keeps your session token off open WiFi. Use it only when the app is reachable exclusively from a network you control (your home LAN, a Tailscale mesh, a VPN). Never on anything that resolves from the public internet, even briefly. If you're behind a reverse proxy terminating TLS, leave it at `0`: the proxy presents HTTPS to the browser and the cookie works normally.
+
+## The Android apps
+
+**NutriTrace 1.5.0 and later** connect to a server on your own network over plain HTTP. Enter the `http://` address in the app, read **Connect Without Encryption?**, and choose **Connect Anyway**. The answer is kept for that server, and Settings, Server Connection shows **Not Encrypted** under the address. It works with:
+
+- a private IPv4 address: `10.x.x.x`, `172.16.x.x` to `172.31.x.x`, `192.168.x.x`;
+- a Tailscale address (`100.64.x.x` to `100.127.x.x`), loopback `127.x.x.x` or link-local `169.254.x.x`;
+- an IPv6 unique local (`fc00::/7`), link-local (`fe80::/10`) or `::1` address;
+- a one-word name, such as `http://nutritrace:3001`;
+- a name ending in `.local`, `.home.arpa`, `.internal` or `.lan`.
+
+Any other `http://` address, a public domain or IP, is refused before the app sends anything. A one-word name is looked up on your network first, but a few one-word names are also public top-level domains (`ai`, `io`, `dev` and others), and one of those may resolve to a public server: give the server a name that isn't one, or a name ending in `.lan` or `.home.arpa`. Anyone on the same network can read and change plain-HTTP traffic, including your password, so use it only on your home network or over a VPN (Tailscale and WireGuard already encrypt the tunnel).
+
+**CookTrace, LiftTrace and NoteTrace** still need HTTPS on Android: see [HTTPS on the LAN](../self-hosting/lan-https.md). Their APKs on GitHub Releases, `dev-latest` included, are signed release builds that refuse plain HTTP.
 
 ## The proper fix
 

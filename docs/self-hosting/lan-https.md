@@ -1,8 +1,8 @@
 # HTTPS on the LAN
 
-The Trace apps default to secure cookies, and the Android release APK enforces the platform cleartext-traffic policy. Plain `http://192.168.x.y:3001` (or `:3002` / `:3003` / `:3004`) will silently fail: browsers drop the sign-in cookie, so signing in loops back to the sign-in page, and the Android release app refuses to connect. You have four supported ways to give a LAN-only install real HTTPS. Pick one.
+The Trace apps default to secure cookies, and the Android release APK enforces the platform cleartext-traffic policy. Plain `http://192.168.x.y:3001` (or `:3002` / `:3003` / `:3004`) will silently fail: browsers drop the sign-in cookie, so signing in loops back to the sign-in page, and the Android release apps refuse to connect. The exception is NutriTrace's Android app from 1.5.0: it connects to a server on your own network over plain HTTP after a warning (see [Path 4](#path-4-plain-http-on-your-own-network-nutritrace)). For HTTPS, you have three supported ways to give a LAN-only install a certificate. Pick one.
 
-If you genuinely need plain HTTP inside your LAN, see [LAN HTTP setup](../getting-started/lan-http.md) for the escape hatches (`INSECURE_COOKIES=1` and a debug-build APK). Everything below assumes you want proper HTTPS. A self-signed certificate is a supported way to get it, including on the Android release app: see Path 3.
+If you genuinely need plain HTTP inside your LAN, see [LAN HTTP setup](../getting-started/lan-http.md) for the escape hatches (`INSECURE_COOKIES=1` for browsers, and NutriTrace's Android app on your own network). Everything below assumes you want proper HTTPS. A self-signed certificate is a supported way to get it, including on the Android release app: see Path 3.
 
 ## Path 1: real domain + Let's Encrypt
 
@@ -39,18 +39,18 @@ Every client that talks to the server has to trust your CA. On desktops that is 
 
 For desktop PWA installs this path works the same way: import the CA once into Firefox, Chrome or the OS keychain and everything after is transparent.
 
-## Path 4: sideload the debug APK
+## Path 4: plain HTTP on your own network (NutriTrace)
 
-Only for plain `http://`. A self-signed cert needs no debug build any more: see Path 3. The debug APK permits cleartext traffic, so if your install is genuinely LAN-only and you accept the tradeoff, grabbing it from the GH Releases pre-release channel (`dev-latest`) lets you talk to `http://192.168.x.y:3001`, or whichever host port the app is on.
+NutriTrace's Android app, from 1.5.0, connects over plain `http://` to a server on your own network: a private address such as `http://192.168.1.20:3001`, a Tailscale `100.x` address, or a local name such as `http://nutritrace:3001` or `http://nutritrace.local:3001`. Before the first connection it asks **Connect Without Encryption?**: the connection isn't encrypted, and anyone on the same network can read and change what's sent, including your password. Choose **Connect Anyway** only on your home network or over a VPN. The answer is kept for that server, and Settings, Server Connection shows **Not Encrypted**. A plain-HTTP address on the public internet is refused before anything is sent. Details in [LAN HTTP setup](../getting-started/lan-http.md#the-android-apps).
 
-Downsides: no Play-Store update path, and it is a debug build, so any additional security hardening the release variant enables is absent. Handy for testing, less good for daily driving. The app signs in with a token, not the cookie, so it needs no `INSECURE_COOKIES`; set that only if browsers also open the app over plain HTTP (see [LAN HTTP setup](../getting-started/lan-http.md)).
+CookTrace, LiftTrace and NoteTrace still need HTTPS on Android. Every APK on GitHub Releases, the `dev-latest` pre-release included, is a signed release build, so none of them talks plain HTTP. Only a debug build you make yourself from the source does.
 
 ## What actually breaks without HTTPS
 
 Two things, both silent-ish:
 
 1. **The sign-in cookie is `Secure` by default.** Browsers drop it on any plain `http://` address other than `localhost`, so signing in loops back to the sign-in page. NutriTrace 1.4.0 and NoteTrace 1.1.0 and later say so on the sign-in and setup screens; CookTrace and LiftTrace from their next release. Setting `INSECURE_COOKIES=1` removes the `Secure` attribute; do this only inside a trusted network. The Android app signs in with a token and isn't affected by it.
-2. **Android release APK cleartext policy.** The release variant ships `network_security_config.xml` with `cleartextTrafficPermitted="false"`, which the platform enforces over the manifest's `usesCleartextTraffic` attribute. Plain-HTTP requests just refuse. There is no in-app toggle to override this; you either need HTTPS on the server or the debug APK. Certificates are a different question: a self-signed one works on the release build once its CA is installed on the phone (Path 3).
+2. **Android release APK cleartext policy.** The CookTrace, LiftTrace and NoteTrace release APKs ship `network_security_config.xml` with `cleartextTrafficPermitted="false"`, which the platform enforces over the manifest's `usesCleartextTraffic` attribute. Plain-HTTP requests just refuse, with no in-app way around it, so they need HTTPS. NutriTrace's app from 1.5.0 allows cleartext at the platform level and checks each address itself: plain HTTP only to a server on your own network, after the warning (Path 4). Certificates are a different question: a self-signed one works on every release build once its CA is installed on the phone (Path 3).
 
 ## Related
 

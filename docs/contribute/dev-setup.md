@@ -102,7 +102,16 @@ Open the backend port from the table above (`http://localhost:3001` for NutriTra
 
 ## Android debug builds
 
-Every app has an `android:debug` (LiftTrace) or `android:apk:debug` (CookTrace, NutriTrace) script that produces an unsigned APK at `android/app/build/outputs/apk/debug/app-debug.apk`.
+Each app builds a debug APK at `android/app/build/outputs/apk/debug/app-debug.apk`:
+
+| App | Command |
+|---|---|
+| CookTrace | `npm run android:apk:debug` |
+| LiftTrace | `npm run android:debug` |
+| NoteTrace | `npm run android:apk:debug` |
+| NutriTrace | `npm run android:build`, then `cd android && ./gradlew assembleDebug` |
+
+The debug APK is signed with the shared release keystore when `android/keystore.properties` is present (so it upgrades a release install in place), and with Android's own debug key otherwise.
 
 Wireless ADB is the smoothest handset workflow. Enable **Developer options > Wireless debugging** on the phone, pair it once (the rotating port shows in the phone's Wireless debugging panel), then:
 
@@ -111,7 +120,7 @@ adb connect <phone-lan-ip>:<port>
 adb -s <phone-lan-ip>:<port> install -r android/app/build/outputs/apk/debug/app-debug.apk
 ```
 
-Debug builds are exempt from Android's cleartext-traffic ban, so they can talk to a plain `http://` server on your LAN. Release builds cannot; see [HTTPS on the LAN](../self-hosting/lan-https.md) for the fix.
+Debug builds are exempt from Android's cleartext-traffic ban, so they can talk to a plain `http://` server on your LAN. CookTrace, LiftTrace and NoteTrace release builds cannot; see [HTTPS on the LAN](../self-hosting/lan-https.md). NutriTrace, from 1.5.0, applies the same rule in its debug and release builds: plain HTTP only to a server on your own network, after a warning ([LAN HTTP setup](../getting-started/lan-http.md#the-android-apps)).
 
 ## Commit and PR conventions
 
