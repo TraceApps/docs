@@ -251,5 +251,5 @@ nav:
       - Docker image tag matrix: reference/image-tags.md
       - Changelogs: reference/changelogs.md
       - Contribute:
-          - Dev setup (all three): contribute/dev-setup.md
+          - Dev setup: contribute/dev-setup.md
           - Translations (i18n): contribute/translations.md

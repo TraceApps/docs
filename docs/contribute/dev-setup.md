@@ -1,10 +1,10 @@
-# Dev setup (all three)
+# Dev setup
 
-The three apps share a stack, so this page covers all of them. Where the setup diverges (backend port, native scraper, DuckDB), it is called out per app.
+The four apps share a stack, so this page covers all of them. Where the setup diverges (backend port, native scraper, DuckDB, ffmpeg), it is called out per app.
 
 ## Prerequisites
 
-- **Node 20** (the Docker base image is `node:20-alpine` for CookTrace and LiftTrace, `node:20-slim` for NutriTrace). Older Node majors will occasionally build but are not tested. nvm is the easy path:
+- **Node 20** (the Docker base image is `node:20-alpine` for CookTrace, LiftTrace and NoteTrace, `node:20-slim` for NutriTrace). Older Node majors will occasionally build but are not tested. nvm is the easy path:
 
     ```bash
     nvm install 20
@@ -12,7 +12,7 @@ The three apps share a stack, so this page covers all of them. Where the setup d
     ```
 
 - **Git**, plus a GitHub account if you plan to open a PR.
-- **Python 3** on your host if you want CookTrace's recipe-scrapers tier to run outside Docker. Not required for LiftTrace or NutriTrace.
+- **Python 3** on your host if you want CookTrace's recipe-scrapers tier to run outside Docker. Not required for the other apps.
 - **JDK 17 + Android Studio** only if you plan to build the Android app. Not needed for backend or PWA work.
 
 ## Clone the app you want to work on
@@ -39,6 +39,16 @@ Each app lives in its own repo under [TraceApps on GitHub](https://github.com/Tr
     cd server && npm install && cd ..
     ```
 
+=== "NoteTrace"
+
+    ```bash
+    git clone https://github.com/TraceApps/notetrace
+    cd notetrace
+    git checkout dev
+    npm install
+    cd server && npm install && cd ..
+    ```
+
 === "NutriTrace"
 
     ```bash
@@ -55,17 +65,18 @@ Each app lives in its own repo under [TraceApps on GitHub](https://github.com/Tr
 |-----|-----------------|-----------------|
 | CookTrace  | `:5175` | `:3003` |
 | LiftTrace  | `:5173` | `:3002` |
+| NoteTrace  | `:5173` | `:3004` |
 | NutriTrace | `:5173` | `:3001` |
 
 Vite falls forward if a port is already taken (`:5174`, `:5175`), so if you run two apps side by side, check the terminal for the real URL.
 
 ## Two dev flows
 
-Both flows work for all three apps. Pick based on what you are changing.
+Both flows work for all four apps. Pick based on what you are changing.
 
 ### Path A: Vite dev server with API proxy
 
-Fast HMR, but the frontend runs on a separate origin (`:5173` or `:5175`) from the backend (`:3001`, `:3002` or `:3003`). Vite proxies `/api` and `/uploads` through to the backend. Handy for iterating on markup and Svelte components.
+Fast HMR, but the frontend runs on a separate origin (`:5173` or `:5175`) from the backend (`:3001`, `:3002`, `:3003` or `:3004`). Vite proxies `/api` and `/uploads` through to the backend. Handy for iterating on markup and Svelte components.
 
 ```bash
 # terminal 1: backend
@@ -87,7 +98,7 @@ rm -rf server/dist && cp -r dist server/dist
 cd server && node index.js
 ```
 
-Open the backend port from the table above (`http://localhost:3001` for NutriTrace, `:3002` for LiftTrace, `:3003` for CookTrace). Re-run all three lines after any frontend change; the server templates `dist/index.html` at startup, so a rebuild needs a server restart to be picked up. Backend-only changes just need the server restarted.
+Open the backend port from the table above (`http://localhost:3001` for NutriTrace, `:3002` for LiftTrace, `:3003` for CookTrace, `:3004` for NoteTrace). Re-run all three lines after any frontend change; the server templates `dist/index.html` at startup, so a rebuild needs a server restart to be picked up. Backend-only changes just need the server restarted.
 
 !!! tip "Blank page in Path A"
     A stale PWA service worker will keep serving the previous shell even though your new build is on disk. Open DevTools, unregister the service worker, clear site data, hard-reload. If that does not fix it, switch to Path B; single-origin sidesteps the whole class of problem.
@@ -97,6 +108,8 @@ Open the backend port from the table above (`http://localhost:3001` for NutriTra
 **CookTrace** has a Python tier for recipe scraping (`recipe-scrapers`, 300+ site-specific extractors). The Docker image bakes `python3` and the library in. Locally, set `PYTHON_BIN=python3` (or the full path to a venv) and install the library yourself: `pip install recipe-scrapers`. Without it, imports fall back to schema.org JSON-LD only.
 
 **LiftTrace** builds pre-rendered rest-cue audio tones on first Android build via `npm run build:rest-tones`. It runs automatically as part of `npm run android`, `android:run`, and `android:debug`. If you only run `vite build`, the tones will be missing from the APK; use one of the `android:*` scripts instead.
+
+**NoteTrace** uses ffmpeg to convert voice recordings imported from Google Keep (3GP/AMR) and to split long recordings for transcription. The Docker image builds a small audio-only ffmpeg in. Locally, install ffmpeg (with ffprobe) or point `FFMPEG_PATH` and `FFPROBE_PATH` at them. Without it, those two features are unavailable and everything else works.
 
 **NutriTrace** uses `node:20-slim` (Debian) rather than Alpine because DuckDB (the Open Food Facts / OFF local mirror) needs glibc. Local dev on Alpine or musl-libc distros will hit `Error loading shared library ld-linux-x86-64.so.2` when the OFF mirror layer tries to load. On glibc-based Linux, macOS, and Windows this is a non-issue.
 
