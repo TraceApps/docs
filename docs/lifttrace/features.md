@@ -8,7 +8,7 @@ A tour through the four flows you will use most. Nothing here requires config be
 
 Open **Diary**. The date bar defaults to today; arrow keys or the calendar icon jump you around. On an empty day you see a row of quick-load cards for recent workouts, one tap to prefill.
 
-Add an exercise from the **+ Exercise** picker at the bottom. Search matches names, aliases (`BB`, `DB`, `BP`, `OHP`, `DL`, `SQ`, `RDL`), and equipment tags. Tap the exercise and it lands in the diary with one blank set row waiting for weight and reps.
+Add an exercise from the **+ Exercise** picker at the bottom. Search matches names, aliases (`BB`, `DB`, `BP`, `OHP`, `DL`, `SQ`, `RDL`), and equipment tags. Tap the exercise and it appears in the diary with one blank set row waiting for weight and reps.
 
 Every set row has:
 
@@ -76,11 +76,44 @@ See [Radio player](radio.md).
 The floating Trace assistant is docked bottom-right on every page. Two things it does that a generic chat window does not:
 
 1. **Live workout context.** Every message carries your active program, the last 14 workouts (warm-ups filtered), your top PRs, a 30-day body-weight trend, streaks, and today's coach prescription if there is one. Ask "how was my push day last Thursday" and Trace already knows.
-2. **Hold-to-log.** Press and hold the FAB for 700 ms. It turns red, the face swaps to a mic, and voice recording starts. Speak the workout in plain English (`bench 3 sets of 5 at 225, then 3 sets of curls`), release the FAB, and the parsed sets land in the Smart Add review sheet. Slide off more than 100 px to cancel mid-record.
+2. **Hold-to-log.** Press and hold the FAB for 700 ms. It turns red, the face swaps to a mic, and voice recording starts. Speak the workout in plain English (`bench 3 sets of 5 at 225, then 3 sets of curls`), release the FAB, and the parsed sets open in the Smart Add review sheet. Slide off more than 100 px to cancel mid-record.
 
-Provider is your call: Claude, OpenAI, Gemini, or any OpenAI-compatible endpoint including a local Ollama or LM Studio. Set once server-side to lock the config for every user, or let each user bring their own key from Settings > Trace.
+Provider is your call: Claude, OpenAI, Gemini, or any OpenAI-compatible endpoint including a local Ollama or LM Studio. Set once server-side to lock the config for every user, or let each user bring their own key from Settings > AI Assistant.
 
 See [Trace in LiftTrace](trace.md).
+
+## Train without a connection {#offline}
+
+The web app keeps working when the signal drops, in a browser tab or installed as an app, and comes back up offline after a reload. Gyms in basements are the reason this exists.
+
+- **Progress photos**: take one with no signal and it travels inside the entry, becoming an ordinary file on your server when the queue goes up. A photo too large to hold says so rather than being lost quietly.
+- **What works offline**: logging a session (sets, reps, weight, notes, adding or removing exercises), deleting a session, body stats, cardio (logging, editing, deleting), starting a program or moving its week, creating, editing and deleting your own exercises, your own profile with its picture, and settings. Reading works for anything this browser has already seen: the diary, your exercise catalogue, programs, templates, recent workouts, Statistics, Progress, coach notes and your profile.
+- **Coaching offline**: a coach can write a note on a client's session, and a client can reply to one and mark notes read. Prescribed work can be added, changed or removed, and a client can accept or decline it. The conversation is kept on the device: it opens with no connection, and a message written offline waits and is sent once. A note is pinned to the exercise it is about, so it stays on the right lift even if the client reorders the session before the note arrives.
+### What does not work offline
+
+These need your server or the internet, and say so plainly rather than failing quietly:
+
+| Not available offline | Why |
+| --- | --- |
+| Exercise media (a photo or GIF on a custom exercise) | The file has to reach your server |
+| Importing an exercise catalogue, syncing wger | It downloads from the internet |
+| Creating or editing a program or a workout template | Planning work, done against a server that can answer |
+| Asking someone to be your client, answering a request, leaving or ending coaching, assigning a program to a client | These decide who can see whose data, so they are never done from a list pulled down hours ago |
+| Trace | It talks to an AI provider |
+| Workout import, backups, API tokens, webhooks | They move data in or out of your server |
+| Radio | It streams |
+| Admin: users, invites, server settings, updates | They change your server |
+| Signing in, or signing up a new account | The sign-in screen needs your server |
+
+Anything this browser has never seen is not there offline either: a day you have not opened, a program you have not looked at, an exercise picture you have not been shown. Settings, Exercise Catalog has a **Pre-cache media for offline** button if you want the pictures in advance.
+
+The menu button shows an amber cloud while anything is waiting, and red if your server refuses it. What you change is kept in the browser, so it survives closing the tab, and it goes up on its own when the connection returns, replayed against the same routes the Android app replays its own queue against: a session changed in two places merges set by set rather than one copy overwriting the other. Two tabs cannot send it twice. Nothing is sent while you are offline, and the queue is cleared only once your server has confirmed it. If your server refuses one of your changes when it finally reaches it, that one change is set aside and named in plain words ("Your server would not accept the run you logged: ..."), everything else queued behind it still goes up, and the reason is written to **Settings, Diagnostics** so you can find it later. A server that is merely struggling is retried instead.
+
+Signing out sends what is waiting first. If it cannot (you are signing out in a dead zone), it asks before discarding it.
+
+Exercise pictures and animations are kept as you see them, and so are pictures and videos uploaded to your own exercises, under a `BASE_URL` subpath too. **Pre-cache media for offline** fetches the lot in advance, for a gym with no signal at all. It fetches with your browser's sign-in, so behind a proxy that asks for its own login (basic auth, Authelia) it keeps the real pictures, not the proxy's sign-in page.
+
+This is not built on Background Sync, which Safari does not have, so an iPhone behaves the same as everything else. The Android app has its own offline story: connected to a server, it keeps a copy on the phone and sends what you change offline when the connection returns (see [How sync works](../mobile/sync.md)); in local mode it never needs a connection.
 
 ## Related
 

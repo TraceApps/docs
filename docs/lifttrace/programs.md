@@ -16,7 +16,7 @@ On first boot the app seeds a set of templates and programs so the Programs page
 - **Monumental Valley** (branded program)
 - **Shredville** (branded program)
 
-Seeds live in `server/seed-templates.js` and `server/seed-programs.json`. Delete or edit any of them freely; they are seeds, not lock-ins.
+Seeds live in `server/seed-templates.js` and `server/seed-programs.json`. The starter programs are shared by every account and read-only: open one and choose **Duplicate** from its menu to get a copy of your own to change.
 
 ## The active program
 
@@ -65,13 +65,21 @@ For each template:
 3. Mark warm-up sets, RPE targets, or unilateral splits per set row.
 4. Group into supersets by assigning the same superset ID to paired rows.
 
-Reorder templates within a program with the drag handle or arrow buttons (`PUT /api/programs/:id/reorder`). Duplicate a template from its menu when you want a variant. Assign a program to another user (trainer-only) via `POST /api/programs/:id/assign` (see [Coach and trainee model](coaching.md)).
+Reorder templates within a program with the drag handle or arrow buttons (`PUT /api/programs/:id/reorder`). Duplicate a template from its menu when you want a variant. Assign a program to another user (trainer-only) via `POST /api/programs/:id/assign` (see [Coaching](coaching.md)).
 
 ## Trainer-authored programs
 
-Trainers can build a program and assign it to specific members. The assigned member sees it in their Programs list alongside their own, and can activate it like any other. If the trainer edits the program, the change propagates on the member's next load.
+Trainers can build a program and assign it to their clients (people who accepted them as coach). The client sees it in their Programs list alongside their own, and can activate it like any other. It opens read-only for the client: its workouts can be followed but not changed. Only the coach changes it, and the change reaches the client on their next load.
 
 Prescribing a single workout on a single day is different from assigning a whole program; see [Diary and set logging](diary.md#coach-prescriptions) for the day-of-the-week flow.
+
+## Who can change a program
+
+Only the account that made a program can rename it, change its duration, edit its workouts or delete it (**Rename**, **Duration & progression**, **Delete Program** in its menu). Anyone who can see a program can **Duplicate** it. You see your own programs, the starter programs, and programs a coach assigned to you; nobody else's. On a server without user accounts, every program you made offers Rename, Duration and Delete, and only the starter programs stay read-only.
+
+## On a wide screen
+
+On a desktop, a tablet or an opened foldable, Programs splits into the list and a preview pane. The preview has the same actions as the program's own page, and tapping a workout in it opens that workout directly.
 
 ## Import / export
 
@@ -81,4 +89,4 @@ Program export and import are not on the current release. If you want to publish
 
 - [Diary and set logging](diary.md)
 - [Exercise library](exercises.md)
-- [Coach and trainee model](coaching.md)
+- [Coaching](coaching.md)

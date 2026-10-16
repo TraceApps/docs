@@ -21,7 +21,7 @@ Any variable in the tables below can also be provided via Docker secrets by suff
 |---|---|---|---|---|---|
 | `PORT` | `3003` (CT), `3002` (LT), `3001` (NT) | Container listen port, the same as each app's sample host port. Change if you remap. | Y | Y | Y |
 | `BASE_URL` | (empty) | Subpath mount, e.g. `/cooktrace`. Must start with `/`, no trailing slash. Emitted to the browser as `window.__<APP>_CONFIG__.basePath`. | Y | Y | Y |
-| `PUBLIC_URL` | (empty) | NutriTrace 1.4.0 and later (and NoteTrace 1.1.0, see its [env vars](../notetrace/env-vars.md)): the full address people open the app at, subpath included (e.g. `https://nutrition.example.com`). Links in emails (password reset, invites, sharing) use it. Unset, they use an address an admin has opened the app at. CookTrace reads it only for the links in its weekly summary email; LiftTrace doesn't read it. See [Links in emails](../integrations/smtp.md#links-in-emails). | Y |  | Y |
+| `PUBLIC_URL` | (empty) | NutriTrace 1.4.0 and LiftTrace 1.4.0 and later (and NoteTrace 1.1.0, see its [env vars](../notetrace/env-vars.md)): the full address people open the app at, subpath included (e.g. `https://nutrition.example.com`). Links in emails (password reset, invites, sharing; in LiftTrace also coaching and the weekly summary) use it. Unset, they use an address an admin has opened the app at. CookTrace reads it only for the links in its weekly summary email. See [Links in emails](../integrations/smtp.md#links-in-emails). | Y | Y | Y |
 | `LOG_LEVEL` | `info` | `error`, `warn`, `info`, `debug`. | Y | Y | Y |
 | `NODE_ENV` | (empty) | Set to `production` in real deployments. Refuses to boot without `JWT_SECRET`. | Y | Y | Y |
 
@@ -40,7 +40,7 @@ Any variable in the tables below can also be provided via Docker secrets by suff
 | `JWT_SECRET` | insecure dev fallback | Signs the auth cookie and Bearer tokens. Required when `NODE_ENV=production`. Long random string; never share across apps. | Y | Y | Y |
 | `TOKEN_ENC_KEY` | HKDF-derived from `JWT_SECRET` | AES-GCM key at rest for OIDC client secrets and (NT) wearable OAuth tokens. Set explicitly if you plan to rotate `JWT_SECRET`. | Y | Y | Y |
 | `RECOVERY_TOKEN` | unset | Enables `POST /api/auth/recover` from the login page. Passphrase compare is constant-time. Without this the endpoint is disabled. | Y | Y | Y |
-| `INSECURE_COOKIES` | `0` | Set `1` to send the sign-in cookie over plain HTTP too. The cookie is HTTPS-only by default, so at a plain `http://` address other than `localhost` (a LAN IP, an Unraid WebUI link) the browser drops it and signing in loops back to the sign-in page. NutriTrace 1.4.0 and NoteTrace 1.1.0 and later say so on the sign-in and setup screens; CookTrace and LiftTrace from their next release. Use `1` only on a trusted LAN, and leave it `0` behind HTTPS. The Android app signs in with a token and isn't affected. See [Plain-HTTP LAN](../getting-started/lan-http.md). | Y | Y | Y |
+| `INSECURE_COOKIES` | `0` | Set `1` to send the sign-in cookie over plain HTTP too. The cookie is HTTPS-only by default, so at a plain `http://` address other than `localhost` (a LAN IP, an Unraid WebUI link) the browser drops it and signing in loops back to the sign-in page. NutriTrace 1.4.0, NoteTrace 1.1.0 and LiftTrace 1.4.0 and later say so on the sign-in and setup screens; CookTrace from its next release. Use `1` only on a trusted LAN, and leave it `0` behind HTTPS. The Android app signs in with a token and isn't affected. See [Plain-HTTP LAN](../getting-started/lan-http.md). | Y | Y | Y |
 | `MAX_SESSION_HOURS` | `8760` (1 year) | Cap on JWT and cookie lifetime. Per-user overrides may be lower. | Y | Y | Y |
 
 ## SMTP
@@ -66,7 +66,7 @@ Same envelope in every app: pick a provider, hand it a key, optionally pin a mod
 | `AI_PROVIDER` | unset | `claude`, `openai`, `gemini`, `oai-compat`. `oai-compat` covers Ollama, LM Studio, vLLM, DeepSeek, Groq, LocalAI. | Y | Y | Y |
 | `AI_API_KEY` | unset | Required for cloud providers. Optional for `oai-compat` (Ollama runs keyless). | Y | Y | Y |
 | `AI_MODEL` | provider default | Optional for cloud, required for `oai-compat`. | Y | Y | Y |
-| `AI_BASE_URL` | unset | Required for `oai-compat`. Reachable from inside the container (Docker network hostnames work). | Y | Y | Y |
+| `AI_BASE_URL` | unset | Required for `oai-compat`. Reachable from inside the container (Docker network hostnames work). LiftTrace 1.4.0 and later take it with or without `/v1`, or as the whole `/v1/chat/completions` address; the other apps from their next release. | Y | Y | Y |
 
 ## OIDC
 
@@ -87,7 +87,7 @@ The shorthand `OIDC_*` variables alias `OIDC_PROVIDER_1_*`. For multi-provider s
 | `OIDC_AUTO_LINK` | `1` | Link SSO identity to an existing account with the same verified email. | Y | Y | Y |
 | `OIDC_AUTO_REGISTER` | `0` | Create a new account on first SSO sign-in. | Y | Y | Y |
 | `OIDC_IS_ACTIVE` | `1` | Set `0` to disable the provider without removing the config. | Y | Y | Y |
-| `OIDC_ENABLE_EMAIL_PASSWORD_LOGIN` | unset | Set `0` for SSO-only mode (password login disabled server-wide); locks the admin toggle while set. CookTrace and LiftTrace apply it only when a provider is also defined through env vars; NutriTrace 1.4.0 and NoteTrace 1.1.0 and later apply it either way. | Y | Y | Y |
+| `OIDC_ENABLE_EMAIL_PASSWORD_LOGIN` | unset | Set `0` for SSO-only mode (password login disabled server-wide); locks the admin toggle while set. CookTrace applies it only when a provider is also defined through env vars; NutriTrace 1.4.0, NoteTrace 1.1.0 and LiftTrace 1.4.0 and later apply it either way. | Y | Y | Y |
 
 ## Backup
 
@@ -131,7 +131,7 @@ CT-specific note: the Enhanced URL Import mode spawns a Python `recipe-scrapers`
 | `PYTHON_BIN` | `python3` | Interpreter used by the recipe-scrapers bridge. |  Y  |     |     |
 | `EXERCISE_SOURCES` | (empty) | Comma-separated auto-seed IDs: `wger`, `free-db`, `exercisedb`, `exercisedb-oss`. Empty triggers the wizard picker. |     |  Y  |     |
 | `EXERCISEDB_OSS_URL` | `https://oss.exercisedb.dev` | Override the ExerciseDB-OSS mirror. |     |  Y  |     |
-| `ALLOW_PRIVATE_RADIO_URLS` | `0` | Set `1` to allow the radio proxy to reach RFC 1918 / loopback / IPv6 ULA (LAN Icecast, Navidrome, Subsonic). |     |  Y  |     |
+| `ALLOW_PRIVATE_RADIO_URLS` | `0` | Set `1` to let every account play radio stations on your own network (a LAN Icecast). An admin always can. Music servers (Navidrome, Subsonic, Jellyfin) don't need it. |     |  Y  |     |
 | `OFF_LOCAL_DB` | unset | In-container path to the OFF Parquet or DuckDB mirror (e.g. `/data/off-mirror/off.parquet`). |     |     |  Y  |
 | `OFF_LOCAL_ONLY` | unset | Set `1` for air-gap mode: refuse the public OFF fallback. |     |     |  Y  |
 | `OFF_LOCAL_URL` | HuggingFace `food.parquet` | Override the download source used to refresh the mirror. |     |     |  Y  |

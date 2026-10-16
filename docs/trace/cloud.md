@@ -4,7 +4,7 @@ Three cloud providers are wired in: Anthropic Claude, OpenAI, and Google Gemini.
 
 The setup flow is the same for all three: `Settings → Trace AI`, pick the provider, paste the key, pick a model, Save. For the env-locked variant (one config for everyone), see [Setting up Trace](setup.md).
 
-The model lists were checked against each vendor's model and deprecation pages on 2026-10-11. NutriTrace 1.4.0 and NoteTrace 1.1.0 and later have the lists below; CookTrace and LiftTrace get them in their next release (until then their Claude default is `claude-haiku-4-5-20251001` and their Gemini default is `gemini-3.6-flash`). A model you already chose keeps working: one that isn't in the picker any more shows as a custom model.
+The model lists were checked against each vendor's model and deprecation pages on 2026-10-11. NutriTrace 1.4.0, NoteTrace 1.1.0 and LiftTrace 1.4.0 and later have the lists below; CookTrace gets them in its next release (until then its Claude default is `claude-haiku-4-5-20251001` and its Gemini default is `gemini-3.6-flash`). A model you already chose keeps working: one that isn't in the picker any more shows as a custom model.
 
 ## Anthropic Claude
 

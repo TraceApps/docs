@@ -47,7 +47,7 @@ Nineteen tools; the biggest surface of the four. Read tools return recipe, pantr
 
 ## LiftTrace
 
-Eighteen tools spanning read and write across workouts, exercises, programs, PRs, body stats, and coaching. Read tools surface diary, exercise catalog, active + saved programs, personal records, body-stat time series, weekly rollups, and coach prescriptions. Write tools log a full workout, drop a single exercise onto today's diary, append a set to a workout in flight, log a body-stat measurement, load a template into a diary day, switch the active program, or (for coaches only) prescribe a workout to a trainee.
+Eighteen tools spanning read and write across workouts, exercises, programs, PRs, body stats, and coaching. Read tools surface diary, exercise catalog, active + saved programs, personal records, body-stat time series, weekly rollups, and coach prescriptions. Write tools log a full workout, drop a single exercise onto today's diary, append a set to a workout in flight, log a body-stat measurement, load a template into a diary day, switch the active program, or (for coaches only) prescribe a workout to a client.
 
 | Tool | Purpose | Args | Returns |
 |------|---------|------|---------|
@@ -61,14 +61,14 @@ Eighteen tools spanning read and write across workouts, exercises, programs, PRs
 | `get_prs` | Personal records with e1RM | `exercise_name`, `date_from`, `date_to`, `limit` | Top weight, top reps at that weight, estimated 1RM per exercise |
 | `get_body_stats` | Body stats over time (weight, body_fat, any tracked measurement) | `stat`, `date_from`, `date_to` | Time series plus first/last/min/max/change summary when a single stat is queried |
 | `get_stats_overview` | Snapshot over a window: workouts done, streaks, weekly volume + frequency, muscle balance, top PRs | `range` (`7d`\|`30d`\|`90d`\|`1y`\|`all`) | Rollup object; default range `30d` |
-| `get_coach_prescription` | Coach-prescribed workout for a given date if the user has a trainer | `date` (default today) | `{ prescribed: false }` or the prescription record |
+| `get_coach_prescription` | Coach-prescribed workout for a given date if the user has a coach | `date` (default today) | `{ prescribed: false }` or the prescription record, with the client's answer (waiting or accepted). Trace doesn't load one the client hasn't accepted. |
 | `log_workout` | Commit a full workout to the diary for a date | `date*`, `exercises*`, `name`, `duration_min` | Workout id, exercises_logged, sets_logged, total_volume |
 | `add_exercise_to_diary` | Quick-add one exercise to a diary day with no sets yet | `exercise_name*`, `date` | Workout id, exercise_added_id, position |
 | `log_set` | Append a single set to an exercise already in a workout | `workout_id*`, `weight*`, `reps*`, `exercise_id` or `exercise_name`, `rpe`, `warmup`, `completed` | Set id, position, workout total volume |
 | `log_body_stat` | Record a body-stat measurement for a date; merges with existing | `stat*`, `value*`, `unit`, `date`, `note` | Stats row id, stat, value, unit, date |
 | `start_workout_from_template` | Load a template into a diary day | `template_id` or `template_name`, `date` | Workout id, exercises_loaded, from_template |
 | `set_active_program` | Switch the user's active program | `program_id` or `program_name` | New active_program_id, previous_active_program_id, name |
-| `add_coach_prescription` | COACH ONLY. Prescribe a workout template to a trainee | `trainee_id*`, `template_id*`, `target_date*`, `notes` | prescription_id, trainee_id, template_id, target_date |
+| `add_coach_prescription` | COACH ONLY. Prescribe a workout template to a client who accepted them as coach; the client accepts or declines it in the Diary | `trainee_id*`, `template_id*`, `target_date*`, `notes` | prescription_id, trainee_id, template_id, target_date |
 
 LiftTrace also keeps **Smart Log**, a hold-to-record UI on the Trace FAB (not a Trace tool) that parses natural-language workout entries (`bench 3x5 @ 225, squats 5x5 @ 315`) client-side with the `smartLogWorkout.js` parser, matches exercises against the user's library, and pre-fills a review modal. Faster than a tool round-trip for the common case; the user commits by tapping Save.
 

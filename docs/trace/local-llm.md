@@ -13,7 +13,7 @@ AI_MODEL=llama3.1:8b
 # AI_API_KEY is optional; leave empty for Ollama and most local runners.
 ```
 
-- `AI_BASE_URL` is required. It's the root of the endpoint, without a trailing slash and without the `/v1/chat/completions` suffix; the app appends that itself.
+- `AI_BASE_URL` is required. It's the root of the endpoint, such as `http://ollama:11434`; the app adds `/v1/chat/completions` itself. LiftTrace 1.4.0 and later also take it with `/v1` on the end, or as the whole `/v1/chat/completions` address, in Settings and in `AI_BASE_URL`. The other apps do from their next release; until then, leave `/v1` off, or every request goes to `/v1/v1/chat/completions`.
 - `AI_MODEL` is required. Local runners don't have a "default" model to fall back to, so the request has to name one exactly.
 - `AI_API_KEY` is optional. Ollama and LocalAI don't require one; the client sends `no-key` internally so the `Authorization` header stays valid. Set a real key only if your runner is behind a reverse-proxy that checks bearer tokens.
 
@@ -73,9 +73,27 @@ If Trace's tools misbehave on a small local model, look at `feedback_ai_unreliab
 !!! warning "Slow first response"
     Ollama loads the model into VRAM on the first request after startup or after a period of inactivity. That first Trace turn can take 20-60 seconds while the weights are read from disk. Subsequent turns are fast until the model is unloaded again. This is Ollama behaviour, not a Trace bug.
 
+## Testing the connection
+
+In LiftTrace 1.4.0 and later (the other apps from their next release), **Test Connection** has its own row in the AI settings, so you can run a test at any time, also against an OpenAI Compatible server that needs no API key. The setting you fill in last tests on its own once everything it needs is there, and a test only counts for the settings it tested.
+
+## Models without tool support
+
+Some local models can't call tools, and the runner answers with an error such as `tool use is not supported`. NoteTrace 1.1.0 and LiftTrace 1.4.0 and later then ask again without tools and say once that the model can't use them: Trace still answers, but can't look anything up or log anything. NutriTrace and CookTrace do the same from their next release; until then every chat with such a model fails. For Trace's full set, pick a model with tool support (in Ollama's library, one tagged **tools**).
+
+## When Trace gets no answer
+
+With a per-user setup, the browser calls your provider itself, so the provider has to allow requests from the app's address (CORS) on every answer, errors included. A reverse proxy that adds those headers only to successful answers hides the provider's real error, such as a model that can't use tools, behind a bare "Failed to fetch". LiftTrace 1.4.0 and later (the other apps from their next release) say what to check instead:
+
+- the **Base URL**;
+- that the server allows requests from the app's address on every answer, errors included (with nginx, `add_header ... always`);
+- on a page served over HTTPS, an `https://` address for the provider, since the browser won't call a plain `http://` one.
+
+Setting Trace up on the server instead (`AI_PROVIDER`, `AI_BASE_URL`, `AI_MODEL`) avoids all three: the server calls the provider, not the browser.
+
 ## Streaming and timeouts
 
-Trace does not use streaming: it waits for the full response, then renders. If your local model is very slow (or generating a very long reply), the browser fetch times out at the provider level rather than Trace's. Bump `AI_BASE_URL` to a runner with faster inference, or pick a smaller model.
+Trace does not use streaming: it waits for the full response, then renders. Every request asks for a single answer (`stream: false`), so an endpoint that streams unless told not to works too (NutriTrace 1.4.0, NoteTrace 1.1.0 and LiftTrace 1.4.0 and later; CookTrace from its next release). If your local model is very slow (or generating a very long reply), the browser fetch times out at the provider level rather than Trace's. Bump `AI_BASE_URL` to a runner with faster inference, or pick a smaller model.
 
 ## Related
 

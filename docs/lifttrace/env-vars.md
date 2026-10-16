@@ -11,7 +11,8 @@ Every var below also accepts the Docker secrets convention `<NAME>_FILE=/run/sec
 | `PORT` | `3002` | Internal Express port. Compose maps host `3002:3002` in the reference file. Was `3003` before 1.3.0. |
 | `EXERCISE_SOURCES` | (empty) | Comma list of exercise-source IDs to auto-seed on first boot: any of `wger`, `free-db`, `exercisedb`, `exercisedb-oss`. Empty triggers the first-run wizard's library picker instead of seeding blind. |
 | `EXERCISEDB_OSS_URL` | `https://oss.exercisedb.dev` | Override the community mirror URL for the `exercisedb-oss` source. Point at your own deployment if you want to self-host the mirror or reduce load on the public one. |
-| `ALLOW_PRIVATE_RADIO_URLS` | `0` | Set `1` or `true` to let the radio proxy fetch loopback, RFC1918, or IPv6 ULA stream URLs. Off by default to prevent SSRF. A warning is logged at startup when the opt-out is active. |
+| `ALLOW_PRIVATE_RADIO_URLS` | `0` | Set `1` or `true` to let every account play radio stations on your own network (loopback, RFC1918, IPv6 ULA). An admin always can. A warning is logged at startup when it is set. |
+| `UPDATE_CHECK` | (unset) | `off` (or `0`, `false`, `no`) stops the server asking GitHub about new releases for good, whatever **Settings, Updates** says, and locks that setting. Unset, the setting decides. 1.4.0 and later. |
 
 ## Notes on each
 
@@ -36,19 +37,17 @@ The `exercisedb-oss` source hits `https://oss.exercisedb.dev` by default. The mi
 
 ### `ALLOW_PRIVATE_RADIO_URLS`
 
-The radio proxy blocks stream URLs that resolve to `127.0.0.1`, `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`, or `fc00::/7` by default. Blocked requests fail with:
+An admin can play stations on your own network (`127.0.0.1`, `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`, `fc00::/7`); other accounts get "Could not reach that station". Set `ALLOW_PRIVATE_RADIO_URLS=1` to let every account, and a single-user install, play them. Your music server doesn't need it. Full detail in [Radio player](radio.md#stations-on-your-own-network-allow_private_radio_urls).
 
-```text
-Private / loopback addresses are blocked. Set ALLOW_PRIVATE_RADIO_URLS=1 to enable LAN streams.
-```
+### `UPDATE_CHECK`
 
-If you actually stream from an Icecast box on your LAN and understand the SSRF trade-off, set `ALLOW_PRIVATE_RADIO_URLS=1`. Do not enable on a public-facing deployment unless you have thought carefully about what a hostile station URL could reach on your internal network. Full detail in [Radio player](radio.md#ssrf-safety-allow_private_radio_urls).
+Update checks are off on a fresh install until someone says yes: the setup wizard asks, and an admin can change it later in **Settings, Updates**. An install that was already running before 1.4.0 keeps checking, as it did before. When checks are on, the server asks `api.github.com` for the latest release at most once a day (**Check Now** asks at once), and nothing about you or your data is sent. Browsers never contact GitHub themselves: they ask your server. The Android app asks GitHub directly for a new APK, and only once you said yes on that phone; `UPDATE_CHECK` doesn't reach it. Read in `server/lib/update-check.js`.
 
 ## Not LiftTrace-specific
 
 Some vars that live in LT compose files are actually shared. Look them up in [Shared environment reference](../self-hosting/env-vars.md):
 
-- `PORT` alternatives, `NODE_ENV`, `LOG_LEVEL`, `BASE_URL`
+- `PORT` alternatives, `NODE_ENV`, `LOG_LEVEL`, `BASE_URL`, `PUBLIC_URL` (1.4.0 and later: the address in links in emails)
 - `DB_PATH`, `UPLOADS_PATH`, `BACKUPS_PATH`, `BACKUP_UPLOAD_MAX_MB`
 - `JWT_SECRET`, `TOKEN_ENC_KEY`, `INSECURE_COOKIES`, `MAX_SESSION_HOURS`, `RECOVERY_TOKEN`
 - `BACKUP_SCHEDULE`, `BACKUP_TIME`, `BACKUP_RETENTION`

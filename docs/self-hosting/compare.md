@@ -43,7 +43,7 @@ NoteTrace is the only app that also delivers reminders from the server: a one-mi
 
 ## LiftTrace's radio LAN allowance
 
-Only LiftTrace has a built-in radio player. If you run a Subsonic, Navidrome, or Icecast server on the same LAN as LiftTrace, set `ALLOW_PRIVATE_RADIO_URLS=1` so the radio proxy stops refusing RFC 1918 and IPv6 ULA addresses. CookTrace and NutriTrace have no equivalent knob because they have no radio.
+Only LiftTrace has a built-in radio player. From 1.4.0 the radio proxy works only for a signed-in account, checks every address a station's name resolves to and every redirect, and never reaches cloud-metadata addresses. An admin can play stations on your own network (a LAN Icecast); set `ALLOW_PRIVATE_RADIO_URLS=1` to let every account, and a single-user install, play them. Your music server (Subsonic, Navidrome, Jellyfin, Plex, Emby) doesn't need it: those connections are open to every account, for the parts of its API the app uses. CookTrace and NutriTrace have no radio.
 
 ## NutriTrace images from a link
 

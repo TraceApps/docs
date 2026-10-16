@@ -25,8 +25,11 @@ Not "better than". Different trade-offs. If you already `docker compose up` thin
 - Trace AI coach with live workout context injected on every message.
 - Radio player for Subsonic-compatible servers, Jellyfin, Plex, Emby, and internet radio (Icecast, Shoutcast, HLS).
 - OIDC SSO for Authentik, Keycloak, Pocket ID, Authelia, Auth0, Google, or any OIDC 1.0 provider.
-- Coach and trainee roles with prescriptions, per-workout feedback, and an activity feed.
+- Coaching with consent: a coach asks, the client accepts; prescriptions the client accepts or declines, per-workout feedback, one conversation per coach and client, and an activity feed.
 - Import from Strong, Hevy, FitNotes, Jefit, or Garmin FIT so nothing you have already logged is stranded.
+- Works without a connection: in a gym with no signal the web app keeps logging and sends your changes when the connection is back. See [Train without a connection](features.md#offline).
+- [Set videos](set-videos.md): film a set for your coach, who leaves a note stamped at the moment that matters.
+- A [Wear OS](wear.md) app: the set you're on, the rest timer on your wrist, and finishing the workout from the watch.
 - Native Android app with on-device SQLite mirror, differential sync, biometric unlock, and Media3 ExoPlayer for lockscreen and Bluetooth playback.
 
 ## Get started

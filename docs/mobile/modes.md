@@ -31,6 +31,12 @@ Both directions are available from Settings.
 - **Local to server:** Settings > Server Connection > Connect. The merge dialog triggers if the account already has server rows.
 - **Server to local:** Settings > Server Connection > Disconnect. The local SQLite mirror stays on the device, and the app switches to the on-device code path. Nothing is uploaded or deleted.
 
+!!! note "LiftTrace 1.4.0 and later"
+    - The dialog is **Sync Options**: **Upload Phone to Server**, **Download Server to Phone** or **Merge Both**. Upload sends each logged workout as its own session, plus body stats, cardio, programs, exercises and settings, and the counts it shows first are what it sends. Progress photos and Trace chat stay on the phone. Uploading again sends nothing twice.
+    - **Download Server to Phone**, and **Replace with Server** in setup, delete the phone's data as they say. Changes that never reached a server are asked about first, never dropped silently.
+    - **Disconnect** sends changes still waiting first, and asks before dropping any it can't send. Everything else the account had stays on the phone: connecting back to the same account puts it back in place, sending only what changed meanwhile.
+    - Signing in as another account shows that account's data, fetched fresh. If the first account left changes that haven't gone up, you're asked first: cancel to keep them for that account, or sign in anyway and they're discarded.
+
 Switching back and forth is safe as long as you understand the merge dialog. The one thing to avoid is switching to a *different* server account without picking Upload or Download deliberately; a same-account reconnect uses `updated_at` correctly, but a fresh account has nothing to compare against.
 
 ## What each mode gets you

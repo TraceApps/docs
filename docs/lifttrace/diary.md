@@ -78,7 +78,7 @@ Load a workout from your active program (**Load today's workout** button on an e
 
 ## Coach prescriptions
 
-If a trainer has prescribed today's workout, it lands in Diary on the prescribed day with the trainer's name on the card. Dated prescriptions show only on the assigned day; undated ones sit in the Coaching inbox until you pull one into the diary. See [Coach and trainee model](coaching.md).
+If your coach prescribed a workout for the day, it shows on the Diary on that day with your coach's name. It asks first: **Accept** or **Decline**, and once accepted, **Load** puts it in the day. Prescriptions waiting for your answer, from any day, are listed under **Waiting for Your Answer**; accepted ones with no date sit under **Suggested by Your Coach** on an empty day. See [Coaching](coaching.md#prescriptions).
 
 ## Last-workout quick-load
 

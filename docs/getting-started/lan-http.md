@@ -6,13 +6,13 @@ The cause is cookies, not credentials.
 
 ## What you'll see
 
-- **NutriTrace 1.4.0 and NoteTrace 1.1.0 and later** say so before you even try. The sign-in and setup screens show **Signing in won't work on this address**, with a **How to fix it** link to this page, and the server log says it too, at most once an hour:
+- **NutriTrace 1.4.0, NoteTrace 1.1.0 and LiftTrace 1.4.0 and later** say so before you even try. The sign-in and setup screens show **Signing in won't work on this address**, with a **How to fix it** link to this page, and the server log says it too, at most once an hour:
 
     ```text
     [WARN] Sign-in from a plain-HTTP page (http://192.168.1.20:3001). The sign-in cookie only works over HTTPS, so the browser drops it and the user lands back on the login page. Serve NutriTrace over HTTPS, or set INSECURE_COOKIES=1 on a trusted LAN. See https://traceapps.github.io/docs/getting-started/lan-http/
     ```
 
-- **CookTrace and LiftTrace** do the same from their next release. Until then they send you back to the sign-in page with no explanation (LiftTrace can open the app first, with nothing in it, until you reload), and nothing in the server log says why.
+- **CookTrace** does the same from its next release. Until then it sends you back to the sign-in page with no explanation, and nothing in the server log says why. LiftTrace before 1.4.0 did the same, and could open the app first, with nothing in it, until you reloaded.
 
 `http://localhost`, opened on the server itself, is the exception in Chrome and Firefox: they treat it as secure and keep the cookie, so signing in there works without any of this. Safari may not.
 
@@ -64,7 +64,7 @@ Set the `INSECURE_COOKIES` env var to `1` and the server issues the cookie witho
           INSECURE_COOKIES: "1"
     ```
 
-Then `docker compose up -d` to recreate the container. `INSECURE_COOKIES=1` in `.env` works too when your compose file passes it to the container: with `env_file: .env`, or `INSECURE_COOKIES=${INSECURE_COOKIES:-}` under `environment:`. The sample `docker-compose.yml` of CookTrace, NoteTrace and NutriTrace does. LiftTrace's ignores it in `.env`; uncomment its `- INSECURE_COOKIES=1` line instead.
+Then `docker compose up -d` to recreate the container. `INSECURE_COOKIES=1` in `.env` works too when your compose file passes it to the container: with `env_file: .env`, or `INSECURE_COOKIES=${INSECURE_COOKIES:-}` under `environment:`. The sample `docker-compose.yml` in each app's repo does.
 
 !!! danger "Only for trusted LAN, never for internet-exposed installs"
     `INSECURE_COOKIES=1` strips the single browser-side defense that keeps your session token off open WiFi. Use it only when the app is reachable exclusively from a network you control (your home LAN, a Tailscale mesh, a VPN). Never on anything that resolves from the public internet, even briefly. If you're behind a reverse proxy terminating TLS, leave it at `0`: the proxy presents HTTPS to the browser and the cookie works normally.

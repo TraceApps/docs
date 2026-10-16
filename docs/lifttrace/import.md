@@ -5,7 +5,7 @@ If you have been logging elsewhere, LiftTrace can absorb the history. Five sourc
 ## The general flow
 
 1. Export your history from the source app (steps per source below).
-2. In LiftTrace, open **Settings > Data > Workout Import**.
+2. In LiftTrace, open **Settings > Import Workouts**.
 3. Pick the source.
 4. Upload the export file.
 5. Review the preview: number of workouts, number of matched vs unmatched exercises, dates that conflict with existing LiftTrace workouts.
@@ -34,7 +34,7 @@ Unmatched exercise names persist as free-text and stay attached to their sets. Y
 
     **Import to LiftTrace**
 
-    1. Settings > Data > Workout Import.
+    1. Settings > Import Workouts.
     2. Pick **Strong** from the source picker.
     3. Upload the `.csv` file.
     4. Review the preview and commit.
@@ -50,7 +50,7 @@ Unmatched exercise names persist as free-text and stay attached to their sets. Y
 
     **Import to LiftTrace**
 
-    1. Settings > Data > Workout Import.
+    1. Settings > Import Workouts.
     2. Pick **Hevy**.
     3. Upload the `.csv`.
     4. Review and commit.
@@ -67,12 +67,20 @@ Unmatched exercise names persist as free-text and stay attached to their sets. Y
 
     **Import to LiftTrace**
 
-    1. Settings > Data > Workout Import.
+    1. Settings > Import Workouts.
     2. Pick **FitNotes**.
     3. Upload the `.csv`.
     4. Review and commit.
 
     Notes: FitNotes does not track supersets or RPE at all, so nothing is lost that was ever there.
+
+    Units and dates come straight from the file. FitNotes records the unit
+    against each exercise, so an export mixing kilos and pounds imports both
+    correctly, whichever unit LiftTrace is set to. The date is written in your
+    phone's own format, so an export from a phone set to Spanish or German
+    reads `23/12/2025` rather than `2025-12-23`; both are read, and the whole
+    file decides day-first versus month-first rather than each row guessing on
+    its own.
 
 ??? details "Jefit (iOS / Android)"
     **Export from Jefit**
@@ -83,7 +91,7 @@ Unmatched exercise names persist as free-text and stay attached to their sets. Y
 
     **Import to LiftTrace**
 
-    1. Settings > Data > Workout Import.
+    1. Settings > Import Workouts.
     2. Pick **Jefit**.
     3. Upload the `.csv`.
     4. Review and commit.
@@ -101,7 +109,7 @@ Unmatched exercise names persist as free-text and stay attached to their sets. Y
 
     **Import to LiftTrace**
 
-    1. Settings > Data > Workout Import.
+    1. Settings > Import Workouts.
     2. Pick **Garmin FIT**.
     3. Upload the `.fit` file.
     4. Review and commit.

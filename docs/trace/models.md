@@ -4,7 +4,7 @@ Google retires Gemini models on a rolling schedule. An `AI_MODEL` value that was
 
 ## How the remap works
 
-Each app keeps the same three structures in two places, the app (`src/lib/aiChat.js`) and the server (`server/routes/ai.js`), and a test keeps the copies identical. NutriTrace 1.4.0 and NoteTrace 1.1.0 and later:
+Each app keeps the same three structures in two places, the app (`src/lib/aiChat.js`) and the server (`server/routes/ai.js`), and a test keeps the copies identical. NutriTrace 1.4.0, NoteTrace 1.1.0 and LiftTrace 1.4.0 and later:
 
 ```js
 const AI_DEFAULT_MODELS = {
@@ -26,7 +26,7 @@ const GEMINI_RETIRED = new Set([ /* see the list below */ ]);
 
 A saved config pointing at `gemini-2.0-flash` silently runs against `gemini-3.8-flash` instead, and one pointing at `gpt-5.6` runs against `gpt-5.6-sol`. Nothing changes in your `app_config` row or `AI_MODEL` env var; the swap happens per request. It applies on every path: a personal key calling the provider from the browser or the app, and the server's own proxy, relay and voice-note transcription when Trace is set by env vars. OpenAI-compatible endpoints (`oai-compat`) are never remapped: they name their own models. In **Settings, Trace**, a renamed model shows under its new name.
 
-CookTrace and LiftTrace get the same lists in their next release; until then they remap only the four Gemini IDs from the 1.5 and 2.0 generations.
+CookTrace gets the same lists in its next release; until then it remaps only the four Gemini IDs from the 1.5 and 2.0 generations, as LiftTrace did before 1.4.0.
 
 ## Currently retired Gemini IDs
 
@@ -52,7 +52,7 @@ If you override to a Gemini ID that's later added to `GEMINI_RETIRED`, the remap
 
 ## Current defaults per provider
 
-| Provider | NutriTrace 1.4.0, NoteTrace 1.1.0 and later | CookTrace, LiftTrace (until their next release) |
+| Provider | NutriTrace 1.4.0, NoteTrace 1.1.0, LiftTrace 1.4.0 and later | CookTrace (until its next release) |
 | -------- | ------------------------------------------- | ----------------------------------------------- |
 | Claude   | `claude-haiku-5-5`                          | `claude-haiku-4-5-20251001`                     |
 | OpenAI   | `gpt-5.6-luna`                              | `gpt-5.6-luna`                                  |

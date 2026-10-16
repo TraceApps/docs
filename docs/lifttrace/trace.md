@@ -14,13 +14,13 @@ LiftTrace registers 18 tools that Trace can call across a single conversation, s
 - `get_workout`: one workout in full detail by id, including coach feedback.
 - `get_exercises`: search the exercise catalog (wger, free-exercise-db, exercisedb variants, custom).
 - `get_exercise`: full detail on one exercise plus similar-exercise suggestions.
-- `get_programs`: the user's program library with active flag.
+- `get_programs`: the user's program library, with which one is active.
 - `get_program`: one program with every template laid out (per-week overrides for multi-week blocks).
 - `get_active_program`: the currently active program in full, or `{ active: false }`.
 - `get_prs`: personal records with weight, reps, and estimated 1RM per exercise.
 - `get_body_stats`: body stats over time (weight, body_fat, any tracked measurement) with change summary.
 - `get_stats_overview`: snapshot for a range: workouts done, streaks, weekly volume and frequency, muscle balance, top PRs.
-- `get_coach_prescription`: the coach-prescribed workout for a date if the user has a trainer.
+- `get_coach_prescription`: the coach-prescribed workout for a date if the user has a coach, with its answer (waiting, accepted). Trace doesn't load one the user hasn't accepted.
 
 **Write (7)**
 
@@ -89,7 +89,7 @@ Is my volume balanced across chest / back / legs this month?
 Recommend a deload for next week based on my last block.
 ```
 
-For form checks, attach a photo (camera or gallery button on the chat input). Multimodal-capable providers (Claude, GPT-4-class OpenAI models, Gemini) will actually look at it.
+For form checks, attach a photo. On a phone and in the Android app the attach button offers **Camera** or **Gallery**, each going straight to the camera or the photo picker; on a computer it opens the file picker. You can pick several photos at once. Multimodal-capable providers (Claude, GPT-4-class OpenAI models, Gemini) will actually look at it.
 
 ## Smart Log entry points
 
@@ -105,7 +105,7 @@ Smart Log stays separate from the tool catalog on purpose: workout logging is pr
 
 ## Provider setup
 
-Trace supports Claude, OpenAI, Gemini, and any OpenAI-compatible endpoint (Ollama, LM Studio, LocalAI, vLLM, DeepSeek, Groq, llama.cpp, Mistral). Setup lives in Settings > Integrations > Trace: pick a provider, enter a key, pick a model, optionally rename the assistant.
+Trace supports Claude, OpenAI, Gemini, and any OpenAI-compatible endpoint (Ollama, LM Studio, LocalAI, vLLM, DeepSeek, Groq, llama.cpp, Mistral). Setup lives in **Settings > AI Assistant**: pick a provider, enter a key, pick a model, optionally rename the assistant. **Test Connection** has its own row (1.4.0 and later), so you can test at any time, also an OpenAI Compatible server that needs no key, and a Base URL works with or without `/v1`.
 
 Two modes:
 
@@ -114,7 +114,9 @@ Two modes:
 
 The Model dropdown includes a **Custom** option on every provider (added in v1.0.1), so you can enter any model ID the vendor supports without waiting for the preset list to catch up.
 
-Retired Gemini `1.5-*` and `2.0-*` model IDs are silently remapped to the current default at request time (v1.0.1), so saved chat history keeps working after Google retires a model.
+Gemini models Google has shut down are sent as the current default, and renamed model IDs as their new names, at request time, so a saved setting keeps working after a model is retired. From 1.4.0 LiftTrace uses the same model lists and defaults as the other Trace apps: see [Model list and retirement remap](../trace/models.md).
+
+With a model that can't use tools (some local models), Trace asks again without tools and says once: "This model can't use tools: it can answer, but it can't log workouts or look up your data." Pick a model with tool support for the full set. When Trace gets no answer from your provider, it says what to check (the Base URL, the provider's CORS headers, or an `http://` address from an HTTPS page) instead of "Failed to fetch": see [Local LLMs](../trace/local-llm.md#when-trace-gets-no-answer).
 
 Full provider setup with per-provider recipes: see [Trace setup](../trace/setup.md) and [Running a local LLM](../trace/local-llm.md).
 
