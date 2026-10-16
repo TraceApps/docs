@@ -7,7 +7,7 @@ Two flows live between CookTrace and NutriTrace, one in each direction.
 
 Both are opt-in, per-user, and independent of each other. Configure the one you want, or both.
 
-For the high-level story and how the token model works across all three apps, see [Federation (cross-app links)](../integrations/federation.md).
+For the high-level story and how the token model works across the apps, see [Federation (cross-app links)](../integrations/federation.md).
 
 ## Pull foods from NutriTrace (CT is the client)
 

@@ -114,5 +114,5 @@ Feature names inside the apps (Smart Log, Quick Calories, Adaptive TDEE, Meal Pl
 
 ## Related
 
-- [Dev setup (all three)](dev-setup.md)
+- [Dev setup](dev-setup.md)
 - [Changelogs](../reference/changelogs.md)

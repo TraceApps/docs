@@ -11,7 +11,7 @@ Without SMTP, password resets and invites fall back to admin-generated links, an
 
 ## Where the settings live
 
-All three apps expose SMTP at `Settings → Email` as its own section. The form is byte-for-byte the same across the three apps. All three call the same `POST /api/app-config` (per-field save) and `POST /api/app-config/test-email` (test send) endpoints server-side.
+All four apps expose SMTP at `Settings → Email` as its own section, with the same fields. All four call the same `POST /api/app-config` (per-field save) and `POST /api/app-config/test-email` (test send) endpoints server-side.
 
 ## Field-by-field
 

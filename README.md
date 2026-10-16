@@ -25,4 +25,4 @@ See the [Contribute → Translations](https://traceapps.github.io/docs/contribut
 
 ## License
 
-Documentation is [AGPL-3.0](LICENSE), matching the three apps it covers.
+Documentation is [AGPL-3.0](LICENSE), matching the apps it covers.
