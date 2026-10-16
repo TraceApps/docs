@@ -23,6 +23,9 @@ Installed from the Releases page, the watch app keeps itself on the same release
 - **The first time,** opening CookTrace on the watch shows Android's install screen, saying the watch isn't allowed to install apps from this source. Tap **Settings**, turn on **Install unknown apps** for CookTrace, and go back: the update installs.
 - **After that,** updates install by themselves while the watch is on its charger, so an update never closes the app in the middle of cooking.
 - **On a watch without that setting,** each update is offered when you open CookTrace. Cancel it and it's offered again later in the day.
+- **Only forward.** The watch moves to a newer release, never back: if you put an older phone app back, the watch stays where it is until the phone passes it.
+- **It needs a phone app from the release that brings this, or later.** An older phone app doesn't tell the watch its release, so the watch stays on its own version.
+- **If the app ever comes to Google Play,** a watch app installed from there will be left to Play to update.
 
 Only the first install needs adb (step 1 above).
 
