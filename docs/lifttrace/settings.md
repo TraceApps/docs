@@ -29,7 +29,7 @@ Top-of-page hero on Settings. Links out to `/profile`.
 
 ### Units
 
-- **Language** locale picker (see the i18n status in the About page).
+- **Language**: the app's language. The picker lists the languages translated so far; anything not yet translated shows in English. To add or improve a language, see [Translations](../contribute/translations.md).
 - **Weight unit** lbs or kg. Body-stats, prescriptions, and charts follow.
 - **Date format** US `MM/DD/YYYY`, EU `DD/MM/YYYY`, or ISO `YYYY-MM-DD`.
 - **Time format** 12-hour or 24-hour.

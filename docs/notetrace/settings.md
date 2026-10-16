@@ -37,6 +37,7 @@ How notes behave, rather than how the app looks.
 
 ### Regional (per-user)
 
+- **Language**: the app's language. The picker lists the languages translated so far; anything not yet translated shows in English. To add or improve a language, see [Translations](../contribute/translations.md).
 - **Date Format**: `YYYY-MM-DD`, `MM/DD/YYYY`, `DD/MM/YYYY`, or natural.
 - **Time Format**: 12-hour or 24-hour. Also used by reminder times.
 

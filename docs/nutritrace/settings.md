@@ -33,7 +33,9 @@ Top-of-page card with your name, nickname, avatar, DOB, gender, height, weight, 
 
 ## Regional and Units
 
-Language, date format (US / ISO / EU / natural), time format (12h / 24h), timezone. Unit choices for energy (kcal / kJ), weight, height, circumference, distance, temperature. All `USER_PREFS`.
+- **Language**: the app's language. The picker lists the languages translated so far; anything not yet translated shows in English. To add or improve a language, see [Translations](../contribute/translations.md).
+
+Date format (US / ISO / EU / natural), time format (12h / 24h), timezone. Unit choices for energy (kcal / kJ), weight, height, circumference, distance, temperature. All `USER_PREFS`.
 
 ## Diary
 
