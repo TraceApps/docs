@@ -89,37 +89,41 @@ Deliberately not in the current MCP surface:
 
 ## LiftTrace
 
-Eleven tools across three phases.
+Fifteen tools across three phases.
 
 ### Read tools (`mcp:read`)
 
 | Tool | Purpose | Args | Returns |
 |------|---------|------|---------|
 | `get_workout` | Full detail of one day's workout | `date` | `date`, `logged`, `name`, `completed`, `duration_min`, `exercises[]` (each with `sets[]`: reps, weight, completed, warmup, rpe) |
-| `list_recent_workouts` | Summaries of the most recent logged workouts | `limit` | `workouts[]` (date, name, completed, exercise_count, total_volume), `count` |
-| `get_records` | Personal records per exercise — max weight, rep count, date, estimated 1RM | `exercise_name` | `records[]`, `count` |
-| `get_exercise_progress` | Per-session progress for one exercise over a range | `exercise_name*`, `start`, `end` | `progress[]` (date, maxWeight, totalVolume, sets, avgRpe). Ambiguous name matches return a `candidates[]` disambiguation list instead of guessing. |
+| `get_workouts` | Every session in a date range, in full detail | `start`, `end`, `limit` (default 30, max 100) | `workouts[]` (as `get_workout`, plus `session_seq` for days with more than one session), `count`, `total`, `truncated`. Both bounds omitted means the last 90 days; one bound leaves the other side open. The most recent sessions in the range come back first when more matched. |
+| `list_recent_workouts` | Summaries of the most recent logged workouts | `limit`, `start`, `end` | `workouts[]` (date, name, completed, exercise_count, total_volume), `count`. Optional inclusive bounds narrow the history it draws from. |
+| `get_records` | Personal records per exercise: max weight, rep count, date, estimated 1RM; the longest hold for a timed exercise | `exercise_name`, `start`, `end` | `records[]`, `count`. With `start`/`end`, these are the best lifts within those dates, not all-time records. |
+| `get_exercise_progress` | Per-session progress for one exercise over a range (the last 90 days when no dates are given) | `exercise_name*`, `start`, `end` | `progress[]` (date, maxWeight, totalVolume, sets, avgRpe). Ambiguous name matches return a `candidates[]` disambiguation list instead of guessing. |
 | `search_exercises` | Search the exercise catalog by name | `query*`, `limit` | `exercises[]` (exercise_id, name, category, equipment, load_type), `count` |
 | `list_programs` | The caller's programs, owned or coach-assigned | none | `programs[]` (program_id, name, duration_weeks, is_active, template_count), `count` |
 | `get_active_program` | The active program's current week + every weekly template | none | `active`, `program_id`, `name`, `current_week`, `templates[]` (with each template's exercises) |
 | `get_body_stat` | Weight / body-fat / measurements for a day | `date` | `date`, `logged`, `stats` |
+| `get_body_stats` | The same for every logged date in a range | `start`, `end` | `stats[]` (date, logged, stats), `count`. Both bounds omitted means the last 90 days; dates with nothing logged are absent. |
+| `list_progress_photos` | Progress photos with their dates, newest first | `start`, `end` (default: the last year) | `photos[]`, `count` |
 
 ### Write tools (`mcp:write`)
 
 | Tool | Purpose | Args | Returns |
 |------|---------|------|---------|
-| `log_set` | Append one completed set to an exercise on a day | `exercise_id*`, `reps*`, `weight*`, `rpe`, `warmup`, `completed`, `date` | `ok`, `exercise_id`, `exercise_name`, `logged_set`, `sets_on_exercise`. Creates the exercise entry for that day if it isn't there yet; requires a real `exercise_id` from `search_exercises` (does not create new catalog exercises). Goes through the same Option C merge (`mergeExercises`) the app's own save uses, so a concurrent app save landing mid-call can't be clobbered. |
-| `log_body_stat` | Set weight / body-fat / measurements on a day | `weight`, `weight_unit` (`kg`\|`lb`), `bodyFat`, `waist`, `hips`, `neck`, `chest`, `biceps`, `thighs`, `calves`, `date` | `ok`, `date`, `logged`, `stats`. Merges into existing values via `mergeStatsObject`, which allowlists the known body-stat keys — a malformed payload can't land stray fields in the stored JSON. |
+| `log_set` | Append one completed set to an exercise on a day | `exercise_id*`, `reps` (or `duration_sec` for a timed exercise), `weight`, `rpe`, `warmup`, `completed`, `date` | `ok`, `exercise_id`, `exercise_name`, `logged_set`, `sets_on_exercise`. Creates the exercise entry for that day if it isn't there yet; requires a real `exercise_id` from `search_exercises` (does not create new catalog exercises). Goes through the same Option C merge (`mergeExercises`) the app's own save uses, so a concurrent app save arriving mid-call can't be overwritten. A timed exercise takes `duration_sec` instead of `reps`. |
+| `log_body_stat` | Set weight / body-fat / measurements on a day | `weight`, `weight_unit` (`kg`\|`lb`), `bodyFat`, `waist`, `hips`, `neck`, `chest`, `biceps`, `thighs`, `calves`, `date` | `ok`, `date`, `logged`, `stats`. Merges into existing values via `mergeStatsObject`, which allowlists the known body-stat keys, so a malformed payload can't put stray fields in the stored JSON. |
+| `add_progress_photo` | Attach an image you already host to a date as a progress photo | `url*`, `date` (default today) | `ok`, `photo`. Takes a URL, not file bytes. |
 
 ### Destructive tools (`mcp:destroy` + `confirm: true`)
 
 | Tool | Purpose | Args | Returns |
 |------|---------|------|---------|
-| `delete_workout` | Permanently delete a day's entire workout | `date*`, `confirm*` | `ok`, `deleted`, `date`. Hard delete, matching `DELETE /api/workout/:date`'s existing semantics — no soft-delete step. |
+| `delete_workout` | Permanently delete a day's entire workout | `date*`, `confirm*` | `ok`, `deleted`, `date`. Hard delete, matching `DELETE /api/workout/:date`'s existing semantics: no soft-delete step. |
 
 ### LiftTrace scoping guarantees
 
-Every tool query scopes on an ownership column — `user_id` for `workout_log` / `body_stats_log`, `assigned_to` for `program_assignments`, `created_by` for `exercises` / `programs` (with `is_global = 1` rows intentionally shared across every user — that's the point of a global exercise, not a leak). A token cannot read, write, or destroy anything outside its owner's account, even for admins. A static wiring test (`scripts/mcp-wiring.test.js`) fails CI if a future tool omits the scoping clause. MCP tokens always belong to a real user account — see [the MCP setup page](../lifttrace/mcp.md) for why API Tokens only appears on a multi-user instance.
+Every tool query scopes on an ownership column: `user_id` for `workout_log` / `body_stats_log`, `assigned_to` for `program_assignments`, `created_by` for `exercises` / `programs` (with `is_global = 1` rows intentionally shared across every user; that's the point of a global exercise, not a leak). A token cannot read, write, or destroy anything outside its owner's account, even for admins. A static wiring test (`scripts/mcp-wiring.test.js`) fails CI if a future tool omits the scoping clause. MCP tokens always belong to a real user account; see [the MCP setup page](../lifttrace/mcp.md) for why API Tokens only appears on a multi-user instance.
 
 ### LiftTrace rate limits
 

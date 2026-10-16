@@ -12,6 +12,7 @@ Every var below also accepts the Docker secrets convention `<NAME>_FILE=/run/sec
 | `EXERCISE_SOURCES` | (empty) | Comma list of exercise-source IDs to auto-seed on first boot: any of `wger`, `free-db`, `exercisedb`, `exercisedb-oss`. Empty triggers the first-run wizard's library picker instead of seeding blind. |
 | `EXERCISEDB_OSS_URL` | `https://oss.exercisedb.dev` | Override the community mirror URL for the `exercisedb-oss` source. Point at your own deployment if you want to self-host the mirror or reduce load on the public one. |
 | `ALLOW_PRIVATE_RADIO_URLS` | `0` | Set `1` or `true` to let every account play radio stations on your own network (loopback, RFC1918, IPv6 ULA). An admin always can. A warning is logged at startup when it is set. |
+| `UPDATE_CHECK` | (unset) | `off` (or `0`, `false`, `no`) stops the server asking GitHub about new releases for good, whatever **Settings, Updates** says, and locks that setting. Unset, the setting decides. 1.4.0 and later. |
 
 ## Notes on each
 
@@ -38,11 +39,15 @@ The `exercisedb-oss` source hits `https://oss.exercisedb.dev` by default. The mi
 
 An admin can play stations on your own network (`127.0.0.1`, `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`, `fc00::/7`); other accounts get "Could not reach that station". Set `ALLOW_PRIVATE_RADIO_URLS=1` to let every account, and a single-user install, play them. Your music server doesn't need it. Full detail in [Radio player](radio.md#stations-on-your-own-network-allow_private_radio_urls).
 
+### `UPDATE_CHECK`
+
+Update checks are off on a fresh install until someone says yes: the setup wizard asks, and an admin can change it later in **Settings, Updates**. An install that was already running before 1.4.0 keeps checking, as it did before. When checks are on, the server asks `api.github.com` for the latest release at most once a day (**Check Now** asks at once), and nothing about you or your data is sent. Browsers never contact GitHub themselves: they ask your server. The Android app asks GitHub directly for a new APK, and only once you said yes on that phone; `UPDATE_CHECK` doesn't reach it. Read in `server/lib/update-check.js`.
+
 ## Not LiftTrace-specific
 
 Some vars that live in LT compose files are actually shared. Look them up in [Shared environment reference](../self-hosting/env-vars.md):
 
-- `PORT` alternatives, `NODE_ENV`, `LOG_LEVEL`, `BASE_URL`
+- `PORT` alternatives, `NODE_ENV`, `LOG_LEVEL`, `BASE_URL`, `PUBLIC_URL` (1.4.0 and later: the address in links in emails)
 - `DB_PATH`, `UPLOADS_PATH`, `BACKUPS_PATH`, `BACKUP_UPLOAD_MAX_MB`
 - `JWT_SECRET`, `TOKEN_ENC_KEY`, `INSECURE_COOKIES`, `MAX_SESSION_HOURS`, `RECOVERY_TOKEN`
 - `BACKUP_SCHEDULE`, `BACKUP_TIME`, `BACKUP_RETENTION`

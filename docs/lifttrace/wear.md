@@ -34,9 +34,9 @@ Only the first install needs adb (step 1 above).
 
 **Logging a set.** Tap the set you're on. The weight and reps are filled in from what the plan says or what you did last, and "Last time" shows what you lifted on this exercise before, which is the number you'd otherwise take your phone out to look up.
 
-**The crown.** It scrolls, as it does everywhere else on a watch. Tap a number and it takes the crown: the number is outlined, and turning moves it. Tap it again to give the crown back to the list. Weight, reps, both sides of a unilateral lift and a hold can all be dialled this way.
+**The crown.** It scrolls, as it does everywhere else on a watch. Tap a number and it takes the crown: the number is outlined, and turning moves it. Tap it again to give the crown back to the list. Weight, reps, both sides of a unilateral lift and a hold can all be dialed this way.
 
-**Rest.** It starts by itself after a set when your settings say so, and the row on the session screen counts it down in colour: green while there's time, amber when it's getting on, red at the death. The watch buzzes at the end with a real alarm, so it happens with the app long gone from the screen, and says "Rest over" on the wrist rather than buzzing about nothing. `+30` gives it longer, Skip ends it.
+**Rest.** It starts by itself after a set when your settings say so, and the row on the session screen counts it down in color: green while there's time, amber when it's getting on, red at the death. The watch buzzes at the end with a real alarm, so it happens with the app long gone from the screen, and says "Rest over" on the wrist rather than buzzing about nothing. `+30` gives it longer, Skip ends it.
 
 **On the watch face.** While a rest runs it shows on the face and in the launcher's top row, counting down without the app open. The system draws the counting, so nothing wakes up to tick it. Tapping it opens the timer. Faces that don't support ongoing activities show it in the notification stream instead.
 
@@ -48,7 +48,11 @@ Only the first install needs adb (step 1 above).
 
 **A tile.** One swipe from the watch face: the set you're on, no app launch. Add it by long-pressing the watch face, then Tiles.
 
-**A complication.** Sets done, on the watch face itself, tapping through to the app. Add it from your watch face's own customisation screen.
+**A complication.** Sets done, on the watch face itself, tapping through to the app. Add it from your watch face's own customization screen.
+
+## Sets on both devices
+
+A set logged, corrected or ticked on the watch shows on the phone right away while LiftTrace is open there, and the other way round, rather than at the next refresh. Neither checks while its screen is off. A save changes only the sets it changed, so a set marked done on the watch stays done when you then save something else on the phone. The workout timer reads the same on both.
 
 ## The rest timer on both devices
 

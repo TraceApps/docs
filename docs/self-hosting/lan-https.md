@@ -49,7 +49,7 @@ CookTrace, LiftTrace and NoteTrace still need HTTPS on Android. Every APK on Git
 
 Two things, both silent-ish:
 
-1. **The sign-in cookie is `Secure` by default.** Browsers drop it on any plain `http://` address other than `localhost`, so signing in loops back to the sign-in page. NutriTrace 1.4.0 and NoteTrace 1.1.0 and later say so on the sign-in and setup screens; CookTrace and LiftTrace from their next release. Setting `INSECURE_COOKIES=1` removes the `Secure` attribute; do this only inside a trusted network. The Android app signs in with a token and isn't affected by it.
+1. **The sign-in cookie is `Secure` by default.** Browsers drop it on any plain `http://` address other than `localhost`, so signing in loops back to the sign-in page. NutriTrace 1.4.0, NoteTrace 1.1.0 and LiftTrace 1.4.0 and later say so on the sign-in and setup screens; CookTrace from its next release. Setting `INSECURE_COOKIES=1` removes the `Secure` attribute; do this only inside a trusted network. The Android app signs in with a token and isn't affected by it.
 2. **Android release APK cleartext policy.** The CookTrace, LiftTrace and NoteTrace release APKs ship `network_security_config.xml` with `cleartextTrafficPermitted="false"`, which the platform enforces over the manifest's `usesCleartextTraffic` attribute. Plain-HTTP requests just refuse, with no in-app way around it, so they need HTTPS. NutriTrace's app from 1.5.0 allows cleartext at the platform level and checks each address itself: plain HTTP only to a server on your own network, after the warning (Path 4). Certificates are a different question: a self-signed one works on every release build once its CA is installed on the phone (Path 3).
 
 ## Related

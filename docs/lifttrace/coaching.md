@@ -44,7 +44,7 @@ When the client leaves or the coach ends it, the prescriptions and programs that
 **Programs**, **Coaching** lists your clients with their latest workout, active program, workouts this week and unread messages. Open a client for:
 
 - **Conversation**: see below.
-- **Programs**: assign one of your programs, make it their active one, or remove it.
+- **Programs**: assign one of your programs, make it their active one, or remove it. The client can follow it but not change it.
 - **Prescribed Workouts**: what you prescribed, with the client's answer (**Waiting for an Answer**, **Accepted**, **Declined**) and whether it was completed or missed.
 - **Recent Workouts**: open a completed workout to read it and leave a note on the workout or on any exercise. Each note gets one reply from the client. Filmed sets carry a **Watch** chip ([Set videos](set-videos.md)).
 

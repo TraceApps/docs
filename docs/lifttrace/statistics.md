@@ -51,7 +51,7 @@ The range selector (`1W / 1M / 3M / 6M / 1Y / All`) applies to every view. The E
 
 ## Streaks and frequency
 
-Streaks come from `GET /api/stats/streaks`: current streak in days, longest streak, and total workouts. A "streak day" is any calendar date with at least one completed set logged. Rest days do not break the streak; only a full day with no logged working set does. The 4-week frequency and weekly goal live on the Overview tile alongside streaks and roll off the current week's ISO Monday.
+Streaks come from `GET /api/stats/streaks`: current streak in days, longest streak, and total workouts. A "streak day" is any calendar date with at least one completed set logged, or, with **Track Cardio** on in Settings > Workout, a cardio session (from 1.4.0). Rest days do not break the streak; only a full day with no logged working set does. The 4-week frequency and weekly goal live on the Overview tile alongside streaks and roll off the current week's ISO Monday.
 
 ## Related
 

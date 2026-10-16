@@ -5,7 +5,7 @@ If you have been logging elsewhere, LiftTrace can absorb the history. Five sourc
 ## The general flow
 
 1. Export your history from the source app (steps per source below).
-2. In LiftTrace, open **Settings > Data > Workout Import**.
+2. In LiftTrace, open **Settings > Import Workouts**.
 3. Pick the source.
 4. Upload the export file.
 5. Review the preview: number of workouts, number of matched vs unmatched exercises, dates that conflict with existing LiftTrace workouts.
@@ -34,7 +34,7 @@ Unmatched exercise names persist as free-text and stay attached to their sets. Y
 
     **Import to LiftTrace**
 
-    1. Settings > Data > Workout Import.
+    1. Settings > Import Workouts.
     2. Pick **Strong** from the source picker.
     3. Upload the `.csv` file.
     4. Review the preview and commit.
@@ -50,7 +50,7 @@ Unmatched exercise names persist as free-text and stay attached to their sets. Y
 
     **Import to LiftTrace**
 
-    1. Settings > Data > Workout Import.
+    1. Settings > Import Workouts.
     2. Pick **Hevy**.
     3. Upload the `.csv`.
     4. Review and commit.
@@ -67,7 +67,7 @@ Unmatched exercise names persist as free-text and stay attached to their sets. Y
 
     **Import to LiftTrace**
 
-    1. Settings > Data > Workout Import.
+    1. Settings > Import Workouts.
     2. Pick **FitNotes**.
     3. Upload the `.csv`.
     4. Review and commit.
@@ -91,7 +91,7 @@ Unmatched exercise names persist as free-text and stay attached to their sets. Y
 
     **Import to LiftTrace**
 
-    1. Settings > Data > Workout Import.
+    1. Settings > Import Workouts.
     2. Pick **Jefit**.
     3. Upload the `.csv`.
     4. Review and commit.
@@ -109,7 +109,7 @@ Unmatched exercise names persist as free-text and stay attached to their sets. Y
 
     **Import to LiftTrace**
 
-    1. Settings > Data > Workout Import.
+    1. Settings > Import Workouts.
     2. Pick **Garmin FIT**.
     3. Upload the `.fit` file.
     4. Review and commit.

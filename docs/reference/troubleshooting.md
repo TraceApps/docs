@@ -6,7 +6,7 @@ A running list of the failure modes that actually catch self-hosters out. Organi
 
 ### Signing in over plain HTTP sends you back to the sign-in page { #login-401-loop }
 
-**Symptom:** You open the app at a plain `http://` address (a LAN IP, an Unraid WebUI link), the sign-in form takes your password, and you're back on the sign-in page. NutriTrace 1.4.0 and NoteTrace 1.1.0 and later say **Signing in won't work on this address** on the sign-in and setup screens, and log `Sign-in from a plain-HTTP page`; CookTrace and LiftTrace from their next release.
+**Symptom:** You open the app at a plain `http://` address (a LAN IP, an Unraid WebUI link), the sign-in form takes your password, and you're back on the sign-in page. NutriTrace 1.4.0, NoteTrace 1.1.0 and LiftTrace 1.4.0 and later say **Signing in won't work on this address** on the sign-in and setup screens, and log `Sign-in from a plain-HTTP page`; CookTrace from its next release.
 
 **Cause:** The sign-in cookie is marked `Secure` by default, so browsers keep it only on HTTPS pages and `http://localhost`. Over any other plain `http://` address the browser silently throws it away, so the session never sticks. Firefox's console names the rejected cookie.
 
@@ -14,7 +14,7 @@ A running list of the failure modes that actually catch self-hosters out. Organi
 
 ### Signing in over HTTPS sends you back to the sign-in page { #login-https-dropped }
 
-**Symptom:** The page is `https://` and your password is right, but you're back on the sign-in page. NutriTrace 1.4.0 and NoteTrace 1.1.0 and later say **Your browser didn't keep you signed in**; CookTrace and LiftTrace from their next release.
+**Symptom:** The page is `https://` and your password is right, but you're back on the sign-in page. NutriTrace 1.4.0, NoteTrace 1.1.0 and LiftTrace 1.4.0 and later say **Your browser didn't keep you signed in**; CookTrace from its next release.
 
 **Cause and fix:** Something between the sign-in and the next request dropped the cookie: blocked cookies, a frame on another site, or a proxy that changes it. See [If signing in doesn't stick](../getting-started/reverse-proxy.md#sign-in-doesnt-stick).
 
@@ -66,7 +66,7 @@ Details in [HTTPS on the LAN](../self-hosting/lan-https.md) and [Cloudflare Tunn
 
 **Symptom:** You sign in at your IdP fine, it redirects back, and the app shows a blank white page. The container log shows requests like `GET /api/oidc/callback` or `GET /api/oidc/assets/...`.
 
-**Cause:** The callback URL is wrong. The IdP sent you back to a path the app doesn't handle. CookTrace and LiftTrace handle only the path below; NutriTrace 1.4.0 and NoteTrace 1.1.0 and later also accept it without the number, and at `/api/oidc/callback`.
+**Cause:** The callback URL is wrong. The IdP sent you back to a path the app doesn't handle. CookTrace handles only the path below; NutriTrace 1.4.0, NoteTrace 1.1.0 and LiftTrace 1.4.0 and later also accept it without the number, and at `/api/oidc/callback`.
 
 **Fix:** Use `https://<your-host>/api/auth/oidc/callback/<provider-id>` (the ID is in the startup log line `[oidc-env] Loaded 1 OIDC provider from environment (IDs: 1)`, usually `1`), in both your IdP and `OIDC_REDIRECT_URIS`, then `docker compose up -d`. See [The callback URL](../auth/oidc.md#the-callback-url).
 

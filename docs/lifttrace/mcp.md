@@ -8,11 +8,13 @@ Off by default. Opt in with one env var + one API token.
 
 ## Available tools
 
-Eleven tools across three tiers. Setup for each tier below; full arg/return reference in the [MCP tool catalog](../reference/mcp-tools.md).
+Fifteen tools across three tiers. Setup for each tier below; full arg/return reference in the [MCP tool catalog](../reference/mcp-tools.md).
 
 ### Read (always available when MCP is on)
 
-Nine read-only tools: `get_workout`, `list_recent_workouts`, `get_records`, `get_exercise_progress`, `search_exercises`, `list_programs`, `get_active_program`, `get_body_stat`, `list_progress_photos`.
+Eleven read-only tools: `get_workout`, `get_workouts`, `list_recent_workouts`, `get_records`, `get_exercise_progress`, `search_exercises`, `list_programs`, `get_active_program`, `get_body_stat`, `get_body_stats`, `list_progress_photos`.
+
+`get_workouts` and `get_body_stats` (1.4.0 and later) read a whole date range at once, the last 90 days when you give no dates. `get_workouts` answers the most recent 30 sessions in the range by default (up to 100) and says when there were more, so a client narrows the range instead of assuming it has everything. `list_recent_workouts`, `get_records` and `get_exercise_progress` take the same `start` and `end` bounds; a record read over a range is the best lift within those dates, not an all-time one. The same reads are on the REST API ([`docs/public-api.md`](https://github.com/TraceApps/lifttrace/blob/main/docs/public-api.md)).
 
 ### Write (Phase 2)
 
@@ -43,7 +45,7 @@ Redeploy. The endpoint at `/api/mcp` starts responding to authenticated MCP clie
 
 ## Mint an MCP token
 
-Log in as an admin on a **multi-user** instance (API tokens need a real account to own them — single-user mode doesn't have one, so this section is hidden there), then:
+Log in as an admin on a **multi-user** instance (API tokens need a real account to own them; single-user mode doesn't have one, so this section is hidden there), then:
 
 1. Open **Settings → API Tokens**
 2. **New token** → name it (e.g. "claude-desktop")
@@ -93,7 +95,7 @@ The transport is standard MCP Streamable HTTP (single POST endpoint). Any client
 - **Per-user isolation.** Every tool query is scoped to the token owner's data; no cross-user leakage is possible, even for admins.
 - **Origin gating (DNS-rebinding defense).** Server-to-server clients (Claude Desktop, Cursor, etc.) send no Origin header and pass. Browser-based MCP inspectors need to be listed in `ALLOWED_ORIGINS` explicitly. This is the [MCP spec's recommended](https://modelcontextprotocol.io/specification/basic/authorization) defense against DNS rebinding attacks and LiftTrace does not soften it with a "trust the Host header" fallback.
 - **Bearer over HTTPS only.** Never send the token over plain HTTP; it's equivalent to a user password for the tools it grants.
-- **Writes go through the same merge path as the app.** `log_set` and `log_body_stat` reuse the exact server-side merge primitives (`mergeExercises`, `mergeStatsObject`) the PWA's own save endpoints use — a concurrent app save landing mid-tool-call can't be silently clobbered, and only the known set of body-stat keys can ever land in the stored JSON.
+- **Writes go through the same merge path as the app.** `log_set` and `log_body_stat` reuse the exact server-side merge primitives (`mergeExercises`, `mergeStatsObject`) the PWA's own save endpoints use, so a concurrent app save arriving mid-tool-call can't be silently overwritten, and only the known set of body-stat keys can ever reach the stored JSON.
 
 ## Env vars
 
@@ -113,7 +115,7 @@ git clone https://github.com/traceapps/lifttrace && cd lifttrace
 node scripts/mcp-smoke.mjs https://lifttrace.example.com lt_pat_your_token_here
 ```
 
-Add `--writes` to also exercise the write tools (needs `mcp:write` + `MCP_WRITE_ENABLED=1`) — the script looks up a real exercise from your own catalog via `search_exercises` before calling `log_set`, so it never guesses an id. Add `--destroy` on top to verify the destructive tool's gate-refusal path (needs `mcp:destroy` + `MCP_DESTROY_ENABLED=1`; the smoke script never actually deletes anything, it only checks that a call without `confirm: true` is rejected).
+Add `--writes` to also exercise the write tools (needs `mcp:write` + `MCP_WRITE_ENABLED=1`); the script looks up a real exercise from your own catalog via `search_exercises` before calling `log_set`, so it never guesses an id. Add `--destroy` on top to verify the destructive tool's gate-refusal path (needs `mcp:destroy` + `MCP_DESTROY_ENABLED=1`; the smoke script never actually deletes anything, it only checks that a call without `confirm: true` is rejected).
 
 ## Troubleshooting
 
@@ -127,10 +129,10 @@ Add `--writes` to also exercise the write tools (needs `mcp:write` + `MCP_WRITE_
 
 **429 rate_limited.** Backoff per the `Retry-After` header.
 
-**Settings → API Tokens isn't there.** The section only appears on a multi-user instance with a signed-in admin — a token needs a real account to own it, and single-user mode has none. Enable user management first.
+**Settings → API Tokens isn't there.** The section only appears on a multi-user instance with a signed-in admin: a token needs a real account to own it, and single-user mode has none. Enable user management first.
 
 ## Roadmap
 
-**Later**: MCP prompts capability (guided workflows), additional read tools (superset detail, cardio sessions) as demand justifies them, and possibly `edit_workout` (currently out of scope — `log_set` covers the primary "log what I just did" use case).
+**Later**: MCP prompts capability (guided workflows), additional read tools (superset detail, cardio sessions) as demand justifies them, and possibly `edit_workout` (currently out of scope: `log_set` covers the primary "log what I just did" use case).
 
 Feature request and progress: [issue #78](https://github.com/traceapps/lifttrace/issues/78) (thanks @bursaar).

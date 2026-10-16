@@ -58,17 +58,18 @@ Top-of-page hero on Settings. Links out to `/profile`.
 
 ### Catalog
 
-Server mode only. Per-source enable / disable / import / clear for `wger`, `free-db`, `exercisedb` (RapidAPI key field), and `exercisedb-oss`. Per-imported-catalog enable / disable / delete. Offline exercise library toggle (Android only, controls image cache). Full detail in [Exercise library](exercises.md).
+**Settings, Exercise Catalog.** Per-source enable / disable / import / clear for `wger`, `free-db`, `exercisedb` (RapidAPI key field), and `exercisedb-oss`. Per-imported-catalog enable / disable / delete. Clear and Delete say how many exercises they remove. From 1.4.0 it's also in the Android app without a server (local mode), so a library skipped or failed in the setup wizard can be imported later; switching a source off hides it on the phone too. With a server, **Offline Exercise Library** has **Pre-cache media for offline**, which fetches every exercise picture in advance. Full detail in [Exercise library](exercises.md).
 
-### Trace
+### AI Assistant (Trace)
 
 - **Enable AI assistant** master switch for Trace.
 - **Provider** Claude, OpenAI, Gemini, or OpenAI-Compatible.
-- **Base URL** required for `oai-compat`, ignored otherwise.
+- **Base URL** required for OpenAI Compatible (with or without `/v1`), ignored otherwise.
 - **Model** dropdown of presets plus **Custom** for any model ID the vendor supports.
 - **Custom model ID** free-text.
 - **API key** masked; a **Change** button appears once stored.
 - **Assistant name** rename Trace to whatever fits your setup.
+- **Test Connection** has its own row (1.4.0 and later): run it any time, also against an OpenAI Compatible server that needs no API key. The setting you fill in last tests on its own once everything it needs is there.
 
 Env-locked and read-only when any `AI_*` env var is set. See [Trace setup](../trace/setup.md).
 
@@ -91,7 +92,7 @@ Full walkthrough in [Radio player](radio.md).
 
 ### Server connection (Android only)
 
-Inline block near the top of Settings on the native app. Shows Connected, URL, Last synced, **Sync now**, **Log out**, **Disconnect**. When disconnected, offers URL / Username / Password / **Connect**. First-time connect with local data present shows an **Upload / Download / Merge** dialog.
+Inline block near the top of Settings on the native app. Shows Connected, URL, Last synced, **Sync now**, **Log out**, **Disconnect**. When disconnected, offers URL / Username / Password / **Connect**. Connecting with data already on the phone shows **Sync Options**: **Upload Phone to Server**, **Download Server to Phone** or **Merge Both**; changes that never reached a server are asked about before anything deletes them. **Disconnect** sends changes still waiting first. See [Local vs server-connected mode](../mobile/modes.md).
 
 ### Notifications
 
@@ -109,9 +110,17 @@ Inline block near the top of Settings on the native app. Shows Connected, URL, L
 - **Clear all settings** wipes preferences (destructive).
 - **Clear all data** wipes workouts and body stats (destructive).
 
-### Workout import
+### Import Workouts
 
-Picker for Strong, Hevy, FitNotes, Jefit, or Garmin FIT; upload file, preview, skip / replace on duplicate dates, commit. See [Workout history import](import.md).
+No longer marked Experimental from 1.4.0. Picker for Strong, Hevy, FitNotes, Jefit, or Garmin FIT; upload file, preview, skip / replace on duplicate dates, commit. See [Workout history import](import.md).
+
+### Updates
+
+Update checks are off until you turn them on (1.4.0 and later). The setup wizard asks (**Check For Updates**), and a fresh install contacts nothing on its own until someone says yes; an install that was already running before 1.4.0 keeps checking as it did.
+
+- **Automatically Check for Updates** turns them on or off, **Check Frequency** sets how often (Every Hour, Every 4 Hours, Every 12 Hours, Once a Day, or Manual Only), and **Check Now** checks at once (in the Android app, even with the toggle off). **Update Channel** picks Stable or Dev.
+- On the web, your server asks GitHub and the browser asks your server; a banner says **A New Version Is Available** with a **Reload** button. The Android app asks GitHub itself, downloads the APK and installs it; an APK it already downloaded is reused, and the button says **Install**.
+- `UPDATE_CHECK=off` on the server turns its checks off for good and locks the toggle. See [env vars](env-vars.md#update_check).
 
 ### Help and improve / Diagnostics
 
@@ -144,9 +153,13 @@ Only visible to `admin` in server mode.
 
 Env-locked when `SMTP_HOST` is set. See [SMTP setup](../integrations/smtp.md).
 
+## Support
+
+Next to About (1.4.0 and later): Ko-fi and GitHub Sponsors, plus free ways to help (**Star on GitHub**, **Report a Bug**, **Help Translate**). Support is optional and never unlocks anything. See [Support](../support.md).
+
 ## About
 
-Version, license (AGPL-3.0), sister-app link to NutriTrace, and Ko-fi link. `SettingsAbout.svelte` is also the entry point for checking installed version against the currently released tag.
+Version, license (AGPL-3.0), and a link to the TraceApps family. `SettingsAbout.svelte` is also the entry point for checking installed version against the currently released tag.
 
 ## Related
 
