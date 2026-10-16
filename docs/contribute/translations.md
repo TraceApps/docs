@@ -1,9 +1,6 @@
 # Translations (i18n)
 
-!!! note "NoteTrace is English only"
-    NoteTrace doesn't take translations. Its UI text lives in `en.json` like the other apps, but no other languages ship and it has no Weblate project. This page covers CookTrace, LiftTrace, and NutriTrace.
-
-All three apps use [svelte-i18n](https://github.com/kaisermann/svelte-i18n) with one JSON file per locale in `src/i18n/`. English (`en.json`) is the source of truth; every other locale is a translated copy with the same key structure. The runtime falls back to English for any missing key, so a partial translation is safe to release.
+All four apps use [svelte-i18n](https://github.com/kaisermann/svelte-i18n) with one JSON file per locale in `src/i18n/`. English (`en.json`) is the source of truth; every other locale is a translated copy with the same key structure. The runtime falls back to English for any missing key, so a partial translation is safe to release.
 
 ## Two ways to contribute a translation
 
@@ -11,7 +8,7 @@ Both end up with the same file (`src/i18n/<code>.json`) in the repo. Pick whiche
 
 ### A. Weblate (preferred for ongoing work)
 
-[Weblate](https://weblate.org/) is a browser-based translation platform. You pick a language, translate strings inline, and commits go back to `dev` as automatic pull requests. No git, no JSON syntax, no code.
+[Weblate](https://weblate.org/) is a browser-based translation platform. You pick a language, translate strings inline, and Weblate commits your work straight to the app's `dev` branch. No git, no JSON syntax, no code.
 
 Weblate projects per app:
 
@@ -19,6 +16,7 @@ Weblate projects per app:
 |-----|-----------------|
 | CookTrace  | [hosted.weblate.org/projects/cooktrace/](https://hosted.weblate.org/projects/cooktrace/) |
 | LiftTrace  | [hosted.weblate.org/projects/lifttrace/](https://hosted.weblate.org/projects/lifttrace/) |
+| NoteTrace  | [hosted.weblate.org/projects/notetrace/](https://hosted.weblate.org/projects/notetrace/) |
 | NutriTrace | [hosted.weblate.org/projects/nutritrace/](https://hosted.weblate.org/projects/nutritrace/) |
 
 Flow:
@@ -26,7 +24,7 @@ Flow:
 1. Open the Weblate project page. If your language is already in the list, click into it and start translating.
 2. If your language isn't in the list, click **Add new translation**, pick the language, and the project maintainer will approve it (usually same day).
 3. If you have an existing translation file (from a prior PR, an old app fork, or another project), seed the language with it: on the language page, **Files → Upload translation → attach the JSON, pick "Add as translation"**. Weblate imports every matching key and marks the rest for you to fill in.
-4. Translate remaining strings through the web UI. Weblate handles the git side automatically and periodically opens PRs to `dev`.
+4. Translate remaining strings through the web UI. Weblate handles the git side automatically and commits to `dev`, usually within a day.
 
 **One gotcha**: once Weblate is watching a language, direct edits to that file in a PR get overwritten on the next Weblate sync (Weblate holds the authoritative state in its own database). Use Weblate for edits going forward once a language is on it.
 
@@ -36,13 +34,14 @@ If you have a completed translation file you'd rather submit once and be done, o
 
 Follow the "Adding a new language" steps below.
 
-Current locale coverage (2026-08-21):
+Current locale coverage (2026-10-16):
 
 | App | Locales in tree |
 |-----|-----------------|
-| CookTrace  | `en`, `sv` |
-| LiftTrace  | `en` |
-| NutriTrace | `en`, `fr` |
+| CookTrace  | `en`, `es`, `fr`, `it`, `sv` |
+| LiftTrace  | `en`, `es`, `it`, `zh-Hans` |
+| NoteTrace  | `en` |
+| NutriTrace | `cs`, `de`, `en`, `es`, `fr`, `nb`, `pl`, `pt_BR`, `ru`, `zh_Hans` |
 
 ## Adding a new language (direct PR path)
 
@@ -78,7 +77,7 @@ Current locale coverage (2026-08-21):
 
 ## For code contributors: instrumenting new strings
 
-Every user-facing string added to any of the three apps should be extracted into `en.json` and rendered through svelte-i18n's `$_()` helper. Hardcoded English literals in templates are the reason translation coverage lags the codebase; prevent them at PR time rather than retrofit later.
+Every user-facing string added to any of the four apps should be extracted into `en.json` and rendered through svelte-i18n's `$_()` helper. Hardcoded English literals in templates are the reason translation coverage lags the codebase; prevent them at PR time rather than retrofit later.
 
 The pattern:
 
@@ -109,7 +108,7 @@ Two rules that catch community PRs:
 
 Product names, brand names, and third-party service names stay in English regardless of target locale:
 
-Trace, Trace AI, CookTrace, LiftTrace, NutriTrace, TraceApps, wger, USDA, Open Food Facts, OFF, Mealie, Fitbit, Google Health, Withings, Garmin, Health Connect, Ollama, LM Studio, LocalAI, vLLM, DeepSeek, Groq, Together AI, Mistral, Anthropic, Claude, OpenAI, GPT, Google, Gemini, Authentik, Keycloak, Pocket-ID, Authelia, Auth0, Apprise, Gotify, ntfy, Docker, Caddy, Traefik, nginx, Cloudflare, Tailscale, Capacitor, Svelte, Vite, Node.js, Express, SQLite, DuckDB, JWT, OIDC, SSO.
+Trace, Trace AI, CookTrace, LiftTrace, NoteTrace, NutriTrace, TraceApps, wger, USDA, Open Food Facts, OFF, Mealie, Fitbit, Google Health, Withings, Garmin, Health Connect, Ollama, LM Studio, LocalAI, vLLM, DeepSeek, Groq, Together AI, Mistral, Anthropic, Claude, OpenAI, GPT, Google, Gemini, Authentik, Keycloak, Pocket-ID, Authelia, Auth0, Apprise, Gotify, ntfy, Docker, Caddy, Traefik, nginx, Cloudflare, Tailscale, Google Keep, Takeout, Evernote, ENEX, Memos, Blinko, Obsidian, Joplin, Simplenote, Standard Notes, OneNote, Apple Notes, Markdown, Whisper, Wear OS, Capacitor, Svelte, Vite, Node.js, Express, SQLite, DuckDB, JWT, OIDC, SSO.
 
 Feature names inside the apps (Smart Log, Quick Calories, Adaptive TDEE, Meal Planner, Kitchen Gear, Cook Diary, Programs, Radio) also stay in English, matching the UI label.
 

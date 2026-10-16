@@ -21,7 +21,7 @@ Top of the Settings page. Avatar, name, role pill. Tap the card to open **/profi
 
 ## Regional and Units (per-user)
 
-- **Language**: registered locales (English, Swedish today).
+- **Language**: the app's language. The picker lists the languages translated so far; anything not yet translated shows in English. To add or improve a language, see [Translations](../contribute/translations.md).
 - **Date Format**: ISO, US, EU, or natural.
 - **Time Format**: 12h or 24h.
 - **Measurement System**: Imperial or Metric.

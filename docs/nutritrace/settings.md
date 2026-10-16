@@ -33,7 +33,9 @@ Top-of-page card with your name, nickname, avatar, DOB, gender, height, weight, 
 
 ## Regional and Units
 
-Language, date format (US / ISO / EU / natural), time format (12h / 24h), timezone, and **First Day of Week** (`firstDayOfWeek`: Automatic, Monday, Sunday or Saturday). Automatic follows the device's region: Sunday on a device set to the US, Monday in most of Europe. The Diary's week strip, every calendar and the weekday lists (goals and coach targets by weekday, fasting days, the weekly summary day) follow it; a value set for a weekday stays on that weekday. With a day chosen, the weekly summary covers the last whole week; with Automatic it covers the 7 days up to the day it's sent, as before. Unit choices for energy (kcal / kJ), weight, height, circumference, distance, temperature. All `USER_PREFS`.
+- **Language**: the app's language. The picker lists the languages translated so far; anything not yet translated shows in English. To add or improve a language, see [Translations](../contribute/translations.md).
+
+Date format (US / ISO / EU / natural), time format (12h / 24h), timezone, and **First Day of Week** (`firstDayOfWeek`: Automatic, Monday, Sunday or Saturday). Automatic follows the device's region: Sunday on a device set to the US, Monday in most of Europe. The Diary's week strip, every calendar and the weekday lists (goals and coach targets by weekday, fasting days, the weekly summary day) follow it; a value set for a weekday stays on that weekday. With a day chosen, the weekly summary covers the last whole week; with Automatic it covers the 7 days up to the day it's sent, as before. Unit choices for energy (kcal / kJ), weight, height, circumference, distance, temperature. All `USER_PREFS`.
 
 ## Diary
 
