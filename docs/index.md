@@ -46,6 +46,10 @@ TraceApps is a family of four single-container self-hosted apps. They share the 
 
 </div>
 
+## From TraceApps
+
+The same principles, a different job, and their own docs: **[Fathom](from-traceapps/fathom.md)** is an all-in-one Jellyfin client for desktop and Android, with Seerr requests and YouTube built in.
+
 ## New here?
 
 Start with **[Get Started → Install with Docker Compose](getting-started/compose.md)**. One page covers every app with per-app tabs.
