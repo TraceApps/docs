@@ -57,13 +57,13 @@ Log a cook from Cook Mode or from the recipe view. Each entry has:
 - Per-cook rating (separate from the recipe's overall rating; answers "how did it turn out this time").
 - Notes.
 - Optional photos.
-- **Made From**: the version of the recipe it was made from (see [History](#history)). It's the recipe as it is when you log the cook; a cook logged for an earlier day takes the version the recipe had that day. Change it when you logged the cook first and then edited the recipe to say what you really did.
+- **Made From**: the version of the recipe it was made from (see [History](#history)). It's the recipe as it is when you log the cook; a cook logged for an earlier day takes the version the recipe had that day. If an older version was restored since then, the day can't tell which it was, so the cook asks you to choose. Change it when you logged the cook first and then edited the recipe to say what you really did.
 
 The recipe view shows a **per-recipe cook history** so you can flip back to what you tweaked last time; each cook's **Made With Version 3** opens the recipe as you made it. `last_cooked_at` and cook count roll up on the card.
 
 ## History
 
-Every change to what a recipe has you cook (its ingredients, steps, servings, yield or times) is kept as a version, and every cook remembers the one it was made from. Made for working on a recipe: change the flour, bake, compare, keep what worked. A new name, photo, note, tag or category isn't a new version, and neither is linking an ingredient to the pantry.
+Every change to what a recipe has you cook (its ingredients, steps, servings, yield or times) is kept as a version, and every cook remembers the one it was made from. Made for working on a recipe: change the flour, bake, compare, keep what worked. A new name, photo, note, tag or category isn't a new version, and neither is linking an ingredient to the pantry. An amount written another way (1/2, 0.5, ½) is the same version; any other change to it, however small (0.10 g to 0.15 g), is a new one.
 
 **History** in the recipe's byline lists the versions, newest first. Each shows what changed from the one before ("Flour: 300 g → 250 g · Added sugar · Step 3 edited"), when, and how its cooks turned out (how many, the average rating, their photos). The current version and every version you cooked are shown; edits in between that you never cooked fold into a line ("3 more edits") until you open it.
 
@@ -78,7 +78,7 @@ A version opens its own page:
 - **Name This Version** gives it a name of its own ("Less flour", "The base"), shown in History, Compare and the cook dialog.
 - **Delete Version**, only for a version no cook was made from.
 
-Every version is kept, with no limit. Recipes from before 1.5 start their history with what they hold now; cooks logged before then say "Made before history was kept", because what they were made from isn't known. History works offline and on the Android app with no server, and syncs like the rest. Copies the app kept when two edits met (**Earlier Copies**) are at the bottom of History. [Trace](trace.md) can read the history too: ask it what changed since your best batch, or which version you liked most.
+Every version is kept, with no limit. Recipes from before 1.5 start their history with what they hold now; cooks logged before then say "Made before history was kept", because what they were made from isn't known. History works offline and on the Android app with no server, syncs like the rest, and is in backups, the Android app's local backup included. A cook logged offline keeps the version it was made from, and a version can't be lost to a cook: one deleted on another device before it heard of the cook comes back. Copies the app kept when two edits met (**Earlier Copies**) are at the bottom of History. [Trace](trace.md) can read the history too: ask it what changed since your best batch, or which version you liked most.
 
 ## Allergens
 
