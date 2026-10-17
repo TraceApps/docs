@@ -4,7 +4,7 @@ How notes are stored and behave, for when the [feature tour](features.md) isn't 
 
 ## Text notes
 
-The body is stored as Markdown in `notes.body_md`. The editor is [TipTap](https://tiptap.dev/) with its Markdown extension, so what you see as bold, lists, headings, quotes, and code is saved as `**bold**`, `- item`, `# Heading`, `> quote`, and backticks. A single line break inside a paragraph is saved as a Markdown hard break (two trailing spaces), so notes pasted from plain text keep their lines.
+The body is stored as Markdown in `notes.body_md`. The editor is [TipTap](https://tiptap.dev/) with its Markdown extension, so what you see as bold, lists, headings, quotes, and code is saved as `**bold**`, `- item`, `# Heading`, `> quote`, and backticks. A single line break inside a paragraph is saved as a Markdown hard break (two trailing spaces), so notes pasted from plain text keep their lines. Tables are saved as Markdown tables (GitHub's `| a | b |` form), a `|` in a cell as `\|` and a line break in a cell as `<br>`; the editor keeps each cell to one paragraph and the first row as the header, because that's all a Markdown table can hold.
 
 Titles are separate from the body and optional. An untitled note shows its first lines on the card.
 

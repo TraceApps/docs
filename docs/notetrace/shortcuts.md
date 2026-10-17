@@ -72,6 +72,9 @@ Press `g`, then:
 | `Ctrl` + `B` / `I` / `U` | Bold / italic / underline |
 | `Ctrl` + `Shift` + `H` | Highlight |
 | `Tab` / `Shift` + `Tab` | Nest or un-nest a list item or checkbox |
+| `Tab` / `Shift` + `Tab` in a table | Next or previous cell; `Tab` in the last cell adds a row |
+| `Enter` in a table | The cell below, adding a row at the bottom; in an empty last row, leaves the table |
+| `Shift` + `Enter` in a table | A new line in the cell |
 | `Ctrl` + `P` | Print or save the note as a PDF |
 | `Esc` | Close the note |
 | `[[` | Link to another note |
@@ -91,6 +94,7 @@ In a text note, type `/` at the start of a line or after a space. A menu of comm
 | Quote | Makes a quote |
 | Code Block | Starts a code block |
 | Divider | Adds a horizontal line |
+| Table | Adds a table with a header row |
 | Link to a Note | Starts a `[[link]]` |
 | Today's Date, Current Time | Inserts the date or time |
 | Image | Opens the image picker |
