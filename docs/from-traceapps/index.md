@@ -7,7 +7,7 @@ hardware), but they aren't built on the Trace stack, so the shared setup
 pages on this site (Docker install, Trace AI, OIDC, backups, the mobile
 companion) don't apply to them. Each has its own documentation.
 
-<div class="grid cards" markdown>
+<div class="grid cards from-traceapps" markdown>
 
 -   ![Fathom](../assets/img/fathom-logo.png){ width="120" .app-card-icon }
 

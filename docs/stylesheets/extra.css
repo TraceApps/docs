@@ -16,3 +16,10 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+/* "From TraceApps" cards keep the same width as the Trace app cards above
+   them, even when the row holds only one or two (auto-fill leaves the rest
+   of the row empty instead of stretching a lone card across the page). */
+.md-typeset .grid.cards.from-traceapps {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+}
