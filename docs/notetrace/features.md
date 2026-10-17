@@ -161,7 +161,7 @@ Start a voice note from the microphone on Capture a thought (or **+**, then **Vo
 
 ## Trace {#trace}
 
-**Ask Trace** in the editor tidies up a note, summarizes it, or turns it into a checklist, and shows you the result before anything changes. In the Trace chat, ask about your notes or have Trace create lists, add and check items, set reminders, and apply labels. See [Trace in NoteTrace](trace.md).
+**Ask Trace** in the editor tidies up a note, expands it, summarizes it, turns it into a checklist, or does what you type as a **Custom Instruction**, and shows you the result before anything changes. In the Trace chat, ask about your notes or have Trace create lists, add and check items, set reminders, and apply labels. See [Trace in NoteTrace](trace.md).
 
 ## Labels, colors, archive, trash {#organize}
 

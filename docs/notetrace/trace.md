@@ -6,19 +6,21 @@ Nothing on this page runs until Trace is set up, and each feature sends only wha
 
 ## Ask Trace in the editor {#editor}
 
-On a text note, the **Ask Trace** button (sparkle icon) in the editor bar offers three actions:
+On a text note, the **Ask Trace** button (sparkle icon) in the editor bar offers these actions:
 
 | Action | What it does | Apply with |
 |---|---|---|
 | **Tidy Up** | Fixes spelling and grammar and adds structure, keeping your meaning and facts | **Use This** replaces the text |
+| **Expand** | Turns short notes and shorthand into full sentences, without adding facts | **Use This** replaces the text |
 | **Summarize** | A few bullet points with the key facts and to-dos | **Add to Top** puts the summary above the text |
 | **Make a Checklist** | Turns the note into checkable items | **Make Checklist** converts the note |
+| **Custom Instruction** | Does what you type: "Translate to Spanish", "Make it a table", "Write it as an email" | **Use This** replaces the text; **Add Below** puts it under the text |
 
-Trace's result is shown first, and nothing changes until you apply it. Applying always saves the text you had as a restore point in [version history](notes.md#version-history), even if you edited a minute ago, so an unwanted rewrite is one tap to undo. **Try Again** asks for a fresh result.
+For **Custom Instruction**, type what you want and press **Enter** or **Ask Trace** (**Shift+Enter** starts a new line on a computer); **Back** from the result returns to your instruction to change it. Trace's result is shown first, and nothing changes until you apply it. Applying always saves the text you had as a restore point in [version history](notes.md#version-history), even if you edited a minute ago, so an unwanted rewrite is one tap to undo. **Try Again** asks for a fresh result.
 
 ## Chat with your notes {#chat}
 
-Open Trace from the round button and ask in plain words. Trace can call note tools, so it answers from your real notes and can change them:
+Open Trace from the round button and ask in plain words. While a note is open over the page, the round button steps aside: on a text note, use **Ask Trace** in the note's bar, or close the note to chat. Trace can call note tools, so it answers from your real notes and can change them:
 
 - "What's on my groceries list?"
 - "Start a packing list for the cabin: charger, boots, headlamp."
