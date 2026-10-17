@@ -99,7 +99,7 @@ NoteTrace's editor actions (Tidy Up, Summarize, Make a Checklist) and voice note
 
 ## NutriTrace
 
-Sixteen tools covering diary reads, wellness reads, and structured writes. The `propose_*` tools are photo-review paths; they display a card the user must confirm before anything writes.
+Sixteen tools covering diary reads, wellness reads, and structured writes. The `propose_*` tools are review paths, from a photo or in text; they display a card the user must confirm before anything writes.
 
 | Tool | Purpose | Args | Returns |
 |------|---------|------|---------|
@@ -116,8 +116,8 @@ Sixteen tools covering diary reads, wellness reads, and structured writes. The `
 | `get_adaptive_tdee` | Learned TDEE from 35-day regression | none | `ready`, `tdee`, `trendKgPerWeek`, `confidence`, `daysAvailable` |
 | `log_food` | Log a real food with full nutrition | `food*`, `meal*`, `portion`, `unit`, `quantity`, `date` | Logged / candidates / no_match / error |
 | `log_quick_calories` | Kcal-only diary row (Fitbit / MFP style) | `meal*`, `kcal*`, `name`, `protein_g`, `carbs_g`, `fat_g`, `date` | Diary row id |
-| `propose_quick_calories` | Photo-based Quick Calories, user must confirm | `name*`, `nutrition*`, `meal`, `date`, `serving_grams`, `serving_size` | Review card shown; nothing logged yet |
-| `propose_food` | Photo-based reusable food, user must confirm | `name*`, `nutrition*`, `brand`, `portion`, `unit`, `meal_hint`, `notes` | Review card shown; nothing saved yet |
+| `propose_quick_calories` | Estimated Quick Calories (a meal photo, or a text ask for quick calories), user must confirm | `name*`, `nutrition*`, `meal`, `date`, `serving_grams`, `serving_size` | Review card shown; nothing logged yet |
+| `propose_food` | Estimated food (a photo, an estimate asked for in text, or a food the search couldn't find), user must confirm | `name*`, `nutrition*`, `brand`, `portion`, `unit`, `notes` | Review card shown; nothing saved yet |
 | `get_activity_log` | Manually-logged activities | `from*`, `to*` | Name, kcal, duration, distance, source per entry |
 
 ### NutriTrace coaching

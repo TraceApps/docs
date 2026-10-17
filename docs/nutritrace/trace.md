@@ -26,17 +26,19 @@ Trace runs a tool-use loop (up to 5 rounds per turn) with a set of NutriTrace-sp
 ### Write tools
 
 - **`log_food`**: add a specific known food to a meal on a date.
-- **`log_quick_calories`**: add a Quick Calories entry (no persistent food row) to a meal on a date.
+- **`log_quick_calories`**: add a Quick Calories entry (no persistent food row) to a meal on a date, for a calorie number you give it ("log 200 calories for lunch"). Trace is told never to put its own estimates there; those come on a card.
 - **`add_activity_entry`**: log a manual workout.
 
 ### Propose-and-review tools
 
 Two tools deliberately don't write anything on their own. They surface a review card in the chat with **Discard** / **Add to Diary** (or **Save to Foods**) buttons so you stay in control.
 
-- **`propose_quick_calories`**: proposes a Quick Calories entry for you to confirm. Common trigger: attach a meal photo and ask Trace to estimate calories.
-- **`propose_food`**: proposes a reusable food entry (with macros) that you can add to your Foods library, optionally logging it to the diary on the same tap.
+- **`propose_quick_calories`**: proposes a Quick Calories entry for you to confirm. Common trigger: attach a meal photo and ask Trace to log it. In text it comes when you ask for quick calories ("just add it as quick calories"). Only calories, protein, carbs and fat are kept.
+- **`propose_food`**: proposes a reusable food entry (with macros) that you can add to your Foods library, optionally logging it to the diary on the same tap. It is also the card for an estimate you ask for in text ("don't search, just estimate it and log it") and for a food Trace searched for and couldn't find, once you say yes to an estimate; the full nutrition is kept.
 
 These two tools have the strictest system-prompt guardrails. The model is told: calling this tool means "the card was shown", **not** "the food was logged". After calling it, Trace should not claim to have logged anything until you confirm.
+
+A named food you ask Trace to log is still searched in your Foods and Open Food Facts first; a card comes when you ask for an estimate or nothing matches. A question that only asks for the numbers ("how much protein is in a bagel?") gets an answer in the chat. One card is on screen at a time: asking Trace to log another food brings its card in place of the waiting one, and a card you already added or discarded doesn't come back by itself (ask for another serving or a changed amount to get a new one).
 
 ### In coaching
 
@@ -51,7 +53,8 @@ Trace responds well to natural phrasing. Some prompts that exercise the tool set
 - "What was my last fast, and what's my streak?"
 - "Log a large latte to breakfast."
 - "I ate leftover chili for lunch. Half a serving." (matches your saved Meals)
-- "Estimate the calories in this." (photo attached; triggers `propose_quick_calories`)
+- "Log this for dinner." (photo attached; triggers `propose_quick_calories`)
+- "Don't search, just estimate my aunt's zucchini lasagna, about 300 g, and add it to lunch." (no photo; triggers `propose_food`)
 - "Save this as a food called 'homemade granola'." (photo attached; triggers `propose_food`)
 - "What's my adaptive TDEE and how confident is it?"
 - "How does my HRV this week compare to my baseline?"
