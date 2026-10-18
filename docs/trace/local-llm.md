@@ -91,9 +91,15 @@ With a per-user setup, the browser calls your provider itself, so the provider h
 
 Setting Trace up on the server instead (`AI_PROVIDER`, `AI_BASE_URL`, `AI_MODEL`) avoids all three: the server calls the provider, not the browser.
 
+## Long replies and reasoning models
+
+A reasoning model (Qwen3, DeepSeek-R1 and others) thinks before it answers, and the thinking counts toward the reply's length. Trace used to ask for at most 4,096 tokens, which a long rewrite or a lot of thinking could use up, leaving no answer. From each app's next release, Trace asks for up to 16,384 tokens, with every provider ([notetrace#23](https://github.com/TraceApps/notetrace/issues/23)). A server or model that won't take that many, such as vLLM before 0.32 serving a small context, is asked again with 4,096 automatically.
+
+A reply that still stops at its limit, or one with reasoning but no answer, is never used: Trace says so instead of saving half a rewrite or running half a tool call. If that keeps happening, ask for less at once, turn the model's reasoning down, or give the server a larger context.
+
 ## Streaming and timeouts
 
-Trace does not use streaming: it waits for the full response, then renders. Every request asks for a single answer (`stream: false`), so an endpoint that streams unless told not to works too (NutriTrace 1.4.0, NoteTrace 1.1.0 and LiftTrace 1.4.0 and later; CookTrace from its next release). If your local model is very slow (or generating a very long reply), the browser fetch times out at the provider level rather than Trace's. Bump `AI_BASE_URL` to a runner with faster inference, or pick a smaller model.
+Trace does not use streaming: it waits for the full response, then renders. Every request asks for a single answer (`stream: false`), so an endpoint that streams unless told not to works too (NutriTrace 1.4.0, NoteTrace 1.1.0 and LiftTrace 1.4.0 and later; CookTrace from its next release). If your local model is very slow (or generating a very long reply), the browser fetch times out at the provider level rather than Trace's. When Trace is set by environment variables, the server waits up to 5 minutes for a reply (from each app's next release). Bump `AI_BASE_URL` to a runner with faster inference, or pick a smaller model.
 
 ## Related
 
