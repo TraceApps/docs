@@ -91,7 +91,7 @@ How each file becomes a note:
 - **Checklist**: a file whose lines are all tasks (`- [ ]` and `- [x]`) becomes a checklist, as does `kind: checklist` in front matter.
 - **Labels**: `labels` or `tags` in front matter, plus inline `#tags` in the text when **Turn #tags into labels** is on. Headings, code, and `#123` numbers aren't treated as tags.
 - **Dates**: `created` (or `created_at`, `date`) and `updated` (or `updated_at`, `modified`). Blinko file names carry the creation time.
-- **Other front matter**: `color`, `pinned`, `archived`, `reminder`, `repeat`, and `timezone`, as written by a NoteTrace export.
+- **Other front matter**: `color`, `pinned`, `archived`, `read_only`, `reminder`, `repeat`, and `timezone`, as written by a NoteTrace export.
 - Files inside a folder named `Archive` are archived.
 - Hidden folders and files such as `.obsidian`, `.trash`, and `__MACOSX` are skipped.
 

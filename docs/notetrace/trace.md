@@ -30,7 +30,7 @@ Open Trace from the round button and ask in plain words. While a note is open ov
 - "Label everything about the homelab as Homelab."
 - "Move the old moving checklist to the trash."
 
-Reminder times are read in your own time zone (the one your device is set to); Trace is told the current date and time with every message. Trace follows the same rules you do: it can't edit a note shared with you as view-only, and only a note's owner can set its reminder or move it to the trash. When Trace rewrites a note's text, the previous text goes to version history. Trash is always restorable for 30 days.
+Reminder times are read in your own time zone (the one your device is set to); Trace is told the current date and time with every message. Trace follows the same rules you do: it can't edit a note shared with you as view-only, and only a note's owner can set its reminder or move it to the trash. It can't change a [Read Only](features.md#editor) note's title, text or items (it can still tick items), and it can make a note Read Only but never turn that off. When Trace rewrites a note's text, the previous text goes to version history. Trash is always restorable for 30 days.
 
 The full tool list is in the [Trace tool catalog](../reference/trace-tools.md#notetrace). The same tools are available to external AI agents over [MCP](mcp.md).
 

@@ -18,6 +18,7 @@ The note appears in the other person's NoteTrace right away, and on their phone 
 |---|---|---|---|
 | Title, body, color, checklist items, images | Edit | Edit | Read |
 | Check off items | Yes | Yes | No |
+| Read Only on or off | Yes | Yes | No |
 | Version history | Browse and restore | Browse and restore | Browse |
 | Pin and archive | Their own | Their own | Their own |
 | Labels | Their own | Their own | Their own |
@@ -26,7 +27,7 @@ The note appears in the other person's NoteTrace right away, and on their phone 
 | Add or remove people | Yes | No | No |
 | Leave the note | n/a | Yes | Yes |
 
-Pinning or archiving a shared note only changes it for you. Labels you add to a shared note are only visible to you, and your label counts only include notes you can see.
+A Read Only note is read only for everyone it's shared with, and anyone who can edit it can turn that off. Pinning or archiving a shared note only changes it for you. Labels you add to a shared note are only visible to you, and your label counts only include notes you can see.
 
 ## Leaving and losing access
 
