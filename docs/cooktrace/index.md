@@ -21,7 +21,7 @@ CookTrace is not "better than" the other options, just different in what it prio
 - Cook Diary and Meal Planner sharing a calendar view, one tap turns a planned cook into a logged cook.
 - Shopping list built from a recipe or a whole week's plan, grouped by aisle, dedupped across recipes.
 - Kitchens for soft user groups with auto-share, plus per-user recipe grants and public share links.
-- Trace AI assistant with 19 cooking tools; bring your own key or point at a local Ollama.
+- Trace AI assistant with 21 cooking tools; bring your own key or point at a local Ollama.
 - URL / file / photo import in three tiers (Standard, Enhanced, Smart) so most sources land cleanly.
 - Full OIDC SSO with 6 preset IdPs, plus classic email/password with optional zxcvbn strength policy.
 - Android app that runs fully offline or syncs against your server.

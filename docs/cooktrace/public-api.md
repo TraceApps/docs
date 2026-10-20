@@ -27,7 +27,7 @@ Need `mcp:read`.
 
 | Method | Path | Notes |
 |---|---|---|
-| GET | `/api/v1/cook-diary?date_from=&date_to=&kind=&limit=` | Cook Diary entries, newest first. Optionally limited to a date range (`YYYY-MM-DD`) or a `kind` (`cooked` or `planned`). |
+| GET | `/api/v1/cook-diary?date_from=&date_to=&kind=&limit=&offset=` | Cook Diary entries, newest first. Optionally limited to a date range (`YYYY-MM-DD`) or a `kind` (`cooked` or `planned`). The reply's `count` is the entries on this page, `total` every match, `next_offset` where the next page starts (null on the last), `complete`, and `more` says it in words. |
 | GET | `/api/v1/shopping?include_checked=` | The shopping list. Unchecked items only unless `include_checked=true`. |
 
 ## Write routes

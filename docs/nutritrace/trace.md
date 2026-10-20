@@ -7,14 +7,14 @@ Trace is the in-app AI assistant. In NutriTrace it can read your diary, wellness
 
 ## What Trace can do in NutriTrace
 
-Trace runs a tool-use loop (up to 5 rounds per turn) with a set of NutriTrace-specific tools defined in `src/lib/aiChat.js`. The tools split into three groups.
+Trace runs a tool-use loop (up to 12 rounds per turn) with a set of NutriTrace-specific tools defined in `src/lib/aiChat.js`. The tools split into three groups.
 
 ### Read tools
 
 - **`get_wellness_data`**: steps, calories out, sleep (duration, stages, score, efficiency), heart rate (RHR, HRV, SpO₂), respiratory rate, readiness, stress, skin temp, VO₂ max. Any date range. Sourced from Fitbit / Garmin / Health Connect.
 - **`get_body_composition`**: weight, body fat percentage, muscle mass, bone mass, body water, lean/fat mass, visceral fat, vascular age, metabolic age, BMR, nerve health, ECG. Any date range. Sourced from Withings.
 - **`get_diary`**: diary items (with brand, notes, per-item notes, day notes) for a date range.
-- **`get_meals`**: the user's saved Meals library.
+- **`get_meals`**: the user's saved Meals library, a page at a time.
 - **`get_workouts`**: workout list for a date range (wearable-synced and manual).
 - **`get_activity_log`**: the manual activity log (workouts logged without a wearable).
 - **`get_goals`**: the user's calorie and per-nutrient goal grid, plus the mode (Fixed / Dynamic / Adaptive).
@@ -58,6 +58,9 @@ Trace responds well to natural phrasing. Some prompts that exercise the tool set
 - "Save this as a food called 'homemade granola'." (photo attached; triggers `propose_food`)
 - "What's my adaptive TDEE and how confident is it?"
 - "How does my HRV this week compare to my baseline?"
+- "Which days last month did I have pizza?"
+
+For a question about many days, Trace reads the diary up to a month at a time. If 12 rounds of looking things up aren't enough, it answers from what it found and says what's left.
 
 The system prompt is long and lives in `src/components/ai/Trace.svelte` if you want to see exactly what Trace is told about which tool to use when.
 
@@ -86,7 +89,7 @@ Requires a vision-capable model. Claude and OpenAI's vision-tier models work; Ge
 
 ## History and rate limits
 
-Chat history is stored in `ai_chat_history` and reachable via `GET / POST / DELETE /api/ai/history`. The `POST /api/ai/chat` endpoint is wrapped by `aiChatLimit` middleware to keep a single user from blowing through your provider budget with a runaway loop.
+Chat history is stored in `ai_chat_history` and reachable via `GET / POST / DELETE /api/ai/history`. The `POST /api/ai/chat` endpoint is wrapped by `aiChatLimit` middleware (60 requests a minute per user, enough for a long answer's rounds) to keep a single user from blowing through your provider budget with a runaway loop.
 
 ## Provider setup
 

@@ -12,7 +12,7 @@ Fourteen tools across three tiers. Setup for each tier below; full arg/return re
 
 ### Read
 
-Six read-only tools: `search_recipes`, `get_recipe`, `recent_recipes`, `list_pantry`, `list_shopping_list`, `list_cook_diary`. Available whenever MCP is on, to a token that holds `mcp:read`. A token minted with only `mcp:write` or `mcp:destroy` gets that tier's tools and no read tools.
+Six read-only tools: `search_recipes`, `get_recipe`, `recent_recipes`, `list_pantry`, `list_shopping_list`, `list_cook_diary`. `search_recipes`, `list_pantry` and `list_cook_diary` page through every match (`offset`, `total`, `next_offset`, `complete`), so an agent can go through the whole library. Available whenever MCP is on, to a token that holds `mcp:read`. A token minted with only `mcp:write` or `mcp:destroy` gets that tier's tools and no read tools.
 
 ### Write (Phase 2)
 

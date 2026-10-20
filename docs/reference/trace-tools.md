@@ -21,13 +21,15 @@ Every tool Trace can call, across the apps, one table per app. Use this when you
 
 ## CookTrace
 
-Nineteen tools; the biggest surface of the four. Read tools return recipe, pantry, diary, shopping-list, and cookbook state. Write tools log a cook, plan a cook, add pantry rows, add shopping items, import a recipe from a URL, and create a recipe from scratch.
+Twenty-one tools; the biggest surface of the four. Read tools return recipe, pantry, diary, shopping-list, and cookbook state. Write tools log a cook, plan a cook, add pantry rows, add shopping items, import a recipe from a URL, and create a recipe from scratch.
 
 | Tool | Purpose | Args | Returns |
 |------|---------|------|---------|
-| `get_recipes` | Recipe library with pantry-match ratio | `query`, `category`, `favorite` | List of recipes (id, name, servings, times, rating, pantry_match) |
+| `get_recipes` | Recipe library with pantry-match ratio, page by page | `query` (name, description, tags and ingredients), `category`, `favorite`, `limit` (per page, up to 100, default 100), `offset` | `count` (every match), `offset`, `returned`, `next_offset` (null on the last page), `complete`, and `recipes[]` (id, name, servings, times, rating, favorite, cook count, category, tags, allergens, pantry_match; `matched_ingredients` when an ingredient matched). Recipes matched by name, description or tag come before ingredient-only matches. |
+| `read_recipes` | Several recipes in full in one call, to go through many | `ids*` (up to 25) | `recipes[]` as `get_recipe`, about 16,000 characters per call; `not_read` lists ids for another call, `not_found` ids that are gone, `failed` recipes that couldn't be read just now with why, and a recipe too big to share a call says `too_long` (read it with `get_recipe`) |
 | `list_recipe_categories` | Categories the user has defined | none | Name, slug, color, recipe count per category |
-| `get_recipe` | One recipe, full detail | `id*` | Grouped ingredients, steps, tools, tags, per-serving nutrition |
+| `get_recipe` | One recipe, full detail | `id*` | Grouped ingredients, steps, tools, tags, allergens (`contains`, `traces`), per-serving nutrition |
+| `get_recipe_history` | A recipe's [versions](../cooktrace/recipes.md#history), oldest first | `id*` | Each version's number, name, date, what changed, and the cooks made from it with their ratings |
 | `get_pantry` | Pantry inventory | `in_stock_only`, `query`, `category` | Rows with brand, in_stock, quantity, unit, expiry, nutrition |
 | `list_pantry_categories` | Pantry categories | none | Name, slug, icon per category |
 | `find_recipes_from_pantry` | "What can I cook tonight?" | `min_ratio` | Recipes ranked by have/need ratio |
@@ -51,14 +53,14 @@ Eighteen tools spanning read and write across workouts, exercises, programs, PRs
 
 | Tool | Purpose | Args | Returns |
 |------|---------|------|---------|
-| `get_workouts` | Recent workouts with completed sets, per-exercise volume, and top set | `date_from`, `date_to`, `exercise_name` | Shaped workout rows; default window is last 30 days |
+| `get_workouts` | Workouts with completed sets, per-exercise volume, and top set, newest first | `date_from`, `date_to`, `exercise_name`, `limit` (per page, up to 50, default 25), `offset` | Shaped workout rows; default window is the last 30 days, reaching as far back as the log goes. Past one page: `count`, `offset`, `returned`, `next_offset`, `complete`, `more` and `workouts[]` (offline, a `note` when only part could be read) |
 | `get_workout` | One workout in full detail by id, including coach feedback | `id*` | Every set, notes, coach feedback, program context |
 | `get_exercises` | Search the exercise catalog (wger, free-exercise-db, exercisedb variants, custom) | `query`, `muscle`, `equipment`, `source`, `limit` | Compact rows with id, name, muscles, equipment, source |
 | `get_exercise` | One exercise's full detail plus similar exercises | `id`, `name` (id wins if both) | Description, instructions, muscles, equipment, up to 5 similar |
 | `get_programs` | User's program library with active flag | none | Id, name, goal, template count, weeks, is_active |
 | `get_program` | One program with every template laid out | `id*` | Templates with target sets/reps/load/RPE/tempo/rest, per-week overrides |
 | `get_active_program` | The currently active program in full | none | Same shape as `get_program`; `{ active: false }` if none |
-| `get_prs` | Personal records with e1RM | `exercise_name`, `date_from`, `date_to`, `limit` | Top weight, top reps at that weight, estimated 1RM per exercise |
+| `get_prs` | Personal records with e1RM, highest first | `exercise_name`, `date_from`, `date_to`, `limit` (up to 100, default 20), `offset` | Top weight, top reps at that weight, estimated 1RM per exercise. Past one page: `count`, `offset`, `returned`, `next_offset`, `complete`, `more` and `records[]` |
 | `get_body_stats` | Body stats over time (weight, body_fat, any tracked measurement) | `stat`, `date_from`, `date_to` | Time series plus first/last/min/max/change summary when a single stat is queried |
 | `get_stats_overview` | Snapshot over a window: workouts done, streaks, weekly volume + frequency, muscle balance, top PRs | `range` (`7d`\|`30d`\|`90d`\|`1y`\|`all`) | Rollup object; default range `30d` |
 | `get_coach_prescription` | Coach-prescribed workout for a given date if the user has a coach | `date` (default today) | `{ prescribed: false }` or the prescription record, with the client's answer (waiting or accepted). Trace doesn't load one the client hasn't accepted. |
@@ -106,8 +108,8 @@ Sixteen tools covering diary reads, wellness reads, and structured writes. The `
 |------|---------|------|---------|
 | `get_wellness_data` | Wearable metrics (steps, sleep, HR, HRV, readiness, VO2) | `from*`, `to*` | Daily rows across enabled sources |
 | `get_body_composition` | Withings scale data | `from*`, `to*` | Weight, body fat %, muscle mass, visceral fat, ECG, segmental |
-| `get_diary` | One date's diary | `date*` | Meals, items, nutrition, water, day notes, activities |
-| `get_meals` | Saved Meals and Recipes library | `query` | Items, totals, notes |
+| `get_diary` | One date's diary, or every day of a range | `date*`, `to` (last day of a range, up to 31 days a call) | Meals, items, nutrition, water, day notes, activities. With `to`: `days[]`, `days_with_nothing_logged` (counted, not listed), `complete`, `next_from` (where the rest starts) and `more`, about 16,000 characters a call |
+| `get_meals` | Saved Meals and Recipes library, page by page | `query`, `offset` | `count` (every match), `offset`, `returned`, `next_offset`, `complete`, `more` and `meals[]` (50 a page, meals then recipes, by name): items, totals, notes |
 | `get_workouts` | Wearable-synced workouts | `from*`, `to*` | Name, duration, distance, HR, GPS availability |
 | `get_goals` | Nutrition and wellness targets | none | Calorie, macro, nutrient targets |
 | `add_activity_entry` | Log a manual exercise | `name*`, `kcal*`, `date`, `duration_min`, `distance`, `source`, `met`, `is_template` | Diary Activity row |
@@ -136,16 +138,16 @@ Offered only to people in coaching: the coach tools to anyone with the Coach rol
 
 ## Tool-use loop
 
-Every app caps the tool-call loop per user message, in `_callClaudeWithTools`, `_callOpenAIWithTools`, and `_callGeminiWithTools`. CookTrace and LiftTrace allow **5 rounds**, NutriTrace 5 (8 when the coaching tools are on); past that Trace stops with an error. NoteTrace allows **12**, since going through many notes takes more, and then sends one last request with the tools turned off, so Trace answers from what it found and says what's left. It does the same sooner if the tool answers grow past about 300 kB.
+Every app caps the tool-call loop at **12 rounds** per user message, in `_callClaudeWithTools`, `_callOpenAIWithTools`, `_callGeminiWithTools` and, where Trace's tools run through the server, `callAIProxy`. That's enough to page through a list and read in batches. When the rounds run out, Trace sends one last request with the tools turned off, so it answers from what it found and says what's left. It does the same sooner once the tool answers add up to about 300 kB; calls past that in the same round aren't run, and the model is told so. Through the server, LiftTrace and NutriTrace also wrap up before a request would pass the server's 60 messages. A CookTrace recipe import that runs out of rounds stops and says how many recipes it saved.
 
-Tool execution stays **client-side** even when the server-side AI proxy is in use (`AI_ENABLED=1` env-locked mode). The proxy relays messages and returns tool-call requests; the client executes each tool against the user's local database and UI state, then loops. This keeps the API key on the server without giving the server write access to the user's data.
+Tool execution stays **client-side** even when the server-side AI proxy is in use (`AI_ENABLED=1` env-locked mode; in CookTrace that mode answers without tools). The proxy relays messages and returns tool-call requests; the client executes each tool against the user's local database and UI state, then loops. This keeps the API key on the server without giving the server write access to the user's data.
 
 ## Working with tools when writing prompts
 
 - **Read tools accept date ranges** (`from` / `to` in `YYYY-MM-DD`). Ask "what did I cook last week?" and Trace will call `get_diary` with the appropriate range.
 - **Write tools are single-round.** A follow-up question like "and log two more" needs an explicit prompt; Trace does not batch writes speculatively.
 - **`propose_*` on NutriTrace does not log.** If Trace says "I logged X" after calling `propose_food` or `propose_quick_calories`, that is a hallucination; the actual entry only lands after the user taps **Add to Diary** or **Save & Add to Diary** on the review card.
-- **Trace can call one tool per round.** If your question implies multiple lookups ("compare last week to this week"), Trace will call the first, receive the result, then call the second in the next round.
+- **Trace can call several tools in one round.** A question that needs more lookups ("compare last week to this week", "go through all my recipes") takes more rounds: Trace gets each answer, then decides what to look up next, up to 12 rounds.
 
 ## Not to be confused with MCP tools
 

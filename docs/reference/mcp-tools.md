@@ -146,12 +146,12 @@ Fourteen tools across three phases.
 
 | Tool | Purpose | Args | Returns |
 |------|---------|------|---------|
-| `search_recipes` | Text search over the user's own recipes | `query*`, `limit` | Match array (id, name, description, servings, prep/cook/total minutes, rating, tags) |
+| `search_recipes` | Text search over the user's own recipes, or every recipe when `query` is left out, page by page | `query`, `limit`, `offset` | `items[]` (id, name, description, servings, prep/cook/total minutes, rating, tags), with `total` (every match), `offset`, `next_offset` (null on the last page), `complete`, and `more` saying where the rest starts; `count` is the rows on this page |
 | `get_recipe` | Full detail of one recipe | `recipe_id*` | Ingredients (grouped), steps, servings, timings, tags, tools, nutrition, `img_url`, category, cook_count, last_cooked_at |
 | `recent_recipes` | Most recently added or updated recipes | `limit` | Summary array, newest first |
-| `list_pantry` | Search / list the pantry | `query`, `in_stock_only`, `limit` | Item array (id, name, brand, in_stock, quantity, unit, category, expires_on) |
+| `list_pantry` | Search / list the pantry, page by page | `query`, `in_stock_only`, `limit`, `offset` | `items[]` (id, name, brand, in_stock, quantity, unit, category, expires_on), with `total` (every match), `offset`, `next_offset` (null on the last page), `complete`, and `more` saying where the rest starts; `count` is the rows on this page |
 | `list_shopping_list` | Current shopping list | `include_checked` | Item array (id, name, quantity, unit, aisle, checked), sorted by aisle |
-| `list_cook_diary` | Cook diary entries (logged + planned) | `date_from`, `date_to`, `kind`, `limit` | Entry array (id, recipe_id, recipe_name, date, kind, servings, notes, meal_type, rating) |
+| `list_cook_diary` | Cook diary entries (logged + planned), page by page | `date_from`, `date_to`, `kind`, `limit`, `offset` | `items[]` (id, recipe_id, recipe_name, date, kind, servings, notes, meal_type, rating), with `total` (every match), `offset`, `next_offset` (null on the last page), `complete`, and `more` saying where the rest starts; `count` is the rows on this page |
 
 ### Write tools (`mcp:write`)
 

@@ -13,11 +13,12 @@ The floating chat FAB opens the Trace panel. In CookTrace, the TraceFace mascot 
 
 ## Tools Trace can call
 
-CookTrace registers 20 tools that Trace can call in a single conversation, spanning read and write across the app:
+CookTrace registers 21 tools that Trace can call in a single conversation, spanning read and write across the app:
 
 **Read**
 
-- `get_recipes`: filtered list of your recipes.
+- `get_recipes`: your recipes, filtered by name, tag, ingredient, category or favorite, a page at a time.
+- `read_recipes`: up to 25 recipes in full in one step, to go through many.
 - `list_recipe_categories`: categories with counts.
 - `get_recipe`: full detail of one recipe (ingredients, steps, nutrition).
 - `get_recipe_history`: a recipe's [versions](recipes.md#history), what changed in each, the cooks made from each and how they rated, and the best-rated version. Ask "what did I change since my best batch of scones?"
@@ -79,6 +80,9 @@ Choose your provider under Settings > AI Assistant. The **Custom model** sentine
 - "Add oat milk, sourdough, and lemons to the shopping list."
 - "The pantry doesn't know how many grams a cup of my rolled oats is; it's about 90g/cup, set that."
 - (with a photo of a spice jar) "Add this to pantry, category Spices."
+- "Go through all my recipes and list every one that uses cilantro."
+
+For a question about your whole library, Trace pages through the recipes and reads them in batches. One answer can take up to 12 rounds of looking things up; if that isn't enough, it answers from what it found and says what's left, so you can ask for the rest or narrow it down (one category, say). A cookbook import that runs out of rounds stops and says how many recipes it saved.
 
 ## Related
 

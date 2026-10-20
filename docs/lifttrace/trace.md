@@ -10,14 +10,14 @@ LiftTrace registers 18 tools that Trace can call across a single conversation, s
 
 **Read (11)**
 
-- `get_workouts`: recent workouts with completed sets, per-exercise volume, and top set (defaults to last 30 days).
+- `get_workouts`: workouts with completed sets, per-exercise volume, and top set (defaults to the last 30 days, reaching as far back as your log goes), a page at a time.
 - `get_workout`: one workout in full detail by id, including coach feedback.
 - `get_exercises`: search the exercise catalog (wger, free-exercise-db, exercisedb variants, custom).
 - `get_exercise`: full detail on one exercise plus similar-exercise suggestions.
 - `get_programs`: the user's program library, with which one is active.
 - `get_program`: one program with every template laid out (per-week overrides for multi-week blocks).
 - `get_active_program`: the currently active program in full, or `{ active: false }`.
-- `get_prs`: personal records with weight, reps, and estimated 1RM per exercise.
+- `get_prs`: personal records with weight, reps, and estimated 1RM per exercise, a page at a time.
 - `get_body_stats`: body stats over time (weight, body_fat, any tracked measurement) with change summary.
 - `get_stats_overview`: snapshot for a range: workouts done, streaks, weekly volume and frequency, muscle balance, top PRs.
 - `get_coach_prescription`: the coach-prescribed workout for a date if the user has a coach, with its answer (waiting, accepted). Trace doesn't load one the user hasn't accepted.
@@ -87,7 +87,10 @@ Start Day A on today's diary.
 Weighed in at 82.4 kg this morning.
 Is my volume balanced across chest / back / legs this month?
 Recommend a deload for next week based on my last block.
+Go through every workout this year and list my heaviest squat each month.
 ```
+
+To go through a long stretch (every workout this year, all your PRs), Trace reads page by page. One answer can take up to 12 rounds of looking things up; if that isn't enough, it answers from what it found and says what's left. Offline, Trace reads the workouts saved on this device and says when older ones are missing.
 
 For form checks, attach a photo. On a phone and in the Android app the attach button offers **Camera** or **Gallery**, each going straight to the camera or the photo picker; on a computer it opens the file picker. You can pick several photos at once. Multimodal-capable providers (Claude, GPT-4-class OpenAI models, Gemini) will actually look at it.
 
