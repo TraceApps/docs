@@ -74,17 +74,18 @@ LiftTrace also keeps **Smart Log**, a hold-to-record UI on the Trace FAB (not a 
 
 ## NoteTrace
 
-Fourteen tools for finding, creating, and changing notes. They're defined once in `server/lib/note-tools.js` and shared with NoteTrace's [MCP endpoint](../notetrace/mcp.md), so Trace and external agents follow the same rules: a view-only shared note can't be changed, and only a note's owner can set its reminder or move it to the trash. Tools run against the same notes API as the app, so they work offline in Android local mode.
+Fifteen tools for finding, creating, and changing notes. They're defined once in `server/lib/note-tools.js` and shared with NoteTrace's [MCP endpoint](../notetrace/mcp.md), so Trace and external agents follow the same rules: a view-only shared note can't be changed, a [Read Only](../notetrace/features.md#editor) note's title, text and items can't be changed (its items can still be ticked), and only a note's owner can set its reminder or move it to the trash. Tools run against the same notes API as the app, so they work offline in Android local mode.
 
 | Tool | Purpose | Args | Returns |
 |------|---------|------|---------|
-| `search_notes` | Full-text search over titles, text, checklist items, voice note transcripts, and image text; or list a view or label when `query` is empty | `query`, `label`, `view` (`notes`\|`archive`\|`trash`\|`reminders`), `limit` (up to 25, default 10) | `count` and `notes[]` (id, title, kind, a text preview or up to 8 open items with the checked count, labels, pinned, archived, reminder, updated_at) |
-| `get_note` | One note in full | `id*` | Title, Markdown text or every item with its checked state and due date, labels, color, pinned, archived, trashed, reminder, sharing, dates, image text, voice note transcripts |
+| `search_notes` | Full-text search over titles, text, checklist items, voice note transcripts, and image text; or every note in a view or label when `query` is empty, page by page | `query`, `label`, `view` (`notes`\|`archive`\|`trash`\|`reminders`), `limit` (per page, up to 50, default 10), `offset` | `count` (every match), `offset`, `returned`, `next_offset` (null on the last page), `complete`, and `notes[]` (id, title, kind, a text preview or up to 8 open items with the checked count, labels, pinned, archived, read_only, reminder, updated_at; with a query, `matches`: up to 3 passages where the words appear) |
+| `read_notes` | Several notes in full in one call, to go through many | `ids*` (up to 25) | `notes[]` as `get_note`, about 16,000 characters per call (a long note's text is cut at 8,000 and ends in "…(truncated)"); `not_read` lists ids for another call, `not_found` ids it can't find, `failed` notes that couldn't be read just now (offline, say) with why, and a note too big to share a call says `too_long` (read it with `get_note`) |
+| `get_note` | One note in full | `id*` | Title, Markdown text or every item with its checked state and due date, labels, color, pinned, archived, read_only, trashed, reminder, sharing, dates, image text, voice note transcripts |
 | `list_labels` | Labels with note counts | none | `labels[]` (name, number of notes) |
 | `list_reminders` | Notes with reminders, soonest first | `upcoming_only` | `reminders[]`: note summaries (as `search_notes`), each with the next time it fires and its repeat |
 | `list_tasks` | The user's tasks: open items with a due date, plus every open item on checklists set to Show in Tasks; dated first (soonest first), then undated | `due_by` (YYYY-MM-DD), `include_undated` (default true, or false when `due_by` is set), `limit` (up to 100, default 40), `all_checklists` (every open item, shopping lists included) | `count` and `tasks[]` (text, due, note_id, list) |
 | `create_note` | Create a text note or a checklist | `title`, `text`, `kind` (`text`\|`checklist`), `items`, `labels`, `color`, `pinned`, `show_in_tasks` (checklists) | `ok` and the new note, as `get_note`. Labels are matched by name and created when missing. |
-| `update_note` | Change the title, replace the text, or change color, pinned, archived, or Show in Tasks | `id*`, `title`, `text`, `color`, `pinned`, `archived`, `show_in_tasks` (checklists) | `ok` and the updated note. The previous text is kept in version history. |
+| `update_note` | Change the title, replace the text, or change color, pinned, archived, or Show in Tasks; make a note Read Only | `id*`, `title`, `text`, `color`, `pinned`, `archived`, `show_in_tasks` (checklists), `read_only` (true only: only the user can turn it off) | `ok` and the updated note. The previous text is kept in version history. |
 | `append_to_note` | Add to the end: a paragraph on a text note, one item per line on a checklist | `id*`, `text*` | `ok` and the updated note |
 | `add_checklist_items` | Add items to a checklist | `id*`, `items*`, `due` (YYYY-MM-DD, for every new item) | `ok`, how many were added, and the updated note |
 | `check_checklist_item` | Check or uncheck an item found by its text (exact match first, then the only item containing the text) | `id*`, `item*`, `checked` (default true) | `ok`, the item's text, and its new state; an error when no item or more than one matches |
@@ -93,9 +94,9 @@ Fourteen tools for finding, creating, and changing notes. They're defined once i
 | `set_labels` | Replace a note's labels by name | `id*`, `labels*` (empty removes all) | The labels now on the note |
 | `move_to_trash` | Move a note to the trash (restorable for 30 days) | `id*` | `ok` and the trashed note's title. Owner only. |
 
-Every message includes the user's local date, time, and time zone, so "tomorrow at 9" becomes the right `at`, read in the device's time zone. When Trace is set by environment variables, each request goes through the server's `/api/ai/relay`, which adds the key and the configured model; the tools still run on the device. When Trace rewrites a note's text (`update_note` with `text`), the text it replaces is always saved as a restore point.
+Every message includes the user's local date, time, and time zone, so "tomorrow at 9" becomes the right `at`, read in the device's time zone. When Trace is set by environment variables, each request goes through the server's `/api/ai/relay`, which adds the key and the configured model; the tools still run on the device. When Trace rewrites a note's text (`update_note` with `text`), the text it replaces is always saved as a restore point. One answer can take up to 12 rounds of tool calls, enough to page through a search and read the notes in batches; if they run out, Trace answers from what it found and says what it didn't get to.
 
-NoteTrace's editor actions (Tidy Up, Summarize, Make a Checklist) and voice note transcription are separate single requests, not tools. See [Trace in NoteTrace](../notetrace/trace.md).
+NoteTrace's editor actions (Tidy Up, Expand, Summarize, Make a Checklist, Custom Instruction) and voice note transcription are separate single requests, not tools. See [Trace in NoteTrace](../notetrace/trace.md).
 
 ## NutriTrace
 
@@ -135,7 +136,7 @@ Offered only to people in coaching: the coach tools to anyone with the Coach rol
 
 ## Tool-use loop
 
-Every app caps the tool-call loop at **5 rounds** per user message. If Trace has not converged on a final text answer within 5 rounds it stops and returns whatever it has. This matches the loop cap set in `_callClaudeWithTools`, `_callOpenAIWithTools`, and `_callGeminiWithTools`.
+Every app caps the tool-call loop per user message, in `_callClaudeWithTools`, `_callOpenAIWithTools`, and `_callGeminiWithTools`. CookTrace and LiftTrace allow **5 rounds**, NutriTrace 5 (8 when the coaching tools are on); past that Trace stops with an error. NoteTrace allows **12**, since going through many notes takes more, and then sends one last request with the tools turned off, so Trace answers from what it found and says what's left. It does the same sooner if the tool answers grow past about 300 kB.
 
 Tool execution stays **client-side** even when the server-side AI proxy is in use (`AI_ENABLED=1` env-locked mode). The proxy relays messages and returns tool-call requests; the client executes each tool against the user's local database and UI state, then loops. This keeps the API key on the server without giving the server write access to the user's data.
 

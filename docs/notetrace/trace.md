@@ -29,6 +29,9 @@ Open Trace from the round button and ask in plain words. While a note is open ov
 - "What's due this week?" or "Make the taxes item due April 15."
 - "Label everything about the homelab as Homelab."
 - "Move the old moving checklist to the trash."
+- "Go through all my notes and list every license key, with the note each is in."
+
+For a question about many notes, Trace pages through every match and reads the notes in batches. One answer can take up to 12 rounds of looking things up; if that isn't enough for everything you asked, it answers from what it found and says what's left, so you can ask for the rest or narrow it down (one label, say).
 
 Reminder times are read in your own time zone (the one your device is set to); Trace is told the current date and time with every message. Trace follows the same rules you do: it can't edit a note shared with you as view-only, and only a note's owner can set its reminder or move it to the trash. It can't change a [Read Only](features.md#editor) note's title, text or items (it can still tick items), and it can make a note Read Only but never turn that off. When Trace rewrites a note's text, the previous text goes to version history. Trash is always restorable for 30 days.
 

@@ -193,14 +193,15 @@ Deliberately not in the current MCP surface:
 
 ## NoteTrace
 
-Fourteen tools across three phases. They're the same tools NoteTrace's in-app Trace uses, defined once in `server/lib/note-tools.js`.
+Fifteen tools across three phases. They're the same tools NoteTrace's in-app Trace uses, defined once in `server/lib/note-tools.js`.
 
 ### Read tools (`mcp:read`)
 
 | Tool | Purpose | Args | Returns |
 |------|---------|------|---------|
-| `search_notes` | Full-text search over titles, text, checklist items, voice note transcripts, and image text; or list a view or label when `query` is empty | `query`, `label`, `view` (`notes`\|`archive`\|`trash`\|`reminders`), `limit` (up to 25, default 10) | `count` and `notes[]` (id, title, kind, a text preview or up to 8 open items with the checked count, labels, pinned, archived, reminder, updated_at) |
-| `get_note` | One note in full | `id*` | Title, Markdown text or every item with its checked state and due date, labels, color, pinned, archived, trashed, reminder, sharing, dates, image text, voice note transcripts |
+| `search_notes` | Full-text search over titles, text, checklist items, voice note transcripts, and image text; or every note in a view or label when `query` is empty, page by page | `query`, `label`, `view` (`notes`\|`archive`\|`trash`\|`reminders`), `limit` (per page, up to 50, default 10), `offset` | `count` (every match), `offset`, `returned`, `next_offset` (null on the last page), `complete`, and `notes[]` (id, title, kind, a text preview or up to 8 open items with the checked count, labels, pinned, archived, read_only, reminder, updated_at; with a query, `matches`: up to 3 passages where the words appear) |
+| `get_note` | One note in full | `id*` | Title, Markdown text or every item with its checked state and due date, labels, color, pinned, archived, read_only, trashed, reminder, sharing, dates, image text, voice note transcripts |
+| `read_notes` | Several notes in full in one call, to go through many | `ids*` (up to 25) | `notes[]` as `get_note`, about 16,000 characters per call (a long note's text is cut at 8,000 and ends in "…(truncated)"); `not_read` lists ids for another call, `not_found` ids it can't find, `failed` notes that couldn't be read just now (offline, say) with why, and a note too big to share a call says `too_long` (read it with `get_note`) |
 | `list_labels` | Labels with note counts | none | `labels[]` (name, number of notes) |
 | `list_reminders` | Notes with reminders, soonest first | `upcoming_only` | `reminders[]`: note summaries (as `search_notes`), each with the next time it fires and its repeat |
 | `list_tasks` | The user's tasks: open items with a due date, plus every open item on checklists set to Show in Tasks; dated first (soonest first), then undated | `due_by` (YYYY-MM-DD), `include_undated` (default true, or false when `due_by` is set), `limit` (up to 100, default 40), `all_checklists` (every open item, shopping lists included) | `count` and `tasks[]` (text, due, note_id, list) |
@@ -210,7 +211,7 @@ Fourteen tools across three phases. They're the same tools NoteTrace's in-app Tr
 | Tool | Purpose | Args | Returns |
 |------|---------|------|---------|
 | `create_note` | Create a text note or a checklist | `title`, `text`, `kind` (`text`\|`checklist`), `items`, `labels`, `color`, `pinned`, `show_in_tasks` (checklists) | `ok` and the new note, as `get_note`. Labels are matched by name and created when missing. |
-| `update_note` | Change the title, replace the text, or change color, pinned, archived, or Show in Tasks | `id*`, `title`, `text`, `color`, `pinned`, `archived`, `show_in_tasks` (checklists) | `ok` and the updated note. The previous text is kept in version history. |
+| `update_note` | Change the title, replace the text, or change color, pinned, archived, or Show in Tasks; make a note Read Only | `id*`, `title`, `text`, `color`, `pinned`, `archived`, `show_in_tasks` (checklists), `read_only` (true only: only the user can turn it off) | `ok` and the updated note. The previous text is kept in version history. |
 | `append_to_note` | Add to the end: a paragraph on a text note, one item per line on a checklist | `id*`, `text*` | `ok` and the updated note |
 | `add_checklist_items` | Add items to a checklist | `id*`, `items*`, `due` (YYYY-MM-DD, for every new item) | `ok`, how many were added, and the updated note |
 | `check_checklist_item` | Check or uncheck an item found by its text (exact match first, then the only item containing the text) | `id*`, `item*`, `checked` (default true) | `ok`, the item's text, and its new state; an error when no item or more than one matches |
