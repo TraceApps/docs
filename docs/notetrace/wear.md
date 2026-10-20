@@ -41,7 +41,7 @@ Only the first install needs adb (step 1 above).
 
 **Reminders.** What's coming up, soonest first, with "Today 6:30 PM", "Tomorrow", a weekday, or "Overdue" in red, and repeating ones marked. Tap the row to open the note, or the tick to be done with it. When a reminder actually fires, it arrives as a notification on the wrist with **Done** and **Snooze 1 Hour**.
 
-**Speaking.** "Speak a note" on the main screen makes a new note, "Add an item" inside a checklist adds to it, and "Add to the list" on the shopping list sends it to CookTrace. The watch's own speech recognition does the listening, so nothing is recorded or uploaded and it follows the language your watch is set to.
+**Speaking.** "Speak a note" on the main screen makes a new note, "Add an item" inside a checklist adds to it, and "Add to the list" on the shopping list sends it to CookTrace. A checklist made [Read Only](features.md#editor) on the phone has no "Add an item": its items can still be ticked, and turning Read Only off on the phone brings it back. The watch's own speech recognition does the listening, so nothing is recorded or uploaded and it follows the language your watch is set to.
 
 **A time you say becomes the reminder.** "Call the plumber tomorrow at nine" makes a note that says "call the plumber", due at nine tomorrow, rather than writing the time into the text. It understands the phrases people actually say to a watch: in twenty minutes, tonight, tomorrow at nine, Friday at eight, at 6:30 pm. A time already past today is taken as tomorrow. This is worked out on the watch, so it still happens with no connection, and the note goes up later with the time it was meant to have. Anything more involved is Trace's job, on the phone.
 
