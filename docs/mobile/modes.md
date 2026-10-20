@@ -28,7 +28,7 @@ Merge is the safe default when you have been logging on both surfaces (say, phon
 
 Both directions are available from Settings.
 
-- **Local to server:** Settings > Server Connection > Connect. The merge dialog triggers if the account already has server rows.
+- **Local to server:** Settings > Server Connection: enter the server's address, then sign in with a password or one of the server's SSO buttons (SSO here from each app's next release; earlier versions offered only a password). The merge dialog triggers if the account already has server rows, the same either way.
 - **Server to local:** Settings > Server Connection > Disconnect. The local SQLite mirror stays on the device, and the app switches to the on-device code path. Nothing is uploaded or deleted.
 
 !!! note "LiftTrace 1.4.0 and later"

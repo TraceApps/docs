@@ -111,7 +111,7 @@ See [Wellness and wearables](wellness.md).
 
 ## Server Connection (Android)
 
-Android-only, appears when the app is in local mode or when you want to change the server it points at. Server URL, credentials, connect, manual sync button, log-out from server, disconnect (return to local mode). Not synced (`DEVICE_PREFS`-adjacent; lives in native prefs).
+Android-only, appears when the app is in local mode or when you want to change the server it points at. Server URL, credentials or the server's SSO buttons (they appear as you type the address; SSO here needs a NutriTrace 1.4.0 or later server), connect, manual sync button, log-out from server, disconnect (return to local mode). If the app can't load the server's sign-in options it says so, with **Retry**. Not synced (`DEVICE_PREFS`-adjacent; lives in native prefs).
 
 ## Notifications
 

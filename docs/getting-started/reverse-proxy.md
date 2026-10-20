@@ -174,6 +174,8 @@ The first two rows are the link page and the note or recipe it shows. The last r
 
 You open your own links with the proxy's login as usual (NoteTrace 1.1.2 and later, CookTrace from its next release; before 1.1.2, NoteTrace's page says **Couldn't Load the Note** behind such a proxy).
 
+If you use the Android or Wear OS app, leave all of `/api/` open, not only `/api/n/` or `/api/r/`: see [The Android app behind a sign-in proxy](#android-behind-a-login).
+
 === "nginx"
 
     ```nginx
@@ -214,6 +216,45 @@ You open your own links with the proxy's login as usual (NoteTrace 1.1.2 and lat
     ```
 
 For CookTrace, use `r|api/r` in place of `n|api/n`.
+
+## The Android app behind a sign-in proxy { #android-behind-a-login }
+
+A proxy that asks for its own login in front of the app (Authelia, an Authentik proxy outpost, VoidAuth, Cloudflare Access) stops the Android and Wear OS apps too: they can't sign in to the proxy, only to the app. Let `/api/` through to the app without the proxy's login and keep the rest behind it if you like. The app's own sign-in still protects everything under `/api/`, and SSO keeps working, since its callback (`/api/auth/oidc/`) is under `/api/` too.
+
+When the proxy answers instead of the app, the app says so (from each app's next release): **Something other than NoteTrace answered with a web page** (or CookTrace, LiftTrace, NutriTrace), often a sign-in proxy, or an address that isn't your server's. Earlier versions showed only the username and password, with no SSO button, and signing in failed with `Unexpected token '<'`.
+
+=== "nginx"
+
+    With forward auth (`auth_request`, as Authelia, Authentik and VoidAuth use with nginx), add a location for the API that turns it off. `^~` makes it win over the other locations, the public-link one above included, since `/api/n/` is inside it.
+
+    ```nginx
+    # The app's API: no proxy login. NoteTrace's own sign-in protects it.
+    location ^~ /api/ {
+        auth_request off;
+        proxy_pass http://notetrace:3004;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+    ```
+
+    With `auth_basic` in place of forward auth, use `auth_basic off;` instead. For the other apps, point `proxy_pass` at that app.
+
+=== "Authelia"
+
+    Put the rule above every other rule that matches the host:
+
+    ```yaml
+    access_control:
+      rules:
+        - domain: 'notes.example.com'
+          policy: 'bypass'
+          resources:
+            - '^/api/.*$'
+    ```
 
 ## Deeper recipes
 

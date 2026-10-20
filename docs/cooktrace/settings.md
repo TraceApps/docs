@@ -85,7 +85,7 @@ Food-lookup sources:
 
 ## Server Connection (Android only, per-user)
 
-Only present in the Capacitor build. Set or change the server URL, disconnect, or switch between local (offline) and connected modes. See [Mobile modes](../mobile/modes.md).
+Only present in the Capacitor build. Set or change the server URL, disconnect, or switch between local (offline) and connected modes. To connect, type the server's address: its SSO buttons appear, along with username and password when the server allows them. SSO here needs a CookTrace server from the next release; with an older one, connect with a password. If the app can't load the server's sign-in options it says so, with **Retry**. See [Mobile modes](../mobile/modes.md).
 
 ## Notifications (per-user)
 

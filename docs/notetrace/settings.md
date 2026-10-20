@@ -62,7 +62,7 @@ Link a CookTrace server with its address and an API token with the **shopping** 
 
 ### Server Connection (Android)
 
-Switch between local mode and a server, and see sync status. See [Local vs server-connected mode](../mobile/modes.md).
+Switch between local mode and a server, and see sync status. To connect, type the server's address: its SSO buttons appear, along with username and password when the server allows them. SSO here needs a NoteTrace 1.1.0 or later server. If the app can't load the server's sign-in options it says so, with **Retry**. See [Local vs server-connected mode](../mobile/modes.md) and, behind a sign-in proxy, [The Android app behind a sign-in proxy](../getting-started/reverse-proxy.md#android-behind-a-login).
 
 ### App Lock (Android, per-device)
 
