@@ -59,7 +59,7 @@ Top-of-page hero on Settings. Links out to `/profile`.
 
 ### Catalog
 
-**Settings, Exercise Catalog.** Per-source enable / disable / import / clear for `wger`, `free-db`, `exercisedb` (RapidAPI key field), and `exercisedb-oss`. Per-imported-catalog enable / disable / delete. Clear and Delete say how many exercises they remove. From 1.4.0 it's also in the Android app without a server (local mode), so a library skipped or failed in the setup wizard can be imported later; switching a source off hides it on the phone too. With a server, **Offline Exercise Library** has **Pre-cache media for offline**, which fetches every exercise picture in advance. Full detail in [Exercise library](exercises.md).
+**Settings, Exercise Catalog.** Per-source enable / disable / import / clear for `wger`, `free-db`, `exercisedb` (RapidAPI key field), and `exercisedb-oss`. Per-imported-catalog enable / disable / delete. Clear and Delete say how many exercises they remove. From 1.4.0 it's also in the Android app without a server (local mode), so a library skipped or failed in the setup wizard can be imported later; switching a source off hides it on the phone too. With a server, **Offline Exercise Library** has **Pre-Cache Media for Offline**, which fetches every exercise picture in advance. Full detail in [Exercise library](exercises.md).
 
 ### AI Assistant (Trace)
 
@@ -93,7 +93,7 @@ Full walkthrough in [Radio player](radio.md).
 
 ### Server connection (Android only)
 
-Inline block near the top of Settings on the native app. Shows Connected, URL, Last synced, **Sync now**, **Log out**, **Disconnect**. When disconnected, offers URL / Username / Password / **Connect**, and the server's SSO buttons once you've entered its address (SSO here needs a LiftTrace 1.4.0 or later server; the password fields hide when the server allows only SSO). If the app can't load the server's sign-in options it says so, with **Retry**. Connecting with data already on the phone shows **Sync Options**: **Upload Phone to Server**, **Download Server to Phone** or **Merge Both**; changes that never reached a server are asked about before anything deletes them. **Disconnect** sends changes still waiting first. See [Local vs server-connected mode](../mobile/modes.md).
+Inline block near the top of Settings on the native app. Shows Connected, URL, Last Synced, **Sync Now**, **Log Out**, **Disconnect & Use Locally**. When disconnected, offers URL / Username / Password / **Connect**, and the server's SSO buttons once you've entered its address (SSO here needs a LiftTrace 1.4.0 or later server; the password fields hide when the server allows only SSO). If the app can't load the server's sign-in options it says so, with **Retry**. Connecting with data already on the phone shows **Sync Options**: **Upload Phone to Server**, **Download Server to Phone** or **Merge Both**; changes that never reached a server are asked about before Download deletes anything. **Disconnect & Use Locally** sends changes still waiting first. See [Local vs server-connected mode](../mobile/modes.md).
 
 ### Notifications
 

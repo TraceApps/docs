@@ -106,13 +106,13 @@ These need your server or the internet, and say so plainly rather than failing q
 | Admin: users, invites, server settings, updates | They change your server |
 | Signing in, or signing up a new account | The sign-in screen needs your server |
 
-Anything this browser has never seen is not there offline either: a day you have not opened, a program you have not looked at, an exercise picture you have not been shown. Settings, Exercise Catalog has a **Pre-cache media for offline** button if you want the pictures in advance.
+Anything this browser has never seen is not there offline either: a day you have not opened, a program you have not looked at, an exercise picture you have not been shown. Settings, Exercise Catalog has a **Pre-Cache Media for Offline** button if you want the pictures in advance.
 
 The menu button shows an amber cloud while anything is waiting, and red if your server refuses it. What you change is kept in the browser, so it survives closing the tab, and it goes up on its own when the connection returns, replayed against the same routes the Android app replays its own queue against: a session changed in two places merges set by set rather than one copy overwriting the other. Two tabs cannot send it twice. Nothing is sent while you are offline, and the queue is cleared only once your server has confirmed it. If your server refuses one of your changes when it finally reaches it, that one change is set aside and named in plain words ("Your server would not accept the run you logged: ..."), everything else queued behind it still goes up, and the reason is written to **Settings, Diagnostics** so you can find it later. A server that is merely struggling is retried instead.
 
 Signing out sends what is waiting first. If it cannot (you are signing out in a dead zone), it asks before discarding it.
 
-Exercise pictures and animations are kept as you see them, and so are pictures and videos uploaded to your own exercises, under a `BASE_URL` subpath too. **Pre-cache media for offline** fetches the lot in advance, for a gym with no signal at all. It fetches with your browser's sign-in, so behind a proxy that asks for its own login (basic auth, Authelia) it keeps the real pictures, not the proxy's sign-in page.
+Exercise pictures and animations are kept as you see them, and so are pictures and videos uploaded to your own exercises, under a `BASE_URL` subpath too. **Pre-Cache Media for Offline** fetches the lot in advance, for a gym with no signal at all. It fetches with your browser's sign-in, so behind a proxy that asks for its own login (basic auth, Authelia) it keeps the real pictures, not the proxy's sign-in page.
 
 This is not built on Background Sync, which Safari does not have, so an iPhone behaves the same as everything else. The Android app has its own offline story: connected to a server, it keeps a copy on the phone and sends what you change offline when the connection returns (see [How sync works](../mobile/sync.md)); in local mode it never needs a connection.
 

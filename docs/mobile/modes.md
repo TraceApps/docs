@@ -4,36 +4,49 @@ Every TraceApps Android build can run in one of two modes. You pick one at first
 
 ## The first-launch choice
 
-The setup wizard offers two options up front:
+The welcome screen offers two cards:
 
-- **Local-only.** Leave the server URL blank. All data lives in on-device SQLite (via the Capacitor SQLite plugin). There is no server, no account, and no network traffic beyond what a given feature explicitly needs (Trace AI calls, if configured; Open Food Facts and USDA food lookups on NutriTrace; etc.).
-- **Connect to my server.** Enter the URL of your self-hosted instance and log in. The app talks to that server over HTTPS (NutriTrace 1.5.0 and later also over plain HTTP on your own network, see [Plain-HTTP LAN](../getting-started/lan-http.md#the-android-apps)), keeps a local SQLite mirror as an offline cache, and syncs both directions in the background.
+- **Use Locally.** All data lives in on-device SQLite (via the Capacitor SQLite plugin). There is no server, no account, and no network traffic beyond what a given feature explicitly needs (Trace AI calls, if configured; Open Food Facts and USDA food lookups on NutriTrace; etc.).
+- **Connect to Server.** Enter the URL of your self-hosted instance and sign in. The app talks to that server over HTTPS (NutriTrace 1.5.0 and later also over plain HTTP on your own network, see [Plain-HTTP LAN](../getting-started/lan-http.md#the-android-apps)), keeps a local SQLite mirror as an offline cache, and syncs both directions in the background.
 
-The choice is not permanent. Both modes are first-class code paths; the wizard just gets you into one of them cleanly.
+The choice is not permanent. Both modes are first-class code paths; the welcome screen just gets you into one of them cleanly.
 
-## The merge dialog
+## The Sync Options dialog
 
-If the account you log into has server data **and** you already have local data on the device, the app cannot silently pick one. It shows a merge dialog with three options:
+When you connect from Settings > Server Connection and the phone already holds data of its own (settings count too), the app asks what to do with it. It asks whether or not the server has data. The dialog shows what's on the phone, then offers three choices:
 
-- **Upload local.** Push what is on the device up to the server. Server rows for the same records get overwritten by the local ones.
-- **Download server.** Pull server data down and replace the local copy. Local-only entries the server has never seen are discarded.
-- **Merge (last-write-wins).** Combine both sides. Rows that exist on both sides are resolved by `updated_at`; the newer one wins. Rows unique to either side are kept.
+- **Upload Phone to Server.** Sends the phone's data to the account. It's added next to what the server already has, as new records: the server's records stay, nothing is compared by date, and a record both sides have ends up twice. What the phone's copy does replace on the server:
+    - **Settings**, in every app: each setting the phone sends replaces the server's.
+    - **NutriTrace:** a day's Diary is merged item by item (the same item keeps its newer version), but the phone's body stats and note for a day replace the server's, and so do its Health Connect values and workouts. A food whose barcode the server already has keeps the server's food. Other foods, meals and recipes are added, so ones the server also has appear twice.
+    - **LiftTrace:** each workout goes up as its own session, next to any the server has that day. Body stats for a date take the phone's values, and the phone's active program becomes the active one. Programs, templates, custom exercises and cardio are added, so ones with the same name as the server's appear twice. Progress photos and Trace chat stay on the phone.
+    - **CookTrace:** recipe and pantry categories are matched by name, keeping the server's. A pantry item the server already has by name keeps the server's. Recipes (with their history), the cook diary and shopping items are added. Cookbooks, custom units, comments and Trace chat go up with the first sync after connecting.
+    - **NoteTrace:** notes, labels, checklist items and attachments go up with the first sync after connecting (the summary counts them before then). A label the server also has appears twice; a checklist item both sides have keeps the newer one. Note history stays on the phone.
 
-Merge is the safe default when you have been logging on both surfaces (say, phone in local mode and the web PWA on your laptop). Upload / Download are the right calls when one side is clearly authoritative and you want a clean state.
+    Running the upload again after it failed partway sends nothing twice.
 
-!!! warning "Merge is not a dry-run"
-    The three options apply immediately. There is no preview. If you are unsure which side is authoritative, take a [backup](../self-hosting/backups.md) first: full-backup ZIP on the server, or the local backup export from the app's Settings.
+- **Download Server to Phone.** Deletes the phone's data and loads the account's instead. CookTrace and NoteTrace also delete the phone's settings. Everything that was only on the phone is gone.
+- **Merge Both.** The same as Upload Phone to Server, after which the normal sync brings the server's data down. It's not a last-write-wins merge: records both sides have end up twice.
+
+Which to pick:
+
+- The server already has what's on the phone (you used it connected before, or restored a backup there): **Download Server to Phone**.
+- The account is new or empty: **Upload Phone to Server**.
+- Both sides have data you want to keep: **Upload Phone to Server** (Merge Both does the same), then delete what's doubled.
+
+!!! warning "There's no undo"
+    The choice applies at once, and nothing previews what the server will end up with. If you are unsure, take a [backup](../self-hosting/backups.md) first: full-backup ZIP on the server, or the local backup export from the app's Settings.
 
 ## Switching later
 
 Both directions are available from Settings.
 
-- **Local to server:** Settings > Server Connection: enter the server's address, then sign in with a password or one of the server's SSO buttons (SSO here from each app's next release; earlier versions offered only a password). The merge dialog triggers if the account already has server rows, the same either way.
-- **Server to local:** Settings > Server Connection > Disconnect. The local SQLite mirror stays on the device, and the app switches to the on-device code path. Nothing is uploaded or deleted.
+- **Local to server:** Settings > Server Connection: enter the server's address, then sign in with a password or one of the server's SSO buttons (SSO here from each app's next release; earlier versions offered only a password). Sync Options appears if the phone holds data, the same either way.
+- **Server to local:** Settings > Server Connection > Disconnect. The local SQLite mirror stays on the device, and the app switches to the on-device code path. LiftTrace first sends changes still waiting (see below); the others upload nothing. Nothing is deleted.
 
 !!! note "LiftTrace 1.4.0 and later"
-    - The dialog is **Sync Options**: **Upload Phone to Server**, **Download Server to Phone** or **Merge Both**. Upload sends each logged workout as its own session, plus body stats, cardio, programs, exercises and settings, and the counts it shows first are what it sends. Progress photos and Trace chat stay on the phone. Uploading again sends nothing twice.
-    - **Download Server to Phone**, and **Replace with Server** in setup, delete the phone's data as they say. Changes that never reached a server are asked about first, never dropped silently.
+    - Upload sends each logged workout as its own session, plus body stats, cardio, programs, exercises and settings, and the counts it shows first are what it sends.
+    - First-run setup asks too, after a password sign-in (not after SSO), with **Upload to Server**, **Replace with Server**, **Merge Both** (which also syncs right away) and **Skip**, which uploads and deletes nothing.
+    - **Download Server to Phone** in Settings asks first about changes that never reached a server, never dropping them silently. **Replace with Server** in setup deletes the phone's data right away.
     - **Disconnect** sends changes still waiting first, and asks before dropping any it can't send. Everything else the account had stays on the phone: connecting back to the same account puts it back in place, sending only what changed meanwhile.
     - Signing in as another account shows that account's data, fetched fresh. If the first account left changes that haven't gone up, you're asked first: cancel to keep them for that account, or sign in anyway and they're discarded.
 
@@ -43,7 +56,7 @@ Both directions are available from Settings.
     - **Disconnect** keeps your settings on the phone and no longer shows the welcome screen.
     - Connecting to a server that isn't set up yet, the app says to open the server in a browser and create the first account first, instead of saying the server can't be reached.
 
-Switching back and forth is safe as long as you understand the merge dialog. The one thing to avoid is switching to a *different* server account without picking Upload or Download deliberately; a same-account reconnect uses `updated_at` correctly, but a fresh account has nothing to compare against.
+Reconnecting to the account you disconnected from: LiftTrace and NoteTrace recognize it and send only what's new or changed (in NoteTrace that includes settings: only those changed meanwhile go up). NutriTrace and CookTrace send everything again as new records, so pick **Download Server to Phone** there when the server already has the phone's data. Connecting to a *different* account, pick Upload or Download deliberately: the app has nothing to compare against.
 
 ## What each mode gets you
 
