@@ -119,6 +119,10 @@ Signed outgoing webhooks for `note.created`, `checklist.completed`, and `reminde
 
 SMTP for password resets and invites. See [Email / SMTP](../integrations/smtp.md).
 
+## Support
+
+Ways to support NoteTrace, which is free and never unlocks anything for support: sponsoring, **Star on GitHub**, **Report a Bug**, and **Help Translate**, which opens NoteTrace on [Weblate](https://hosted.weblate.org/projects/notetrace/) (see [Translations](../contribute/translations.md)).
+
 ## About
 
 Version, links, and licenses.
