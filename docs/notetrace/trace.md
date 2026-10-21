@@ -16,7 +16,7 @@ On a text note, the **Ask Trace** button (sparkle icon) in the editor bar offers
 | **Make a Checklist** | Turns the note into checkable items | **Make Checklist** converts the note |
 | **Custom Instruction** | Does what you type: "Translate to Spanish", "Make it a table", "Write it as an email" | **Use This** replaces the text; **Add Below** puts it under the text |
 
-For **Custom Instruction**, type what you want and press **Enter** or **Ask Trace** (**Shift+Enter** starts a new line on a computer); **Back** from the result returns to your instruction to change it. Trace's result is shown first, and nothing changes until you apply it. Applying always saves the text you had as a restore point in [version history](notes.md#version-history), even if you edited a minute ago, so an unwanted rewrite is one tap to undo. **Try Again** asks for a fresh result.
+For **Custom Instruction**, type what you want and press **Enter** or **Ask Trace** (**Shift+Enter** starts a new line on a computer); **Back** from the result returns to your instruction to change it. Trace's result is shown first, and nothing changes until you apply it. Applying always saves the text you had as a restore point in [version history](notes.md#version-history), even if you edited a minute ago, so an unwanted rewrite is one tap to undo. **Try Again** asks for a fresh result. While Trace works, or a result waits, a click outside keeps the menu open; **Cancel**, **Esc** or the back gesture stops the request, and closing with a result waiting asks before throwing it away. If the note changed while Trace worked, **Use This** asks before replacing the newer text.
 
 ## Chat with your notes {#chat}
 

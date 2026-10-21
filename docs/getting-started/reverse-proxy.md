@@ -160,6 +160,16 @@ Your password is accepted, then you're back on the sign-in page. NutriTrace 1.4.
 
 To see where it goes wrong, sign in with the browser's developer tools open on the Network tab. The sign-in response should set the cookie named above, with `HttpOnly`, `Secure` and `SameSite=Lax`, and the next request should send it back. Firefox's console names a cookie it rejected.
 
+## When the server can't be reached { #server-unreachable }
+
+From each app's next release, a signed-out browser or phone that can't read the server's sign-in state opens the sign-in page with a notice and **Retry**, instead of the app with nobody signed in:
+
+- **Can't reach your server right now. Check that it's running, then Retry.** The server, or the proxy in front of it, didn't answer, or answered with its own error page (a 502 while the container restarts). The page also retries when the browser comes back online.
+- **Your server answered with an error. Try again in a moment.** The app answered, but with an error.
+- **Something in front of your server is asking you to sign in. Sign in there, then reload this page.** (in a browser) A sign-in proxy's own session ended. In the Android app this reads **Something other than NoteTrace answered with a web page** (or CookTrace, LiftTrace, NutriTrace): see [The Android app behind a sign-in proxy](#android-behind-a-login).
+
+A browser already signed in keeps opening its account offline, and a server without accounts (single-user) opens the app as before.
+
 ## Public links behind a login { #public-links-behind-a-login }
 
 If your proxy asks for its own login in front of the app (basic auth, Authelia, an Authentik proxy outpost, Cloudflare Access), it stops everyone who opens a public link too: a NoteTrace note link or a CookTrace recipe link. To let people without that login open them, leave these paths open and keep everything else behind the login:
