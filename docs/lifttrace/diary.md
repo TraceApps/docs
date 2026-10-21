@@ -90,6 +90,24 @@ Countdown from a configurable per-set duration (Settings > Workout > Rest Durati
 
 Beeps schedule via `setTimeout`, not a tick loop, so background throttling does not drop the cue. On Android the timer survives backgrounding through a native alarm (`RestTimerCuePlugin.java`) that posts a notification-channel cue at the target time.
 
+**Pause** on the rest bar holds the rest where it is: the time stops, nothing rings, and **Resume** counts on from what was left. **+30s** works while paused too. Pausing on the phone pauses the [watch](wear.md#the-rest-timer-on-both-devices), and the other way round.
+
+### In the notification shade and on the lock screen (Android)
+
+While a rest runs, the Android app shows it as a notification, so you can check it without unlocking the phone:
+
+- The title is what you lift next: **Bench Press · Set 3 of 4**, or the next round of a superset, or the next exercise once this one is done.
+- Under it, that set's weight and reps and what you did on it last time (**150 lbs × 8 · Last time 145 × 8**), from the same last session the Diary's Last row uses.
+- Android counts the time down, and a bar in your accent color fills as the rest goes, like the rest bar in the app.
+- **Skip Rest**, **+30s** and **Pause** work from the notification without opening the app. Paused, it says how long is left ("Rest paused, 1:12 left") and offers **Resume** and **Skip Rest**.
+- Tapping it opens the Diary on that workout.
+
+It is silent (the rest alert still makes the sound at the end, and "Rest complete" still appears), it stays on this phone rather than also showing on a paired watch, and it goes away at zero, when you skip, or when you finish the workout. Swipe it away and it stays away for that rest. On Android 16 and later, where the system allows it, it is also a Live Update: the countdown sits in the status bar as a chip.
+
+To keep the battery cost down, the bar is redrawn about once a second only while the screen is on and the app is still running in the background; with the screen off nothing is redrawn, and the countdown itself is always drawn by Android.
+
+If you train with Do Not Disturb on, turn on **Settings > Workout > Play Through Do Not Disturb** so you still hear the rest alert (see [Settings](settings.md#workout)).
+
 Superset gating: in a superset the timer waits until every exercise in the round has the same completed-set count before firing. Warm-ups are excluded from the round math.
 
 ## Supersets

@@ -47,6 +47,7 @@ Top-of-page hero on Settings. Links out to `/profile`.
 - **Auto-generate warm-up sets** insert a ramp for each working set. Generator in `src/lib/workout.js`.
 - **Track RPE per set** show the RPE column on every set row.
 - **Rest timer** on / off, plus **Rest duration**, **Auto-start on set**, **Vibrate**, and **Tone** as separate toggles.
+- **Play Through Do Not Disturb** (Android app, off by default) plays the rest alert like an alarm, at your alarm volume, so you still hear it with Do Not Disturb on. Do Not Disturb silences notification sounds, which is how the rest alert normally plays; set up the usual way, it lets alarms through. The vibration goes the same way.
 
 ### Statistics
 

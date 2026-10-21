@@ -61,7 +61,11 @@ A set logged, corrected or ticked on the watch shows on the phone right away whi
 
 ## The rest timer on both devices
 
-A rest is one thing happening to one person, so both devices hold it and either can ring you. Start, extend or skip it on either and the other follows; whichever spoke last is the one that counts.
+A rest is one thing happening to one person, so both devices hold it and either can ring you. Start, extend, pause, resume or skip it on either and the other follows; whichever spoke last is the one that counts.
+
+**Pause** sits beside +30 and Skip on the watch's timer. A paused rest holds its time, shows "Paused" in grey, and doesn't buzz; **Resume** counts on from what was left. Pausing on the watch pauses the phone, its rest bar and its notification, even with the app in the background, and pausing on the phone (in the app or from its notification) pauses the watch. A hold can't be paused: it logs itself when its time is up.
+
+With a watch on an older LiftTrace, from before pausing, a paused rest is taken down on the watch instead of shown as paused, so it doesn't buzz in the middle of a pause, and it comes back counting when you resume. An older phone app takes a rest paused on the watch down when you next open it; until then, if it was in the background, it can still sound at the old time.
 
 The phone only sends a rest to a watch whose app has been opened in the last half hour. A watch on a charger in another room isn't woken for one and doesn't buzz about it, and nothing is scheduled there. When the watch does have the rest, the phone keeps its own "Rest complete" notification to itself rather than mirroring it across, since the watch rings with its own alarm and its own words. With no watch in the picture, the phone's notification reaches your wrist the way it always did.
 
