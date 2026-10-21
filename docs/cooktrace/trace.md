@@ -67,9 +67,9 @@ Trace works with:
 - **Anthropic Claude** (default provider on new installs).
 - **OpenAI** (GPT-5.6 and GPT-4o models, custom).
 - **Google Gemini** (shut-down IDs switch to the default at request time).
+- **OpenAI Compatible** for Ollama, LM Studio, LocalAI, vLLM, llama.cpp, DeepSeek, Groq, Together AI, and OpenRouter.
 
 The models each one lists, and the defaults, are on [Trace models](../trace/models.md); CookTrace's next release brings the same lists as the other apps.
-- **OpenAI Compatible** for Ollama, LM Studio, LocalAI, vLLM, llama.cpp, DeepSeek, Groq, Together AI, and OpenRouter.
 
 Choose your provider under Settings > AI Assistant. The **Custom model** sentinel (`__custom__`) lets you type any model ID for Claude, OpenAI, or Gemini when the preset list gets stale. When the operator locks the AI config via `AI_*` env vars, the UI fields disable and Trace calls proxy through `POST /api/ai/chat` so the browser never sees the key. See [Trace setup](../trace/setup.md) for the full walkthrough.
 

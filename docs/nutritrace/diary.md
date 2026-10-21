@@ -79,7 +79,7 @@ A free-text notes field per date, toggled by `diaryShowNotes`. Handy for context
 
 ## Day completion (opt-in)
 
-Off by default. Turn on under **Settings → Diary → Show Day Completion** to activate every completion surface in one flip. When off, the diary looks exactly as it did before this feature. When on:
+Off by default. Turn on under **Settings → Diary → Show Day Completion** to activate every completion surface in one flip. When off, the diary looks exactly as it did before this feature existed. When on:
 
 - **Date bar** grows a check toggle. Tap to close the current day; the icon fills green and a matching check appears next to the date label.
 - **Week strip** shows a small green check next to the day number on marked days.

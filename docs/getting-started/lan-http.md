@@ -9,7 +9,7 @@ The cause is cookies, not credentials.
 - **NutriTrace 1.4.0, NoteTrace 1.1.0 and LiftTrace 1.4.0 and later** say so before you even try. The sign-in and setup screens show **Signing in won't work on this address**, with a **How to fix it** link to this page, and the server log says it too, at most once an hour:
 
     ```text
-    [WARN] Sign-in from a plain-HTTP page (http://192.168.1.20:3001). The sign-in cookie only works over HTTPS, so the browser drops it and the user ends up back on the login page. Serve NutriTrace over HTTPS, or set INSECURE_COOKIES=1 on a trusted LAN. See https://traceapps.github.io/docs/getting-started/lan-http/
+    [WARN] Sign-in from a plain-HTTP page (http://192.168.1.20:3001). The sign-in cookie only works over HTTPS, so the browser drops it and the user lands back on the login page. Serve NutriTrace over HTTPS, or set INSECURE_COOKIES=1 on a trusted LAN. See https://traceapps.github.io/docs/getting-started/lan-http/
     ```
 
 - **CookTrace** does the same from its next release. Until then it sends you back to the sign-in page with no explanation, and nothing in the server log says why. LiftTrace before 1.4.0 did the same, and could open the app first, with nothing in it, until you reloaded.
