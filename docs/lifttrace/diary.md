@@ -96,7 +96,7 @@ Beeps schedule via `setTimeout`, not a tick loop, so background throttling does 
 
 While a rest runs, the Android app shows it as a notification, so you can check it without unlocking the phone:
 
-- The title is what you lift next: **Bench Press · Set 3 of 4**, or the next round of a superset, or the next exercise once this one is done.
+- The title is what you lift next: **Set 3 of 4 · Bench Press**, or the next round of a superset, or the next exercise once this one is done.
 - Under it, that set's weight and reps and what you did on it last time (**150 lbs × 8 · Last time 145 × 8**), from the same last session the Diary's Last row uses.
 - Android counts the time down, and a bar in your accent color fills as the rest goes, like the rest bar in the app.
 - **Skip Rest**, **+30s** and **Pause** work from the notification without opening the app. Paused, it says how long is left ("Rest paused, 1:12 left") and offers **Resume** and **Skip Rest**.
