@@ -80,7 +80,7 @@ The log should show `[oidc-env] Loaded 1 OIDC provider from environment (IDs: 1)
 
 1. Open the app in a private window. The login page shows a **Sign In with Pocket ID** button.
 2. Click it. Pocket ID asks you to sign in. Authenticate.
-3. You land back inside the app, signed in.
+3. You're back in the app, signed in.
 4. In **Settings → Authentication**, the Pocket ID row appears with an **env** padlock badge (defined through env vars, so it can be viewed but not edited there).
 
 ## Troubleshooting

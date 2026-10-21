@@ -97,7 +97,7 @@ The log should show `[oidc-env] Loaded 1 OIDC provider from environment (IDs: 1)
 ## Verify
 
 1. Load the app in a private window. A **Sign In with Keycloak** button appears next to the local login form.
-2. Click. Keycloak redirects to its login page, you sign in, and you land back inside the app, signed in.
+2. Click. Keycloak redirects to its login page, you sign in, and you're back in the app, signed in.
 3. In **Settings → Authentication** the provider row is present with an **env** padlock badge.
 4. If you set up the group mapper, an account in `cooktrace-admins` shows as an admin in **Settings → Users** after its next SSO sign-in.
 

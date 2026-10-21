@@ -34,7 +34,7 @@ This is the same reason the "reveal password" eye icon disappears once a passwor
 
 The Send Test button opens a small dialog that asks where to send the test. It defaults to your account's own email address, but you can type anything.
 
-The test is a real, branded HTML email (same wrapper as the password reset and invite templates), not a bare SMTP handshake. If it lands in the recipient's inbox, the whole delivery pipeline works, styling included. If you get a green banner but no email, check the recipient's spam folder before assuming SMTP is broken.
+The test is a real, branded HTML email (same wrapper as the password reset and invite templates), not a bare SMTP handshake. If it arrives in the recipient's inbox, the whole delivery pipeline works, styling included. If you get a green banner but no email, check the recipient's spam folder before assuming SMTP is broken.
 
 The dialog runs against the currently-typed form values, not the last-saved ones. So you can try `smtp.example.com` and hit Test without saving; if it fails, the save is safe to skip.
 

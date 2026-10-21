@@ -12,7 +12,7 @@ not finished), then either:
 
 - **Record.** Films in the app, up to 60 seconds, with a live preview and a
   countdown. This is the option to prefer: recording here uses a modest
-  bitrate, so a set lands around 10 to 20 MB instead of the 150 MB a phone
+  bitrate, so a set comes to around 10 to 20 MB instead of the 150 MB a phone
   camera produces at its default settings.
 - **Choose a clip.** Anything already on the phone, up to 200 MB. Nothing is
   re-encoded on the server, so a long clip at full phone quality can hit

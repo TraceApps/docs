@@ -7,7 +7,7 @@ Two supported paths, with different tradeoffs. Pick one based on how much of you
 - **Just your custom foods, plus per-meal daily calorie totals**: use MFP's official export. Import runs through **Settings → Import & Export → Import from another app → MyFitnessPal** with preview and per-date conflict policy.
 - **Per-food diary rows too (what MFP's export leaves out)**: use the community scraper at [github.com/nomad64/mfp-to-nutritrace](https://github.com/nomad64/mfp-to-nutritrace), which uses your browser session cookies to pull the per-food rows MFP's own export omits.
 
-Both paths land data in the same NutriTrace tables (`diary`, `foods`) via the same import endpoints, so mixing them is fine: run the official export first for the base coverage, then the scraper for any date range you want re-imported at higher fidelity.
+Both paths put data in the same NutriTrace tables (`diary`, `foods`) via the same import endpoints, so mixing them is fine: run the official export first for the base coverage, then the scraper for any date range you want re-imported at higher fidelity.
 
 ## Path A: MFP's official export
 
@@ -54,7 +54,7 @@ The per-date conflict policy applies at commit time and can be different for dif
 - **Diary** shows the imported days immediately. Use the date picker to walk back through them.
 - **Statistics** picks up historical data on the next chart render; nothing to refresh manually.
 - **Adaptive TDEE** benefits from the extra days if you also have weight data covering them. If you don't, log historical weights via **Diary → Body Stats → Add** on the relevant dates; body stats accept backdated entries.
-- **Foods you imported** land in your Local catalog with a `source: mfp` tag so you can filter on origin later.
+- **Foods you imported** go into your Local catalog with a `source: mfp` tag so you can filter on origin later.
 
 Bulk-share to family members on the same instance happens the same way as any other food (**Settings → Sharing → Bulk share**). Nothing about the MFP origin restricts sharing.
 

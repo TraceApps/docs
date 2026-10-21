@@ -102,7 +102,7 @@ Single imports (a URL, pasted JSON or HTML, or one uploaded file) always skip a 
 
 ## Cookbook archive import
 
-`CookbookImportDialog` handles a **Paprika** `.paprikarecipes` archive as a Cookbook: every recipe in the archive lands in your library and a new Cookbook is created holding all of them, preserving the source grouping.
+`CookbookImportDialog` handles a **Paprika** `.paprikarecipes` archive as a Cookbook: every recipe in the archive is added to your library and a new Cookbook is created holding all of them, preserving the source grouping.
 
 ## NutriTrace foods to Pantry
 

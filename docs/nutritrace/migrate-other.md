@@ -1,6 +1,6 @@
 # Migrate from Lose It, Cronometer, Waistline
 
-Three community trackers, three different export shapes, one import flow inside NutriTrace. All of them land in the same tables via **Settings → Import & Export → Import from another app**, with a preview step and per-date conflict policy before anything writes.
+Three community trackers, three different export shapes, one import flow inside NutriTrace. All of them go into the same tables via **Settings → Import & Export → Import from another app**, with a preview step and per-date conflict policy before anything writes.
 
 For MyFitnessPal specifically, see [Migrate from MyFitnessPal](migrate-mfp.md); it has enough quirks to earn its own page.
 
@@ -9,7 +9,7 @@ For MyFitnessPal specifically, see [Migrate from MyFitnessPal](migrate-mfp.md); 
 Every commit goes through `POST /api/nutrition-import/preview` first (`server/routes/nutrition-import.js`). The preview returns:
 
 - Every food and diary row that would be inserted.
-- Per-date grouping so you can see what lands where.
+- Per-date grouping so you can see what goes where.
 - Dupe detection against your existing catalog by name and brand.
 - Parse warnings for rows that skipped or transformed.
 
@@ -46,7 +46,7 @@ The UI groups dates so you can, for example, skip everything before 2024 and ove
 
     - **Foods**: name, brand, per-serving macros, serving size, category (mapped to your NutriTrace categories where possible).
     - **Diary rows**: per-food entries with quantity, unit, meal slot. Lose It's meal slots (Breakfast / Lunch / Dinner / Snacks) map directly to the NutriTrace defaults; if you have renamed your slots, the importer surfaces a slot mapping step.
-    - **Body measurements**: weight, waist, and any custom fields land under Diary → Body Stats on the appropriate dates. Backdated entries are accepted.
+    - **Body measurements**: weight, waist, and any custom fields go under Diary → Body Stats on the appropriate dates. Backdated entries are accepted.
 
     ### What doesn't
 

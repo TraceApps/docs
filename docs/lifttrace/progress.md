@@ -98,7 +98,7 @@ tracked as its own separate feature rather than sharing this one's rules.
 
 ## Automation
 
-All optional, each behind the flag it already uses:
+All optional, each behind the setting it already uses:
 
 - **Webhook** `progress_photo.logged` fires whenever a photo is attached,
   no matter which of the three surfaces did it. Subscribe in

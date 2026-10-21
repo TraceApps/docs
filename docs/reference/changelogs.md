@@ -9,7 +9,7 @@ Each app maintains its own `CHANGELOG.md` in-tree rather than duplicating them h
 
 ## Release cadence
 
-Everything lands on the `dev` branch first. Pushes to `dev` publish the `:dev` Docker tag automatically (see [Docker image tag matrix](image-tags.md)) but the changelog does not move; `dev` is a rolling working copy.
+Everything goes to the `dev` branch first. Pushes to `dev` publish the `:dev` Docker tag automatically (see [Docker image tag matrix](image-tags.md)) but the changelog does not move; `dev` is a rolling working copy.
 
 Releases are cut by squash-merging `dev` into `main` with a single version-bump commit that updates `package.json`, `version.js`, the Android `build.gradle` (`versionCode` and `versionName`), and `CHANGELOG.md` together. That commit is then tagged (`v1.2.3`), which triggers the Docker workflow to publish the `1.2.3`, `1.2`, `1`, and `latest` tags in one build.
 

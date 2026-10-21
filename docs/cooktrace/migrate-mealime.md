@@ -8,7 +8,7 @@ The [Recipe Exporter for Mealime](https://github.com/ianknauer/mealime-recipe-ex
 
 1. Install it from the [Chrome Web Store](https://chromewebstore.google.com/detail/recipe-exporter-for-meali/fjgiehibnolnihlanldlbcgjmcghlilc), or load it by hand as its README describes.
 2. Sign in at [my.mealime.com](https://my.mealime.com) (or app.mealime.com).
-3. From that tab, click the extension's icon, then **Export my recipes**. The zip (`mealime-recipes-<date>.zip`) lands in your downloads.
+3. From that tab, click the extension's icon, then **Export my recipes**. The zip (`mealime-recipes-<date>.zip`) is saved to your downloads.
 
 What it saves depends on which Mealime site you export from: my.mealime.com gives your favorites, the recipes in your current and previous meal plans, recipes you created yourself, and your recipe notes. app.mealime.com gives your favorites only. The extension's README has the full table.
 

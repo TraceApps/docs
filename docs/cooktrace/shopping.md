@@ -49,7 +49,7 @@ Tap an item's name to open it:
 
 ## Add from a recipe
 
-Long-press a recipe card and choose **Add to Shopping List**, or use **Add from Recipe** in the Shopping page's add menu. Every ingredient lands on your list, stamped with `recipe_id` so the By-Recipe view can badge the block and so the small trash icon on that block can wipe all of that recipe's rows in one shot (`DELETE /api/shopping/by-recipe/:id`).
+Long-press a recipe card and choose **Add to Shopping List**, or use **Add from Recipe** in the Shopping page's add menu. Every ingredient goes on your list, stamped with `recipe_id` so the By-Recipe view can badge the block and so the small trash icon on that block can wipe all of that recipe's rows in one shot (`DELETE /api/shopping/by-recipe/:id`).
 
 The picker's **Only add items I don't have in pantry** toggle (on by default) uses each ingredient's pantry link plus the item's `in_stock` value to skip anything you already have. Turn it off to force the full ingredient list onto the shopping list regardless of stock. See [Pantry](pantry.md) for how stock tracking works.
 
@@ -67,7 +67,7 @@ In the Shopping page's add menu, **Add from Planned Cooks** asks for a date rang
 
 Adding a single recipe works the same way, except that each time adds again: you might cook it twice.
 
-See [Cook Diary and Meal Planner](diary.md) for how planned cooks land in the calendar.
+See [Cook Diary and Meal Planner](diary.md) for how planned cooks appear in the calendar.
 
 ## Manual rows
 

@@ -39,7 +39,7 @@ The full URL grammar is on the [Apprise wiki](https://github.com/caronc/apprise/
 
 The stored setting keys are `notifPushService=apprise`, `appriseUrl`, and `appriseTag`. Values live per user in `user_settings` and never leave the server after storage; the browser sends `{ title, message, priority }` to `POST /api/notify` and the server posts the outbound call.
 
-**4. Test.** Hit the "Send test" button next to the dropdown. A `Test notification, push service connected` message should land on every configured Apprise target within a second.
+**4. Test.** Hit the "Send test" button next to the dropdown. A `Test notification, push service connected` message should arrive on every configured Apprise target within a second.
 
 ## Priority mapping
 

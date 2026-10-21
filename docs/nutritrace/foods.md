@@ -65,7 +65,7 @@ Each source is a per-user toggle under **Settings → Connected Services**:
 - **USDA FoodData Central**: free API key required (`usdaEnabled`, `usdaApiKey`). Per-source data-type badge on results.
 - **Mealie**: self-hosted recipe manager integration. `mealieEnabled`, `mealieBaseUrl`, `mealieApiToken`. Server proxies via `POST /api/mealie/proxy`; the token never touches the browser.
 
-Import from any source lands the food in your Local catalog with a `source` tag preserved for provenance.
+Import from any source puts the food in your Local catalog with a `source` tag preserved for provenance.
 
 ## Mass-aware unit conversion
 

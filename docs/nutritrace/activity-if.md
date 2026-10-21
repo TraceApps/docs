@@ -12,7 +12,7 @@ Enable **Settings → Diary → Activity section** and an Activity card appears 
 - **Distance**: a free-form string (`5 km`, `3 mi`, `800 m`).
 - **MET**: metabolic equivalent, when picked from the 2024 Compendium of Physical Activities. Auto-fills the calorie field via `MET × weight_kg × hours` when you have not typed a calorie value.
 
-Entries land in the `activity_log` table via `POST /api/activity`. Rows marked `is_template=1` become one-tap templates for repeat workouts (a saved "Morning walk" is one tap on the Activity card the next day).
+Entries are stored in the `activity_log` table via `POST /api/activity`. Rows marked `is_template=1` become one-tap templates for repeat workouts (a saved "Morning walk" is one tap on the Activity card the next day).
 
 ### AI-assisted calorie estimate
 
@@ -43,7 +43,7 @@ The built-in presets, and what they mean:
 | Preset | Fast : Eat | Common use |
 |---|---|---|
 | `14:10` | 14h fast, 10h window | Gentle start. |
-| `16:8` | 16h fast, 8h window | The default most people land on. |
+| `16:8` | 16h fast, 8h window | The default most people settle on. |
 | `18:6` | 18h fast, 6h window | Tighter window; skip breakfast comfortably. |
 | `20:4` | 20h fast, 4h window | Warrior-style. |
 | `OMAD` | 23h fast, 1h window | One Meal A Day. |

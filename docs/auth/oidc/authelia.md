@@ -124,7 +124,7 @@ The log should show `[oidc-env] Loaded 1 OIDC provider from environment (IDs: 1)
 
 1. Open the app in a private window. A **Sign In with Authelia** button appears next to the local login form.
 2. Click it. Authelia asks for whatever `authorization_policy` requires (password only for `one_factor`, password + 2FA for `two_factor`), then redirects back.
-3. You land inside the app, signed in.
+3. You're back in the app, signed in.
 4. In **Settings → Authentication**, the Authelia row appears with an **env** padlock badge.
 
 ## Signing out

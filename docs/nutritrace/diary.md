@@ -1,6 +1,6 @@
 # Diary & meal logging
 
-The Diary is the default landing page. One day per view, one card per meal, a nutrition bar at the top, and a body-stats / water / activity / IF strip depending on which sections you have enabled.
+The Diary is the default start page. One day per view, one card per meal, a nutrition bar at the top, and a body-stats / water / activity / IF strip depending on which sections you have enabled.
 
 ## Meal slots
 
@@ -26,7 +26,7 @@ The meal-level `⋮` (top-right of each meal card) covers meal-wide actions:
 
 - **Copy meal to another meal**: same day, different slot.
 - **Move meal to another meal**: same, but the source empties.
-- **Copy meal to another date**: pick any date; the items land in the same slot on that date.
+- **Copy meal to another date**: pick any date; the items go in the same slot on that date.
 - **Save meal to library**: creates a saved Meal in your Foods library from the current slot contents, so you can quick-add the whole thing tomorrow.
 - **Clear meal**: wipes the slot.
 
@@ -79,7 +79,7 @@ A free-text notes field per date, toggled by `diaryShowNotes`. Handy for context
 
 ## Day completion (opt-in)
 
-Off by default. Turn on under **Settings → Diary → Show Day Completion** to activate every completion surface in one flip. When off, the diary looks exactly as it did before this feature landed. When on:
+Off by default. Turn on under **Settings → Diary → Show Day Completion** to activate every completion surface in one flip. When off, the diary looks exactly as it did before this feature. When on:
 
 - **Date bar** grows a check toggle. Tap to close the current day; the icon fills green and a matching check appears next to the date label.
 - **Week strip** shows a small green check next to the day number on marked days.

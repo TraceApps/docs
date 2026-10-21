@@ -17,7 +17,7 @@ On workout completion (finishing the last set and marking the session done), Lif
 
 Per-set volume is not part of the wire today. Only the day-level kcal roll-up is what NT's Dynamic / Adaptive TDEE calculation cares about.
 
-The payload lands in NT as `source='lifttrace'` in the `workouts` table, and is rolled up per-day into `wellness_data` under `metric_type='calories_out'` so the cross-source `/api/wellness/calories-out` lookup can find it.
+The payload is stored in NT as `source='lifttrace'` in the `workouts` table, and is rolled up per-day into `wellness_data` under `metric_type='calories_out'` so the cross-source `/api/wellness/calories-out` lookup can find it.
 
 ## Configuring it
 

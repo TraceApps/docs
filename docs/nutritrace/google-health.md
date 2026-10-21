@@ -35,7 +35,7 @@ If Google's console prompts you to configure an OAuth consent screen before lett
 
 ### 4. Paste into NutriTrace
 
-**Settings → Wellness → Fitbit** on your NutriTrace instance. Paste the Client ID and Client Secret, save, then click **Connect**. Google's consent screen opens, grant the requested scopes, and the callback lands you back on the Wellness page with the connection banner turned green.
+**Settings → Wellness → Fitbit** on your NutriTrace instance. Paste the Client ID and Client Secret, save, then click **Connect**. Google's consent screen opens, grant the requested scopes, and the callback takes you back to the Wellness page with the connection banner turned green.
 
 Setup walkthrough on Google's side: <https://developers.google.com/health/setup>.
 

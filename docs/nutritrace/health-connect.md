@@ -43,7 +43,7 @@ Toggle **Health Connect** on under **Settings → Wellness**. The sync worker ru
 
 Health Connect reads happen on the phone. The worker packages the readings and pushes them to your NutriTrace server as regular `wellness_data` rows with `source='health_connect'`. On desktop and other devices, those rows are available exactly as if any other wearable had produced them: the Wellness dashboard, `/api/wellness/latest`, and the AI's `get_wellness_data` tool all see them.
 
-In local-only Android mode (no server configured), the same reads land in the on-device SQLite mirror instead. Wellness data is available on the phone, just not synced anywhere.
+In local-only Android mode (no server configured), the same reads go into the on-device SQLite mirror instead. Wellness data is available on the phone, just not synced anywhere.
 
 ## Cross-source priority
 

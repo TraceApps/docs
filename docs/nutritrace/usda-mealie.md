@@ -35,7 +35,7 @@ A **USDA** source chip appears at the top of the Foods picker. Tap it to scope s
 
 - **Non-US products**: OFF is global; USDA is US-only.
 - **Barcodes**: OFF is barcode-native; USDA's Branded Foods have GTINs but not with the same UI-first design.
-- **Community contributions**: OFF is a wiki, so obscure or seasonal items land there first.
+- **Community contributions**: OFF is a wiki, so obscure or seasonal items show up there first.
 
 Run both. The chip filter lets you pick per-search.
 
@@ -92,10 +92,10 @@ The NutriTrace server proxies CookTrace requests via `POST /api/cooktrace/proxy`
 When you pick a CookTrace recipe from the picker, NutriTrace opens the Recipe editor with:
 
 - **Name, servings, image** copied from CT.
-- **Ingredients** as one editor row per CT ingredient, with the per-ingredient nutrition snapshot CookTrace stores when the ingredient is linked to a pantry item. Ingredients without a pantry link land as loose rows for you to link on the NT side.
+- **Ingredients** as one editor row per CT ingredient, with the per-ingredient nutrition snapshot CookTrace stores when the ingredient is linked to a pantry item. Ingredients without a pantry link come in as loose rows for you to link on the NT side.
 - **Rollup totals** from CT's most recent Recompute (empty if the recipe was never Recomputed; run NT's own Recompute after import to fill from the NT foods library).
 
-Save the recipe and it lands in NT's Recipes catalog with a **From CookTrace** badge and a back-link to the original recipe on CookTrace. Re-pulling and saving again updates the same row rather than duplicating, so edits on CookTrace flow through with one pick + save.
+Save the recipe and it appears in NT's Recipes catalog with a **From CookTrace** badge and a back-link to the original recipe on CookTrace. Re-pulling and saving again updates the same row rather than duplicating, so edits on CookTrace flow through with one pick + save.
 
 See [Pull a CookTrace recipe into NutriTrace](../cooktrace/nt-federation.md#pull-a-cooktrace-recipe-into-nutritrace-ct-is-the-server) for the CookTrace-side setup and the full field-by-field wire contract.
 

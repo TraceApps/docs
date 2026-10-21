@@ -53,7 +53,7 @@ Multiple people can subscribe to the same topic; every subscriber gets every mes
 
 ## Priority mapping
 
-TraceApps sends priorities 1 to 8. ntfy accepts 1 to 5, so the server clamps the value with `Math.min(5, priority)`. Wellness alerts and sync failures land at ntfy priority 5 (max, "urgent"), regular reminders at 4 or 5.
+TraceApps sends priorities 1 to 8. ntfy accepts 1 to 5, so the server clamps the value with `Math.min(5, priority)`. Wellness alerts and sync failures go out at ntfy priority 5 (max, "urgent"), regular reminders at 4 or 5.
 
 ## Related
 

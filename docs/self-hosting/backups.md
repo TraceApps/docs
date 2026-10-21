@@ -21,7 +21,7 @@ You can skip the stop on a running install; SQLite in WAL mode is safe to copy l
 
 ## Layer 2: in-app Full Backup ZIP
 
-Every app has Settings, Backup and Restore for an admin. The button produces a single ZIP containing an SQL dump of the database and a copy of the uploads tree. Behind the scenes this is `GET /api/full-backup/download`, admin-only, and the ZIP lands in `BACKUPS_PATH` (default `<UPLOADS_PATH>/backups`).
+Every app has Settings, Backup and Restore for an admin. The button produces a single ZIP containing an SQL dump of the database and a copy of the uploads tree. Behind the scenes this is `GET /api/full-backup/download`, admin-only, and the ZIP is saved in `BACKUPS_PATH` (default `<UPLOADS_PATH>/backups`).
 
 You can also schedule it. Set three env vars and the container's built-in scheduler runs at the given time in the container timezone:
 

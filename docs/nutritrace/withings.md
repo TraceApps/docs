@@ -26,7 +26,7 @@ Withings shows a **Client ID** and **Consumer Secret** on the app detail page. C
 1. Paste the **Client ID** and **Consumer Secret**.
 2. Save. The **Connect** button becomes enabled.
 3. Click **Connect**. Withings' consent screen opens; grant the requested scopes (`user.info`, `user.metrics`, `user.activity`).
-4. The callback lands you back on the Wellness page with a **green** connection banner.
+4. The callback takes you back to the Wellness page with a **green** connection banner.
 
 Force a sync from the same banner (the ⟳ button) or wait for the scheduled sync. Sync mode, interval, and window follow the same shape as the other wearables (`withingsSyncMode`, `withingsSyncInterval`, `withingsSyncWindowStart`, `withingsSyncWindowEnd`).
 
@@ -48,7 +48,7 @@ From the `user.metrics` scope, primarily:
 - **Body composition**: fat mass (%), muscle mass (%), bone mass (%), body water (%), lean/fat mass, visceral fat, vascular age, metabolic age, BMR. Coverage depends on your scale model; a basic Body scale gives weight + fat %, a Body Scan gives the full lineup.
 - **Heart-rate readings** captured by the scale during weigh-in, when your model measures them.
 
-These land in the `wellness_data` table with `source='withings'`. The cross-source `/api/wellness/latest?metric=weight_kg` prefers Withings when a fresh reading exists (see [Wellness and wearables](wellness.md) for the priority order).
+These are stored in the `wellness_data` table with `source='withings'`. The cross-source `/api/wellness/latest?metric=weight_kg` prefers Withings when a fresh reading exists (see [Wellness and wearables](wellness.md) for the priority order).
 
 ## Endpoints (reference)
 

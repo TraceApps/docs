@@ -23,11 +23,11 @@ Two-step flow:
 1. **Scan**: upload only. Nothing is written to your library yet. Review the picker.
 2. **Commit**: tick the recipes to import (all by default) and confirm. The server writes them into your recipe library and moves images from the cache into `uploads/`.
 
-The commit response reports how many landed, how many were skipped as duplicates, and how many failed to parse. See [URL, file, and photo import](import.md#dedup-policy) for how the duplicate check works.
+The commit response reports how many were imported, how many were skipped as duplicates, and how many failed to parse. See [URL, file, and photo import](import.md#dedup-policy) for how the duplicate check works.
 
 ### Import as a Cookbook
 
-CookTrace also has a **CookbookImportDialog** flow that treats a `.paprikarecipes` archive as a single Cookbook: every recipe in the archive lands as usual, plus a new [Cookbook](cookbooks.md) is created containing all of them. Handy when your Paprika library is already organized by cookbook and you want to preserve the grouping instead of dumping everything flat into your library.
+CookTrace also has a **CookbookImportDialog** flow that treats a `.paprikarecipes` archive as a single Cookbook: every recipe in the archive is imported as usual, plus a new [Cookbook](cookbooks.md) is created containing all of them. Handy when your Paprika library is already organized by cookbook and you want to preserve the grouping instead of dumping everything flat into your library.
 
 ## What carries over
 
@@ -39,7 +39,7 @@ Per `_importPaprika` in `server/lib/recipe-importers.js`:
 - **Servings** and yield text.
 - **Prep** and **cook** times (Paprika stores free-form strings like "1 hr 15 min"; CookTrace parses them into minutes).
 - **Photo**: `photo_url` if present, otherwise the base64-encoded `photo` field.
-- **Category**: the first entry in Paprika's `categories` array lands on the recipe's Category slot. Remaining entries (up to 12) become tags.
+- **Category**: the first entry in Paprika's `categories` array becomes the recipe's Category. Remaining entries (up to 12) become tags.
 - **Source URL** (`source_url` or older `source`).
 - **Created date**: `created` or the older `dateAdded` is preserved, so imported recipes keep their original creation timestamp instead of stamping to today.
 

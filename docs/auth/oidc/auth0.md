@@ -90,7 +90,7 @@ The log should show `[oidc-env] Loaded 1 OIDC provider from environment (IDs: 1)
 
 1. Open the app in a private window. A **Sign In with Auth0** button appears next to the local login form.
 2. Click it. Auth0's Universal Login page renders (or your custom Auth0 UI), you sign in, and Auth0 redirects back.
-3. You land inside the app, signed in.
+3. You're back in the app, signed in.
 4. In **Settings → Authentication**, the Auth0 row appears with an **env** padlock badge.
 
 ## Troubleshooting

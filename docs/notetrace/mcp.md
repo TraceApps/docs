@@ -59,7 +59,7 @@ Restart Claude Desktop and ask "What's on my groceries list?" or "Add batteries 
 
 ## Security model
 
-- **Off by default**, and each tier has its own env flag and token scope.
+- **Off by default**, and each tier has its own env var and token scope.
 - **Same rules as the app.** View-only shared notes can't be changed, and only a note's owner can set its reminder or trash it.
 - **Rate limited per token** (`API_RATE_LIMIT_PER_MIN`, 60 by default). Over the limit returns `429`.
 - **Origin check.** Server-to-server clients send no `Origin` header and pass. A browser-based MCP client must be listed in `ALLOWED_ORIGINS`.
@@ -82,7 +82,7 @@ Restart Claude Desktop and ask "What's on my groceries list?" or "Add batteries 
 
 **403 on the endpoint.** The token has none of the `mcp:*` scopes.
 
-**A write tool is missing from the list.** Both the server flag and the token scope are needed for its tier.
+**A write tool is missing from the list.** Both the server's env var and the token scope are needed for its tier.
 
 **Settings, API Tokens isn't there.** It only appears for an admin on a server with user accounts.
 

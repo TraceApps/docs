@@ -6,7 +6,7 @@ Every Trace app has the same two-channel notification model. You can turn either
 
 ### 1. Device notifications
 
-The one users expect. On the PWA, Trace uses the browser's Web Notification API; on the Android app, Capacitor `LocalNotifications` (or, for NutriTrace, native Android WorkManager). Notifications land on the device that opened the app.
+The one users expect. On the PWA, Trace uses the browser's Web Notification API; on the Android app, Capacitor `LocalNotifications` (or, for NutriTrace, native Android WorkManager). Notifications appear on the device that opened the app.
 
 Turned on per-user via `Settings → Notifications → Enable device notifications` (setting key `notifLocalEnabled`). The browser or OS prompts for permission the first time; after that, delivery is silent.
 

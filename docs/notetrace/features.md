@@ -46,7 +46,7 @@ Lists already in Tasks come first. Adding or moving an undated task to one of th
 
 ### Repeating tasks {#repeat}
 
-A task can repeat **Daily**, on **Weekdays**, **Weekly**, **Monthly**, or **Yearly**: open its due date and pick one under Repeat (a task with no date yet starts today). Ticking a repeating task doesn't finish it. It moves to the next time it comes round and a message says when, with Undo. Ticked early, it moves on one step; ticked late, the missed ones are skipped rather than piling up as overdue. The 31st of a month lands on the last day of a shorter month. The date's icon has a small repeat arrow, in Tasks and in the note.
+A task can repeat **Daily**, on **Weekdays**, **Weekly**, **Monthly**, or **Yearly**: open its due date and pick one under Repeat (a task with no date yet starts today). Ticking a repeating task doesn't finish it. It moves to the next time it comes round and a message says when, with Undo. Ticked early, it moves on one step; ticked late, the missed ones are skipped rather than piling up as overdue. The 31st of a month falls on the last day of a shorter month. The date's icon has a small repeat arrow, in Tasks and in the note.
 
 ### Completed {#completed}
 
@@ -91,7 +91,7 @@ Select notes with **Ctrl+click** (**Cmd+click** on a Mac), the round check that 
 
 ## Your own order {#order}
 
-Drag a note to move it: press and drag with a mouse, or long-press and drag on a phone. The first drag switches Notes to **Your Order**, which follows you to every device; new notes still land at the top. Switch back to newest edit first in **Settings, Appearance, Note Order**.
+Drag a note to move it: press and drag with a mouse, or long-press and drag on a phone. The first drag switches Notes to **Your Order**, which follows you to every device; new notes still go at the top. Switch back to newest edit first in **Settings, Appearance, Note Order**.
 
 On a phone, swipe a card sideways to archive it (in Archive, a swipe brings it back), with **Undo** for a few seconds. Pull down at the top of the list to refresh. Turn swiping off in **Settings, Appearance, Swipe to Archive**.
 

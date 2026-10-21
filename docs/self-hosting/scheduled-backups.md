@@ -14,7 +14,7 @@ For the anatomy of the ZIP itself and the manual button, see [Backups and restor
 
 Weekly runs on the day the schedule was first activated; monthly runs on the same calendar day each month. If the container is stopped when a run is due, the scheduler does not backfill; the next tick after start-up will pick up the next scheduled window.
 
-## Where the ZIPs land
+## Where the ZIPs are saved
 
 `/data/backups/` inside the container, which is `<UPLOADS_PATH>/backups` by default (override with `BACKUPS_PATH`). Because the default sits under the uploads volume, the archives survive container restarts as long as you have mounted `/data/uploads` to a host volume, which the sample compose does.
 

@@ -1,6 +1,6 @@
 # Pantry
 
-The Pantry is the catalog of ingredients you actually have on hand. Recipe ingredient rows can link to a pantry entry so the app knows what's in stock, what's expiring, and what needs to land on the shopping list.
+The Pantry is the catalog of ingredients you actually have on hand. Recipe ingredient rows can link to a pantry entry so the app knows what's in stock, what's expiring, and what needs to go on the shopping list.
 
 ## Layout
 

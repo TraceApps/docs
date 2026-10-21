@@ -57,7 +57,7 @@ Twenty-one tools spanning read and write across workouts, exercises, programs, P
 | `get_workout` | One workout in full detail by id, including coach feedback | `id*` | Every set, notes, coach feedback, program context |
 | `get_exercises` | Search the exercise catalog (wger, free-exercise-db, exercisedb variants, custom) | `query`, `muscle`, `equipment`, `source`, `limit` | Compact rows with id, name, muscles, equipment, source |
 | `get_exercise` | One exercise's full detail plus similar exercises | `id`, `name` (id wins if both) | Description, instructions, muscles, equipment, up to 5 similar |
-| `get_programs` | User's program library with active flag | none | Id, name, goal, template count, weeks, is_active |
+| `get_programs` | User's program library, marking the active one | none | Id, name, goal, template count, weeks, is_active |
 | `get_program` | One program with every template laid out | `id*` | Templates with target sets/reps/load/RPE/tempo/rest, per-week overrides |
 | `get_active_program` | The currently active program in full | none | Same shape as `get_program`; `{ active: false }` if none |
 | `get_prs` | Personal records with e1RM, highest first | `exercise_name`, `date_from`, `date_to`, `limit` (up to 100, default 20), `offset` | Top weight, top reps at that weight, estimated 1RM per exercise. Past one page: `count`, `offset`, `returned`, `next_offset`, `complete`, `more` and `records[]` |
@@ -151,7 +151,7 @@ Tool execution stays **client-side** even when the server-side AI proxy is in us
 
 - **Read tools accept date ranges** (`from` / `to` in `YYYY-MM-DD`). Ask "what did I cook last week?" and Trace will call `get_diary` with the appropriate range.
 - **Write tools are single-round.** A follow-up question like "and log two more" needs an explicit prompt; Trace does not batch writes speculatively.
-- **`propose_*` on NutriTrace does not log.** If Trace says "I logged X" after calling `propose_food` or `propose_quick_calories`, that is a hallucination; the actual entry only lands after the user taps **Add to Diary** or **Save & Add to Diary** on the review card.
+- **`propose_*` on NutriTrace does not log.** If Trace says "I logged X" after calling `propose_food` or `propose_quick_calories`, that is a hallucination; the actual entry is only added after the user taps **Add to Diary** or **Save & Add to Diary** on the review card.
 - **Trace can call several tools in one round.** A question that needs more lookups ("compare last week to this week", "go through all my recipes") takes more rounds: Trace gets each answer, then decides what to look up next, up to 12 rounds.
 
 ## Not to be confused with MCP tools

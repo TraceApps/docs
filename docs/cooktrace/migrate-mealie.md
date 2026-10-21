@@ -7,7 +7,7 @@ Mealie's export format is well-defined and CookTrace's bulk import understands i
 - **Recipes**: name, description, hero image, prep/cook times, ingredients, steps, notes, source URL, rating, tags, and categories.
 - **Categories**: each Mealie category becomes a CookTrace Recipe Category on your account.
 - **Images**: the hero image and any embedded step images.
-- **Tags**: Mealie tags land on the recipe as CookTrace tags.
+- **Tags**: Mealie tags become CookTrace tags on the recipe.
 
 What doesn't carry over:
 
@@ -36,7 +36,7 @@ In CookTrace:
 4. Review the list. Everything is selected by default. Uncheck anything you don't want.
 5. Click **Import N Recipes** to import the selected recipes.
 
-The commit response tells you how many landed, how many were skipped as duplicates, and how many failed to parse (if any).
+The commit response tells you how many were imported, how many were skipped as duplicates, and how many failed to parse (if any).
 
 !!! tip "Big library?"
     The default cap is `IMPORT_ZIP_MAX_MB=512` MB, which is enough for most Mealie backups. Bump it in your env if you overflow, then restart the container. See [env vars](env-vars.md).

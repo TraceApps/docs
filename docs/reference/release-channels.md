@@ -19,7 +19,7 @@ Stable is what non-tester users install. If a tag is not stable, it will not be 
 
 The `:dev` Docker tag is the equivalent on the container side. It auto-publishes on every push to the `dev` branch. `dev-latest` and `:dev` refresh in step.
 
-Silent overwrite is the whole point. Doc fixes, small refactors, incremental improvements, and iteration on in-flight features all land here without any release-notes ceremony. If a tester's install upgrade path is "redownload the APK and reinstall," they get the newest thing every time.
+Silent overwrite is the whole point. Doc fixes, small refactors, incremental improvements, and iteration on in-flight features all go here without any release-notes ceremony. If a tester's install upgrade path is "redownload the APK and reinstall," they get the newest thing every time.
 
 ## Milestone `v<version>-devNN`
 
@@ -32,7 +32,7 @@ Each numbered milestone gets:
 - A version bump in `package.json` and `src/lib/version.js`. Android `versionCode` and `versionName` are NOT bumped on dev iterations.
 - A refresh of `dev-latest` to point at the same commit.
 
-The `<version>` reflects what will land as the next stable release. After NT `v1.0.3`, the next milestone dev build is `v1.0.4-dev01` (patch-worthy) or `v1.1.0-dev01` (minor-worthy).
+The `<version>` reflects what will be the next stable release. After NT `v1.0.3`, the next milestone dev build is `v1.0.4-dev01` (patch-worthy) or `v1.1.0-dev01` (minor-worthy).
 
 ### Iteration number format
 

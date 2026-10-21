@@ -79,7 +79,7 @@ For a strict "only my organization" gate, `Internal` is the cleaner option.
 
 1. Open the app in a private window. A **Sign In with Google** button appears next to the local login form.
 2. Click it. Google's account picker takes over, you pick or sign in, and Google redirects back.
-3. You land inside the app, signed in.
+3. You're back in the app, signed in.
 4. In **Settings → Authentication**, the Google row appears with an **env** padlock badge.
 
 Signing out of the app doesn't sign you out of Google (Google doesn't offer that to apps), so the next **Sign In with Google** may pass straight through.

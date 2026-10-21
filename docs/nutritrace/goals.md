@@ -14,7 +14,7 @@ You type a target. Simple, unchanging. Good when you already know your maintenan
 
 Yesterday's wearable-measured calories out, multiplied by `calorieGoalFactor` (three-segment picker: Lose = 0.8, Maintain = 1.0, Gain = 1.2). Requires a wearable that reports a `calories_out` metric.
 
-The source for the daily burn is `GET /api/wellness/calories-out?date=<diary date>`, which walks a priority order: **garmin > health_connect > fitbit > lifttrace**. The order is flippable at the LiftTrace slot via `lifttraceOverlapFill`; the rest is fixed. If yesterday's data has not synced yet, the mode falls back to your Fixed goal for the day and re-computes once the sync lands.
+The source for the daily burn is `GET /api/wellness/calories-out?date=<diary date>`, which walks a priority order: **garmin > health_connect > fitbit > lifttrace**. The order is flippable at the LiftTrace slot via `lifttraceOverlapFill`; the rest is fixed. If yesterday's data has not synced yet, the mode falls back to your Fixed goal for the day and re-computes once the sync is done.
 
 Dynamic works well when your daily burn genuinely varies day-to-day (real training weeks, active job) and poorly when your wearable under-reports or the sync is flaky. Watch the Wellness page's per-provider banner to make sure the source you expect is the one being used.
 

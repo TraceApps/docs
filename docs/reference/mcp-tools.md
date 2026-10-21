@@ -4,7 +4,7 @@
 
 Every tool that NutriTrace, LiftTrace, CookTrace, and NoteTrace expose over the **Model Context Protocol**, in one table per app. This is the reference for external AI clients (Claude Desktop, Cursor, Codex, VS Code, custom agents) that connect to each app's `/api/mcp`. The in-app Trace AI has its own separate tool set, cataloged in [Trace tool catalog](trace-tools.md).
 
-Every app splits its MCP surface into the same three phases, each gated by its own scope + env flag:
+Every app splits its MCP surface into the same three phases, each gated by its own scope + env var:
 
 - **Read**: `mcp:read` + `MCP_ENABLED=1`. Always available when MCP is on.
 - **Write**: `mcp:write` + `MCP_WRITE_ENABLED=1`. Log and change tools; everything they write shows up as normal entries in the app's own UI. Most only add entries; a few change what's there, such as CookTrace's `update_recipe` and `set_recipe_image`, which keep every change undoable from the recipe's History.

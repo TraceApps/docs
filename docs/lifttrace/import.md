@@ -126,7 +126,7 @@ Every adapter normalizes to a canonical shape (`{ date, name, notes, duration_mi
 4. Token-overlap match.
 5. Fallback: keep the source name as free text.
 
-If a source-app exercise does not match anything in your library, it does not block the import; the set lands with the raw name and shows up in the diary the same way any exercise does. You can relink it to a library entry from the exercise's row menu > **Rename / Relink**.
+If a source-app exercise does not match anything in your library, it does not block the import; the set is kept with the raw name and shows up in the diary the same way any exercise does. You can relink it to a library entry from the exercise's row menu > **Rename / Relink**.
 
 ## Duplicate-date behavior
 

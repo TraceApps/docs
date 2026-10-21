@@ -50,7 +50,7 @@ Per `_importTandoor` in `server/lib/recipe-importers.js`:
 - **Prep** time from Tandoor's `working_time`, **cook** time from `waiting_time`.
 - **Steps**: each Tandoor step's `instruction` becomes one CookTrace step. Named step groups (Tandoor lets you name each step) preserve the naming on the ingredient side.
 - **Ingredients**: each Tandoor step's `ingredients[]` becomes an ingredient group on the CookTrace recipe. `amount` maps to qty, `unit.name` to unit, `food.name` to the ingredient text, `note` to the note field. If there's only one unnamed group, the group name flattens away and you get a single ungrouped list.
-- **Keywords** land on CookTrace **tags** (up to 12).
+- **Keywords** become CookTrace **tags** (up to 12).
 - **Source URL** (`source_url`).
 
 ## What doesn't
@@ -63,7 +63,7 @@ Per `_importTandoor` in `server/lib/recipe-importers.js`:
 
 Tandoor's units are free-form strings (whatever names you created in Tandoor). CookTrace's [37-unit catalog](recipes.md#inline-unit-converter) is more opinionated. Common cooking units (cup, tbsp, tsp, g, kg, ml, l, oz, lb) round-trip cleanly and the inline converter handles them without help.
 
-Anything Tandoor-specific ("Prise", "Handful", or your own custom units) lands as a raw unit string. The inline converter won't know what to do with it, and Recompute From Pantry will skip that row with a "no density" badge until you either edit the unit into one the catalog knows, or add a matching custom unit under **Manage > Units**.
+Anything Tandoor-specific ("Prise", "Handful", or your own custom units) is kept as a raw unit string. The inline converter won't know what to do with it, and Recompute From Pantry will skip that row with a "no density" badge until you either edit the unit into one the catalog knows, or add a matching custom unit under **Manage > Units**.
 
 If you're doing a large migration, turn on `LOG_LEVEL=debug` before running the bulk commit and check Settings > Diagnostics > View Diagnostic Logs afterwards to spot any unit strings that fell through.
 

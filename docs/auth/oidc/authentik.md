@@ -97,7 +97,7 @@ The log should show `[oidc-env] Loaded 1 OIDC provider from environment (IDs: 1)
 
 1. Open the app in a private window. The login page shows a **Sign In with Authentik** button (or whatever you set `OIDC_DISPLAY_NAME` to).
 2. Click it. Authentik takes over, asks for credentials, and redirects back.
-3. You land inside the app, signed in.
+3. You're back in the app, signed in.
 4. In **Settings → Authentication**, the provider appears with an **env** padlock badge (defined through env vars, so it can be viewed but not edited there).
 
 ## Troubleshooting

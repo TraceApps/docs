@@ -17,7 +17,7 @@ The four apps share a stack, so this page covers all of them. Where the setup di
 
 ## Clone the app you want to work on
 
-Each app lives in its own repo under [TraceApps on GitHub](https://github.com/TraceApps). Clone the one you want, then check out the `dev` branch (everything lands on `dev` first; `main` is squash-merged release commits only).
+Each app lives in its own repo under [TraceApps on GitHub](https://github.com/TraceApps). Clone the one you want, then check out the `dev` branch (everything goes to `dev` first; `main` is squash-merged release commits only).
 
 === "CookTrace"
 
@@ -137,9 +137,9 @@ Debug builds are exempt from Android's cleartext-traffic ban, so they can talk t
 
 ## Commit and PR conventions
 
-- **Target the `dev` branch, not `main`.** Every TraceApp uses the same workflow: work lands on `dev` first, gets exercised there (dev-latest APKs are cut from `dev`), and is bundled into `main` at release time via a squash-merge PR. PRs opened against `main` will be asked to retarget.
+- **Target the `dev` branch, not `main`.** Every TraceApp uses the same workflow: work goes to `dev` first, gets exercised there (dev-latest APKs are cut from `dev`), and is bundled into `main` at release time via a squash-merge PR. PRs opened against `main` will be asked to retarget.
 - Short one-line commit messages. Body only for architectural notes.
-- Do not add `Fixes #NN` or `Closes #NN` trailers without asking; the maintainer prefers to close issues by hand after a release lands.
+- Do not add `Fixes #NN` or `Closes #NN` trailers without asking; the maintainer prefers to close issues by hand after a release is out.
 - No DCO, no CLA.
 - If your change touches user-facing strings, add them to `src/i18n/en.json` in the same commit. See [Translations (i18n)](translations.md).
 - If your change adds a Settings-panel field, add matching keywords to `SECTION_KEYWORDS` in `src/routes/Settings.svelte` so the in-Settings search finds it.

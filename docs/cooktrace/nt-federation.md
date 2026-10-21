@@ -49,7 +49,7 @@ The other direction: your CookTrace recipes show up as an on-demand source in Nu
 
 ### Mint a token in CookTrace
 
-CookTrace ships the same personal-access-token model as NutriTrace. Open Settings, expand **API Tokens**, click **New Token**. Name it something like "NutriTrace recipe pull". Tick **read:recipes** (the only scope this flow needs; leaves your MCP scopes out of it). Save. The raw value is shown once, formatted `ct_pat_<43 chars>`. Copy it now, because CT only stores the hash after the confirmation screen closes.
+CookTrace uses the same personal-access-token model as NutriTrace. Open Settings, expand **API Tokens**, click **New Token**. Name it something like "NutriTrace recipe pull". Tick **read:recipes** (the only scope this flow needs; leaves your MCP scopes out of it). Save. The raw value is shown once, formatted `ct_pat_<43 chars>`. Copy it now, because CT only stores the hash after the confirmation screen closes.
 
 ### Configure NutriTrace
 
@@ -71,7 +71,7 @@ Pick a recipe: NT fetches `GET /api/v1/recipes/<id>`, opens NT's Recipe editor p
 - **Ingredients**, one row per CT ingredient, with the pantry-link brand and name where available, plus the per-ingredient nutrition snapshot CT stores when the ingredient is linked to a pantry item.
 - **Rollup totals** (whatever CookTrace has stored from its most recent Recompute). If the recipe was never Recomputed, totals may be empty; NT lets you run its own Recompute after import to fill them in from the NT foods library.
 
-Save the recipe and it lands in NT's Recipes catalog with a **From CookTrace** badge and a back-link to the original recipe on CookTrace. If any ingredients came in without nutrition, NT surfaces them as ordinary loose items ready for you to link or fill in on the NT side.
+Save the recipe and it appears in NT's Recipes catalog with a **From CookTrace** badge and a back-link to the original recipe on CookTrace. If any ingredients came in without nutrition, NT surfaces them as ordinary loose items ready for you to link or fill in on the NT side.
 
 ### Re-pulling after edits
 
@@ -126,7 +126,7 @@ Both flows carry an `img_url` for recipes and pantry items. On import, NutriTrac
 
 For the download step to succeed, **the NutriTrace server** must be able to reach the CookTrace origin. Two setups behave differently:
 
-- **NutriTrace server and CookTrace on the same LAN, or both on the same public origin.** The download works, the image lands in `/uploads/`, and every client sees the thumbnail. NutriTrace trusts the CookTrace base URL you saved in Settings so a private-IP LAN address is not refused by NutriTrace's SSRF guard.
+- **NutriTrace server and CookTrace on the same LAN, or both on the same public origin.** The download works, the image is saved in `/uploads/`, and every client sees the thumbnail. NutriTrace trusts the CookTrace base URL you saved in Settings so a private-IP LAN address is not refused by NutriTrace's SSRF guard.
 - **NutriTrace on a public origin and CookTrace on a LAN address the NT server cannot reach** (or the other way around). The NutriTrace server literally has no network path to the CookTrace host, so the download fails. The recipe or pantry row still imports fine (name, ingredients, nutrition, everything else); only the thumbnail is missing. Edit the imported row and re-upload the photo locally on the NutriTrace side if you need it.
 
 Nothing on the client (browser or Android WebView) has to reach CookTrace after import; whether the thumbnail shows up depends only on the NT server's reachability at import time.
