@@ -45,7 +45,9 @@ Only the first install needs adb (step 1 above).
 
 **The session clock.** How long you've been training, started, paused or stopped from either device. Stopping writes the length onto the session.
 
-**Finishing.** "Finish the session" ends it from the wrist: the length comes off the running clock, the day is marked done, and it goes up with everything else. With sets still unfinished it asks first and says how many, and they stay as they are.
+**Finishing.** Log the last set and the workout finishes by itself, as it does on the phone. To stop early, scroll to the end of the session: **Finish Workout** sits on the bottom edge once a set is done. With sets left it asks first, saying how many aren't done, and leaves them as they are. Either way the length comes off the workout timer, the timer and any rest stop on both devices, and the watch buzzes and shows how long it took, your sets and your volume, counted the way the phone's summary counts them. A finished workout has **View Summary** in the same place.
+
+Your server then does what finishing on the phone does: the Workout Complete notification through your push service, and the workout's calories to NutriTrace when you've linked it and turned calorie estimates on. Both need the server on the same release as the watch (or later); an older server marks the workout finished but sends neither. A server without user accounts keeps no settings, so it sends nothing.
 
 **A hold.** A timed exercise, a plank, logs itself when the time is up, whether or not the screen is still on.
 
@@ -55,7 +57,7 @@ Only the first install needs adb (step 1 above).
 
 ## Sets on both devices
 
-A set logged, corrected or ticked on the watch shows on the phone right away while LiftTrace is open there, and the other way round, rather than at the next refresh. Neither checks while its screen is off. A save changes only the sets it changed, so a set marked done on the watch stays done when you then save something else on the phone. The workout timer reads the same on both.
+A set logged, corrected or ticked on the watch shows on the phone right away while LiftTrace is open there, and the other way round, rather than at the next refresh. Neither checks while its screen is off. A save changes only the sets it changed, so a set marked done on the watch stays done when you then save something else on the phone. The same goes for finishing: a workout finished on the watch shows as finished on the phone, and stays finished when you then save a set there. The workout timer reads the same on both.
 
 ## The rest timer on both devices
 
@@ -69,7 +71,7 @@ The watch keeps the last session it loaded, so it opens and works in a gym with 
 
 - logging, correcting, un-ticking and adding sets
 - the session's length when the clock is stopped
-- finishing the session
+- finishing the workout, which goes up once, with its notification and calories
 
 The screen says "Offline" or "2 waiting" while that's true, and shows the reason in red if the server refuses. A set changed twice is one entry, not two, because the last word wins; what goes up is the whole day with your changes replayed onto whatever the phone did in the meantime, so neither device overwrites the other.
 
