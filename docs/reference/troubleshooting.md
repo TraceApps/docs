@@ -44,6 +44,16 @@ Details in [HTTPS on the LAN](../self-hosting/lan-https.md) and [Cloudflare Tunn
 
 **Fix:** Restart the container to trigger the remap, then open **Settings > Trace AI** and either pick a fresh model from the dropdown or clear the saved setting. If you want to override with a model that is not on the built-in list, use the `__custom__` option (`AI_MODEL_CUSTOM` on CookTrace) and type the ID by hand. See [Model list and Gemini retirement remap](../trace/models.md).
 
+## Saving
+
+### Saving anything fails with a 403 (`cross_site`) { #cross-site-403 }
+
+**Symptom:** From each app's next release, pages load but every save, delete or upload in the browser fails with **This change came from a page on another address, so it was refused. If this is the app's own address, set PUBLIC_URL to it on the server.** The server log says `[cross-site] refused POST ... from <address>`.
+
+**Cause:** The server refuses changes that come from a page on another address. It couldn't tell that the address you opened is its own, because the reverse proxy passes neither the public `Host` nor `X-Forwarded-Host`. This shows over plain http, and over https in older browsers such as Safari before 16.4.
+
+**Fix:** Set `PUBLIC_URL` to the address you open the app at, or have the proxy pass the public `Host` (nginx `proxy_set_header Host $host;`). See [If changes are refused](../getting-started/reverse-proxy.md#cross-site-refused).
+
 ## Backups
 
 ### Full-backup restore fails behind a reverse proxy
@@ -80,7 +90,7 @@ Details in [HTTPS on the LAN](../self-hosting/lan-https.md) and [Cloudflare Tunn
 
 ### OIDC login works but the user has no admin rights
 
-**Symptom:** Users authenticate through your IdP fine, get logged in, but land as regular users even though they are in the group that is supposed to grant admin.
+**Symptom:** Users authenticate through your IdP fine, get logged in, but end up as regular users even though they are in the group that is supposed to grant admin.
 
 **Cause:** The group claim in the ID token doesn't match what the app is looking for. Two things have to line up: the claim name (`OIDC_ADMIN_GROUP_CLAIM`) and the value inside it (`OIDC_ADMIN_GROUP_VALUE`). There is no default; both must be set. The claim also has to be in the **ID token**: the app doesn't read the userinfo endpoint.
 

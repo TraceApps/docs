@@ -44,7 +44,7 @@ All off by default.
 
 | Env var | Default | Purpose |
 | --- | --- | --- |
-| `APP_ORIGIN` / `PUBLIC_URL` | (unset) | The address in links: push messages, and (`PUBLIC_URL`) password reset, invite and sharing emails. Set to the full address people open CookTrace at. |
+| `APP_ORIGIN` / `PUBLIC_URL` | (unset) | The address in links: push messages, and (`PUBLIC_URL`) password reset, invite and sharing emails. Set to the full address people open CookTrace at. From its next release, `PUBLIC_URL` is also taken as CookTrace's own address when it refuses changes sent from other sites' pages: set it when your reverse proxy passes neither the public `Host` nor `X-Forwarded-Host` (see [If changes are refused](../getting-started/reverse-proxy.md#cross-site-refused)). |
 
 ## Not env vars but adjacent
 

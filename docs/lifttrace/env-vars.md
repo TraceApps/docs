@@ -47,7 +47,7 @@ Update checks are off on a fresh install until someone says yes: the setup wizar
 
 Some vars that live in LT compose files are actually shared. Look them up in [Shared environment reference](../self-hosting/env-vars.md):
 
-- `PORT` alternatives, `NODE_ENV`, `LOG_LEVEL`, `BASE_URL`, `PUBLIC_URL` (1.4.0 and later: the address in links in emails)
+- `PORT` alternatives, `NODE_ENV`, `LOG_LEVEL`, `BASE_URL`, `PUBLIC_URL` (1.4.0 and later: the address in links in emails; from the next release also the app's own address when the server refuses changes sent from other sites' pages, see [If changes are refused](../getting-started/reverse-proxy.md#cross-site-refused))
 - `DB_PATH`, `UPLOADS_PATH`, `BACKUPS_PATH`, `BACKUP_UPLOAD_MAX_MB`
 - `JWT_SECRET`, `TOKEN_ENC_KEY`, `INSECURE_COOKIES`, `MAX_SESSION_HOURS`, `RECOVERY_TOKEN`
 - `BACKUP_SCHEDULE`, `BACKUP_TIME`, `BACKUP_RETENTION`

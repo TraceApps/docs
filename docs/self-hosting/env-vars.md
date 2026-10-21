@@ -21,7 +21,7 @@ Any variable in the tables below can also be provided via Docker secrets by suff
 |---|---|---|---|---|---|
 | `PORT` | `3003` (CT), `3002` (LT), `3001` (NT) | Container listen port, the same as each app's sample host port. Change if you remap. | Y | Y | Y |
 | `BASE_URL` | (empty) | Subpath mount, e.g. `/cooktrace`. Must start with `/`, no trailing slash. Emitted to the browser as `window.__<APP>_CONFIG__.basePath`. | Y | Y | Y |
-| `PUBLIC_URL` | (empty) | NutriTrace 1.4.0 and LiftTrace 1.4.0 and later (and NoteTrace 1.1.0, see its [env vars](../notetrace/env-vars.md); CookTrace from its next release): the full address people open the app at, subpath included (e.g. `https://nutrition.example.com`). Links in emails (password reset, invites, sharing; in LiftTrace also coaching and the weekly summary) use it. Unset, they use an address an admin has opened the app at. CookTrace also uses it for its weekly summary email; before its next release, that's the only place it reads it. From each app's next release, the server answers cross-origin requests (CORS) only from the Android app and from this address, compared exactly. See [Links in emails](../integrations/smtp.md#links-in-emails). | Y | Y | Y |
+| `PUBLIC_URL` | (empty) | NutriTrace 1.4.0 and LiftTrace 1.4.0 and later (and NoteTrace 1.1.0, see its [env vars](../notetrace/env-vars.md); CookTrace from its next release): the full address people open the app at, subpath included (e.g. `https://nutrition.example.com`). Links in emails (password reset, invites, sharing; in LiftTrace also coaching and the weekly summary) use it. Unset, they use an address an admin has opened the app at. CookTrace also uses it for its weekly summary email; before its next release, that's the only place it reads it. From each app's next release, the server answers cross-origin requests (CORS) only from the Android app and from this address, compared exactly, and also takes it as the app's own address when it refuses changes sent from other sites' pages: set it when your reverse proxy passes neither the public `Host` nor `X-Forwarded-Host` (see [If changes are refused](../getting-started/reverse-proxy.md#cross-site-refused)). See [Links in emails](../integrations/smtp.md#links-in-emails). | Y | Y | Y |
 | `LOG_LEVEL` | `info` | `error`, `warn`, `info`, `debug`. | Y | Y | Y |
 | `NODE_ENV` | (empty) | Set to `production` in real deployments. Refuses to boot without `JWT_SECRET`. | Y | Y | Y |
 
@@ -119,7 +119,7 @@ HTTP_PROXY=http://username:password@proxy.host:3128
 HTTPS_PROXY=http://username:password@proxy.host:3128
 ```
 
-URL-encode any `@`, `:`, `/`, or other reserved characters in the password (`p@ss` becomes `p%40ss`). Credentials in env vars land in container logs on some orchestrators; a proxy that accepts IP-allowlisting on the internal network avoids storing them.
+URL-encode any `@`, `:`, `/`, or other reserved characters in the password (`p@ss` becomes `p%40ss`). Credentials in env vars end up in container logs on some orchestrators; a proxy that accepts IP-allowlisting on the internal network avoids storing them.
 
 CT-specific note: the Enhanced URL Import mode spawns a Python `recipe-scrapers` subprocess for site-specific extractors. The subprocess inherits env vars, so the proxy settings are visible to it, but whether outbound calls from Python honor them depends on which HTTP client `recipe-scrapers` uses internally.
 

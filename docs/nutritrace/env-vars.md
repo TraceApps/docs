@@ -12,7 +12,7 @@ Anything on this page can also be supplied via the `<NAME>_FILE=/run/secrets/...
 
 ## Model Context Protocol (MCP)
 
-Three independent flags, each guarding a bigger surface. Off by default; the endpoint returns 404 until `MCP_ENABLED=1`. Every flag change needs a container restart. See the [MCP setup guide](mcp.md) for the full setup path.
+Three independent switches, each guarding a bigger surface. Off by default; the endpoint returns 404 until `MCP_ENABLED=1`. Every change to them needs a container restart. See the [MCP setup guide](mcp.md) for the full setup path.
 
 | Var | Default | Purpose |
 |---|---|---|
@@ -74,7 +74,7 @@ Update checks are off on a fresh install until someone says yes: the setup wizar
 
 ## Full Backup schedule
 
-Setting any of these lands the container in "env-configured backup" mode; the admin UI shows the schedule as read-only. Read in `server/routes/full-backup.js`.
+Setting any of these puts the container in "env-configured backup" mode; the admin UI shows the schedule as read-only. Read in `server/routes/full-backup.js`.
 
 | Var | Purpose |
 |---|---|
@@ -86,7 +86,7 @@ Setting any of these lands the container in "env-configured backup" mode; the ad
 
 ## What is NOT NutriTrace-specific
 
-For reference, these are the shared cross-Trace-app env vars covered on the [Environment reference](../self-hosting/env-vars.md) page and not repeated here: `DB_PATH`, `UPLOADS_PATH`, `PORT`, `BASE_URL`, `LOG_LEVEL`, `NODE_ENV`, `JWT_SECRET`, `TOKEN_ENC_KEY`, `RECOVERY_TOKEN`, `INSECURE_COOKIES`, `MAX_SESSION_HOURS`, `SMTP_*`, `OIDC_*`.
+For reference, these are the shared cross-Trace-app env vars covered on the [Environment reference](../self-hosting/env-vars.md) page and not repeated here: `DB_PATH`, `UPLOADS_PATH`, `PORT`, `BASE_URL`, `PUBLIC_URL` (also the app's own address when, from the next release, the server refuses changes sent from other sites' pages; see [If changes are refused](../getting-started/reverse-proxy.md#cross-site-refused)), `LOG_LEVEL`, `NODE_ENV`, `JWT_SECRET`, `TOKEN_ENC_KEY`, `RECOVERY_TOKEN`, `INSECURE_COOKIES`, `MAX_SESSION_HOURS`, `SMTP_*`, `OIDC_*`.
 
 ## Related
 

@@ -160,6 +160,16 @@ Your password is accepted, then you're back on the sign-in page. NutriTrace 1.4.
 
 To see where it goes wrong, sign in with the browser's developer tools open on the Network tab. The sign-in response should set the cookie named above, with `HttpOnly`, `Secure` and `SameSite=Lax`, and the next request should send it back. Firefox's console names a cookie it rejected.
 
+## If changes are refused (403, `cross_site`) { #cross-site-refused }
+
+From each app's next release, the server refuses any change (a save, a delete, an upload) that the browser says came from a page on another address, so a page you open elsewhere can't make your browser change things on your server. Browsers say where a request came from; the server compares that with the address the request came in on, which it reads from `X-Forwarded-Host` and `X-Forwarded-Proto`, or from `Host`.
+
+So the proxy has to pass the public address on: the `Host` the browser sent (nginx `proxy_set_header Host $host;`, as in the examples above; Caddy and Traefik do it on their own), or `X-Forwarded-Host`. A proxy that passes neither, sending the upstream's name (such as `lifttrace:3002`) as `Host`, makes the app's own pages look like another site. That shows up over plain http, where browsers don't say whether a request is same-origin, and over https in older browsers that don't either (such as Safari before 16.4). Current browsers over https are let through either way.
+
+**How to recognize it:** pages load, but saving anything fails with **This change came from a page on another address, so it was refused. If this is the app's own address, set PUBLIC_URL to it on the server.** The response is a 403 with `"code": "cross_site"`, and the server log has one line per address, such as `[cross-site] refused POST /api/... from http://notes.lan (Sec-Fetch-Site: not sent)`.
+
+**Fix:** pass the public `Host` (or `X-Forwarded-Host`) through the proxy, or set `PUBLIC_URL` to the address you open the app at (scheme, host and port as the address bar shows them), then restart the container. The Android and watch apps, MCP, the API and scripts aren't affected.
+
 ## When the server can't be reached { #server-unreachable }
 
 From each app's next release, a signed-out browser or phone that can't read the server's sign-in state opens the sign-in page with a notice and **Retry**, instead of the app with nobody signed in:

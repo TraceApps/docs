@@ -11,7 +11,7 @@ NoteTrace reads the same shared variables as the other Trace apps (`PORT`, `BASE
 | `UPLOADS_PATH` | `/data/uploads` | Uploaded images, voice notes, files, and server-side backups. Mount `/data/uploads` as a volume. |
 | `UPLOAD_MAX_MB` | `100` | The largest single upload (an image, a recording, or a file on a note), in MB. A bigger file is refused with a message saying so. Raise your reverse proxy's body limit to match (Nginx `client_max_body_size`). |
 | `BASE_URL` | (empty) | Subpath mount, for example `/notetrace`. |
-| `PUBLIC_URL` | (empty) | The full address people open the app at, subpath included (e.g. `https://notes.example.com`). Links in emails (password reset, invites, sharing) use it. Unset, they use an address an admin has opened the app at. |
+| `PUBLIC_URL` | (empty) | The full address people open the app at, subpath included (e.g. `https://notes.example.com`). Links in emails (password reset, invites, sharing) use it. Unset, they use an address an admin has opened the app at. From the next release, it's also taken as the app's own address when it refuses changes sent from other sites' pages: set it when your reverse proxy passes neither the public `Host` nor `X-Forwarded-Host` (see [If changes are refused](../getting-started/reverse-proxy.md#cross-site-refused)). |
 | `UPDATE_CHECK` | (unset) | `off` (or `0`, `false`, `no`) stops the server asking GitHub about new releases for good, whatever **Settings, Updates** says, and locks that setting. Unset, the setting decides. |
 
 ## Integrations

@@ -12,7 +12,7 @@ Practically that means the person who opens the app the first time after install
 
 Every app runs multi-user by default. If you're the only user, you can turn multi-user off from Settings, Users, Disable user management. That endpoint (`DELETE /api/auth/management`) wipes the `users` table and stores `single_user_mode=1` in `app_config` so the setup wizard doesn't trigger on reload. The app then runs as if it were single-tenant: no login screen, everything on one shared dataset. Re-enable it by registering a new account through Settings, which clears the setting automatically.
 
-Single-user mode is a UX choice, not a security posture. The app still binds on the network. Put it behind a reverse proxy with real auth (or don't expose it) if the host is reachable.
+Single-user mode is a UX choice, not a security posture. The app still binds on the network, and anyone who can reach it uses it as you. From each app's next release the server refuses changes sent from other sites' pages, so a page you open elsewhere can no longer make your browser change things on your server (restore its own backup over yours, for example). That doesn't stop someone who can reach the server themselves: turn accounts on, or put it behind a reverse proxy with real auth (or don't expose it), if anyone else can reach the host.
 
 ## Turning user management on later
 
