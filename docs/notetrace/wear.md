@@ -49,7 +49,7 @@ Only the first install needs adb (step 1 above).
 
 **A tile.** One swipe from the watch face: what's due, or what's left to buy. Add it by long-pressing the watch face, then Tiles.
 
-**A complication.** The same counts on the watch face itself, as "3 Due" or "7 Buy", tapping through to the app. Add it from your watch face's own customisation screen.
+**A complication.** The same counts on the watch face itself, as "3 Due" or "7 Buy", tapping through to the app. Add it from your watch face's own customization screen.
 
 ## Choosing what's on the watch
 

@@ -43,6 +43,7 @@ Each app has its own next-step tour. Do these once and the app is ready to use d
 
 === "CookTrace"
 
+    - Setup asks **Who Do You Cook For?**: the people in your household, with their allergies, diets and the days they're home. You can skip it and fill it in later under [Settings > Household](../cooktrace/settings.md#household-per-user).
     - Import a first recipe from a URL: paste a link into **Recipes** then **Import**. CookTrace supports 300+ site-specific scrapers.
     - Add a few staples to **Pantry** so the shopping list and cook suggestions have something to work with.
     - Open **Settings** then **Trace AI** if you want conversational recipe search and pantry writes. See [Setting up Trace](../trace/setup.md).

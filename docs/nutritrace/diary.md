@@ -12,6 +12,8 @@ Storage lives per-day in the `diary` table (`server/db.js:57-68`). Empty slots a
 
 Tap **+ Add** on any meal card. The picker opens with search across your Foods, Meals, and Recipes. The **source filter chips** across the top scope the results: Local (your saved foods), OFF (live Open Food Facts), USDA (live FoodData Central lookup), Mealie (your Mealie recipes if configured), and From Others (foods other users on this instance have shared with you). Long-press a chip to combine sources into a multi-source view; each result row carries a source badge and, for OFF, an origin-country flag and a completeness dot (see [Food data quality signals](../reference/food-data-quality.md)).
 
+Above your foods, **Yesterday's Meals** lists the meals you logged the day before the day you're adding to, one per meal slot; tap one to add all its items to the meal you're adding to. Adding to another day of the diary (tomorrow, when you meal prep) offers the day before that one, and the section is named after it: **From Today**, **From Sunday** (within a week either side), or its date in your date format. Smart Log's "same as yesterday" counts back the same way. Turn the section off in Settings > Foods.
+
 Pick a food. The quantity sheet opens with a **live nutrition preview**: calories, protein, carbs, and fat update as you change the amount, unit, or number of servings. Food notes ("1 serving = 150 g cooked", "half a bag") surface at the top of the sheet. Meals and recipes carry the same preview and expand to their component foods on save.
 
 ## Long-press and right-click

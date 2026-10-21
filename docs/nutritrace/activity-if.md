@@ -73,7 +73,7 @@ Backend endpoints (`server/routes/fasts.js`): `GET /api/fasts`, `GET /api/fasts/
 
 ### Trace tool
 
-Ask Trace "what's my current fasting streak?" or "how long was my last fast?" and the `get_fasting_stats` tool returns the current active fast, the last completed fast, current streak, longest streak, and rolling averages. Tool definition lives in `src/lib/aiChat.js`.
+Ask Trace "what's my current fasting streak?" or "how long was my last fast?" and the `get_fasting_history` tool returns your completed fasts over the last 30 days (up to 365 when asked), each with its start, end, length, goal and whether it met the goal, plus the average length, longest fast, current streak, longest streak, and how many there were. Tool definition lives in `src/lib/aiChat.js`.
 
 ## USER_PREFS vs DEVICE_PREFS
 

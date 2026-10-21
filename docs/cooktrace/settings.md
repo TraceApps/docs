@@ -21,7 +21,7 @@ Top of the Settings page. Avatar, name, role pill. Tap the card to open **/profi
 
 ## Regional and Units (per-user)
 
-- **Language**: the app's language. The picker lists the languages translated so far; anything not yet translated shows in English. To add or improve a language, see [Translations](../contribute/translations.md).
+- **Language**: the app's language: English, Español, Français or Svenska. Spanish covers every screen (from the next release), French about 40% so far; anything not yet translated shows in English. To add or improve a language, see [Translations](../contribute/translations.md).
 - **Date Format**: ISO, US, EU, or natural.
 - **Time Format**: 12h or 24h.
 - **Measurement System**: Imperial or Metric.
@@ -58,8 +58,9 @@ The setup wizard asks the same question (**Who Do You Cook For?**), and you can 
 - **Enable Trace AI**.
 - **Provider**: Anthropic Claude, OpenAI, Google Gemini, or OpenAI Compatible.
 - **Model**: preset dropdown per provider, plus **Custom...** for free-text model IDs.
-- **API Key**: saved server-side per user. **Save** triggers a connection test.
-- **Base URL** (Custom or OpenAI Compatible only): e.g. `http://ollama:11434`.
+- **API Key**: saved server-side per user. Optional for OpenAI Compatible, for a server that needs none (Ollama, LM Studio).
+- **Test Connection** has its own row (from the next release): run a test any time; the status line says why one failed. The setting you fill in last tests on its own once everything it needs is there.
+- **Base URL** (Custom or OpenAI Compatible only): e.g. `http://ollama:11434`, with or without `/v1`, or the whole `/v1/chat/completions` address (from the next release).
 - **Assistant Name**: display name for the chat panel (defaults to Trace).
 - **Smart Log**: enables the hold-to-record voice input on the chat FAB.
 - **Chef Hat**: toggles the chef-hat variant of the TraceFace mascot.
@@ -112,7 +113,7 @@ Deep dive: [Backups](../self-hosting/backups.md), [Scheduled backups](../self-ho
 
 ## Import from Another App
 
-The bulk import card. Drop a Mealie / Tandoor / Paprika archive or a CookTrace export. See [Import](import.md), [Migrate from Mealie](migrate-mealie.md).
+The bulk import card. Drop a Mealie / Mealime / Tandoor / Paprika archive or a CookTrace export. See [Import](import.md), [Migrate from Mealie](migrate-mealie.md).
 
 ## Kitchens (per-user)
 

@@ -33,7 +33,7 @@ CookTrace registers 21 tools that Trace can call in a single conversation, spann
 **Write**
 
 - `log_cook`: record that you cooked a recipe (date, meal type, rating, notes).
-- `plan_cook`: schedule a recipe for a future date. Without servings, it plans for who's home that day.
+- `plan_cook`: schedule a recipe for a future date, or for any day of that week (it waits in the Week view's tray until you pick a day). Without servings, it plans for who's home that day.
 - `add_to_shopping`: push items onto the shopping list.
 - `add_to_pantry`: create a pantry item.
 - `set_pantry_density`: set `g_per_cup` so nutrition can convert cross-family.
@@ -50,7 +50,7 @@ Hold the FAB to record voice via the Web Speech API. The transcript drops into t
 
 ## Image attach
 
-The paperclip in the chat panel attaches an image (camera or file picker). Trace receives it in the provider's native multimodal format. Useful for:
+The paperclip in the chat panel attaches an image. On a phone and in the Android app it offers **Camera** or **Gallery** (from the next release), each going straight to the camera or the photo picker; on a computer it opens the file picker. Trace receives it in the provider's native multimodal format. Useful for:
 
 - **Label recognition** on a pantry item you just bought: "add this to pantry", and Trace fills brand, category, serving size, nutrition from the label.
 - **Handwritten recipe cards**: attach the photo, ask Trace to create a recipe, review the parsed result before saving.

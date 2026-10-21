@@ -52,6 +52,8 @@ When the client leaves or the coach ends it, the prescriptions and programs that
 
 ## The conversation
 
+![A coach's page for a client: day streak, recent workouts, active program and their conversation](../assets/img/lifttrace/08-coaching.png)
+
 One conversation per coach and client, beside the notes on workouts and exercises (which stay where they are). The client finds it on the **Coach** tab, the coach on the client's page in Coaching.
 
 - Text up to 4,000 characters and one photo per message. Photos are served only to the two of you (the coach only while coaching), and where a photo was taken is not sent.
@@ -59,6 +61,8 @@ One conversation per coach and client, beside the notes on workouts and exercise
 - Delete your own message; the other person sees "Message deleted".
 - It is kept on the device and opens with no connection. A message written offline shows as waiting and is sent once when the connection returns. While a conversation is on screen it checks for news every 10 seconds; nowhere else does.
 - Trace never reads it.
+
+![The client's Coach tab: their coach, Leave Coach, and the same conversation](../assets/img/lifttrace/09-coach-tab.png)
 
 ## Prescriptions
 

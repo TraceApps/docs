@@ -29,9 +29,9 @@ Setting any of these locks the corresponding UI field for all users. UI shows a 
 |---|---|
 | `AI_ENABLED` | `true` auto-enables Trace for every user. Users can still turn it off per-user unless combined with the other vars below. |
 | `AI_PROVIDER` | `claude` / `openai` / `gemini` / `oai-compat`. |
-| `AI_API_KEY` | Provider API key. Required when `AI_PROVIDER` is set. |
+| `AI_API_KEY` | Provider API key. Required for `claude`, `openai` and `gemini`; optional for `oai-compat`, for a server that needs none (Ollama, LM Studio). |
 | `AI_MODEL` | Model id. **Required** when `AI_PROVIDER=oai-compat`; optional otherwise (defaults to the provider's current recommended model). |
-| `AI_BASE_URL` | Endpoint URL. **Required** when `AI_PROVIDER=oai-compat` (Ollama, LM Studio, LocalAI, vLLM, llama.cpp, DeepSeek, Groq, Together, Mistral, OpenRouter, and so on). |
+| `AI_BASE_URL` | Endpoint URL. **Required** when `AI_PROVIDER=oai-compat` (Ollama, LM Studio, LocalAI, vLLM, llama.cpp, DeepSeek, Groq, Together, Mistral, OpenRouter, and so on). From the next release it works with or without `/v1` on the end, or as the whole `/v1/chat/completions` address. |
 
 When any AI env var is set, the server proxies AI calls; the API key never touches the browser. Without env-lock, the browser calls the provider directly with the user's own key.
 

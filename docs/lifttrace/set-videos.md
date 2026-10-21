@@ -24,6 +24,8 @@ when you are offline. Everything else in the Diary still works without one.
 
 ## Watching one back
 
+![The Set Video player on a bench press set, with the coach's note at 0:04 and the client's reply](../assets/img/lifttrace/10-set-video.png)
+
 A filmed set is marked twice, so a collapsed card never hides the fact that
 footage exists:
 

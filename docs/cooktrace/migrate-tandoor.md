@@ -12,7 +12,7 @@ The easier path when you want everything:
 
 1. In Tandoor, open **Settings > Import / Export**.
 2. Under Export, pick **JSON** as the format and **All recipes** as the scope.
-3. Download the resulting zip. Each recipe is a `.json` file inside it.
+3. Download the resulting zip. Each recipe is its own zip inside it, holding the recipe's `.json` and its picture.
 
 ### Per-recipe API
 
@@ -36,7 +36,7 @@ curl -H "Authorization: Bearer <token>" \
 
 Under **Settings > Import from Another App**:
 
-- **Single JSON**: drop the file into the File / Paste dialog. The detector recognises Tandoor's shape (steps carrying nested ingredients, plus a top-level name and `working_time`) and imports one recipe.
+- **Single JSON**: drop the file into the File / Paste dialog. The detector recognizes Tandoor's shape (steps carrying nested ingredients, plus a top-level name and `working_time`) and imports one recipe.
 - **Bulk zip**: in **Settings > Import from Another App**, **Choose File** and pick the zip Tandoor's export gives you, as is. Tandoor puts each recipe in its own zip inside it (recipe.json plus its picture); CookTrace opens those, detects each recipe, and shows a picker with thumbnails. Confirm and commit.
 
 The summary shows how many recipes were imported out of how many were found, and lists any that were skipped as duplicates (same name, ignoring case, or same source link) or failed, by name. Tandoor allows two recipes with the same name, so an export can hold duplicates of its own; the second copy is skipped unless you choose **Allow Duplicates**. See the [dedup policy](import.md#dedup-policy).
@@ -45,7 +45,7 @@ The summary shows how many recipes were imported out of how many were found, and
 
 Per `_importTandoor` in `server/lib/recipe-importers.js`:
 
-- **Name**, **description**, **hero image** (Tandoor's `image` URL).
+- **Name**, **description**, **hero image** (the picture in the recipe's own zip; for a single JSON file, Tandoor's `image` URL).
 - **Servings** and yield text.
 - **Prep** time from Tandoor's `working_time`, **cook** time from `waiting_time`.
 - **Steps**: each Tandoor step's `instruction` becomes one CookTrace step. Named step groups (Tandoor lets you name each step) preserve the naming on the ingredient side.

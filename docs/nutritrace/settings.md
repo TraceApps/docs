@@ -93,6 +93,8 @@ See [USDA and Mealie integration](usda-mealie.md).
 
 Trace configuration. Enable, provider (Claude / OpenAI / Gemini / OpenAI-compat), API key, model (with `__custom__` slot for models not in the built-in roster), base URL (for `oai-compat`), assistant name (`aiAssistantName`, shared across LiftTrace / CookTrace per the Trace brand rules), goal insights toggle, Smart Log toggle, voice language.
 
+**Test Connection** has its own row (from the next release): run it any time, also against an OpenAI Compatible server that needs no API key (the key is optional there). The setting you fill in last tests on its own once everything it needs is there, and a test only counts for the settings it tested. The OpenAI Compatible base URL works with or without `/v1`, or as the whole `/v1/chat/completions` address.
+
 Provider / model / key are `USER_PREFS`; env-locked when the corresponding server-side env var is set (`AI_PROVIDER`, `AI_API_KEY`, `AI_MODEL`, `AI_BASE_URL`), in which case the UI shows a lock badge and the values are read-only.
 
 See [Trace in NutriTrace + Smart Log](trace.md) and the shared [Trace setup page](../trace/setup.md).
@@ -118,6 +120,7 @@ Android-only, appears when the app is in local mode or when you want to change t
 - **Delivery**: `notifLocalEnabled` (device notifications toggle), `notifPushService` (`apprise` / `gotify` / `ntfy` picker) plus the provider-specific fields (`appriseUrl`, `appriseTag`, `gotifyUrl`, `gotifyToken`, `ntfyUrl`, `ntfyTopic`, `ntfyToken`).
 - **Scheduled Reminders**: water (`notifWaterReminders`, `notifWaterInterval`), meal (`notifMealReminders`, `notifMealTimes`), weigh-in (`notifWeighIn`, `notifWeighInTime`), bedtime (`notifBedtime`, `notifBedtimeTime`, `notifBedtimeWindDown`, `notifBedtimeWindDownMin`, `notifBedtimeSmart`).
 - **Alerts and Summaries**: goal celebrations (`notifGoalCelebrations`), step goal (`notifStepGoal`), weekly summary (`notifWeeklySummary`, `weeklySummaryDay`, `weeklySummaryTime`), wellness alerts (`notifWellnessAlerts`), workout summary (`notifWorkoutSummary`), sync failures (`notifSyncFailures`).
+- **Weekly Summary** comes once a week, on your **Delivery Day** at your **Delivery Time** (the days follow First Day of Week). It goes by push through your Push Service, by email when the server sends email and your account has an address, or both, and its description says which. With email alone, the section shows without Device Notifications or a Push Service (from the next release).
 
 All `USER_PREFS`. On Android, delivery is via native WorkManager (`ReminderWorker.java`); the JS `LocalNotifications` path is disabled via `_USE_NATIVE_WORKER` so notifications survive app kills and reboots (`BootReceiver.java` re-arms after boot).
 

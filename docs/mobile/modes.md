@@ -7,7 +7,7 @@ Every TraceApps Android build can run in one of two modes. You pick one at first
 The setup wizard offers two options up front:
 
 - **Local-only.** Leave the server URL blank. All data lives in on-device SQLite (via the Capacitor SQLite plugin). There is no server, no account, and no network traffic beyond what a given feature explicitly needs (Trace AI calls, if configured; Open Food Facts and USDA food lookups on NutriTrace; etc.).
-- **Connect to my server.** Enter the URL of your self-hosted instance and log in. The app talks to that server over HTTPS, keeps a local SQLite mirror as an offline cache, and syncs both directions in the background.
+- **Connect to my server.** Enter the URL of your self-hosted instance and log in. The app talks to that server over HTTPS (NutriTrace 1.5.0 and later also over plain HTTP on your own network, see [Plain-HTTP LAN](../getting-started/lan-http.md#the-android-apps)), keeps a local SQLite mirror as an offline cache, and syncs both directions in the background.
 
 The choice is not permanent. Both modes are first-class code paths; the wizard just gets you into one of them cleanly.
 
@@ -36,6 +36,12 @@ Both directions are available from Settings.
     - **Download Server to Phone**, and **Replace with Server** in setup, delete the phone's data as they say. Changes that never reached a server are asked about first, never dropped silently.
     - **Disconnect** sends changes still waiting first, and asks before dropping any it can't send. Everything else the account had stays on the phone: connecting back to the same account puts it back in place, sending only what changed meanwhile.
     - Signing in as another account shows that account's data, fetched fresh. If the first account left changes that haven't gone up, you're asked first: cancel to keep them for that account, or sign in anyway and they're discarded.
+
+!!! note "CookTrace from its next release"
+    - Signing in on the same phone, the app checks whose data it holds before showing anything. Signing back in to the same account keeps everything; another account starts from its own data. If the last account left changes that never reached the server, you're asked before they're discarded.
+    - The same server at another address (its LAN address and its domain) is still the same account; where the app can't tell, it asks. Settings, and which units are shown, follow the account too.
+    - **Disconnect** keeps your settings on the phone and no longer shows the welcome screen.
+    - Connecting to a server that isn't set up yet, the app says to open the server in a browser and create the first account first, instead of saying the server can't be reached.
 
 Switching back and forth is safe as long as you understand the merge dialog. The one thing to avoid is switching to a *different* server account without picking Upload or Download deliberately; a same-account reconnect uses `updated_at` correctly, but a fresh account has nothing to compare against.
 

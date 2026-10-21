@@ -6,7 +6,7 @@ Both fit the same shape: run a small daemon next to the app that dials out to th
 
 ## Cloudflare Tunnel
 
-Install `cloudflared`, log in with `cloudflared tunnel login` (opens a browser to authorise against a Cloudflare Zero Trust team), and create a named tunnel:
+Install `cloudflared`, log in with `cloudflared tunnel login` (opens a browser to authorize against a Cloudflare Zero Trust team), and create a named tunnel:
 
 ```bash
 cloudflared tunnel create cooktrace

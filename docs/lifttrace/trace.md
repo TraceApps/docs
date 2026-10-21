@@ -1,14 +1,14 @@
 # Trace in LiftTrace and Smart Log
 
-![Trace AI coach inside LiftTrace with the animated face and tool-use replies](../assets/img/lifttrace/06-trace.png)
+![Trace answering how today's workout is going, with numbers from the diary](../assets/img/lifttrace/06-trace.png)
 
 Trace is the LiftTrace AI coach: a floating chat assistant with an animated face, docked bottom-right on every page. Same shared TraceApps persona used in CookTrace and NutriTrace; the tools it can call are the LiftTrace-specific set below. The provider and key setup is identical across the three apps and lives on the shared [Trace setup](../trace/setup.md) page.
 
 ## Tools Trace can call
 
-LiftTrace registers 18 tools that Trace can call across a single conversation, spanning read and write across workouts, exercises, programs, PRs, body stats, and coaching. The full catalog with args and returns lives in the [Trace tool catalog](../reference/trace-tools.md); a one-line summary of each follows.
+LiftTrace registers 21 tools that Trace can call across a single conversation, spanning read and write across workouts, exercises, programs, PRs, body stats, progress photos, cardio, and coaching. The full catalog with args and returns lives in the [Trace tool catalog](../reference/trace-tools.md); a one-line summary of each follows.
 
-**Read (11)**
+**Read (13)**
 
 - `get_workouts`: workouts with completed sets, per-exercise volume, and top set (defaults to the last 30 days, reaching as far back as your log goes), a page at a time.
 - `get_workout`: one workout in full detail by id, including coach feedback.
@@ -19,18 +19,23 @@ LiftTrace registers 18 tools that Trace can call across a single conversation, s
 - `get_active_program`: the currently active program in full, or `{ active: false }`.
 - `get_prs`: personal records with weight, reps, and estimated 1RM per exercise, a page at a time.
 - `get_body_stats`: body stats over time (weight, body_fat, any tracked measurement) with change summary.
+- `get_progress_photos`: how many progress photos you took, on which dates, and what you weighed that day. Dates only: Trace can't see the photos, so attach one to a message if you want it looked at.
+- `get_cardio`: cardio sessions in a date range with totals per activity. Cardio isn't part of `get_workouts`, so Trace looks here before talking about conditioning or weekly load.
 - `get_stats_overview`: snapshot for a range: workouts done, streaks, weekly volume and frequency, muscle balance, top PRs.
 - `get_coach_prescription`: the coach-prescribed workout for a date if the user has a coach, with its answer (waiting, accepted). Trace doesn't load one the user hasn't accepted.
 
-**Write (7)**
+**Write (8)**
 
 - `log_workout`: commit a full workout to a specific date.
 - `add_exercise_to_diary`: quick-add one exercise to today's diary with no sets yet.
 - `log_set`: append a single set to an exercise already in a workout.
+- `log_cardio`: log a cardio session (run, ride, row, walk, swim) with its minutes, and optionally distance, average heart rate and notes.
 - `log_body_stat`: record a body-stat measurement for a date, merging with existing.
 - `start_workout_from_template`: load a workout template into a diary day.
 - `set_active_program`: switch the user's active program.
 - `add_coach_prescription`: coaches only. Prescribe a workout template to a trainee on a target date.
+
+Trace won't write to a date more than 60 days before or after today until you confirm it, so a model that guessed the wrong year can't file a workout where you'd never find it.
 
 Trace picks tools per turn based on the conversation. Multi-tool turns are common ("check my active program, look at last week's push sessions, prescribe today").
 
@@ -56,7 +61,7 @@ The Trace FAB is draggable and doubles as a voice trigger. Press and hold for **
 - A short beep fires plus (on Android) a haptic tap.
 - Voice recording starts using the Web Speech API in the browser or the native recognizer on Android.
 
-Release the FAB to commit; the transcript feeds the **Smart Log parser** (client-side, not a Trace tool) and opens the Smart Add review sheet with your sets ready to confirm. The parser is a deterministic client-side path: cross-multiplied sets (`3x5 @ 225`), RPE targets, rep ranges, AMRAP, bodyweight (`@ BW`), supersets, and short aliases (BB / DB / BP / OHP / DL / SQ / RDL) go straight into structured rows without a tool round-trip. Slide off more than **100 px** from the FAB's center to cancel: the FAB greys, releasing there aborts and nothing is logged. Under the 6-px movement threshold before the 700 ms mark the app treats the gesture as a drag instead, so you can reposition the FAB without arming the mic.
+Release the FAB to commit; the transcript feeds the **Smart Log parser** (client-side, not a Trace tool) and opens the Smart Add review sheet with your sets ready to confirm. The parser is a deterministic client-side path: cross-multiplied sets (`3x5 @ 225`), RPE targets, rep ranges, AMRAP, bodyweight (`@ BW`), supersets, and short aliases (BB / DB / BP / OHP / DL / SQ / RDL) go straight into structured rows without a tool round-trip. Slide off more than **100 px** from the FAB's center to cancel: the FAB grays, releasing there aborts and nothing is logged. Under the 6-px movement threshold before the 700 ms mark the app treats the gesture as a drag instead, so you can reposition the FAB without arming the mic.
 
 Voice recognition permission is browser-managed on the web and manifest-declared on Android (`RECORD_AUDIO` plus a `RecognitionService` intent query).
 
@@ -85,6 +90,8 @@ Log 3x5 @ 225 bench, 3x8 @ 95 OHP, 3x10 dips to today.
 Switch me to Push-Pull-Legs.
 Start Day A on today's diary.
 Weighed in at 82.4 kg this morning.
+Log a 30 minute run, 5 km, average heart rate 152.
+How many minutes of cardio did I do this month?
 Is my volume balanced across chest / back / legs this month?
 Recommend a deload for next week based on my last block.
 Go through every workout this year and list my heaviest squat each month.

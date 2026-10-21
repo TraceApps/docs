@@ -10,7 +10,7 @@ every few weeks rather than every session.
 
 ## Getting there
 
-- **Statistics > Body Weight** has a "Progress photos" card at the top.
+- **Statistics > Body Measurements** has a **Progress Photos** card at the top.
 - Straight to `/progress` if you have it bookmarked.
 - The Body Stats sheet in Diary links across after you add a photo.
 

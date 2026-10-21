@@ -35,7 +35,7 @@ Recipe import from third-party sites goes through [recipe-scrapers](https://gith
 
 ## Android reminder backend
 
-NutriTrace's Android build uses a native WorkManager worker for meal, water, weigh-in, and wind-down reminders (gated by the internal `_USE_NATIVE_WORKER` toggle). This survives WebView suspension and battery-optimisation kills better than the Capacitor `LocalNotifications` scheduler. CookTrace and LiftTrace still route reminders through the JS `LocalNotifications` plugin. If you run CookTrace and LiftTrace alongside NutriTrace and reminders occasionally miss on those two, this is why. NoteTrace schedules its reminders as native exact alarms.
+NutriTrace's Android build uses a native WorkManager worker for meal, water, weigh-in, and wind-down reminders (gated by the internal `_USE_NATIVE_WORKER` toggle). This survives WebView suspension and battery-optimization kills better than the Capacitor `LocalNotifications` scheduler. CookTrace and LiftTrace still route reminders through the JS `LocalNotifications` plugin. If you run CookTrace and LiftTrace alongside NutriTrace and reminders occasionally miss on those two, this is why. NoteTrace schedules its reminders as native exact alarms.
 
 ## NoteTrace's server-side reminders
 

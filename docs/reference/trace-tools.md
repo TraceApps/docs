@@ -38,7 +38,7 @@ Twenty-one tools; the biggest surface of the four. Read tools return recipe, pan
 | `get_cookbooks` | Cookbook collections | none | Id, name, recipe_count, smart_filter |
 | `get_cookbook` | One cookbook with its recipes | `id*` | Cookbook plus resolved recipe list |
 | `log_cook` | "I cooked this" | `recipe_id*`, `date`, `notes`, `meal_type`, `rating` | Updates last_cooked_at + cook_count |
-| `plan_cook` | "Plan tacos for Friday" | `recipe_id*`, `date*`, `notes`, `meal_type` | Creates a `planned` diary entry |
+| `plan_cook` | "Plan tacos for Friday" | `recipe_id*`, `date*`, `notes`, `meal_type`, `servings` (left out: who's home that day from your household, or the recipe's own), `any_day` (plan it for any day of the week `date` falls in) | Creates a `planned` diary entry |
 | `add_to_shopping` | Add one or more items | `items*` (array of `{name, quantity?, unit?, aisle?}`) | Auto-links to pantry rows by name |
 | `add_to_pantry` | New pantry item or update by name | `name*`, `in_stock`, `quantity`, `unit`, `brand`, `notes` | Pantry row id |
 | `set_pantry_density` | Volume-to-weight conversion | `pantry_id*`, `g_per_cup*` | Enables cross-family nutrition calc |
@@ -49,7 +49,7 @@ Twenty-one tools; the biggest surface of the four. Read tools return recipe, pan
 
 ## LiftTrace
 
-Eighteen tools spanning read and write across workouts, exercises, programs, PRs, body stats, and coaching. Read tools surface diary, exercise catalog, active + saved programs, personal records, body-stat time series, weekly rollups, and coach prescriptions. Write tools log a full workout, drop a single exercise onto today's diary, append a set to a workout in flight, log a body-stat measurement, load a template into a diary day, switch the active program, or (for coaches only) prescribe a workout to a client.
+Twenty-one tools spanning read and write across workouts, exercises, programs, PRs, body stats, progress photos, cardio, and coaching. Read tools surface diary, exercise catalog, active + saved programs, personal records, body-stat time series, progress photo dates, cardio sessions, weekly rollups, and coach prescriptions. Write tools log a full workout, drop a single exercise onto today's diary, append a set to a workout in flight, log a cardio session, log a body-stat measurement, load a template into a diary day, switch the active program, or (for coaches only) prescribe a workout to a client.
 
 | Tool | Purpose | Args | Returns |
 |------|---------|------|---------|
@@ -62,15 +62,20 @@ Eighteen tools spanning read and write across workouts, exercises, programs, PRs
 | `get_active_program` | The currently active program in full | none | Same shape as `get_program`; `{ active: false }` if none |
 | `get_prs` | Personal records with e1RM, highest first | `exercise_name`, `date_from`, `date_to`, `limit` (up to 100, default 20), `offset` | Top weight, top reps at that weight, estimated 1RM per exercise. Past one page: `count`, `offset`, `returned`, `next_offset`, `complete`, `more` and `records[]` |
 | `get_body_stats` | Body stats over time (weight, body_fat, any tracked measurement) | `stat`, `date_from`, `date_to` | Time series plus first/last/min/max/change summary when a single stat is queried |
+| `get_progress_photos` | Progress photos in a date range: how many, on which dates, and the weight logged that day. Metadata only: Trace never sees the images (attach one to a message for that) | `date_from`, `date_to` (default the last 365 days) | `count`, `days_with_photos`, `first`, `latest`, and `entries[]` (date, photos, weight and its unit when logged that day) |
+| `get_cardio` | Logged cardio sessions in a date range. Cardio isn't part of `get_workouts`, so Trace checks here for conditioning and weekly load | `date_from`, `date_to` (default the last 30 days), `activity` (case-insensitive filter) | `count`, `total_minutes`, `by_activity` (sessions and minutes per activity), and `sessions[]` (date, activity, duration_min, distance and its unit, avg_hr, notes) |
 | `get_stats_overview` | Snapshot over a window: workouts done, streaks, weekly volume + frequency, muscle balance, top PRs | `range` (`7d`\|`30d`\|`90d`\|`1y`\|`all`) | Rollup object; default range `30d` |
 | `get_coach_prescription` | Coach-prescribed workout for a given date if the user has a coach | `date` (default today) | `{ prescribed: false }` or the prescription record, with the client's answer (waiting or accepted). Trace doesn't load one the client hasn't accepted. |
 | `log_workout` | Commit a full workout to the diary for a date | `date*`, `exercises*`, `name`, `duration_min` | Workout id, exercises_logged, sets_logged, total_volume |
 | `add_exercise_to_diary` | Quick-add one exercise to a diary day with no sets yet | `exercise_name*`, `date` | Workout id, exercise_added_id, position |
-| `log_set` | Append a single set to an exercise already in a workout | `workout_id*`, `weight*`, `reps*`, `exercise_id` or `exercise_name`, `rpe`, `warmup`, `completed` | Set id, position, workout total volume |
+| `log_set` | Append a single set to an exercise already in a workout | `workout_id*`, `weight*`, `reps` (or `duration_sec` for a timed exercise such as a plank), `exercise_id` or `exercise_name`, `rpe`, `warmup`, `completed` | Set id, position, workout total volume |
+| `log_cardio` | Log a cardio session (runs, rides, rowing, walking, swimming); never `log_workout` or `log_set` for these | `activity*`, `duration_min*` (whole minutes), `distance`, `distance_unit` (`km`\|`mi`, default `km`), `avg_hr`, `notes`, `date` (default today) | Cardio row id, date, activity, duration_min |
 | `log_body_stat` | Record a body-stat measurement for a date; merges with existing | `stat*`, `value*`, `unit`, `date`, `note` | Stats row id, stat, value, unit, date |
 | `start_workout_from_template` | Load a template into a diary day | `template_id` or `template_name`, `date` | Workout id, exercises_loaded, from_template |
 | `set_active_program` | Switch the user's active program | `program_id` or `program_name` | New active_program_id, previous_active_program_id, name |
 | `add_coach_prescription` | COACH ONLY. Prescribe a workout template to a client who accepted them as coach; the client accepts or declines it in the Diary | `trainee_id*`, `template_id*`, `target_date*`, `notes` | prescription_id, trainee_id, template_id, target_date |
+
+Every write tool that takes a date (`log_workout`, `add_exercise_to_diary`, `log_cardio`, `log_body_stat`, `start_workout_from_template`, `add_coach_prescription`) refuses a date more than 60 days before or after today until you confirm it, and Trace then sends `date_confirmed`. Read tools check their own ranges: a range that ends in the future stops at today, and when a range Trace picked comes back empty but the default window doesn't, Trace gets the default window with today's date, so a model that guessed the wrong year doesn't tell you a lift isn't in your log. In `log_workout` and `log_set`, a timed exercise (plank, wall sit, dead hang, carry) takes `duration_sec` instead of `reps`.
 
 LiftTrace also keeps **Smart Log**, a hold-to-record UI on the Trace FAB (not a Trace tool) that parses natural-language workout entries (`bench 3x5 @ 225, squats 5x5 @ 315`) client-side with the `smartLogWorkout.js` parser, matches exercises against the user's library, and pre-fills a review modal. Faster than a tool round-trip for the common case; the user commits by tapping Save.
 

@@ -8,7 +8,7 @@ Off by default. Opt in with one env var + one API token.
 
 ## Available tools
 
-Fourteen tools across three tiers. Setup for each tier below; full arg/return reference in the [MCP tool catalog](../reference/mcp-tools.md).
+Seventeen tools across three tiers. Setup for each tier below; full arg/return reference in the [MCP tool catalog](../reference/mcp-tools.md).
 
 ### Read
 

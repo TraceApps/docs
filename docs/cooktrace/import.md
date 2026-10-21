@@ -11,7 +11,7 @@ Under Settings > Cooking > URL Import Engine, pick one. An AI agent can run the 
 The default. Fetches the URL server-side and parses **schema.org/Recipe JSON-LD**, which is what the vast majority of food blogs and publisher sites already publish for Google. Fast, no external dependencies, no AI quota consumed.
 
 - Implementation: `server/lib/recipe-scraper.js`.
-- Hardening: SSRF-guarded (http(s) only, private IP block, 8 second timeout, 5 MB response cap, custom User-Agent).
+- Hardening: SSRF-guarded (http(s) only, 8 second timeout, 5 MB response cap, custom User-Agent). Addresses on your own network (directly, through a name, or through a redirect) are open only to an admin; `ALLOW_PRIVATE_RECIPE_URLS=1` opens them to every account and to a single-user install (from the next release).
 - Falls through cleanly when a site doesn't emit JSON-LD, in which case the parser returns an empty result and the UI offers to try Enhanced or Smart.
 
 Use it when the URL is from a mainstream recipe site.
@@ -35,7 +35,8 @@ Use it when Standard misses fields or the site is quirky.
 Passes the fetched page (or raw text) to your configured Trace AI provider with a tight system prompt asking for structured recipe JSON. Reserved for messier sources: sites that hide the recipe behind heavy JS, blog posts where the recipe is written prose-style, or plain text you've copied out of a book.
 
 - Implementation: `server/lib/recipe-ai-fallback.js`.
-- Requires a configured AI provider under Settings > AI Assistant.
+- Requires a configured AI provider under Settings > AI Assistant, or Trace set up on the server (`AI_ENABLED`, `AI_PROVIDER`; from the next release also an OpenAI-compatible endpoint with `AI_PROVIDER=oai-compat`, with or without an API key).
+- An AI address an account sets in its own settings is checked first: other accounts can't point it at your own network unless `ALLOW_PRIVATE_AI_URLS=1`, and a failed request shows its status and the provider's message.
 - Uses your provider quota / local model.
 
 Use it when Enhanced returns garbage or the source is unstructured.
@@ -72,14 +73,14 @@ The system prompt is tuned to preserve ingredient groupings ("Dough" vs "Sauce")
 
 ## Bulk zip import
 
-For whole libraries (a Mealie backup, a Paprika archive, a folder of exported files), open **Settings > Import from Another App** and **Choose File**.
+For whole libraries (a Mealie backup, a Tandoor export, a Paprika archive, a [Mealime export](migrate-mealime.md), a folder of exported files), open **Settings > Import from Another App** and **Choose File**.
 
 The flow is two-step:
 
 1. **Scan**: upload the zip. The server unpacks it into `.import-cache/<uuid>/` and returns a list of recipes it found, each with a thumbnail if one was in the archive.
 2. **Commit**: pick which to import (all by default) and confirm. The server writes them into your recipe library, moving images from the cache into `uploads/`.
 
-Cancelling from the picker deletes the cache. Committing keeps the cache in `.import-cache/` for the session and cleans it up later; the cache is intentionally excluded from full-backup dumps and from restore.
+Canceling from the picker deletes the cache. Committing keeps the cache in `.import-cache/` for the session and cleans it up later; the cache is intentionally excluded from full-backup dumps and from restore.
 
 ### Dedup policy
 

@@ -81,6 +81,8 @@ Then `docker compose up -d` to recreate the container. `INSECURE_COOKIES=1` in `
 
 Any other `http://` address, a public domain or IP, is refused before the app sends anything. A one-word name is looked up on your network first, but a few one-word names are also public top-level domains (`ai`, `io`, `dev` and others), and one of those may resolve to a public server: give the server a name that isn't one, or a name ending in `.lan` or `.home.arpa`. Anyone on the same network can read and change plain-HTTP traffic, including your password, so use it only on your home network or over a VPN (Tailscale and WireGuard already encrypt the tunnel).
 
+Only the connection to your server can use plain HTTP. Everything else the app reaches itself still needs HTTPS: Open Food Facts, USDA, update checks, AI providers, pictures, and ntfy, Gotify or Apprise when the phone sends a push. Coming from a debug build that connected over plain HTTP, the app asks before it contacts the server again, and a saved `http://` server that isn't on your own network is refused.
+
 **CookTrace, LiftTrace and NoteTrace** still need HTTPS on Android: see [HTTPS on the LAN](../self-hosting/lan-https.md). Their APKs on GitHub Releases, `dev-latest` included, are signed release builds that refuse plain HTTP.
 
 ## The proper fix

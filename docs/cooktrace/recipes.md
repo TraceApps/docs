@@ -13,7 +13,7 @@ Each recipe carries:
 - **Prep**, **cook**, **rest**, and **total** times, all in minutes. Total auto-calculates when blank.
 - **Ingredients**, grouped into named sections (e.g. "Dough", "Sauce") with per-row quantity, unit, ingredient text, and an optional link to a pantry item.
 - **Steps**, ordered, with per-step text and optional per-step photo.
-- **Kitchen gear** (`tools`) as a chip list, icon-mapped where recognised.
+- **Kitchen gear** (`tools`) as a chip list, icon-mapped where recognized.
 - **Source URL** (where you imported it from) and optional **video URL**.
 - **Notes**, rich-text with bold, italic, underline, strikethrough, color, bulleted and numbered lists. HTML sanitized on save.
 - **Category**, **tags**, **cookbooks** it belongs to.
@@ -78,7 +78,17 @@ A version opens its own page:
 - **Name This Version** gives it a name of its own ("Less flour", "The base"), shown in History, Compare and the cook dialog.
 - **Delete Version**, only for a version no cook was made from.
 
-Every version is kept, with no limit. Recipes from before 1.5 start their history with what they hold now; cooks logged before then say "Made before history was kept", because what they were made from isn't known. History works offline and on the Android app with no server, syncs like the rest, and is in backups, the Android app's local backup included. A cook logged offline keeps the version it was made from, and a version can't be lost to a cook: one deleted on another device before it heard of the cook comes back. Copies the app kept when two edits met (**Earlier Copies**) are at the bottom of History. [Trace](trace.md) can read the history too: ask it what changed since your best batch, or which version you liked most.
+Every version is kept, with no limit. Recipes from before 1.5 start their history with what they hold now; cooks logged before then say "Made before history was kept", because what they were made from isn't known. History works offline and on the Android app with no server, syncs like the rest, and is in backups, the Android app's local backup included. A cook logged offline keeps the version it was made from, and a version can't be lost to a cook: one deleted on another device before it heard of the cook comes back. Copies the app kept when two edits met (**Earlier Copies**) are at the bottom of History; see [Earlier versions](#earlier-versions). [Trace](trace.md) can read the history too: ask it what changed since your best batch, or which version you liked most.
+
+### Earlier versions
+
+When two devices change the same part of a recipe (say, the steps on your phone offline and in the browser), the newer edit stays and the other isn't lost (from the next release). The recipe page says **Two devices edited this recipe. The older edit is kept as an earlier version.**, with **View** and **Dismiss**.
+
+**Earlier Versions** lists each copy kept: why it was kept (**Kept from a sync**, **Kept before a restore**, **Kept before a later save**, or someone's edit in a shared kitchen), **Differs in** (Title, Ingredients, Steps, Notes, Category, Photo, Nutrition, Details), and **Preview**, which shows its ingredients and steps. **Restore** asks **Restore This Version?** and makes it the recipe again; the recipe you had is kept as an earlier version, so a restore can be undone the same way. A kitchen member sees the earlier versions that were their own edits.
+
+## Writing in Arabic, Hebrew and mixed lines
+
+A recipe's name, description, ingredients, steps and notes each read the way their first letter does (from the next release). An Arabic ingredient sits on the right with its box, and its amount on the left; an Arabic step has its number on the right; and Arabic and English in one line come out in the right order. A new, empty line reads like the one above it. The recipe list, cookbooks, the editor, the shopping list, the pantry, the diary, the public recipe page, share cards and Trace's chat do the same. Only how a recipe is shown changes, not how it's saved. Hebrew and the other right-to-left scripts work the same way.
 
 ## Allergens
 

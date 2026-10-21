@@ -21,19 +21,22 @@ The client runs a round on a 30-second background timer and again whenever the a
 
 Conflict resolution is `updated_at`-based. If the same row exists on both sides, whichever side has the later `updated_at` wins. Every mutable table carries an `updated_at` column and every write bumps it.
 
+!!! note "CookTrace: the newer edit, field by field (from its next release)"
+    CookTrace keeps the newer edit of each field rather than the newer row, and doesn't depend on a phone's clock being right. An edit made offline in the Android app or in the browser no longer overwrites a newer change made on another device to a recipe, a pantry item, the shopping list, a category, a custom unit, a cookbook or the diary. Changes to different fields are both kept: an item checked off on the phone and renamed on the web keeps both. Fields that belong together, such as an amount and its unit, stay together. Cook counts follow the cook diary. Older versions of the app sync as before, and a recipe copy they replace is kept as an [earlier version](../cooktrace/recipes.md#history).
+
 The pull boundary is **inclusive**: rows where `updated_at >= since` come back, not strict-greater. This is deliberate. SQLite's `datetime('now')` is 1-second precision, so an exclusive `>` boundary silently drops any row written in the same second as the previous `server_time`. The client's upsert is idempotent, so an inclusive boundary is safe: you might see the same row twice across two rounds, but you never lose one.
 
 ## Foreign-key translation
 
 When a client creates a new row locally, it generates a `client_id`. The server assigns a `server_id` on push and returns the mapping. Any row that references the new row by foreign key (a diary item that points at a food, a workout that points at an exercise) is rewritten client-side using the returned mapping before it is used again.
 
-The server also plays defence: FK columns are updated with `COALESCE(?, existing)` so a stale mobile payload cannot clobber a newer server-side FK. Push is ordered by dependency (parents before children), and pull is ordered so self-referencing tables come out parents-first.
+The server also plays defense: FK columns are updated with `COALESCE(?, existing)` so a stale mobile payload cannot clobber a newer server-side FK. Push is ordered by dependency (parents before children), and pull is ordered so self-referencing tables come out parents-first.
 
 ## Soft-deletes propagate
 
 Deletes are never destructive on the wire. A deleted row keeps its primary key and gets a `deleted_at` timestamp instead of being removed. Both push and pull include soft-deleted rows, so a delete on one device propagates to the other. The client hides them from the UI and prunes them locally after the round completes.
 
-If a row is edited on one device and deleted on another during the same offline window, last-write-wins on `updated_at` still decides the outcome (the delete counts as a write and bumps `updated_at`).
+If a row is edited on one device and deleted on another during the same offline window, last-write-wins on `updated_at` still decides the outcome (the delete counts as a write and bumps `updated_at`). In CookTrace from its next release, an item deleted on one device stays deleted when the other device only edited it earlier or reordered the list.
 
 ## What you need to configure
 
@@ -41,7 +44,7 @@ Nothing. Sync is automatic the moment you point the Android app at a server URL 
 
 The only host-side configuration that affects sync is the surrounding setup:
 
-- Your server must be reachable from the phone. On a release-signed APK that means HTTPS (see [HTTPS on the LAN](../self-hosting/lan-https.md)).
+- Your server must be reachable from the phone. On a release-signed APK that means HTTPS (see [HTTPS on the LAN](../self-hosting/lan-https.md)), except NutriTrace 1.5.0 and later, which connect to a server on your own network over plain HTTP once you choose **Connect Anyway** (see [Plain-HTTP LAN](../getting-started/lan-http.md#the-android-apps)).
 - Your `JWT_SECRET` must be stable. Rotating it invalidates every existing session, and the phone will need to log in again before sync resumes.
 - If you sit behind a reverse proxy, make sure `/api/sync/push` is not body-capped below your batch size (see [Reverse-proxy recipes](../self-hosting/proxy-recipes.md); Cloudflare's free tier caps proxied bodies at 100 MB).
 

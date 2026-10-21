@@ -2,15 +2,15 @@
 
 CookTrace is a self-hosted recipe box, pantry inventory, cook diary, meal planner, and shopping list bundled into a single Docker container. One Node/Express server, one Svelte PWA, a SQLite database, and a Capacitor Android app that either runs fully offline or syncs against the same server. AGPL-3.0, no accounts phoning home, no per-device license fee.
 
-The core idea: every ingredient a recipe uses can link to a real pantry item, so cards on the Recipes page show "8/10 in pantry" at a glance, the shopping list dedups across recipes automatically, and expiration digests know what's about to go bad. Trace, the same AI assistant the other TraceApps use, sits on top with 19 cooking-domain tools so you can ask "what can I make from what's in the pantry?" and get real answers backed by your own data.
+The core idea: every ingredient a recipe uses can link to a real pantry item, so cards on the Recipes page show "8/10 in pantry" at a glance, the shopping list dedups across recipes automatically, and expiration digests know what's about to go bad. Trace, the same AI assistant the other TraceApps use, sits on top with 21 cooking-domain tools so you can ask "what can I make from what's in the pantry?" and get real answers backed by your own data.
 
 ![CookTrace recipe library with pantry-match pills, ratings, times, and search](../assets/img/cooktrace/01-recipes.png)
 
 ## Compared to other self-hosted recipe apps
 
-CookTrace is not "better than" the other options, just different in what it prioritises.
+CookTrace is not "better than" the other options, just different in what it prioritizes.
 
-- **Mealie** is a mature recipe manager with an excellent import surface. CookTrace matches the import surface (schema.org JSON-LD, `recipe-scrapers` bridge, Mealie/Tandoor/Paprika zip drop-in) and adds a first-class pantry that every ingredient can link to, plus Trace AI tool use and OIDC SSO out of the box.
+- **Mealie** is a mature recipe manager with an excellent import surface. CookTrace matches the import surface (schema.org JSON-LD, `recipe-scrapers` bridge, Mealie/Tandoor/Paprika/Mealime zip drop-in) and adds a first-class pantry that every ingredient can link to, plus Trace AI tool use and OIDC SSO out of the box.
 - **Paprika** is a polished commercial app you pay per device for. CookTrace covers most of the same daily flow (recipe library, cook mode, meal planner, grocery list) as a self-hosted single-container option, with Pinterest-style card share and long-press menus that feel similar.
 - **Grocy** owns household inventory (barcodes, expiration, batteries, chores, meal plans). CookTrace overlaps only on the food side: pantry variants, barcode scanning, expiration digests. If you want chore lists and battery tracking too, Grocy is still the right pick.
 

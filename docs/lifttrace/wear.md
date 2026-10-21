@@ -31,6 +31,8 @@ Only the first install needs adb (step 1 above).
 
 ## What's on the watch
 
+![The watch on set 2 of 3, with last time's numbers, the weight and reps to adjust, and Log the set](../assets/img/lifttrace/14-wear.png){ width="300" }
+
 **The session.** Today's workout, in the order you do it, with a heading over every block: "Superset A" over a pairing you move between, "Standalone" over lifts that belong to no pairing. Each card says what it's due for next and how much is behind you, with an arrow on the one you're actually up to.
 
 **Completed.** A block that's entirely done moves under a **Completed** heading at the bottom, keeping the order you did it in. A pairing only moves when the whole pairing is done, since half a superset is still work, and reopening a set brings it straight back up.
@@ -63,7 +65,7 @@ A set logged, corrected or ticked on the watch shows on the phone right away whi
 
 A rest is one thing happening to one person, so both devices hold it and either can ring you. Start, extend, pause, resume or skip it on either and the other follows; whichever spoke last is the one that counts.
 
-**Pause** sits beside +30 and Skip on the watch's timer. A paused rest holds its time, shows "Paused" in grey, and doesn't buzz; **Resume** counts on from what was left. Pausing on the watch pauses the phone, its rest bar and its notification, even with the app in the background, and pausing on the phone (in the app or from its notification) pauses the watch. A hold can't be paused: it logs itself when its time is up.
+**Pause** sits beside +30 and Skip on the watch's timer. A paused rest holds its time, shows "Paused" in gray, and doesn't buzz; **Resume** counts on from what was left. Pausing on the watch pauses the phone, its rest bar and its notification, even with the app in the background, and pausing on the phone (in the app or from its notification) pauses the watch. A hold can't be paused: it logs itself when its time is up.
 
 With a watch on an older LiftTrace, from before pausing, a paused rest is taken down on the watch instead of shown as paused, so it doesn't buzz in the middle of a pause, and it comes back counting when you resume. An older phone app takes a rest paused on the watch down when you next open it; until then, if it was in the background, it can still sound at the old time.
 

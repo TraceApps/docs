@@ -1,6 +1,6 @@
 # Troubleshooting
 
-A running list of the failure modes that actually catch self-hosters out. Organised as a Q&A. If your symptom is not here, turn on `LOG_LEVEL=debug` in the container and check the server logs first; verbose logs surface most of these cases explicitly.
+A running list of the failure modes that actually catch self-hosters out. Organized as a Q&A. If your symptom is not here, turn on `LOG_LEVEL=debug` in the container and check the server logs first; verbose logs surface most of these cases explicitly.
 
 ## Login and cookies
 
@@ -55,7 +55,7 @@ Details in [HTTPS on the LAN](../self-hosting/lan-https.md) and [Cloudflare Tunn
 
     **Fix:** Two caps to check:
 
-    - **Cloudflare free tier** proxies bodies at up to 100 MB. Restore uploads larger than that will not fit. Bypass Cloudflare for the restore (Tailscale, a direct LAN address, or temporarily "grey-cloud" the DNS record), or pay for a plan with a higher cap.
+    - **Cloudflare free tier** proxies bodies at up to 100 MB. Restore uploads larger than that will not fit. Bypass Cloudflare for the restore (Tailscale, a direct LAN address, or temporarily "gray-cloud" the DNS record), or pay for a plan with a higher cap.
     - **nginx** defaults `client_max_body_size` to 1 MB. Bump it explicitly in your server block: `client_max_body_size 2048m;` or whatever comfortably exceeds your backup size. Caddy and Traefik have generous defaults but check your specific configuration.
 
     See [Backups and restore](../self-hosting/backups.md) and [Reverse-proxy recipes](../self-hosting/proxy-recipes.md) for full snippets.
@@ -66,7 +66,7 @@ Details in [HTTPS on the LAN](../self-hosting/lan-https.md) and [Cloudflare Tunn
 
 **Symptom:** You sign in at your IdP fine, it redirects back, and the app shows a blank white page. The container log shows requests like `GET /api/oidc/callback` or `GET /api/oidc/assets/...`.
 
-**Cause:** The callback URL is wrong. The IdP sent you back to a path the app doesn't handle. CookTrace handles only the path below; NutriTrace 1.4.0, NoteTrace 1.1.0 and LiftTrace 1.4.0 and later also accept it without the number, and at `/api/oidc/callback`.
+**Cause:** The callback URL is wrong. The IdP sent you back to a path the app doesn't handle. NutriTrace 1.4.0, NoteTrace 1.1.0 and LiftTrace 1.4.0 and later, and CookTrace from its next release, also accept it without the number, and at `/api/oidc/callback`; earlier versions handle only the path below.
 
 **Fix:** Use `https://<your-host>/api/auth/oidc/callback/<provider-id>` (the ID is in the startup log line `[oidc-env] Loaded 1 OIDC provider from environment (IDs: 1)`, usually `1`), in both your IdP and `OIDC_REDIRECT_URIS`, then `docker compose up -d`. See [The callback URL](../auth/oidc.md#the-callback-url).
 

@@ -2,12 +2,12 @@
 
 ## What this page is
 
-Every tool that NutriTrace, LiftTrace, CookTrace, and NoteTrace expose over the **Model Context Protocol**, in one table per app. This is the reference for external AI clients (Claude Desktop, Cursor, Codex, VS Code, custom agents) that connect to each app's `/api/mcp`. The in-app Trace AI has its own separate tool set, catalogued in [Trace tool catalog](trace-tools.md).
+Every tool that NutriTrace, LiftTrace, CookTrace, and NoteTrace expose over the **Model Context Protocol**, in one table per app. This is the reference for external AI clients (Claude Desktop, Cursor, Codex, VS Code, custom agents) that connect to each app's `/api/mcp`. The in-app Trace AI has its own separate tool set, cataloged in [Trace tool catalog](trace-tools.md).
 
 Every app splits its MCP surface into the same three phases, each gated by its own scope + env flag:
 
 - **Read**: `mcp:read` + `MCP_ENABLED=1`. Always available when MCP is on.
-- **Write**: `mcp:write` + `MCP_WRITE_ENABLED=1`. Additive log tools; everything they write shows up as normal entries in the app's own UI.
+- **Write**: `mcp:write` + `MCP_WRITE_ENABLED=1`. Log and change tools; everything they write shows up as normal entries in the app's own UI. Most only add entries; a few change what's there, such as CookTrace's `update_recipe` and `set_recipe_image`, which keep every change undoable from the recipe's History.
 - **Destructive**: `mcp:destroy` + `MCP_DESTROY_ENABLED=1` + every call must include `confirm: true`.
 
 Setup lives on each app's own MCP page: [NutriTrace](../nutritrace/mcp.md), [LiftTrace](../lifttrace/mcp.md), [CookTrace](../cooktrace/mcp.md), [NoteTrace](../notetrace/mcp.md). This page is the tool reference; the setup pages tell you how to turn it on.
@@ -50,7 +50,7 @@ Additive; nothing is edited or deleted. Every write refuses if the target day is
 | Tool | Purpose | Args | Returns |
 |------|---------|------|---------|
 | `log_food` | Append a food from the user's catalog | `food_id*`, `date`, `meal`, `quantity`, `portion`, `unit`, `notes` | `logged` echo + `total_items_on_day`. Bumps `foods.usage_count` + `last_used_at`. |
-| `log_water` | Add a water log entry (millilitres) | `amount_ml*`, `date`, `time` | `logged` echo + `total_ml_on_day` |
+| `log_water` | Add a water log entry (milliliters) | `amount_ml*`, `date`, `time` | `logged` echo + `total_ml_on_day` |
 | `log_meal` | Log every item of a saved meal | `meal_id*`, `date`, `meal` | Item count + `total_items_on_day`. Recipes explicitly excluded (`is_recipe=1`). |
 | `log_body_stat` | Set weight / body-fat / lengths on a day | `stats*` (object), `date` | Cleaned stats plus `current_stats`. Rejects untagged legacy body_stats (user must save once via the app to attach unit tags). |
 
@@ -140,7 +140,7 @@ Deliberately not in the current MCP surface:
 
 ## CookTrace
 
-Fourteen tools across three phases.
+Seventeen tools across three phases.
 
 ### Read tools (`mcp:read`)
 

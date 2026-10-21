@@ -49,7 +49,7 @@ Only the first install needs adb (step 1 above).
 
 **A tile.** One swipe from the watch face: what's left to buy, or what's counting down. Add it by long-pressing the watch face, then Tiles.
 
-**A complication.** What's left to buy, on the watch face itself, tapping through to the app. Add it from your watch face's own customisation screen.
+**A complication.** What's left to buy, on the watch face itself, tapping through to the app. Add it from your watch face's own customization screen.
 
 ## Timers on both devices
 

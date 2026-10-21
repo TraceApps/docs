@@ -98,7 +98,7 @@ Inline block near the top of Settings on the native app. Shows Connected, URL, L
 ### Notifications
 
 - **Device notifications** browser or OS notification permission.
-- **Push service** None, Gotify, ntfy, or Apprise; each brings provider-specific URL / token / topic / tag fields.
+- **Push service** None, Gotify, ntfy, or Apprise; each brings provider-specific URL / token / topic / tag fields. In the Android app signed in to a server with user accounts, your server sends the pushes from these settings, so a push service on your home network works; otherwise the phone sends them itself and needs an `https://` address (from the next release; see [From the Android app](../integrations/notifications.md#from-the-android-app)).
 - Per-alert toggles: **Workout reminder** (with time), **Rest-day reminder**, **Streak alert** (with time), **Workout complete**, **Personal records**, **Coach feedback**.
 - **Coaching** (people in coaching only): **New Message** with **Email Me Too**, **New Recommendation**, **Client's Answer**, and for coaches **Client Completes Prescribed Workout**, **Client Missed a Prescription**, **Client Replied to Feedback**. See [Coaching](coaching.md#notifications).
 - **Weekly summary** with delivery day and time.
@@ -116,6 +116,8 @@ Inline block near the top of Settings on the native app. Shows Connected, URL, L
 No longer marked Experimental from 1.4.0. Picker for Strong, Hevy, FitNotes, Jefit, or Garmin FIT; upload file, preview, skip / replace on duplicate dates, commit. See [Workout history import](import.md).
 
 ### Updates
+
+![Settings, Updates: the current version, Update Channel, Automatically Check for Updates (off) and Check Now](../assets/img/lifttrace/12-settings-updates.png)
 
 Update checks are off until you turn them on (1.4.0 and later). The setup wizard asks (**Check For Updates**), and a fresh install contacts nothing on its own until someone says yes; an install that was already running before 1.4.0 keeps checking as it did.
 
@@ -155,6 +157,8 @@ Only visible to `admin` in server mode.
 Env-locked when `SMTP_HOST` is set. See [SMTP setup](../integrations/smtp.md).
 
 ## Support
+
+![Settings, Support: Ko-fi and GitHub Sponsors, then Star on GitHub, Report a Bug and Help Translate](../assets/img/lifttrace/13-settings-support.png)
 
 Next to About (1.4.0 and later): Ko-fi and GitHub Sponsors, plus free ways to help (**Star on GitHub**, **Report a Bug**, **Help Translate**). Support is optional and never unlocks anything. See [Support](../support.md).
 

@@ -4,7 +4,7 @@ A tour through the four flows you will use most. Nothing here requires config be
 
 ## Log today's workout
 
-![LiftTrace workout diary with per-set weight, reps, and rest timer](../assets/img/lifttrace/01-diary.png)
+![LiftTrace diary on a push day: finished lifts, the current set with last time's numbers, and the session panel](../assets/img/lifttrace/01-diary.png)
 
 Open **Diary**. The date bar defaults to today; arrow keys or the calendar icon jump you around. On an empty day you see a row of quick-load cards for recent workouts, one tap to prefill.
 
@@ -25,7 +25,7 @@ Full details in [Diary and set logging](diary.md).
 
 ## Follow an active program
 
-![Programs with Push / Pull / Legs active and a preview of its three workouts](../assets/img/lifttrace/03-programs.png)
+![Programs with Push / Pull / Legs active, assigned by a coach, and its preview pane listing the three workouts](../assets/img/lifttrace/03-programs.png)
 
 
 Open **Programs**. Every fresh install seeds a handful of starter templates (Push/Pull/Legs, Upper/Lower, Full Body 3x, plus two branded programs). Pick one, tap **Activate**, and it becomes your active program. Only one program is active at a time.
@@ -38,7 +38,7 @@ See [Programs and templates](programs.md).
 
 ## Check PRs
 
-![Post-workout summary with PR badges and volume totals](../assets/img/lifttrace/07-workout-summary.png)
+![Workout Complete summary with new PRs, the streak, volume, sets and each lift's sets](../assets/img/lifttrace/07-workout-summary.png)
 
 
 Open **Statistics**. The metric-pill row across the top switches between:
@@ -48,7 +48,8 @@ Open **Statistics**. The metric-pill row across the top switches between:
 - **Records**: recent PRs plus PRs grouped by muscle category.
 - **Volume**: weekly totals plus muscle-group breakdown so imbalances stand out.
 - **Frequency**: weekly counts and weekday distribution.
-- **Body Weight**: trend line, min/max, change over range.
+- **Body Measurements**: trend line, min/max, change over range.
+- **Cardio** (with **Track Cardio** on in Settings > Workout): cardio minutes by week against your weekly target, and every session in the range. See [Statistics](statistics.md#cardio).
 
 The date range (1W / 1M / 3M / 6M / 1Y / All) applies globally. Warm-ups are excluded from every calculation.
 
@@ -70,7 +71,7 @@ See [Radio player](radio.md).
 
 ## Talk to Trace
 
-![Trace AI chat with live workout context and hold-to-record voice](../assets/img/lifttrace/06-trace.png)
+![Trace answering how today's workout is going, with numbers from the diary](../assets/img/lifttrace/06-trace.png)
 
 
 The floating Trace assistant is docked bottom-right on every page. Two things it does that a generic chat window does not:
@@ -87,7 +88,7 @@ See [Trace in LiftTrace](trace.md).
 The web app keeps working when the signal drops, in a browser tab or installed as an app, and comes back up offline after a reload. Gyms in basements are the reason this exists.
 
 - **Progress photos**: take one with no signal and it travels inside the entry, becoming an ordinary file on your server when the queue goes up. A photo too large to hold says so rather than being lost quietly.
-- **What works offline**: logging a session (sets, reps, weight, notes, adding or removing exercises), deleting a session, body stats, cardio (logging, editing, deleting), starting a program or moving its week, creating, editing and deleting your own exercises, your own profile with its picture, and settings. Reading works for anything this browser has already seen: the diary, your exercise catalogue, programs, templates, recent workouts, Statistics, Progress, coach notes and your profile.
+- **What works offline**: logging a session (sets, reps, weight, notes, adding or removing exercises), deleting a session, body stats, cardio (logging, editing, deleting), starting a program or moving its week, creating, editing and deleting your own exercises, your own profile with its picture, and settings. Reading works for anything this browser has already seen: the diary, your exercise catalog, programs, templates, recent workouts, Statistics, Progress, coach notes and your profile.
 - **Coaching offline**: a coach can write a note on a client's session, and a client can reply to one and mark notes read. Prescribed work can be added, changed or removed, and a client can accept or decline it. The conversation is kept on the device: it opens with no connection, and a message written offline waits and is sent once. A note is pinned to the exercise it is about, so it stays on the right lift even if the client reorders the session before the note arrives.
 ### What does not work offline
 
@@ -96,7 +97,7 @@ These need your server or the internet, and say so plainly rather than failing q
 | Not available offline | Why |
 | --- | --- |
 | Exercise media (a photo or GIF on a custom exercise) | The file has to reach your server |
-| Importing an exercise catalogue, syncing wger | It downloads from the internet |
+| Importing an exercise catalog, syncing wger | It downloads from the internet |
 | Creating or editing a program or a workout template | Planning work, done against a server that can answer |
 | Asking someone to be your client, answering a request, leaving or ending coaching, assigning a program to a client | These decide who can see whose data, so they are never done from a list pulled down hours ago |
 | Trace | It talks to an AI provider |

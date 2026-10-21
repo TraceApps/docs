@@ -43,7 +43,7 @@ The stored setting keys are `notifPushService=apprise`, `appriseUrl`, and `appri
 
 ## Priority mapping
 
-TraceApps sends a numeric priority (1 to 8). Apprise doesn't have a native priority field, so the server maps priority `>= 7` to Apprise `type: warning` and everything else to `type: info`. Individual notification services then map `warning` to whatever they support (Discord embed colour, Pushover priority, etc).
+TraceApps sends a numeric priority (1 to 8). Apprise doesn't have a native priority field, so the server maps priority `>= 7` to Apprise `type: warning` and everything else to `type: info`. Individual notification services then map `warning` to whatever they support (Discord embed color, Pushover priority, etc).
 
 ## Related
 

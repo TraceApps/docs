@@ -44,7 +44,7 @@ Per-provider walkthroughs live on their own pages: see [Cloud providers](cloud.m
 
 ## Picking a model
 
-Each provider comes with a picker containing the current recommended defaults plus a `Custom…` entry (sentinel value `__custom__` in the UI). Choosing `Custom…` reveals a free-text field; whatever you type is stored verbatim in `ai_model` and used on every request. There is no separate `AI_MODEL_CUSTOM` env var: `AI_MODEL` accepts any string the provider recognises.
+Each provider comes with a picker containing the current recommended defaults plus a `Custom…` entry (sentinel value `__custom__` in the UI). Choosing `Custom…` reveals a free-text field; whatever you type is stored verbatim in `ai_model` and used on every request. There is no separate `AI_MODEL_CUSTOM` env var: `AI_MODEL` accepts any string the provider recognizes.
 
 If you're env-locked and want a model outside the picker's list, set `AI_MODEL=your-model-id` in your compose file. The lock covers custom values too.
 
@@ -59,7 +59,7 @@ Payload caps on the proxy bound a compromised account from burning your API budg
 
 ## Rate limiting
 
-Every `/api/ai/chat` request goes through a per-user limiter: 30 requests per 60 seconds. Trace's own chat loop caps tool-use rounds at 5. Both numbers live in `server/routes/ai.js` if you want to change them.
+Every `/api/ai/chat` request goes through a per-user limiter: 60 requests a minute in LiftTrace and NutriTrace, 30 in CookTrace and NoteTrace (NoteTrace's `/api/ai/relay`, which it uses when Trace is set by environment variables, allows 60). The limits live in each app's `server/routes/ai.js`. One answer can take up to 12 rounds of looking things up (`TOOL_ROUNDS` in `src/lib/aiChat.js`); when they run out, Trace answers from what it found and says what's left.
 
 ## Related
 

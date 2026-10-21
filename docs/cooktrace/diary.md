@@ -44,7 +44,7 @@ Trace can do the same in a chat ("plan three dinners for next week"): its planni
 
 ## Month calendar
 
-Toggle to Month for a month grid with recipes as chips inside each cell. Drag a chip between cells to reschedule. Drag between planned and today's cell to "cook now". The calendar respects the same `meal_type` coloring and shows a small stack when a day has more than three entries (tap to expand).
+Toggle to Month for a month grid with recipes as chips inside each cell. Its weeks start on your locale's first day of the week (Monday in most of Europe, Sunday in the US), as the Week view's do; before the next release it always started on Sunday. Drag a chip between cells to reschedule. Drag between planned and today's cell to "cook now". The calendar respects the same `meal_type` coloring and shows a small stack when a day has more than three entries (tap to expand).
 
 ## Plan-then-cook workflow
 

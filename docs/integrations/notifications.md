@@ -22,6 +22,12 @@ Suits multi-device setups, always-on delivery, integrating with existing self-ho
 
 Both channels can be on simultaneously. Trace has a shared dedup key format between the server push and the client-side reminder scheduler, so you don't get two of the same notification when both fire.
 
+### From the Android app
+
+In LiftTrace (from its next release), an Android app signed in to a server with user accounts asks your server to send each push, as the web app does, from the settings your account keeps. A push service on your home network (`http://apprise:8000`, `http://192.168.1.20:8080`) works that way. Otherwise (Use Locally, a server without user accounts, or a server it can't reach just then), the phone sends the push itself with what you set in Settings > Notifications, ntfy's access token and Apprise's tag included. Earlier versions of the app never sent Workout Complete or PR pushes from the phone at all.
+
+A release build of an Android app only reaches `https://` addresses itself, so when the phone sends a push, the push service needs an HTTPS address. See [HTTPS on the LAN](../self-hosting/lan-https.md).
+
 ## Per-app reminder catalog
 
 The reminder toggles under `Settings → Notifications` differ per app because the domain differs.
@@ -56,7 +62,7 @@ The reminder toggles under `Settings → Notifications` differ per app because t
 - **Weigh-in reminder**: scheduled weigh-in day.
 - **Bedtime + wind-down**: two-stage evening nudge.
 - **Fasting complete**: your intermittent fast window closed.
-- **Weekly summary**: nutrition averages + activity + weight change. Email, not push.
+- **Weekly summary**: average calories, protein, steps, sleep, goal hit rate and weight change, once a week on your **Delivery Day** at your **Delivery Time**. It goes to each channel you have: by push through your push service, by email when the server sends email and your account has an address, or both. With email alone, Settings > Notifications still shows it, and its description says how it will arrive (from NutriTrace's next release; earlier versions sent the email only to people with a push service set up).
 - **Wellness alerts**: readiness / stress / sleep anomalies.
 - **Workout summary**: post-workout recap.
 - **Sync failures**: Fitbit / Google Health / Withings sync stopped working.

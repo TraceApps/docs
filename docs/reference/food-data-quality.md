@@ -16,9 +16,9 @@ Each OFF record has a `completeness` percentage between 0 and 1 that measures ho
 
 - **Green** = complete or near-complete. Trustworthy nutrition, brand, and image data.
 - **Yellow** = partial. Usually the basics are there but ingredients, allergens, or micronutrients might be missing.
-- **Grey** = stub. Barcode and name only, or worse. Assume nothing beyond the name is accurate.
+- **Gray** = stub. Barcode and name only, or worse. Assume nothing beyond the name is accurate.
 
-Rule of thumb: green dots are safe to log without checking; yellow dots deserve a glance before you commit; grey dots should only be used if you have no better option and you plan to edit the values.
+Rule of thumb: green dots are safe to log without checking; yellow dots deserve a glance before you commit; gray dots should only be used if you have no better option and you plan to edit the values.
 
 ## Data-type badge (USDA only)
 
@@ -50,7 +50,7 @@ The underlying source data is identical between the two apps; the signals render
 
 ## Contributing back to Open Food Facts
 
-If you scan a barcode that OFF doesn't have (grey dot everywhere, or no results), both apps offer a **contribute** action: the barcode is prefilled in the food editor, you fill in the fields you know, and the entry uploads to OFF under your account. Doing this once takes about 60 seconds and makes the record available to every OFF consumer forever, including future you.
+If you scan a barcode that OFF doesn't have (gray dot everywhere, or no results), both apps offer a **contribute** action: the barcode is prefilled in the food editor, you fill in the fields you know, and the entry uploads to OFF under your account. Doing this once takes about 60 seconds and makes the record available to every OFF consumer forever, including future you.
 
 NutriTrace additionally has a **Share to Open Food Facts** button that promotes a food you added locally into the OFF community database, with the same round-trip.
 

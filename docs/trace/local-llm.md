@@ -71,7 +71,7 @@ Local model choice is a real trade-off; the app doesn't hide it. A rough guide:
 If Trace's tools misbehave on a small local model, look at `feedback_ai_unreliable_tool_routing` in the CookTrace / LiftTrace / NutriTrace repos: the pattern is to pre-compute the value in `buildContext()` and inject it as a labeled system-prompt line rather than counting on the model to route a tool call correctly.
 
 !!! warning "Slow first response"
-    Ollama loads the model into VRAM on the first request after startup or after a period of inactivity. That first Trace turn can take 20-60 seconds while the weights are read from disk. Subsequent turns are fast until the model is unloaded again. This is Ollama behaviour, not a Trace bug.
+    Ollama loads the model into VRAM on the first request after startup or after a period of inactivity. That first Trace turn can take 20-60 seconds while the weights are read from disk. Subsequent turns are fast until the model is unloaded again. This is Ollama behavior, not a Trace bug.
 
 ## Testing the connection
 

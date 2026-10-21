@@ -14,7 +14,7 @@ Compared to the popular alternatives:
 
 Not "better than". Different trade-offs. If you already `docker compose up` things on your own hardware, LiftTrace is aimed at you.
 
-![LiftTrace workout diary with per-set weight, reps, and rest timer](../assets/img/lifttrace/01-diary.png)
+![LiftTrace diary on a push day: finished lifts, the current set with last time's numbers, and the session panel](../assets/img/lifttrace/01-diary.png)
 
 ## What you get
 

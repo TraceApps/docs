@@ -1,28 +1,41 @@
 # Statistics and PRs
 
-The Statistics tab is the training-history dashboard. Six views (Overview, Exercise Progress, Records, Volume, Frequency, Body Weight), a shared date range across all of them, and a metric-pill row along the top for switching. Warm-ups are excluded everywhere; only completed working sets with positive weight count.
+The Statistics tab is the training-history dashboard. Six views (Overview, Exercise Progress, Records, Volume, Frequency, Body Measurements), plus Cardio when you track cardio, a shared date range across all of them, and a metric-pill row along the top for switching. Warm-ups are excluded everywhere; only completed working sets with positive weight count.
 
 ![Statistics overview: weekly goal ring, streaks, 90-day activity grid, and muscle recovery map](../assets/img/lifttrace/04-statistics.png)
 
 ## The metric-pill layout
 
-Six pills at the top of the page. Tap one to switch view; the range selector below (`1W / 1M / 3M / 6M / 1Y / All`) applies globally so a range you pick on Volume carries over to Frequency and Records without a second click. Scroll position is remembered per metric, so hopping Volume > Frequency > Volume lands back where you were.
+Six pills at the top of the page, and a seventh, **Cardio**, with **Track Cardio** on in Settings > Workout. Tap one to switch view; the range selector below (`1W / 1M / 3M / 6M / 1Y / All`) applies globally so a range you pick on Volume carries over to Frequency and Records without a second click. Scroll position is remembered per metric, so hopping Volume > Frequency > Volume returns you to where you were.
 
 - **Overview** the summary board: current streak, longest streak, total workouts, weekly-goal progress, muscle-recovery heatmap, and a body map colored by recent effective sets per muscle.
 - **Exercise Progress** pick an exercise; get a weight-per-session sparkline plus per-session sets, volume, and average RPE. A [timed exercise](diary.md#timed-sets-planks-holds-carries) charts its longest hold per session instead.
 - **Records** every exercise's current top weight and current top estimated 1RM, or its longest hold for a timed exercise.
 - **Volume** weekly total volume bar chart across the range.
 - **Frequency** weekly workout count plus a weekday distribution.
-- **Body Weight** logged body-weight points over time (sourced from Diary body-stats). A card at the top of this view opens [Progress photos](progress.md), the visual counterpart to the weight line.
+- **Body Measurements** logged body-weight points over time (sourced from Diary body-stats). A card at the top of this view opens [Progress photos](progress.md), the visual counterpart to the weight line.
+- **Cardio** cardio minutes by week across the range, and every session in it. See [Cardio](#cardio) below.
 
 The `All` range resolves the earliest workout in the log via `GET /api/stats/earliest-workout-date` instead of a fixed 10-year window, so imported historical data from Strong or Hevy is visible without a wall.
+
+## Cardio
+
+![Statistics, Cardio: total minutes, average and peak week, weeks on target, weekly minutes against a 90 minute target, and the sessions](../assets/img/lifttrace/11-statistics-cardio.png)
+
+With **Track Cardio** on in Settings > Workout, the cardio sessions you log in the Diary (and with Trace or the watch) get their own **Cardio** view. Cardio is kept apart from your lifting, so it never counts toward volume, records or the lifting charts.
+
+- **Summary**: total minutes in the range, **Avg / Week**, **Peak Week**, and with a target set, **On target**: how many weeks reached it.
+- **Weekly Minutes**: a bar per week (weeks start on Monday) with that week's cardio minutes. Weeks that reach your target are highlighted.
+- **Sessions**: each session in the range with its activity, minutes, distance and average heart rate when you logged them, and the date, newest first. A long range shows the 100 most recent.
+
+The target is **Weekly Cardio Minutes** in Settings > Workout, under **Track Cardio**: the chart draws it as a line. Set it to 0 to hide the target. Turn **Track Cardio** off and the Cardio view goes away; your sessions stay.
 
 ## Charts
 
 Chart rendering is Chart.js. Two chart types appear across the views:
 
 - **Line / sparkline** weight or estimated-1RM progression per exercise, plus body-weight trend.
-- **Bar** weekly total volume, weekly workout count, weekday distribution.
+- **Bar** weekly total volume, weekly workout count, weekday distribution, weekly cardio minutes.
 
 The default chart type for muscle-group breakdowns is user-configurable in Settings > Statistics (bar or line). Two other Settings > Statistics toggles apply globally: **Lock Y-axis to zero** for honest comparisons across ranges, and **Show trend line** for a linear regression on top of the raw points.
 

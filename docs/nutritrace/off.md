@@ -33,7 +33,7 @@ Override with `OFF_LOCAL_URL` if you host your own snapshot or need a specific m
 **Refresh.** The mirror is a snapshot, not a live view. **Settings → Connected Services → Open Food Facts → Auto-refresh schedule** (admin-only) lets you set how often to re-download. **Refresh Now** kicks a refresh on demand. Refresh writes to a `.new` sibling file and atomic-renames on completion, so a failed download never leaves you with a half-written mirror.
 
 !!! warning "Bind-mount must be a directory, not the file"
-    If `OFF_LOCAL_DB` points at a path that Docker created as a file bind-mount (as opposed to a directory bind-mount), Docker's auto-mount behaviour creates a directory at the mount point and refresh breaks with `EISDIR`. Mount the parent directory (`/data/off-mirror`) as a directory bind-mount and let NutriTrace manage the file inside it.
+    If `OFF_LOCAL_DB` points at a path that Docker created as a file bind-mount (as opposed to a directory bind-mount), Docker's auto-mount behavior creates a directory at the mount point and refresh breaks with `EISDIR`. Mount the parent directory (`/data/off-mirror`) as a directory bind-mount and let NutriTrace manage the file inside it.
 
 ## Air-gap mode
 
