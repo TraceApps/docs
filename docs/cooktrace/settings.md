@@ -103,7 +103,7 @@ Deep dives: [Apprise](../integrations/apprise.md), [Gotify](../integrations/goti
 ## Backup and Restore
 
 - **Full Backup** (admin only, server mode): Create Backup, Upload & Restore, table of existing backups with Download / Restore / Delete.
-- **Scheduled Backup** (env-lockable): Cadence Off/Daily/Weekly/Monthly, Time of Day, Retention Count.
+- **Scheduled Backup** (env-lockable): Cadence Off/Daily/Weekly/Monthly, Time of Day (on the clock of the browser that set it, with its time zone shown under it and the next run beside it, from the next release), Retention Count.
 - **Portable JSON Export**: Export JSON (no images), Import JSON (merges).
 - **Local Full Backup** (Android local mode only): self-contained zip with base64-inlined images for phone-to-phone transfer.
 - **Local Backup Schedule** (Android): device-side, persisted in `localStorage`.

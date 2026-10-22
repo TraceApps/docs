@@ -18,11 +18,11 @@ Weekly runs on the day the schedule was first activated; monthly runs on the sam
 
 `/data/backups/` inside the container, which is `<UPLOADS_PATH>/backups` by default (override with `BACKUPS_PATH`). Because the default sits under the uploads volume, the archives survive container restarts as long as you have mounted `/data/uploads` to a host volume, which the sample compose does.
 
-Filenames look like `<app>-backup-2026-07-25T03-00-00.zip`. The retention prune sorts by filename (timestamp is in the name), so a stray `cp -p` will not reshuffle the keep-order.
+Filenames look like `<app>-backup-2026-07-25T03-00-00-0400.zip`: local time in the schedule's time zone (else the container's: `TZ`, else UTC), with its UTC offset, so names stay unique and in order when clocks change. Before each app's next release they were `<app>-backup-2026-07-25T03-00-00.zip` in UTC. A second backup in the same second gets `-2` instead of replacing the first. Retention keeps the newest ones by the time in the name, older UTC-named files included, so a backup folder copied without its dates still keeps the right ones.
 
 ## In-app settings location
 
-Admin only, under **Settings, Backup**. The tile shows the current schedule, the time-of-day input, and retention count, plus a "Last automatic backup" line and a red banner if the last run failed. When any of the three env vars is set, the fields turn read-only and pick up a lock badge; saves from the UI return `409 ENV_LOCKED`.
+Admin only, under **Settings, Backup**. The tile shows the current schedule, the time-of-day input, and retention count, plus a "Last automatic backup" line and a red banner if the last run failed. From each app's next release, the time is on the clock of the browser that set it, its time zone shows under it, and **Next** shows when the server will actually run it. A schedule set before that release keeps running in the container's time zone until you tap **Use My Time Zone** or pick the time again; the tile says so when the two differ. When any of the three env vars is set, the fields turn read-only and pick up a lock badge; saves from the UI return `409 ENV_LOCKED`.
 
 Two implications:
 

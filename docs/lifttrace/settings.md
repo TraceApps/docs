@@ -107,7 +107,7 @@ Inline block near the top of Settings on the native app. Shows Connected, URL, L
 ### Backup and restore
 
 - **Full backup** create, download, restore, delete, upload-restore (server mode only, admin).
-- **Auto-backup schedule** off / daily / weekly / monthly plus time and retention count (all modes).
+- **Auto-backup schedule** off / daily / weekly / monthly plus time and retention count (all modes). From the next release the server schedule's time is on the clock of the browser that set it, with its time zone shown; see [Scheduled backups](../self-hosting/scheduled-backups.md).
 - **Clear all settings** wipes preferences (destructive).
 - **Clear all data** wipes workouts and body stats (destructive).
 

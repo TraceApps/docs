@@ -126,7 +126,7 @@ All `USER_PREFS`. On Android, delivery is via native WorkManager (`ReminderWorke
 
 ## Backup and Restore
 
-**Full Backup** (admin only): create, list, download, restore in-place, upload-and-restore, schedule. Backups are ZIPs of DB + uploads under `BACKUPS_PATH` (defaults inside the uploads volume). OFF local mirror is deliberately excluded.
+**Full Backup** (admin only): create, list, download, restore in-place, upload-and-restore, schedule (its time is on the clock of the browser that set it, with the time zone shown, from the next release; see [Scheduled backups](../self-hosting/scheduled-backups.md)). Backups are ZIPs of DB + uploads under `BACKUPS_PATH` (defaults inside the uploads volume). OFF local mirror is deliberately excluded.
 
 **Local Full Backup** (Android): offline `.zip` with embedded image files for phone-to-phone transfer with no server involved.
 
