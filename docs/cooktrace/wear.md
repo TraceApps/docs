@@ -37,7 +37,7 @@ Only the first install needs adb (step 1 above).
 
 **Ingredients and steps.** Open a cook for its ingredients and its method, each as a checklist. Ticking is shared with the phone, so a step you marked on one is marked on the other.
 
-**Timers.** A step that mentions a time offers a timer for it, and the watch runs up to eight at once, a pan and an oven. The watch buzzes at the end with a real alarm, so it happens with the app long gone from the screen, and says which dish it was rather than buzzing about nothing.
+**Timers.** A step that mentions a time offers a timer for it (in the same seven languages the phone reads), and the watch runs up to eight at once, a pan and an oven. The watch buzzes at the end with a real alarm, so it happens with the app long gone from the screen, and says which dish it was rather than buzzing about nothing.
 
 **The timer face.** One timer running gives you the whole screen: a ring that empties as the time goes, the time left, and `+1`, `+5` and Stop. Several gives you the list, soonest first, each in its own color; tapping one opens it. Tapping never stops a timer, so a mis-tap can't throw away a braise.
 

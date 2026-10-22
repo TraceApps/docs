@@ -19,7 +19,7 @@ Tap into a recipe and the view lays out in three columns above 1280px, two betwe
 
 Tap **Cook Mode** to enter a distraction-free view with larger type. The Screen Wake Lock keeps the display on, and re-acquires when you tab away and come back. Ingredient and step checkboxes are device-local by design (they live in `localStorage` as `ct:checks:<recipeId>:ing|step`), so ticking off "onions" on your phone doesn't tick them off on the tablet mounted above the stove.
 
-An embedded timer rail sits inline in the cook-mode bar. Duration mentions in step text (things like "simmer for 15 minutes") get parsed into inline **timer chips** you can tap to start. Running timers persist across reloads via the `cookTimers` store, ring a WebAudio chime plus a browser notification, and let you snooze or add a minute from the floating pill.
+Times in step text ("simmer for 15 minutes", "1 hora y media", "1h30") become **timer chips** you tap to start, in seven languages whatever language the app is in, and Cook Mode's **Timer** buttons start one for any length. Running timers stay through a reload and let you add a minute or stop from the floating pill. In the Android app the phone rings them itself, through the lock screen and with the app closed, with +1 Min and Stop in the notification shade. [Timers](recipes.md#timers).
 
 When you're done, tap **Log this cook** to write a Cook Log entry with date, meal type, per-cook rating, optional notes, and up to a few photos.
 

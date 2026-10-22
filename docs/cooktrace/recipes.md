@@ -25,7 +25,7 @@ Rest is its own slot (bread proof, marinade, dough chill) so it rolls into Total
 
 ### Per-step photos and rich text
 
-Each step has a camera button that attaches a photo taken or picked on device. In step text, `**bold**`, `*italic*`, and `__underline__` render inline. Duration mentions ("15 minutes", "1h 20m") get parsed into inline timer chips you can tap to start; parsing lives in `src/lib/parseTimes.js`.
+Each step has a camera button that attaches a photo taken or picked on device. In step text, `**bold**`, `*italic*`, and `__underline__` render inline. Times written in a step become timer chips you tap to start (see [Timers](#timers)).
 
 ## Live recipe scaling
 
@@ -47,6 +47,18 @@ Custom units are addable per user under Manage > Units. Built-in units can be di
 Cook Mode is a distraction-free view with larger type, sticky ingredients, and the timer rail inline. It requests the **Screen Wake Lock** so the display stays on, and re-acquires the lock on `visibilitychange` when you tab back in.
 
 Ingredient and step checkboxes persist to `localStorage` as `ct:checks:<recipeId>:ing|step` and are **intentionally device-local**. Different devices at different stations (phone at the counter, tablet above the stove) keep independent progress.
+
+### Timers
+
+Times written in a step ("simmer for 15 minutes", "1h 20m") become timer chips you tap to start. They're found in English, Spanish, French, Italian, German, Swedish and Russian, whatever language the app is in, since a recipe is written in its cook's language: "1 hora y 30 minutos", "1h30", "20 bis 25 Minuten", "полчаса", "an hour", "half an hour". A range starts on its lower end, so you check early rather than late. The watch finds the same times from the same list of words.
+
+For a time the step doesn't write down, Cook Mode has a **Timer** button at the top, and each step a **Timer** of its own. Either opens a picker with quick picks (1 minute to 1 hour 30) and a keypad that fills in from the right, as a phone's Clock does: 1, 3, 0 is 1:30. A step's Timer starts on the step's first time and is named for the step; a keyboard can type the time too. Timers run up to 24 hours.
+
+Running timers follow you around the app in a pill at the top, with +1 and a close button, and stay through a reload.
+
+**In the Android app** the phone rings each timer itself, so it rings with the screen locked, the app closed, or the phone restarted. While it counts, it sits in the notification shade with **+1 Min** and **Stop**; at the end, "Timer Done" sounds as an alarm until you stop it, there or in the app. The app follows whatever you press in the shade. The first timer asks to allow notifications; with them turned off the phone can only sound once, so allow them. The alarm sound and the two kinds of notification (**Cook Timers** while counting, **Timer Alarms** at the end) can be changed in Android's settings for CookTrace.
+
+**In a browser** a timer rings in the page with a chime, and with notifications allowed, a "Timer Done" notification that opens CookTrace when tapped. It rings on time in a background tab too. A browser that has put the tab to sleep (a phone's browser after a while in the background) can't ring it until the tab is back; for that, use the Android app.
 
 ## Cook log
 
