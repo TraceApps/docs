@@ -86,7 +86,7 @@ Setting any of these puts the container in "env-configured backup" mode; the adm
 
 ## What is NOT NutriTrace-specific
 
-For reference, these are the shared cross-Trace-app env vars covered on the [Environment reference](../self-hosting/env-vars.md) page and not repeated here: `DB_PATH`, `UPLOADS_PATH`, `PORT`, `BASE_URL`, `PUBLIC_URL` (also the app's own address when, from the next release, the server refuses changes sent from other sites' pages; see [If changes are refused](../getting-started/reverse-proxy.md#cross-site-refused)), `LOG_LEVEL`, `NODE_ENV`, `JWT_SECRET`, `TOKEN_ENC_KEY`, `RECOVERY_TOKEN`, `INSECURE_COOKIES`, `MAX_SESSION_HOURS`, `SMTP_*`, `OIDC_*`.
+For reference, these are the shared cross-Trace-app env vars covered on the [Environment reference](../self-hosting/env-vars.md) page and not repeated here: `DB_PATH`, `UPLOADS_PATH`, `PORT`, `BASE_URL`, `PUBLIC_URL` (also the app's own address when, from the next release, the server refuses changes sent from other sites' pages; see [If changes are refused](../getting-started/reverse-proxy.md#cross-site-refused)), `LOG_LEVEL`, `NODE_ENV`, `JWT_SECRET`, `TOKEN_ENC_KEY`, `RECOVERY_TOKEN`, `INSECURE_COOKIES`, `FRAME_ANCESTORS`, `MAX_SESSION_HOURS`, `SMTP_*`, `OIDC_*`.
 
 ## Related
 

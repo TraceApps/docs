@@ -237,6 +237,10 @@ If you use the Android or Wear OS app, leave all of `/api/` open, not only `/api
 
 For CookTrace, use `r|api/r` in place of `n|api/n`.
 
+## Showing an app inside a dashboard { #frame-ancestors }
+
+From each app's next release, an app refuses to be shown inside a frame by another site, so no page can frame it to trick a click. If you show it inside a dashboard (Homarr, Organizr, Home Assistant), it shows blank after that update until you set `FRAME_ANCESTORS` to the dashboard's address, for example `FRAME_ANCESTORS=https://home.example.com`. Origins only; a path is ignored. If your proxy already sets its own `frame-ancestors` for the dashboard, the app needs `FRAME_ANCESTORS` too, since the browser follows both. See [Environment reference](../self-hosting/env-vars.md).
+
 ## The Android app behind a sign-in proxy { #android-behind-a-login }
 
 A proxy that asks for its own login in front of the app (Authelia, an Authentik proxy outpost, VoidAuth, Cloudflare Access) stops the Android and Wear OS apps too: they can't sign in to the proxy, only to the app. Let `/api/` through to the app without the proxy's login and keep the rest behind it if you like. The app's own sign-in still protects everything under `/api/`, and SSO keeps working, since its callback (`/api/auth/oidc/`) is under `/api/` too.
