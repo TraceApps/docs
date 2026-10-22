@@ -15,7 +15,7 @@ Both endpoints require a valid session (JWT `Authorization: Bearer` header for t
 
 Every sync round pushes local changes first, waits for the server to acknowledge them, then pulls whatever the server has that is newer. Doing it in that order means the server has already absorbed the client's latest writes before it decides what to return, so the pull never sees a stale view of "what changed" that would trigger a redundant round trip.
 
-The client runs a round on a 30-second background timer and again whenever the app returns to the foreground (`visibilitychange`). You can force one from Settings if you want an immediate reconciliation.
+The client runs a round on a 30-second background timer and again whenever the app returns to the foreground (`visibilitychange`). In CookTrace (from its next release) the timer runs only while the app is on screen, and a round with nothing new to send or fetch does almost no work. You can force one from Settings if you want an immediate reconciliation.
 
 ## Last-write-wins, inclusive boundary
 

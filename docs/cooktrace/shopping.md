@@ -14,11 +14,13 @@ Drag any row inside its group to reorder. Cross-group drag (drop a row into a di
 
 ### Combined items
 
-In **By Aisle** and **Flat**, rows with the same name and unit show as a single row. Add Pancakes and Bread and you get one "Flour 3 cup" row with a pill for each recipe, instead of two Flour rows. The amounts are added up; if any of them has no amount, the combined row shows none rather than a wrong total. Different units stay separate, so "2 cup flour" and "200 g flour" are two rows.
+Adding a recipe whose ingredient is already on the list adds to that item (from the next release): add Pancakes and Bread and you get one "Flour 3 cup" item that remembers how much each recipe wants. Amounts in units of one kind add up (1 cup and 120 ml of milk); ones that can't (cups and grams) stay separate items.
+
+In **By Aisle** and **Flat**, rows with the same name and unit also show as a single row, such as two Flour rows from before, or one you added by hand, with a pill for each recipe. The amounts are added up; if any of them has no amount, the combined row shows none rather than a wrong total.
 
 Checking, removing, dragging, or changing the aisle of a combined row applies to every row behind it. In **Edit**, changing only the name or unit updates them all and keeps each recipe's own amount; changing the amount folds them into one row with the new amount.
 
-**By Recipe** doesn't combine anything, so each recipe still shows its own rows, and the recipe block's trash icon removes only that recipe's share. The list is stored one row per recipe either way; combining only changes how it's shown.
+**By Recipe** shows an item under the recipe that added it first. The recipe block's trash icon takes out only that recipe's share: an item another recipe also wants stays, with that recipe's amount, and moves to its block.
 
 ## Checked-item behavior
 
@@ -49,7 +51,7 @@ Tap an item's name to open it:
 
 ## Add from a recipe
 
-Long-press a recipe card and choose **Add to Shopping List**, or use **Add from Recipe** in the Shopping page's add menu. Every ingredient goes on your list, stamped with `recipe_id` so the By-Recipe view can badge the block and so the small trash icon on that block can wipe all of that recipe's rows in one shot (`DELETE /api/shopping/by-recipe/:id`).
+Long-press a recipe card and choose **Add to Shopping List**, or use **Add from Recipe** in the Shopping page's add menu. Every ingredient goes on your list, added to an item that's already there. The By Recipe view groups the list by recipe, and the trash icon on a recipe's block takes that recipe's share off the list in one go (`DELETE /api/shopping/by-recipe/:id`).
 
 The picker's **Only add items I don't have in pantry** toggle (on by default) uses each ingredient's pantry link plus the item's `in_stock` value to skip anything you already have. Turn it off to force the full ingredient list onto the shopping list regardless of stock. See [Pantry](pantry.md) for how stock tracking works.
 

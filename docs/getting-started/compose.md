@@ -163,7 +163,7 @@ None of the images include a built-in healthcheck. If you want one, add it yours
       retries: 3
 ```
 
-Adjust the port for the app: NutriTrace `3001`, LiftTrace `3002`, CookTrace `3003`, NoteTrace `3004`. The `/api/health` endpoint returns `200 OK` with a short JSON body once the app finishes booting.
+Adjust the port for the app: NutriTrace `3001`, LiftTrace `3002`, CookTrace `3003`, NoteTrace `3004`. The `/api/health` endpoint returns `200 OK` with a short JSON body once the app finishes booting. CookTrace (from its next release) answers before its first account exists too, with `setup_required: true`, so the healthcheck passes from the first start, and its Android app says to open the server in a browser and create that account first.
 
 ## First-boot verification
 
