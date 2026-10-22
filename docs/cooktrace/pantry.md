@@ -81,11 +81,13 @@ The result pre-fills a new pantry entry, which you can accept, tweak, or discard
 
 ## Open Food Facts
 
-Free, no key. Enable under Settings > Connected Services > Open Food Facts. Optional fields:
+Free, no key. Enable under Settings > Food Sources > Open Food Facts. Optional fields:
 
 - **Search Language** and **Search Country** for locale-appropriate results.
 - **Upload Country** for the "Share to OFF" flow.
-- **Account Username / Password**: needed only if you want to upload contributions back to OFF.
+- **Account Username / Password**: your own Open Food Facts account, needed for **Share to OFF**.
+
+**Share to OFF** in a pantry item sends an item that isn't in Open Food Facts yet, with its photo, under your name. It needs your own Open Food Facts account, which is free: create one at [openfoodfacts.org](https://world.openfoodfacts.org/), then enter its username (not your email) and password under **Settings > Food Sources > Open Food Facts**. Without them, Share to OFF says *Add your Open Food Facts account in Settings to share* and links there. The item goes through your CookTrace server (the Android app with no server sends it to Open Food Facts itself), and a wrong username or password, an item OFF refuses, or OFF being unreachable each get a plain message.
 
 v1.0.1 added an All-mode search that pulls from every regional OFF instance, source pinning, client-side tier filters, and the shared **quality signals** (origin-country flag + completeness dot on every OFF result). See [Food data quality signals](../reference/food-data-quality.md) for what each signal means and how to filter on it.
 
