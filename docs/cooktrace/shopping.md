@@ -61,9 +61,11 @@ In the Shopping page's add menu, **Add from Planned Cooks** asks for a date rang
 - The same ingredient from several recipes becomes one item. Names match regardless of case and plurals ("Tomatoes" and "tomato"), and amounts add up across units of one kind: 1 cup and 120 ml of milk become one amount, shown in the unit that reads best. Amounts that can't be added up (grams and cups, or cloves and pieces) stay as separate items.
 - Fractions, mixed numbers and ranges count: "1/2", "1 1/2", "½", and "4-5" (the larger number, so there's enough). A line without an amount ("salt, to taste") adds the item with no amount, without wiping out the amounts from other recipes.
 - Every item remembers which recipes and planned cooks it's for.
-- Building the list for the same range again updates it instead of adding everything twice. A cook taken off the plan, or moved out of the range, takes its share out, and an item only that cook needed leaves the list. An amount you typed into an item yourself stays. Items you've already checked off count as bought and aren't added back.
+- Building the list for the same range again updates it instead of adding everything twice. A cook taken off the plan takes its share out, and an item only that cook needed leaves the list. An amount you typed into an item yourself stays. Items you've already checked off count as bought and aren't added back.
 - An item that already exists on the list, added by hand or from a recipe, gets the plan's amounts added to it rather than a second row.
 - **Only add items I don't have in pantry** (on to begin with) leaves out ingredients whose linked pantry item is in stock.
+- A planned cook the list already holds from another range is counted once: one moved from one week to another isn't added twice.
+- After that, the list follows the plan by itself: editing or deleting a planned cook that's on the list, or marking it cooked, updates its share of what's on the list (see [Cook Diary](diary.md#week-view)).
 
 Adding a single recipe works the same way, except that each time adds again: you might cook it twice.
 
