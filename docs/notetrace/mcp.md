@@ -4,7 +4,7 @@ NoteTrace speaks the [Model Context Protocol](https://modelcontextprotocol.io), 
 
 This is separate from [Trace in NoteTrace](trace.md), which runs inside the app. The tools are the same ones Trace uses, with the same rules, so an agent can do what Trace can and nothing more.
 
-Off by default. Opt in with an env var and an API token.
+Off by default. Opt in with an env var and an API token. To let another app only add notes and tasks, without reading or changing anything, use a `notes:create` token with the [public REST API](public-api.md) instead (from the next release).
 
 ## Available tools
 
@@ -84,7 +84,7 @@ Restart Claude Desktop and ask "What's on my groceries list?" or "Add batteries 
 
 **A write tool is missing from the list.** Both the server's env var and the token scope are needed for its tier.
 
-**Settings, API Tokens isn't there.** It only appears for an admin on a server with user accounts.
+**Settings, API Tokens isn't there.** It only appears on a server with user accounts. Only an admin can give a token the MCP scopes.
 
 ## Related
 

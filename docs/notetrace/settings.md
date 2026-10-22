@@ -58,6 +58,10 @@ See [Trace in NoteTrace](trace.md).
 
 Link a CookTrace server with its address and an API token with the **shopping** scope, or unlink it. Linked, **Shopping** appears in the menu. Needs a NoteTrace server, so it's unavailable in Android local mode. See [CookTrace shopping list](cooktrace.md).
 
+### API Tokens (per-user)
+
+Your own personal access tokens (prefix `note_pat_`) for scripts, other apps, and the MCP endpoint, on a server with user accounts. Each account sees and revokes only its own tokens. Admins can give a token the MCP scopes; see [Model Context Protocol (MCP)](mcp.md). From the next release, any account can make a **notes:create** token, which lets another app add notes and tasks to that account through the [public REST API](public-api.md), and nothing else; until then, API Tokens is under Admin and only for admins.
+
 ## App
 
 ### Server Connection (Android)
@@ -106,10 +110,6 @@ Invite people, change roles, reset passwords, and remove accounts. Accounts are 
 ### Authentication
 
 Password policy, session length, and OIDC providers. See [OIDC / SSO overview](../auth/oidc.md).
-
-### API Tokens
-
-Personal access tokens (prefix `note_pat_`) for scripts and the MCP endpoint. See [Model Context Protocol (MCP)](mcp.md).
 
 ### Webhooks
 

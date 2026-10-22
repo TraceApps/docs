@@ -221,6 +221,7 @@ nav:
       - Import & export (Google Keep, Markdown): notetrace/import-export.md
       - Webhooks: notetrace/webhooks.md
       - Model Context Protocol (MCP): notetrace/mcp.md
+      - Public REST API: notetrace/public-api.md
       - Settings reference: notetrace/settings.md
       - Env vars (app-specific): notetrace/env-vars.md
   - NutriTrace:
