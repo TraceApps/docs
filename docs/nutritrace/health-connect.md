@@ -37,13 +37,24 @@ Open Health Connect and, under **App permissions**, grant your wearable app (Fit
 
 ### 4. Enable the source in NutriTrace
 
-Toggle **Health Connect** on under **Settings → Wellness**. The sync worker runs on the schedule you configure (`healthConnectSyncMode`, `healthConnectSyncInterval`, and the window fields). Force a sync from the ⟳ button on the Wellness card.
+Toggle **Health Connect** on under **Settings → Wellness**. The sync worker runs on the schedule you configure (`healthConnectSyncMode`, `healthConnectSyncInterval`, and the window fields). Force a sync from the ⟳ button on the Wellness card; on a past day, it reads that day (see [Past days and catch-up](#past-days-and-catch-up)).
 
 ## Data flow
 
 Health Connect reads happen on the phone. The worker packages the readings and pushes them to your NutriTrace server as regular `wellness_data` rows with `source='health_connect'`. On desktop and other devices, those rows are available exactly as if any other wearable had produced them: the Wellness dashboard, `/api/wellness/latest`, and the AI's `get_wellness_data` tool all see them.
 
 In local-only Android mode (no server configured), the same reads go into the on-device SQLite mirror instead. Wellness data is available on the phone, just not synced anywhere.
+
+## Past days and catch-up
+
+Data often reaches Health Connect late: a watch that syncs the next morning, a night of sleep you edit a day later, a phone that was off for a few days. NutriTrace reads past days too, and each day's values go to that day: steps and calories for the day, the latest weight and heart-rate readings taken that day, and a night of sleep on the day you woke up.
+
+- **The first time** NutriTrace reads Health Connect (or the first time after updating), it reads the **last 30 days**. That's all Health Connect lets an app read from before you gave it access, so older history can't come in this way.
+- **After that**, the app catches up on the **last 7 days** at most once an hour: when it syncs with your server (as it opens, when it comes back to the front, or when you tap Sync), when you tap Sync on the Wellness page or in **Settings → Wellness**, and in the hourly background sync whenever Health Connect lets it read. Without a server, open the Wellness page or tap Sync there. If the app was away for longer than a week, it reads back to the last day it covered, up to 30 days.
+- **The sync every 30 seconds** while the app is open and connected to your server reads today only.
+- **To pull in a past day right away**, open that day on the Wellness page and tap the Health Connect sync button.
+
+Only values that changed are sent to your server, so reading a day again costs nothing when nothing in it changed. A value deleted in Health Connect is not removed from NutriTrace.
 
 ## Cross-source priority
 
