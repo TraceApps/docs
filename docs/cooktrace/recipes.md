@@ -59,7 +59,11 @@ Log a cook from Cook Mode or from the recipe view. Each entry has:
 - Optional photos.
 - **Made From**: the version of the recipe it was made from (see [History](#history)). It's the recipe as it is when you log the cook; a cook logged for an earlier day takes the version the recipe had that day. If an older version was restored since then, the day can't tell which it was, so the cook asks you to choose. Change it when you logged the cook first and then edited the recipe to say what you really did.
 
-The recipe view shows a **per-recipe cook history** so you can flip back to what you tweaked last time; each cook's **Made With Version 3** opens the recipe as you made it. `last_cooked_at` and cook count roll up on the card.
+The recipe view shows a **per-recipe cook history** so you can flip back to what you tweaked last time; each cook's **Made With Version 3** opens the recipe as you made it. It lists what you've cooked; planned cooks aren't in it until they're marked cooked. `last_cooked_at` and cook count roll up on the card.
+
+## Plan a cook from the recipe
+
+**Plan**, next to **I Cooked This**, plans the recipe without leaving it: pick the day (or **Any Day That Week**), the meal and how many it's for, the same as the Diary's [Plan a Cook](diary.md). The next plan for the recipe then shows under the buttons ("Planned for Thursday · Dinner", and how many more), and tapping it opens that week in the Diary, where you can move a plan, mark it cooked or delete it. **I Cooked This** on a day the recipe was planned marks that plan cooked, as the Diary's **Mark as Cooked** does, so it doesn't stay behind as still to cook. On a phone, Start Cooking, I Cooked This and Plan sit side by side as three tiles.
 
 ## History
 
@@ -126,7 +130,7 @@ Card image: `GET /api/recipes/:id/card.png` returns a server-rendered Pinterest-
 
 ## Long-press and print
 
-Long-press any recipe card for a menu: Open Recipe, Add to Favorites, Add to Cookbook, Create Share Link, Plan a Cook (the Diary's planner, with this recipe picked), Add to Shopping List, Duplicate, Share Card, Select Multiple, and Delete. The recipe view has a print stylesheet via `@media print` that strips chrome, sidebars, and interactive controls for a clean paper copy.
+Long-press any recipe card for a menu: Open Recipe, Add to Favorites, Add to Cookbook, Create Share Link, Plan a Cook (plans it right there, without leaving the list), Add to Shopping List, Duplicate, Share Card, Select Multiple, and Delete. The recipe view has a print stylesheet via `@media print` that strips chrome, sidebars, and interactive controls for a clean paper copy.
 
 ## Comments
 
