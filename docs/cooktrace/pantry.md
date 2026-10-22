@@ -101,6 +101,8 @@ A recipe that uses the item picks these up, so a gluten-free flour linked to the
 
 Optional. Grab a free API key from `https://fdc.nal.usda.gov/api-key-signup`, paste it into Settings > Connected Services > USDA. Results carry a **data-type badge** (Foundation, SR Legacy, Branded, Survey (FNDDS), Experimental) so you can tell what kind of entry you are picking. Per-user, so different household members can use different keys or none at all. See [Food data quality signals](../reference/food-data-quality.md) for how to read the badges.
 
+Items are saved per 100 g (100 ml for drinks), the way USDA gives every value. To bring an item added from USDA up to date, tap **Edit** on it and then **Refresh from USDA**, under the barcode. It needs USDA turned on with your API key, and a connection. It fills the item's nutrition and serving from USDA the way Refresh from OFF does, and nothing is saved until you tap Save. Earlier versions saved an item added from USDA with a serving size other than 100 g with wrong values ([nutritrace#290](https://github.com/TraceApps/nutritrace/issues/290)); Refresh from USDA, or adding the item again, fixes it; a recipe's saved nutrition picks up the new values when it's calculated again.
+
 ## Pantry categories
 
 Server-managed per user. Fifteen defaults seed on first boot (`server/db.js:506`), each with an icon, color, and **default aisle**. The shopping list uses `default_aisle` to auto-populate an item's aisle when you send ingredients from a recipe.

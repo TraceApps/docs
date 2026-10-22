@@ -25,6 +25,12 @@ FoodData Central is the USDA's public nutrition database: Foundation Foods, SR L
 
 A **USDA** source chip appears at the top of the Foods picker. Tap it to scope search to USDA, or long-press to combine with other sources (Local / OFF / Mealie / From Others). Each result row carries a **data-type badge** (Foundation / SR Legacy / Survey / Branded / Experimental) so you can prefer higher-quality entries. A **USDA data type** tier filter narrows the list further; entirely client-side, no extra API calls. See [Food data quality signals](../reference/food-data-quality.md) for what each data type actually means and when to prefer which.
 
+### Values per 100 g
+
+A food added from USDA is saved per 100 g (100 ml for drinks), the way USDA gives every value; the label's serving size isn't used to scale them. To bring a food you added from USDA up to date, open it in the food editor and tap **Refresh from USDA**, under the barcode. It works like Refresh from OFF: it updates the nutrition values USDA has, converted to the food's portion, keeps your name and brand, and nothing is saved until you tap Save. It needs your USDA key and a connection.
+
+Earlier versions saved a food added from USDA with a serving size other than 100 g with wrong values ([#290](https://github.com/TraceApps/nutritrace/issues/290)). Refresh from USDA, or adding the food again, fixes it. Diary entries already logged keep their values, and a saved meal or recipe that uses the food keeps the old ones until you add the food to it again.
+
 ### When USDA beats OFF
 
 - **Generic ingredients** ("chicken breast, raw", "oatmeal, dry", "olive oil"): USDA's Foundation and SR Legacy entries are peer-reviewed with full micronutrient coverage. OFF's generics tend to be thinner.
