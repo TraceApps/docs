@@ -21,6 +21,9 @@ The client runs a round on a 30-second background timer and again whenever the a
 
 Conflict resolution is `updated_at`-based. If the same row exists on both sides, whichever side has the later `updated_at` wins. Every mutable table carries an `updated_at` column and every write bumps it.
 
+!!! note "CookTrace: the newer edit, field by field (from 1.4.1)"
+    CookTrace keeps the newer edit of each field rather than the newer row, and doesn't depend on a phone's clock being right. An edit made offline in the Android app or in the browser no longer overwrites a newer change made on another device to a recipe, a pantry item, the shopping list, a category, a custom unit, a cookbook or the diary. Changes to different fields are both kept: an item checked off on the phone and renamed on the web keeps both. Fields that belong together, such as an amount and its unit, stay together. Cook counts follow the cook diary. Older versions of the app sync as before, and a recipe copy they replace is kept as an [earlier version](../cooktrace/recipes.md#earlier-versions).
+
 The pull boundary is **inclusive**: rows where `updated_at >= since` come back, not strict-greater. This is deliberate. SQLite's `datetime('now')` is 1-second precision, so an exclusive `>` boundary silently drops any row written in the same second as the previous `server_time`. The client's upsert is idempotent, so an inclusive boundary is safe: you might see the same row twice across two rounds, but you never lose one.
 
 ## Foreign-key translation

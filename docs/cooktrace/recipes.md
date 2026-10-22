@@ -27,6 +27,12 @@ Rest is its own slot (bread proof, marinade, dough chill) so it rolls into Total
 
 Each step has a camera button that attaches a photo taken or picked on device. In step text, `**bold**`, `*italic*`, and `__underline__` render inline. Duration mentions ("15 minutes", "1h 20m") get parsed into inline timer chips you can tap to start; parsing lives in `src/lib/parseTimes.js`.
 
+## Earlier versions
+
+When two devices change the same part of a recipe (say, the steps on your phone offline and in the browser), the newer edit stays and the other isn't lost (from 1.4.1). The recipe page says **Two devices edited this recipe. The older edit is kept as an earlier version.**, with **View** and **Dismiss**.
+
+**Earlier Versions** lists each copy kept: why it was kept (**Kept from a sync**, **Kept before a restore**, **Kept before a later save**, or someone's edit in a shared kitchen), **Differs in** (Title, Ingredients, Steps, Notes, Category, Photo, Nutrition, Details), and **Preview**, which shows its ingredients and steps. **Restore** asks **Restore This Version?** and makes it the recipe again; the recipe you had is kept as an earlier version, so a restore can be undone the same way. A kitchen member sees the earlier versions that were their own edits.
+
 ## Live recipe scaling
 
 Chips above the ingredient list let you scale ×0.5 / ×1 / ×2 / ×3, or set a custom serving count. Quantities re-render as clean mixed fractions (`¼ cup`, `1½ tsp`) using the snapper in `src/lib/qty.js`, which picks cooking-friendly denominators (halves, quarters, thirds, eighths). Scaling is view-only; the saved recipe is untouched.

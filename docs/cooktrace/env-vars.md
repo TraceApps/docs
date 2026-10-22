@@ -30,6 +30,8 @@ All off by default.
 | `PUBLIC_API_WRITE_ENABLED` | `0` | Also turns on its write routes. Needs `PUBLIC_API_ENABLED`. |
 | `WEBHOOKS_ENABLED` | `0` | Turns on outgoing [webhooks](webhooks.md). |
 | `ALLOW_PRIVATE_WEBHOOK_URLS` | `0` | Lets a webhook target a private or loopback address (a Home Assistant container on the same Docker network, for example). Link-local and cloud-metadata addresses stay blocked. |
+| `ALLOW_PRIVATE_RECIPE_URLS` | `0` | Lets every account import a recipe from a link on your own network (a LAN Mealie, say). An admin may; other accounts, and a single-user install (which has no sign-in), only with this set. |
+| `ALLOW_PRIVATE_AI_URLS` | `0` | Lets smart import use an AI address on your own network that an account set itself (an Ollama on the LAN). An admin may; other accounts, and a single-user install (which has no sign-in), only with this set. The server's own AI (`AI_*` variables) never needs it. |
 
 ## Path convenience (Docker compose only)
 
@@ -42,7 +44,7 @@ All off by default.
 
 | Env var | Default | Purpose |
 | --- | --- | --- |
-| `APP_ORIGIN` / `PUBLIC_URL` | (unset) | Used by `server/lib/push-notify.js` to build absolute links inside push messages (so tapping a notification lands on the right host). Set to your public URL if you use push. |
+| `APP_ORIGIN` / `PUBLIC_URL` | (unset) | The address in links: push messages, and (`PUBLIC_URL`, from 1.4.1) password reset, invite and sharing emails. Set to the full address people open CookTrace at. |
 
 ## Not env vars but adjacent
 
