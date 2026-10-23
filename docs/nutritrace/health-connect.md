@@ -39,6 +39,10 @@ Open Health Connect and, under **App permissions**, grant your wearable app (Fit
 
 Toggle **Health Connect** on under **Settings → Wellness**. The sync worker runs on the schedule you configure (`healthConnectSyncMode`, `healthConnectSyncInterval`, and the window fields). Force a sync from the ⟳ button on the Wellness card; on a past day, it reads that day (see [Past days and catch-up](#past-days-and-catch-up)).
 
+### 5. Allow reading in the background
+
+When you turn Health Connect on, NutriTrace also asks to **access data in the background**. With it, the hourly background sync reads Health Connect while NutriTrace is closed, so the day's values reach your server without opening the app. Without it, Health Connect only answers NutriTrace while the app is open: everything still syncs, just when you open the app. **Settings → Wellness → Background Sync** says when background reading isn't allowed and has an **Allow** button; you can also change it in Health Connect under **App permissions → NutriTrace**. On a phone whose Health Connect can't read in the background, Settings says so and the app reads while it's open.
+
 ## Data flow
 
 Health Connect reads happen on the phone. The worker packages the readings and pushes them to your NutriTrace server as regular `wellness_data` rows with `source='health_connect'`. On desktop and other devices, those rows are available exactly as if any other wearable had produced them: the Wellness dashboard, `/api/wellness/latest`, and the AI's `get_wellness_data` tool all see them.
@@ -50,7 +54,7 @@ In local-only Android mode (no server configured), the same reads go into the on
 Data often reaches Health Connect late: a watch that syncs the next morning, a night of sleep you edit a day later, a phone that was off for a few days. NutriTrace reads past days too, and each day's values go to that day: steps and calories for the day, the latest weight and heart-rate readings taken that day, and a night of sleep on the day you woke up.
 
 - **The first time** NutriTrace reads Health Connect (or the first time after updating), it reads the **last 30 days**. That's all Health Connect lets an app read from before you gave it access, so older history can't come in this way.
-- **After that**, the app catches up on the **last 7 days** at most once an hour: when it syncs with your server (as it opens, when it comes back to the front, or when you tap Sync), when you tap Sync on the Wellness page or in **Settings → Wellness**, and in the hourly background sync whenever Health Connect lets it read. Without a server, open the Wellness page or tap Sync there. If the app was away for longer than a week, it reads back to the last day it covered, up to 30 days.
+- **After that**, the app catches up on the **last 7 days** at most once an hour: when it syncs with your server (as it opens, when it comes back to the front, or when you tap Sync), when you tap Sync on the Wellness page or in **Settings → Wellness**, and in the hourly background sync when reading in the background is allowed (see [step 5](#5-allow-reading-in-the-background)). Without a server, open the Wellness page or tap Sync there. If the app was away for longer than a week, it reads back to the last day it covered, up to 30 days.
 - **The sync every 30 seconds** while the app is open and connected to your server reads today only.
 - **To pull in a past day right away**, open that day on the Wellness page and tap the Health Connect sync button.
 
