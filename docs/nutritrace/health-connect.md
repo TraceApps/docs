@@ -41,7 +41,7 @@ Toggle **Health Connect** on under **Settings → Wellness**. The sync worker ru
 
 ### 5. Allow reading in the background
 
-When you turn Health Connect on, NutriTrace also asks to **access data in the background**. With it, the hourly background sync reads Health Connect while NutriTrace is closed, so the day's values reach your server without opening the app. Without it, Health Connect only answers NutriTrace while the app is open: everything still syncs, just when you open the app. **Settings → Wellness → Background Sync** says when background reading isn't allowed and has an **Allow** button; you can also change it in Health Connect under **App permissions → NutriTrace**. On a phone whose Health Connect can't read in the background, Settings says so and the app reads while it's open.
+When you turn Health Connect on, NutriTrace also asks to **access data in the background**. With it, the hourly background sync reads Health Connect while NutriTrace is closed, so the day's values reach your server without opening the app. Without it, Health Connect only answers NutriTrace while the app is open: everything still syncs, just when you open the app. Workouts, floors and water come through the same reader, which also runs once each time you open NutriTrace or bring it back to the front (not again within five minutes) and when you tap Health Connect Sync; Wellness refreshes when it's done. **Settings → Wellness → Background Sync** says when background reading isn't allowed and has an **Allow** button; you can also change it in Health Connect under **App permissions → NutriTrace**. On a phone whose Health Connect can't read in the background, Settings says so and the app reads while it's open.
 
 ## Data flow
 
