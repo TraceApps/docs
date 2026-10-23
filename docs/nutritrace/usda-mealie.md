@@ -99,6 +99,8 @@ When you pick a CookTrace recipe from the picker, NutriTrace opens the Recipe ed
 
 - **Name, servings, image** copied from CT.
 - **Ingredients** as one editor row per CT ingredient, with the per-ingredient nutrition snapshot CookTrace stores when the ingredient is linked to a pantry item. Ingredients without a pantry link come in as loose rows for you to link on the NT side.
+
+    From the next release, with an updated CookTrace, each ingredient comes with the values for its amount in the recipe (250 g of flour counts as 250 g, not as its 100 g pantry serving). An amount CookTrace can't convert, such as a pinch, comes in at its pantry serving with a note: **CookTrace couldn't convert a pinch. Edit the amount.** Editing the amount clears the note. A recipe imported before this shows **CookTrace has newer content** when you open it; tap **Refresh** to correct its values. An older CookTrace imports as before.
 - **Rollup totals** from CT's most recent Recompute (empty if the recipe was never Recomputed; run NT's own Recompute after import to fill from the NT foods library).
 
 Save the recipe and it appears in NT's Recipes catalog with a **From CookTrace** badge and a back-link to the original recipe on CookTrace. Re-pulling and saving again updates the same row rather than duplicating, so edits on CookTrace flow through with one pick + save.

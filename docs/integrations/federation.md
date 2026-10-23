@@ -25,6 +25,7 @@ Scopes today (across both apps):
 - `read:recipes` (CT). Read a user's recipes catalog. NutriTrace needs this to pull CT recipes into its Foods search.
 - `write:workouts` (NT). Log workouts into a user's wellness history. LiftTrace needs this.
 - `write:activity`, `write:body-measurements` (NT). External trackers and headless integrations.
+- `read:body-measurements` (NT, from the next release). Read a user's weight and body-composition readings, each source kept separate.
 - `shopping` (CT). List, add to, check off, and clear a user's shopping list. NoteTrace needs this for its Shopping page and Send to CookTrace.
 
 Tokens are per-user (not per-instance): the token identifies which account the calls act on. If two family members share one instance and both want federation, they each mint their own token.

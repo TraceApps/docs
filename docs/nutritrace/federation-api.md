@@ -33,6 +33,7 @@ Multiple scopes today, gated per-endpoint. Tokens can hold any combination.
 | `write:workouts` | Post workouts into the token owner's wellness history (Settings → Wellness → Workout History) | LiftTrace |
 | `write:activity` | Log manual activity entries into the diary Activity section | External trackers, headless integrations |
 | `write:body-measurements` | Push scale readings into the diary's body-stats | Home Assistant, Node-RED, Gadgetbridge |
+| `read:body-measurements` | Read the token owner's weight and body-composition readings (from the next release) | Dashboards, other apps |
 
 Adding unknown scopes at token-creation time is silently dropped (forward-compat for clients written against a future NT). A token with no valid scopes is rejected.
 
@@ -198,6 +199,29 @@ Returns:
 ```
 
 `updated: true` means the row was matched by `external_id` and updated in place; `false` means a new entry was inserted.
+
+### `GET /api/v1/body-measurements`
+
+**Requires scope:** `read:body-measurements` (from the next release). The Public API doesn't need to be on.
+
+Reads the token owner's weight and body-composition readings. Optional query parameters: `start`, `end` (inclusive `YYYY-MM-DD`) and `source`. With neither date, it returns the last 90 days ending today; with one, the other side stays open.
+
+Each reading keeps its own `source`. Without `source`, readings from different sources on the same date come back separately, so don't assume one per date; nothing is merged or averaged. A metric that wasn't recorded is left out, not sent as `null`. With nothing in range, `measurements` is `[]` and `count` is `0`.
+
+```json
+{
+  "start": "2026-07-25",
+  "end": "2026-07-25",
+  "measurements": [
+    {
+      "date": "2026-07-25",
+      "source": "health_connect",
+      "metrics": { "weight_kg": 68.4, "body_fat_pct": 15.2 }
+    }
+  ],
+  "count": 1
+}
+```
 
 ## Rate limits
 
