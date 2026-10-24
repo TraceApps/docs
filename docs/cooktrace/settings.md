@@ -52,6 +52,7 @@ The setup wizard asks the same question (**Who Do You Cook For?**), and you can 
 ## Nutrition (per-user)
 
 - **Visible Nutriments**: pick which of the 41 nutriments in the catalog show inline on the Nutrition Facts box and the Pantry details sheet. Everything else still counts toward totals; this is a display filter. The catalog is the nutrients on a real Nutrition Facts label, in the order they appear on one: the US label first, and the EU label for what the US one lacks (that is why Starch sits under Carbs). Selenium, Copper, Manganese, Choline, Iodine, Pantothenic Acid and Starch are included, and Open Food Facts and USDA fill in each one they have a value for.
+- **Custom Nutrients**: track anything that is not on a label, such as Omega-3. Tap **Add custom nutrient**, give it a name and a unit (g, mg, mcg, IU, kcal, kJ or %), and it gets a field in the pantry item editor, the item's All Nutrients list and the recipe editor, and a row on the Nutrition Facts box when it has a value. It works the same way as in NutriTrace, and the list follows your account to your other devices. Totals from linked pantry items add custom nutrients up like any other. Removing a custom nutrient hides it; the values already saved on pantry items and recipes stay, and come back if you add the same name again.
 
 ## AI Assistant (per-user unless env-locked)
 
