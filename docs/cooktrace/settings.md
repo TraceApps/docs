@@ -51,7 +51,7 @@ The setup wizard asks the same question (**Who Do You Cook For?**), and you can 
 
 ## Nutrition (per-user)
 
-- **Visible Nutriments**: pick which of the 31 nutriments in the catalog show inline on the Nutrition Facts box and the Pantry details sheet. Everything else still counts toward totals; this is a display filter.
+- **Visible Nutriments**: pick which of the 41 nutriments in the catalog show inline on the Nutrition Facts box and the Pantry details sheet. Everything else still counts toward totals; this is a display filter. The catalog is the nutrients on a real Nutrition Facts label, in the order they appear on one: the US label first, and the EU label for what the US one lacks (that is why Starch sits under Carbs). Selenium, Copper, Manganese, Choline, Iodine, Pantothenic Acid and Starch are included, and Open Food Facts and USDA fill in each one they have a value for.
 
 ## AI Assistant (per-user unless env-locked)
 

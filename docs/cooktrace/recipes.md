@@ -124,7 +124,7 @@ It's a help, not a guarantee: it's worked out from ingredient names and pantry l
 
 ## FDA-style Nutrition Facts box
 
-The Nutrition column renders a full FDA-style label via `NutritionFactsBox.svelte`. Thirty-one nutriments in real label order, %DV column, sodium and salt auto-derived from each other (factor 400), servings and serving-size at the top. A per-user picker under Settings > Nutrition controls which rows the label shows inline; the rest still count for totals.
+The Nutrition column renders a full FDA-style label via `NutritionFactsBox.svelte`. Forty-one nutriments in real label order, %DV column, sodium and salt auto-derived from each other (factor 400), servings and serving-size at the top. A per-user picker under Settings > Nutrition controls which rows the label shows inline; the rest still count for totals.
 
 ### Auto-recompute from Pantry
 

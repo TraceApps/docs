@@ -57,6 +57,19 @@ Copy, share, and favorite behavior mirrors foods exactly.
 
 Custom nutrients live under `customNutriments` in your user settings.
 
+### Built-in nutrients
+
+The built-in list is the nutrients on a real Nutrition Facts label, in the order they appear on one. The US label (21 CFR 101.9) comes first. A nutrient the US label does not have follows the EU label instead, which is why Starch sits under Carbs.
+
+- **Macros:** Calories, Fat (Saturated, Trans, Polyunsaturated, Monounsaturated), Cholesterol, Sodium, Carbs (Fiber, Sugars, Added Sugars, Starch), Protein. Salt and Kilojoules are also available.
+- **Required vitamins and minerals:** Vitamin D, Calcium, Iron, Potassium.
+- **Voluntary vitamins and minerals:** Vitamin A, C, E, K, B1, B2, B3, B6, Folate (B9), B12, Pantothenic Acid (B5), Phosphorus, Iodine, Magnesium, Zinc, Selenium, Copper, Manganese, Choline.
+- **Other:** Caffeine, Alcohol.
+
+Only the rows you turn on show up in the food editor. Open Food Facts and USDA fill in every built-in they have a value for, including Starch, Selenium, Copper, Manganese, Iodine, Choline and Pantothenic Acid. Anything that is not on a label, such as Omega-3, is a custom nutrient.
+
+If you already made a custom nutrient with one of these names, such as Copper, it keeps its values and stays separate from the new built-in. Delete the custom one when you no longer need it.
+
 ## Import from Open Food Facts / USDA / Mealie
 
 Each source is a per-user toggle under **Settings → Connected Services**:
