@@ -33,7 +33,7 @@ CookTrace registers 21 tools that Trace can call in a single conversation, spann
 **Write**
 
 - `log_cook`: record that you cooked a recipe (date, meal type, rating, notes).
-- `plan_cook`: schedule a recipe for a future date, or for any day of that week (it waits in the Week view's tray until you pick a day). Without servings, it plans for who's home that day.
+- `plan_cook`: schedule a recipe for a future date, or for any day of that week (it waits in the Week view's tray until you pick a day). Servings are only set when you say how many; otherwise the plan has none and the list buys the recipe as written.
 - `add_to_shopping`: push items onto the shopping list.
 - `add_to_pantry`: create a pantry item.
 - `set_pantry_density`: set `g_per_cup` so nutrition can convert cross-family.

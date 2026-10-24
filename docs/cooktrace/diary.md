@@ -8,14 +8,14 @@ Rows grouped by date, 60 days back and 30 days forward by default. Each row show
 
 Add a cook or a plan from the **+** button: pick a recipe, date, and meal type (Breakfast / Lunch / Dinner / Snack, or unset). Notes and a per-cook rating are optional.
 
-**Plan a Cook** also asks for **Servings**, starting at the recipe's own. The Diary shows them on each planned cook, and [Add from Planned Cooks](shopping.md#add-from-planned-cooks) scales the recipe to them. **Plan a Cook** on a recipe card, and **Plan** on a recipe, open the same dialog for that recipe, without leaving the page.
+**Servings** are optional and never filled in: a plan has none unless you set them, with **Set Servings** (it starts on the recipe's own number; the close button takes it off again). With none, nothing shows on the plan and [Add from Planned Cooks](shopping.md#add-from-planned-cooks) buys the recipe as written; with some, the Diary shows them on the plan and the list scales the recipe to them. **Plan a Cook** on a recipe card, and **Plan** on a recipe, open the same dialog for that recipe, without leaving the page.
 
 ## Week view
 
 **Week**, next to List, Month and Photos, shows one week at a time, cooked and planned together. The arrows move a week back or forward, and tapping the dates returns to this week. Weeks start on Sunday or Monday, as your device's locale has them.
 
 - **Days behind you** show what you cooked: the photo, a Cooked badge and your rating.
-- **Today and the days ahead** show your planned cooks. Each has a servings stepper; the shopping list scales the recipe to it. A plan for today (or an earlier day still waiting) has **Mark as Cooked**.
+- **Today and the days ahead** show your planned cooks. One with servings set has a stepper, and the shopping list scales the recipe to it; to set or clear them, use **Edit Plan**. A plan for today (or an earlier day still waiting) has **Mark as Cooked**.
 - **A free day** has a **Plan a Cook** button that opens the planner on that date.
 - **Any Day This Week**: a cook planned with **Any Day That Week** waits in a tray above the days. Tap it and choose **Pick a Day** to give it one; marking it cooked dates it today when today is in its week. The week's shopping list includes it either way.
 - Tap a cook you made to open the recipe **as you made it**, at the version it was made from, with what has changed since (see [History](recipes.md#history)). Long-press any cook for As You Made It, Open Recipe, Mark as Cooked and Delete.
@@ -38,11 +38,11 @@ CookTrace doesn't know how much is left in a package, so Uses Up goes by use-by 
 - **Dinners** (starts at the number of free days left, up to five) and **Servings**.
 - **Use Expiring** favors recipes that use what's about to expire, **Not Cooked Lately** passes over what you cooked in the last week or two, and **Under 30 Min** keeps to quick recipes.
 
-With a [household](settings.md#household-per-user) set up, each dinner's servings are who's home that day (shown under the day; changing Servings sets them all), a recipe that's a problem for someone home that day is left out of that day, and one with an ingredient someone home doesn't like ranks lower and says so. A note says how many recipes were left out; **Include Them** brings them back, with their warnings showing.
+The Servings row sets every dinner's servings; left alone, they have none. With a [household](settings.md#household-per-user) set up, a recipe that's a problem for someone home that day is left out of that day, and one with an ingredient someone home doesn't like ranks lower and says so. A note says how many recipes were left out; **Include Them** brings them back, with their warnings showing.
 
 The picks are ranked by how much of each recipe is in your pantry, what it uses up, ingredients it shares with the other picks (one bunch of cilantro for two dinners), and how long since you cooked it. Recipes already planned that week aren't picked. Each says why ("Uses Avocados and Cilantro", "6 of 7 on hand", "Not cooked in 5 weeks"), and **Swap** brings the next best for that slot. The totals at the bottom (dinners, things to buy, expiring items used) update as you go. **Add to Week** plans them as dinners on the week's free days from today, in order; any more than there are free days go to Any Day This Week.
 
-Trace can do the same in a chat ("plan three dinners for next week"): its planning tool takes servings and can plan for any day of a week.
+Trace can do the same in a chat ("plan three dinners for next week"): its planning tool takes servings when you say how many, and can plan for any day of a week.
 
 ## Month calendar
 
@@ -53,7 +53,7 @@ Toggle to Month for a month grid with recipes as chips inside each cell. Its wee
 The typical week:
 
 1. Open the Diary's **Week** view and move to next week.
-2. Tap **Plan a Cook** on the days you want, or plan a few for **Any Day That Week**, and set the servings. With a household set up, servings start at who's home that day, and the recipe list warns about what's a problem for them.
+2. Tap **Plan a Cook** on the days you want, or plan a few for **Any Day That Week**, and set the servings if you want to cook for a different number than the recipe's. With a household set up, the recipe list warns about what's a problem for them.
 3. Tap **Build Shopping List** in the week's summary: every planned recipe's ingredients go on the list, scaled to each cook's servings and added up across recipes. Building it again after changing the plan updates the list rather than doubling it.
 4. During the week, tap **Mark as Cooked** as you go.
 
