@@ -21,7 +21,7 @@ Then add a webhook under **Settings, Webhooks** (admin, multi-user mode). Enter 
 | `checklist.completed` | The last unchecked item on a checklist is checked | `{ "note_id", "title" }` |
 | `reminder.fired` | A reminder occurrence comes due (once per occurrence of a repeat) | `{ "note_id", "title", "reminder_at", "repeat" }` |
 
-Imports don't fire `note.created`, so a large Google Keep import doesn't flood the receiver. Events go to webhooks owned by the note's owner.
+Imports don't fire `note.created`, so a large Google Keep import doesn't flood the receiver. Neither does **Upload**, when an Android app used without a server connects to one, nor a local backup restored into an Android app connected to a server: the notes they bring send no `note.created`, and a reminder of theirs already due (the phone showed it) doesn't come again; later ones do. Notes written afterwards fire as usual. Events go to webhooks owned by the note's owner.
 
 `reminder.fired` is sent by the server's reminder check, which runs every minute. `reminder_at` is the occurrence time in ISO 8601 UTC and `repeat` is `daily`, `weekly`, `monthly`, `yearly`, or `null`. It fires whether or not a push service is set up, which makes it a good trigger for smart-home announcements.
 

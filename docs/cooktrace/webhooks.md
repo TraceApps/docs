@@ -25,6 +25,8 @@ Events go to webhooks owned by the account that made the change. Re-checking an 
 
 Changes made in the Android app fire the same events once they sync to the server, so an event from the phone arrives when it next syncs rather than the instant you tap. Checking off several items in one go sends one `shopping_list.completed`, not one per item.
 
+What an Android app brings with it when it first connects to a server isn't something done now, and fires nothing: **Upload** sends no `meal.cooked` for the cooks in the phone's diary, including any it couldn't send that go up with the next sync, and neither does restoring a backup. A cook logged after connecting fires as usual.
+
 ## Target URLs
 
 A target must be `http` or `https`. Link-local and cloud-metadata addresses (such as `169.254.169.254`) are always refused. Private and loopback addresses are refused unless `ALLOW_PRIVATE_WEBHOOK_URLS=1` is set. Every address the host resolves to is checked, and the target is checked again right before each delivery, not only when you save it.
