@@ -71,19 +71,21 @@ Then `docker compose up -d` to recreate the container. `INSECURE_COOKIES=1` in `
 
 ## The Android apps
 
-**NutriTrace 1.5.0 and later** connect to a server on your own network over plain HTTP. Enter the `http://` address in the app, read **Connect Without Encryption?**, and choose **Connect Anyway**. The answer is kept for that server, and Settings, Server Connection shows **Not Encrypted** under the address. It works with:
+**NutriTrace, LiftTrace and CookTrace 1.5.0 and later, and NoteTrace 1.2.0 and later,** connect to a server on your own network over plain HTTP. Enter the `http://` address in the app, read **Connect Without Encryption?**, and choose **Connect Anyway**. The answer is kept for that server, and Settings, Server Connection shows **Not Encrypted** under the address. It works with:
 
 - a private IPv4 address: `10.x.x.x`, `172.16.x.x` to `172.31.x.x`, `192.168.x.x`;
 - a Tailscale address (`100.64.x.x` to `100.127.x.x`), loopback `127.x.x.x` or link-local `169.254.x.x`;
 - an IPv6 unique local (`fc00::/7`), link-local (`fe80::/10`) or `::1` address;
-- a one-word name, such as `http://nutritrace:3001`;
+- a one-word name, such as `http://nutritrace:3001` or `http://lifttrace:3002`;
 - a name ending in `.local`, `.home.arpa`, `.internal` or `.lan`.
 
 Any other `http://` address, a public domain or IP, is refused before the app sends anything. A one-word name is looked up on your network first, but a few one-word names are also public top-level domains (`ai`, `io`, `dev` and others), and one of those may resolve to a public server: give the server a name that isn't one, or a name ending in `.lan` or `.home.arpa`. Anyone on the same network can read and change plain-HTTP traffic, including your password, so use it only on your home network or over a VPN (Tailscale and WireGuard already encrypt the tunnel).
 
-Only the connection to your server can use plain HTTP. Everything else the app reaches itself still needs HTTPS: Open Food Facts, USDA, update checks, AI providers, pictures, and ntfy, Gotify or Apprise when the phone sends a push. Coming from a debug build that connected over plain HTTP, the app asks before it contacts the server again, and a saved `http://` server that isn't on your own network is refused.
+Only the connection to your server can use plain HTTP. Everything else the app reaches itself still needs HTTPS: Open Food Facts, USDA and recipe sites, update checks, AI providers, internet radio stations, pictures from elsewhere, and ntfy, Gotify or Apprise when the phone sends a push. Coming from a debug build that connected over plain HTTP, the app asks before it contacts the server again, and a saved `http://` server that isn't on your own network is refused.
 
-**CookTrace, LiftTrace and NoteTrace** still need HTTPS on Android: see [HTTPS on the LAN](../self-hosting/lan-https.md). Their APKs on GitHub Releases, `dev-latest` included, are signed release builds that refuse plain HTTP.
+The Wear OS apps (LiftTrace, CookTrace and NoteTrace) use plain HTTP only to the server the phone confirmed. The phone tells the watch the next time the app opens on it, after you choose **Connect Anyway**.
+
+Earlier versions of LiftTrace, CookTrace and NoteTrace need HTTPS on Android: see [HTTPS on the LAN](../self-hosting/lan-https.md).
 
 ## The proper fix
 

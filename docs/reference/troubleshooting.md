@@ -20,17 +20,17 @@ A running list of the failure modes that actually catch self-hosters out. Organi
 
 ### Android release APK will not connect to my LAN server
 
-**Symptom:** The web PWA loads fine from your laptop, but the release-signed Android APK refuses to connect. The error looks like a network timeout or an SSL handshake failure. NutriTrace 1.5.0 and later instead show **HTTPS Needed**, or ask **Connect Without Encryption?**
+**Symptom:** The web PWA loads fine from your laptop, but the release-signed Android APK refuses to connect. The error looks like a network timeout or an SSL handshake failure. NutriTrace, LiftTrace and CookTrace 1.5.0 and later, and NoteTrace 1.2.0 and later, instead show **HTTPS Needed**, or ask **Connect Without Encryption?**
 
-**Cause:** The CookTrace, LiftTrace and NoteTrace release builds ban cleartext (`http://`) traffic outright, through Android's network security config, enforced by the OS. NutriTrace's app from 1.5.0 allows plain HTTP only to a server on your own network (a private or Tailscale address, a one-word name, or a name ending in `.local`, `.home.arpa`, `.internal` or `.lan`), after a warning, and refuses any other `http://` address.
+**Cause:** Earlier release builds ban cleartext (`http://`) traffic outright, through Android's network security config, enforced by the OS. From those versions the apps allow plain HTTP only to a server on your own network (a private or Tailscale address, a one-word name, or a name ending in `.local`, `.home.arpa`, `.internal` or `.lan`), after a warning, and refuses any other `http://` address.
 
-**Fix:** For NutriTrace on your own network, enter the `http://` address and choose **Connect Anyway**: see [LAN HTTP setup](../getting-started/lan-http.md#the-android-apps). Otherwise, use HTTPS:
+**Fix:** On your own network, update the app, enter the `http://` address and choose **Connect Anyway**: see [LAN HTTP setup](../getting-started/lan-http.md#the-android-apps). Otherwise, use HTTPS:
 
 - Real domain plus Let's Encrypt (via Caddy, Traefik, or nginx with certbot).
 - Cloudflare Tunnel or Tailscale Funnel (both give you a public cert without opening ports).
 - A self-signed CA installed on the Android device's trust store.
 
-For CookTrace, LiftTrace and NoteTrace, only a debug build you make yourself allows `http://` origins: `npm run android:debug` in LiftTrace, `npm run android:apk:debug` in CookTrace and NoteTrace. See [Android debug builds](../contribute/dev-setup.md#android-debug-builds).
+Debug builds you make yourself follow the same rule as release builds from those versions. See [Android debug builds](../contribute/dev-setup.md#android-debug-builds).
 
 Details in [HTTPS on the LAN](../self-hosting/lan-https.md) and [Cloudflare Tunnel and Tailscale](../self-hosting/tunnels.md).
 

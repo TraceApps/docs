@@ -133,7 +133,7 @@ adb connect <phone-lan-ip>:<port>
 adb -s <phone-lan-ip>:<port> install -r android/app/build/outputs/apk/debug/app-debug.apk
 ```
 
-Debug builds are exempt from Android's cleartext-traffic ban, so they can talk to a plain `http://` server on your LAN. CookTrace, LiftTrace and NoteTrace release builds cannot; see [HTTPS on the LAN](../self-hosting/lan-https.md). NutriTrace, from 1.5.0, applies the same rule in its debug and release builds: plain HTTP only to a server on your own network, after a warning ([LAN HTTP setup](../getting-started/lan-http.md#the-android-apps)).
+Debug and release builds apply the same rule to plain `http://`, from NutriTrace, LiftTrace and CookTrace 1.5.0 and NoteTrace 1.2.0: plain HTTP only to a server on your own network, after a warning ([LAN HTTP setup](../getting-started/lan-http.md#the-android-apps)). A server elsewhere needs HTTPS; see [HTTPS on the LAN](../self-hosting/lan-https.md).
 
 ## Commit and PR conventions
 
