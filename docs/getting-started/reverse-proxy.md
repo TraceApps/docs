@@ -180,6 +180,8 @@ From each app's next release, a signed-out browser or phone that can't read the 
 
 A browser already signed in keeps opening its account offline, and a server without accounts (single-user) opens the app as before.
 
+NoteTrace, from its next release, loads its page from the server whenever the server answers. A reload after an update brings the new version, and when the proxy's own session has ended, the installed app opens the proxy's sign-in page instead of the copy saved in the browser. That copy opens offline, when the server takes more than 3 seconds, or when the proxy answers with an error such as a 502. NoteTrace also sends the proxy's cookie with its web app manifest, so it can be installed behind a sign-in proxy.
+
 ## Public links behind a login { #public-links-behind-a-login }
 
 If your proxy asks for its own login in front of the app (basic auth, Authelia, an Authentik proxy outpost, Cloudflare Access), it stops everyone who opens a public link too: a NoteTrace note link or a CookTrace recipe link. To let people without that login open them, leave these paths open and keep everything else behind the login:
