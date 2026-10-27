@@ -8,19 +8,21 @@ Off by default. Opt in with one env var + one API token.
 
 ## Available tools
 
-Fifteen tools across three tiers. Setup for each tier below; full arg/return reference in the [MCP tool catalog](../reference/mcp-tools.md).
+Seventeen tools across three tiers. Setup for each tier below; full arg/return reference in the [MCP tool catalog](../reference/mcp-tools.md).
 
 ### Read (always available when MCP is on)
 
-Eleven read-only tools: `get_workout`, `get_workouts`, `list_recent_workouts`, `get_records`, `get_exercise_progress`, `search_exercises`, `list_programs`, `get_active_program`, `get_body_stat`, `get_body_stats`, `list_progress_photos`.
+Twelve read-only tools: `get_workout`, `get_workouts`, `list_recent_workouts`, `get_records`, `get_exercise_progress`, `search_exercises`, `list_programs`, `get_active_program`, `get_body_stat`, `get_body_stats`, `list_progress_photos`, `get_cardio`.
 
 `get_workouts` and `get_body_stats` (1.4.0 and later) read a whole date range at once, the last 90 days when you give no dates. `get_workouts` answers the most recent 30 sessions in the range by default (up to 100) and says when there were more, so a client narrows the range instead of assuming it has everything. `list_recent_workouts`, `get_records` and `get_exercise_progress` take the same `start` and `end` bounds; a record read over a range is the best lift within those dates, not an all-time one. The same reads are on the REST API ([`docs/public-api.md`](https://github.com/TraceApps/lifttrace/blob/main/docs/public-api.md)).
 
 ### Write (Phase 2)
 
-Three additive log tools: `log_set`, `log_body_stat`, `add_progress_photo`. For a timed exercise (plank, wall sit, dead hang, carry) `log_set` takes `duration_sec` instead of `reps`; `search_exercises` reports each exercise's `set_type` so a client can tell which to send. Everything they write shows up as normal entries in the Diary UI, editable and deletable through the app like anything else. Off by default; turn on with `MCP_WRITE_ENABLED=1` AND a token that holds `mcp:write`. Either missing and the write tools simply don't appear in `tools/list`.
+Four additive log tools: `log_set`, `log_body_stat`, `add_progress_photo`, `log_cardio`. For a timed exercise (plank, wall sit, dead hang, carry) `log_set` takes `duration_sec` instead of `reps`; `search_exercises` reports each exercise's `set_type` so a client can tell which to send. Everything they write shows up as normal entries in the Diary UI, editable and deletable through the app like anything else. Off by default; turn on with `MCP_WRITE_ENABLED=1` AND a token that holds `mcp:write`. Either missing and the write tools simply don't appear in `tools/list`.
 
 `add_progress_photo` takes an image **URL**, not file bytes: MCP has no multipart upload path, so point it at an image you already host. Uploading from a phone or laptop goes through the app instead. See [Progress photos](progress.md).
+
+`get_cardio` and `log_cardio` read and log cardio sessions (runs, rides, rows, walks, swims), so a script that copies sessions from another app can check what's there and add what's missing. `log_cardio` takes an optional `external_id`, your own id for the session: sending the same one again returns the session already logged instead of a second copy. Cardio is opt-in, and `log_cardio` refuses while **Track Cardio** (Settings > Workout) is off for the token's account. The switch syncs to your server so it can tell; an Android app from 1.4.0 or earlier never sends it, so if you turned it on there, update the app or turn it on in LiftTrace in a browser too. The same reads and writes are on the REST API as `GET` and `POST /api/v1/cardio`.
 
 ### Destructive (Phase 3)
 
@@ -102,7 +104,7 @@ The transport is standard MCP Streamable HTTP (single POST endpoint). Any client
 | Variable | Default | Description |
 |---|---|---|
 | `MCP_ENABLED` | `0` | Set to `1` to expose `/api/mcp`. |
-| `MCP_WRITE_ENABLED` | `0` | Set to `1` to allow write tools (`log_set`, `log_body_stat`, `add_progress_photo`) to be registered. Also requires the calling token to hold `mcp:write`. |
+| `MCP_WRITE_ENABLED` | `0` | Set to `1` to allow write tools (`log_set`, `log_body_stat`, `add_progress_photo`, `log_cardio`) to be registered. Also requires the calling token to hold `mcp:write`. |
 | `MCP_DESTROY_ENABLED` | `0` | Set to `1` to allow the destructive tool (`delete_workout`) to be registered. Also requires the calling token to hold `mcp:destroy` AND every call to include `confirm: true`. |
 | `ALLOWED_ORIGINS` | (empty) | Comma-separated list of origins that browser-based MCP clients may use. Server-to-server clients (no Origin header) always pass. Leave empty unless you're specifically using the MCP Inspector in a browser. |
 
@@ -133,6 +135,6 @@ Add `--writes` to also exercise the write tools (needs `mcp:write` + `MCP_WRITE_
 
 ## Roadmap
 
-**Later**: MCP prompts capability (guided workflows), additional read tools (superset detail, cardio sessions) as demand justifies them, and possibly `edit_workout` (currently out of scope: `log_set` covers the primary "log what I just did" use case).
+**Later**: MCP prompts capability (guided workflows), additional read tools (superset detail) as demand justifies them, and possibly `edit_workout` (currently out of scope: `log_set` covers the primary "log what I just did" use case).
 
 Feature request and progress: [issue #78](https://github.com/traceapps/lifttrace/issues/78) (thanks @bursaar).

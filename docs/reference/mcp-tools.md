@@ -89,7 +89,7 @@ Deliberately not in the current MCP surface:
 
 ## LiftTrace
 
-Fifteen tools across three phases.
+Seventeen tools across three phases.
 
 ### Read tools (`mcp:read`)
 
@@ -106,6 +106,7 @@ Fifteen tools across three phases.
 | `get_body_stat` | Weight / body-fat / measurements for a day | `date` | `date`, `logged`, `stats` |
 | `get_body_stats` | The same for every logged date in a range | `start`, `end` | `stats[]` (date, logged, stats), `count`. Both bounds omitted means the last 90 days; dates with nothing logged are absent. |
 | `list_progress_photos` | Progress photos with their dates, newest first | `start`, `end` (default: the last year) | `photos[]`, `count` |
+| `get_cardio` | Cardio sessions (runs, rides, rows, walks, swims) in a date range, oldest first | `start`, `end`, `activity` (case-insensitive substring: `run` matches Running and Trail run) | `start`, `end`, `cardio_enabled`, `sessions[]` (id, date, activity, duration_min, distance, distance_unit, avg_hr, notes, external_id, is_template, created_at), `count`. Both bounds omitted means the last 90 days; one bound leaves the other side open. Reads work with **Track Cardio** off; `cardio_enabled` says whether it's on. |
 
 ### Write tools (`mcp:write`)
 
@@ -114,6 +115,7 @@ Fifteen tools across three phases.
 | `log_set` | Append one completed set to an exercise on a day | `exercise_id*`, `reps` (or `duration_sec` for a timed exercise), `weight`, `rpe`, `warmup`, `completed`, `date` | `ok`, `exercise_id`, `exercise_name`, `logged_set`, `sets_on_exercise`. Creates the exercise entry for that day if it isn't there yet; requires a real `exercise_id` from `search_exercises` (does not create new catalog exercises). Goes through the same Option C merge (`mergeExercises`) the app's own save uses, so a concurrent app save arriving mid-call can't be overwritten. A timed exercise takes `duration_sec` instead of `reps`. |
 | `log_body_stat` | Set weight / body-fat / measurements on a day | `weight`, `weight_unit` (`kg`\|`lb`), `bodyFat`, `waist`, `hips`, `neck`, `chest`, `biceps`, `thighs`, `calves`, `date` | `ok`, `date`, `logged`, `stats`. Merges into existing values via `mergeStatsObject`, which allowlists the known body-stat keys, so a malformed payload can't put stray fields in the stored JSON. |
 | `add_progress_photo` | Attach an image you already host to a date as a progress photo | `url*`, `date` (default today) | `ok`, `photo`. Takes a URL, not file bytes. |
+| `log_cardio` | Log one cardio session | `activity*`, `duration_min*` (minutes), `distance`, `distance_unit` (`km`\|`mi`, default km), `avg_hr`, `notes`, `date` (default today), `external_id` (up to 200 characters) | `ok`, `created`, `session`. Refused while **Track Cardio** is off for the account. A repeated `external_id` returns the session already logged with `created: false` instead of a second copy. Sends the `cardio.logged` webhook for a new session. |
 
 ### Destructive tools (`mcp:destroy` + `confirm: true`)
 
@@ -123,7 +125,7 @@ Fifteen tools across three phases.
 
 ### LiftTrace scoping guarantees
 
-Every tool query scopes on an ownership column: `user_id` for `workout_log` / `body_stats_log`, `assigned_to` for `program_assignments`, `created_by` for `exercises` / `programs` (with `is_global = 1` rows intentionally shared across every user; that's the point of a global exercise, not a leak). A token cannot read, write, or destroy anything outside its owner's account, even for admins. A static wiring test (`scripts/mcp-wiring.test.js`) fails CI if a future tool omits the scoping clause. MCP tokens always belong to a real user account; see [the MCP setup page](../lifttrace/mcp.md) for why API Tokens only appears on a multi-user instance.
+Every tool query scopes on an ownership column: `user_id` for `workout_log` / `body_stats_log` / `cardio_log`, `assigned_to` for `program_assignments`, `created_by` for `exercises` / `programs` (with `is_global = 1` rows intentionally shared across every user; that's the point of a global exercise, not a leak). A token cannot read, write, or destroy anything outside its owner's account, even for admins. A static wiring test (`scripts/mcp-wiring.test.js`) fails CI if a future tool omits the scoping clause. MCP tokens always belong to a real user account; see [the MCP setup page](../lifttrace/mcp.md) for why API Tokens only appears on a multi-user instance.
 
 ### LiftTrace rate limits
 
@@ -135,7 +137,7 @@ Deliberately not in the current MCP surface:
 
 - `edit_workout` / `edit_set`. `log_set` covers the primary "log what I just did" case; patching an existing set adds ambiguity (which set, by what identity) without a clear demand signal yet.
 - `log_workout` (a whole ad-hoc session in one call). `log_set` per-set is simpler and safer to reason about for a first pass; revisit if agents end up chaining many `log_set` calls per session.
-- Superset detail, cardio sessions, coach prescriptions. Trivial to add; deferred until real demand.
+- Superset detail, coach prescriptions. Trivial to add; deferred until real demand.
 - MCP prompts capability (guided workflows). Planned; no ETA.
 
 ## CookTrace

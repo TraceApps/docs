@@ -39,6 +39,7 @@ Top-of-page hero on Settings. Links out to `/profile`.
 ### Workout
 
 - **Weekly goal** target workouts per week; feeds streaks and Overview.
+- **Track Cardio** (off by default) adds the Cardio card to the Diary and the Cardio view to [Statistics](statistics.md#cardio); **Weekly Cardio Minutes** under it sets that chart's target. Track Cardio is kept with your account on the server, so it follows you to your other devices, and the [MCP](mcp.md) and REST API log cardio only while it's on. An Android app from 1.4.0 or earlier keeps its own copy and never sends it: if you turned it on there, update the app or turn it on in a browser too. Until it's updated, that app takes the switch from the server each time it opens, so change it in the browser or an updated app.
 - **Screen keep-awake** wake-lock during workouts (part of [Diary and set logging](diary.md)).
 - **Show calorie estimate** overlays estimated kcal per session.
 - **Auto-fill last weights** prefill new sets from the last completed working set.
