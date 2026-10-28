@@ -29,10 +29,10 @@ LiftTrace registers 21 tools that Trace can call across a single conversation, s
 
 - `log_workout`: commit a full workout to a specific date.
 - `add_exercise_to_diary`: quick-add one exercise to today's diary with no sets yet.
-- `log_set`: append a single set to an exercise already in a workout.
+- `log_set`: log a single set to an exercise already in a workout, into its next planned set still to do, or added after them when none is left.
 - `log_cardio`: log a cardio session (run, ride, row, walk, swim) with its minutes, and optionally distance, average heart rate and notes. With **Track Cardio** off (Settings > Workout), Trace says so and logs nothing, since the Diary wouldn't show it.
 - `log_body_stat`: record a body-stat measurement for a date, merging with existing.
-- `start_workout_from_template`: load a workout template into a diary day.
+- `start_workout_from_template`: load a workout template into a diary day, planned as the Diary's Load Workout plans it (this week's targets, last session's weights, Auto Warm-Ups).
 - `set_active_program`: switch the user's active program.
 - `add_coach_prescription`: coaches only. Prescribe a workout template to a trainee on a target date.
 

@@ -8,7 +8,7 @@ Off by default. Opt in with one env var + one API token.
 
 ## Available tools
 
-Seventeen tools across three tiers. Setup for each tier below; full arg/return reference in the [MCP tool catalog](../reference/mcp-tools.md).
+Nineteen tools across three tiers. Setup for each tier below; full arg/return reference in the [MCP tool catalog](../reference/mcp-tools.md).
 
 ### Read (always available when MCP is on)
 
@@ -18,7 +18,34 @@ Thirteen read-only tools: `get_workout`, `get_workouts`, `list_recent_workouts`,
 
 ### Write (Phase 2)
 
-Four additive log tools: `log_set`, `log_body_stat`, `add_progress_photo`, `log_cardio`. For a timed exercise (plank, wall sit, dead hang, carry) `log_set` takes `duration_sec` instead of `reps`; `search_exercises` reports each exercise's `set_type` so a client can tell which to send. Everything they write shows up as normal entries in the Diary UI, editable and deletable through the app like anything else, and sends the same webhooks a save in the app does: `body_stat.logged` from `log_body_stat`, `pr.set` from a `log_set` that sets a record, `progress_photo.logged` and `cardio.logged`. Off by default; turn on with `MCP_WRITE_ENABLED=1` AND a token that holds `mcp:write`. Either missing and the write tools simply don't appear in `tools/list`.
+Five write tools: `start_program_workout`, `log_set`, `log_body_stat`, `add_progress_photo`, `log_cardio`. For a timed exercise (plank, wall sit, dead hang, carry) `log_set` takes `duration_sec` instead of `reps`; `search_exercises` reports each exercise's `set_type` so a client can tell which to send. Everything they write shows up as normal entries in the Diary UI, editable and deletable through the app like anything else, and sends the same webhooks a save in the app does: `body_stat.logged` from `log_body_stat`, `pr.set` from a `log_set` that sets a record, `progress_photo.logged` and `cardio.logged`. Off by default; turn on with `MCP_WRITE_ENABLED=1` AND a token that holds `mcp:write`. Either missing and the write tools simply don't appear in `tools/list`.
+
+`start_program_workout` starts a program's workout day, so the sets you log next go into it and finishing it counts toward the program. Without `template_id` it starts your active program's next day (the one after the last day you finished, around to the first); with one (`get_active_program` lists the active program's days with their `template_id`), that day of any program you can see. It plans the day as **Load Workout** does in the app: this week's targets, last session's weights when Auto-Fill Last Weights is on, warm-up sets when Auto Warm-Ups is on, filed under the program and its week. It goes into an empty workout on that date, or else becomes a new workout of the day; a workout already logged is never changed, and nothing is marked finished. Sending it again returns the workout already started, so an automation can call it before every set. `log_set` then fills that exercise's next planned set still to do in an unfinished workout (anything you don't send, such as the weight, stays as planned) and adds a set only when none is left; a finished workout gets its sets added, as before. On a day with more than one workout, `log_set` goes to the one you name with `workout_id`, else the unfinished one with that set planned, else the program day under way, else the day's first, as before. The REST API has the same as `POST /api/v1/workouts/:date/start` and `POST /api/v1/workouts/:date/sets`.
+
+#### Example: Home Assistant
+
+A Wii Fit board in Home Assistant can time a hold and log it into the day's program workout with two REST commands. Create a token with `mcp:read` and `mcp:write`, and turn on the REST API (`PUBLIC_API_ENABLED=1`, `PUBLIC_API_WRITE_ENABLED=1`):
+
+```yaml
+# configuration.yaml
+rest_command:
+  lifttrace_start_day:
+    url: "https://lifttrace.example.com/api/v1/workouts/{{ now().strftime('%Y-%m-%d') }}/start"
+    method: POST
+    headers:
+      Authorization: !secret lifttrace_token   # "Bearer lt_pat_..."
+    content_type: "application/json"
+    payload: "{}"
+  lifttrace_log_hold:
+    url: "https://lifttrace.example.com/api/v1/workouts/{{ now().strftime('%Y-%m-%d') }}/sets"
+    method: POST
+    headers:
+      Authorization: !secret lifttrace_token
+    content_type: "application/json"
+    payload: '{"exercise_id": {{ exercise_id }}, "duration_sec": {{ seconds | int }}}'
+```
+
+In the automation that ends a hold, call `rest_command.lifttrace_start_day` first, then `rest_command.lifttrace_log_hold` with `exercise_id` (from `GET /api/v1/exercises?query=planche`) and `seconds`. Starting is safe to repeat, so calling it before every set is fine: the first call starts the day, later ones return it. Finish the workout in the app when you're done, and the program moves on.
 
 `add_progress_photo` takes an image **URL**, not file bytes: MCP has no multipart upload path, so point it at an image you already host. Uploading from a phone or laptop goes through the app instead. See [Progress photos](progress.md).
 
@@ -108,7 +135,7 @@ The transport is standard MCP Streamable HTTP (single POST endpoint). Any client
 | Variable | Default | Description |
 |---|---|---|
 | `MCP_ENABLED` | `0` | Set to `1` to expose `/api/mcp`. |
-| `MCP_WRITE_ENABLED` | `0` | Set to `1` to allow write tools (`log_set`, `log_body_stat`, `add_progress_photo`, `log_cardio`) to be registered. Also requires the calling token to hold `mcp:write`. |
+| `MCP_WRITE_ENABLED` | `0` | Set to `1` to allow write tools (`start_program_workout`, `log_set`, `log_body_stat`, `add_progress_photo`, `log_cardio`) to be registered. Also requires the calling token to hold `mcp:write`. |
 | `MCP_DESTROY_ENABLED` | `0` | Set to `1` to allow the destructive tool (`delete_workout`) to be registered. Also requires the calling token to hold `mcp:destroy` AND every call to include `confirm: true`. |
 | `ALLOWED_ORIGINS` | (empty) | Comma-separated list of origins that browser-based MCP clients may use. Server-to-server clients (no Origin header) always pass. Leave empty unless you're specifically using the MCP Inspector in a browser. |
 
