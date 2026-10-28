@@ -126,6 +126,8 @@ It's a help, not a guarantee: it's worked out from ingredient names and pantry l
 
 The Nutrition column renders a full FDA-style label via `NutritionFactsBox.svelte`. Forty-one nutriments in real label order, %DV column, sodium and salt auto-derived from each other (factor 400), servings and serving-size at the top. A per-user picker under Settings > Nutrition controls which rows the label shows inline; the rest still count for totals.
 
+**Right Column** (Settings > Nutrition, the same setting as in NutriTrace) swaps the %DV column for **Per 100 g**: each nutrient in 100 g, so recipes and pantry items with different serving sizes can be compared. An item measured by volume reads **Per 100 ml**, and a small line under Calories gives the energy per 100 g too. One column shows at a time. A recipe uses its serving weight, which needs every ingredient's weight to be known (the same weight as "Serving Size ~85g" on the label); a pantry item uses its serving size when that is a weight or a volume. A count serving (1 piece) or a recipe with an ingredient that can't be weighed leaves the column blank, and the label says so. A public recipe link always shows % Daily Value, since its page has no ingredient weights.
+
 ### Auto-recompute from Pantry
 
 Tap **Recompute From Pantry** on the Nutrition column and every linked pantry row contributes its nutrition to the total, weighted by ingredient quantity. Volume-to-grams jumps use the density table and, cross-family (mass to volume), each pantry item's `g_per_cup` override. Ingredients without a linked pantry item or without a density get a skipped-item badge with an inline "Set N g/cup" chip so you can fill the gap in one tap.
