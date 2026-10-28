@@ -21,6 +21,7 @@ LiftTrace registers 21 tools that Trace can call across a single conversation, s
 - `get_body_stats`: body stats over time (weight, body_fat, any tracked measurement) with change summary.
 - `get_progress_photos`: how many progress photos you took, on which dates, and what you weighed that day. Dates only: Trace can't see the photos, so attach one to a message if you want it looked at.
 - `get_cardio`: cardio sessions in a date range with totals per activity. Cardio isn't part of `get_workouts`, so Trace looks here before talking about conditioning or weekly load.
+- `get_excused_days`: the days you marked as excused (injury, illness, appointment, other) with your notes, including days marked ahead. Trace checks these before calling a quiet week missed, and its overview counts excused days in the range.
 - `get_stats_overview`: snapshot for a range: workouts done, streaks, weekly volume and frequency, muscle balance, top PRs.
 - `get_coach_prescription`: the coach-prescribed workout for a date if the user has a coach, with its answer (waiting, accepted). Trace doesn't load one the user hasn't accepted.
 

@@ -62,9 +62,18 @@ The weekly volume view rolls up by ISO week (Monday-anchored). The muscle-group 
 
 The range selector (`1W / 1M / 3M / 6M / 1Y / All`) applies to every view. The Exercise Progress view adds a picker for which exercise to plot. The muscle-group breakdown is chart-driven; tap a muscle bar to filter the underlying exercises. There is no dedicated muscle-group filter chip because the body map on Overview covers the same intent visually.
 
-## Streaks and frequency
+## Trained days, streaks and the weekly goal
 
-Streaks come from `GET /api/stats/streaks`: current streak in days, longest streak, and total workouts. A "streak day" is any calendar date with at least one completed set logged, or, with **Track Cardio** on in Settings > Workout, a cardio session (from 1.4.0). Rest days do not break the streak; only a full day with no logged working set does. The 4-week frequency and weekly goal live on the Overview tile alongside streaks and roll off the current week's ISO Monday.
+One rule decides whether a day was trained, everywhere in LiftTrace (the Diary, Statistics, the weekly summary, reminders, your coach's view and Trace): a day counts when it has at least one completed working set (a warm-up alone doesn't count, and neither does a workout opened or cleared without anything done), or a cardio session while **Track Cardio** is on in Settings > Workout. Several workouts on one day are one day.
+
+- **Streaks** (`GET /api/stats/streaks`): consecutive trained days, counted back from today, or from yesterday while today isn't trained yet. Any day without training ends it, an excused day included. Longest streak and total days trained come with it.
+- **Weekly goal**: the ring at the top of the Overview counts trained days from Monday to Sunday against your goal (Settings > Workout > Weekly Goal). Each [excused day](diary.md#excused-days) in the week takes one day off the target: a goal of 4 with one injury day and three days trained reads **3 of 3**. A week with every planned day excused reads **Excused Week**, never a goal met or missed.
+- **Workouts per Week** and the busiest weekdays count trained days too, and a week whose excused days bring its target within reach is marked as meeting the goal.
+- **Activity · Last 90 days**: trained days in your accent color, excused days in their own striped slate, rest days plain, with a key under the grid.
+
+![The weekly goal ring with an excused day off the goal, and excused days on the activity grid](../assets/img/lifttrace/16-statistics-excused.png)
+
+Each place used to count on its own: the server's streak left cardio out, the ring counted finished workouts rather than days (two workouts on one day counted twice, and a day trained without pressing Finish didn't count), and a day with only warm-up sets counted. The weekly goal still rolls over on the current week's Monday.
 
 ## Related
 

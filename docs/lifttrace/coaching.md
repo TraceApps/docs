@@ -45,10 +45,11 @@ When the client leaves or the coach ends it, the prescriptions and programs that
 
 - **Conversation**: see below.
 - **Programs**: assign one of your programs, make it their active one, or remove it. The client can follow it but not change it.
-- **Prescribed Workouts**: what you prescribed, with the client's answer (**Waiting for an Answer**, **Accepted**, **Declined**) and whether it was completed or missed.
+- **Prescribed Workouts**: what you prescribed, with the client's answer (**Waiting for an Answer**, **Accepted**, **Declined**) and whether it was completed, missed, or excused by the client (with the reason, such as **Excused · Injury**, and their note).
+- **Excused Days**: days the client couldn't train and marked as excused, from the last eight weeks and any marked ahead, with the reason and note. See [Excused days](diary.md#excused-days).
 - **Recent Workouts**: open a completed workout to read it and leave a note on the workout or on any exercise. Each note gets one reply from the client. Filmed sets carry a **Watch** chip ([Set videos](set-videos.md)).
 
-**Recent Activity** on the Coaching list shows your own clients' events: a prescribed workout completed or missed, and replies to your notes.
+**Recent Activity** on the Coaching list shows your own clients' events: a prescribed workout completed, missed, or excused (with the reason), and replies to your notes. A day the client excuses after you were told it was missed changes to excused, and back to missed if they remove the excuse.
 
 ## The conversation
 
@@ -82,7 +83,7 @@ In Settings, Notifications, **Coaching** (shown to people in coaching, all on un
 - **New Message**, with **Email Me Too** (off by default; at most one email per conversation every 30 minutes, and it needs an email on your account and email set up on the server).
 - **New Recommendation**: a coach asks to coach you, or prescribes a workout.
 - **Client's Answer**: someone accepts or declines your request or a workout you prescribed, or leaves.
-- For coaches: **Client Completes Prescribed Workout**, **Client Missed a Prescription**, **Client Replied to Feedback**.
+- For coaches: **Client Completes Prescribed Workout**, **Client Missed a Prescription** (also sent, as **Day Excused** with the reason, when the client excused that day), **Client Replied to Feedback**.
 
 They say who, never what was written or the note.
 
