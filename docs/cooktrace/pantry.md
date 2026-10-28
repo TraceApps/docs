@@ -79,6 +79,8 @@ A scan looks the code up in this order:
 
 The result pre-fills a new pantry entry, which you can accept, tweak, or discard.
 
+Long-press the app icon and choose **Scan to Pantry** to open the Pantry with the scanner already open (see [App icon shortcuts](shopping.md#app-icon-shortcuts)).
+
 ## Open Food Facts
 
 Free, no key. Enable under Settings > Food Sources > Open Food Facts. Optional fields:

@@ -46,6 +46,31 @@ Everywhere you choose a day for diary items (the Copy sheet, **Move to Meal**, *
 
 Moving items to another day saves them on that day first and only then takes them off this one. If the first save fails, nothing is removed. If taking them off fails, they are taken back off the other day; if even that can't be done, you're told they are on both days, so nothing is ever lost.
 
+## App icon shortcuts {#app-icon-shortcuts}
+
+Long-press the NutriTrace icon for four shortcuts, all for today:
+
+| Shortcut | Opens |
+|---|---|
+| **Scan Barcode** | The barcode scanner, on the add screen the meal card's **+** opens. A scan goes on as it does there: the quantity sheet (unless you turned it off in Settings), or the food editor for a code that isn't in your foods or Open Food Facts. |
+| **Log Food** | The add screen the meal card's **+** opens, on the tab you used last (Foods, Meals or Recipes). |
+| **Log Water** | Today's water card. |
+| **Log Weight** | Today's body stats sheet, with the cursor in Weight. |
+
+Scan Barcode and Log Food start on the meal for the time of day. A bar at the top of the add screen says where the food will go ("Adding to today's Lunch"); tap **Change** to pick another meal, or another day with the [day picker](#picking-a-day). After adding, you're on the Diary for that day. The **+** on a meal card works as before: it adds to that meal, with no bar.
+
+The meal for the time of day:
+
+- With **meal reminders** on (Settings → Notifications), each meal's reminder time.
+- Otherwise from the meal's name: Breakfast 8:00, a morning snack or brunch 10:30, Lunch 12:30, a snack 15:30, Dinner 18:30, an evening snack 21:00. Common names in French, German, Spanish, Italian, Portuguese and Dutch count too.
+- When no name is recognized (Meal 1, Meal 2, ...), the meals in their order, spread from 8:00 to 19:00.
+
+A meal's turn starts an hour before its time and lasts until the next one's. Before the first turn of the day it's the first meal, and late at night (midnight to 4:00) the day's last meal. If the guess is wrong, **Change** fixes it before you add anything.
+
+If water is hidden from the Diary (**Show In Diary** off in Settings → Water), **Log Water** opens that setting and says so, instead of a card you've hidden. Signed out, a shortcut opens the sign-in screen and carries on to its page once you sign in (with a password, fingerprint or single sign-on). They work offline and in the Android app without a server, like the rest of the Diary.
+
+Shortcuts show on Android launchers that support app shortcuts (Android 7.1 and later; most do, including Pixel Launcher, One UI and Nova), and on the installed web app where the browser supports them, such as Chrome and Edge. They aren't on iOS or in Safari. On Android, drag one to the home screen to keep it there.
+
 ## Per-meal `⋮` menu
 
 The meal-level `⋮` (top-right of each meal card) covers meal-wide actions:

@@ -6,7 +6,7 @@ Two camera-driven ways to get a food into NutriTrace without typing it out. **Ba
 
 On Android the scanner uses `@capacitor-mlkit/barcode-scanning` (Google's ML Kit), with Google Code Scanner as a fallback when ML Kit is not available on the device. On the web PWA the browser's built-in Barcode Detection API handles it where present, and QuaggaJS fills in for browsers that lack native support. Formats recognized: UPC-A, UPC-E, EAN-8, EAN-13, and QR codes (for future federation share links).
 
-Tap the barcode icon in the Foods picker or in the Diary add sheet, point the camera at the product, and the app matches on the first clean read. Toggles under **Settings → Foods**:
+Tap the barcode icon in the Foods picker or in the Diary add sheet, point the camera at the product, and the app matches on the first clean read. Or long-press the app icon and choose **Scan Barcode**: the scanner opens at once, adding to today's meal for the time of day (see [App icon shortcuts](diary.md#app-icon-shortcuts)). Toggles under **Settings → Foods**:
 
 - `barcodeBeep`: audio confirmation on match. On by default.
 - `barcodeFlashlight`: turns the camera flashlight on when the scanner opens. Device-only (`DEVICE_PREFS`), because there is no flashlight on desktop and each phone chooses independently.

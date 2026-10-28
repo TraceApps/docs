@@ -87,6 +87,19 @@ If you keep lists in [NoteTrace](../notetrace/index.md), a checklist there can s
 
 It needs no server setting here. In CookTrace **Settings, API Tokens**, create a token with just the **shopping** scope (it reaches nothing but your shopping list) and paste it into NoteTrace. See [Send to CookTrace](../notetrace/cooktrace.md).
 
+## App icon shortcuts {#app-icon-shortcuts}
+
+Long-press the CookTrace icon for:
+
+| Shortcut | Opens |
+|---|---|
+| **Shopping List** | This page. |
+| **Scan to Pantry** | The Pantry with its [barcode scanner](pantry.md#barcode-scanning) open. A scan opens the item, or a new one filled in from what the scan found. |
+
+Back from either goes to Recipes. Signed out, a shortcut opens the sign-in screen and carries on once you sign in. They work offline and in the Android app without a server (offline, Open Food Facts can't be reached, so a scan starts a new item with just the barcode; in the browser that happens even for a code already in your pantry).
+
+Shortcuts show on Android launchers that support app shortcuts (Android 7.1 and later; most do, including Pixel Launcher, One UI and Nova), and on the installed web app where the browser supports them, such as Chrome and Edge. They aren't on iOS or in Safari. On Android, drag one to the home screen to keep it there.
+
 ## Related
 
 - [Recipes](recipes.md)

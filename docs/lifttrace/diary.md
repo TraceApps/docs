@@ -101,6 +101,19 @@ Excused days sync like the rest of your diary: in the web app online and offline
 
 Empty days show a horizontal row of quick-load cards for recent workouts. One tap prefills the whole session. Handy for "same as last Push day" without opening the programs screen.
 
+## App icon shortcuts {#app-icon-shortcuts}
+
+Long-press the LiftTrace icon for two shortcuts, both for today:
+
+| Shortcut | Opens |
+|---|---|
+| **Start Workout** | Today's workout under way, as you left it (the latest one, if the day has more than one session). On an empty day, **Load Workout**, open on your active program. When every workout of the day is finished, **Load Workout** for a new session. |
+| **Log Weight** | The Body Stats sheet for today. |
+
+If Weight is turned off under Settings → Workout → Body Measurements, **Log Weight** opens that setting and says so. Signed out, a shortcut opens the sign-in screen and carries on once you sign in. They work offline and in the Android app without a server.
+
+Shortcuts show on Android launchers that support app shortcuts (Android 7.1 and later; most do, including Pixel Launcher, One UI and Nova), and on the installed web app where the browser supports them, such as Chrome and Edge. They aren't on iOS or in Safari. On Android, drag one to the home screen to keep it there.
+
 ## Rest timer
 
 Countdown from a configurable per-set duration (Settings > Workout > Rest Duration), with per-set overrides on the set row. Auto-start on set completion is a separate toggle. Vibrate and tone are separate toggles so you can silence one without the other.
