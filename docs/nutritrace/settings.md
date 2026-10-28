@@ -51,6 +51,8 @@ Daily goal (`waterGoalMl`), unit (`waterUnit`: ml / fl oz), **container library*
 
 Sort orders per tab (`foodsSort`, `mealsSort`, `recipesSort`): favorites-first / alphabetical / recently used / most used. Visibility toggles: categories, labels, notes, thumbnails, yesterday meals + collapsed state, saved-list collapsed state. **Barcode beep** (`barcodeBeep`, `USER_PREFS`). **Crop photos** on upload. **Default food visibility** (`defaultFoodVisibility`) sets whether newly-created foods start private / everyone / specific users. **Biometric login** (`biometricLoginEnabled`, `DEVICE_PREFS`, Android-only).
 
+**Nutrition Facts Label → Right Column** (`nutritionFactsColumn`, `USER_PREFS`): **% Daily Value** (default) or **Per 100 g**, which shows each nutrient in 100 g, or 100 ml for drinks, so foods with different serving sizes can be compared. See [Nutrition Facts label](foods.md#nutrition-facts-label).
+
 See [Foods, meals and recipes](foods.md) and [Barcode and Scan Label](scan.md).
 
 ## Goals

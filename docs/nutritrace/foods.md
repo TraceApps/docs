@@ -51,6 +51,15 @@ Meals and recipes share the same table (`is_recipe=1` for recipes, `server/db.js
 
 Copy, share, and favorite behavior mirrors foods exactly.
 
+## Nutrition Facts label
+
+Opening a food (or a meal or recipe in the wide desktop layout) shows its nutrition as a Nutrition Facts label, and Trace's food cards use the same label. The right-hand column is set in **Settings → Foods → Nutrition Facts Label → Right Column**, and follows you to every device:
+
+- **% Daily Value** (default): the standard label.
+- **Per 100 g**: each nutrient in 100 g of the food, so foods with different serving sizes can be compared side by side. Foods measured by volume read **Per 100 ml**. A small line under Calories gives the energy per 100 g too.
+
+One column shows at a time. Per 100 g is worked out from the serving size: grams and milliliters, the other mass and volume units (oz, lb, cup, tbsp and so on), and a food's own serving units with a weight (1 slice = 35 g) all work, with Density bridging grams and milliliters when the food has one (1 ml counts as 1 g without it). A food labeled per 100 ml, such as a drink from Open Food Facts, reads Per 100 ml. A recipe uses the serving weight saved with it; a meal adds up its ingredients. When the serving has no weight (1 piece with no grams for a piece, or a meal whose ingredients can't all be weighed), the column stays blank and the label says so.
+
 ## Configurable nutrient order
 
 **Settings → Nutrients** is a drag-to-reorder list of everything the app tracks: the macros, the standard micros, and any custom nutrients you add. The order applies everywhere nutrition is displayed (food editor, meal editor, Nutrition Summary sheet, Statistics chip row). Hidden nutrients drop off the display but stay in the DB so historical data does not disappear.
