@@ -27,7 +27,9 @@ To keep the typing down, each week tab has a **Copy this week to next** shortcut
 The Diary asks the program which week to prefill from every time you load today's workout. The answer depends on **Advance mode**, set on the program itself:
 
 - `sessions` (default): the cursor moves forward once you have completed the last workout in the current week. If your program has three workouts a week and you have logged three since the last advance, next Diary load steps to week 2.
-- `calendar`: the cursor moves by real days: seven days after the program's start date puts you on week 2 regardless of how many sessions you actually did. [Excused days](diary.md#excused-days) pause it (below).
+- `calendar`: the cursor moves by real days: seven days after the program's start date puts you on week 2 regardless of how many sessions you actually did. The week moves at midnight where you are. [Excused days](diary.md#excused-days) pause it (below).
+
+Without user accounts, a program starts the day you choose it as the one you follow (from the next release; before, a `calendar` program there stayed on week 1, or on the week you chose). Choosing it again doesn't restart it; stopping it and choosing it later does. One you were already following when you updated counts from its first finished workout since you last trained another program, or from the update if it has none. Turning user accounts on or off keeps the program you follow, its start and the week you chose, and the Android app connected to the server shows the same week.
 
 `sessions` is what most people want because a missed week does not silently push you into a harder prescription. `calendar` matches strict block periodization where the date matters more than the count.
 
@@ -35,14 +37,14 @@ The Diary asks the program which week to prefill from every time you load today'
 
 A day you [excuse](diary.md#excused-days) because you couldn't train (injured, ill, an appointment) pushes a `calendar` program back one day, so a week off sick doesn't skip you a week ahead in the plan. It happens by itself, for your own programs and for one your coach assigned:
 
-- **Which days count.** Each excused day from the program's start date (or the day it was assigned, when it has none) through today. A day you excuse ahead of time counts once it comes.
+- **Which days count.** Each excused day from the program's start date (or the day it was assigned, or started without accounts, when it has none) through today, where you are. A day you excuse ahead of time counts once it comes.
 - **Giving the day back.** Remove the excuse, or train that day anyway (a completed working set, or cardio with Track Cardio on), and the day counts again.
 - **Where it shows.** The program's card, the program page and the week bar in the Load Workout sheet say **Paused 5 days for excused days** under the week. Your coach sees the same week and the same line on your page.
 - **Choosing a week yourself** (below) starts the clock over from then: only days excused from that day on pause it.
-- **After the last week**, with `hold`, days excused once the plan is over don't count. With `repeat` every one does.
+- **On the last week**, with `hold`, a day excused once you're on it doesn't count: the week can't move any more, so the count doesn't grow. A day that kept you out of the last week still counts. With `repeat` every one does.
 - **`sessions` programs** are never paused: they only move when you train.
 
-`get_active_program` (MCP) and `GET /api/v1/programs/active` carry the count as `paused_days`, already taken off `current_week`.
+`get_active_program` (MCP) and `GET /api/v1/programs/active` carry the count as `paused_days`, already taken off `current_week`, counted to your today in the time zone your app last reported to the server (from the next release; before, the server's).
 
 ## What happens after the last week
 

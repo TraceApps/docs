@@ -44,8 +44,8 @@ When the client leaves or the coach ends it, the prescriptions and programs that
 **Programs**, **Coaching** lists your clients with their latest workout, active program, workouts this week and unread messages. Open a client for:
 
 - **Conversation**: see below.
-- **Programs**: assign one of your programs, make it their active one, or remove it. The client can follow it but not change it. The active one shows the week they're on, and for a program that moves on by the calendar, how many days their excused days have paused it.
-- **Prescribed Workouts**: what you prescribed, with the client's answer (**Waiting for an Answer**, **Accepted**, **Declined**) and whether it was completed, missed, or excused by the client (with the reason, such as **Excused · Injury**, and their note).
+- **Programs**: assign one of your programs, make it their active one, or remove it. The client can follow it but not change it. The active one shows the week they're on, and for a program that moves on by the calendar, how many days their excused days have paused it, counted by the client's day: the server keeps the time zone their app last reported (from the next release; until it has one, and before, the server's).
+- **Prescribed Workouts**: what you prescribed, with the client's answer (**Waiting for an Answer**, **Accepted**, **Declined**) and whether it was completed, missed, or excused by the client (with the reason, such as **Excused · Injury**, and their note). A dated one counts as missed once that day is over where the client is.
 - **Excused Days**: days the client couldn't train and marked as excused, from the last eight weeks and any marked ahead, with the reason and note. See [Excused days](diary.md#excused-days).
 - **Recent Workouts**: open a completed workout to read it and leave a note on the workout or on any exercise. Each note gets one reply from the client. Filmed sets carry a **Watch** chip ([Set videos](set-videos.md)).
 
