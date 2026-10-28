@@ -16,7 +16,7 @@ LiftTrace registers 21 tools that Trace can call across a single conversation, s
 - `get_exercise`: full detail on one exercise plus similar-exercise suggestions.
 - `get_programs`: the user's program library, with which one is active.
 - `get_program`: one program with every template laid out (per-week overrides for multi-week blocks).
-- `get_active_program`: the currently active program in full, or `{ active: false }`.
+- `get_active_program`: the currently active program in full, with the week you're on and how many days excused days have paused it, or `{ active: false }`.
 - `get_prs`: personal records with weight, reps, and estimated 1RM per exercise, a page at a time.
 - `get_body_stats`: body stats over time (weight, body_fat, any tracked measurement) with change summary.
 - `get_progress_photos`: how many progress photos you took, on which dates, and what you weighed that day. Dates only: Trace can't see the photos, so attach one to a message if you want it looked at.

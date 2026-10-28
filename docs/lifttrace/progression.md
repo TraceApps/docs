@@ -27,9 +27,22 @@ To keep the typing down, each week tab has a **Copy this week to next** shortcut
 The Diary asks the program which week to prefill from every time you load today's workout. The answer depends on **Advance mode**, set on the program itself:
 
 - `sessions` (default): the cursor moves forward once you have completed the last workout in the current week. If your program has three workouts a week and you have logged three since the last advance, next Diary load steps to week 2.
-- `calendar`: the cursor moves by real days: seven days after the program's start date puts you on week 2 regardless of how many sessions you actually did.
+- `calendar`: the cursor moves by real days: seven days after the program's start date puts you on week 2 regardless of how many sessions you actually did. [Excused days](diary.md#excused-days) pause it (below).
 
 `sessions` is what most people want because a missed week does not silently push you into a harder prescription. `calendar` matches strict block periodization where the date matters more than the count.
+
+## Excused days pause a calendar program
+
+A day you [excuse](diary.md#excused-days) because you couldn't train (injured, ill, an appointment) pushes a `calendar` program back one day, so a week off sick doesn't skip you a week ahead in the plan. It happens by itself, for your own programs and for one your coach assigned:
+
+- **Which days count.** Each excused day from the program's start date (or the day it was assigned, when it has none) through today. A day you excuse ahead of time counts once it comes.
+- **Giving the day back.** Remove the excuse, or train that day anyway (a completed working set, or cardio with Track Cardio on), and the day counts again.
+- **Where it shows.** The program's card, the program page and the week bar in the Load Workout sheet say **Paused 5 days for excused days** under the week. Your coach sees the same week and the same line on your page.
+- **Choosing a week yourself** (below) starts the clock over from then: only days excused from that day on pause it.
+- **After the last week**, with `hold`, days excused once the plan is over don't count. With `repeat` every one does.
+- **`sessions` programs** are never paused: they only move when you train.
+
+`get_active_program` (MCP) and `GET /api/v1/programs/active` carry the count as `paused_days`, already taken off `current_week`.
 
 ## What happens after the last week
 
@@ -45,7 +58,7 @@ Life happens: an injury, a travel week, a wave you want to run twice. The Load W
 - **Repeat this week** pins the cursor to the current week so the next few sessions keep pulling week N's prescription.
 - **Advance to next week** jumps forward one week without waiting on session count.
 
-Both write to the assignment via `POST /api/programs/:id/week-cursor` and both auto-advance from the pin using the same clock the program uses, so repeating week 2 does not strand you there forever.
+Both write to the assignment via `POST /api/programs/:id/week-cursor` and both auto-advance from the pin using the same clock the program uses, so repeating week 2 does not strand you there forever. For a `calendar` program, days excused after the pin still pause it; earlier ones no longer count. **Auto** goes back to the program's own clock, with every excused day since its start.
 
 ## Week stamping and history
 

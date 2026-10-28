@@ -42,7 +42,7 @@ A "copy this week to next" shortcut clones the current column so you only edit t
 The Diary resolves which week you are on using the program's **advance mode**:
 
 - `sessions` (default): the week cursor moves forward after you complete the last workout in a week.
-- `calendar`: the cursor moves by real days once a week has elapsed.
+- `calendar`: the cursor moves by real days once a week has elapsed. Each day you excuse and don't train pushes it back a day; see [Excused days pause a calendar program](progression.md#excused-days-pause-a-calendar-program).
 
 On the last week, choose `hold` (stay on the final week's prescription) or `repeat` (loop back to week one). You can nudge the cursor manually via **Repeat this week** or **Advance to next week** in the Load Workout sheet, or programmatically via `POST /api/programs/:id/week-cursor`.
 

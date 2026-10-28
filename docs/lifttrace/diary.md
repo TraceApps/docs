@@ -93,6 +93,7 @@ Some days you can't train: you're injured, you're ill, or there's an appointment
 - **Trained anyway?** A workout logged on an excused day (a completed working set, or a cardio session with Track Cardio on) counts as a workout, as on any day. The excuse stays in your history, and the day says you trained.
 - **In the calendar.** The date picker marks a workout with a dot and an excused day with a ring, with a key under the month; the This Week strip in the right-hand column does the same.
 - **Reminders.** No workout reminder or streak alert is sent on an excused day. The streak itself is unchanged: an excused day ends it like any day off.
+- **Your program waits.** A program that moves on by the calendar pauses a day for each excused day you didn't train, and says how many under its week. See [Excused days pause a calendar program](progression.md#excused-days-pause-a-calendar-program).
 
 Excused days sync like the rest of your diary: in the web app online and offline, in the Android app connected or used on its own (an Upload sends them, and Disconnect keeps them), and in full backups. The `GET /api/v1/excused-days` endpoint and the `get_excused_days` MCP tool read them; Trace knows about them too.
 
