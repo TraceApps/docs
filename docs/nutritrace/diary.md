@@ -18,17 +18,42 @@ Pick a food. The quantity sheet opens with a **live nutrition preview**: calorie
 
 ## Long-press and right-click
 
-Long-press a diary item on mobile, right-click on desktop, for the item action sheet: **Edit**, **Move to another meal**, **Copy to another meal**, **Copy to another date**, **Delete**. The same interaction on the meal card header (title area) opens the meal `⋮` menu.
+Long-press a diary item on mobile, right-click on desktop, for the item action sheet: **Edit**, **Replace**, **Move to Meal**, **Copy**, **Select Multiple**, **Split Recipe** (recipes only) and **Delete**. The same interaction on the meal card header (title area) opens the meal `⋮` menu.
+
+- **Move to Meal** opens with the day you're looking at already picked, so moving to another meal of the same day is one tap on the meal. Pick another day first (see [Picking a day](#picking-a-day)) to move the item there instead.
+- **Copy** opens the Copy sheet: a day, a meal, and **Repeat** (below).
+
+## Select Multiple
+
+**Select Multiple** (in the item action sheet) puts check circles on the day's items; tap items in any meal to add or remove them. The top bar shows how many are selected, with four buttons:
+
+- **Cancel Selection** (✕) leaves Select Multiple.
+- **Move Selected** moves them all to one meal, on this day or another.
+- **Copy Selected** opens the Copy sheet for them. Its meal starts on **Keep Each Item's Meal**: breakfast items go to that day's breakfast, dinner items to its dinner, which is what you want when you plan the same meals ahead. Pick a meal to put them all in that one instead.
+- **Delete Selected** asks first, then removes them.
+
+After a move or copy you leave Select Multiple, and a message says where the items went ("Moved 2 items to yesterday's Dinner", "Copied 3 items to 4 days, Thu, Oct 29 to Sun, Nov 1"). Going to another day also leaves it, so a selection never applies to a different day's items.
+
+## Copy and Repeat
+
+The Copy sheet is the same for one item, a whole meal (`⋮` → **Copy**) and a selection. Pick the day and the meal, then use **Repeat** to also copy to the following days: **−** and **+** step from **Off** up to **Next 14 Days**, and the line under it says which days that covers. A copy is a new entry on each day, exactly as if you had copied it there by hand; nothing on those days is replaced or merged.
+
+If some days can't be saved, the others keep their copies and the message says how many days worked and names the ones that didn't, so you can copy those again. A copy made offline waits with your other changes and goes up when the connection returns (see [Offline](features.md#offline)); in the Android app without a server it saves on the phone.
+
+## Picking a day
+
+Everywhere you choose a day for diary items (the Copy sheet, **Move to Meal**, **Move Selected**, and **Add to Diary** on the Foods page) has the same picker: **Yesterday**, **Today** and **Tomorrow** buttons, and the date field with its calendar for any other day. The button for the chosen day is lit; pick a date in the calendar and the matching button lights, or none.
+
+Moving items to another day saves them on that day first and only then takes them off this one. If the first save fails, nothing is removed. If taking them off fails, they are taken back off the other day; if even that can't be done, you're told they are on both days, so nothing is ever lost.
 
 ## Per-meal `⋮` menu
 
 The meal-level `⋮` (top-right of each meal card) covers meal-wide actions:
 
-- **Copy meal to another meal**: same day, different slot.
-- **Move meal to another meal**: same, but the source empties.
-- **Copy meal to another date**: pick any date; the items go in the same slot on that date.
-- **Save meal to library**: creates a saved Meal in your Foods library from the current slot contents, so you can quick-add the whole thing tomorrow.
-- **Clear meal**: wipes the slot.
+- **Move Items to…**: every item to another meal of the same day.
+- **Copy**: the Copy sheet, for the whole meal. Pick the day and the meal; **Repeat** copies it to the next days too.
+- **Save as Meal…**: creates a saved Meal in your Foods library from the current slot contents, so you can quick-add the whole thing tomorrow.
+- **Clear All Items**: wipes the slot.
 
 ## Split Recipe
 

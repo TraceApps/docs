@@ -12,7 +12,7 @@ Tap **+ Add** on any meal to open the picker. The picker lists your Foods, Meals
 
 Pick a food. The quantity sheet opens with a live nutrition preview: calories, protein, carbs, and fat update as you change the amount, the unit, or the number of servings. Any food note ("1 serving = 150 g cooked", for example) surfaces here. Confirm, and the item is added to the meal.
 
-Long-press an item (mobile) or right-click (desktop) for edit / move / copy / delete. Per-meal, the `⋮` menu covers meal-level actions: copy or move every item to another meal, copy the meal to another date, save the meal to your library, or clear it. **Split Recipe** takes a logged recipe and breaks it into its component ingredients in place; each child stays individually editable and the totals stay correct.
+Long-press an item (mobile) or right-click (desktop) for edit / move / copy / delete. **Select Multiple** picks several items, from any meals, to move, copy or delete together. Moves and copies can go to another day (with Yesterday, Today and Tomorrow buttons), and a copy can repeat for up to the next 14 days, handy for planning meals ahead. Per-meal, the `⋮` menu covers meal-level actions: move every item to another meal, copy the meal to another day and meal, save the meal to your library, or clear it. **Split Recipe** takes a logged recipe and breaks it into its component ingredients in place; each child stays individually editable and the totals stay correct.
 
 Full detail: [Diary & meal logging](diary.md).
 

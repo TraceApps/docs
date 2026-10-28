@@ -51,6 +51,10 @@ Meals and recipes share the same table (`is_recipe=1` for recipes, `server/db.js
 
 Copy, share, and favorite behavior mirrors foods exactly.
 
+## Add to Diary from the Foods page
+
+Opening a food on the Foods page (or a meal or recipe in the wide desktop layout) shows **Add to Diary**. It asks which meal and which day: the day starts on the one the Diary is showing, with **Yesterday**, **Today** and **Tomorrow** buttons and a date field for any other day, so logging last night's dinner is one tap more than logging today's. With **Settings → Diary → Ask For Quantity When Adding** on (the default), the quantity sheet then says where it's going ("Adding to yesterday's Dinner"). You stay on the Foods page, and the message names the day and meal. Adding from the Diary's **+ Add** already knows its day and meal, and asks neither.
+
 ## Nutrition Facts label
 
 Opening a food (or a meal or recipe in the wide desktop layout) shows its nutrition as a Nutrition Facts label, and Trace's food cards use the same label. The right-hand column is set in **Settings → Foods → Nutrition Facts Label → Right Column**, and follows you to every device:
