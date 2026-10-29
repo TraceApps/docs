@@ -69,7 +69,7 @@ The watch keeps the last lists it loaded, so it opens and works in a shop with n
 - speaking a note, an item, or something to buy
 - finishing a reminder
 
-Each of those says so as you do it ("Note saved", "Reminder set", "Added"), and adds "waiting for a connection" when there's nothing to send it over. The screen says "Offline" or "2 waiting" while that's true, and shows the reason in red if the server refuses. Ticks collapse, so tapping twice sends once, while spoken things never collapse: saying two items gives you two items.
+Each of those says so as you do it ("Note saved", "Reminder set", "Added"), and adds "waiting for a connection" when there's nothing to send it over. The screen says "Offline" or "2 waiting" while that's true, and shows the reason in red if the server refuses. Ticks collapse, so tapping twice sends once, while spoken things never collapse: saying two items gives you two items. From the next release, a tick or reminder done offline counts from when you did it, so an item unticked later on your phone stays unticked.
 
 The tile and the complication read the same saved copy, so they show something sensible with no connection and no battery cost.
 
