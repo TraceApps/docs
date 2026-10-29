@@ -18,6 +18,12 @@ Each food row carries a name, brand, category, custom labels, photo, barcode, no
 
 Search is fuzzy: edit distance 1 for words of four or more characters (`Foods.svelte#_fuzzyMatch`). Typos are forgiven; short words are matched exactly to avoid noise.
 
+### Serving size and the link toggle
+
+In the food editor, the nutrients are for the serving size shown under Basic Info, and the Nutrition card says so: **Values for 100 g**, **Values for 60 g** and so on, following the serving size and unit as you change them. When you copy numbers from a package, check the label's column matches: a European label's "per 100 g" column belongs with a 100 g serving.
+
+The link button next to the unit scales every nutrient with the serving size. With it on (the default when you edit a food you saved), changing the serving from 100 g to 200 g doubles every value, including any you typed or corrected after opening the editor. With it off (the default for a new food), the serving size and the values change independently, so typing 60 g keeps the numbers you entered and they become the values for 60 g.
+
 ## Source filter chips
 
 Across the top of the picker: **Local / OFF (Open Food Facts) / USDA / Mealie / From Others**. Single-tap scopes to one source; long-press combines. A per-row source badge marks the origin in the combined view.
