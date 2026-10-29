@@ -92,7 +92,7 @@ Snapshots are stored on the server in `note_versions`:
 |---|---|
 | Edit | The first change after 10 minutes without a snapshot, so one editing session is one restore point |
 | Restore | Before restoring an older version, and before switching between text and checklist |
-| Conflict | When a device pushes an edit older than the server's copy; the older edit is saved here instead of being lost |
+| Conflict | When a device pushes an edit older than the server's copy; the older edit is saved here instead of being lost. From the next release, only when the note's title or text was changed in both places: changes to different parts of a note are both kept (see [How sync works](../mobile/sync.md#two-edits-of-the-same-thing-the-newer-edit-of-each-field)) |
 
 The newest 50 snapshots per note are kept. Android local mode keeps its own history on the device.
 

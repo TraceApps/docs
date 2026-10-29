@@ -204,7 +204,7 @@ A note this browser has never seen is not there offline either: nothing is fetch
 
 A small bar at the top says **Offline** and how many edits are waiting. Edits are kept in the browser, so they survive closing the tab or a reload. When the connection is back they go to the server on their own (tap the bar to send them sooner) and it says **Edits synced**.
 
-They sync the same way the Android app does. If a note was also changed somewhere else while you were offline, the newer change wins and the other one is kept in [version history](#history), so nothing is lost. Checklist items merge one by one, so ticking an item offline and adding one on your phone both stick.
+They sync the same way the Android app does. If a note was also changed somewhere else while you were offline, the newer change wins and the other one is kept in [version history](#history), so nothing is lost. From the next release, that's decided part by part: a title changed here and the text changed elsewhere are both kept (see [How sync works](../mobile/sync.md#two-edits-of-the-same-thing-the-newer-edit-of-each-field)). Checklist items merge one by one, so ticking an item offline and adding one on your phone both stick.
 
 Signing out clears this browser's offline copy. If edits are still waiting, NoteTrace tries to send them first and asks before signing out without them, whichever way you sign out. The Android app has its own offline story: see [Local vs server-connected mode](../mobile/modes.md).
 

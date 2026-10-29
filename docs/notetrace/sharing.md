@@ -51,7 +51,7 @@ Only the owner can make or remove the link, and like the rest of sharing it need
 
 ## Editing at the same time
 
-Shared notes follow the same rules as editing one note from two devices. Checklist items merge per item, so two people adding and checking items at once both keep their changes. For the title and body, the later edit wins and the other one is saved in [version history](notes.md#version-history) rather than lost.
+Shared notes follow the same rules as editing one note from two devices. Checklist items merge per item, so two people adding and checking items at once both keep their changes. For the title and body, the later edit wins and the other one is saved in [version history](notes.md#version-history) rather than lost. From the next release, each part of the note keeps its own newest edit: one person renaming the note and another changing its text or color both keep their changes.
 
 ## Related
 

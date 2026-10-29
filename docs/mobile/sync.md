@@ -1,12 +1,12 @@
 # How sync works
 
-Sync is the same story in every Trace app by design. `server/routes/sync.js` cross-references NutriTrace's version in the other repos, and the client orchestrator (`src/lib/sync.js`) shares the same shape. This page explains the wire contract, the conflict rules, and what you need to configure as a self-hoster (nothing).
+Sync is the same story in every Trace app by design. `server/routes/sync.js` cross-references NutriTrace's version in the other repos, and the client orchestrator (`src/lib/sync.js`) shares the same shape. This page explains the wire contract, the one rule that settles two edits of the same thing, and what you need to configure as a self-hoster (nothing).
 
 ## The wire contract
 
 The Android app talks to two endpoints:
 
-- `POST /api/sync/push` accepts a batch of local changes: `{ tables: { [name]: [row, ...] }, settings: [...] }`. The response is a `{ tables: { [name]: [{ client_id, server_id }] } }` map so the client can rewrite its local IDs.
+- `POST /api/sync/push` accepts a batch of local changes: `{ tables: { [name]: [row, ...] }, settings: [...] }`. The response is a `{ tables: { [name]: [{ client_id, server_id }] } }` map so the client can rewrite its local IDs. Each row carries the time it was edited, and the app's clock at the push (`client_now`), so the server can set a phone's clock right before it compares times.
 - `GET /api/sync/pull?since=<ISO>` returns every row changed at or after the given timestamp, plus a `server_time` value to use as `since` on the next pull.
 
 Both endpoints require a valid session (JWT `Authorization: Bearer` header for the native app).
@@ -17,14 +17,30 @@ Every sync round pushes local changes first, waits for the server to acknowledge
 
 The client runs a round on a 30-second background timer and again whenever the app returns to the foreground (`visibilitychange`). In CookTrace (from its next release) the timer runs only while the app is on screen, and a round with nothing new to send or fetch does almost no work. You can force one from Settings if you want an immediate reconciliation.
 
-## Last-write-wins, inclusive boundary
+## Two edits of the same thing: the newer edit of each field
 
-Conflict resolution is `updated_at`-based. If the same row exists on both sides, whichever side has the later `updated_at` wins. Every mutable table carries an `updated_at` column and every write bumps it.
+When the same item is changed in two places before they sync (the phone offline and the browser, two phones, the web app's own offline queue), every Trace app settles it with one rule, from each app's next release:
 
-!!! note "CookTrace: the newer edit, field by field (from its next release)"
-    CookTrace keeps the newer edit of each field rather than the newer row, and doesn't depend on a phone's clock being right. An edit made offline in the Android app or in the browser no longer overwrites a newer change made on another device to a recipe, a pantry item, the shopping list, a category, a custom unit, a cookbook or the diary. Changes to different fields are both kept: an item checked off on the phone and renamed on the web keeps both. Fields that belong together, such as an amount and its unit, stay together. Cook counts follow the cook diary. Older versions of the app sync as before, and a recipe copy they replace is kept as an [earlier version](../cooktrace/recipes.md#history).
+- **Each field keeps its newest edit.** The server keeps, for every synced item, when each of its fields last changed. A note added to a food on your phone and its brand changed on the web both stay; neither copy of the whole item replaces the other.
+- **Fields that belong together stay together.** Where fields only make sense side by side, they count as one: a quantity and its unit, a food's nutrients and its serving size, a reminder's time, repeat and time zone. The newer edit brings the whole group, so you never end up with one device's amount and the other's unit.
+- **Times are when you made the edit, not when it arrived.** A change made offline on Monday and synced on Wednesday counts as Monday's. A phone whose clock is a few minutes off is set right against the server's clock. Two edits in the same second go to the one arriving last.
+- **A delete made before a later edit doesn't win.** If you delete something on one device and later change it on another, it stays. An edit made before the delete doesn't bring it back; one made after it does. A delete and an edit in the same second keep the delete.
+- **Saving a form changes only what you edited.** In NutriTrace, NoteTrace and CookTrace, in the browser and the Android app, a save sends the fields you changed, so an edit made elsewhere since you opened the form stays.
 
-The pull boundary is **inclusive**: rows where `updated_at >= since` come back, not strict-greater. This is deliberate. SQLite's `datetime('now')` is 1-second precision, so an exclusive `>` boundary silently drops any row written in the same second as the previous `server_time`. The client's upsert is idempotent, so an inclusive boundary is safe: you might see the same row twice across two rounds, but you never lose one.
+Older versions of the apps still sync. They send whole items without saying what changed, so the server counts every field they send as edited at the item's own time. Their edit still loses to a newer one elsewhere, but a newer edit from an older app can put back a field changed on another device. Update every device to get the full rule.
+
+### Where the apps differ
+
+- **NutriTrace.** A day's food entries and water merge entry by entry, so logging on two devices keeps both, and a deleted entry stays deleted. The day's note keeps its newest edit, and each body measurement (weight, body fat, waist) is its own field. A setting changed offline no longer replaces a newer change to the same setting.
+- **NoteTrace.** Checklist items merge item by item. When the same note's title or text was changed in both places, the newer stays and the other is kept in [version history](../notetrace/features.md#history), so nothing is lost.
+- **CookTrace.** When two devices change the same part of a recipe, the other copy is kept as an [earlier version](../cooktrace/recipes.md#history). CookTrace also tells which fields a device changed from the copy that device last had, so it doesn't depend on the phone's clock for that.
+- **LiftTrace.** The Android app doesn't use `/api/sync/push`: it saves through the app's own routes, queuing changes made offline with when they were made and which fields they changed, and the server applies the same rule to each (since 1.4.0). A workout changed in two places merges set by set. `/api/sync/push` remains for other tools: from the next release a pushed row newer than the server's copy is decided field by field, and one older than it changes nothing.
+
+## Inclusive pull boundary
+
+The pull boundary is **inclusive**: rows changed at or after `since` come back, not strict-greater. This is deliberate. SQLite's `datetime('now')` is 1-second precision, so an exclusive `>` boundary silently drops any row written in the same second as the previous `server_time`. The client's upsert is idempotent, so an inclusive boundary is safe: you might see the same row twice across two rounds, but you never lose one.
+
+The pull is picked by when the server last wrote a row, not by the edit time it keeps for the rule above, so an edit made offline days ago still reaches every other device on their next pull.
 
 ## Foreign-key translation
 
@@ -36,7 +52,7 @@ The server also plays defense: FK columns are updated with `COALESCE(?, existing
 
 Deletes are never destructive on the wire. A deleted row keeps its primary key and gets a `deleted_at` timestamp instead of being removed. Both push and pull include soft-deleted rows, so a delete on one device propagates to the other. The client hides them from the UI and prunes them locally after the round completes.
 
-If a row is edited on one device and deleted on another during the same offline window, last-write-wins on `updated_at` still decides the outcome (the delete counts as a write and bumps `updated_at`). In CookTrace from its next release, an item deleted on one device stays deleted when the other device only edited it earlier or reordered the list.
+A delete counts as an edit with its own time, so the rule above decides between a delete on one device and an edit on another. When the server keeps the other device's version, the device that sent the delete gets the item back on its next sync.
 
 ## What you need to configure
 
