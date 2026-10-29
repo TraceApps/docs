@@ -167,9 +167,13 @@ Update checks are off until you turn them on. The setup wizard asks (**Check For
 
 While **Diagnostic Mode** is on, the log also records a one-line screen layout snapshot (lines starting with `[viewport]`) at startup, on each page change, when a field gains or loses focus, when the keyboard or browser toolbar changes the visible area, on zoom and rotation, on returning to the app, and when scrolling stops. Each line has the screen, window and page sizes, zoom level, safe-area insets, where the tab bar and Diary's summary bar sit, and the focused field's text size. They exist to diagnose display problems on specific phones, iPhones in particular: turn Diagnostic Mode on, reproduce the problem, then **View logs** and **Copy**. Only sizes and positions are recorded, never what you type.
 
+## Two-Step Sign-In
+
+In Settings > Profile, for accounts that sign in with a password (from the next release). **Set Up Two-Step Sign-In** asks for your password, shows a QR code and key for an authenticator app, turns on after a right code, and shows ten recovery codes once. When on: **New Recovery Codes** and **Turn Off** (each needs your password and a code). Single sign-on accounts are told their provider handles it. Stored on the server, never in `USER_PREFS` or `DEVICE_PREFS`. See [Two-step sign-in](../auth/two-step.md).
+
 ## User Management (admin)
 
-Create the initial admin (setup wizard entry). Invites list, revoke invite. User list, per-user delete / role change / password reset. **Disable user management** (recovery-token gated) is the escape hatch back to single-user mode.
+Create the initial admin (setup wizard entry). Invites list, revoke invite. User list, per-user delete / role change / password reset, and **Reset Two-Step Sign-In** for someone who has it on (your own password needed). **Require Two-Step Sign-In for Everyone** takes everyone who signs in with a password through setup at their next sign-in (see [Two-step sign-in](../auth/two-step.md#require-it-for-everyone)). **Disable user management** (recovery-token gated) is the escape hatch back to single-user mode.
 
 ## Authentication (admin)
 

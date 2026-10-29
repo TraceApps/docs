@@ -139,6 +139,7 @@ nav:
           - Cloudflare Tunnel and Tailscale: self-hosting/tunnels.md
       - Authentication:
           - Local users, invites, roles: auth/local-users.md
+          - Two-step sign-in: auth/two-step.md
           - OIDC / SSO overview: auth/oidc.md
           - SSO-only mode and recovery: auth/sso-only.md
           - Session lifetime and password policy: auth/sessions.md

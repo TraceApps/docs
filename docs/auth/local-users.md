@@ -87,6 +87,9 @@ Pending invites appear in a list you can revoke individually. Accepting an invit
 
 ## Locked out: `RECOVERY_TOKEN`
 
+!!! tip "Locked out by two-step sign-in?"
+    In NutriTrace, a lost authenticator app doesn't need any of this: use a recovery code, ask an admin, or reset two-step sign-in for one account with `RECOVERY_TOKEN` or `npm run reset-2fa`. See [Two-step sign-in, Locked out](two-step.md#locked-out).
+
 If you forget the sole admin password and don't have SMTP configured, there's a way back in without touching the database. Set `RECOVERY_TOKEN` to a long random string in the container's environment, restart, then call `POST /api/auth/recover` with `{ "token": "<value>" }`. The server clears the `users` table, drops back into single-user mode, and lets you register fresh through the wizard.
 
 ```env
@@ -100,6 +103,7 @@ Rotate `RECOVERY_TOKEN` back out of the environment after use, or leave it set t
 
 ## Related
 
+- [Two-step sign-in](two-step.md)
 - [OIDC / SSO overview](oidc.md)
 - [Session lifetime and password policy](sessions.md)
 - [SSO-only mode and recovery](sso-only.md)
