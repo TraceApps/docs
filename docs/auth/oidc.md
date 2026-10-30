@@ -114,6 +114,19 @@ The usual setups:
 - **Open to everyone at the IdP**: turn on `AUTO_REGISTER`, and anyone your IdP lets through gets an account.
 - **Strictest**: both off. Only people who signed in with a password and linked the provider themselves can use SSO.
 
+## Linking a provider yourself { #linking }
+
+Signed in, open **Profile > Linked Accounts** and choose **Link** next to a provider. From each app's next release this asks you to confirm it's you first, because a linked provider signs you in from then on:
+
+- **An account with a password** enters it, plus a code from the authenticator app (or a recovery code) when [two-step sign-in](two-step.md) is on.
+- **An account with no password** (it only ever signed in through SSO) has nothing to type, so linking works within 15 minutes of signing in. If it's been longer, the app says so: sign out, sign in again with the provider you use, and link straight away. The same goes for setting a first password on such an account.
+
+The server checks this, not just the page: the check buys a one-time permission that lasts 5 minutes, belongs to one account, ends if the password changes, and only starts a link from the app itself (not from a page on another site). The link also has to finish in the same browser it started in, so a provider address someone sends you can't link your provider identity to their account. Having someone's session, or an image address that carries one, isn't enough to link a provider. Before this, anyone holding a signed-in session could link their own provider account and keep signing in with it after a password change.
+
+**Changing your email** in Profile works the same way: the new email waits until you confirm it with your password (and code), or, for an account with no password, within 15 minutes of signing in. Profile shows **Confirm Your New Email** until then. Meanwhile single sign-on doesn't link to your account by the new email (auto-link above), and **Forgot Password** sends the reset to the email you had before. Otherwise someone holding your session could set their own email and get in through their own provider.
+
+**Unlink** needs no extra check: it never removes your last way to sign in (the password, or another linked provider), and removing a provider gives nobody a way in.
+
 ## Sign-out
 
 Signing out of the app also ends the session at your IdP when the IdP supports it (RP-initiated logout), so the next sign-in asks for credentials again instead of passing straight through. The app sends the IdP one of these as the place to return to:

@@ -4,7 +4,7 @@ Two-step sign-in asks for a code from an authenticator app after your password. 
 
 It's for accounts that sign in with a password. If you sign in with single sign-on (OIDC), your identity provider handles two-step sign-in, and the app says so in Settings > Profile. API tokens, MCP tokens, sessions you're already signed in with, saved sign-ins with biometric unlock, the Android app's Use Locally mode (which has no accounts), and the watch apps (which get their sign-in from the phone, so they keep working once the phone is signed in) are not affected.
 
-An account with two-step sign-in on (or one that must set it up because it's required) is never linked to a single sign-on account by its email alone (Auto-Link): sign in with your password and code, then link the provider yourself in Settings > Profile > Linked Accounts. A provider already linked to an account is trusted to do its own two-step sign-in.
+An account with two-step sign-in on (or one that must set it up because it's required) is never linked to a single sign-on account by its email alone (Auto-Link): sign in with your password and code, then link the provider yourself in Settings > Profile > Linked Accounts. A provider already linked to an account is trusted to do its own two-step sign-in. Linking a provider yourself asks for your password and code first (see [Linking a provider yourself](oidc.md#linking)).
 
 ## Set it up
 

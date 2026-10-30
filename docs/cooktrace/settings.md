@@ -10,7 +10,7 @@ Top of the Settings page. Avatar, name, role pill. Tap the card to open **/profi
 
 ### Two-Step Sign-In
 
-In Settings > Profile, for accounts that sign in with a password (from the next release). **Set Up Two-Step Sign-In** asks for your password, shows a QR code and key for an authenticator app, turns on after a right code, and shows ten recovery codes once. When on: **New Recovery Codes** and **Turn Off** (each needs your password and a code). Single sign-on accounts are told their provider handles it. Kept on the server, not on the device. See [Two-step sign-in](../auth/two-step.md).
+In Settings > Profile, for accounts that sign in with a password (from the next release). **Set Up Two-Step Sign-In** asks for your password, shows a QR code and key for an authenticator app, turns on after a right code, and shows ten recovery codes once. When on: **New Recovery Codes** and **Turn Off** (each needs your password and a code). Single sign-on accounts are told their provider handles it. Kept on the server, not on the device. See [Two-step sign-in](../auth/two-step.md). Linking a sign-in provider under Linked Accounts asks for your password, and the code, first, and a changed email waits for the same check (**Confirm Your New Email**); see [Linking a provider yourself](../auth/oidc.md#linking).
 
 ## Appearance (per-user)
 
