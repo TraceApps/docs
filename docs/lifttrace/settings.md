@@ -13,6 +13,7 @@ Top-of-page hero on Settings. Links out to `/profile`.
 - **Birthday, gender, height, current weight** feed BMR estimates and the calorie-estimate overlay.
 - **Avatar** upload; validated with magic-byte checks.
 - **Change password / Sign out**.
+- **Sign Out Everywhere** (from the next release) signs your account out on every other browser, phone and watch after asking; this one stays signed in. Changing your password does the same. API tokens keep working. See [Signing other devices out](../auth/sessions.md#sign-out-everywhere).
 - **Two-Step Sign-In**. In Settings > Profile, for accounts that sign in with a password (from the next release). **Set Up Two-Step Sign-In** asks for your password, shows a QR code and key for an authenticator app, turns on after a right code, and shows ten recovery codes once. When on: **New Recovery Codes** and **Turn Off** (each needs your password and a code). Single sign-on accounts are told their provider handles it. Kept on the server, not on the device. See [Two-step sign-in](../auth/two-step.md). Linking a sign-in provider under Linked Accounts asks for your password, and the code, first, and a changed email waits for the same check (**Confirm Your New Email**); see [Linking a provider yourself](../auth/oidc.md#linking).
 
 ## Display
@@ -131,6 +132,10 @@ Update checks are off until you turn them on (1.4.0 and later). The setup wizard
 
 - **Verbose diagnostic logging** toggle.
 - **View diagnostic logs** in-memory log viewer with a copy-to-clipboard button for bug reports.
+
+### API Tokens
+
+Personal access tokens for [MCP](mcp.md) and the REST API (admin, multi-user). Creating a token asks for your password, and your two-step code when that's on (an account that only signs in through single sign-on: a sign-in in the last 15 minutes), and when it should expire: in 30 days, 90 days (the default), 1 year, or No Expiry. From the next release; see [API tokens](../auth/sessions.md#api-tokens).
 
 ## Admin
 

@@ -8,7 +8,7 @@ Plain JSON routes under `/api/v1` that let another app add notes and tasks: an e
 
 ## Authentication
 
-Create a token under **Settings, API Tokens** with the **notes:create** scope, and send it as a bearer token. Every signed-in account on a server with user accounts can make one for itself; the notes it adds belong to that account. The MCP scopes stay admin-only.
+Create a token under **Settings, API Tokens** with the **notes:create** scope, and send it as a bearer token. Creating a token asks for your password, and your two-step code when that's on (an account that only signs in through single sign-on: a sign-in in the last 15 minutes), and when it should expire: in 30 days, 90 days (the default), 1 year, or No Expiry. From the next release; see [API tokens](../auth/sessions.md#api-tokens). Every signed-in account on a server with user accounts can make one for itself; the notes it adds belong to that account. The MCP scopes stay admin-only.
 
 ```
 Authorization: Bearer note_pat_...

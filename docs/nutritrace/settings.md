@@ -171,6 +171,10 @@ While **Diagnostic Mode** is on, the log also records a one-line screen layout s
 
 In Settings > Profile, for accounts that sign in with a password (from the next release). **Set Up Two-Step Sign-In** asks for your password, shows a QR code and key for an authenticator app, turns on after a right code, and shows ten recovery codes once. When on: **New Recovery Codes** and **Turn Off** (each needs your password and a code). Single sign-on accounts are told their provider handles it. Stored on the server, never in `USER_PREFS` or `DEVICE_PREFS`. See [Two-step sign-in](../auth/two-step.md). Linking a sign-in provider under Linked Accounts asks for your password, and the code, first, and a changed email waits for the same check (**Confirm Your New Email**); see [Linking a provider yourself](../auth/oidc.md#linking).
 
+## Sign Out Everywhere
+
+In Settings > Profile, under Security. **Sign Out Everywhere** (from the next release) signs your account out on every other browser and phone after asking; this one stays signed in. Changing your password does the same. API tokens keep working. See [Signing other devices out](../auth/sessions.md#sign-out-everywhere).
+
 ## User Management (admin)
 
 Create the initial admin (setup wizard entry). Invites list, revoke invite. User list, per-user delete / role change / password reset, and **Reset Two-Step Sign-In** for someone who has it on (your own password needed). **Require Two-Step Sign-In for Everyone** takes everyone who signs in with a password through setup at their next sign-in (see [Two-step sign-in](../auth/two-step.md#require-it-for-everyone)). **Disable user management** (recovery-token gated) is the escape hatch back to single-user mode.
@@ -185,7 +189,7 @@ Host, port, TLS toggle, user, pass, from address. Test-email button. Server-side
 
 ## API Tokens (admin)
 
-Federation API tokens: create with name and scopes (`read:foods`, `write:workouts`, `read:me`, ...), list, delete. Hashed with SHA-256 (raw token shown once at creation). See [Federation API](federation-api.md).
+Federation API tokens: create with name and scopes (`read:foods`, `write:workouts`, `read:me`, ...), list, delete. Hashed with SHA-256 (raw token shown once at creation). See [Federation API](federation-api.md). Creating a token asks for your password, and your two-step code when that's on (an account that only signs in through single sign-on: a sign-in in the last 15 minutes), and when it should expire: in 30 days, 90 days (the default), 1 year, or No Expiry. From the next release; see [API tokens](../auth/sessions.md#api-tokens).
 
 ## Support
 

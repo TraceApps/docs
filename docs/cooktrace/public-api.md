@@ -13,7 +13,7 @@ PUBLIC_API_WRITE_ENABLED=1  # optional: the write routes too
 
 ## Authentication
 
-Create a token under **Settings, API Tokens** (admin, multi-user mode) and send it as a bearer token:
+Create a token under **Settings, API Tokens** (admin, multi-user mode) and send it as a bearer token. Creating a token asks for your password, and your two-step code when that's on (an account that only signs in through single sign-on: a sign-in in the last 15 minutes), and when it should expire: in 30 days, 90 days (the default), 1 year, or No Expiry. From the next release; see [API tokens](../auth/sessions.md#api-tokens).
 
 ```
 Authorization: Bearer ct_pat_...

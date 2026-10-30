@@ -73,6 +73,10 @@ Two independent buckets guard the login endpoint, both with a rolling 15-minute 
 
 The same limiter also protects `POST /api/auth/forgot-password` and `POST /api/auth/recover`.
 
+## Signing someone out
+
+From the next release, an admin setting someone's password in Settings > Users signs that person out on every device, and a person changing their own password, or choosing **Sign Out Everywhere** in Settings > Profile, signs out every other device they use. An admin's own password is changed in Settings > Profile, which asks for the current one; Settings > Users refuses it, so a session alone can't set it. See [Signing other devices out](sessions.md#sign-out-everywhere).
+
 ## Invites
 
 From the admin's Settings, Users pane, click **Invite user**. Two paths:

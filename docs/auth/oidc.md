@@ -65,6 +65,9 @@ Every server env var also accepts a `<NAME>_FILE` suffix for Docker secrets: `OI
 
 Sign-in uses the authorization code flow with PKCE. The app reads the user's details (`sub`, `email`, `email_verified`, `preferred_username`, `name`, and the group claim) from the ID token. NutriTrace 1.4.0, NoteTrace 1.1.0 and LiftTrace 1.4.0 and later fill in anything missing there from the IdP's userinfo endpoint (Authelia 4.39 and later only puts them there), and CookTrace does from its next release. Earlier versions don't call the userinfo endpoint, so anything your IdP only puts in userinfo is invisible to them.
 
+
+`OIDC_APP_LINK_TOKEN=off` refuses single sign-on from Android builds that take their session in the deep link (from before the one-time code). On by default; see [The Android app's sign-in](#android).
+
 ## Single vs multi-provider
 
 Multi-provider works by numbering the prefix: `OIDC_PROVIDER_2_ISSUER`, `OIDC_PROVIDER_2_CLIENT_ID`, and so on for a second IdP. Add `_3_`, `_4_`, no fixed cap. The unnumbered `OIDC_*` aliases are a shortcut for `OIDC_PROVIDER_1_*`; if both are set, the numbered one wins.
@@ -126,6 +129,12 @@ The server checks this, not just the page: the check buys a one-time permission 
 **Changing your email** in Profile works the same way: the new email waits until you confirm it with your password (and code), or, for an account with no password, within 15 minutes of signing in. Profile shows **Confirm Your New Email** until then. Meanwhile single sign-on doesn't link to your account by the new email (auto-link above), and **Forgot Password** sends the reset to the email you had before. Otherwise someone holding your session could set their own email and get in through their own provider.
 
 **Unlink** needs no extra check: it never removes your last way to sign in (the password, or another linked provider), and removing a provider gives nobody a way in.
+
+## The Android app's sign-in { #android }
+
+The Android app opens single sign-on in the phone's browser, and the provider sends it back to the app through a deep link (`nutritrace://oidc-callback`, `lifttrace://`, `cooktrace://`, `notetrace://`). Any app on the phone can register for a link like that, so the link never carries the sign-in itself. Before it opens the browser, the app makes a random secret and sends only its SHA-256 hash; the link comes back with a one-time code (good for two minutes, once), and the app swaps the code and the secret for its session at `POST /api/auth/oidc/handoff`. An app that caught the link has the code but not the secret, and a wrong secret uses the code up. The server makes the session when the code is swapped and keeps no copy of it before; a password change or Sign Out Everywhere in between ends the code too. The app also refuses a sign-in link it didn't ask for (one that arrives with no sign-in started from it in the last 15 minutes), which another app could send to switch the phone to that app's account.
+
+Android builds from before this code (every main release so far) send no secret, and still get their session in the link itself. They keep signing in so nobody is locked out before updating, and the server log says each time: `an older NutriTrace app signed <user> in with the session in the sign-in link`. Set `OIDC_APP_LINK_TOKEN=off` to refuse them; they're sent back to the app with "Update NutriTrace to sign in with single sign-on." (with the app's own name). Off will become the default after the next main release.
 
 ## Sign-out
 

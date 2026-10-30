@@ -12,7 +12,7 @@ Every `/api/v1/*` request needs a Bearer token:
 Authorization: Bearer nt_pat_<43 chars>
 ```
 
-Tokens are personal access tokens minted in Settings > **API Tokens** (admin). The raw value has an `nt_pat_` prefix so leaked tokens are easy to spot in logs and credential scanners; NT hashes with SHA-256 at rest and shows you the raw value exactly once on creation.
+Tokens are personal access tokens minted in Settings > **API Tokens** (admin). The raw value has an `nt_pat_` prefix so leaked tokens are easy to spot in logs and credential scanners; NT hashes with SHA-256 at rest and shows you the raw value exactly once on creation. Creating a token asks for your password, and your two-step code when that's on (an account that only signs in through single sign-on: a sign-in in the last 15 minutes), and when it should expire: in 30 days, 90 days (the default), 1 year, or No Expiry. From the next release; see [API tokens](../auth/sessions.md#api-tokens).
 
 Errors carry a stable `code` field:
 

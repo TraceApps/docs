@@ -2,7 +2,7 @@
 
 Two-step sign-in asks for a code from an authenticator app after your password. NutriTrace, LiftTrace, CookTrace and NoteTrace have it from their next releases, and it works the same way in each.
 
-It's for accounts that sign in with a password. If you sign in with single sign-on (OIDC), your identity provider handles two-step sign-in, and the app says so in Settings > Profile. API tokens, MCP tokens, sessions you're already signed in with, saved sign-ins with biometric unlock, the Android app's Use Locally mode (which has no accounts), and the watch apps (which get their sign-in from the phone, so they keep working once the phone is signed in) are not affected.
+It's for accounts that sign in with a password. If you sign in with single sign-on (OIDC), your identity provider handles two-step sign-in, and the app says so in Settings > Profile. API tokens, MCP tokens, the Android app's Use Locally mode (which has no accounts) and Require for Everyone (which waits for the next sign-in) sign nobody out. Turning it on or off yourself, and every reset, signs the account out on every other device: see [below](#other-devices).
 
 An account with two-step sign-in on (or one that must set it up because it's required) is never linked to a single sign-on account by its email alone (Auto-Link): sign in with your password and code, then link the provider yourself in Settings > Profile > Linked Accounts. A provider already linked to an account is trusted to do its own two-step sign-in. Linking a provider yourself asks for your password and code first (see [Linking a provider yourself](oidc.md#linking)).
 
@@ -15,6 +15,10 @@ An account with two-step sign-in on (or one that must set it up because it's req
 5. **Save your recovery codes.** You get ten, shown once. Each signs you in once if you lose your phone. **Copy Codes** (or **Download** in a browser), keep them somewhere safe like a password manager, then choose **I Saved My Codes**.
 
 The card then shows **On**, when it was turned on, and how many recovery codes are left. **New Recovery Codes** replaces them all (your password and a code needed). **Turn Off** needs your password and a code from the app or a recovery code.
+
+### Your other devices { #other-devices }
+
+From the next release, turning two-step sign-in on or off signs your account out on every other browser, phone and watch, so a session someone copied before can't carry on without the code. The device you did it on stays signed in. The others go to the sign-in page, which says they were signed out; sign in there with your password and code. A watch signs in again with your phone. Every reset (by an admin, `RECOVERY_TOKEN` or `npm run reset-2fa`) does the same. See [Signing other devices out](sessions.md#sign-out-everywhere).
 
 ## Signing in
 

@@ -53,7 +53,7 @@ Some vars that live in LT compose files are actually shared. Look them up in [Sh
 - `BACKUP_SCHEDULE`, `BACKUP_TIME`, `BACKUP_RETENTION`
 - `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM`
 - `AI_PROVIDER`, `AI_API_KEY`, `AI_MODEL`, `AI_BASE_URL`, `AI_ENABLED`
-- `OIDC_*` (single-provider plus `OIDC_PROVIDER_2_*` etc.), `OIDC_ENABLE_EMAIL_PASSWORD_LOGIN`
+- `OIDC_*` (single-provider plus `OIDC_PROVIDER_2_*` etc.), `OIDC_ENABLE_EMAIL_PASSWORD_LOGIN`, `OIDC_APP_LINK_TOKEN` (from the next release, see [The Android app's sign-in](../auth/oidc.md#android))
 
 ## Related
 

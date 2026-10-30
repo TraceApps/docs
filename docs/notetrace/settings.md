@@ -12,6 +12,10 @@ Top of the page: avatar, name, and role. Opens the profile page for display name
 
 In Settings > Profile, for accounts that sign in with a password (from the next release). **Set Up Two-Step Sign-In** asks for your password, shows a QR code and key for an authenticator app, turns on after a right code, and shows ten recovery codes once. When on: **New Recovery Codes** and **Turn Off** (each needs your password and a code). Single sign-on accounts are told their provider handles it. Kept on the server, not on the device. See [Two-step sign-in](../auth/two-step.md). Linking a sign-in provider under Linked Accounts asks for your password, and the code, first, and a changed email waits for the same check (**Confirm Your New Email**); see [Linking a provider yourself](../auth/oidc.md#linking).
 
+### Sign Out Everywhere
+
+In Settings > Profile, under Security. **Sign Out Everywhere** (from the next release) signs your account out on every other browser, phone and watch after asking; this one stays signed in. Changing your password does the same. API tokens keep working. See [Signing other devices out](../auth/sessions.md#sign-out-everywhere).
+
 ## Display
 
 ### Appearance (per-user)
@@ -64,7 +68,7 @@ Link a CookTrace server with its address and an API token with the **shopping** 
 
 ### API Tokens (per-user)
 
-Your own personal access tokens (prefix `note_pat_`) for scripts, other apps, and the MCP endpoint, on a server with user accounts. Each account sees and revokes only its own tokens. Admins can give a token the MCP scopes; see [Model Context Protocol (MCP)](mcp.md). From the next release, any account can make a **notes:create** token, which lets another app add notes and tasks to that account through the [public REST API](public-api.md), and nothing else; until then, API Tokens is under Admin and only for admins.
+Your own personal access tokens (prefix `note_pat_`) for scripts, other apps, and the MCP endpoint, on a server with user accounts. Each account sees and revokes only its own tokens. Admins can give a token the MCP scopes; see [Model Context Protocol (MCP)](mcp.md). From the next release, any account can make a **notes:create** token, which lets another app add notes and tasks to that account through the [public REST API](public-api.md), and nothing else; until then, API Tokens is under Admin and only for admins. Creating a token asks for your password, and your two-step code when that's on (an account that only signs in through single sign-on: a sign-in in the last 15 minutes), and when it should expire: in 30 days, 90 days (the default), 1 year, or No Expiry. From the next release; see [API tokens](../auth/sessions.md#api-tokens).
 
 ## App
 

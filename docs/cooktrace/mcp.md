@@ -45,10 +45,10 @@ Log in as an admin on a **multi-user** instance (API tokens need a real account 
 
 1. Open **Settings → API Tokens**
 2. **New token** → name it (e.g. "claude-desktop")
-3. Check the `mcp:read` scope
-4. Create
+3. Check the `mcp:read` scope, and pick when it expires
+4. Create, and confirm with your password (and two-step code, when that's on)
 
-The raw token (`ct_pat_...`) is shown once. Copy it now; the server only keeps a SHA-256 hash after this.
+Creating a token takes a fresh check from the next release: see [API tokens](../auth/sessions.md#api-tokens). The raw token (`ct_pat_...`) is shown once. Copy it now; the server only keeps a SHA-256 hash after this.
 
 ## Wire up Claude Desktop
 

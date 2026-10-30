@@ -40,6 +40,8 @@ Federation always starts on the app that owns the data by minting a token, then 
 
 **On the client side** (the app pulling or pushing): open Settings, find the section for the other app (**NutriTrace federation** on CookTrace/LiftTrace, **CookTrace** under Connected Services on NutriTrace, **CookTrace** under Integrations on NoteTrace), paste the instance URL and token, click Save. The client hits `/api/v1/me` on the target and echoes back the username on success, or a specific error if the URL is wrong, the token is invalid, or the scopes are missing.
 
+Creating a token on either app asks for the password (and two-step code, when that's on) and when it should expire, from the next release. See [API tokens](../auth/sessions.md#api-tokens).
+
 ## Transport, revocation, rotation
 
 All traffic goes over whatever transport your NT instance is served on. HTTPS is the sensible default; plain HTTP works on a trusted LAN if that's what you're running. The client app forwards the request server-side (never browser to NT), so the token stays on the sibling app's server and doesn't reach the WebView.

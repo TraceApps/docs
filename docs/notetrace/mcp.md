@@ -36,7 +36,8 @@ API tokens need an account to belong to, so they're available on a server with u
 
 1. Open **Settings, API Tokens**.
 2. Create a token, name it (for example "claude-desktop"), and tick the scopes: `mcp:read`, plus `mcp:write` and `mcp:destroy` if you want those tiers.
-3. Copy the token (it starts with `note_pat_`). It's shown once.
+3. Pick when it expires, choose Create, and confirm with your password (and two-step code, when that's on). From the next release; see [API tokens](../auth/sessions.md#api-tokens).
+4. Copy the token (it starts with `note_pat_`). It's shown once.
 
 The token acts as the account that created it and sees only that account's notes, plus notes shared with it.
 

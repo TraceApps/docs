@@ -6,7 +6,7 @@ Settings is laid out as collapsible cards grouped into **Display**, **Data & Tra
 
 ## Profile (per-user)
 
-Top of the Settings page. Avatar, name, role pill. Tap the card to open **/profile** for account edits: change display name, change password, sign out.
+Top of the Settings page. Avatar, name, role pill. Tap the card to open **/profile** for account edits: change display name, change password, sign out. **Sign Out Everywhere** (from the next release) signs your account out on every other browser, phone and watch after asking; this one stays signed in. Changing your password does the same. API tokens keep working. See [Signing other devices out](../auth/sessions.md#sign-out-everywhere).
 
 ### Two-Step Sign-In
 
@@ -134,6 +134,10 @@ Deep dive: [Kitchens](kitchens.md).
 - **View Diagnostic Logs**: Copy, Share, Clear.
 - **Share Log File**: Android only, when Diagnostic Mode is on. Shares the on-disk 7-day rotation.
 - **Crash Report**: banner appears when the last session crashed. Share or Dismiss.
+
+## API Tokens (admin)
+
+Personal access tokens for the [public API](public-api.md) and [MCP](mcp.md). Creating a token asks for your password, and your two-step code when that's on (an account that only signs in through single sign-on: a sign-in in the last 15 minutes), and when it should expire: in 30 days, 90 days (the default), 1 year, or No Expiry. From the next release; see [API tokens](../auth/sessions.md#api-tokens).
 
 ## Users (admin)
 
