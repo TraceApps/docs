@@ -8,6 +8,10 @@ Settings is grouped into **Display**, **Integrations**, **App**, and **Admin**. 
 
 Top of the page: avatar, name, and role. Opens the profile page for display name, password, biometric sign-in (Android), and sign out.
 
+### Two-Step Sign-In
+
+In Settings > Profile, for accounts that sign in with a password (from the next release). **Set Up Two-Step Sign-In** asks for your password, shows a QR code and key for an authenticator app, turns on after a right code, and shows ten recovery codes once. When on: **New Recovery Codes** and **Turn Off** (each needs your password and a code). Single sign-on accounts are told their provider handles it. Kept on the server, not on the device. See [Two-step sign-in](../auth/two-step.md).
+
 ## Display
 
 ### Appearance (per-user)
@@ -105,7 +109,7 @@ Server and sync status, for troubleshooting.
 
 ### Users
 
-Invite people, change roles, reset passwords, and remove accounts. Accounts are also who you can [share notes](sharing.md) with. See [Local users, invites, roles](../auth/local-users.md).
+Invite people, change roles, reset passwords, and remove accounts. **Reset Two-Step Sign-In** for someone who has it on (your own password needed), and **Require Two-Step Sign-In for Everyone**, which takes everyone who signs in with a password through setup at their next sign-in (see [Two-step sign-in](../auth/two-step.md#require-it-for-everyone)). Accounts are also who you can [share notes](sharing.md) with. See [Local users, invites, roles](../auth/local-users.md).
 
 ### Authentication
 

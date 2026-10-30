@@ -49,7 +49,7 @@ Some vars that live in LT compose files are actually shared. Look them up in [Sh
 
 - `PORT` alternatives, `NODE_ENV`, `LOG_LEVEL`, `BASE_URL`, `PUBLIC_URL` (1.4.0 and later: the address in links in emails; from the next release also the app's own address when the server refuses changes sent from other sites' pages, see [If changes are refused](../getting-started/reverse-proxy.md#cross-site-refused))
 - `DB_PATH`, `UPLOADS_PATH`, `BACKUPS_PATH`, `BACKUP_UPLOAD_MAX_MB`
-- `JWT_SECRET`, `TOKEN_ENC_KEY`, `INSECURE_COOKIES`, `FRAME_ANCESTORS`, `MAX_SESSION_HOURS`, `RECOVERY_TOKEN`
+- `JWT_SECRET`, `TOKEN_ENC_KEY`, `INSECURE_COOKIES`, `FRAME_ANCESTORS`, `MAX_SESSION_HOURS`, `RECOVERY_TOKEN`, `TWO_STEP_KEY` (from the next release, see [Two-step sign-in](../auth/two-step.md))
 - `BACKUP_SCHEDULE`, `BACKUP_TIME`, `BACKUP_RETENTION`
 - `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM`
 - `AI_PROVIDER`, `AI_API_KEY`, `AI_MODEL`, `AI_BASE_URL`, `AI_ENABLED`

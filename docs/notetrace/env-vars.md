@@ -1,6 +1,6 @@
 # Env vars (NoteTrace-specific)
 
-NoteTrace reads the same shared variables as the other Trace apps (`PORT`, `BASE_URL`, `JWT_SECRET`, `DB_PATH`, `UPLOADS_PATH`, `SMTP_*`, `OIDC_*`, `AI_*`, `INSECURE_COOKIES`, `FRAME_ANCESTORS`, `TZ`, `LOG_LEVEL`, `RECOVERY_TOKEN`, `TOKEN_ENC_KEY`, `<NAME>_FILE` secrets, and the rest). Those live on the shared [environment reference](../self-hosting/env-vars.md). This page lists the values that are specific to NoteTrace or worth calling out for it.
+NoteTrace reads the same shared variables as the other Trace apps (`PORT`, `BASE_URL`, `JWT_SECRET`, `DB_PATH`, `UPLOADS_PATH`, `SMTP_*`, `OIDC_*`, `AI_*`, `INSECURE_COOKIES`, `FRAME_ANCESTORS`, `TZ`, `LOG_LEVEL`, `RECOVERY_TOKEN`, `TWO_STEP_KEY` (from the next release), `TOKEN_ENC_KEY`, `<NAME>_FILE` secrets, and the rest). Those live on the shared [environment reference](../self-hosting/env-vars.md). This page lists the values that are specific to NoteTrace or worth calling out for it.
 
 ## Container
 

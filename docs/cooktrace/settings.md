@@ -8,6 +8,10 @@ Settings is laid out as collapsible cards grouped into **Display**, **Data & Tra
 
 Top of the Settings page. Avatar, name, role pill. Tap the card to open **/profile** for account edits: change display name, change password, sign out.
 
+### Two-Step Sign-In
+
+In Settings > Profile, for accounts that sign in with a password (from the next release). **Set Up Two-Step Sign-In** asks for your password, shows a QR code and key for an authenticator app, turns on after a right code, and shows ten recovery codes once. When on: **New Recovery Codes** and **Turn Off** (each needs your password and a code). Single sign-on accounts are told their provider handles it. Kept on the server, not on the device. See [Two-step sign-in](../auth/two-step.md).
+
 ## Appearance (per-user)
 
 - **Theme**: System, Dark, or Light.
@@ -134,7 +138,8 @@ Deep dive: [Kitchens](kitchens.md).
 ## Users (admin)
 
 - **Enable User Management**: bootstraps an admin account on first turn-on.
-- Users list with role, delete, reset password.
+- Users list with role, delete, reset password, and **Reset Two-Step Sign-In** for someone who has it on (your own password needed).
+- **Require Two-Step Sign-In for Everyone**, which takes everyone who signs in with a password through setup at their next sign-in (see [Two-step sign-in](../auth/two-step.md#require-it-for-everyone)).
 - **Invite user** by role and email. Requires SMTP; falls back to a copyable link when SMTP is unset.
 - Pending invites table with revoke.
 

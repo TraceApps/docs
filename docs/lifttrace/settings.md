@@ -13,6 +13,7 @@ Top-of-page hero on Settings. Links out to `/profile`.
 - **Birthday, gender, height, current weight** feed BMR estimates and the calorie-estimate overlay.
 - **Avatar** upload; validated with magic-byte checks.
 - **Change password / Sign out**.
+- **Two-Step Sign-In**. In Settings > Profile, for accounts that sign in with a password (from the next release). **Set Up Two-Step Sign-In** asks for your password, shows a QR code and key for an authenticator app, turns on after a right code, and shows ten recovery codes once. When on: **New Recovery Codes** and **Turn Off** (each needs your password and a code). Single sign-on accounts are told their provider handles it. Kept on the server, not on the device. See [Two-step sign-in](../auth/two-step.md).
 
 ## Display
 
@@ -137,7 +138,8 @@ Only visible to `admin` in server mode.
 
 ### User management
 
-- **Users list** with role picker (Admin / Trainer / Member), a trainer picker for members (choosing a trainer sends that trainer's coaching request, shown as waiting until the member answers; **No trainer** ends their coaching), **Reset user password**, **Delete user**.
+- **Users list** with role picker (Admin / Trainer / Member), a trainer picker for members (choosing a trainer sends that trainer's coaching request, shown as waiting until the member answers; **No trainer** ends their coaching), **Reset user password**, **Reset Two-Step Sign-In** for someone who has it on (your own password needed), **Delete user**.
+- **Require Two-Step Sign-In for Everyone**, which takes everyone who signs in with a password through setup at their next sign-in (see [Two-step sign-in](../auth/two-step.md#require-it-for-everyone)).
 - **Invite user** email (SMTP) or shareable link. For a member you can choose a **Coach**; the new account then gets that coach's request to accept or decline (the same choice is on **Add User Manually**).
 - **Require strong passwords** enforces zxcvbn score >= 3.
 - **Session duration** hours; capped by `MAX_SESSION_HOURS`.

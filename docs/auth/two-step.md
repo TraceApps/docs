@@ -1,8 +1,8 @@
 # Two-step sign-in
 
-Two-step sign-in asks for a code from an authenticator app after your password. NutriTrace has it from its next release; the other Trace apps don't have it yet.
+Two-step sign-in asks for a code from an authenticator app after your password. NutriTrace, LiftTrace, CookTrace and NoteTrace have it from their next releases, and it works the same way in each.
 
-It's for accounts that sign in with a password. If you sign in with single sign-on (OIDC), your identity provider handles two-step sign-in, and NutriTrace says so in Settings > Profile. API tokens, MCP tokens, sessions you're already signed in with, saved sign-ins with biometric unlock, and the Android app's Use Locally mode (which has no accounts) are not affected.
+It's for accounts that sign in with a password. If you sign in with single sign-on (OIDC), your identity provider handles two-step sign-in, and the app says so in Settings > Profile. API tokens, MCP tokens, sessions you're already signed in with, saved sign-ins with biometric unlock, the Android app's Use Locally mode (which has no accounts), and the watch apps (which get their sign-in from the phone, so they keep working once the phone is signed in) are not affected.
 
 An account with two-step sign-in on (or one that must set it up because it's required) is never linked to a single sign-on account by its email alone (Auto-Link): sign in with your password and code, then link the provider yourself in Settings > Profile > Linked Accounts. A provider already linked to an account is trusted to do its own two-step sign-in.
 
@@ -18,7 +18,7 @@ The card then shows **On**, when it was turned on, and how many recovery codes a
 
 ## Signing in
 
-After your username and password, NutriTrace asks for the **Code** from your authenticator app. **Use a Recovery Code** takes one of your saved codes instead.
+After your username and password, the app asks for the **Code** from your authenticator app. **Use a Recovery Code** takes one of your saved codes instead.
 
 - A code is accepted for its 30 seconds and one step either side, for a phone clock that's a little off.
 - A code works once. The same code, or an older one, is refused afterwards.
@@ -49,9 +49,12 @@ Or, on the server:
 
 ```bash
 docker exec -it nutritrace npm run reset-2fa -- <username>
+docker exec -it lifttrace npm run reset-2fa -- <username>
+docker exec -it cooktrace npm run reset-2fa -- <username>
+docker exec -it notetrace npm run reset-2fa -- <username>
 ```
 
-Run it without a username to list the accounts that have two-step sign-in on. It works whatever the state of `RECOVERY_TOKEN`.
+Use the line for your app, with your container's name if it's another. Run it without a username to list the accounts that have two-step sign-in on. It works whatever the state of `RECOVERY_TOKEN`.
 
 Every reset, every recovery code used, and every time two-step sign-in is turned on or off is written to the server log, without codes or secrets. When the server sends email ([Email / SMTP](../integrations/smtp.md)), the person is emailed too.
 
@@ -71,7 +74,7 @@ If the key changes or is lost (a different `TWO_STEP_KEY`, a backup restored on 
 
 ## Older apps
 
-An Android app or a cached web page from before two-step sign-in can't enter a code. Signing in to an account with two-step sign-in on from one says "This account uses two-step sign-in. Update NutriTrace (or reload this page) to enter your code." and doesn't sign in.
+An Android app or a cached web page from before two-step sign-in can't enter a code. Signing in to an account with two-step sign-in on from one says "This account uses two-step sign-in. Update NutriTrace (or reload this page) to enter your code." (with the app's own name) and doesn't sign in.
 
 ## Related
 

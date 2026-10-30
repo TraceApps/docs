@@ -1,6 +1,6 @@
 # Env vars (CookTrace-specific)
 
-Only CookTrace-specific env vars are listed here. Shared env vars (`PORT`, `BASE_URL`, `JWT_SECRET`, `DB_PATH`, `UPLOADS_PATH`, `SMTP_*`, `OIDC_*`, `AI_*`, `INSECURE_COOKIES`, `LOG_LEVEL`, `RECOVERY_TOKEN`, `TOKEN_ENC_KEY`, `<NAME>_FILE` secrets, etc.) live on the shared [self-hosting env reference](../self-hosting/env-vars.md).
+Only CookTrace-specific env vars are listed here. Shared env vars (`PORT`, `BASE_URL`, `JWT_SECRET`, `DB_PATH`, `UPLOADS_PATH`, `SMTP_*`, `OIDC_*`, `AI_*`, `INSECURE_COOKIES`, `LOG_LEVEL`, `RECOVERY_TOKEN`, `TWO_STEP_KEY` (from the next release), `TOKEN_ENC_KEY`, `<NAME>_FILE` secrets, etc.) live on the shared [self-hosting env reference](../self-hosting/env-vars.md).
 
 ## Import
 
