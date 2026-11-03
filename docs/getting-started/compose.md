@@ -101,7 +101,7 @@ Pick the tab for the app you're installing. Each snippet is a complete, working 
         restart: unless-stopped
     ```
 
-    Container listens on `3001`, exposed on host port `3001` (same number for convenience). Open `http://localhost:3001` after the container is up. NutriTrace's image is `node:20-slim` (Debian) rather than Alpine because DuckDB's node bindings need glibc.
+    Container listens on `3001`, exposed on host port `3001` (same number for convenience). Open `http://localhost:3001` after the container is up. NutriTrace's image is `node:24-slim` (Debian) rather than Alpine because DuckDB's node bindings need glibc.
 
 !!! info "Host-port defaults are staggered"
     Defaults are chosen so every app can run on the same host without editing, and all avoid the very common `:3000`: NutriTrace on `3001`, LiftTrace on `3002`, CookTrace on `3003`, NoteTrace on `3004`. If any clash with something else on your host, change the left-hand port value in the mapping (e.g. `"3010:3003"` for CookTrace) or put everything behind a reverse proxy.

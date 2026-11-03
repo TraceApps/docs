@@ -4,15 +4,15 @@ The four apps share a stack, so this page covers all of them. Where the setup di
 
 ## Prerequisites
 
-- **Node 20** (the Docker base image is `node:20-alpine` for CookTrace, LiftTrace and NoteTrace, `node:20-slim` for NutriTrace). Older Node majors will occasionally build but are not tested. nvm is the easy path:
+- **Node 24** (the Docker base image is `node:24-alpine` for CookTrace, LiftTrace and NoteTrace, `node:24-slim` for NutriTrace). Node 20 is past end of life and other majors are not tested. nvm is the easy path:
 
     ```bash
-    nvm install 20
-    nvm use 20
+    nvm install 24
+    nvm use 24
     ```
 
 - **Git**, plus a GitHub account if you plan to open a PR.
-- **Python 3** on your host if you want CookTrace's recipe-scrapers tier to run outside Docker. Not required for the other apps.
+- **Python 3, make and a C++ compiler** (`build-essential` on Debian and Ubuntu, Xcode Command Line Tools on macOS, Visual Studio Build Tools on Windows) for every app: `npm install` in `server/` runs node-gyp for better-sqlite3. CookTrace also uses Python 3 for its recipe-scrapers tier outside Docker.
 - **JDK 17 + Android Studio** only if you plan to build the Android app. Not needed for backend or PWA work.
 
 ## Clone the app you want to work on
@@ -111,7 +111,7 @@ Open the backend port from the table above (`http://localhost:3001` for NutriTra
 
 **NoteTrace** uses ffmpeg to convert voice recordings imported from Google Keep (3GP/AMR) and to split long recordings for transcription. The Docker image builds a small audio-only ffmpeg in. Locally, install ffmpeg (with ffprobe) or point `FFMPEG_PATH` and `FFPROBE_PATH` at them. Without it, those two features are unavailable and everything else works.
 
-**NutriTrace** uses `node:20-slim` (Debian) rather than Alpine because DuckDB (the Open Food Facts / OFF local mirror) needs glibc. Local dev on Alpine or musl-libc distros will hit `Error loading shared library ld-linux-x86-64.so.2` when the OFF mirror layer tries to load. On glibc-based Linux, macOS, and Windows this is a non-issue.
+**NutriTrace** uses `node:24-slim` (Debian) rather than Alpine because DuckDB (the Open Food Facts / OFF local mirror) needs glibc. Local dev on Alpine or musl-libc distros will hit `Error loading shared library ld-linux-x86-64.so.2` when the OFF mirror layer tries to load. On glibc-based Linux, macOS, and Windows this is a non-issue.
 
 ## Android debug builds
 

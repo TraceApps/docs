@@ -7,7 +7,7 @@ CookTrace, LiftTrace, NoteTrace, and NutriTrace are siblings by design: same Nod
 | Item | CookTrace | LiftTrace | NoteTrace | NutriTrace |
 |---|---|---|---|---|
 | Docker image | `ghcr.io/traceapps/cooktrace` | `ghcr.io/traceapps/lifttrace` | `ghcr.io/traceapps/notetrace` | `ghcr.io/traceapps/nutritrace` |
-| Base image | `node:20-alpine` | `node:20-alpine` | `node:20-alpine` | `node:20-slim` (Debian) |
+| Base image | `node:24-alpine` | `node:24-alpine` | `node:24-alpine` | `node:24-slim` (Debian) |
 | Container port | `3003` | `3002` | `3004` | `3001` |
 | Sample host port | `3003` | `3002` | `3004` | `3001` |
 | DB mount | `/data/db` | `/data/db` | `/data/db` | `/data/db` |
@@ -27,7 +27,7 @@ All four apps publish multi-arch images (`linux/amd64` + `linux/arm64`) with the
 
 ## Why NutriTrace uses a Debian base
 
-Alpine's musl libc cannot load the DuckDB native bindings, and NutriTrace uses DuckDB to query the optional Open Food Facts (OFF) local mirror (`OFF_LOCAL_DB`, roughly 7 to 8 GB Parquet). To keep a single image regardless of whether the mirror is on, the container is built on `node:20-slim` instead of `node:20-alpine`. Expect a slightly larger image in return for the OFF air-gap option. CookTrace and LiftTrace have no glibc-only dependency and stay on Alpine.
+Alpine's musl libc cannot load the DuckDB native bindings, and NutriTrace uses DuckDB to query the optional Open Food Facts (OFF) local mirror (`OFF_LOCAL_DB`, roughly 7 to 8 GB Parquet). To keep a single image regardless of whether the mirror is on, the container is built on `node:24-slim` instead of `node:24-alpine`. Expect a slightly larger image in return for the OFF air-gap option. CookTrace and LiftTrace have no glibc-only dependency and stay on Alpine.
 
 ## Why CookTrace bundles a Python interpreter
 
