@@ -13,6 +13,8 @@ Every set row carries:
 - **Unilateral L/R split** on exercises that ask for it (single-arm rows, split squats). Reps become two inputs.
 - **Set-number override** in supersets, so a paired A1/A2/B1 flow keeps the round math right.
 
+**Last time and the volume chip.** Under an exercise's name, the **Last** row shows the sets you did on it last time. Beside it, a green or red chip (**+7%**, **-12%**) says how your volume compares with it, left out when it's even. From the next release, while you're part way through, it compares set for set: your first two sets against last time's first two, so a heavier first two sets read green rather than red against a whole session. Once every set of the exercise is ticked, or the workout is finished, it compares the whole of both. Warm-ups and timed sets don't count.
+
 ## Timed sets (planks, holds, carries)
 
 Some exercises are tracked by how long you hold them, not by reps: planks, wall sits, dead hangs, hollow holds, farmer's walks. For those, the set row shows a **Time** field where reps would be. Weight stays, so a weighted plank is `25 lbs` for `1:00`; leave weight empty for bodyweight.
