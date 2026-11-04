@@ -53,7 +53,7 @@ Open **Statistics**. The metric-pill row across the top switches between:
 
 The date range (1W / 1M / 3M / 6M / 1Y / All) applies globally. Warm-ups are excluded from every calculation.
 
-PR detection also runs inline in Diary: when a completed set beats the prior top weight or top estimated 1RM for that exercise, the row surfaces a badge, and the completion summary lists it.
+PR detection also runs inline in Diary: when a completed set beats your best from other days and every earlier set of that exercise today (top weight or top estimated 1RM), the row surfaces a badge, and the completion summary lists it. A repeat of a set is not a PR.
 
 ## Use the radio during a session
 

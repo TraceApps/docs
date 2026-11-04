@@ -50,7 +50,7 @@ For a [timed exercise](diary.md#timed-sets-planks-holds-carries) (plank, wall si
 
 Warm-up sets never count. Rep sets with zero or negative weight never count. Incomplete sets (the completion checkbox never got checked) never count. Detection happens server-side on every stats query, so a PR you set in one session shows up on the Records view before you leave the page.
 
-Inline in the Diary, a set row also gets a PR badge the moment its weight or estimated 1RM exceeds the prior best for that exercise (see [Diary and set logging](diary.md#anatomy-of-a-set)).
+Inline in the Diary, a set row also gets a PR badge the moment its weight or estimated 1RM beats your best from other days **and** every earlier set of that exercise today, in the same workout and in any earlier workout of the day (see [Diary and set logging](diary.md#anatomy-of-a-set)). A set that only matches an earlier one is not a PR: three sets of 150 x 8 after 145 x 8 badge the first one only, while a heavier set, or more reps at the same weight, badges too. On a timed exercise it is a longer hold, or a heavier load held. The badge follows the saved sets in order, so changing or unticking an earlier set can move it, and it reads the same when you open the day again. The completion summary's PR count and the PR notification use the same rule, and so does the `pr.set` webhook, which sends one per record, never for a repeat. From the next release; before it a repeat of a set could badge as well.
 
 ## Volume math
 
