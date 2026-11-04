@@ -38,7 +38,7 @@ Two tools deliberately don't write anything on their own. They surface a review 
 
 These two tools have the strictest system-prompt guardrails. The model is told: calling this tool means "the card was shown", **not** "the food was logged". After calling it, Trace should not claim to have logged anything until you confirm.
 
-A named food you ask Trace to log is still searched in your Foods and Open Food Facts first; a card comes when you ask for an estimate or nothing matches. A question that only asks for the numbers ("how much protein is in a bagel?") gets an answer in the chat. One card is on screen at a time: asking Trace to log another food brings its card in place of the waiting one, and a card you already added or discarded doesn't come back by itself (ask for another serving or a changed amount to get a new one).
+A named food you ask Trace to log is still searched in your Foods and Open Food Facts first; a card comes when you ask for an estimate or nothing matches. A question that only asks for the numbers ("how much protein is in a bagel?") gets an answer in the chat. One card is on screen at a time: asking Trace to log another food brings its card in place of the waiting one, and a card you already added, saved or discarded doesn't come back by itself. Ask for it again and Trace's reply gets a **Show Card Again** button: tap it and the same card comes back with its usual buttons. Only the newest such reply has the button, and it goes once you tap it, when another card comes up, when you clear the conversation, or when the chat is loaded again, for example after a reload. Another serving of a food you already saved is logged from your Foods, not saved again.
 
 ### In coaching
 
