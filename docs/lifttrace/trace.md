@@ -17,12 +17,12 @@ LiftTrace registers 21 tools that Trace can call across a single conversation, s
 - `get_programs`: the user's program library, with which one is active.
 - `get_program`: one program with every template laid out (per-week overrides for multi-week blocks).
 - `get_active_program`: the currently active program in full, with the week you're on and how many days excused days have paused it, or `{ active: false }`.
-- `get_prs`: personal records with weight, reps, and estimated 1RM per exercise, a page at a time.
+- `get_prs`: personal records per exercise, a page at a time: weight, reps and estimated 1RM for lifts; the longest hold, longest distance or most calories for timed, distance and calorie exercises, with the heaviest load for those.
 - `get_body_stats`: body stats over time (weight, body_fat, any tracked measurement) with change summary.
 - `get_progress_photos`: how many progress photos you took, on which dates, and what you weighed that day. Dates only: Trace can't see the photos, so attach one to a message if you want it looked at.
 - `get_cardio`: cardio sessions in a date range with totals per activity. Cardio isn't part of `get_workouts`, so Trace looks here before talking about conditioning or weekly load.
 - `get_excused_days`: the days you marked as excused (injury, illness, appointment, other) with your notes, including days marked ahead. Trace checks these before calling a quiet week missed, and its overview counts excused days in the range.
-- `get_stats_overview`: snapshot for a range: workouts done, streaks, weekly volume and frequency, muscle balance, top PRs.
+- `get_stats_overview`: snapshot for a range: workouts done, streaks, weekly volume and frequency, muscle balance, top PRs set in the range (the best lifts, then the newest hold, distance and calorie records).
 - `get_coach_prescription`: the coach-prescribed workout for a date if the user has a coach, with its answer (waiting, accepted). Trace doesn't load one the user hasn't accepted.
 
 **Write (8)**

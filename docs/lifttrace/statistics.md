@@ -10,7 +10,7 @@ Six pills at the top of the page, and a seventh, **Cardio**, with **Track Cardio
 
 - **Overview** the summary board: current streak, longest streak, total workouts, weekly-goal progress, muscle-recovery heatmap, and a body map colored by recent effective sets per muscle.
 - **Exercise Progress** pick an exercise; get a weight-per-session sparkline plus per-session sets, volume, and average RPE. A [timed exercise](diary.md#timed-sets-planks-holds-carries) charts its longest hold per session instead, and a [distance or calorie exercise](diary.md#distance-and-calorie-sets-rower-sled-carries-air-bike) its longest distance or most calories in a set.
-- **Records** every exercise's current top weight and current top estimated 1RM, or its longest hold, longest distance or most calories for a timed, distance or calorie exercise.
+- **Records** every exercise's current top weight and current top estimated 1RM, or its longest hold, longest distance or most calories for a timed, distance or calorie exercise, with the heaviest load it was done with when that beats the load in the record itself.
 - **Volume** weekly total volume bar chart across the range.
 - **Frequency** weekly workout count plus a weekday distribution.
 - **Body Measurements** logged body-weight points over time (sourced from Diary body-stats). A card at the top of this view opens [Progress photos](progress.md), the visual counterpart to the weight line.
