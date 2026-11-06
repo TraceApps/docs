@@ -16,7 +16,7 @@ Unmatched exercise names persist as free-text and stay attached to their sets. Y
 
 ## What does not survive
 
-- **RPE** is not in Strong, Hevy, FitNotes, or Jefit exports. Every imported set arrives without RPE regardless of source. You can back-fill from memory on individual sets after import.
+- **RPE** carries through from Strong and Hevy when the set has one. FitNotes and Jefit exports don't include it, so those sets arrive without RPE; you can back-fill it on individual sets after import.
 - **Superset grouping** is not exported by Strong, FitNotes, or Jefit. Sets from a superset arrive as ungrouped consecutive exercises. Hevy exports superset markers; the Hevy adapter reconstructs the grouping.
 - **Rest-timer values** are exported by some sources but LiftTrace does not currently store per-set rest values on imported workouts.
 - **Notes** carry through when the source exports them.
@@ -40,7 +40,7 @@ Unmatched exercise names persist as free-text and stay attached to their sets. Y
     3. Upload the `.csv` file.
     4. Review the preview and commit.
 
-    Notes: Strong does not export supersets or RPE. Rest values are exported but not persisted.
+    Notes: the iPhone and Android exports both work (the iPhone file separates columns with commas, the Android file with semicolons). The iPhone file doesn't say whether weights are kg or lb, so they are read in your LiftTrace weight unit; set it to match Strong before importing. Strong does not export supersets. Rest values are exported but not persisted.
 
 ??? details "Hevy (iOS / Android)"
     **Export from Hevy**
