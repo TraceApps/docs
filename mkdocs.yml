@@ -236,6 +236,7 @@ nav:
       - Wellness & wearables: nutritrace/wellness.md
       - Fitbit → Google Health migration: nutritrace/google-health.md
       - Withings: nutritrace/withings.md
+      - Garmin: nutritrace/garmin.md
       - Health Connect (Android): nutritrace/health-connect.md
       - Activity & IF tracking: nutritrace/activity-if.md
       - Open Food Facts: nutritrace/off.md

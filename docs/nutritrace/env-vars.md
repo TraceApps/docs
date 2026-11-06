@@ -50,7 +50,7 @@ See [Open Food Facts](off.md) for the full walkthrough (~7-8 GB download, refres
 
 ## Wellness (Fitbit / Google Health / Withings / Garmin)
 
-**None.** All wellness integrations are configured **per user**, not via env vars. Each user pastes their own Client ID / Secret pair for the wearable they use, because Fitbit / Google Cloud / Withings / Garmin all issue credentials per developer account rather than per app instance. Callbacks are handled at `/api/wellness/<provider>/callback` and secrets are AES-GCM encrypted at rest with `TOKEN_ENC_KEY`.
+**None.** All wellness integrations are configured **per user**, not via env vars. Each user pastes their own Client ID / Secret pair for the wearable they use, because Fitbit / Google Cloud / Withings / Garmin all issue credentials per developer account rather than per app instance; for Garmin, most people paste a Personal API Key instead ([Garmin](garmin.md)). Callbacks are handled at `/api/wellness/<provider>/callback` and secrets and keys are AES-GCM encrypted at rest with `TOKEN_ENC_KEY`. The Garmin Personal API Key needs outbound HTTPS to `personal.connectapi.garmin.com` (and honors `HTTPS_PROXY`), no inbound callback.
 
 See [Wellness and wearables](wellness.md), [Fitbit → Google Health migration](google-health.md), [Withings](withings.md), and [Health Connect](health-connect.md).
 

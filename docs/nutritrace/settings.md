@@ -107,7 +107,7 @@ Top-level enable (`wellnessEnabled`), sync range, wellness-metrics selection, wo
 
 - **Fitbit** / **Google Health**: legacy Fitbit Web API plus successor Google Health API. Client ID / Secret pair per user. Sync mode / interval / window. See [Fitbit → Google Health migration](google-health.md).
 - **Withings**: same shape. See [Withings](withings.md).
-- **Garmin**: OAuth 1.0a (partnership-gated).
+- **Garmin**: **How to Connect** picks **Personal API Key** (paste a key from Garmin Connect, optional **Key Expires On**, **Account Region**; once linked: expiry, **Change Date**, **Replace Key**) or **Health API Partner** (OAuth 1.0a, partnership-gated). Each account has its own key. See [Garmin](garmin.md).
 - **Health Connect** (Android-only, on-device permissions). **Data Not Allowed Yet** lists the data types NutriTrace can read that the phone hasn't allowed, with **Allow**. See [Health Connect](health-connect.md).
 - **LiftTrace** (federation source; `lifttraceOverlapFill` toggle).
 
