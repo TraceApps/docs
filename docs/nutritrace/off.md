@@ -39,6 +39,8 @@ Override with `OFF_LOCAL_URL` if you host your own snapshot or need a specific m
 
 Set `OFF_LOCAL_ONLY=1` and NutriTrace refuses to fall back to the public OFF API for anything. Barcode misses and name-search misses return "not found" rather than round-tripping to the internet. The proxy endpoint that normally passes OFF lookups through to the public API refuses with `503` and a message about the air-gap policy (`server/routes/proxy.js`).
 
+The MCP tools `search_external_foods` and `log_external_food` follow the same rules: local copy first, and nothing outside the server in air-gap mode, USDA included (from the next release; see [MCP](mcp.md#foods-from-open-food-facts-and-usda)).
+
 Air-gap mode also disables the OFF account contribute path entirely, since Share-to-OFF requires reaching out to `world.openfoodfacts.org` to POST. The button hides in that mode.
 
 The full local-mode env-var summary:

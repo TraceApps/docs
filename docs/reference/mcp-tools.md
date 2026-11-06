@@ -21,7 +21,7 @@ Setup lives on each app's own MCP page: [NutriTrace](../nutritrace/mcp.md), [Lif
 
 ## NutriTrace
 
-Twenty tools across three phases.
+Twenty-two tools across three phases.
 
 ### Read tools (`mcp:read`)
 
@@ -36,6 +36,7 @@ Twenty tools across three phases.
 | `get_daily_totals_range` | `get_daily_totals` for every logged day in a date range | `start`, `end` | `start`, `end`, `totals[]` (one `get_daily_totals` result per logged day), `count` |
 | `list_diary_entries_range` | Raw item lists for every logged day in a date range, at most 366 logged days per call | `start`, `end` | `start`, `end`, `entries[]` (`date`, `items[]`, `count`), `count` |
 | `search_foods` | Text search over the user's local catalog | `query*`, `limit` | Match array (id, name, brand, barcode, portion, unit, nutrition) |
+| `search_external_foods` | Search Open Food Facts and USDA FoodData Central by name or barcode, like the app's food search, under the user's settings (USDA only with USDA on and an API key) | `query` or `barcode` (one is required), `source` (`all`, `off`, `usda`; default `all`), `limit` (per source, default 10, max 25) | `sources[]` (`source`, `status`: `ok`, `no_match`, `not_set_up`, `disabled`, `unreachable` or `offline`, `count`, `message`) and `items[]` (`ref` such as `off:<barcode>` or `usda:<fdcId>`, `source`, name, brand, barcode, `fdc_id`, `data_type`, portion, unit, `nutrition_basis`, `serving`, `alt_units`, `nutriscore`, `completeness`, `nutrients_reported`, nutrition for the portion). An error only when no source could answer. Saves nothing. |
 | `get_recent_foods` | Most-logged foods in the last 14 days, or within `start`/`end` when given | `limit`, `start`, `end` | Same shape as `search_foods` plus `last_logged_on` |
 | `search_meals` | Search saved meals by name, or browse all when `query` is omitted | `query`, `limit`, `include_recipes` | Match array (id, name, is_recipe, servings, portion, unit, nutrition, favorite, usage_count, last_used_at). Recipes excluded by default. |
 | `get_recent_meals` | Most-recently-used saved meals, ordered by `last_used_at`; `start`/`end` filter by the date last used | `limit`, `include_recipes`, `start`, `end` | Same shape as `search_meals` |
@@ -45,11 +46,12 @@ Twenty tools across three phases.
 
 ### Write tools (`mcp:write`)
 
-Additive; nothing is edited or deleted. Every write refuses if the target day is tombstoned (erased via the app), so an agent has to say so instead of silently resurrecting the day.
+Additive; nothing is edited or deleted (`log_external_food` may add one food to the catalog). Every write refuses if the target day is tombstoned (erased via the app), so an agent has to say so instead of silently resurrecting the day.
 
 | Tool | Purpose | Args | Returns |
 |------|---------|------|---------|
 | `log_food` | Append a food from the user's catalog | `food_id*`, `date`, `meal`, `quantity`, `portion`, `unit`, `notes` | `logged` echo + `total_items_on_day`. Bumps `foods.usage_count` + `last_used_at`. |
+| `log_external_food` | Log a product from `search_external_foods` | `ref*`, `date`, `meal`, `quantity`, `portion`, `unit`, `notes` | As `log_food`, plus `food` (`id`, name, brand, portion, unit, `ref`, `created`, `reused_by`: `source` or `barcode`). Uses the user's food for the product when there is one (saved by an earlier call, or in the app under the same barcode or `fdcId_<id>`), otherwise reads the product from its source and saves it to the catalog once, as the app's import does. Never creates a duplicate. Refuses a product with no calories from its source, and a unit other than the product's own. |
 | `log_water` | Add a water log entry (milliliters) | `amount_ml*`, `date`, `time` | `logged` echo + `total_ml_on_day` |
 | `log_meal` | Log every item of a saved meal | `meal_id*`, `date`, `meal` | Item count + `total_items_on_day`. Recipes explicitly excluded (`is_recipe=1`). |
 | `log_body_stat` | Set weight / body-fat / lengths on a day | `stats*` (object), `date` | Cleaned stats plus `current_stats`. Rejects untagged legacy body_stats (user must save once via the app to attach unit tags). |
@@ -66,7 +68,7 @@ Belt-and-suspenders safety: the client already prompts per action (Claude Deskto
 
 ### NutriTrace scoping guarantees
 
-Every tool query prepends `WHERE user_id = ?`. A token cannot read, write, or destroy anything outside its owner's account, even for admins. A static wiring test (`scripts/mcp-wiring.test.js`) fails CI if a future tool omits the scoping clause.
+Every tool query prepends `WHERE user_id = ?`. `search_external_foods` and `log_external_food` reach outside the server, but only Open Food Facts and USDA FoodData Central, through the same path as the app's own searches (local Open Food Facts copy first when set up, nothing at all with `OFF_LOCAL_ONLY=1`). A token cannot read, write, or destroy anything outside its owner's account, even for admins. A static wiring test (`scripts/mcp-wiring.test.js`) fails CI if a future tool omits the scoping clause.
 
 Tokens can hold any combination of scopes independently. Common configurations:
 

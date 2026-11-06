@@ -8,15 +8,26 @@ Off by default. Opt in with one env var + one API token.
 
 ## Available tools
 
-Twenty tools across three phases. Setup for each phase below; full arg/return reference in the [MCP tool catalog](../reference/mcp-tools.md).
+Twenty-two tools across three phases. Setup for each phase below; full arg/return reference in the [MCP tool catalog](../reference/mcp-tools.md).
 
 ### Read (Phase 1)
 
-Thirteen tools, read-only, always available when MCP is on: `get_goals`, `get_profile`, `get_steps`, `get_body_composition`, `get_daily_totals`, `get_daily_totals_range`, `list_diary_entries`, `list_diary_entries_range`, `search_foods`, `get_recent_foods`, `search_meals`, `get_recent_meals`, `get_meal_details`. The `_range` tools, `get_steps`, `get_body_composition` and the two recent tools accept `start`/`end` dates for questions like "what was my average protein last month?" `get_body_composition` returns body-composition and scale observations with an optional exact source filter; observations from different sources remain separate. `get_profile` returns your date of birth and gender, so any AI client you connect with an `mcp:read` token can read them.
+Fourteen tools, read-only, always available when MCP is on: `get_goals`, `get_profile`, `get_steps`, `get_body_composition`, `get_daily_totals`, `get_daily_totals_range`, `list_diary_entries`, `list_diary_entries_range`, `search_foods`, `search_external_foods`, `get_recent_foods`, `search_meals`, `get_recent_meals`, `get_meal_details`. The `_range` tools, `get_steps`, `get_body_composition` and the two recent tools accept `start`/`end` dates for questions like "what was my average protein last month?" `get_body_composition` returns body-composition and scale observations with an optional exact source filter; observations from different sources remain separate. `get_profile` returns your date of birth and gender, so any AI client you connect with an `mcp:read` token can read them.
 
 ### Write (Phase 2)
 
-Four additive log tools: `log_food`, `log_water`, `log_meal`, `log_body_stat`. Everything they write shows up as normal entries in the diary UI, editable and deletable through the app like anything else. Off by default; turn on with `MCP_WRITE_ENABLED=1` AND a token that holds `mcp:write`. Either missing and the write tools simply don't appear in `tools/list`.
+Five additive log tools: `log_food`, `log_external_food`, `log_water`, `log_meal`, `log_body_stat`. Everything they write shows up as normal entries in the diary UI, editable and deletable through the app like anything else. Off by default; turn on with `MCP_WRITE_ENABLED=1` AND a token that holds `mcp:write`. Either missing and the write tools simply don't appear in `tools/list`.
+
+### Foods from Open Food Facts and USDA
+
+From the next release. `search_foods` searches only your own foods. For a product you haven't saved yet ("I had 200 g of Arla Skyr Vanilla"), an agent can call `search_external_foods`, which searches Open Food Facts and USDA FoodData Central by name or barcode, and then `log_external_food` with the result's `ref` (`off:<barcode>` or `usda:<fdcId>`).
+
+- **Same results as the app.** The search runs the app's own code: the same order, the same numbers per portion, and your own settings from Settings > Connected Services (Open Food Facts language, country and Import Portion As). USDA is searched only when it's turned on there with your API key; without one, the agent gets a clear message instead.
+- **Saved once, then reused.** Diary entries always point at one of your foods, so `log_external_food` first looks for the product in your foods: one an earlier log saved, or one you saved in the app (an Open Food Facts product by its barcode, a USDA one by its FoodData Central id). Only when there is none does it read the product from its source and save it to your foods, the way the app does, photo included. It never makes a second food for the same product, and a food you already have is used as it is, so past days don't change if the source does.
+- **No 0 kcal surprises.** A product its source has no calories for is refused; add it in the app, where you can check its values.
+- **Your server's network rules.** Requests go only to Open Food Facts and USDA, with the same limits as the app's own searches. With a [local Open Food Facts copy](off.md#local-mirror-parquet-or-duckdb) (`OFF_LOCAL_DB`) it is asked first; with `OFF_LOCAL_ONLY=1` nothing leaves the server, and USDA isn't available.
+
+The search needs only `mcp:read`. Logging needs `mcp:write` and `MCP_WRITE_ENABLED=1`, like `log_food`.
 
 ### Destructive (Phase 3)
 
@@ -99,7 +110,7 @@ The transport is standard MCP Streamable HTTP (single POST endpoint). Any client
 | Variable | Default | Description |
 |---|---|---|
 | `MCP_ENABLED` | `0` | Set to `1` to expose `/api/mcp`. |
-| `MCP_WRITE_ENABLED` | `0` | Set to `1` to allow write tools (`log_food`, `log_water`, `log_meal`, `log_body_stat`) to be registered. Also requires the calling token to hold `mcp:write`. |
+| `MCP_WRITE_ENABLED` | `0` | Set to `1` to allow write tools (`log_food`, `log_external_food`, `log_water`, `log_meal`, `log_body_stat`) to be registered. Also requires the calling token to hold `mcp:write`. |
 | `MCP_DESTROY_ENABLED` | `0` | Set to `1` to allow destructive tools (`delete_diary_entry`, `edit_diary_entry`, `create_food`) to be registered. Also requires the calling token to hold `mcp:destroy` AND every call to include `confirm: true`. |
 | `ALLOWED_ORIGINS` | (empty) | Comma-separated list of origins that browser-based MCP clients may use. Server-to-server clients (no Origin header) always pass. Leave empty unless you're specifically using the MCP Inspector in a browser. |
 
