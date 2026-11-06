@@ -17,17 +17,27 @@ Every set row carries:
 
 ## Timed sets (planks, holds, carries)
 
-Some exercises are tracked by how long you hold them, not by reps: planks, wall sits, dead hangs, hollow holds, farmer's walks. For those, the set row shows a **Time** field where reps would be. Weight stays, so a weighted plank is `25 lbs` for `1:00`; leave weight empty for bodyweight.
+Some exercises are tracked by how long you hold them, not by reps: planks, wall sits, dead hangs, hollow holds. For those, the set row shows a **Time** field where reps would be. Weight stays, so a weighted plank is `25 lbs` for `1:00`; leave weight empty for bodyweight.
 
 Typing a time works like a microwave or a phone timer: digits fill in from the right, and the field shows minutes and seconds as you type. `45` is 0:45, `130` is 1:30, `200` is 2:00. No colon needed, so it works on a phone's number pad. Seconds that overflow carry over, so `90` tidies to 1:30 when you leave the field.
 
 Or skip typing entirely: tap the **timer** button inside the time field to start a hold. You get a three second count-in to get into position (tap the number to start straight away), then a large clock you can read from the floor. Tap **Stop** when you're done and the set is filled in and ticked off. If the set already had a time on it, from a program or your last session, you get a cue when you reach it and the clock keeps going so you can beat it. The timer uses your rest timer sound and vibration settings, keeps the screen on during the hold, and stays accurate if the phone locks.
 
-To switch an exercise between Reps and Time, tap the chip beside its name (the same chip that sets Per Side or Alternating) and pick under **Tracked By**. Tick **Remember for this exercise** to make every future session start that way, or set it for good in the Exercise Editor. Common timed exercises such as plank, side plank, wall sit, dead hang, hollow hold, L-sit and farmer's walk start as timed without you doing anything.
+To switch an exercise between Reps and Time, tap the chip beside its name (the same chip that sets Per Side or Alternating) and pick under **Tracked By**. Tick **Remember for this exercise** to make every future session start that way, or set it for good in the Exercise Editor. Common timed exercises such as plank, side plank, wall sit, dead hang, hollow hold and L-sit start as timed without you doing anything.
 
 Switching never deletes data. Reps you typed before switching to Time are kept and come back if you switch back. And an exercise that already has sets logged keeps the shape of that data: marking Plank as timed does not turn last month's "30 reps" planks into times.
 
 A timed exercise's PR is its **longest hold**, or the heaviest load you held it with. Timed sets count as completed sets and as training in muscle recovery, but carry no weight x reps volume or estimated 1RM.
+
+## Distance and calorie sets (rower, sled, carries, air bike)
+
+Conditioning work is programmed by how far you go or by the calories the machine shows: a 500 m row, a 20 m sled push, 4 x 40 m farmer's carries, a 5 km run, 20 cal on an air bike. Pick **Distance** or **Calories** under **Tracked By** on the same chip, and the set row shows a **Distance** or **Calories** field where reps would be. Weight stays, so a sled push is `90 kg` for `20`; leave it empty for a row or a run.
+
+A distance is typed in the unit shown in the column heading, **Distance (m)** for example. Under **Distance** in the chip's menu, pick **m**, **km**, **yd** or **mi** for that exercise; tick **Remember for this exercise** and it stays that way next time. Without a choice, a rower, SkiErg, sled or carry starts in meters, or yards if your weight unit is pounds, and a run or a ride in kilometers, or miles. The distance is kept in meters underneath, so changing the unit later shows the same distance in the new one.
+
+The rower, SkiErg, Bike Erg, sled pushes and drags, farmer's walk and other carries, treadmill runs and walks, and outdoor rides start as **Distance**, and Assault, Echo and fan bikes as **Calories**, but only when you have never logged that exercise. One you have already logged with reps (or with a time) keeps it, so nothing you logged changes shape.
+
+A distance exercise's PR is its **longest distance** in a set, and a calorie exercise's the **most calories** in one; a heavier load breaks a tie, and a heavier load at any distance is a PR too. They count as completed sets and as training in muscle recovery, but carry no weight x reps volume or estimated 1RM, and they get no warm-up ramp.
 
 Sets you add on the fly through the row menu inherit the previous set's weight and reps. Empty sets never save; empty workouts auto-delete server-side.
 
@@ -59,6 +69,7 @@ The parser handles:
 - **Rep ranges**: `range 6-8`, `6-8 reps`.
 - **AMRAP**: `AMRAP`, `x AMRAP`.
 - **Timed sets**: `plank 3x45s`, `wall sit 90 seconds`, `farmer carry 3x40s @ 50`.
+- **Distance and calorie sets**: `row 500m`, `run 5k`, `sled push 4x20m @ 90`, `bike 20 cal`.
 - **Bodyweight**: `@ BW`, `bodyweight`.
 - **Supersets**: prefixes `A1:`, `A2:`, `B1:`, `B2:` group into paired exercises. Same letter = same superset.
 - **Aliases**: `BB`, `DB`, `BP`, `OHP`, `DL`, `SQ`, `RDL` map to their full names.

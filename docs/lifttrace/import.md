@@ -21,6 +21,7 @@ Unmatched exercise names persist as free-text and stay attached to their sets. Y
 - **Rest-timer values** are exported by some sources but LiftTrace does not currently store per-set rest values on imported workouts.
 - **Notes** carry through when the source exports them.
 - **Hold times** carry through from Strong, Hevy, FitNotes and Garmin. A set exported with a duration and no reps (a plank, a dead hang) arrives as a [timed set](diary.md#timed-sets-planks-holds-carries) with its time. A row with both reps and a duration stays a rep set.
+- **Distances** carry through from Hevy and FitNotes. A set exported with a distance and no reps (a row, a run, a sled push) arrives as a [distance set](diary.md#distance-and-calorie-sets-rower-sled-carries-air-bike) in meters, with its time kept beside it when the file has one. FitNotes distances in m, km, ft, yd or mi are converted; any other unit is left out rather than guessed. Strong's export doesn't say what unit its distances are in, so they are still left out.
 - **Body weight** and body-stat entries are not part of workout export files; log those separately.
 
 ## Per-source instructions

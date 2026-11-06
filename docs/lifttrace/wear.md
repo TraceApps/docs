@@ -53,6 +53,8 @@ Your server then does what finishing on the phone does: the Workout Complete not
 
 **A hold.** A timed exercise, a plank, logs itself when the time is up, whether or not the screen is still on.
 
+**A distance or calories.** A distance exercise, a row or a sled push, shows its distance in the exercise's unit where reps would be, 10 m or yd (or 0.1 km or mi) a step; a calorie exercise shows calories, one a step. Both dial with the crown like the rest. A watch app from before this version shows them as reps and leaves the distance or calories as they were.
+
 **A tile.** One swipe from the watch face: the set you're on, no app launch. Add it by long-pressing the watch face, then Tiles.
 
 **A complication.** Sets done, on the watch face itself, tapping through to the app. Add it from your watch face's own customization screen.
