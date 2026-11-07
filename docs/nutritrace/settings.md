@@ -128,11 +128,13 @@ All `USER_PREFS`. On Android, delivery is via native WorkManager (`ReminderWorke
 
 ## Backup and Restore
 
-**Full Backup** (admin only): create, list, download, restore in-place, upload-and-restore, schedule (its time is on the clock of the browser that set it, with the time zone shown, from the next release; see [Scheduled backups](../self-hosting/scheduled-backups.md)). Backups are ZIPs of DB + uploads under `BACKUPS_PATH` (defaults inside the uploads volume). OFF local mirror is deliberately excluded.
+**Full Backup** (admin only): create, list, download, restore in-place, upload-and-restore, schedule (its time is on the clock of the browser that set it, with the time zone shown, from the next release; see [Scheduled backups](../self-hosting/scheduled-backups.md)). Backups are ZIPs of DB + uploads under `BACKUPS_PATH` (defaults inside the uploads volume). OFF local mirror is deliberately excluded. From the next release a backup also holds your webhooks and the items deleted from each day, and after a restore the Android app takes the restored days, settings and workouts and drops what the backup doesn't hold. Restored onto a server with another `TOKEN_ENC_KEY` (or `JWT_SECRET`), a webhook's secret can't be read, so its deliveries fail until you make the webhook again.
 
 **Local Full Backup** (Android): offline `.zip` with embedded image files for phone-to-phone transfer with no server involved.
 
 **Portable JSON export / import** (foods / meals / diary / settings, no images).
+
+**Danger Zone**: **Clear All Data** deletes every diary entry, food, meal and body stat and keeps your settings; **Clear All Settings** puts every preference, credential and API key back to its default and keeps your food and diary data. Neither can be undone. From the next release, Clear All Settings on the web also resets the Android app at its next sync, on screen too; a setting you changed on the phone after the reset, not yet sent, stays as you set it.
 
 **CSV diary export**.
 

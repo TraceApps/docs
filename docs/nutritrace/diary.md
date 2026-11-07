@@ -136,7 +136,7 @@ Off by default. Turn on under **Settings → Diary → Show Day Completion** to 
 - **Date picker** shows a green corner dot on the calendar cell for marked days.
 - **Statistics** (right rail): "Marked complete: N of M days" with a percentage, over the currently viewed range. A row of tiny green dots below the x-axis marks which days in the range were closed.
 - **Weekly summary** push and email both include a "Marked complete: X of 7 days" line when at least one day was marked in the window.
-- **Bedtime notification** (Android) carries a **Close today** quick action that marks the day complete without opening the app. Skipped when today is already closed so the action isn't offered redundantly.
+- **Bedtime notification** (Android) carries a **Close today** quick action that marks the day complete without opening the app. Skipped when today is already closed so the action isn't offered redundantly. From the next release the mark reaches the server and your other devices like a tap in the app, also when you were offline at the time.
 - **Per-meal checks**: each meal card gets a small tap-to-toggle check next to the meal name. Green when marked, muted when not.
 - **Auto-mark day** when every meal slot has been marked complete. Saves a second tap when you're checking off meals one by one.
 - **Empty-slot confirm** at day-close: if any meal slot is empty AND not explicitly marked as skipped, a dialog names them ("These meals have no items and haven't been marked as skipped: Breakfast, Snacks") and confirming records the intentional skip so tomorrow's equivalent pattern doesn't re-prompt. Fasters skipping breakfast every day mark it complete once, and it stays cleared.

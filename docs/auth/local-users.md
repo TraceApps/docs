@@ -100,8 +100,8 @@ If you forget the sole admin password and don't have SMTP configured, there's a 
 RECOVERY_TOKEN=$(openssl rand -base64 32)
 ```
 
-!!! warning "This wipes every user account"
-    `POST /api/auth/recover` deletes all rows in `users`. Your food/workout/recipe data survives (it stays attached to the row ids the first fresh account will inherit as admin, same as first-run behavior), but everyone else has to be re-invited afterwards.
+!!! danger "This deletes every account and everything saved in them"
+    `POST /api/auth/recover` deletes every account, and with them all of their data: food diary, foods and recipes, workouts, notes, whatever the app holds. It is not a way to recover data. Copy your data folder somewhere safe before using it. A forgotten password is better fixed with an emailed reset link, or by another admin from **Settings > Users**; see also [SSO-only mode and recovery](sso-only.md#last-resort-recovery_token).
 
 Rotate `RECOVERY_TOKEN` back out of the environment after use, or leave it set to a value you keep in a password manager. A missing or empty `RECOVERY_TOKEN` returns `503 Recovery not available` so a curious guest can't try their luck.
 
