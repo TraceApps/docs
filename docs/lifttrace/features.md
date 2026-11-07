@@ -53,7 +53,7 @@ Open **Statistics**. The metric-pill row across the top switches between:
 
 The date range (1W / 1M / 3M / 6M / 1Y / All) applies globally. Warm-ups are excluded from every calculation.
 
-PR detection also runs inline in Diary: when a completed set beats your best from other days and every earlier set of that exercise today (top weight or top estimated 1RM), the row surfaces a badge, and the completion summary lists it. A repeat of a set is not a PR.
+PR detection also runs inline in Diary: when a completed set beats your best from the days before it and every earlier set of that exercise today (top weight or top estimated 1RM), the row surfaces a badge, and the completion summary lists it. A repeat of a set is not a PR.
 
 ## Use the radio during a session
 
@@ -87,6 +87,7 @@ See [Trace in LiftTrace](trace.md).
 
 The web app keeps working when the signal drops, in a browser tab or installed as an app, and comes back up offline after a reload. Gyms in basements are the reason this exists.
 
+- **A server that stops answering counts as no connection**: on gym Wi-Fi with a sign-in page, a weak signal, or a server gone quiet behind a VPN, the app opens in a few seconds with what this browser has kept (when your account is kept in this browser), and changes wait to be sent as they do offline. Statistics, history and whole lists get up to 10 seconds on a slow server, and a server that answers again is used again at once. Trace, music, radio, NutriTrace and the exercise sources wait as long as they take.
 - **Progress photos**: take one with no signal and it travels inside the entry, becoming an ordinary file on your server when the queue goes up. A photo too large to hold says so rather than being lost quietly.
 - **What works offline**: logging a session (sets, reps, weight, notes, adding or removing exercises), deleting a session, body stats, cardio (logging, editing, deleting), starting a program or moving its week, creating, editing and deleting your own exercises, your own profile with its picture, and settings. Reading works for anything this browser has already seen: the diary, your exercise catalog, programs, templates, recent workouts, Statistics, Progress, coach notes and your profile.
 - **Coaching offline**: a coach can write a note on a client's session, and a client can reply to one and mark notes read. Prescribed work can be added, changed or removed, and a client can accept or decline it. The conversation is kept on the device: it opens with no connection, and a message written offline waits and is sent once. A note is pinned to the exercise it is about, so it stays on the right lift even if the client reorders the session before the note arrives.

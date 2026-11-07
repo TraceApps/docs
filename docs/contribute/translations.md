@@ -39,7 +39,7 @@ Current locale coverage (2026-10-16):
 | App | Locales in tree |
 |-----|-----------------|
 | CookTrace  | `en`, `es`, `fr`, `it`, `sv` |
-| LiftTrace  | `en`, `es`, `it`, `zh-Hans` |
+| LiftTrace  | `en`, `es`, `it`, `ru`, `zh-Hans` |
 | NoteTrace  | `en` |
 | NutriTrace | `cs`, `de`, `en`, `es`, `fr`, `nb`, `pl`, `pt_BR`, `ru`, `zh_Hans` |
 

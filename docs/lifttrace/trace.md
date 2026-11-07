@@ -100,6 +100,8 @@ Go through every workout this year and list my heaviest squat each month.
 
 To go through a long stretch (every workout this year, all your PRs), Trace reads page by page. One answer can take up to 12 rounds of looking things up; if that isn't enough, it answers from what it found and says what's left. Offline, Trace reads the workouts saved on this device and says when older ones are missing.
 
+Trace also keeps a model from stalling. A model that sends back no words and no tool call is asked once more, and if the answer is still empty, Trace says so instead of showing a blank reply. A model that keeps asking for the same lookup gets the result it already has the second time, and the third time Trace asks it for an answer right away, naming the lookup it got stuck on. Anything that logs or changes something still runs every time it's asked.
+
 For form checks, attach a photo. On a phone and in the Android app the attach button offers **Camera** or **Gallery**, each going straight to the camera or the photo picker; on a computer it opens the file picker. You can pick several photos at once. Multimodal-capable providers (Claude, GPT-4-class OpenAI models, Gemini) will actually look at it.
 
 ## Smart Log entry points

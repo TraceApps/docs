@@ -41,6 +41,9 @@ Setting any of the three env-locks the tile in Settings, so admins can no longer
 === "NutriTrace note"
     The optional Open Food Facts (OFF) local mirror (`OFF_LOCAL_DB`) is **not** included in the Full Backup ZIP. That file is a shared read-only reference (roughly 7 to 8 GB of Parquet) that you can redownload at any time via Settings, Open Food Facts, Refresh Now. Keeping it out of the ZIP keeps backups small and restore fast. If you have `OFF_LOCAL_ONLY=1` set (air-gap mode), copy `/data/off-mirror` alongside your Layer 1 snapshot; it is not user data, but you'll want it before your container starts refusing lookups.
 
+=== "LiftTrace note"
+    A LiftTrace Full Backup restores what was deleted as deleted: workouts, custom exercises, programs, workout days, body stats and Trace messages deleted before the backup stay deleted, on the server and on connected phones, also with a backup made by an earlier version. A day's workouts come back in the order you had them. API tokens, webhooks and invites are in the backup from 1.5.0, so a restore keeps them; one you removed after the backup comes back with it, so remove it again. A webhook's secret is encrypted with `TOKEN_ENC_KEY` (or `JWT_SECRET`), so on a server with a different key its deliveries fail until you make the webhook again. Phones get the restored coach conversation, progress photos and set videos, and drop what the backup doesn't hold.
+
 ## Layer 3: portable JSON export
 
 Per-user, not admin-only. Every app has Settings, Data Export where you can download a JSON snapshot of your own diary, workouts, recipes, and settings. The exact scope depends on the app:

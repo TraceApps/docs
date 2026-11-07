@@ -10,7 +10,7 @@ Every set row carries:
 - A **completion checkbox**. Checking it stamps the set as done, starts the rest timer if enabled, and gates superset-round completion.
 - **RPE** (Rate of Perceived Exertion). Enable per-set RPE tracking in Settings > Workout. Values 1 to 10, half-steps allowed.
 - **Warm-up toggle** on the row menu. Warm-ups are excluded from volume, PR detection, rest-timer firing, auto-collapse, and superset-round gating.
-- **Unilateral L/R split** on exercises that ask for it (single-arm rows, split squats). Reps become two inputs.
+- **Unilateral L/R split** on exercises that ask for it (single-arm rows, split squats). Reps become two inputs. A split set counts at its weaker side: 10 left and 6 right is a set of 6 for records, PR badges, the estimated 1RM, charts, Trace and the API, while volume counts both sides. Merging a split set back to one count keeps the weaker side, so it never moves a record. The Last row, the workout summary and your coach's view show both sides, as **10/6**.
 - **Set-number override** in supersets, so a paired A1/A2/B1 flow keeps the round math right.
 
 **Last time and the volume chip.** Under an exercise's name, the **Last** row shows the sets you did on it last time. Beside it, a green or red chip (**+7%**, **-12%**) says how your volume compares with it, left out when it's even. From the next release, while you're part way through, it compares set for set: your first two sets against last time's first two, so a heavier first two sets read green rather than red against a whole session. Once the workout is finished it compares the whole of both; until then it stays set for set, even after the exercise's last set when you planned fewer sets than last time. Warm-ups and timed sets don't count.
@@ -53,7 +53,7 @@ Writes are debounced by 350 ms with optimistic UI. Pending writes flush on `paus
 
 ## Warm-ups
 
-Warm-up sets are first-class, not free-text notes. Toggle **Auto-Generate Warm-Up Sets** in Settings > Workout and the app inserts a warm-up ramp for every working set you enter, based on the working weight and unit. Generator lives in `src/lib/workout.js` (`generateWarmupSets`).
+Warm-up sets are first-class, not free-text notes. Toggle **Auto-Generate Warm-Up Sets** in Settings > Workout and the app inserts a warm-up ramp for every working set you enter, based on the working weight and unit. Each warm-up is heavier than the one before it and lighter than your working weight, so a light working weight gets fewer warm-ups (25 kg: 20, then 22.5). Generator lives in `src/lib/workout.js` (`generateWarmupSets`).
 
 You can also mark any set as warm-up from its row menu. Once marked, it stops counting toward volume, PRs, the completion summary, and the rest timer. Superset-round gating skips it too.
 
