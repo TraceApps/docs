@@ -23,6 +23,14 @@ Typing a time works like a microwave or a phone timer: digits fill in from the r
 
 Or skip typing entirely: tap the **timer** button inside the time field to start a hold. You get a three second count-in to get into position (tap the number to start straight away), then a large clock you can read from the floor. Tap **Stop** when you're done and the set is filled in and ticked off. If the set already had a time on it, from a program or your last session, you get a cue when you reach it and the clock keeps going so you can beat it. The timer uses your rest timer sound and vibration settings, keeps the screen on during the hold, and stays accurate if the phone locks.
 
+### Timing each side
+
+From the next release, an **Alternating** exercise tracked by Time (side plank, single-arm carry, single-leg balance) is timed one side at a time. Tap the timer and the card says **Left**: hold, then tap **Switch Sides**. A three second countdown with the same cue as the count-in gives you time to turn over (tap the number to start at once), then the card says **Right** and shows what your left side held. Tap **Stop** and both times go on the set, which is ticked off. Stop before the right side starts and the left side's time is kept with the set left open; **Cancel** keeps nothing. If the set already has a time for each side, each side cues at its own.
+
+The set row then shows an **L** and an **R** time (on a 320px phone the letters go; left is first). You can type them by hand too: tap the split button in a timed Alternating set's time field, as for split reps, and the merge button (once the set is ticked) to go back to one time.
+
+The set's time is the shorter of the two, so the longest-hold record, the PR badge and the charts follow your weaker side. A set you add, or the next session filled from this one, starts from that time for both sides. Per Side exercises (both sides at once) and Bilateral ones keep a single timer. An app, watch or server from before this release shows and records the shorter side and keeps both times when it ticks the set; if it changes the time, the new time is the one every device shows.
+
 To switch an exercise between Reps and Time, tap the chip beside its name (the same chip that sets Per Side or Alternating) and pick under **Tracked By**. Tick **Remember for this exercise** to make every future session start that way, or set it for good in the Exercise Editor. Common timed exercises such as plank, side plank, wall sit, dead hang, hollow hold and L-sit start as timed without you doing anything.
 
 Switching never deletes data. Reps you typed before switching to Time are kept and come back if you switch back. And an exercise that already has sets logged keeps the shape of that data: marking Plank as timed does not turn last month's "30 reps" planks into times.
