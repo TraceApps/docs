@@ -31,6 +31,12 @@ A food added from USDA is saved per 100 g (100 ml for drinks), the way USDA give
 
 Earlier versions saved a food added from USDA with a serving size other than 100 g with wrong values ([#290](https://github.com/TraceApps/nutritrace/issues/290)). Refresh from USDA, or adding the food again, fixes it. Diary entries already logged keep their values, and a saved meal or recipe that uses the food keeps the old ones until you add the food to it again.
 
+### Calories
+
+USDA gives a food's calories in up to four ways, and NutriTrace takes the first one the food has: **Energy** (kcal), then **Energy (Atwater Specific Factors)**, then **Energy (Atwater General Factors)**, then **Energy** in kJ divided by 4.184. The specific factors are worked out for that food, and are how USDA's older SR Legacy entries got their calories, so a Foundation food reads close to its SR Legacy counterpart.
+
+Many newer Foundation foods give only one or both of the Atwater figures. Earlier versions read only Energy, so those foods showed and saved 0 kcal. To fix one you already saved, open it, tap **Refresh from USDA**, then Save. Diary entries already logged keep their values, and a saved meal or recipe that uses the food keeps 0 kcal until you add the food to it again.
+
 ### When USDA beats OFF
 
 - **Generic ingredients** ("chicken breast, raw", "oatmeal, dry", "olive oil"): USDA's Foundation and SR Legacy entries are peer-reviewed with full micronutrient coverage. OFF's generics tend to be thinner.

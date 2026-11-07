@@ -105,6 +105,8 @@ Optional. Grab a free API key from `https://fdc.nal.usda.gov/api-key-signup`, pa
 
 Items are saved per 100 g (100 ml for drinks), the way USDA gives every value. To bring an item added from USDA up to date, tap **Edit** on it and then **Refresh from USDA**, under the barcode. It needs USDA turned on with your API key, and a connection. It fills the item's nutrition and serving from USDA the way Refresh from OFF does, and nothing is saved until you tap Save. Earlier versions saved an item added from USDA with a serving size other than 100 g with wrong values ([nutritrace#290](https://github.com/TraceApps/nutritrace/issues/290)); Refresh from USDA, or adding the item again, fixes it; a recipe's saved nutrition picks up the new values when it's calculated again.
 
+Calories come from the first of USDA's energy figures the item has: **Energy** (kcal), then **Energy (Atwater Specific Factors)**, then **Energy (Atwater General Factors)**, then **Energy** in kJ divided by 4.184. Many newer Foundation foods give only one or both of the Atwater figures, and earlier versions read only Energy, so an item added from one had 0 kcal; **Refresh from USDA** fixes it.
+
 ## Pantry categories
 
 Server-managed per user. Fifteen defaults seed on first boot (`server/db.js:506`), each with an icon, color, and **default aisle**. The shopping list uses `default_aisle` to auto-populate an item's aisle when you send ingredients from a recipe.
