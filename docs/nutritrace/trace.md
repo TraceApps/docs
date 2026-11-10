@@ -46,6 +46,8 @@ For a coach, Trace can look at a client and **draft** targets or a day plan; a c
 
 ## Sample prompts
 
+To send Trace a photo, tap the image button beside the message box, or paste a screenshot or copied image into the box. Copied text that comes with a picture of itself, such as cells from a spreadsheet, pastes as text.
+
 Trace responds well to natural phrasing. Some prompts that exercise the tool set:
 
 - "What's my average protein this week?"
