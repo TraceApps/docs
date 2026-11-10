@@ -157,7 +157,7 @@ Seventeen tools across three phases.
 | `recent_recipes` | Most recently added or updated recipes | `limit` | Summary array, newest first |
 | `list_pantry` | Search / list the pantry, page by page | `query`, `in_stock_only`, `limit`, `offset` | `items[]` (id, name, brand, in_stock, quantity, unit, category, expires_on), with `total` (every match), `offset`, `next_offset` (null on the last page), `complete`, and `more` saying where the rest starts; `count` is the rows on this page |
 | `list_shopping_list` | Current shopping list | `include_checked` | Item array (id, name, quantity, unit, aisle, checked), sorted by aisle |
-| `list_cook_diary` | Cook diary entries (logged + planned), page by page | `date_from`, `date_to`, `kind`, `limit`, `offset` | `items[]` (id, recipe_id, recipe_name, date, kind, servings, notes, meal_type, rating), with `total` (every match), `offset`, `next_offset` (null on the last page), `complete`, and `more` saying where the rest starts; `count` is the rows on this page |
+| `list_cook_diary` | Cook diary entries (logged + planned), page by page | `date_from`, `date_to`, `kind`, `limit`, `offset` | `items[]` (id, recipe_id, recipe_name, date, kind, servings, notes, meal_type, rating, any_day), with `total` (every match), `offset`, `next_offset` (null on the last page), `complete`, and `more` saying where the rest starts; `count` is the rows on this page |
 
 ### Write tools (`mcp:write`)
 
@@ -169,6 +169,8 @@ Seventeen tools across three phases.
 | `update_pantry_stock` | Update an existing pantry item's stock/quantity | `item_id*`, `in_stock`, `quantity` | `ok`, `item_id`, `name`, `in_stock`, `quantity`. Does not create new pantry rows. |
 | `update_recipe` | Change one of the caller's recipes; only the fields sent change | `recipe_id*`, `name`, `description`, `servings`, `prep_minutes`, `cook_minutes`, `rest_minutes`, `total_minutes` (`null` goes back to the sum), `ingredients` (replaces the list; pantry links kept by name), `steps` (replaces the list), `tags`, `source_url`, `notes`, `nutrition` (per serving, by key: `calories`, `proteins`, `carbohydrates`, `fat`, `fiber`, `sugars`, `sodium` and the rest the app's Nutrition Facts box shows; `null` removes one; merged) | `changed` (the fields that differed; `[]` and nothing saved when none did) and `updated`: id, name, servings, counts, `img_url`, `nutrition`. Saves as the app does: the replaced copy is kept as an earlier version and a change to what you cook is a new version in History, so every edit can be undone in the app. |
 | `set_recipe_image` | Set a recipe's photo | `recipe_id*`, `image_url` (public http/https, fetched through the address guard; your server's own network only with `ALLOW_PRIVATE_RECIPE_URLS`) or `image_data` (base64, with or without a `data:` prefix) | `updated`, with the new `/uploads/...` path. JPEG, PNG, WebP, GIF, AVIF or HEIC by its bytes, up to 12 MB. The previous photo stays in the earlier version. |
+| `plan_cook` | Plan a recipe for a day, as the app's Plan a Cook does | `recipe_id*`, `date*`, `any_day` (some day of the week the date falls in), `meal_type`, `servings` (leave out unless the user said; the list then uses the recipe's own), `notes` | `planned`: entry_id, recipe_id, recipe_name, date, any_day, meal_type, servings, notes. Never logs a cook. Can plan a recipe shared with the caller, as the app can. |
+| `update_plan` | Change a planned cook; only the fields sent change | `entry_id*`, `date` (without `any_day`, puts it on that day), `any_day`, `meal_type`, `servings`, `notes` (`null` clears the last three) | `changed` (`[]` when nothing differed) and `planned`. When the shopping list already holds the cook's ingredients, it follows the change as it does in the app, and `shopping_list` says how many lines were added, changed or removed. Logged cooks are refused. |
 
 ### Destructive tools (`mcp:destroy` + `confirm: true`)
 
@@ -179,10 +181,11 @@ Seventeen tools across three phases.
 | `add_pantry_item` | Add a new pantry catalog item | `name*`, `quantity`, `unit`, `category`, `in_stock`, `expires_on`, `notes`, `confirm*` | The created item. Rejects a duplicate top-level name (case-insensitive). `category` is free text, not resolved against the app's category catalog. |
 | `delete_cook_diary_entry` | Remove one cook diary entry | `entry_id*`, `confirm*` | The removed entry. Recomputes the linked recipe's cook_count / last_cooked_at. |
 | `remove_shopping_item` | Remove one shopping list item | `item_id*`, `confirm*` | The removed item |
+| `delete_recipe` | Delete one of the caller's own recipes, as the app's Delete does | `recipe_id*`, `confirm*` | `deleted` and `logged_cooks_kept` (logged cooks stay in the diary). Refused while the recipe is planned for today or later; the error lists those plans so they can be removed or changed first. |
 
 ### CookTrace scoping guarantees
 
-Every tool query prepends `WHERE user_id = ?`, with one deliberate exception: `log_cook`'s recipe lookup is unscoped in SQL, mirroring `POST /api/recipes/:id/cooked` exactly, so it can find a recipe someone else shared with the caller's Kitchen. Ownership is then checked in code (`recipe.user_id === caller OR recipe.visibility === 'group'`) before anything is written, and the write itself is scoped to the caller. A static wiring test (`scripts/mcp-wiring.test.js`) fails CI if a future tool omits its scoping clause.
+Every tool query prepends `WHERE user_id = ?`, with one deliberate exception: `log_cook`'s recipe lookup is unscoped in SQL, mirroring `POST /api/recipes/:id/cooked` exactly, so it can find a recipe someone else shared with the caller's Kitchen. `plan_cook` likewise reads a recipe shared with the caller, after the same share check the app's planner makes. Ownership is then checked in code (`recipe.user_id === caller OR recipe.visibility === 'group'`) before anything is written, and the write itself is scoped to the caller. A static wiring test (`scripts/mcp-wiring.test.js`) fails CI if a future tool omits its scoping clause.
 
 ### CookTrace rate limits
 
@@ -192,9 +195,9 @@ Same per-token bucket model as NutriTrace's and LiftTrace's: 60 requests per min
 
 Deliberately not in the current MCP surface:
 
-- `edit_cook_diary_entry`. `log_cook` and `delete_cook_diary_entry` cover the log; the app edits an entry.
+- `edit_cook_diary_entry`. `log_cook` and `delete_cook_diary_entry` cover the log and `update_plan` changes a plan; the app edits a logged cook.
 - Cookbooks and Kitchens (list / create / share). Trivial to add; deferred until real demand.
-- `delete_recipe` / `delete_pantry_item`. Deliberately excluded, same reasoning NutriTrace uses for not exposing `delete_food`: these are permanent library content, not a transient log; only the log-like entities (cook diary entries, shopping list items) get a delete tool.
+- `delete_pantry_item`. Deliberately excluded, same reasoning NutriTrace uses for not exposing `delete_food`: pantry items are linked from recipes. `delete_recipe` is the one library delete, for agents that manage the recipe collection.
 - MCP prompts capability (guided workflows). Planned; no ETA.
 
 ## NoteTrace
