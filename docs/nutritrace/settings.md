@@ -97,7 +97,7 @@ Trace configuration. Enable, provider (Claude / OpenAI / Gemini / OpenAI-compat)
 
 **Test Connection** has its own row (from the next release): run it any time, also against an OpenAI Compatible server that needs no API key (the key is optional there). The setting you fill in last tests on its own once everything it needs is there, and a test only counts for the settings it tested. The OpenAI Compatible base URL works with or without `/v1`, or as the whole `/v1/chat/completions` address.
 
-Provider / model / key are `USER_PREFS`; env-locked when the corresponding server-side env var is set (`AI_PROVIDER`, `AI_API_KEY`, `AI_MODEL`, `AI_BASE_URL`), in which case the UI shows a lock badge and the values are read-only.
+Provider / model / key are `USER_PREFS`; env-locked when the corresponding server-side env var is set (`AI_PROVIDER`, `AI_API_KEY`, `AI_MODEL`, `AI_BASE_URL`), in which case the UI shows a lock badge and the values are read-only. Provider and Model then show what the server uses, with a model by its name in the picker; a server older than 1.5 doesn't report them, so the values last saved in the app show instead.
 
 See [Trace in NutriTrace + Smart Log](trace.md) and the shared [Trace setup page](../trace/setup.md).
 
