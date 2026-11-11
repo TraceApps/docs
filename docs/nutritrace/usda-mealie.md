@@ -31,6 +31,10 @@ A food added from USDA is saved per 100 g (100 ml for drinks), the way USDA give
 
 Earlier versions saved a food added from USDA with a serving size other than 100 g with wrong values ([#290](https://github.com/TraceApps/nutritrace/issues/290)). Refresh from USDA, or adding the food again, fixes it. Diary entries already logged keep their values, and a saved meal or recipe that uses the food keeps the old ones until you add the food to it again.
 
+### Household units
+
+From the next release, a generic USDA food (Foundation, SR Legacy or Survey) comes with the household sizes FoodData Central lists for it, such as 1 large or 1 cup, each with its weight in grams, so you can log it by the piece or cup instead of by weight. They're added to the food's units when you add it from the Foods picker. For a food you already saved, **Refresh from USDA** adds the units it doesn't have yet; a unit it already has keeps its weight, in case you corrected it ([#313](https://github.com/TraceApps/nutritrace/pull/313)).
+
 ### Calories
 
 USDA gives a food's calories in up to four ways, and NutriTrace takes the first one the food has: **Energy** (kcal), then **Energy (Atwater Specific Factors)**, then **Energy (Atwater General Factors)**, then **Energy** in kJ divided by 4.184. The specific factors are worked out for that food, and are how USDA's older SR Legacy entries got their calories, so a Foundation food reads close to its SR Legacy counterpart.
