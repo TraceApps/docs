@@ -68,3 +68,24 @@ Same shape works for LiftTrace (`ghcr.io/traceapps/lifttrace:latest`, container 
 
 - [Environment reference](env-vars.md)
 - [Backups and restore](backups.md)
+
+## Secrets saved in Settings
+
+The tokens, keys and passwords people save in their own settings are stored encrypted with `TOKEN_ENC_KEY` (or the key derived from `JWT_SECRET` when it isn't set), so the database, a backup or an export never holds them in plain text. One saved before this was in place is encrypted the next time the server starts, and one in a restored backup when the restore finishes.
+
+Some of them only the server uses. Those never leave it: Settings shows a saved one as dots, saving the dots keeps it, and typing a new one replaces it.
+
+| App | Only the server uses them (never sent to the app) | The app uses them itself (sent to your signed-in app) |
+|---|---|---|
+| CookTrace | NutriTrace link token, ntfy token, Gotify token | AI key, USDA key, Open Food Facts password |
+| NutriTrace | ntfy token, Gotify token | AI key, USDA key, Open Food Facts password, CookTrace token, Mealie token |
+| LiftTrace | NutriTrace link token, ntfy token, Gotify token, the music server's sign-in | AI key, ExerciseDB key, music server password |
+| NoteTrace | ntfy token, Gotify token (the CookTrace link token is kept the same way) | AI key |
+
+The ones in the right-hand column are used by the app itself: Trace calls your AI provider straight from the app, and the food sources, Mealie, CookTrace, ExerciseDB and the music server are reached from the app too. So your signed-in app gets them back, and only your own account can read them.
+
+An Android app that only has the dots sends its notifications through the server, as the web app does. One that holds a token itself (no server, a server without accounts, or a token just typed in on the phone) sends with it as before.
+
+This is for servers with accounts turned on. Without accounts the server keeps no settings at all: they stay in the browser or the app. An Apprise address is kept like any other setting, so keep credentials out of it, or put them in the Apprise server's own configuration.
+
+Changing `TOKEN_ENC_KEY`, or `JWT_SECRET` when `TOKEN_ENC_KEY` isn't set, makes these unreadable: each person enters them again (see [Troubleshooting](../reference/troubleshooting.md#sso-or-a-saved-token-stops-working-after-rotating-jwt_secret)).

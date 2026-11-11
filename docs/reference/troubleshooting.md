@@ -96,13 +96,13 @@ Details in [HTTPS on the LAN](../self-hosting/lan-https.md) and [Cloudflare Tunn
 
 **Fix:** Decode the ID token your IdP issues (the IdP's admin console usually has a preview, or paste it into a JWT decoder) and confirm the exact claim name and value. Update the two env vars to match, run `docker compose up -d`, and have the user sign out and back in. The role is set at each sign-in, so an existing session won't pick up the change until the next one. Per-IdP walkthroughs live under [OIDC recipes](../auth/oidc.md#provider-recipes).
 
-### SSO stops working after rotating JWT_SECRET
+### SSO or a saved token stops working after rotating JWT_SECRET
 
-**Symptom:** After changing `JWT_SECRET`, everyone is signed out (expected), and SSO sign-in fails for providers you added in **Settings → Authentication**.
+**Symptom:** After changing `JWT_SECRET`, everyone is signed out (expected), and SSO sign-in fails for providers you added in **Settings → Authentication**. Notifications, the NutriTrace link, Trace or a food source can stop working too, because the token, key or password saved for it reads as empty.
 
-**Cause:** Unless `TOKEN_ENC_KEY` is set, the key that encrypts stored OIDC client secrets is derived from `JWT_SECRET`. A new `JWT_SECRET` means the stored secrets can no longer be decrypted. Providers defined through env vars are unaffected: their secret is re-read from the environment at every start.
+**Cause:** Unless `TOKEN_ENC_KEY` is set, the key that encrypts stored OIDC client secrets and the [secrets saved in Settings](../self-hosting/secrets.md#secrets-saved-in-settings) is derived from `JWT_SECRET`. A new `JWT_SECRET` means the stored secrets can no longer be decrypted. Providers defined through env vars are unaffected: their secret is re-read from the environment at every start.
 
-**Fix:** Re-enter the client secret of each provider in **Settings → Authentication**. To be able to rotate `JWT_SECRET` later without this, set `TOKEN_ENC_KEY` to a stable value and re-enter the secrets once more (setting it changes the key too); after that, `JWT_SECRET` can change freely. See [Session lifetime and password policy](../auth/sessions.md).
+**Fix:** Re-enter the client secret of each provider in **Settings → Authentication**, and have each person enter their saved tokens, keys and passwords again. To be able to rotate `JWT_SECRET` later without this, set `TOKEN_ENC_KEY` to a stable value and re-enter the secrets once more (setting it changes the key too); after that, `JWT_SECRET` can change freely. See [Session lifetime and password policy](../auth/sessions.md).
 
 ## NutriTrace-specific
 

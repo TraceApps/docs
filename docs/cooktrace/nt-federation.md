@@ -30,7 +30,7 @@ Then in CookTrace, open Settings and expand **NutriTrace federation**:
 3. **Test Connection**: CookTrace calls NT `/api/v1/me` server-side. On success the UI shows "Connected as `<username>`". Errors call out the exact failure (bad URL, invalid token, missing scope).
 4. **Enable Federation**: flip on. Save.
 
-The token stays on CookTrace's own server. The WebView / browser never sees it, and NT calls are proxied through CookTrace's `/api/nt/*` routes.
+The token stays on CookTrace's own server, stored encrypted ([Secrets saved in Settings](../self-hosting/secrets.md#secrets-saved-in-settings)). The WebView / browser never sees it: Settings shows a saved token as dots, and saving the dots keeps it. NT calls are proxied through CookTrace's `/api/nt/*` routes.
 
 ### Which recipes get affected
 

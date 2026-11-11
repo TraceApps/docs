@@ -30,7 +30,7 @@ Then in LiftTrace, open Settings and expand **NutriTrace federation**:
 3. **Test Connection**: LiftTrace calls NT `/api/v1/me` server-side. On success the UI shows "Connected as `<username>`". If the token is missing the `write:workouts` scope the test call fails with a specific message telling you to fix it in NT and re-check.
 4. **Enable Federation**: flip on. Save.
 
-The token stays on LiftTrace's server. The Android app / browser never sees it; NT calls are proxied through LiftTrace's `/api/nt/*` routes.
+The token stays on LiftTrace's server, stored encrypted ([Secrets saved in Settings](../self-hosting/secrets.md#secrets-saved-in-settings)). The Android app / browser never sees it: Settings shows a saved token as dots, and saving the dots keeps it. NT calls are proxied through LiftTrace's `/api/nt/*` routes.
 
 ## Wearable priority
 

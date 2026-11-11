@@ -38,7 +38,7 @@ Any variable in the tables below can also be provided via Docker secrets by suff
 | Variable | Default | Purpose | CT | LT | NT |
 |---|---|---|---|---|---|
 | `JWT_SECRET` | insecure dev fallback | Signs the auth cookie and Bearer tokens. Required when `NODE_ENV=production`. Long random string; never share across apps. | Y | Y | Y |
-| `TOKEN_ENC_KEY` | HKDF-derived from `JWT_SECRET` | AES-GCM key at rest for OIDC client secrets and (NT) wearable OAuth tokens. Set explicitly if you plan to rotate `JWT_SECRET`. | Y | Y | Y |
+| `TOKEN_ENC_KEY` | HKDF-derived from `JWT_SECRET` | AES-GCM key at rest for OIDC client secrets, webhook secrets, (NT) wearable OAuth tokens and the tokens, keys and passwords people save in their settings ([Secrets saved in Settings](secrets.md#secrets-saved-in-settings)). Set explicitly if you plan to rotate `JWT_SECRET`. | Y | Y | Y |
 | `RECOVERY_TOKEN` | unset | Enables `POST /api/auth/recover` from the login page. Passphrase compare is constant-time. Without this the endpoint is disabled. From each app's next release, Locked Out? can also reset [two-step sign-in](../auth/two-step.md#locked-out) for one account with it, when it's 16 characters or more. | Y | Y | Y |
 | `TWO_STEP_KEY` | generated `two-step.key` next to the database | Key that encrypts [two-step sign-in](../auth/two-step.md) secrets, separate from `JWT_SECRET`. Leave unset unless you keep secrets outside the data folder. From each app's next release. | Y | Y | Y |
 | `OIDC_APP_LINK_TOKEN` | on | `off` refuses single sign-on from Android builds that take their session in the deep link (from before the one-time code); see [The Android app's sign-in](../auth/oidc.md#android). From the next release. | Y | Y | Y |
