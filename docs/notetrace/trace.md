@@ -20,6 +20,8 @@ For **Custom Instruction**, type what you want and press **Enter** or **Ask Trac
 
 ## Chat with your notes {#chat}
 
+To show Trace a picture, use the image button beside the message box. From the next release you can also paste a screenshot or copied image into the message box. Copied text that comes with a picture of itself, such as cells from a spreadsheet, pastes as text.
+
 Open Trace from the round button and ask in plain words. While a note is open over the page, the round button steps aside: on a text note, use **Ask Trace** in the note's bar, or close the note to chat. Trace can call note tools, so it answers from your real notes and can change them:
 
 - "What's on my groceries list?"

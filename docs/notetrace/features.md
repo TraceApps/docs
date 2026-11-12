@@ -121,7 +121,7 @@ The bar along the bottom holds reminder, Ask Trace, Send to CookTrace, share, ad
 
 ## Images {#images}
 
-Add images with the image button, by pasting an image, or by dragging image files onto the editor. They sit above the text or checklist: one image fills the width, more form a grid. Tap one to see it full screen, and swipe or use the arrow keys to move between them. Large photos are scaled down before upload (longest side 2400px). Images sync to every device and come along when a note is shared.
+Add images with the image button, by pasting an image, or by dragging image files onto the editor. Copied text that comes with a picture of itself, such as cells from a spreadsheet or a passage from Word, pastes as text, not as an image (from the next release; before, it also added the picture, and in the title only the picture). They sit above the text or checklist: one image fills the width, more form a grid. Tap one to see it full screen, and swipe or use the arrow keys to move between them. Large photos are scaled down before upload (longest side 2400px). Images sync to every device and come along when a note is shared.
 
 ## Drawings {#drawings}
 

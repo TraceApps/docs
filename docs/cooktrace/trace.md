@@ -52,6 +52,8 @@ Hold the FAB to record voice via the Web Speech API. The transcript drops into t
 
 The paperclip in the chat panel attaches an image. On a phone and in the Android app it offers **Camera** or **Gallery** (from the next release), each going straight to the camera or the photo picker; on a computer it opens the file picker. Trace receives it in the provider's native multimodal format. Useful for:
 
+From the next release you can also paste a screenshot or copied image into the message box. Copied text that comes with a picture of itself, such as cells from a spreadsheet, pastes as text.
+
 - **Label recognition** on a pantry item you just bought: "add this to pantry", and Trace fills brand, category, serving size, nutrition from the label.
 - **Handwritten recipe cards**: attach the photo, ask Trace to create a recipe, review the parsed result before saving.
 - **Screenshots** of a recipe you saw somewhere: paste and let Trace extract.

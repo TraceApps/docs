@@ -68,7 +68,7 @@ Goals has a **Coach** tab when you have a coach or a request.
 
 ## The conversation
 
-One conversation per coach and client, on the client's Coach tab and the coach's Conversation tab: text up to 4,000 characters and one photo per message. Photos are private to the two of you. Read receipts, unread counts on the tabs, and a dot on Goals in the bottom bar and the sidebar for unread messages and anything waiting for your answer. You can delete your own messages. Trace never reads the conversation.
+One conversation per coach and client, on the client's Coach tab and the coach's Conversation tab: text up to 4,000 characters and one photo per message. From the next release, pasting a screenshot or copied image into the message box attaches it as the photo; copied text that comes with a picture of itself, such as cells from a spreadsheet, pastes as text. Photos are private to the two of you. Read receipts, unread counts on the tabs, and a dot on Goals in the bottom bar and the sidebar for unread messages and anything waiting for your answer. You can delete your own messages. Trace never reads the conversation.
 
 The conversation checks for new messages when you open it and every 10 seconds while it is on screen, and not otherwise.
 

@@ -57,7 +57,7 @@ When the client leaves or the coach ends it, the prescriptions and programs that
 
 One conversation per coach and client, beside the notes on workouts and exercises (which stay where they are). The client finds it on the **Coach** tab, the coach on the client's page in Coaching.
 
-- Text up to 4,000 characters and one photo per message. Photos are served only to the two of you (the coach only while coaching), and where a photo was taken is not sent.
+- Text up to 4,000 characters and one photo per message. From the next release, pasting a screenshot or copied image into the message box attaches it as the photo; copied text that comes with a picture of itself, such as cells from a spreadsheet, pastes as text. Photos are served only to the two of you (the coach only while coaching), and where a photo was taken is not sent.
 - Read receipts, an unread count on the Coach and Coaching tabs, and a dot on Programs.
 - Delete your own message; the other person sees "Message deleted".
 - It is kept on the device and opens with no connection. A message written offline shows as waiting and is sent once when the connection returns. While a conversation is on screen it checks for news every 10 seconds; nowhere else does.
