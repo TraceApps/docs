@@ -20,7 +20,7 @@ Rule of thumb when adding a new setting: if it makes sense on every device you o
 
 ## Profile hero
 
-Top-of-page card with your name, nickname, avatar, DOB, gender, height, weight, target weight, and activity level. Feeds the Mifflin-St Jeor TDEE calculation used by the first-run Wizard and by all Goals math. Deep link: opens `/profile` for editing. All fields `USER_PREFS`.
+Top-of-page card with your name, nickname and avatar. Deep link: opens `/profile` for editing: name, email, nickname, birthday, gender and, from the next release, **Activity Level** (Sedentary to Extremely Active), which sets the protein target in [Daily Targets](diary.md#daily-targets). Height, weight and target weight are the answers from first-run setup, which also used them with your activity level for the starting calorie goal (Mifflin-St Jeor).
 
 ## Appearance
 

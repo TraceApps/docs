@@ -78,7 +78,7 @@ Redeploy. The endpoint at `/api/mcp` starts responding to authenticated MCP clie
 
 ## Mint an MCP token
 
-Log in as an admin on a **multi-user** instance (API tokens need a real account to own them; single-user mode doesn't have one, so this section is hidden there), then:
+Sign in on a **multi-user** instance (API tokens need a real account to own them; single-user mode doesn't have one, so this section is hidden there). From the next release, any signed-in user makes their own tokens; earlier versions show the section to admins only. Then:
 
 1. Open **Settings → API Tokens**
 2. **New token** → name it (e.g. "claude-desktop")
@@ -162,7 +162,7 @@ Add `--writes` to also exercise the write tools (needs `mcp:write` + `MCP_WRITE_
 
 **429 rate_limited.** Backoff per the `Retry-After` header.
 
-**Settings → API Tokens isn't there.** The section only appears on a multi-user instance with a signed-in admin: a token needs a real account to own it, and single-user mode has none. Enable user management first.
+**Settings → API Tokens isn't there.** The section only appears on a multi-user instance, to someone signed in (to admins only before the next release): a token needs a real account to own it, and single-user mode has none. Enable user management first.
 
 ## Roadmap
 

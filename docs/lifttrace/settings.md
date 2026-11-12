@@ -135,7 +135,7 @@ Update checks are off until you turn them on (1.4.0 and later). The setup wizard
 
 ### API Tokens
 
-Personal access tokens for [MCP](mcp.md) and the REST API (admin, multi-user). Creating a token asks for your password, and your two-step code when that's on (an account that only signs in through single sign-on: a sign-in in the last 15 minutes), and when it should expire: in 30 days, 90 days (the default), 1 year, or No Expiry. From the next release; see [API tokens](../auth/sessions.md#api-tokens).
+Personal access tokens for [MCP](mcp.md) and the REST API (multi-user). From the next release, any signed-in user makes their own tokens; earlier versions show the section to admins only. Creating a token asks for your password, and your two-step code when that's on (an account that only signs in through single sign-on: a sign-in in the last 15 minutes), and when it should expire: in 30 days, 90 days (the default), 1 year, or No Expiry. From the next release; see [API tokens](../auth/sessions.md#api-tokens).
 
 ## Admin
 

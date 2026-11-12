@@ -105,9 +105,9 @@ From the next release, **Settings → Diary → Daily Targets** (off by default)
 - **At least (≥):** fiber, vitamins and minerals, from the Dietary Reference Intakes for your sex and age (adults 19 and over), and protein.
 - **At most (≤):** sodium (2,300 mg), cholesterol (300 mg), saturated fat and added sugar (each under 10% of your calorie goal). The total turns red once it's past the limit.
 - **Split:** fat is 30% of your calorie goal; carbs get the calories left after protein and fat.
-- **Protein** is per kg of your target weight (current weight if there's none), by the activity level you chose in setup: 0.8 g for Sedentary (the general recommendation, also used when none is saved), 1.0 g Lightly Active, 1.2 g Moderately Active, 1.6 g Very Active, 1.8 g Extremely Active.
+- **Protein** is per kg of your target weight (current weight if there's none), by your **Activity Level** (asked in setup, changeable in **Settings → Profile**): 0.8 g for Sedentary (the general recommendation, also used when none is saved), 1.0 g Lightly Active, 1.2 g Moderately Active, 1.6 g Very Active, 1.8 g Extremely Active.
 
-A goal you set in **Goals** for a nutrient always replaces its recommendation. Without a sex or a date of birth in your profile, only the limits and the macro split show. The targets don't adjust for pregnancy or breastfeeding; set those in Goals ([#311](https://github.com/TraceApps/nutritrace/pull/311)).
+A goal you set in **Goals** for a nutrient always replaces its recommendation. Birthday and gender come from **Settings → Profile**, or your setup answers if Profile has none. Without them, only the limits and the macro split show. The targets don't adjust for pregnancy or breastfeeding; set those in Goals ([#311](https://github.com/TraceApps/nutritrace/pull/311)).
 
 ## Body stats
 

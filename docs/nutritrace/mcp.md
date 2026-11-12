@@ -56,7 +56,7 @@ Redeploy. The endpoint at `/api/mcp` starts responding to authenticated MCP clie
 
 ## Mint an MCP token
 
-Log in as an admin, then:
+Sign in on a **multi-user** instance (API tokens need a real account to own them). From the next release, any signed-in user makes their own tokens; earlier versions show the section to admins only. Then:
 
 1. Open **Settings → API Tokens**
 2. **New token** → name it (e.g. "claude-desktop")

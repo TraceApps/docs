@@ -135,9 +135,9 @@ Deep dive: [Kitchens](kitchens.md).
 - **Share Log File**: Android only, when Diagnostic Mode is on. Shares the on-disk 7-day rotation.
 - **Crash Report**: banner appears when the last session crashed. Share or Dismiss.
 
-## API Tokens (admin)
+## API Tokens
 
-Personal access tokens for the [public API](public-api.md) and [MCP](mcp.md). Creating a token asks for your password, and your two-step code when that's on (an account that only signs in through single sign-on: a sign-in in the last 15 minutes), and when it should expire: in 30 days, 90 days (the default), 1 year, or No Expiry. From the next release; see [API tokens](../auth/sessions.md#api-tokens).
+Under Integrations. From the next release, any signed-in user makes their own tokens; earlier versions show the section to admins only. Personal access tokens for the [public API](public-api.md) and [MCP](mcp.md). Creating a token asks for your password, and your two-step code when that's on (an account that only signs in through single sign-on: a sign-in in the last 15 minutes), and when it should expire: in 30 days, 90 days (the default), 1 year, or No Expiry. From the next release; see [API tokens](../auth/sessions.md#api-tokens).
 
 ## Users (admin)
 
