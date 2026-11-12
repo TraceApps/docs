@@ -189,9 +189,9 @@ OIDC provider CRUD (Auth0, Authelia, Authentik, Keycloak, Google, Pocket ID, Cus
 
 Host, port, TLS toggle, user, pass, from address. Test-email button. Server-side settings; UI fields are env-locked when the corresponding `SMTP_*` env vars are set.
 
-## API Tokens (admin)
+## API Tokens
 
-Federation API tokens: create with name and scopes (`read:foods`, `write:workouts`, `read:me`, ...), list, delete. Hashed with SHA-256 (raw token shown once at creation). See [Federation API](federation-api.md). Creating a token asks for your password, and your two-step code when that's on (an account that only signs in through single sign-on: a sign-in in the last 15 minutes), and when it should expire: in 30 days, 90 days (the default), 1 year, or No Expiry. From the next release; see [API tokens](../auth/sessions.md#api-tokens).
+Under Integrations. From the next release, any signed-in user manages their own tokens; earlier versions show this section to admins only. Federation API tokens: create with name and scopes (`read:foods`, `write:workouts`, `read:me`, ...), list, delete. Hashed with SHA-256 (raw token shown once at creation). See [Federation API](federation-api.md). Creating a token asks for your password, and your two-step code when that's on (an account that only signs in through single sign-on: a sign-in in the last 15 minutes), and when it should expire: in 30 days, 90 days (the default), 1 year, or No Expiry. From the next release; see [API tokens](../auth/sessions.md#api-tokens).
 
 ## Support
 
