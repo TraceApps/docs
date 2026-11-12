@@ -93,9 +93,21 @@ The bar at the top of the Diary shows the day's calorie total, remaining calorie
 - `Totals mode`: consumed vs remaining.
 - `Macro legend`: off / percent / grams / both.
 - `Show all nutrients`: expand micros in the summary sheet.
+- `Daily Targets`: recommended amounts in the summary sheet (from the next release, see [Daily Targets](#daily-targets)).
 - `Show brand / timestamp / thumbnail` on each row.
 
 Tap the bar to open the **Nutrition Summary sheet**: every tracked nutrient in your configured order (Settings → Nutrients), plus a per-meal breakdown. Custom nutrients defined in Settings show up here alongside the built-ins.
+
+### Daily Targets
+
+From the next release, **Settings → Diary → Daily Targets** (off by default) adds a recommended daily amount next to each total in the Nutrition Summary sheet, such as `Sodium 900 / ≤ 2,300 mg` or `Vitamin C 12 / ≥ 90 mg`. Nutrients with a target always show, even at 0. The bar and the Overview card are not changed.
+
+- **At least (≥):** fiber, vitamins and minerals, from the Dietary Reference Intakes for your sex and age (adults 19 and over), and protein.
+- **At most (≤):** sodium (2,300 mg), cholesterol (300 mg), saturated fat and added sugar (each under 10% of your calorie goal). The total turns red once it's past the limit.
+- **Split:** fat is 30% of your calorie goal; carbs get the calories left after protein and fat.
+- **Protein** is per kg of your target weight (current weight if there's none), by the activity level you chose in setup: 0.8 g for Sedentary (the general recommendation, also used when none is saved), 1.0 g Lightly Active, 1.2 g Moderately Active, 1.6 g Very Active, 1.8 g Extremely Active.
+
+A goal you set in **Goals** for a nutrient always replaces its recommendation. Without a sex or a date of birth in your profile, only the limits and the macro split show. The targets don't adjust for pregnancy or breastfeeding; set those in Goals ([#311](https://github.com/TraceApps/nutritrace/pull/311)).
 
 ## Body stats
 
