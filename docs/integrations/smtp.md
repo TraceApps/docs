@@ -40,7 +40,7 @@ The dialog runs against the currently-typed form values, not the last-saved ones
 
 ## Env-lock
 
-Set any of `SMTP_HOST / SMTP_PORT / SMTP_SECURE / SMTP_USER / SMTP_PASS / SMTP_FROM` in the environment (or via `*_FILE` Docker secrets), and the Settings form freezes with a lock banner. All fields become read-only until the env vars are removed and the server is restarted.
+Set `SMTP_HOST` in the environment (or via `SMTP_HOST_FILE`), along with whichever of `SMTP_PORT / SMTP_SECURE / SMTP_USER / SMTP_PASS / SMTP_FROM` you need, and the Settings form freezes with a lock banner. All fields become read-only until `SMTP_HOST` is removed and the server is restarted; the values it used stay in the form to edit. The other variables without `SMTP_HOST` don't lock the form, and an empty variable never replaces a saved value. Before the next release, NutriTrace, CookTrace and NoteTrace locked on any of the variables and stayed locked after they were removed ([nutritrace#324](https://github.com/TraceApps/nutritrace/pull/324)).
 
 ```env
 SMTP_HOST=smtp.fastmail.com
