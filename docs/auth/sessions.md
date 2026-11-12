@@ -50,7 +50,7 @@ From the next release, creating an API token (Settings > API Tokens) takes a fre
 
 Each new token gets an expiry: **In 30 Days**, **In 90 Days** (the default), **In 1 Year**, or **No Expiry**. An expired token gets `401 auth_invalid`, like a revoked one. Tokens made before this keep working as they were.
 
-For scripts, `POST /api/admin/api-tokens` takes `name`, `scopes`, `password`, `code` (when two-step sign-in is on) and `expires_in_days` (1 to 3650, or `null` for no expiry).
+For scripts, `POST /api/tokens` (from the next release; `/api/admin/api-tokens` still works) takes `name`, `scopes`, `password`, `code` (when two-step sign-in is on) and `expires_in_days` (1 to 3650, or `null` for no expiry).
 
 ## Password policy
 

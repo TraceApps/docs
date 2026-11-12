@@ -19,6 +19,8 @@ Three independent switches, each guarding a bigger surface. Off by default; the 
 | `MCP_ENABLED` | `0` | Turns on `/api/mcp` and registers the 14 read tools. Tokens still need the `mcp:read` scope. |
 | `MCP_WRITE_ENABLED` | `0` | Registers the 5 additive log tools (`log_food`, `log_external_food`, `log_water`, `log_meal`, `log_body_stat`). Tokens need `mcp:write`. |
 | `MCP_DESTROY_ENABLED` | `0` | Registers the 3 destructive tools (`delete_diary_entry`, `edit_diary_entry`, `create_food`). Tokens need `mcp:destroy`, AND every call must include `confirm: true`. |
+| `PUBLIC_API_ENABLED` | `0` | Turns on the read routes of the [public REST API](public-api.md) (`/api/v1/diary`, `/goals`, `/meals`, `/steps`, `/body-composition`, `/profile`). Tokens need `mcp:read`. |
+| `PUBLIC_API_WRITE_ENABLED` | `0` | Also turns on its write routes (log food, water, a meal, body stats). Needs `PUBLIC_API_ENABLED`; tokens need `mcp:write`. |
 | `ALLOWED_ORIGINS` | — | Comma-separated list of browser Origins allowed to call `/api/mcp`. Server-to-server clients (Claude Desktop's HTTP bridge etc.) send no Origin header and always pass, so most self-hosters leave this empty. `*` is refused by design (DNS-rebinding defense). |
 
 ## AI Assistant (env-lock)

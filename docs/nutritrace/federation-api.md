@@ -229,6 +229,7 @@ Per-token sliding window, `API_RATE_LIMIT_PER_MIN` (default 60) requests per min
 
 ## Related
 
+- [Public REST API](public-api.md): the routes for your own scripts (diary, goals, meals, steps, body composition, profile)
 - [Federation (cross-app links)](../integrations/federation.md)
 - [NutriTrace federation (CookTrace side)](../cooktrace/nt-federation.md)
 - [NutriTrace federation (LiftTrace side)](../lifttrace/nt-federation.md)
