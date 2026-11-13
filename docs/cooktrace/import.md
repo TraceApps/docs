@@ -82,6 +82,8 @@ The flow is two-step:
 
 Canceling from the picker deletes the cache. Committing keeps the cache in `.import-cache/` for the session and cleans it up later; the cache is intentionally excluded from full-backup dumps and from restore.
 
+The Android app without a server does the same on the phone: it reads the archive itself and saves the recipes and their pictures there.
+
 ### Dedup policy
 
 A recipe counts as a duplicate when its name matches one of your recipes (ignoring case) **or** its source link matches exactly. Within one archive only the name counts: an export that holds the same recipe twice imports it once, while a copy under another name (Paprika's "[copy]") and different recipes from the same page all import.
@@ -89,7 +91,7 @@ A recipe counts as a duplicate when its name matches one of your recipes (ignori
 The bulk import's **If a Recipe Already Exists** option decides what happens (`dedup` on `POST /api/recipes/import-zip/commit`):
 
 - **Skip It** (`skip`, the default): the duplicate is left out and your recipe stays as it is.
-- **Replace with the Imported Version** (`replace`): your recipe is updated from the archive.
+- **Replace with the Imported Version** (`replace`): your recipe is updated from the archive, as an edit: its cooks, plans and earlier versions stay with it, and so do your favorite, and your photo, stars and category when the archive has none.
 - **Allow Duplicates** (`force`): import anyway, adding a second copy.
 
 After a bulk import, the summary reads "Imported 119 of 121 Recipes" when anything was left out. It lists the skipped duplicates by name (each links to the recipe it matched) and, separately, any recipe that failed with the reason. To bring skipped ones in anyway, set the option to Allow Duplicates and import the file again.
