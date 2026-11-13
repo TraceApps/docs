@@ -1,6 +1,6 @@
 # Wear OS
 
-CookTrace on a watch: the shopping list while your hands are full in an aisle, and the dish you're cooking while they're covered in flour. It talks to your server itself, so it keeps working with the phone in another room.
+CookTrace on a watch: the shopping list while your hands are full in an aisle, and the dish you're cooking while they're covered in flour. With a server, it talks to your server itself, so it keeps working with the phone in another room. In Local mode it works through your phone (see [Local mode](#local-mode)).
 
 !!! note "Wear OS 3 and up"
     Built for Wear OS 3 and newer (Android 11 on the watch). Older watches run a different app model and aren't supported.
@@ -8,7 +8,7 @@ CookTrace on a watch: the shopping list while your hands are full in an aisle, a
 ## Setting it up
 
 1. **Install the watch app.** The APK is on the [Releases page](https://github.com/TraceApps/cooktrace/releases) alongside the phone one. Sideload it the usual way, or install from the phone with `adb -s <watch> install`.
-2. **Open CookTrace on your phone** and sign in. That's the whole pairing: the phone sends the server address and a token to the watch over the standard Wear data connection, and the watch stores them.
+2. **Open CookTrace on your phone** and sign in, or use it in Local mode. That's the whole pairing: the phone sends the server address and a token to the watch over the standard Wear data connection, and the watch stores them. In Local mode the phone tells the watch to ask the phone instead.
 3. **Open CookTrace on the watch.** Your shopping list appears.
 
 There is nothing to type on the watch, and no separate account. Signing out on the phone takes the credentials off the watch too.
@@ -67,6 +67,15 @@ The watch keeps the last list and the recipes for the cooks you're in, so it ope
 The screen says "Offline" or "2 waiting" while that's true, and shows the reason in red if the server refuses. Ticks collapse, so tapping twice sends once.
 
 The tile and the complication read the same saved copy, so they show something sensible with no connection and no battery cost.
+
+## Local mode
+
+With the phone app in Local mode (Use Locally, no server), the watch works through the phone: it reads the shopping list and the recipes you're cooking from the phone, and checks items off and logs dishes there, over the same Wear connection that pairs them. The phone's screens show a change made on the watch at once.
+
+- **CookTrace has to be running on the phone,** on screen or in the background. When you leave the app with your watch connected, the phone shows a quiet notification, **Your watch is working through this phone**, which keeps Android from freezing CookTrace when you open other apps. It goes away when you come back to the app, or after 30 minutes with nothing from the watch.
+- **If the app was closed** (swiped away, or Android ended it), the watch keeps what you did and says **Open CookTrace on your phone**; it goes to the phone once you open it.
+- **Out of reach,** the watch says **Phone not nearby** and keeps what you did until the phone is back.
+- **Switching the phone between Local mode and a server** clears what the watch kept, so one never gets the other's list or cooks. Let anything waiting on the watch go up before you switch, then press **Cook** again for a dish you're still making.
 
 ## Battery
 

@@ -1,6 +1,6 @@
 # Wear OS
 
-NoteTrace on a watch: your notes and checklists, the CookTrace shopping list, and what's due, without reaching for the phone. It talks to your server itself, so it keeps working when the phone is in another room or in a bag.
+NoteTrace on a watch: your notes and checklists, the CookTrace shopping list, and what's due, without reaching for the phone. With a server, it talks to your server itself, so it keeps working when the phone is in another room or in a bag. In Local mode it works through your phone (see [Local mode](#local-mode)).
 
 !!! note "Wear OS 3 and up"
     Built for Wear OS 3 and newer (Android 11 on the watch). Older watches run a different app model and aren't supported.
@@ -8,7 +8,7 @@ NoteTrace on a watch: your notes and checklists, the CookTrace shopping list, an
 ## Setting it up
 
 1. **Install the watch app.** The APK is on the [Releases page](https://github.com/TraceApps/notetrace/releases) alongside the phone one. Sideload it the usual way, or install from the phone with `adb -s <watch> install`.
-2. **Open NoteTrace on your phone** and sign in. That's the whole pairing: the phone sends the server address and a token to the watch over the standard Wear data connection, and the watch stores them.
+2. **Open NoteTrace on your phone** and sign in, or use it in Local mode. That's the whole pairing: the phone sends the server address and a token to the watch over the standard Wear data connection, and the watch stores them. In Local mode the phone tells the watch to ask the phone instead.
 3. **Open NoteTrace on the watch.** Your notes appear.
 
 There is nothing to type on the watch, and no separate account. Signing out on the phone takes the credentials off the watch too.
@@ -59,7 +59,7 @@ With a big library, the watch list gets long. On the phone, **Settings, Notes, O
 - **Only what I pick** gives each note and checklist a switch. The heading says where you stand: "4 notes on the watch", or "Nothing picked yet, so the watch shows everything".
 - Clearing every pick puts it back to everything, so the watch can't end up empty by accident.
 
-The narrowing happens on the server, so a shorter list is also a smaller download. Reminders and the shopping list are never hidden by this: a reminder is time-sensitive, and there's only one shopping list.
+The narrowing happens on the server (on the phone in Local mode), so a shorter list is also a smaller download. Reminders and the shopping list are never hidden by this: a reminder is time-sensitive, and there's only one shopping list.
 
 ## Without a connection
 
@@ -72,6 +72,17 @@ The watch keeps the last lists it loaded, so it opens and works in a shop with n
 Each of those says so as you do it ("Note saved", "Reminder set", "Added"), and adds "waiting for a connection" when there's nothing to send it over. The screen says "Offline" or "2 waiting" while that's true, and shows the reason in red if the server refuses. Ticks collapse, so tapping twice sends once, while spoken things never collapse: saying two items gives you two items. From the next release, a tick or reminder done offline counts from when you did it, so an item unticked later on your phone stays unticked.
 
 The tile and the complication read the same saved copy, so they show something sensible with no connection and no battery cost.
+
+## Local mode
+
+With the phone app in Local mode (Use Locally, no server), the watch works through the phone: it reads your notes and reminders from the phone, and everything you do on the watch (ticking, speaking a note or an item, finishing a reminder) is saved there, over the same Wear connection that pairs them. The phone's screens, reminders and widget follow at once.
+
+- **NoteTrace has to be running on the phone,** on screen or in the background. When you leave the app with your watch connected, the phone shows a quiet notification, **Your watch is working through this phone**, which keeps Android from freezing NoteTrace when you open other apps. It goes away when you come back to the app, or after 30 minutes with nothing from the watch.
+- **If the app was closed** (swiped away, or Android ended it), the watch keeps what you did and says **Open NoteTrace on your phone**; it goes to the phone once you open it.
+- **Out of reach,** the watch says **Phone not nearby** and keeps what you did until the phone is back.
+- **A tick that waited** counts from when you made it, as with a server: if you changed the same item on the phone after that, the phone's change stays.
+- **The CookTrace shopping list** needs a server, so it isn't on the watch in Local mode.
+- **Switching the phone between Local mode and a server** clears what the watch kept, so one never gets the other's notes. Let anything waiting on the watch go up before you switch.
 
 ## What it doesn't do
 
