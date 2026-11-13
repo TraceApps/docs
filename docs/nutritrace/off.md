@@ -4,7 +4,12 @@ Open Food Facts (OFF) is the primary source of ready-made barcode and food looku
 
 ## Cloud usage (default)
 
-Nothing to set up. Open Food Facts is enabled out of the box under **Settings → Connected Services → Open Food Facts**. Barcode scans and name searches hit `world.openfoodfacts.org` directly. Search language and country biasing are configurable per user (`offSearchLang`, `offSearchCountry`), and a per-food import preference (`offImportBasis`) picks per-serving vs per-100g when both are published by OFF.
+Nothing to set up. Open Food Facts is enabled out of the box under **Settings → Connected Services → Open Food Facts**. Barcode scans read `world.openfoodfacts.org` and name searches go to OFF's search service, `search.openfoodfacts.org`. Each user can set a **Search Language** and **Search Country** (`offSearchLanguage`, `offSearchCountry`), and an import preference (`offImportPortion`) picks per-serving vs per-100g when OFF publishes both.
+
+**Search Language** matches product names in that language. Any language other than English also matches English names, so a product named only in English still shows up. From the next release the list includes Ukrainian, and the Search Country and Upload Country lists include Ukraine.
+
+!!! note "Recently added products may not be found by name"
+    As of November 2026, OFF's search service has not taken in products added or changed after mid-December 2024 ([search-a-licious#469](https://github.com/openfoodfacts/search-a-licious/issues/469)), so a newer product can be missing from name search in any language. Scanning or typing its barcode still finds it, because barcode lookups read the product directly. OFF has said a coming release rebuilds the index.
 
 **Sharing needs your own Open Food Facts account.** The **Share to Open Food Facts** button in the food editor sends a product that isn't in OFF yet, with its photo, under your name. An account is free: create one at [openfoodfacts.org](https://world.openfoodfacts.org/), then enter its username (not your email) and password under **Settings → Food Sources → Open Food Facts**. Without them, or with a wrong username or password, Share to OFF asks for them right there in the food editor, then shares. The product goes through your NutriTrace server (the Android app with no server sends it to Open Food Facts itself), and a product OFF refuses or OFF being unreachable each get a plain message. When the product already exists, the button flips to **View on OFF** and opens the wiki page so you can suggest edits through OFF's own moderation and history workflow. Credentials live under `offUsername` / `offPassword`, are user-scoped, and are refused entirely when the instance is in air-gap mode (see below).
 

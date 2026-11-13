@@ -85,9 +85,12 @@ Long-press the app icon and choose **Scan to Pantry** to open the Pantry with th
 
 Free, no key. Enable under Settings > Food Sources > Open Food Facts. Optional fields:
 
-- **Search Language** and **Search Country** for locale-appropriate results.
+- **Search Language** and **Search Country** for locale-appropriate results. Any language other than English also matches English names, so a product named only in English still shows up. From the next release the language list includes Ukrainian and the country lists include Ukraine; before it, Open Food Facts ignored the Search Language and name searches were always in English.
 - **Upload Country** for the "Share to OFF" flow.
 - **Account Username / Password**: your own Open Food Facts account, needed for **Share to OFF**.
+
+!!! note "Recently added products may not be found by name"
+    As of November 2026, Open Food Facts' search service has not taken in products added or changed after mid-December 2024 ([search-a-licious#469](https://github.com/openfoodfacts/search-a-licious/issues/469)), so a newer product can be missing from name search. Scanning its barcode still finds it. Open Food Facts has said a coming release rebuilds the index.
 
 **Share to OFF** in a pantry item sends an item that isn't in Open Food Facts yet, with its photo, under your name. It needs your own Open Food Facts account, which is free: create one at [openfoodfacts.org](https://world.openfoodfacts.org/), then enter its username (not your email) and password under **Settings > Food Sources > Open Food Facts**. Without them, Share to OFF asks for them right there in the item, keeping what you typed, then shares. The item goes through your CookTrace server (the Android app with no server sends it to Open Food Facts itself), and a wrong username or password, an item OFF refuses, or OFF being unreachable each get a plain message.
 
