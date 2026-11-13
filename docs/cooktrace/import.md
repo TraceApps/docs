@@ -84,7 +84,7 @@ Canceling from the picker deletes the cache. Committing keeps the cache in `.imp
 
 ### Dedup policy
 
-A recipe counts as a duplicate when its name matches one of your recipes (ignoring case) **or** its source link matches exactly. That includes a recipe imported earlier in the same archive, so an export that holds the same recipe twice imports it once.
+A recipe counts as a duplicate when its name matches one of your recipes (ignoring case) **or** its source link matches exactly. Within one archive only the name counts: an export that holds the same recipe twice imports it once, while a copy under another name (Paprika's "[copy]") and different recipes from the same page all import.
 
 The bulk import's **If a Recipe Already Exists** option decides what happens (`dedup` on `POST /api/recipes/import-zip/commit`):
 

@@ -38,7 +38,9 @@ Per `_importPaprika` in `server/lib/recipe-importers.js`:
 - **Steps**: parsed from Paprika's `directions` field on blank-line boundaries; each paragraph becomes one step.
 - **Servings** and yield text.
 - **Prep** and **cook** times (Paprika stores free-form strings like "1 hr 15 min"; CookTrace parses them into minutes).
-- **Photo**: `photo_url` if present, otherwise the base64-encoded `photo` field.
+- **Photo**: the picture embedded in the archive (`photo_data`, or the first of `photos`), saved as a file with the recipe; otherwise the web address in `photo_url` or `image_url`.
+- **Rating**: Paprika's stars (no stars stays unrated).
+- **Nutrition**: Paprika's nutrition text is added to the notes under "Nutrition (from Paprika)".
 - **Category**: the first entry in Paprika's `categories` array becomes the recipe's Category. Remaining entries (up to 12) become tags.
 - **Source URL** (`source_url` or older `source`).
 - **Created date**: `created` or the older `dateAdded` is preserved, so imported recipes keep their original creation timestamp instead of stamping to today.
