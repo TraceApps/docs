@@ -1,6 +1,6 @@
 # Wear OS
 
-LiftTrace on a watch: the session you are in, logging sets between them, the rest timer on your wrist, and finishing the workout without touching the phone. It talks to your server itself, so it keeps working with the phone in a locker.
+LiftTrace on a watch: the session you are in, logging sets between them, the rest timer on your wrist, and finishing the workout without touching the phone. With a server, it talks to your server itself, so it keeps working with the phone in a locker. In Local mode it works through your phone (see [Local mode](#local-mode)).
 
 !!! note "Wear OS 3 and up"
     Built for Wear OS 3 and newer (Android 11 on the watch). Older watches run a different app model and aren't supported.
@@ -8,13 +8,23 @@ LiftTrace on a watch: the session you are in, logging sets between them, the res
 ## Setting it up
 
 1. **Install the watch app.** The APK is on the [Releases page](https://github.com/TraceApps/lifttrace/releases) alongside the phone one. Sideload it the usual way, or install from the phone with `adb -s <watch> install`.
-2. **Open LiftTrace on your phone** and sign in. That's the whole pairing: the phone sends the server address and a token to the watch over the standard Wear data connection, and the watch stores them.
+2. **Open LiftTrace on your phone** and sign in, or use it in Local mode. That's the whole pairing: the phone sends the server address and a token to the watch over the standard Wear data connection, and the watch stores them. In Local mode the phone tells the watch to ask the phone instead.
 3. **Open LiftTrace on the watch.** Today's session appears.
 
 There is nothing to type on the watch, and no separate account. Signing out on the phone takes the credentials off the watch too.
 
 !!! warning "Both apps must be signed with the same key"
     If you build the apps yourself, sign the watch app with the same key as the phone app. Wear only carries data between apps that share a package name and a signing certificate, and when they differ, pairing silently does nothing.
+
+## Local mode
+
+With the phone app in Local mode (Use Locally, no server), the watch works through the phone: it reads your session from the phone and saves each set there, over the same Wear connection that pairs them. The Diary on the phone shows a set logged on the watch at once, and finishing on the watch gives the same Workout Complete notification as finishing on the phone.
+
+- **LiftTrace has to be running on the phone,** on screen or in the background. When you leave the app with your watch connected, the phone shows a quiet notification, **Your watch is logging through this phone**, which keeps Android from freezing LiftTrace when you open other apps. It goes away when you come back to the app, or after 30 minutes with nothing from the watch.
+- **If the app was closed** (swiped away, or Android ended it), the watch keeps your sets and says **Open LiftTrace on your phone**; they go to the phone once you open it.
+- **Out of reach,** the watch says **Phone not nearby** and keeps your sets until the phone is back.
+- **A set changed on both** the phone and the watch at the same moment: each device's own change stays, set by set, as with a server.
+- **Switching the phone between Local mode and a server** clears what the watch kept, so one never gets the other's sets. Send anything waiting on the watch before you switch.
 
 ## Updates
 
