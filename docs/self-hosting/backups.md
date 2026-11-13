@@ -44,6 +44,9 @@ Setting any of the three env-locks the tile in Settings, so admins can no longer
 === "LiftTrace note"
     A LiftTrace Full Backup restores what was deleted as deleted: workouts, custom exercises, programs, workout days, body stats and Trace messages deleted before the backup stay deleted, on the server and on connected phones, also with a backup made by an earlier version. A day's workouts come back in the order you had them. API tokens, webhooks and invites are in the backup from 1.5.0, so a restore keeps them; one you removed after the backup comes back with it, so remove it again. A webhook's secret is encrypted with `TOKEN_ENC_KEY` (or `JWT_SECRET`), so on a server with a different key its deliveries fail until you make the webhook again. Phones get the restored coach conversation, progress photos and set videos, and drop what the backup doesn't hold.
 
+=== "CookTrace note"
+    After a CookTrace Full Backup is restored, connected Android apps drop what the backup doesn't hold: recipes, pantry items, cooks, shopping items, cookbooks, comments, recipe versions, categories, custom units and Trace messages made after the backup. Kitchens and invites made after the backup are removed too. API tokens and webhooks are in the backup from 1.5.0, so a restore keeps them; one you removed after the backup comes back with it, so remove it again. A webhook's secret is encrypted with `TOKEN_ENC_KEY` (or `JWT_SECRET`), so on a server with a different key its deliveries fail until you make the webhook again.
+
 ## Layer 3: portable JSON export
 
 Per-user, not admin-only. Every app has Settings, Data Export where you can download a JSON snapshot of your own diary, workouts, recipes, and settings. The exact scope depends on the app:
