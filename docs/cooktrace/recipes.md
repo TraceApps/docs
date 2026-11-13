@@ -9,7 +9,7 @@ Each recipe carries:
 - **Name** (required) and optional **description**.
 - **Hero image** (`img_url`), uploaded or pasted URL.
 - **Star rating** (1-5, or unrated) and **favorite** heart.
-- **Yield / servings** (`servings`, default 2).
+- **Yield / servings** (`servings`), optional. A new recipe starts from Settings > Cooking > Default Servings; one without servings (cleared in the editor, imported from a page that doesn't say, or made by an AI agent that didn't set it) stays blank and shows no servings or scaling.
 - **Prep**, **cook**, **rest**, and **total** times, all in minutes. Total auto-calculates when blank.
 - **Ingredients**, grouped into named sections (e.g. "Dough", "Sauce") with per-row quantity, unit, ingredient text, and an optional link to a pantry item.
 - **Steps**, ordered, with per-step text and optional per-step photo.
