@@ -27,7 +27,7 @@ Auto-seeds one or more exercise catalogs the very first time the DB is created. 
 - `wger` (~600 exercises, CC-BY-SA 4.0)
 - `free-db` (~870 exercises, public domain, images)
 - `exercisedb` (~1,300 with GIFs, needs a RapidAPI key configured in Settings)
-- `exercisedb-oss` (~1,500 with GIFs, community mirror)
+- `exercisedb-oss` (~1,300 with GIFs, community mirror)
 
 Comma-separated, no spaces required. Empty (the code default) triggers the wizard's library picker so a new admin actively chooses; the README example writes `wger,free-db` which is the safe zero-key seed pair. See [Exercise library](exercises.md#seeding-on-first-boot).
 

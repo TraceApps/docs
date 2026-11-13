@@ -14,7 +14,7 @@ Sources are registered in `server/exercise-sources/index.js`. Enable and import 
 | `wger` | ~600 | Sparse images, no GIFs | CC-BY-SA 4.0 | Nothing |
 | `free-db` | ~870 | Start/end position images | Public domain | Nothing |
 | `exercisedb` | ~1,300 | Animated GIFs | RapidAPI commercial | RapidAPI key |
-| `exercisedb-oss` | ~1,500 | Animated GIFs | AGPL-3.0 | Community mirror |
+| `exercisedb-oss` | ~1,300 | Animated GIFs | AGPL-3.0 | Community mirror |
 
 ### wger
 
@@ -37,6 +37,10 @@ EXERCISEDB_OSS_URL=https://your-mirror.example.com
 ```
 
 The mirror is community-hosted with no SLA. If the endpoint is down, the import fails cleanly and no rows change.
+
+The catalog lists some exercises two to four times under one name, and the GIF of many of those copies is gone. An import leaves out a repeated copy whose GIF is missing, so about 1,300 of its 1,500 entries come in. Importing it again clears such copies an earlier import added, unless a workout, template or favorite uses one; those stay. An image that can't load shows its other image or the plain exercise icon.
+
+An import of this catalog takes about two to three minutes, since every GIF of a repeated name is checked. Behind a reverse proxy that gives up sooner (nginx waits 60 seconds by default), the page can report an error while the import still finishes on the server; raise the proxy's read timeout (`proxy_read_timeout 300s;` in nginx), or check Settings > Integrations > Catalog again after a few minutes.
 
 ## Seeding on first boot
 
