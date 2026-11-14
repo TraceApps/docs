@@ -25,7 +25,7 @@ The macro summary lives at the top of the Diary page. It shows your day's calori
 ![NutriTrace Statistics with calorie trend, average, and goal overlays](../assets/img/nutritrace/04-statistics.png)
 
 
-Switch to **Statistics**. Pick a nutrient, body stat, workout metric, wellness metric, or IF stat from the chip row. The chart underneath renders as bar or line (configurable), with optional overlays for the goal, the trailing average, and a trend line. Date range is a picker at the top; the chart supports zero-baseline toggle, include-today toggle, and show-empty-days toggle.
+Switch to **Statistics**. Pick a nutrient, body stat, workout metric, wellness metric, or IF stat from the chip row. With a wearable connected, the wellness metrics include **Calories Burned**, the total your watch reports for each day (from the next release), so you can compare it with the calories you ate. The chart underneath renders as bar or line (configurable), with optional overlays for the goal, the trailing average, and a trend line. Date range is a picker at the top; the chart supports zero-baseline toggle, include-today toggle, and show-empty-days toggle.
 
 The chip row is drag-reorderable, and any chip you hide via long-press stays hidden until you show it again. Chart.js is loaded as a separate async chunk so the page stays responsive even with a lot of series.
 
