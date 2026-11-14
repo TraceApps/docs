@@ -25,7 +25,7 @@ In Settings > Profile, for accounts that sign in with a password (from the next 
 
 ## Regional and Units (per-user)
 
-- **Language**: the app's language: English, Español, Français or Svenska. Spanish covers every screen (from the next release), French about 40% so far; anything not yet translated shows in English. To add or improve a language, see [Translations](../contribute/translations.md).
+- **Language**: the app's language: English, Español, Français or Svenska. Spanish covers every screen (from the next release), French about 40% so far; anything not yet translated shows in English. Until you pick one, the app starts in your browser's language when it has it, and English otherwise (from 1.5.0-dev02; before, it always started in English). To add or improve a language, see [Translations](../contribute/translations.md).
 - **Date Format**: ISO, US, EU, or natural.
 - **Time Format**: 12h or 24h.
 - **Measurement System**: Imperial or Metric.
