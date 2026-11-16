@@ -76,13 +76,12 @@ The NutriTrace server proxies Mealie requests via `POST /api/mealie/proxy`, so t
 
 ### How Mealie recipes are imported
 
-When you pick a Mealie recipe from the picker, NutriTrace imports it as a NutriTrace recipe (same shape as any recipe you would build in the Recipe editor):
+When you pick a Mealie recipe from the picker, NutriTrace opens it in the Food editor as one food, ready to save:
 
-- **Name, description, servings, image**: copied verbatim.
-- **Ingredients**: each Mealie ingredient is matched against your Local foods first, then OFF, then USDA. Matches with high confidence are auto-linked; the rest surface in the editor with a **needs mapping** badge for you to resolve.
-- **Instructions**: preserved as recipe notes.
+- **Name and photo**: from the recipe. The brand is the site the recipe came from, when Mealie has one.
+- **Nutrition**: Mealie's per-serving values (calories, protein, carbs, fat, saturated fat, fiber, sugars, sodium, cholesterol, trans fat), with a serving as the unit, so the quantity you log is the number of servings.
 
-Once imported, the recipe lives in your NutriTrace Recipes catalog and can be logged, split, shared, and favorited exactly like any other recipe. It is not kept in sync with Mealie; if you change the source recipe, re-import to pick up the changes.
+Saved, it's a food in your NutriTrace Foods like any other. It isn't kept in sync with Mealie: if you change the recipe there, pick it again to get its current values. Picking it again always opens it with what Mealie has now; anything you changed in the editor and didn't save comes back on top of that for up to 4 hours.
 
 ## CookTrace
 
