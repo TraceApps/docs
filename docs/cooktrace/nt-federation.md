@@ -94,6 +94,8 @@ A network failure or other non-404 error does **not** trigger the banner (offlin
 
 Instead of pulling recipes one at a time from the source-chip picker, you can also grab everything CookTrace has in one shot. In NutriTrace open **Settings, Connected Services, CookTrace** and use the **Import All Recipes** action once the connection is verified. NT pages through every recipe on the CookTrace side, upserts each one via the same `(source_app, source_external_id)` dedup key the single-recipe picker uses, and reports imported / updated / skipped counts. Safe to re-run: subsequent invocations update existing imports in place rather than duplicating.
 
+It asks CookTrace for each recipe on its own, and CookTrace allows each token 60 requests a minute (`API_RATE_LIMIT_PER_MIN` on the CookTrace server changes it). A bigger catalog waits whenever it reaches that, with a countdown under the button, and carries on: about a minute for every 60 recipes. A recipe that still can't be imported (deleted on CookTrace, or the server not answering) is named in a warning with the reason. A re-run counts recipes it already brought over as updated. This needs NutriTrace from the next release; before it, the import found no recipes, or stopped after about 60 and counted the rest as skipped.
+
 ## Pull CookTrace pantry items into NutriTrace foods
 
 The reverse of the "CookTrace pulls foods from NutriTrace" flow above: NT can also pull the pantry items you keep on CookTrace into its own foods library. Useful for onboarding NutriTrace when you have been living in CookTrace's pantry for a while.
