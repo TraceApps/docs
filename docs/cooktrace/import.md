@@ -47,7 +47,7 @@ Under Settings > Import from Another App, or from the Recipes page's **Import** 
 
 - **Mealie** JSON export.
 - **Tandoor** JSON export.
-- **Paprika** `.paprikarecipes` archive (single or multi-recipe).
+- **Paprika** `.paprikarecipes` archive (single or multi-recipe), or one recipe exported as a `.paprikarecipe` file.
 - **schema.org/Recipe** JSON-LD paste.
 - **Saved HTML** upload (JSON-LD embedded in the page).
 - **CookTrace** JSON export (portable format).

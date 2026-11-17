@@ -14,6 +14,8 @@ The steps vary slightly per platform (macOS / iOS / Windows), but the general pa
 
 The file is a normal zip, so if you're curious you can rename it to `.zip` and peek inside; you'll see one `.paprikarecipe` per recipe. The importer copes with both the standard gzipped payload and the (rarer) plain-JSON variant Paprika sometimes emits.
 
+A single recipe exported on its own comes as a `.paprikarecipe` file. Import it from the Recipes page: **New Recipe > Import from JSON/HTML > Choose a File**. In the Android app, every file shows in the picker; pick the Paprika file, and anything CookTrace can't import says so.
+
 ## Import into CookTrace
 
 Under **Settings > Import from Another App**, **Choose File** and pick the `.paprikarecipes` file. The server unpacks it into `.import-cache/<uuid>/` and returns a picker of every recipe it found, with a thumbnail if the recipe carried one.
