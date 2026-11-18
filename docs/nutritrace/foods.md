@@ -7,7 +7,7 @@ The **Foods** page is the library. Three tabs across the top: **Foods**, **Meals
 
 ## Personal food database
 
-Each food row carries a name, brand, category, custom labels, photo, barcode, notes, per-serving nutrition, and optional per-100g nutrition (or per-100ml for liquids). Storage is the `foods` table (`server/db.js:27-40`). Foods you create are private by default; visibility can be raised to Everyone or Specific users (see **Sharing** below).
+Each food row carries a name, brand, categories (as many as you pick; `category` holds the first, for the API and older apps), custom labels, photo, barcode, notes, per-serving nutrition, and optional per-100g nutrition (or per-100ml for liquids). Storage is the `foods` table (`server/db.js:27-40`). Foods you create are private by default; visibility can be raised to Everyone or Specific users (see **Sharing** below).
 
 **Favorites** are a per-user star. Sort behavior for each tab is independent (`foodsSort`, `mealsSort`, `recipesSort`) and covers:
 

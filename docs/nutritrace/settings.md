@@ -75,7 +75,7 @@ Drag-to-reorder every macro and micro, hide the ones you don't want to see, and 
 
 ## Categories
 
-Food category chips (`foodCategories`). Personal taxonomy for the foods you create. `USER_PREFS`.
+Food category chips (`foodCategories`). Personal taxonomy for the foods, meals and recipes you create: pick as many as fit in the Food or Meal editor, and the Foods page filters by any of them. `USER_PREFS`.
 
 ## Custom Units
 

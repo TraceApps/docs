@@ -65,7 +65,7 @@ List foods in the token owner's library. Requires `read:foods`.
 Query params:
 
 - `q`. Case-insensitive substring match against name and brand.
-- `category`. Exact-match category filter.
+- `category`. Exact-match category filter: a food with several categories matches any of them.
 - `limit`. 1..500, default 100.
 - `offset`. Pagination cursor.
 
@@ -84,6 +84,7 @@ Returns:
       "name": "Chickpeas, canned",
       "brand": "Store brand",
       "category": "Legumes",
+      "categories": ["Legumes", "Pantry"],
       "barcode": "0123456789012",
       "portion": 100,
       "unit": "g",
