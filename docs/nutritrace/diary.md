@@ -157,7 +157,7 @@ Sync across devices uses an offline-safe rule: a stale device pushing a `null` d
 
 First time you mark a day complete without meal reminders enabled, a one-time tip points at **Settings → Notifications** so you can catch a missing snack earlier next time instead of after end of day.
 
-Storage: `completed_at TEXT` and `completed_meals TEXT` (JSON array of slot indexes) columns on the `diary` table. Both are covered by the full backup export/import and by cross-device sync.
+Storage: `completed_at TEXT` and `completed_meals TEXT` (JSON array of slot indexes) columns on the `diary` table. Both are covered by the Full Backup, the JSON export and import, the Android app's own backup, and cross-device sync.
 
 ## Known caveats
 

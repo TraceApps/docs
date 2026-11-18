@@ -81,7 +81,7 @@ Setting any of these puts the container in "env-configured backup" mode; the adm
 | Var | Purpose |
 |---|---|
 | `BACKUPS_PATH` | Directory for full-backup ZIPs. Defaults to `${UPLOADS_PATH}/backups` (inside the uploads volume). |
-| `BACKUP_SCHEDULE` | Cadence: `daily` / `weekly` / `monthly` / cron expression. |
+| `BACKUP_SCHEDULE` | Cadence: `off` / `daily` / `weekly` / `monthly`. |
 | `BACKUP_TIME` | Time of day for the schedule (`HH:MM`), in the container's time zone (`TZ`, else UTC). |
 | `BACKUP_RETENTION` | How many recent backups to keep before rotating out. |
 | `BACKUP_UPLOAD_MAX_MB` | Max size of an uploaded backup ZIP for restore-from-upload. Default `512`. |
