@@ -110,6 +110,8 @@ Product names, brand names, and third-party service names stay in English regard
 
 Trace, Trace AI, CookTrace, LiftTrace, NoteTrace, NutriTrace, TraceApps, wger, USDA, Open Food Facts, OFF, Mealie, Fitbit, Google Health, Withings, Garmin, Health Connect, Ollama, LM Studio, LocalAI, vLLM, DeepSeek, Groq, Together AI, Mistral, Anthropic, Claude, OpenAI, GPT, Google, Gemini, Authentik, Keycloak, Pocket-ID, Authelia, Auth0, Apprise, Gotify, ntfy, Docker, Caddy, Traefik, nginx, Cloudflare, Tailscale, Google Keep, Takeout, Evernote, ENEX, Memos, Blinko, Obsidian, Joplin, Simplenote, Standard Notes, OneNote, Apple Notes, Markdown, Whisper, Wear OS, Capacitor, Svelte, Vite, Node.js, Express, SQLite, DuckDB, JWT, OIDC, SSO.
 
+The one exception: when Android or the service itself shows its name translated in your language, use that name, so it matches what people see on their phone. Android shows Health Connect as "Santé Connect" in French, so the French translations say Santé Connect.
+
 Feature names inside the apps (Smart Log, Quick Calories, Adaptive TDEE, Meal Planner, Kitchen Gear, Cook Diary, Programs, Radio) also stay in English, matching the UI label.
 
 ## Related
