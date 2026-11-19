@@ -13,6 +13,8 @@ Every commit goes through `POST /api/nutrition-import/preview` first (`server/ro
 - Dupe detection against your existing catalog by name and brand.
 - Parse warnings for rows that skipped or transformed.
 
+Numbers can use a decimal comma or a thousands comma. A comma followed by groups of three digits separates thousands, so `1,150` reads as 1150; otherwise it is a decimal comma, so `1,5` reads as 1.5 and `0,125` as 0.125. A decimal comma with exactly three decimals after a nonzero number (`1,250` meaning 1.25) reads as thousands, so check those rows in the preview.
+
 Only after you confirm does the commit endpoint (`POST /api/nutrition-import/commit`) actually write. The **per-date conflict policy** applies at commit time:
 
 - **Skip**: leave any date that already has diary data untouched.
@@ -45,7 +47,7 @@ The UI groups dates so you can, for example, skip everything before 2024 and ove
     ### What survives
 
     - **Foods**: name, brand, per-serving macros, serving size, category (mapped to your NutriTrace categories where possible).
-    - **Diary rows**: per-food entries with quantity, unit, meal slot. Lose It's meal slots (Breakfast / Lunch / Dinner / Snacks) map directly to the NutriTrace defaults; if you have renamed your slots, the importer surfaces a slot mapping step.
+    - **Diary rows**: per-food entries with the amount you logged as the portion (Grams, Milliliters and Ounces become g, ml and oz) and Lose It's calories and nutrients for that amount, in their meal slot. Lose It's meal slots (Breakfast / Lunch / Dinner / Snacks) map directly to the NutriTrace defaults; if you have renamed your slots, the importer surfaces a slot mapping step.
     - **Body measurements**: weight, waist, and any custom fields go under Diary → Body Stats on the appropriate dates. Backdated entries are accepted.
 
     ### What doesn't
