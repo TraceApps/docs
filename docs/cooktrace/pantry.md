@@ -66,7 +66,7 @@ For **Recompute From Pantry** to cross the volume-to-mass boundary, each item ca
 
 ## Barcode scanning
 
-The scanner is native (ML Kit) on Android via `@capacitor-mlkit/barcode-scanning` and QuaggaJS in the browser. Under Settings > Connected Services > Barcode Scanner:
+The scanner is native (ML Kit) on Android via `@capacitor-mlkit/barcode-scanning`. In the browser it uses ZXing; if a code won't read, pick html5-qrcode or Quagga2 from the engine picker in the scanner itself, and the browser remembers the choice. Under Settings > Connected Services > Barcode Scanner:
 
 - **Beep on Scan** (default on).
 - **Auto-Enable Flashlight** (web only; Android's system camera handles torch).

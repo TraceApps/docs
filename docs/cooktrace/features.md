@@ -56,7 +56,7 @@ The Pantry page mirrors Recipes: grid or list, per-user preference. Tap an item 
 Add items three ways:
 
 - Manually, from the Add Item button.
-- By **barcode**: the built-in scanner uses ML Kit on Android and QuaggaJS in the browser. Scans hit Open Food Facts first, then USDA if you have a key configured, and pre-fill nutrition.
+- By **barcode**: the built-in scanner uses ML Kit on Android and ZXing in the browser (html5-qrcode and Quagga2 are in the scanner's engine picker). Scans hit Open Food Facts first, then USDA if you have a key configured, and pre-fill nutrition.
 - From a recipe you're saving, when **Auto-Add Ingredients to Pantry** is on (off by default).
 
 **Variants** let a parent pantry item ("Milk") carry brand-specific children ("Oatly Barista"). Recipe ingredient links can point at the parent, in which case any in-stock variant satisfies the match. Nesting stops at one level; the server rejects three-deep hierarchies.

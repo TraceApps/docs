@@ -39,7 +39,7 @@ Both are client-side filters (no extra API calls) and were added in 1.0.3. Every
 
 ## Barcode scanner
 
-Camera-based scanner using Open Food Facts on web (QuaggaJS) and native `@capacitor-mlkit/barcode-scanning` on Android, with Google Code Scanner as fallback. Toggles: `barcodeBeep` (audio confirmation), `barcodeFlashlight` (device-only, per-device pref, does not sync).
+Camera-based scanner that looks products up in Open Food Facts: native `@capacitor-mlkit/barcode-scanning` on Android, ZXing in the browser (html5-qrcode and Quagga2 are in the scanner's engine picker). Toggles: `barcodeBeep` (audio confirmation), `barcodeFlashlight` (device-only, per-device pref, does not sync).
 
 **Unknown barcodes** open the food editor prefilled with the barcode field so you can enter the food manually and contribute back. If you have OFF account credentials set (Settings → Connected Services → Open Food Facts), the food editor's **Share to Open Food Facts** button uploads your entry (with photo) to the OFF community database. The button flips to "View on OFF" when the product already exists, opening the OFF wiki page where edits properly track history and moderation.
 
