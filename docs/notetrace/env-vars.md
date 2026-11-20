@@ -47,6 +47,16 @@ The Docker image includes a small audio-only ffmpeg, used to convert voice recor
 | `BACKUP_TIME` | (unset) | Auto-backup time (`HH:MM`, container time zone). Locks the Settings field. |
 | `BACKUP_RETENTION` | (unset) | How many auto-backups to keep. |
 
+## Defaults for everyone
+
+From the next release. What anyone who hasn't chosen their own starts with; each one set is locked in Settings > Users > [Defaults for Everyone](settings.md#defaults-for-everyone). Without them, each device's region decides. Values match without regard to case. An unknown value is ignored, with a warning in the log.
+
+| Env var | Values |
+| --- | --- |
+| `DEFAULT_LANGUAGE` | `en` |
+| `DEFAULT_DATE_FORMAT` | `ISO` \| `US` \| `EU` \| `natural` |
+| `DEFAULT_TIME_FORMAT` | `12h` \| `24h` |
+
 ## Path convenience (Docker Compose only)
 
 | Env var | Default | Purpose |

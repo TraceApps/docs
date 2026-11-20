@@ -36,6 +36,8 @@ Top-of-page hero on Settings. Links out to `/profile`.
 - **Date format** US `MM/DD/YYYY`, EU `DD/MM/YYYY`, or ISO `YYYY-MM-DD`.
 - **Time format** 12-hour or 24-hour.
 
+Until you pick them (from the next release), the language and the date and time formats start from the server's [defaults for everyone](#defaults-for-everyone) when an admin set any, and otherwise from your browser's or phone's region: a British browser starts with day-first dates and the 24-hour clock. The weight unit isn't one of them: a logged set is a number in your account's unit, so it stays lbs until you choose kg.
+
 ## Data and tracking
 
 ### Workout
@@ -150,6 +152,10 @@ Only visible to `admin` in server mode.
 - **Session duration** hours; capped by `MAX_SESSION_HOURS`.
 - **Disable user management** danger; drops the app back to zero-user mode.
 - **Enable user management** activates multi-user mode from a single-user install; creates the first admin.
+
+### Defaults for Everyone
+
+From the next release. What anyone who hasn't chosen their own starts with: **Language**, **Date Format** and **Time Format**. **Each Device** (the default) leaves it to each browser's or phone's region. A person's own choice in Units always wins, and nothing is written into their settings, so changing a default here reaches everyone who still hasn't chosen. A default set by a `DEFAULT_*` [environment variable](env-vars.md#defaults-for-everyone) shows here, locked. **Reset to Defaults** in Backup and restore sets the date and time format to these defaults.
 
 ### Authentication
 

@@ -49,6 +49,8 @@ How notes behave, rather than how the app looks.
 - **Date Format**: `YYYY-MM-DD`, `MM/DD/YYYY`, `DD/MM/YYYY`, or natural.
 - **Time Format**: 12-hour or 24-hour. Also used by reminder times.
 
+Until you pick them (from the next release), these start from the server's [defaults for everyone](#defaults-for-everyone) when an admin set any, and otherwise from your browser's or phone's region: a British browser starts with day-first dates and the 24-hour clock. Opening this page saves nothing: only what you change is yours, and stays when the defaults change.
+
 ## Integrations
 
 ### Trace AI (per-user)
@@ -114,6 +116,10 @@ Server and sync status, for troubleshooting.
 ### Users
 
 Invite people, change roles, reset passwords, and remove accounts. **Reset Two-Step Sign-In** for someone who has it on (your own password needed), and **Require Two-Step Sign-In for Everyone**, which takes everyone who signs in with a password through setup at their next sign-in (see [Two-step sign-in](../auth/two-step.md#require-it-for-everyone)). Accounts are also who you can [share notes](sharing.md) with. See [Local users, invites, roles](../auth/local-users.md).
+
+#### Defaults for Everyone
+
+From the next release. What anyone who hasn't chosen their own starts with: **Language**, **Date Format** and **Time Format**. **Each Device** (the default) leaves it to each browser's or phone's region. A person's own choice in Regional always wins, and nothing is written into their settings, so changing a default here reaches everyone who still hasn't chosen. A default set by a `DEFAULT_*` [environment variable](env-vars.md#defaults-for-everyone) shows here, locked.
 
 ### Authentication
 

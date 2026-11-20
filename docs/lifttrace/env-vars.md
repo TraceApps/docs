@@ -14,6 +14,16 @@ Every var below also accepts the Docker secrets convention `<NAME>_FILE=/run/sec
 | `ALLOW_PRIVATE_RADIO_URLS` | `0` | Set `1` or `true` to let every account play radio stations on your own network (loopback, RFC1918, IPv6 ULA). An admin always can. A warning is logged at startup when it is set. |
 | `UPDATE_CHECK` | (unset) | `off` (or `0`, `false`, `no`) stops the server asking GitHub about new releases for good, whatever **Settings, Updates** says, and locks that setting. Unset, the setting decides. 1.4.0 and later. |
 
+### Defaults for everyone
+
+From the next release. What anyone who hasn't chosen their own starts with; each one set is locked in Settings > Users > [Defaults for Everyone](settings.md#defaults-for-everyone). Without them, each device's region decides. Values match without regard to case, and a language with a region (`es-MX`) is its language. An unknown value is ignored, with a warning in the log. There's no default for the weight unit: a logged set is a number in the account's unit.
+
+| Var | Values |
+|---|---|
+| `DEFAULT_LANGUAGE` | `en` \| `es` \| `it` \| `ru` \| `zh-Hans` |
+| `DEFAULT_DATE_FORMAT` | `US` \| `EU` \| `ISO` |
+| `DEFAULT_TIME_FORMAT` | `12h` \| `24h` |
+
 ## Notes on each
 
 ### `PORT`

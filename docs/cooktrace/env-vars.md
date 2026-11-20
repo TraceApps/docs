@@ -19,6 +19,20 @@ Only CookTrace-specific env vars are listed here. Shared env vars (`PORT`, `BASE
 | `BACKUP_RETENTION` | (unset) | How many auto-backups to keep (older auto-purged). Locks the UI when set. |
 | `BACKUPS_PATH` | `<UPLOADS_PATH>/backups` | Where full-backup zips write. Change only if you want backups on a different volume. Wherever it points inside `UPLOADS_PATH`, that directory is never served publicly. |
 
+## Defaults for everyone
+
+From the next release. What anyone who hasn't chosen their own starts with; each one set is locked in Settings > Users > [Defaults for Everyone](settings.md#defaults-for-everyone). Without them, each device's region decides. Values match without regard to case, and a language with a region (`fr-CA`) is its language. An unknown value is ignored, with a warning in the log.
+
+| Env var | Values |
+| --- | --- |
+| `DEFAULT_LANGUAGE` | `en` \| `es` \| `fr` \| `sv` |
+| `DEFAULT_MEASUREMENT_SYSTEM` | `metric` \| `imperial` |
+| `DEFAULT_ENERGY_UNIT` | `kcal` \| `kJ` |
+| `DEFAULT_DATE_FORMAT` | `ISO` \| `US` \| `EU` \| `natural` |
+| `DEFAULT_TIME_FORMAT` | `12h` \| `24h` |
+| `DEFAULT_OFF_SEARCH_LANGUAGE` | `en`, `fr`, `de`, `es`, `it`, `pt`, `nl`, `pl`, `ru`, `uk`, `ja`, `zh`, `ar`, `ko` |
+| `DEFAULT_OFF_SEARCH_COUNTRY` | `World`, or a country as Settings > Food Sources lists it (`United Kingdom`) |
+
 ## Integrations
 
 All off by default.

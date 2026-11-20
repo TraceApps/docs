@@ -31,6 +31,8 @@ In Settings > Profile, for accounts that sign in with a password (from the next 
 - **Measurement System**: Imperial or Metric.
 - **Energy**: kcal or kJ (independent of measurement system).
 
+Until you pick them (from the next release), these start from the server's [defaults for everyone](#defaults-for-everyone) when an admin set any, and otherwise from your browser's or phone's region: a British browser starts metric, with day-first dates and the 24-hour clock; an Australian one with kilojoules; a US one as before. Opening this page saves nothing: only what you change is yours, and stays when the defaults change.
+
 ## Cooking (per-user)
 
 - **Default Servings**: 1-20, used when adding a fresh recipe.
@@ -146,6 +148,10 @@ Under Integrations. From the next release, any signed-in user makes their own to
 - **Require Two-Step Sign-In for Everyone**, which takes everyone who signs in with a password through setup at their next sign-in (see [Two-step sign-in](../auth/two-step.md#require-it-for-everyone)).
 - **Invite user** by role and email. Requires SMTP; falls back to a copyable link when SMTP is unset.
 - Pending invites table with revoke.
+
+### Defaults for Everyone
+
+From the next release. What anyone who hasn't chosen their own starts with: **Language**, **Date Format**, **Time Format**, **Measurement System**, **Energy**, and Open Food Facts **Search Language** and **Search Country**. **Each Device** (the default) leaves it to each browser's or phone's region; food search stays worldwide unless you pick a country. A person's own choice in Regional & Units or Food Sources always wins, and nothing is written into their settings, so changing a default here reaches everyone who still hasn't chosen, invited accounts and ones you add included. A default set by a `DEFAULT_*` [environment variable](env-vars.md#defaults-for-everyone) shows here, locked. The Android app keeps the last defaults it saw, so they hold offline; in Local mode (no server) the phone's region decides.
 
 Deep dive: [Local users](../auth/local-users.md).
 

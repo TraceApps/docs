@@ -74,6 +74,19 @@ See [Wellness and wearables](wellness.md), [Fitbit → Google Health migration](
 
 Update checks are off on a fresh install until someone says yes: the setup wizard asks, and an admin can change it later in **Settings → Updates**. An install that was already running before 1.4.0 keeps checking, as it did before. When checks are on, the server asks `api.github.com` for the latest release at most once a day (**Check Now** asks at once), and nothing about you or your data is sent. Browsers never contact GitHub themselves: they ask your server. The Android app asks GitHub directly for a new APK, and only once you said yes on that phone; `UPDATE_CHECK` doesn't reach it. Read in `server/lib/update-check.js`.
 
+## Defaults for everyone
+
+From the next release. What anyone who hasn't chosen their own starts with; each one set is locked in Settings > Users > [Defaults for Everyone](settings.md#defaults-for-everyone). Without them, each device's region decides. Values match without regard to case, and a language with a region (`fr-CA`) is its language. An unknown value is ignored, with a warning in the log. There are no defaults for the body units: goals are numbers in each account's unit.
+
+| Var | Values |
+|---|---|
+| `DEFAULT_LANGUAGE` | `en` \| `fr` \| `de` \| `es` \| `ru` \| `nb` |
+| `DEFAULT_DATE_FORMAT` | `ISO` \| `US` \| `EU` \| `natural` |
+| `DEFAULT_TIME_FORMAT` | `12h` \| `24h` |
+| `DEFAULT_ENERGY_UNIT` | `kcal` \| `kJ` |
+| `DEFAULT_OFF_SEARCH_LANGUAGE` | `en`, `fr`, `de`, `es`, `it`, `pt`, `nl`, `pl`, `ru`, `uk`, `ja`, `zh`, `ar`, `ko` |
+| `DEFAULT_OFF_SEARCH_COUNTRY` | `World`, or a country as Settings > Connected Services lists it (`United Kingdom`) |
+
 ## Full Backup schedule
 
 Setting any of these puts the container in "env-configured backup" mode; the admin UI shows the schedule as read-only. Read in `server/routes/full-backup.js`.
