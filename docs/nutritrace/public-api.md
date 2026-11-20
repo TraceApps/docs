@@ -31,7 +31,7 @@ Need `mcp:read`. Dates are `YYYY-MM-DD`.
 |---|---|---|
 | GET | `/api/v1/diary/:date` | One day's logged food items, and from the next release the day's completion marks: see [Day completion](#day-completion). |
 | GET | `/api/v1/diary/:date/totals` | Summed nutrition (calories, macros, any micronutrients present) plus total water for the day. |
-| GET | `/api/v1/goals` | Your current macro, micronutrient and water goals. A goal with `sharedGoal: false` has one target per weekday in `days`, starting on Sunday, and its `max`/`min` is the week's highest; `goals_by_weekday` gives those by named day and `today.targets` gives today's targets in your time zone. |
+| GET | `/api/v1/goals` | Your current macro, micronutrient and water goals. A goal with `sharedGoal: false` has one target per weekday in `days`, starting on Sunday, and its `max`/`min` is the week's highest; `goals_by_weekday` gives those by named day and `today.targets` gives today's targets in your time zone. Add `?date=YYYY-MM-DD` for the goals in effect on one day, or `?start=...&end=...` for a range; see [Goals on a past day](#goal-history). |
 | GET | `/api/v1/meals/search?query=&limit=&include_recipes=` | Search your saved meals by name, or list them all when `query` is left out. Recipes are left out unless `include_recipes=true`. |
 | GET | `/api/v1/meals/recent?limit=&include_recipes=&start=&end=` | Your most recently used saved meals. `start` and `end` (both optional) filter by the date each meal was last used. |
 | GET | `/api/v1/meals/:id` | One saved meal with every item. |
@@ -51,6 +51,23 @@ Need `mcp:write` and `PUBLIC_API_WRITE_ENABLED=1`.
 | PUT | `/api/v1/diary/:date/body-stat` | `{stats: {weight?, body_fat?, waist?, ...}}` | Merges the values into the day's body stats. |
 
 Editing or deleting a diary entry and creating a food are MCP-only (`edit_diary_entry`, `delete_diary_entry`, `create_food`), behind `MCP_DESTROY_ENABLED`, the `mcp:destroy` scope and `confirm: true`. Food search lives in the federation route `GET /api/v1/foods?q=`.
+
+## Goals on a past day { #goal-history }
+
+NutriTrace keeps a record of your goals by date, so a report on an old diary day can use the targets you had then instead of today's. `GET /api/v1/goals` with no query is unchanged; add a date or an inclusive range (up to 366 days):
+
+```
+GET /api/v1/goals?date=2026-09-23
+GET /api/v1/goals?start=2026-09-21&end=2026-09-27
+```
+
+- **Dates** are your calendar days in the time zone you set in NutriTrace (UTC until the app records one).
+- **Each day** has that day's goals with weekday goals, percent macros, Dynamic and Adaptive calories and the activity adjustment already worked out: `resolved_goals`, `targets`, `calorie_target_kcal`, `calorie_base_target_kcal`, `calorie_basis` and `activity_adjustment_kcal`. Use these rather than redoing the math.
+- **Unknown days:** history starts when your account is created, or at the first start of a server updated to this version. A day before that answers `known: false` instead of today's goals.
+- **Partly known days:** a day that only got some settings (an edit made offline before the update, for example) lists the rest in `unknown_fields` and leaves them out instead of showing defaults. `history_complete` is `false` on such a day, and on a range with any such day.
+- **Single-user mode** and the Android app's Local mode keep no history: a dated request answers `409` with `code: "goal_history_unavailable"`.
+
+The same dates work in the MCP `get_goals` tool and in Trace.
 
 ## Day completion { #day-completion }
 

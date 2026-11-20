@@ -17,7 +17,7 @@ Trace runs a tool-use loop (up to 12 rounds per turn) with a set of NutriTrace-s
 - **`get_meals`**: the user's saved Meals library, a page at a time.
 - **`get_workouts`**: workout list for a date range (wearable-synced and manual).
 - **`get_activity_log`**: the manual activity log (workouts logged without a wearable).
-- **`get_goals`**: the user's calorie and per-nutrient goal grid, plus the mode (Fixed / Dynamic / Adaptive).
+- **`get_goals`**: the user's calorie and per-nutrient goal grid, plus the mode (Fixed / Dynamic / Adaptive). For a past day or week it uses the goals in effect then, so "how did I do against my goals last month?" compares with the targets you had, not today's.
 - **`get_diary_averages`**: trailing averages of any tracked nutrient over N days.
 - **`get_logging_streak`**: current and longest logging streak.
 - **`get_fasting_history`**: completed and active fasts, streaks, longest.
