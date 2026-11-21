@@ -18,7 +18,7 @@ From the next release, `list_diary_entries` also returns the day's completion ma
 
 ### Write (Phase 2)
 
-Five additive log tools: `log_food`, `log_external_food`, `log_water`, `log_meal`, `log_body_stat`. Everything they write shows up as normal entries in the diary UI, editable and deletable through the app like anything else. Off by default; turn on with `MCP_WRITE_ENABLED=1` AND a token that holds `mcp:write`. Either missing and the write tools simply don't appear in `tools/list`.
+Five additive log tools: `log_food`, `log_external_food`, `log_water`, `log_meal`, `log_body_stat`. `log_meal` adds a saved meal's items, or a recipe as one entry with `servings` (default 1, fractions allowed) as its quantity, so 1 of a 4-serving recipe logs a quarter of it. Everything they write shows up as normal entries in the diary UI, editable and deletable through the app like anything else. Off by default; turn on with `MCP_WRITE_ENABLED=1` AND a token that holds `mcp:write`. Either missing and the write tools simply don't appear in `tools/list`.
 
 ### Foods from Open Food Facts and USDA
 
@@ -33,7 +33,7 @@ The search needs only `mcp:read`. Logging needs `mcp:write` and `MCP_WRITE_ENABL
 
 ### Destructive (Phase 3)
 
-Three destructive tools: `delete_diary_entry`, `edit_diary_entry`, `create_food`. Off by default. Three gates ALL required:
+Five destructive tools: `delete_diary_entry`, `edit_diary_entry`, `create_food`, `create_meal`, `update_meal`. `create_meal` saves a meal or recipe from foods in your catalog, and `update_meal` renames it, adds, removes or replaces its items and changes a recipe's servings; nutrition is worked out on the server the way the meal editor does, and a recipe imported from CookTrace keeps its own nutrition (only its name and notes change here). Off by default. Three gates ALL required:
 
 1. `MCP_DESTROY_ENABLED=1` on the server.
 2. Token holds `mcp:destroy` (mint separately; a `mcp:write` token does NOT unlock destroy).
@@ -113,7 +113,7 @@ The transport is standard MCP Streamable HTTP (single POST endpoint). Any client
 |---|---|---|
 | `MCP_ENABLED` | `0` | Set to `1` to expose `/api/mcp`. |
 | `MCP_WRITE_ENABLED` | `0` | Set to `1` to allow write tools (`log_food`, `log_external_food`, `log_water`, `log_meal`, `log_body_stat`) to be registered. Also requires the calling token to hold `mcp:write`. |
-| `MCP_DESTROY_ENABLED` | `0` | Set to `1` to allow destructive tools (`delete_diary_entry`, `edit_diary_entry`, `create_food`) to be registered. Also requires the calling token to hold `mcp:destroy` AND every call to include `confirm: true`. |
+| `MCP_DESTROY_ENABLED` | `0` | Set to `1` to allow destructive tools (`delete_diary_entry`, `edit_diary_entry`, `create_food`, `create_meal`, `update_meal`) to be registered. Also requires the calling token to hold `mcp:destroy` AND every call to include `confirm: true`. |
 | `ALLOWED_ORIGINS` | (empty) | Comma-separated list of origins that browser-based MCP clients may use. Server-to-server clients (no Origin header) always pass. Leave empty unless you're specifically using the MCP Inspector in a browser. |
 
 ## Verifying
