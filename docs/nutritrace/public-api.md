@@ -50,7 +50,7 @@ Need `mcp:write` and `PUBLIC_API_WRITE_ENABLED=1`.
 | POST | `/api/v1/diary/:date/meal` | `{meal_id, meal?, servings?}` | Adds a saved meal's items to a day. A recipe is added as one entry with `servings` (default 1) as its quantity. |
 | PUT | `/api/v1/diary/:date/body-stat` | `{stats: {weight?, body_fat?, waist?, ...}}` | Merges the values into the day's body stats. |
 
-Editing or deleting a diary entry, creating a food and creating or changing a meal or recipe are MCP-only (`edit_diary_entry`, `delete_diary_entry`, `create_food`, `create_meal`, `update_meal`), behind `MCP_DESTROY_ENABLED`, the `mcp:destroy` scope and `confirm: true`. Food search lives in the federation route `GET /api/v1/foods?q=`.
+Editing or deleting a diary entry, creating, changing or deleting a food, meal or recipe, and logging many entries at once are MCP-only (`edit_diary_entry`, `delete_diary_entry`, `create_food`, `create_meal`, `update_meal`, `delete_meal`, `update_food`, `delete_food`, `log_diary_batch`), behind `MCP_DESTROY_ENABLED`, the `mcp:destroy` scope and `confirm: true`. Food search lives in the federation route `GET /api/v1/foods?q=`.
 
 ## Goals on a past day { #goal-history }
 
