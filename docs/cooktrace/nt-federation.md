@@ -69,7 +69,7 @@ Pick a recipe: NT fetches `GET /api/v1/recipes/<id>`, opens NT's Recipe editor p
 
 - **Name, servings, image** from the CookTrace recipe row.
 - **Ingredients**, one row per CT ingredient, with the pantry-link brand and name where available, plus the per-ingredient nutrition snapshot CT stores when the ingredient is linked to a pantry item.
-- **Rollup totals** (whatever CookTrace has stored from its most recent Recompute). If the recipe was never Recomputed, totals may be empty; NT lets you run its own Recompute after import to fill them in from the NT foods library.
+- **Rollup totals** (whatever CookTrace has stored from its most recent Recompute). If the recipe was never Recomputed, totals may be empty, and NutriTrace counts the recipe's ingredients instead. NutriTrace keeps CookTrace's totals until an ingredient's amount changes or one is added, removed or swapped there.
 
 Save the recipe and it appears in NT's Recipes catalog with a **From CookTrace** badge and a back-link to the original recipe on CookTrace. If any ingredients came in without nutrition, NT surfaces them as ordinary loose items ready for you to link or fill in on the NT side.
 
