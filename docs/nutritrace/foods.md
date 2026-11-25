@@ -16,13 +16,15 @@ Each food row carries a name, brand, categories (as many as you pick; `category`
 - **Recently used**: most recent `POST /api/foods/:id/used` timestamp first.
 - **Most used**: highest usage count first.
 
-Search is fuzzy: edit distance 1 for words of four or more characters (`Foods.svelte#_fuzzyMatch`). Typos are forgiven; short words are matched exactly to avoid noise.
+Search is fuzzy: edit distance 1 for words of four or more characters (`src/lib/food-search-match.js`). Typos are forgiven; short words are matched exactly to avoid noise. Accents don't matter either way: `champinon` finds Champiñón, and `Jalapeño` finds jalapeno.
 
 ### Serving size and the link toggle
 
 In the food editor, the nutrients are for the serving size shown under Basic Info, and the Nutrition card says so: **Values for 100 g**, **Values for 60 g** and so on, following the serving size and unit as you change them. When you copy numbers from a package, check the label's column matches: a European label's "per 100 g" column belongs with a 100 g serving.
 
 The link button next to the unit scales every nutrient with the serving size. With it on (the default when you edit a food you saved), changing the serving from 100 g to 200 g doubles every value, including any you typed or corrected after opening the editor. With it off (the default for a new food), the serving size and the values change independently, so typing 60 g keeps the numbers you entered and they become the values for 60 g.
+
+When the editor opens while you're adding to the diary (**Edit** on a food in the picker, or a food from Open Food Facts, USDA or Mealie), the serving size you type is the amount you ate. The diary gets that amount, and the food keeps its own serving in your foods, with the values you see converted to it. Change a saved food's own serving from **Foods** instead. A food you type in from scratch, or a serving in a unit that can't be converted (1 piece with no grams for a piece, or milliliters for a food kept in grams with no density), is saved as you typed it.
 
 ## Source filter chips
 
