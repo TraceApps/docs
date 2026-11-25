@@ -1,6 +1,6 @@
 # Withings
 
-Withings makes smart scales (Body, Body+, Body Cardio, Body Scan, Body Comp), plus sleep mats, watches, and blood pressure cuffs. NutriTrace's Withings integration pulls **weight and body-composition** data, which feeds the Adaptive TDEE weight input, the Body Stats card on the Diary, and any weight-based charts on Statistics.
+Withings makes smart scales (Body, Body+, Body Cardio, Body Scan, Body Comp), plus sleep mats, watches, and blood pressure cuffs. NutriTrace's Withings integration pulls **weight and body-composition** data, which feeds the Adaptive TDEE weight input, weight-based charts on Statistics, and (with **Settings > Wellness > Mirror wellness weight to Body Stats** on) the Body Stats card on the Diary.
 
 Setup is per-user, OAuth 2.0, and needs a free developer account on Withings' side. Unlike Fitbit / Google Health, there is no company-wide cutoff deadline; the integration is stable.
 
@@ -45,7 +45,9 @@ The Withings API returns readings incrementally, so a routine sync pulls only wh
 From the `user.metrics` scope, primarily:
 
 - **Weight** (`weight_kg`).
-- **Body composition**: fat mass (%), muscle mass (%), bone mass (%), body water (%), lean/fat mass, visceral fat, vascular age, metabolic age, BMR. Coverage depends on your scale model; a basic Body scale gives weight + fat %, a Body Scan gives the full lineup.
+- **Body composition**: fat mass (%), muscle mass (kg), bone mass (kg), body water (%), lean/fat mass, visceral fat, vascular age, metabolic age, BMR. Coverage depends on your scale model; a basic Body scale gives weight + fat %, a Body Scan gives the full lineup.
+
+  Withings sends body water in kilograms; NutriTrace shows it as a percentage of the same reading's weight. Readings synced before this was fixed are converted once, when the server starts, using that day's weight or the nearest one within a week; one with no weight that close is replaced at the next Withings sync that covers its day. With **Settings > Wellness > Mirror wellness weight to Body Stats** on, the day's first weight also fills that day's Body Stats weight on the Diary, unless you typed one in.
 - **Heart-rate readings** captured by the scale during weigh-in, when your model measures them.
 
 These are stored in the `wellness_data` table with `source='withings'`. The cross-source `/api/wellness/latest?metric=weight_kg` prefers Withings when a fresh reading exists (see [Wellness and wearables](wellness.md) for the priority order).
