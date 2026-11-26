@@ -8,7 +8,7 @@ Off by default. Opt in with one env var + one API token.
 
 ## Available tools
 
-Twenty-four tools across three tiers. Setup for each tier below; full arg/return reference in the [MCP tool catalog](../reference/mcp-tools.md).
+Twenty-six tools across three tiers. Setup for each tier below; full arg/return reference in the [MCP tool catalog](../reference/mcp-tools.md).
 
 ### Read
 
@@ -16,7 +16,9 @@ Eight read-only tools: `search_recipes`, `get_recipe`, `recent_recipes`, `list_p
 
 ### Write (Phase 2)
 
-Ten tools: `log_cook`, `add_shopping_item`, `check_shopping_item`, `update_pantry_stock`, `update_recipe`, `set_recipe_image`, `plan_cook`, `update_plan`, `add_recipe_to_cookbook` and `remove_recipe_from_cookbook`. Everything they write shows up as normal entries in the app's UI, editable and deletable through the app like anything else. `update_recipe` changes only the fields you send (ingredients and steps replace the whole list; nutrition merges), and saves the way the app's own edit does: the copy it replaces is kept as an earlier version and a change to what you cook is a new version in the recipe's History, so an agent's edit can always be undone. It also sets the recipe's category (by id or name, from `list_recipe_categories`), favorite and rating. `set_recipe_image` takes a public image address, which the server downloads through the same address guard as URL import, or the image itself as base64. Off by default; turn on with `MCP_WRITE_ENABLED=1` AND a token that holds `mcp:write`. Either missing and the write tools simply don't appear in `tools/list`.
+Twelve tools: `log_cook`, `add_shopping_item`, `check_shopping_item`, `update_pantry_stock`, `update_recipe`, `set_recipe_image`, `plan_cook`, `update_plan`, `add_recipe_to_cookbook`, `remove_recipe_from_cookbook`, `add_recipe_to_shopping_list` and `add_plan_to_shopping_list`. Everything they write shows up as normal entries in the app's UI, editable and deletable through the app like anything else. `update_recipe` changes only the fields you send (ingredients and steps replace the whole list; nutrition merges), and saves the way the app's own edit does: the copy it replaces is kept as an earlier version and a change to what you cook is a new version in the recipe's History, so an agent's edit can always be undone. It also sets the recipe's category (by id or name, from `list_recipe_categories`), favorite and rating. `set_recipe_image` takes a public image address, which the server downloads through the same address guard as URL import, or the image itself as base64. Off by default; turn on with `MCP_WRITE_ENABLED=1` AND a token that holds `mcp:write`. Either missing and the write tools simply don't appear in `tools/list`.
+
+`add_recipe_to_shopping_list` and `add_plan_to_shopping_list` do what the Shopping screen's add recipe and build from plan do (from the next release): a recipe's ingredients, scaled to `servings` when given, or every planned cook of a date range (default the next 7 days) at its planned servings. Amounts of one ingredient add up, in-stock pantry items are skipped unless `only_missing` is false, and building the same week again replaces its share instead of doubling it. Only your own recipes and ones shared with you count.
 
 `add_recipe_to_cookbook` and `remove_recipe_from_cookbook` change which recipes a cookbook holds, several at a time, by the ids from `list_cookbooks` and `search_recipes`. They follow the app's rules: your own cookbooks, and one shared with you through a kitchen where you're Sous Chef. A smart cookbook fills itself from its filter, so it's refused. `get_recipe` lists the cookbooks a recipe is in.
 
@@ -104,7 +106,7 @@ The transport is standard MCP Streamable HTTP (single POST endpoint). Any client
 | Variable | Default | Description |
 |---|---|---|
 | `MCP_ENABLED` | `0` | Set to `1` to expose `/api/mcp`. |
-| `MCP_WRITE_ENABLED` | `0` | Set to `1` to allow write tools (`log_cook`, `add_shopping_item`, `check_shopping_item`, `update_pantry_stock`, `update_recipe`, `set_recipe_image`, `plan_cook`, `update_plan`, `add_recipe_to_cookbook`, `remove_recipe_from_cookbook`) to be registered. Also requires the calling token to hold `mcp:write`. |
+| `MCP_WRITE_ENABLED` | `0` | Set to `1` to allow write tools (`log_cook`, `add_shopping_item`, `check_shopping_item`, `update_pantry_stock`, `update_recipe`, `set_recipe_image`, `plan_cook`, `update_plan`, `add_recipe_to_cookbook`, `remove_recipe_from_cookbook`, `add_recipe_to_shopping_list`, `add_plan_to_shopping_list`) to be registered. Also requires the calling token to hold `mcp:write`. |
 | `MCP_DESTROY_ENABLED` | `0` | Set to `1` to allow the destructive tools (`create_recipe`, `import_recipe_from_url`, `add_pantry_item`, `delete_cook_diary_entry`, `remove_shopping_item`, `delete_recipe`) to be registered. Also requires the calling token to hold `mcp:destroy` AND every call to include `confirm: true`. |
 | `ALLOWED_ORIGINS` | (empty) | Comma-separated list of origins that browser-based MCP clients may use. Server-to-server clients (no Origin header) always pass. Leave empty unless you're specifically using the MCP Inspector in a browser. |
 

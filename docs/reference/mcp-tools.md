@@ -146,7 +146,7 @@ Deliberately not in the current MCP surface:
 
 ## CookTrace
 
-Twenty-four tools across three phases.
+Twenty-six tools across three phases.
 
 ### Read tools (`mcp:read`)
 
@@ -175,6 +175,8 @@ Twenty-four tools across three phases.
 | `update_plan` | Change a planned cook; only the fields sent change | `entry_id*`, `date` (without `any_day`, puts it on that day), `any_day`, `meal_type`, `servings`, `notes` (`null` clears the last three) | `changed` (`[]` when nothing differed) and `planned`. When the shopping list already holds the cook's ingredients, it follows the change as it does in the app, and `shopping_list` says how many lines were added, changed or removed. Logged cooks are refused. |
 | `add_recipe_to_cookbook` | Put recipes in a cookbook, after the ones already there | `cookbook_id*`, `recipe_ids*` (1 to 100) | `added`, `already_in`, and `not_found` (ids the caller can't open, skipped). The caller's own cookbook, or one shared through a kitchen where they're Sous Chef. A smart cookbook is refused: its filter decides what's in it. |
 | `remove_recipe_from_cookbook` | Take recipes out of a cookbook | `cookbook_id*`, `recipe_ids*` (1 to 100) | `removed` and `not_in`. The recipes stay in the library and in other cookbooks. Same rules as `add_recipe_to_cookbook`. |
+| `add_recipe_to_shopping_list` | Add a recipe's ingredients to the shopping list, as the Shopping screen's add recipe | `recipe_id*`, `servings`, `only_missing` (default true) | `ok`, `recipe_id`, `added` (lines new or added to), `updated`, `removed` and `changed`. Amounts of an ingredient already on the list add up; in-stock pantry items are skipped unless `only_missing` is false. Your own recipes or ones shared with you, the same rule as the app's add recipe. |
+| `add_plan_to_shopping_list` | Build the shopping list from the plan, as the Shopping screen's build from plan | `from`, `to` (`YYYY-MM-DD`, default today to 7 days ahead), `only_missing` (default true) | `ok`, `added`, `updated`, `removed`, `changed`, `planned_cooks`, `from` and `to`. Each planned cook at its planned servings; building the same range again replaces its share, and cooks no longer planned leave the list. Recipes no longer shared with you are left out. |
 
 ### Destructive tools (`mcp:destroy` + `confirm: true`)
 
