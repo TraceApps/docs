@@ -26,6 +26,8 @@ The link button next to the unit scales every nutrient with the serving size. Wi
 
 When the editor opens while you're adding to the diary (**Edit** on a food in the picker, or a food from Open Food Facts, USDA or Mealie), the serving size you type is the amount you ate. The diary gets that amount, and the food keeps its own serving in your foods, with the values you see converted to it. Change a saved food's own serving from **Foods** instead. A food you type in from scratch, or a serving in a unit that can't be converted (1 piece with no grams for a piece, or milliliters for a food kept in grams with no density), is saved as you typed it.
 
+Logging a food you haven't saved yet (from Open Food Facts, USDA or a CookTrace pantry search) also adds it to your foods, at the serving it came with; the diary gets the amount you typed, so the next time you log it, it starts from its own serving rather than from that day's amount.
+
 ## Source filter chips
 
 Across the top of the picker: **Local / OFF (Open Food Facts) / USDA / Mealie / From Others**. Single-tap scopes to one source; long-press combines. A per-row source badge marks the origin in the combined view.
