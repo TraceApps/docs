@@ -43,6 +43,8 @@ Cookbook access is not transitive to the recipes inside it. If someone shares a 
 
 To grant read on a specific recipe inside a shared cookbook, share the recipe directly (per-user or via Kitchen). The locked placeholder then hydrates into a full card on the next load.
 
+The same holds in your own cookbook, from the next release: a recipe someone shared with you shows locked once they stop sharing it (or you leave the Kitchen it came through), with a button to take it out, and a recipe a Sous Chef added that only they can open stays locked for you. Before, the owner of a cookbook saw every recipe in it in full, whether or not they could still open it.
+
 ## Deletion
 
 `DELETE /api/cookbooks/:id` soft-deletes the cookbook and hard-deletes its `recipe_cookbook_links` rows so a future cookbook with a recycled id can't inherit stale recipes. Recipes themselves are never touched; only the collection goes away.
